@@ -1,0 +1,81 @@
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "./config.scss";
+
+// @description check if the provided value is a string
+@function is-string($value) {
+    @return meta.type-of($value) == "string";
+}
+
+// @description check if the provided value is a list
+@function is-list($value) {
+    @return meta.type-of($value) == "list";
+}
+
+// @description Improved version for map.get
+@function get-in($items, $keys, $default-value: null) {
+    @if map.has-key($items, $keys) {
+        @return map.get($items, $keys);
+    }
+    @return $default-value;
+}
+
+// @description Generate classname for utility
+// @option $p: prefix used
+// @option $name: name of the utility
+// @option $property: property of the utility
+// @option $state: state of the utility (default, hover, focus)
+// @option $breakpoint: responsive breakpoint
+@mixin use-classname($p, $name, $property, $state: null, $breakpoint: null) {
+    $classname: "#{$p}#{$name}";
+    // $classname: "#{get-in($options, "prefix", "")}#{get-in($options, "name", "")}";
+    @if $property != "default" {
+        $classname: "#{$classname}-#{$property}";
+    }
+    // Check for breakpoint provided
+    @if is-string($breakpoint) {
+        .#{$breakpoint}\\:#{string.unquote($classname)} {
+            @content;
+        }
+    }
+    // Check for hover state
+    @else if is-string($state) and $state == "hover" {
+        .hover\\:#{string.unquote($classname)}:hover {
+            @content;
+        }
+    }
+    // Check for focus state
+    @else if is-string($state) and $state == "focus" {
+        .focus\\:#{string.unquote($classname)}:focus {
+            @content;
+        }
+    }
+    // No breakpoint and state
+    @else {
+        .#{util.unquote($classname)} {
+            @content;
+        }
+    }
+}
+
+// @description generate media rules
+@mixin use-media($screen-list) {
+    @each $screen-name,$screen-value in $screen-list {
+        @media screen and (min-width: #{$screen-value}) {
+            @content($screen-name);
+        }
+    }
+}
+
+// @description Generate a rule
+@mixin use-rule($properties, $value, $is-important: false) {
+    @each $prop in $properties {
+        @if $is-important == true {
+            #{string.unquote($prop)}: #{$value} !important;
+        }
+        @else {
+            #{string.unquote($prop)}: #{$value};
+        }
+    }
+}
