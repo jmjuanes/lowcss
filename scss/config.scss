@@ -476,13 +476,6 @@ $text-transform: (
     "lowercase": lowercase,
 ) !default;
 
-$placement-values: (
-    "auto": auto,
-    "0": 0px,
-    "half": 50%,
-    "full": 100%,
-) !default;
-
 $user-select: (
     "none": none,
     "text": text,
