@@ -1,0 +1,46 @@
+{
+    "name": "lowcss",
+    "version": "0.0.0",
+    "description": "A low-level functional CSS toolkit",
+    "author": "Josemi Juanes <hello@josemi.xyz>",
+    "license": "MIT",
+    "repository": "https://github.com/jmjuanes/lowcss",
+    "bugs": "https://github.com/jmjuanes/lowcss/issues",
+    "main": "dist/low.css",
+    "style": "dist/low.css",
+    "sass": "_index.scss",
+    "scripts": {
+        "build": "sass --load-path=./ --style compressed ./index.scss ./dist/low.css",
+        "postbuild": "postcss dist/low.css -o dist/low.css"
+    },
+    "keywords": [
+        "css",
+        "css-toolkit",
+        "low-css",
+        "functional-css"
+    ],
+    "files": [
+        "index.scss",
+        "low.css",
+        "low.min.css",
+        "scss"
+    ],
+    "devDependencies": {
+        "autoprefixer": "^10.4.12",
+        "postcss": "^8.4.18",
+        "postcss-cli": "^10.0.0",
+        "sass": "^1.55.0"
+    },
+    "peerDependencies": {
+        "sass": ">=1.23.0"
+    },
+    "browserslist": [
+        "last 10 Chrome versions",
+        "last 4 Firefox versions",
+        "last 3 Safari versions",
+        "not Safari 12",
+        "last 4 Edge versions",
+        "not Edge <= 18",
+        "Firefox ESR"
+    ]
+}
