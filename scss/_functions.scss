@@ -1,0 +1,45 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+// @description check if the provided value is a string
+@function is-string($value) {
+    @return meta.type-of($value) == "string";
+}
+
+// @description check if the provided value is a list
+@function is-list($value) {
+    @return meta.type-of($value) == "list";
+}
+
+// @description Convert a value to a list
+@function to-list($value) {
+    @if is-list($value) {
+        @return $value;
+    }
+    // Over value --> wrap inside a list
+    @return list.append((), $value);
+}
+
+// @description check if a value exists in the list
+@function list-includes($list, $value) {
+    @if is-list($list) {
+        @return list.index($list, $value) != null;
+    }
+    // Not a list
+    @return false;
+}
+
+// @description Improved version for map.get
+@function get-in($items, $keys, $default-value: null) {
+    @if map.has-key($items, $keys) {
+        @return map.get($items, $keys);
+    }
+    @return $default-value;
+}
+
+// @description Extend the second map with the values of the first map
+@function extend($target, $source: ()) {
+    @return map.merge($source, $target);
+}

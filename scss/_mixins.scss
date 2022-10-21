@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "sass:string";
+@use "config";
+@use "functions";
+
+// @description Generate a rule
+@mixin generate-rule($props, $value, $is-important: false) {
+    $properties: functions.to-list($props);
+
+    @each $prop in $properties {
+        @if $is-important == true {
+            #{string.unquote($prop)}: #{$value} !important;
+        }
+        @else {
+            #{string.unquote($prop)}: #{$value};
+        }
+    }
+}
+
+// @description generate an @media rule of the specified breakpoint
+// @param $breakpoint-name: name of the breakpoint, included in config.$breakpoints
+@mixin generate-breakpoint($breakpoint-name) {
+    $breakpoint-value: map.get(config.$breakpoints, $breakpoint-name);
+
+    // TODO: we should check if this breakpoint value exists
+    @media screen and (min-width: #{$breakpoint-value}) {
+        @content;
+    }
+}

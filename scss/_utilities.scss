@@ -1,0 +1,777 @@
+@use "config";
+@use "functions";
+
+$all-utilities: (
+    "align-content": (
+        "class": "content",
+        "responsive": true,
+        "properties": (
+            "align-content",
+        ),
+        "values": (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "between": space-between,
+            "around": space-around,
+            "evenly": space-evenly,
+        ),
+    ),
+    "align-items": (
+        "class": "items",
+        "responsive": true,
+        "properties": (
+            "align-items",
+        ),
+        "values": (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "stretch": stretch,
+            "baseline": baseline,
+        ),
+    ),
+    "align-self": (
+        "class": "self",
+        "responsive": true,
+        "properties": (
+            "align-self",
+        ),
+        "values": (
+            "auto": auto,
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "stretch": stretch,
+            "baseline": baseline,
+        ),
+    ),
+    "background-color": (
+        "class": bg,
+        "states": (
+            "hover",
+            "focus",
+        ),
+        "responsive": false,
+        "properties": (
+            "background-color",
+        ),
+        "values": config.$colors,
+    ),
+    "background-repeat": (
+        "class": "bg",
+        "responsive": false,
+        "properties": (
+            "background-repeat",
+        ),
+        "values": (
+            "repeat": repeat,
+            "no-repeat": no-repeat,
+        ),
+    ),
+    "background-size": (
+        "class": bg,
+        "responsive": false,
+        "properties": (
+            "background-size",
+        ),
+        "values": (
+            "auto": auto,
+            "cover": cover, 
+            "contain": contain,
+        ),
+    ),
+    "border-color": (
+        "class": "b",
+        "states": (
+            "hover",
+            "focus",
+        ),
+        "responsive": false,
+        "properties": (
+            "border-color",
+        ),
+        "values": config.$colors,
+    ),
+    "border-radius": (
+        "class": "radius",
+        "responsive": false,
+        "properties": (
+            "border-radius",
+        ),
+        "values": functions.extend(config.$radius, (
+            "full": 9999px,
+            "none": 0px,
+        )),
+    ),
+    "border-style": (
+        "class": "b",
+        "responsive": false,
+        "properties": (
+            "border-style",
+        ),
+        "values": (
+            "solid": solid,
+            "dashed": dashed,
+            "dotted": dotted,
+            "none": none,
+        ),
+    ),
+    "border-width": (
+        "class": "b",
+        "responsive": false,
+        "properties": (
+            "border-width",
+        ),
+        "values": config.$borders,
+    ),
+    "bottom": (
+        "class": "bottom",
+        "responsive": true,
+        "properties": (
+            "bottom",
+        ),
+        "values": config.$inset,
+    ),
+    "box-shadow": (
+        "class": "shadow",
+        "responsive": false,
+        "properties": (
+            "box-shadow",
+        ),
+        "values": functions.extend(config.$shadows, (
+            "none": none,
+        )),
+    ),
+    "color": (
+        "class": "c",
+        "states": (
+            "hover",
+            "focus",
+        ),
+        "responsive": false,
+        "properties": (
+            "color",
+        ),
+        "values": config.$colors,
+    ),
+    "cursor": (
+        "class": "cursor",
+        "responsive": false,
+        "properties": (
+            "cursor",
+        ),
+        "values": (
+            "hand": pointer,
+            "pointer": pointer,
+            "move": move,
+            "none": none,
+            "zoom-in": zoom-in,
+            "zoom-out": zoom-out,
+            "not-allowed": not-allowed,
+        ),
+    ),
+    "display": (
+        "class": "d",
+        "responsive": true,
+        "properties": (
+            "display",
+        ),
+        "values": (
+            "none": none,
+            "inline": inline,
+            "block": block,
+            "inline-block": inline-block,
+            "flex": flex,
+            "inline-flex": inline-flex,
+            "grid": grid,
+            "inline-grid": inline-grid,
+        ),
+    ),
+    "flex": (
+        "class": "flex",
+        "responsive": true,
+        "properties": (
+            "flex",
+        ),
+        "values": (
+            "none": none,
+            "initial": initial,
+            "auto": auto,
+        ),
+    ),
+    "flex-direction": (
+        "class": "flex",
+        "responsive": true,
+        "properties": (
+            "flex-direction",
+        ),
+        "values": (
+            "row": row, 
+            "col": column, 
+            "row-reverse": row-reverse, 
+            "col-reverse": column-reverse,
+        ),
+    ),
+    "flex-wrap": (
+        "class": "flex",
+        "responsive": true,
+        "properties": (
+            "flex-wrap",
+        ),
+        "values": (
+            "wrap": wrap,
+            "wrap-reverse": wrap-reverse,
+            "no-wrap": nowrap,
+        ),
+    ),
+    "flex-grow": (
+        "class": "flex",
+        "responsive": true,
+        "properties": (
+            "flex-grow",
+        ),
+        "values": (
+            "grow": 1,
+            "no-grow": 0,
+        ),
+    ),
+    "flex-shrink": (
+        "class": "flex",
+        "responsive": true,
+        "properties": (
+            "flex-shrink",
+        ),
+        "values": (
+            "shrink": 1,
+            "no-shrink": 0,
+        ),
+    ),
+    "float": (
+        "class": "float",
+        "responsive": true,
+        "properties": (
+            "float",
+        ),
+        "values": (
+            "left": left,
+            "right": right,
+            "none": none,
+        ),
+    ),
+    "font-family": (
+        "class": "font",
+        "responsive": false,
+        "properties": (
+            "font-family",
+        ),
+        "values": functions.extend(config.$fonts, (
+            "sans-serif": (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif),
+            "serif": (Georgia, Cambria, "Times New Roman", Times, serif),
+            "mono": (SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace),
+        )),
+    ),
+    "font-size": (
+        "class": "text",
+        "responsive": true,
+        "properties": (
+            "font-size",
+        ),
+        "values": config.$font-sizes,
+    ),
+    "font-style": (
+        "class": "font",
+        "states": (
+            "hover",
+        ),
+        "responsive": false,
+        "properties": (
+            "font-style",
+        ),
+        "values": (
+            "italic": italic,
+            "no-italic": normal,
+        ),
+    ),
+    "font-weight": (
+        "class": "weight",
+        "responsive": false,
+        "properties": (
+            "font-weight",
+        ),
+        "values": (
+            "thin": 100,
+            "extralight": 200,
+            "light": 300,
+            "normal": 400,
+            "medium": 500,
+            "bold": 700,
+            "extrabold": 800,
+            "black": 900,
+        ),
+    ),
+    "gap": (
+        "class": "gap",
+        "responsive": true,
+        "properties": (
+            "gap",
+        ),
+        "values": config.$space,
+    ),
+    "grid-template-columns": (
+        "class": "grid-cols",
+        "responsive": true,
+        "properties": (
+            "grid-template-columns",
+        ),
+        "values": (
+            "1": repeat(1, minmax(0, 1fr)),
+            "2": repeat(2, minmax(0, 1fr)),
+            "3": repeat(3, minmax(0, 1fr)),
+            "4": repeat(4, minmax(0, 1fr)),
+            "5": repeat(5, minmax(0, 1fr)),
+            "6": repeat(6, minmax(0, 1fr)),
+            "7": repeat(7, minmax(0, 1fr)),
+            "8": repeat(8, minmax(0, 1fr)),
+            "9": repeat(9, minmax(0, 1fr)),
+            "10": repeat(10, minmax(0, 1fr)),
+            "none": none,
+        ),
+    ),
+    "grid-template-rows": (
+        "class": "grid-rows",
+        "responsive": true,
+        "properties": (
+            "grid-template-rows",
+        ),
+        "values": (
+            "1": repeat(1, minmax(0, 1fr)),
+            "2": repeat(2, minmax(0, 1fr)),
+            "3": repeat(3, minmax(0, 1fr)),
+            "4": repeat(4, minmax(0, 1fr)),
+            "5": repeat(5, minmax(0, 1fr)),
+            "none": none,
+        ),
+    ),
+    "height": (
+        "class": "h",
+        "responsive": true,
+        "properties": (
+            "height",
+        ),
+        "values": functions.extend(config.$sizes, (
+            "half": 50%,
+            "full": 100%,
+            "screen": 100vh,
+        )),
+    ),
+    "justify-content": (
+        "class": "justify",
+        "responsive": true,
+        "properties": (
+            "justify-content",
+        ),
+        "values": (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "between": space-between,
+            "around": space-around,
+        ),
+    ),
+    "left": (
+        "class": "left",
+        "responsive": true,
+        "properties": (
+            "left",
+        ),
+        "values": config.$inset,
+    ),
+    "line-height": (
+        "class": "lh",
+        "responsive": false,
+        "properties": (
+            "line-height",
+        ),
+        "values": (
+            "none": 1,
+            "tight": 1.25,
+            "snug": 1.375,
+            "base": 1.5,
+            "relaxed": 1.625,
+            "loose": 2,
+        ),
+    ),
+    "margin": (
+        "class": "m",
+        "responsive": true,
+        "properties": (
+            "margin",
+        ),
+        "values": functions.extend(config.$space, (
+            "auto": auto,
+        )),
+    ),
+    "margin-bottom": (
+        "class": "mb",
+        "responsive": true,
+        "properties": (
+            "margin-bottom",
+        ),
+        "values": config.$space,
+    ),
+    "margin-left": (
+        "class": "ml",
+        "responsive": true,
+        "properties": (
+            "margin-left",
+        ),
+        "values": functions.extend(config.$space, (
+            "auto": auto,
+        )),
+
+    ),
+    "margin-right": (
+        "class": "mr",
+        "responsive": true,
+        "properties": (
+            "margin-right",
+        ),
+        "values": functions.extend(config.$space, (
+            "auto": auto,
+        )),
+    ),
+    "margin-top": (
+        "class": "mt",
+        "responsive": true,
+        "properties": (
+            "margin-top",
+        ),
+        "values": config.$space,
+    ),
+    "margin-x": (
+        "class": "mx",
+        "responsive": true,
+        "properties": (
+            "margin-left",
+            "margin-right",
+        ),
+        "values": functions.extend(config.$space, (
+            "auto": auto,
+        )),
+    ),
+    "margin-y": (
+        "class": "my",
+        "responsive": true,
+        "properties": (
+            "margin-top",
+            "margin-bottom",
+        ),
+        "values": config.$space,
+    ),
+    "max-height": (
+        "class": "maxh",
+        "responsive": true,
+        "properties": (
+            "max-height",
+        ),
+        "values": (
+            "0": 0px,
+            "full": 100%,
+            "screen": 100vh
+        ),
+    ),
+    "max-width": (
+        "class": "maxw",
+        "responsive": true,
+        "properties": (
+            "max-width",
+        ),
+        "values": (
+            "none": none,
+            "0": 0px,
+            "full": 100%,
+            "screen": 100vw,
+        ),
+    ),
+    "min-height": (
+        "class": "minh",
+        "responsive": true,
+        "properties": (
+            "min-height",
+        ),
+        "values": (
+            "0": 0px,
+            "full": 100%,
+            "screen": 100vh,
+        ),
+    ),
+    "min-width": (
+        "class": "minw",
+        "responsive": true,
+        "properties": (
+            "min-width",
+        ),
+        "values": (
+            "0": 0px,
+            "full": 100%,
+            "screen": 100vw,
+        ),
+    ),
+    "opacity": (
+        "class": "o",
+        "states": (
+            "hover",
+        ),
+        "responsive": false,
+        "properties": (
+            "opacity",
+        ),
+        "values": config.$opacities,
+    ),
+    "order": (
+        "class": "order",
+        "responsive": true,
+        "properties": (
+            "order",
+        ),
+        "values": (
+            "none": 0,
+            "first": -999,
+            "last": 999,
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+        ),
+    ),
+    "overflow": (
+        "class": "overflow",
+        "responsive": false,
+        "properties": (
+            "overflow",
+        ),
+        "values": (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
+    ),
+    "overflow-x": (
+        "class": "overflow-x",
+        "responsive": false,
+        "properties": (
+            "overflow-x",
+        ),
+        "values": (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
+    ),
+    "overflow-y": (
+        "class": "overflow-y",
+        "responsive": false,
+        "properties": (
+            "overflow-y",
+        ),
+        "values": (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
+    ),
+    "padding": (
+        "class": "p",
+        "responsive": true,
+        "properties": (
+            "padding",
+        ),
+        "values": config.$space,
+    ),
+    "padding-bottom": (
+        "class": "pb",
+        "responsive": true,
+        "properties": (
+            "padding-bottom",
+        ),
+        "values": config.$space,
+    ),
+    "padding-left": (
+        "class": "pl",
+        "responsive": true,
+        "properties": (
+            "padding-left",
+        ),
+        "values": config.$space,
+    ),
+    "padding-right": (
+        "class": "pr",
+        "responsive": true,
+        "properties": (
+            "padding-right",
+        ),
+        "values": config.$space,
+    ),
+    "padding-top": (
+        "class": "pt",
+        "responsive": true,
+        "properties": (
+            "padding-top",
+        ),
+        "values": config.$space,
+    ),
+    "padding-x": (
+        "class": "px",
+        "responsive": true,
+        "properties": (
+            "padding-left",
+            "padding-right",
+        ),
+        "values": config.$space,
+    ),
+    "padding-y": (
+        "class": "py",
+        "responsive": true,
+        "properties": (
+            "padding-bottom",
+            "padding-top",
+        ),
+        "values": config.$space,
+    ),
+    "position": (
+        "class": "position",
+        "responsive": true,
+        "properties": (
+            "position",
+        ),
+        "values": (
+            "relative": relative,
+            "absolute": absolute,
+            "sticky": sticky,
+            "fixed": fixed,
+            "initial": initial,
+        ),
+    ),
+    "right": (
+        "class": "right",
+        "responsive": true,
+        "properties": (
+            "right",
+        ),
+        "values": config.$inset,
+    ),
+    "text-align": (
+        "class": "text",
+        "responsive": true,
+        "properties": (
+            "text-align",
+        ),
+        "values": (
+            "justify": justify, 
+            "left": left, 
+            "center": center, 
+            "right": right,
+        ),
+    ),
+    "text-decoration": (
+        "class": "text",
+        "states": (
+            "hover",
+        ),
+        "responsive": false,
+        "properties": (
+            "text-decoration",
+        ),
+        "values": (
+            "strike": line-through,
+            "underline": underline,
+            "no-underline": none,
+        ),
+    ),
+    "text-transform": (
+        "class": "text",
+        "states": (
+            "hover",
+        ),
+        "responsive": false,
+        "properties": (
+            "text-transform",
+        ),
+        "values": (
+            "capitalize": capitalize,
+            "uppercase": uppercase,
+            "lowercase": lowercase,
+        ),
+    ),
+    "top": (
+        "class": "top",
+        "responsive": true,
+        "properties": (
+            "top",
+        ),
+        "values": config.$inset,
+    ),
+    "user-select": (
+        "class": "select",
+        "responsive": false,
+        "properties": (
+            "user-select",
+        ),
+        "values": (
+            "none": none,
+            "text": text,
+            "all": all,
+            "auto": auto,
+        ),
+    ),
+    "vertical-align": (
+        "class": "valign",
+        "responsive": false,
+        "properties": (
+            "vertical-align",
+        ),
+        "values": (
+            "baseline": baseline,
+            "top": top,
+            "middle": middle,
+            "bottom": bottom,
+            "text-top": text-top,
+            "text-bottom": text-bottom,
+        ),
+    ),
+    "width": (
+        "class": "w",
+        "responsive": true,
+        "properties": (
+            "width",
+        ),
+        "values": functions.extend(config.$sizes, (
+            "auto": auto,
+            "half": 50%,
+            "full": 100%,
+            "screen": 100vw,
+        )),
+    ),
+    "z-index": (
+        "class": "z",
+        "responsive": false,
+        "properties": (
+            "z-index",
+        ),
+        "values": (
+            "auto": auto,
+            "0": 0,
+            "10": 10,
+            "20": 20,
+            "30": 30,
+            "40": 40,
+            "50": 50,
+        ),
+    ),
+);
