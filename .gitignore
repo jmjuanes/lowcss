@@ -1,7 +1,6 @@
-## node
+## Node files and folders
 node_modules
 yarn.lock
 
 ## Output files
-low.css
-low.min.css
+dist
