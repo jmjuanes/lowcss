@@ -1,6 +1,6 @@
 {
     "name": "lowcss",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "A low-level functional CSS toolkit",
     "author": "Josemi Juanes <hello@josemi.xyz>",
     "license": "MIT",
@@ -20,9 +20,8 @@
         "functional-css"
     ],
     "files": [
-        "index.scss",
-        "low.css",
-        "low.min.css",
+        "_index.scss",
+        "dist",
         "scss"
     ],
     "devDependencies": {
