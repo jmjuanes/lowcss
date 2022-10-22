@@ -1,6 +1,16 @@
 // @description global flags
 $use-important-flag: false !default;
+$use-darkmode: true !default;
 // $use-reset: true !default;
+
+// @description Pseudo states map
+// key: pseudo state name
+// value: pesudo state selector
+$pseudos: (
+    "active": "active",
+    "focus": "focus",
+    "hover": "hover",
+);
 
 // @description classnames prefix
 // Used to avoid collissions with other css frameworks

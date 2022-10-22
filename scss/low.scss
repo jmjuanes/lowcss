@@ -16,6 +16,7 @@
     $values: functions.get-in($utility-options, "values", ());
     // $is-important: utils.get-in($options, "important", false);
     $is-responsive: functions.get-in($utility-options, "responsive", false);
+    $is-dark: functions.get-in($utility-options, "dark", false);
     $states: functions.get-in($utility-options, "states", ());
     // Check if the states list includes the "default" state
     @if not functions.list-includes($states, "default") {
@@ -26,23 +27,27 @@
     // Generate utility rules for each state
     @each $state in $states {
         @each $key,$value in $values {
-            @if $state == "hover" {
-                .hover\\:#{$classname}-#{$key}:hover {
-                    @include mixins.generate-rule($properties, $value, false);
+            // Pseudo state selector
+            @if map.has-key(config.$pseudos, $state) {
+                $pseudo-name: map.get(config.$pseudos, $state);
+                // Check if dark mode is enabled for this utility
+                @if $is-dark and config.$use-darkmode {
+                    html.dark .dark\\:#{$state}\\:#{$classname}-#{$key}:#{$pseudo-selector} {
+                        @include mixins.generate-rule($properties, $value, false);
+                    }
                 }
-            }
-            @else if $state == "focus" {
-                .focus\\:#{$classname}-#{$key}:focus {
-                    @include mixins.generate-rule($properties, $value, false);
-                }
-            }
-            @else if $state == "active" {
-                .active\\:#{$classname}-#{$key}:active {
+                // No dark mode selector
+                .#{$state}\\:#{$classname}-#{$key}:#{$pseudo-selector} {
                     @include mixins.generate-rule($properties, $value, false);
                 }
             }
             // Other state: apply default pattern
             @else if $state == "default" {
+                @if $is-dark and config.$use-darkmode {
+                    html.dark .dark\\:#{$classname}-#{$key} {
+                        @include mixins.generate-rule($properties, $value, false);
+                    }
+                }
                 .#{$classname}-#{$key} {
                     @include mixins.generate-rule($properties, $value, false);
                 }
