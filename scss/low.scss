@@ -36,6 +36,11 @@
                     @include mixins.generate-rule($properties, $value, false);
                 }
             }
+            @else if $state == "active" {
+                .active\\:#{$classname}-#{$key}:active {
+                    @include mixins.generate-rule($properties, $value, false);
+                }
+            }
             // Other state: apply default pattern
             @else if $state == "default" {
                 .#{$classname}-#{$key} {
