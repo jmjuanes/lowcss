@@ -1,3 +1,17 @@
+/*
+ * LowCSS 
+ * A low-level functional CSS toolkit.
+ * 
+ * @repo: https://github.com/jmjuanes/lowcss
+ * @issues: https://github.com/jmjuanes/lowcss/issues
+ * @author: Josemi Juanes <hello@josemi.xyz>
+ * @license: MIT License
+ *
+ */
+
+// 0. Global version
+$version: "0.1.0";
+
 // 1. Forward configuration variables and public api
 @forward "config";
 @forward "functions";
@@ -8,3 +22,6 @@
 
 // 3. Generate utilities styles
 @use "utilities";
+
+
+/*! LowCSS #{$version} | Released under the MIT License | github.com/jmjuanes/lowcss */
