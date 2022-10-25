@@ -38,8 +38,3 @@
     }
     @return $default-value;
 }
-
-// @description Extend the second map with the values of the first map
-@function extend($target, $source: ()) {
-    @return map.merge($source, $target);
-}

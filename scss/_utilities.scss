@@ -1,783 +1,225 @@
 @use "config";
 @use "functions";
+@use "mixins";
 
-$all-utilities: (
-    "align-content": (
-        "class": "content",
-        "responsive": true,
-        "properties": (
-            "align-content",
-        ),
-        "values": (
-            "start": flex-start,
-            "end": flex-end,
-            "center": center,
-            "between": space-between,
-            "around": space-around,
-            "evenly": space-evenly,
-        ),
-    ),
-    "align-items": (
-        "class": "items",
-        "responsive": true,
-        "properties": (
-            "align-items",
-        ),
-        "values": (
-            "start": flex-start,
-            "end": flex-end,
-            "center": center,
-            "stretch": stretch,
-            "baseline": baseline,
-        ),
-    ),
-    "align-self": (
-        "class": "self",
-        "responsive": true,
-        "properties": (
-            "align-self",
-        ),
-        "values": (
-            "auto": auto,
-            "start": flex-start,
-            "end": flex-end,
-            "center": center,
-            "stretch": stretch,
-            "baseline": baseline,
-        ),
-    ),
-    "background-color": (
-        "class": bg,
-        "states": (
-            "hover",
-            "focus",
-            "active",
-        ),
-        "dark": true,
-        "responsive": false,
-        "properties": (
-            "background-color",
-        ),
-        "values": config.$colors,
-    ),
-    "background-repeat": (
-        "class": "bg",
-        "responsive": false,
-        "properties": (
-            "background-repeat",
-        ),
-        "values": (
-            "repeat": repeat,
-            "no-repeat": no-repeat,
-        ),
-    ),
-    "background-size": (
-        "class": bg,
-        "responsive": false,
-        "properties": (
-            "background-size",
-        ),
-        "values": (
-            "auto": auto,
-            "cover": cover, 
-            "contain": contain,
-        ),
-    ),
-    "border-color": (
-        "class": "b",
-        "states": (
-            "hover",
-            "focus",
-            "active",
-        ),
-        "dark": true,
-        "responsive": false,
-        "properties": (
-            "border-color",
-        ),
-        "values": config.$colors,
-    ),
-    "border-radius": (
-        "class": "radius",
-        "responsive": false,
-        "properties": (
-            "border-radius",
-        ),
-        "values": functions.extend(config.$radius, (
-            "full": 9999px,
-            "none": 0px,
-        )),
-    ),
-    "border-style": (
-        "class": "b",
-        "responsive": false,
-        "properties": (
-            "border-style",
-        ),
-        "values": (
-            "solid": solid,
-            "dashed": dashed,
-            "dotted": dotted,
-            "none": none,
-        ),
-    ),
-    "border-width": (
-        "class": "b",
-        "responsive": false,
-        "properties": (
-            "border-width",
-        ),
-        "values": config.$borders,
-    ),
-    "bottom": (
-        "class": "bottom",
-        "responsive": true,
-        "properties": (
-            "bottom",
-        ),
-        "values": config.$inset,
-    ),
-    "box-shadow": (
-        "class": "shadow",
-        "responsive": false,
-        "properties": (
-            "box-shadow",
-        ),
-        "values": functions.extend(config.$shadows, (
-            "none": none,
-        )),
-    ),
-    "color": (
-        "class": "c",
-        "states": (
-            "hover",
-            "focus",
-            "active",
-        ),
-        "dark": true,
-        "responsive": false,
-        "properties": (
-            "color",
-        ),
-        "values": config.$colors,
-    ),
-    "cursor": (
-        "class": "cursor",
-        "responsive": false,
-        "properties": (
-            "cursor",
-        ),
-        "values": (
-            "hand": pointer,
-            "pointer": pointer,
-            "move": move,
-            "none": none,
-            "zoom-in": zoom-in,
-            "zoom-out": zoom-out,
-            "not-allowed": not-allowed,
-        ),
-    ),
-    "display": (
-        "class": "d",
-        "responsive": true,
-        "properties": (
-            "display",
-        ),
-        "values": (
-            "none": none,
-            "inline": inline,
-            "block": block,
-            "inline-block": inline-block,
-            "flex": flex,
-            "inline-flex": inline-flex,
-            "grid": grid,
-            "inline-grid": inline-grid,
-        ),
-    ),
-    "flex": (
-        "class": "flex",
-        "responsive": true,
-        "properties": (
-            "flex",
-        ),
-        "values": (
-            "none": none,
-            "initial": initial,
-            "auto": auto,
-        ),
-    ),
-    "flex-direction": (
-        "class": "flex",
-        "responsive": true,
-        "properties": (
-            "flex-direction",
-        ),
-        "values": (
-            "row": row, 
-            "col": column, 
-            "row-reverse": row-reverse, 
-            "col-reverse": column-reverse,
-        ),
-    ),
-    "flex-wrap": (
-        "class": "flex",
-        "responsive": true,
-        "properties": (
-            "flex-wrap",
-        ),
-        "values": (
-            "wrap": wrap,
-            "wrap-reverse": wrap-reverse,
-            "no-wrap": nowrap,
-        ),
-    ),
-    "flex-grow": (
-        "class": "flex",
-        "responsive": true,
-        "properties": (
-            "flex-grow",
-        ),
-        "values": (
-            "grow": 1,
-            "no-grow": 0,
-        ),
-    ),
-    "flex-shrink": (
-        "class": "flex",
-        "responsive": true,
-        "properties": (
-            "flex-shrink",
-        ),
-        "values": (
-            "shrink": 1,
-            "no-shrink": 0,
-        ),
-    ),
-    "float": (
-        "class": "float",
-        "responsive": true,
-        "properties": (
-            "float",
-        ),
-        "values": (
-            "left": left,
-            "right": right,
-            "none": none,
-        ),
-    ),
-    "font-family": (
-        "class": "font",
-        "responsive": false,
-        "properties": (
-            "font-family",
-        ),
-        "values": functions.extend(config.$fonts, (
-            "sans-serif": (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif),
-            "serif": (Georgia, Cambria, "Times New Roman", Times, serif),
-            "mono": (SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace),
-        )),
-    ),
-    "font-size": (
-        "class": "text",
-        "responsive": true,
-        "properties": (
-            "font-size",
-        ),
-        "values": config.$font-sizes,
-    ),
-    "font-style": (
-        "class": "font",
-        "states": (
-            "hover",
-        ),
-        "responsive": false,
-        "properties": (
-            "font-style",
-        ),
-        "values": (
-            "italic": italic,
-            "no-italic": normal,
-        ),
-    ),
-    "font-weight": (
-        "class": "weight",
-        "responsive": false,
-        "properties": (
-            "font-weight",
-        ),
-        "values": (
-            "thin": 100,
-            "extralight": 200,
-            "light": 300,
-            "normal": 400,
-            "medium": 500,
-            "bold": 700,
-            "extrabold": 800,
-            "black": 900,
-        ),
-    ),
-    "gap": (
-        "class": "gap",
-        "responsive": true,
-        "properties": (
-            "gap",
-        ),
-        "values": config.$space,
-    ),
-    "grid-template-columns": (
-        "class": "grid-cols",
-        "responsive": true,
-        "properties": (
-            "grid-template-columns",
-        ),
-        "values": (
-            "1": repeat(1, minmax(0, 1fr)),
-            "2": repeat(2, minmax(0, 1fr)),
-            "3": repeat(3, minmax(0, 1fr)),
-            "4": repeat(4, minmax(0, 1fr)),
-            "5": repeat(5, minmax(0, 1fr)),
-            "6": repeat(6, minmax(0, 1fr)),
-            "7": repeat(7, minmax(0, 1fr)),
-            "8": repeat(8, minmax(0, 1fr)),
-            "9": repeat(9, minmax(0, 1fr)),
-            "10": repeat(10, minmax(0, 1fr)),
-            "none": none,
-        ),
-    ),
-    "grid-template-rows": (
-        "class": "grid-rows",
-        "responsive": true,
-        "properties": (
-            "grid-template-rows",
-        ),
-        "values": (
-            "1": repeat(1, minmax(0, 1fr)),
-            "2": repeat(2, minmax(0, 1fr)),
-            "3": repeat(3, minmax(0, 1fr)),
-            "4": repeat(4, minmax(0, 1fr)),
-            "5": repeat(5, minmax(0, 1fr)),
-            "none": none,
-        ),
-    ),
-    "height": (
-        "class": "h",
-        "responsive": true,
-        "properties": (
-            "height",
-        ),
-        "values": functions.extend(config.$sizes, (
-            "half": 50%,
-            "full": 100%,
-            "screen": 100vh,
-        )),
-    ),
-    "justify-content": (
-        "class": "justify",
-        "responsive": true,
-        "properties": (
-            "justify-content",
-        ),
-        "values": (
-            "start": flex-start,
-            "end": flex-end,
-            "center": center,
-            "between": space-between,
-            "around": space-around,
-        ),
-    ),
-    "left": (
-        "class": "left",
-        "responsive": true,
-        "properties": (
-            "left",
-        ),
-        "values": config.$inset,
-    ),
-    "line-height": (
-        "class": "lh",
-        "responsive": false,
-        "properties": (
-            "line-height",
-        ),
-        "values": (
-            "none": 1,
-            "tight": 1.25,
-            "snug": 1.375,
-            "base": 1.5,
-            "relaxed": 1.625,
-            "loose": 2,
-        ),
-    ),
-    "margin": (
-        "class": "m",
-        "responsive": true,
-        "properties": (
-            "margin",
-        ),
-        "values": functions.extend(config.$space, (
-            "auto": auto,
-        )),
-    ),
-    "margin-bottom": (
-        "class": "mb",
-        "responsive": true,
-        "properties": (
-            "margin-bottom",
-        ),
-        "values": config.$space,
-    ),
-    "margin-left": (
-        "class": "ml",
-        "responsive": true,
-        "properties": (
-            "margin-left",
-        ),
-        "values": functions.extend(config.$space, (
-            "auto": auto,
-        )),
 
-    ),
-    "margin-right": (
-        "class": "mr",
-        "responsive": true,
-        "properties": (
-            "margin-right",
-        ),
-        "values": functions.extend(config.$space, (
-            "auto": auto,
-        )),
-    ),
-    "margin-top": (
-        "class": "mt",
-        "responsive": true,
-        "properties": (
-            "margin-top",
-        ),
-        "values": config.$space,
-    ),
-    "margin-x": (
-        "class": "mx",
-        "responsive": true,
-        "properties": (
-            "margin-left",
-            "margin-right",
-        ),
-        "values": functions.extend(config.$space, (
-            "auto": auto,
-        )),
-    ),
-    "margin-y": (
-        "class": "my",
-        "responsive": true,
-        "properties": (
-            "margin-top",
-            "margin-bottom",
-        ),
-        "values": config.$space,
-    ),
-    "max-height": (
-        "class": "maxh",
-        "responsive": true,
-        "properties": (
-            "max-height",
-        ),
-        "values": (
-            "0": 0px,
-            "full": 100%,
-            "screen": 100vh
-        ),
-    ),
-    "max-width": (
-        "class": "maxw",
-        "responsive": true,
-        "properties": (
-            "max-width",
-        ),
-        "values": (
-            "none": none,
-            "0": 0px,
-            "full": 100%,
-            "screen": 100vw,
-        ),
-    ),
-    "min-height": (
-        "class": "minh",
-        "responsive": true,
-        "properties": (
-            "min-height",
-        ),
-        "values": (
-            "0": 0px,
-            "full": 100%,
-            "screen": 100vh,
-        ),
-    ),
-    "min-width": (
-        "class": "minw",
-        "responsive": true,
-        "properties": (
-            "min-width",
-        ),
-        "values": (
-            "0": 0px,
-            "full": 100%,
-            "screen": 100vw,
-        ),
-    ),
-    "opacity": (
-        "class": "o",
-        "states": (
-            "hover",
-        ),
-        "responsive": false,
-        "properties": (
-            "opacity",
-        ),
-        "values": config.$opacities,
-    ),
-    "order": (
-        "class": "order",
-        "responsive": true,
-        "properties": (
-            "order",
-        ),
-        "values": (
-            "none": 0,
-            "first": -999,
-            "last": 999,
-            "1": 1,
-            "2": 2,
-            "3": 3,
-            "4": 4,
-            "5": 5,
-            "6": 6,
-        ),
-    ),
-    "overflow": (
-        "class": "overflow",
-        "responsive": false,
-        "properties": (
-            "overflow",
-        ),
-        "values": (
-            "auto": auto,
-            "scroll": scroll,
-            "hidden": hidden,
-            "visible": visible,
-        ),
-    ),
-    "overflow-x": (
-        "class": "overflow-x",
-        "responsive": false,
-        "properties": (
-            "overflow-x",
-        ),
-        "values": (
-            "auto": auto,
-            "scroll": scroll,
-            "hidden": hidden,
-            "visible": visible,
-        ),
-    ),
-    "overflow-y": (
-        "class": "overflow-y",
-        "responsive": false,
-        "properties": (
-            "overflow-y",
-        ),
-        "values": (
-            "auto": auto,
-            "scroll": scroll,
-            "hidden": hidden,
-            "visible": visible,
-        ),
-    ),
-    "padding": (
-        "class": "p",
-        "responsive": true,
-        "properties": (
-            "padding",
-        ),
-        "values": config.$space,
-    ),
-    "padding-bottom": (
-        "class": "pb",
-        "responsive": true,
-        "properties": (
-            "padding-bottom",
-        ),
-        "values": config.$space,
-    ),
-    "padding-left": (
-        "class": "pl",
-        "responsive": true,
-        "properties": (
-            "padding-left",
-        ),
-        "values": config.$space,
-    ),
-    "padding-right": (
-        "class": "pr",
-        "responsive": true,
-        "properties": (
-            "padding-right",
-        ),
-        "values": config.$space,
-    ),
-    "padding-top": (
-        "class": "pt",
-        "responsive": true,
-        "properties": (
-            "padding-top",
-        ),
-        "values": config.$space,
-    ),
-    "padding-x": (
-        "class": "px",
-        "responsive": true,
-        "properties": (
-            "padding-left",
-            "padding-right",
-        ),
-        "values": config.$space,
-    ),
-    "padding-y": (
-        "class": "py",
-        "responsive": true,
-        "properties": (
-            "padding-bottom",
-            "padding-top",
-        ),
-        "values": config.$space,
-    ),
-    "position": (
-        "class": "position",
-        "responsive": true,
-        "properties": (
-            "position",
-        ),
-        "values": (
-            "relative": relative,
-            "absolute": absolute,
-            "sticky": sticky,
-            "fixed": fixed,
-            "initial": initial,
-        ),
-    ),
-    "right": (
-        "class": "right",
-        "responsive": true,
-        "properties": (
-            "right",
-        ),
-        "values": config.$inset,
-    ),
-    "text-align": (
-        "class": "text",
-        "responsive": true,
-        "properties": (
-            "text-align",
-        ),
-        "values": (
-            "justify": justify, 
-            "left": left, 
-            "center": center, 
-            "right": right,
-        ),
-    ),
-    "text-decoration": (
-        "class": "text",
-        "states": (
-            "hover",
-        ),
-        "responsive": false,
-        "properties": (
-            "text-decoration",
-        ),
-        "values": (
-            "strike": line-through,
-            "underline": underline,
-            "no-underline": none,
-        ),
-    ),
-    "text-transform": (
-        "class": "text",
-        "states": (
-            "hover",
-        ),
-        "responsive": false,
-        "properties": (
-            "text-transform",
-        ),
-        "values": (
-            "capitalize": capitalize,
-            "uppercase": uppercase,
-            "lowercase": lowercase,
-        ),
-    ),
-    "top": (
-        "class": "top",
-        "responsive": true,
-        "properties": (
-            "top",
-        ),
-        "values": config.$inset,
-    ),
-    "user-select": (
-        "class": "select",
-        "responsive": false,
-        "properties": (
-            "user-select",
-        ),
-        "values": (
-            "none": none,
-            "text": text,
-            "all": all,
-            "auto": auto,
-        ),
-    ),
-    "vertical-align": (
-        "class": "valign",
-        "responsive": false,
-        "properties": (
-            "vertical-align",
-        ),
-        "values": (
-            "baseline": baseline,
-            "top": top,
-            "middle": middle,
-            "bottom": bottom,
-            "text-top": text-top,
-            "text-bottom": text-bottom,
-        ),
-    ),
-    "width": (
-        "class": "w",
-        "responsive": true,
-        "properties": (
-            "width",
-        ),
-        "values": functions.extend(config.$sizes, (
-            "auto": auto,
-            "half": 50%,
-            "full": 100%,
-            "screen": 100vw,
-        )),
-    ),
-    "z-index": (
-        "class": "z",
-        "responsive": false,
-        "properties": (
-            "z-index",
-        ),
-        "values": (
-            "auto": auto,
-            "0": 0,
-            "10": 10,
-            "20": 20,
-            "30": 30,
-            "40": 40,
-            "50": 50,
-        ),
-    ),
-);
+// Background utilities
+@if functions.get-in(config.$utilities, "background-color", true) {
+    @include mixins.utility("bg", config.$background-color-v, (background-color), config.$background-color);
+}
+@if functions.get-in(config.$utilities, "background-repeat", true) {
+    @include mixins.utility("bg", config.$background-repeat-v, (background-repeat), config.$background-repeat);
+}
+@if functions.get-in(config.$utilities, "background-size", true) {
+    @include mixins.utility("bg", config.$background-size-v, (background-size), config.$background-size);
+}
+
+
+// Border utilities
+@if functions.get-in(config.$utilities, "border-color", true) {
+    @include mixins.utility("b", config.$border-color-v, (border-color), config.$border-color);
+}
+@if functions.get-in(config.$utilities, "border-radius", true) {
+    @include mixins.utility("r", config.$border-radius-v, (border-radius), config.$border-radius);
+}
+@if functions.get-in(config.$utilities, "border-style", true) {
+    @include mixins.utility("b", config.$border-style-v, (border-style), config.$border-style);
+}
+@if functions.get-in(config.$utilities, "border-width", true) {
+    @include mixins.utility("b", config.$border-width-v, (border-width), config.$border-width);
+}
+
+
+// Effects utilities
+@if functions.get-in(config.$utilities, "box-shadow", true) {
+    @include mixins.utility("shadow", config.$box-shadow-v, (box-shadow), config.$box-shadow);
+}
+@if functions.get-in(config.$utilities, "opacity", true) {
+    @include mixins.utility("o", config.$opacity-v, (opacity), config.$opacity);
+}
+
+
+// Flexbox and grid utilities
+@if functions.get-in(config.$utilities, "align-content", true) {
+    @include mixins.utility("content", config.$align-content-v, (align-content), config.$align-content);
+}
+@if functions.get-in(config.$utilities, "align-items", true) {
+    @include mixins.utility("items", config.$align-items-v, (align-items), config.$align-items);
+}
+@if functions.get-in(config.$utilities, "align-self", true) {
+    @include mixins.utility("self", config.$align-self-v, (align-self), config.$align-self);
+}
+@if functions.get-in(config.$utilities, "flex", true) {
+    @include mixins.utility("flex", config.$flex-v, (flex), config.$flex);
+}
+@if functions.get-in(config.$utilities, "flex-direction", true) {
+    @include mixins.utility("flex", config.$flex-direction-v, (flex-direction), config.$flex-direction);
+}
+@if functions.get-in(config.$utilities, "flex-grow", true) {
+    @include mixins.utility("flex", config.$flex-grow-v, (flex-grow), config.$flex-grow);
+}
+@if functions.get-in(config.$utilities, "flex-shrink", true) {
+    @include mixins.utility("flex", config.$flex-shrink-v, (flex-shrink), config.$flex-shrink);
+}
+@if functions.get-in(config.$utilities, "flex-wrap", true) {
+    @include mixins.utility("flex", config.$flex-wrap-v, (flex-wrap), config.$flex-wrap);
+}
+@if functions.get-in(config.$utilities, "gap", true) {
+    @include mixins.utility("gap", config.$gap-v, (gap), config.$gap);
+}
+@if functions.get-in(config.$utilities, "grid-template-columns", true) {
+    @include mixins.utility("grid-cols", config.$grid-template-columns-v, (grid-template-columns), config.$grid-template-columns);
+}
+@if functions.get-in(config.$utilities, "grid-template-rows", true) {
+    @include mixins.utility("grid-rows", config.$grid-template-rows-v, (grid-template-rows), config.$grid-template-rows);
+}
+@if functions.get-in(config.$utilities, "justify-content", true) {
+    @include mixins.utility("justify", config.$justify-content-v, (justify-content), config.$justify-content);
+}
+@if functions.get-in(config.$utilities, "order", true) {
+    @include mixins.utility("order", config.$order-v, (order), config.$order);
+}
+
+
+// Interactivity utilities
+@if functions.get-in(config.$utilities, "cursor", true) {
+    @include mixins.utility("cursor", config.$cursor-v, (cursor), config.$cursor);
+}
+@if functions.get-in(config.$utilities, "user-select", true) {
+    @include mixins.utility("select", config.$user-select-v, (user-select), config.$user-select);
+}
+
+
+// Layout utilities
+@if functions.get-in(config.$utilities, "bottom", true) {
+    @include mixins.utility("bottom", config.$bottom-v, (bottom), config.$inset);
+}
+@if functions.get-in(config.$utilities, "display", true) {
+    @include mixins.utility("d", config.$display-v, (display), config.$display);
+}
+@if functions.get-in(config.$utilities, "float", true) {
+    @include mixins.utility("float", config.$float-v, (float), config.$float);
+}
+@if functions.get-in(config.$utilities, "left", true) {
+    @include mixins.utility("left", config.$left-v, (left), config.$inset);
+}
+@if functions.get-in(config.$utilities, "overflow", true) {
+    @include mixins.utility("overflow", config.$overflow-v, (overflow), config.$overflow);
+}
+@if functions.get-in(config.$utilities, "overflow-x", true) {
+    @include mixins.utility("overflow-x", config.$overflow-v, (overflow-x), config.$overflow);
+}
+@if functions.get-in(config.$utilities, "overflow-y", true) {
+    @include mixins.utility("overflow-y", config.$overflow-v, (overflow-y), config.$overflow);
+}
+@if functions.get-in(config.$utilities, "position", true) {
+    @include mixins.utility("position", config.$position-v, (position), config.$position);
+}
+@if functions.get-in(config.$utilities, "right", true) {
+    @include mixins.utility("right", config.$right-v, (right), config.$inset);
+}
+@if functions.get-in(config.$utilities, "top", true) {
+    @include mixins.utility("top", config.$top-v, (top), config.$inset);
+}
+@if functions.get-in(config.$utilities, "z-index", true) {
+    @include mixins.utility("z", config.$z-index-v, (z-index), config.$z-index);
+}
+
+
+// Sizing utilities
+@if functions.get-in(config.$utilities, "height", true) {
+    @include mixins.utility("h", config.$height-v, (height), config.$height);
+}
+@if functions.get-in(config.$utilities, "max-height", true) {
+    @include mixins.utility("maxh", config.$max-height-v, (max-height), config.$max-height);
+}
+@if functions.get-in(config.$utilities, "max-width", true) {
+    @include mixins.utility("maxw", config.$max-width-v, (max-width), config.$max-width);
+}
+@if functions.get-in(config.$utilities, "min-height", true) {
+    @include mixins.utility("minh", config.$min-height-v, (min-height), config.$min-height);
+}
+@if functions.get-in(config.$utilities, "min-width", true) {
+    @include mixins.utility("minw", config.$min-width-v, (min-width), config.$min-width);
+}
+@if functions.get-in(config.$utilities, "width", true) {
+    @include mixins.utility("w", config.$width-v, (width), config.$width);
+}
+
+
+// Spacing utilities
+@if functions.get-in(config.$utilities, "margin", true) {
+    @include mixins.utility("m", config.$margin-v, (margin), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-bottom", true) {
+    @include mixins.utility("mb", config.$margin-v, (margin-bottom), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-left", true) {
+    @include mixins.utility("ml", config.$margin-v, (margin-left), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-right", true) {
+    @include mixins.utility("mr", config.$margin-v, (margin-right), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-top", true) {
+    @include mixins.utility("mt", config.$margin-v, (margin-top), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-x", true) {
+    @include mixins.utility("mx", config.$margin-v, (margin-left margin-right), config.$margin);
+}
+@if functions.get-in(config.$utilities, "margin-y", true) {
+    @include mixins.utility("my", config.$margin-v, (margin-bottom margin-top), config.$margin);
+}
+@if functions.get-in(config.$utilities, "padding", true) {
+    @include mixins.utility("p", config.$padding-v, (padding), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-bottom", true) {
+    @include mixins.utility("pb", config.$padding-v, (padding-bottom), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-left", true) {
+    @include mixins.utility("pl", config.$padding-v, (padding-left), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-right", true) {
+    @include mixins.utility("pr", config.$padding-v, (padding-right), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-top", true) {
+    @include mixins.utility("pt", config.$padding-v, (padding-top), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-x", true) {
+    @include mixins.utility("px", config.$padding-v, (padding-left padding-right), config.$padding);
+}
+@if functions.get-in(config.$utilities, "padding-y", true) {
+    @include mixins.utility("py", config.$padding-v, (padding-top padding-bottom), config.$padding);
+}
+
+
+// Typography utilities
+@if functions.get-in(config.$utilities, "font-family", true) {
+    @include mixins.utility("font", config.$font-family-v, (font-family), config.$font-family);
+}
+@if functions.get-in(config.$utilities, "font-size", true) {
+    @include mixins.utility("text", config.$font-size-v, (font-size), config.$font-size);
+}
+@if functions.get-in(config.$utilities, "font-style", true) {
+    @include mixins.utility("text", config.$font-style-v, (font-style), config.$font-style);
+}
+@if functions.get-in(config.$utilities, "font-weight", true) {
+    @include mixins.utility("font", config.$font-weight-v, (font-weight), config.$font-weight);
+}
+@if functions.get-in(config.$utilities, "line-height", true) {
+    @include mixins.utility("lh", config.$line-height-v, (line-height), config.$line-height);
+}
+@if functions.get-in(config.$utilities, "text-align", true) {
+    @include mixins.utility("text", config.$text-align-v, (text-align), config.$text-align);
+}
+@if functions.get-in(config.$utilities, "text-color", true) {
+    @include mixins.utility("text", config.$text-color-v, (color), config.$text-color);
+}
+@if functions.get-in(config.$utilities, "text-decoration", true) {
+    @include mixins.utility("text", config.$text-decoration-v, (text-decoration), config.$text-decoration);
+}
+@if functions.get-in(config.$utilities, "text-transform", true) {
+    @include mixins.utility("text", config.$text-transform-v, (text-transform), config.$text-transform);
+}
+@if functions.get-in(config.$utilities, "vertical-align", true) {
+    @include mixins.utility("align", config.$vertical-align-v, (vertical-align), config.$vertical-align);
+}
