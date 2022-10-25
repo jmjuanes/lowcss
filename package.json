@@ -8,10 +8,11 @@
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "main": "dist/low.css",
     "style": "dist/low.css",
-    "sass": "_index.scss",
+    "sass": "scss/low.scss",
     "scripts": {
-        "build": "sass --load-path=./ --style compressed ./index.scss ./dist/low.css",
-        "postbuild": "postcss dist/low.css -o dist/low.css"
+        "build": "sass --load-path=./ --style compressed ./scss/low.scss ./dist/low.css",
+        "prebuild": "rm -rf ./dist",
+        "postbuild": "postcss dist/low.css -o dist/low.css && csso dist/low.css --output dist/low.css --source-map dist/low.css.map"
     },
     "keywords": [
         "css",
@@ -20,12 +21,14 @@
         "functional-css"
     ],
     "files": [
-        "_index.scss",
+        "README.md",
+        "LICENSE",
         "dist",
         "scss"
     ],
     "devDependencies": {
         "autoprefixer": "^10.4.12",
+        "csso-cli": "^4.0.1",
         "postcss": "^8.4.18",
         "postcss-cli": "^10.0.0",
         "sass": "^1.55.0"
