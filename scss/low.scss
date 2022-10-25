@@ -1,73 +1,10 @@
-@use "sass:list";
-@use "sass:map";
-@use "config";
-@use "functions";
-@use "mixins";
-@use "utilities";
+// 1. Forward configuration variables and public api
+@forward "config";
+@forward "functions";
+@forward "mixins";
 
-// 1. Include reset module
+// 2. Include reset module
 @use "reset";
 
-// 2. Generate core plugins styles
-@each $utility-name,$utility-options in utilities.$all-utilities {
-    // TODO: we need to check if this utility is enabled
-    $class: functions.get-in($utility-options, "class", "");
-    $properties: functions.get-in($utility-options, "properties", null);
-    $values: functions.get-in($utility-options, "values", ());
-    // $is-important: utils.get-in($options, "important", false);
-    $is-responsive: functions.get-in($utility-options, "responsive", false);
-    $is-dark: functions.get-in($utility-options, "dark", false);
-    $states: functions.get-in($utility-options, "states", ());
-    // Check if the states list includes the "default" state
-    @if not functions.list-includes($states, "default") {
-        $states: list.append($states, "default");
-    }
-    // Initialize classname pattern for this utility
-    $classname: "#{config.$prefix}#{$class}";
-    // Generate utility rules for each state
-    @each $state in $states {
-        @each $key,$value in $values {
-            // Pseudo state selector
-            @if map.has-key(config.$pseudos, $state) {
-                $pseudo-selector: map.get(config.$pseudos, $state);
-                // Check if dark mode is enabled for this utility
-                @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\\:#{$state}\\:#{$classname}-#{$key}:#{$pseudo-selector} {
-                        @include mixins.generate-rule($properties, $value, false);
-                    }
-                }
-                // No dark mode selector
-                .#{$state}\\:#{$classname}-#{$key}:#{$pseudo-selector} {
-                    @include mixins.generate-rule($properties, $value, false);
-                }
-            }
-            // Other state: apply default pattern
-            @else if $state == "default" {
-                @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\\:#{$classname}-#{$key} {
-                        @include mixins.generate-rule($properties, $value, false);
-                    }
-                }
-                .#{$classname}-#{$key} {
-                    @include mixins.generate-rule($properties, $value, false);
-                }
-            }
-        }
-    }
-    // For responsive variants, we will register the style
-    // for each breakpoint in the list of breakpoints
-    @if $is-responsive and config.$breakpoints != null {
-        @each $breakpoint-name in map.keys(config.$breakpoints) {
-            @include mixins.generate-breakpoint($breakpoint-name) {
-                @each $key,$value in $values {
-                    .#{$breakpoint-name}\\:#{$classname}-#{$key} {
-                        @include mixins.generate-rule($properties, $value, false);
-                    }
-                }
-            }
-        }
-    }
-}
-
-// 3. Generate custom plugins styles
-// TODO: this feature will be enabled in the future
+// 3. Generate utilities styles
+@use "utilities";
