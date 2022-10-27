@@ -45,12 +45,12 @@
                 $pseudo-value: map.get(config.$pseudos, $variant);
                 // Check if dark mode is enabled for this utility
                 @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\\:#{$variant}\\:#{$classname}-#{$key}:#{$pseudo-value} {
+                    html.dark .dark\:#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
                         @include generate-rule($properties, $value, false);
                     }
                 }
                 // No dark mode selector
-                .#{$variant}\\:#{$classname}-#{$key}:#{$pseudo-value} {
+                .#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
                     @include generate-rule($properties, $value, false);
                 }
             }
@@ -60,7 +60,7 @@
                 @each $screen-name in map.keys(config.$screens) {
                     @include generate-screen($screen-name) {
                         @each $key,$value in $values {
-                            .#{$screen-name}\\:#{$classname}-#{$key} {
+                            .#{$screen-name}\:#{$classname}-#{$key} {
                                 @include generate-rule($properties, $value, false);
                             }
                         }
@@ -70,7 +70,7 @@
             // Check for default variant
             @else if $variant == "default" {
                 @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\\:#{$classname}-#{$key} {
+                    html.dark .dark\:#{$classname}-#{$key} {
                         @include generate-rule($properties, $value, false);
                     }
                 }
