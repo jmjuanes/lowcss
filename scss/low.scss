@@ -20,7 +20,10 @@ $version: "0.2.2";
 // 2. Include reset module
 @use "reset";
 
-// 3. Generate utilities styles
+// 3. Include container module
+@use "container";
+
+// 4. Generate utilities styles
 @use "utilities";
 
 
