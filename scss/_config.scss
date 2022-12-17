@@ -341,10 +341,13 @@ $float: (
 ) !default;
 
 $font-family: (
-    sans-serif: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif),
+    sans: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif),
     serif: (Georgia, Cambria, "Times New Roman", Times, serif),
-    mono: (SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace),
-    inter: ("Inter", sans-serif),
+    mono: ("SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace),
+    inter: (Inter, sans-serif),
+    roboto: (Roboto, sans-serif),
+    poppins: (Poppins, sans-serif),
+    playfair: ("Playfair Display", serif),
 ) !default;
 
 $font-size: (
