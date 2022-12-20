@@ -7,13 +7,18 @@ $use-darkmode: true !default;
 // Used to avoid collissions with other css frameworks
 $prefix: "" !default;
 
-// @description custom screen sizes
+// @description separator between utility alias and value
+$separator: "\\:" !default;
+
+// @description custom breakpoints sizes
 $screens: (
     sm: 640px,
     md: 768px,
     lg: 1024px,
     xl: 1280px,
 ) !default;
+$breakpoint-separator: "\\@" !default;
+$breakpoint-position: "end" !default;
 
 // @description Pseudo states map
 // key: pseudo state name
@@ -23,6 +28,8 @@ $pseudos: (
     focus: focus,
     hover: hover,
 );
+$pseudo-separator: "\\:" !default;
+$pseudo-position: "end" !default;
 
 // @description custom colors
 // Used in background-color, border-color and color properties

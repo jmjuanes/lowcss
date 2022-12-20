@@ -3,6 +3,7 @@
 @use "sass:string";
 @use "config";
 @use "functions";
+@use "selectors";
 
 // @description Generate a rule
 @mixin generate-rule($props, $value, $is-important: false) {
@@ -42,15 +43,13 @@
         @each $key,$value in $values {
             // Pseudo variant selector
             @if map.has-key(config.$pseudos, $variant) {
-                $pseudo-value: map.get(config.$pseudos, $variant);
                 // Check if dark mode is enabled for this utility
-                @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\:#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
-                        @include generate-rule($properties, $value, false);
-                    }
-                }
-                // No dark mode selector
-                .#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
+                // @if $is-dark and config.$use-darkmode {
+                //     html.dark .dark\:#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
+                //         @include generate-rule($properties, $value, false);
+                //     }
+                // }
+                .#{selectors.get-utility-selector($class, $key, $pseudo: $variant)} {
                     @include generate-rule($properties, $value, false);
                 }
             }
@@ -60,7 +59,7 @@
                 @each $screen-name in map.keys(config.$screens) {
                     @include generate-screen($screen-name) {
                         @each $key,$value in $values {
-                            .#{$screen-name}\:#{$classname}-#{$key} {
+                            .#{selectors.get-utility-selector($class, $key, $breakpoint: $screen-name)} {
                                 @include generate-rule($properties, $value, false);
                             }
                         }
@@ -69,12 +68,12 @@
             }
             // Check for default variant
             @else if $variant == "default" {
-                @if $is-dark and config.$use-darkmode {
-                    html.dark .dark\:#{$classname}-#{$key} {
-                        @include generate-rule($properties, $value, false);
-                    }
-                }
-                .#{$classname}-#{$key} {
+                // @if $is-dark and config.$use-darkmode {
+                //     html.dark .dark\:#{$classname}-#{$key} {
+                //         @include generate-rule($properties, $value, false);
+                //     }
+                // }
+                .#{selectors.get-utility-selector($class, $key)} {
                     @include generate-rule($properties, $value, false);
                 }
             }
