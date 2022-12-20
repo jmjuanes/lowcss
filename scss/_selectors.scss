@@ -1,0 +1,38 @@
+@use "sass:map";
+@use "config";
+
+// @description Generate a generic class selector
+@function get-selector($class, $pseudo: null, $breakpoint: null, $dark: false) {
+    $selector: "#{config.$prefix}#{$class}";
+
+    // Check if pseudo selector has been provided
+    @if $pseudo {
+        $pseudo-value: map.get(config.$pseudos, $pseudo);
+        @if config.$pseudo-position == "start" {
+            @return "#{$pseudo}#{config.$pseudo-separator}#{$selector}:#{$pseudo-value}";
+        }
+        @else {
+            @return "#{$selector}#{config.$pseudo-separator}#{$pseudo}:#{$pseudo-value}";
+        }
+    }
+
+    // Check if breakpoint selector has been provided
+    @if $breakpoint {
+        @if config.$breakpoint-position == "start" {
+            @return "#{$breakpoint}#{config.$breakpoint-separator}#{$selector}";
+        }
+        @else {
+            @return "#{$selector}#{config.$breakpoint-separator}#{$breakpoint}";
+        }
+    }
+
+    // Default return: common class selector
+    @return $selector;
+}
+
+// @description Generate a utility class selector
+@function get-utility-selector($class, $key, $pseudo: null, $breakpoint: null, $dark: false) {
+    $utility-selector: "#{$class}#{config.$separator}#{$key}";
+
+    @return get-selector($utility-selector, $pseudo, $breakpoint, $dark);
+}
