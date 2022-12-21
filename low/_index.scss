@@ -94,10 +94,8 @@ $version: "0.3.0";
             @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "map" {
                 @each $breakpoint-name,$breakpoint-size in config.$breakpoints {
                     @media screen and (min-width: #{$breakpoint-size}) {
-                        @each $key,$value in $values {
-                            .#{$selector}#{config.$breakpoint-separator}#{$breakpoint-name} {
-                                @include rule($properties, $value);
-                            }
+                        .#{$selector}#{config.$breakpoint-separator}#{$breakpoint-name} {
+                            @include rule($properties, $value);
                         }
                     }
                 }
