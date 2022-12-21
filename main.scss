@@ -1,0 +1,24 @@
+/*
+ * LowCSS 
+ * A low-level functional CSS toolkit.
+ * 
+ * @repo: https://github.com/jmjuanes/lowcss
+ * @issues: https://github.com/jmjuanes/lowcss/issues
+ * @author: Josemi Juanes <hello@josemi.xyz>
+ * @license: MIT License
+ *
+ */
+
+// 1.1 Import lowcss without customization
+// @use "low";
+
+// 1.2 Import lowcss with customization
+@use "low" with (
+    $prefix: "",
+    $output: "css",
+    $important: false,
+    $reset: true,
+);
+
+// 2. Generate output css with sass
+// $ sass --load-path=./ --style compressed main.scss low.css
