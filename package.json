@@ -8,9 +8,9 @@
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "main": "dist/low.css",
     "style": "dist/low.css",
-    "sass": "scss/low.scss",
+    "sass": "low/_index.scss",
     "scripts": {
-        "build": "sass --load-path=./ --style compressed ./scss/low.scss ./dist/low.css",
+        "build": "sass --load-path=./ --style compressed main.scss dist/low.css",
         "prebuild": "rm -rf ./dist",
         "postbuild": "postcss dist/low.css -o dist/low.css && csso dist/low.css --output dist/low.css --source-map dist/low.css.map"
     },
@@ -24,7 +24,8 @@
         "README.md",
         "LICENSE",
         "dist",
-        "scss"
+        "low",
+        "main.scss"
     ],
     "devDependencies": {
         "autoprefixer": "^10.4.12",
