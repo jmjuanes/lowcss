@@ -38,7 +38,7 @@ $pseudos: (
     first: ":first-child",
     last: ":last-child",
     odd: ":nth-child(odd)",
-    event: "nth-child(even)",
+    even: ":nth-child(even)",
 ) !default;
 
 // @description List of utilities to include or exclude
