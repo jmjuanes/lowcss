@@ -221,13 +221,13 @@ $background-size: (
 $border-color: $colors !default;
 
 $border-radius: (
-    0: 0px,
+    0: 0,
     sm: 0.25rem,
     md: 0.5rem,
     lg: 0.75rem,
     xl: 1rem,
     full: 9999px,
-    none: 0px,
+    none: 0,
 ) !default;
 
 $border-style: (
@@ -238,7 +238,8 @@ $border-style: (
 ) !default;
 
 $border-width: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.125rem,
     2: 0.25rem,
     4: 0.5rem,
@@ -272,6 +273,14 @@ $display: (
     inline-flex: inline-flex,
     grid: grid,
     inline-grid: inline-grid,
+    table: table,
+    table-cell: table-cell,
+    table-row: table-row,
+    table-row-group: table-row-group,
+    table-column: table-column,
+    table-column-grup: table-column-group,
+    table-header-group: table-header-group,
+    table-footer-group: table-footer-group,
 ) !default;
 
 $flex: (
@@ -330,6 +339,8 @@ $font-family: (
 ) !default;
 
 $font-size: (
+    3xs: 0.5rem,
+    2xs: 0.625rem,
     xs: 0.75rem,
     sm: 0.875rem,
     md: 16px,
@@ -339,6 +350,10 @@ $font-size: (
     3xl: 2.5rem,
     4xl: 3rem,
     5xl: 3.5rem,
+    6xl: 4rem,
+    7xl: 4.5rem,
+    8xl: 5rem,
+    9xl: 5.5rem,
 ) !default;
 
 $font-style: (
@@ -358,7 +373,8 @@ $font-weight: (
 ) !default;
 
 $gap: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.25rem,
     2: 0.5rem,
     3: 0.75rem,
@@ -398,21 +414,27 @@ $grid-template-rows: (
 ) !default;
 
 $height: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.25rem,
     2: 0.5rem,
     3: 0.75rem,
     4: 1rem,
     6: 1.5rem,
     8: 2rem,
+    10: 2.5rem,
     12: 3rem,
     16: 4rem,
+    20: 5rem,
     24: 6rem,
     32: 8rem,
     40: 10rem,
     48: 12rem,
+    56: 14rem,
     64: 16rem,
+    72: 18rem,
     80: 20rem,
+    88: 22rem,
     96: 24rem,
     half: 50%,
     full: 100%,
@@ -444,7 +466,8 @@ $line-height: (
 ) !default;
 
 $margin: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.25rem,
     2: 0.5rem,
     3: 0.75rem,
@@ -466,25 +489,41 @@ $margin: (
 $max-height: (
     0: 0px,
     full: 100%,
-    screen: 100vh
+    screen: 100vh,
+    max: max-content,
+    min: min-content,
+    fit: fit-content,
 ) !default;
 
 $max-width: (
     0: 0px,
+    screen-sm: 640px,
+    screen-md: 768px,
+    screen-lg: 1024px,
+    screen-xl: 1280px,
     full: 100%,
     screen: 100vw,
+    max: max-content,
+    min: min-content,
+    fit: fit-content,
 ) !default;
 
 $min-height: (
     0: 0px,
     full: 100%,
-    screen: 100vh
+    screen: 100vh,
+    max: max-content,
+    min: min-content,
+    fit: fit-content,
 ) !default;
 
 $min-width: (
     0: 0px,
     full: 100%,
     screen: 100vw,
+    max: max-content,
+    min: min-content,
+    fit: fit-content,
 ) !default;
 
 $opacity: (
@@ -527,7 +566,8 @@ $overflow: (
 ) !default;
 
 $padding: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.25rem,
     2: 0.5rem,
     3: 0.75rem,
@@ -591,21 +631,27 @@ $vertical-align: (
 ) !default;
 
 $width: (
-    0: 0px,
+    0: 0,
+    px: 1px,
     1: 0.25rem,
     2: 0.5rem,
     3: 0.75rem,
     4: 1rem,
     6: 1.5rem,
     8: 2rem,
+    10: 2.5rem,
     12: 3rem,
     16: 4rem,
+    20: 5rem,
     24: 6rem,
     32: 8rem,
     40: 10rem,
     48: 12rem,
+    56: 14rem,
     64: 16rem,
+    72: 18rem,
     80: 20rem,
+    88: 22rem,
     96: 24rem,
     auto: auto,
     half: 50%,
