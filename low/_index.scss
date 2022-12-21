@@ -85,18 +85,18 @@ $version: "0.3.0";
                 //         @include generate-rule($properties, $value, false);
                 //     }
                 // }
-                .#{$selector}#{config.$pseudo-separator}#{$variant}:#{$pseudo-value} {
-                    @include rule($properties, $value, false);
+                .#{$selector}#{config.$pseudo-separator}#{$variant}#{$pseudo} {
+                    @include rule($properties, $value);
                 }
             }
             // For responsive variants, we will register the style
             // for each breakpoint in the list of breakpoints
-            @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "list" {
+            @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "map" {
                 @each $breakpoint-name,$breakpoint-size in config.$breakpoints {
                     @media screen and (min-width: #{$breakpoint-size}) {
                         @each $key,$value in $values {
                             .#{$selector}#{config.$breakpoint-separator}#{$breakpoint-name} {
-                                @include rule($properties, $value, false);
+                                @include rule($properties, $value);
                             }
                         }
                     }
@@ -110,7 +110,7 @@ $version: "0.3.0";
                 //     }
                 // }
                 .#{$selector} {
-                    @include rule($properties, $value, false);
+                    @include rule($properties, $value);
                 }
             }
         }
