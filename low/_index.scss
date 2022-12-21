@@ -9,22 +9,126 @@
  *
  */
 
-// 0. Global version
 $version: "0.3.0";
 
-// 1. Forward configuration variables and public api
+// Forward configuration variables and public api
 @forward "config";
-@forward "functions";
-@forward "mixins";
+@forward "reset";
 
-// 2. Include reset module
+// Include sass modules
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+// Include lowcss modules
+@use "config";
 @use "reset";
-
-// 3. Include container module
-@use "container";
-
-// 4. Generate utilities styles
 @use "utilities";
 
+// @description check if the provided utility name is enabled
+@function is-utility-enabled($name) {
+    // If we have provided a list of included utilities, we will check
+    // if this utility is in the list
+    @if meta.type-of(config.$include) == "list" {
+        @return list.index(config.$include, $name) != null;
+    }
+    // If we have provided a list of excluded utilities, we will check
+    // if this utility is not in the list
+    @else if meta.type-of(config.$exclude) == "list" {
+        @return list.index(config.$exclude, $name) == null;
+    }
+    // Other case, utility is enabled
+    @else {
+        @return true;
+    }
+}
+
+// @description Generate a rule
+@mixin rule($properties, $value) {
+    // $properties: $props;
+    // We need to make sure that $properties is a list
+    @if meta.type-of($properties) != "list" {
+        $properties: list.append((), $properties);
+    }
+    @each $property in $properties {
+        @if config.$important == true {
+            #{string.unquote($property)}: #{$value} !important;
+        }
+        @else {
+            #{string.unquote($property)}: #{$value};
+        }
+    }
+}
+
+// @description Generate the utility from the given configuration
+@mixin utility($utility-config) {
+    $class: map.get($utility-config, "alias");
+    $variants: map.get($utility-config, "variants");
+    $properties: map.get($utility-config, "properties");
+    $values: map.get($utility-config, "values");
+    // $is-dark: functions.list-includes($variants, "dark");
+    // Check if the variants list includes the "default" variant
+    // @if not functions.list-includes($variants, "default") {
+    //     $variants: list.append($variants, "default");
+    // }
+    // Generate utility rules for each variant
+    @each $variant in $variants {
+        @each $key,$value in $values {
+            $selector: "#{$class}#{config.$separator}#{$key}";
+            // Pseudo variant selector
+            @if map.has-key(config.$pseudos, $variant) {
+                $pseudo: map.get(config.$pseudos, $variant);
+                // Check if dark mode is enabled for this utility
+                // @if $is-dark and config.$use-darkmode {
+                //     html.dark .dark\:#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
+                //         @include generate-rule($properties, $value, false);
+                //     }
+                // }
+                .#{$selector}#{config.$pseudo-separator}#{$variant}:#{$pseudo-value} {
+                    @include rule($properties, $value, false);
+                }
+            }
+            // For responsive variants, we will register the style
+            // for each breakpoint in the list of breakpoints
+            @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "list" {
+                @each $breakpoint-name,$breakpoint-size in config.$breakpoints {
+                    @media screen and (min-width: #{$breakpoint-size}) {
+                        @each $key,$value in $values {
+                            .#{$selector}#{config.$breakpoint-separator}#{$breakpoint-name} {
+                                @include rule($properties, $value, false);
+                            }
+                        }
+                    }
+                }
+            }
+            // Check for default variant
+            @else if $variant == "default" {
+                // @if $is-dark and config.$use-darkmode {
+                //     html.dark .dark\:#{$classname}-#{$key} {
+                //         @include generate-rule($properties, $value, false);
+                //     }
+                // }
+                .#{$selector} {
+                    @include rule($properties, $value, false);
+                }
+            }
+        }
+    }
+}
+
+// Include reset
+@if config.$output == "css" and config.$reset {
+    @include reset.use-reset();
+}
+
+// Generate utilities
+@if config.$output == "css" {
+    @each $utility-name,$utility-config in utilities.$all-utilities {
+        @if is-utility-enabled(($utility-name)) {
+            @include utility($utility-config);
+        }
+    }
+}
 
 /*! LowCSS #{$version} | Released under the MIT License | github.com/jmjuanes/lowcss */

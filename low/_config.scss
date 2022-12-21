@@ -1,7 +1,8 @@
 // @description global flags
-$use-important-flag: false !default;
-$use-darkmode: true !default;
-// $use-reset: true !default;
+$important: false !default;
+$dark-mode: false !default;
+$output: "css" !default;
+$reset: true !default;
 
 // @description classnames prefix
 // Used to avoid collissions with other css frameworks
@@ -10,26 +11,53 @@ $prefix: "" !default;
 // @description separator between utility alias and value
 $separator: "\\:" !default;
 
+// @description separator between utility class and pseudo name
+$pseudo-separator: "\\:" !default;
+
+// @descript separator between utility class and breakpoint
+$breakpoint-separator: "\\@" !default;
+
 // @description custom breakpoints sizes
-$screens: (
+$breakpoints: (
     sm: 640px,
     md: 768px,
     lg: 1024px,
     xl: 1280px,
 ) !default;
-$breakpoint-separator: "\\@" !default;
-$breakpoint-position: "end" !default;
 
 // @description Pseudo states map
 // key: pseudo state name
 // value: pesudo state selector
 $pseudos: (
-    active: active,
-    focus: focus,
-    hover: hover,
-);
-$pseudo-separator: "\\:" !default;
-$pseudo-position: "end" !default;
+    active: ":active",
+    focus: ":focus",
+    hover: ":hover",
+    visited: ":visited",
+    checked: ":checked",
+    disabled: ":disabled",
+    first: ":first-child",
+    last: ":last-child",
+    odd: ":nth-child(odd)",
+    event: "nth-child(even)",
+) !default;
+
+// @description List of utilities to include or exclude
+$include: null !default;
+$exclude: null !default;
+
+// @description List of custom variants for utilities
+// @example
+// $variants: (
+//     background-color: ("default", "hover", "focus"),
+// );
+$variants: () !default;
+
+// @description List of custom aliases for utilities
+// @example
+// $aliases: (
+//     background-color: "bg",
+// );
+$aliases: () !default;
 
 // @description custom colors
 // Used in background-color, border-color and color properties
@@ -149,62 +177,6 @@ $colors: (
     "yellow-800": hsl(45,100%,20%),
     "yellow-900": hsl(45,100%,10%),
 ) !default;
-
-// @description list of enabled / disabled utilities
-$utilities: () !default;
-
-// @description variants definitions
-$align-content-v: ("default", "responsive") !default;
-$align-items-v: ("default", "responsive") !default;
-$align-self-v: ("default", "responsive") !default;
-$background-color-v: ("default", "hover", "focus") !default;
-$background-repeat-v: ("default") !default;
-$background-size-v: ("default") !default;
-$border-color-v: ("default", "hover", "focus") !default;
-$border-radius-v: ("default") !default;
-$border-style-v: ("default") !default;
-$border-width-v: ("default", "responsive") !default;
-$bottom-v: ("default", "responsive") !default;
-$box-shadow-v: ("default") !default;
-$cursor-v: ("default") !default;
-$display-v: ("default", "responsive") !default;
-$flex-v: ("default", "responsive") !default;
-$flex-direction-v: ("default", "responsive") !default;
-$flex-grow-v: ("default", "responsive") !default;
-$flex-shrink-v: ("default", "responsive") !default;
-$flex-wrap-v: ("default", "responsive") !default;
-$float-v: ("default") !default;
-$font-family-v: ("default") !default;
-$font-size-v: ("default", "responsive") !default;
-$font-style-v: ("default") !default;
-$font-weight-v: ("default", "hover", "responsive") !default;
-$gap-v: ("default", "responsive") !default;
-$grid-template-columns-v: ("default", "responsive") !default;
-$grid-template-rows-v: ("default", "responsive") !default;
-$height-v: ("default", "responsive") !default;
-$justify-content-v: ("default", "responsive") !default;
-$left-v: ("default", "responsive") !default;
-$line-height-v: ("default", "responsive") !default;
-$margin-v: ("default", "responsive") !default;
-$max-height-v: ("default", "responsive") !default;
-$max-width-v: ("default", "responsive") !default;
-$min-height-v: ("default", "responsive") !default;
-$min-width-v: ("default", "responsive") !default;
-$opacity-v: ("default", "responsive", "hover", "focus") !default;
-$order-v: ("default", "responsive") !default;
-$overflow-v: ("default", "responsive") !default;
-$padding-v: ("default", "responsive") !default;
-$position-v: ("default", "responsive") !default;
-$right-v: ("default", "responsive") !default;
-$text-align-v: ("default", "responsive") !default;
-$text-color-v: ("default", "hover", "focus", "active") !default;
-$text-decoration-v: ("default", "hover", "responsive") !default;
-$text-transform-v: ("default", "hover", "responsive") !default;
-$top-v: ("default", "responsive") !default;
-$user-select-v: ("default") !default;
-$vertical-align-v: ("default") !default;
-$width-v: ("default", "responsive") !default;
-$z-index-v: ("default", "responsive") !default;
 
 // @description values configuration
 $align-content: (
