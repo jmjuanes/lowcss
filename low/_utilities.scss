@@ -24,7 +24,7 @@ $all-utilities: (
     // Background utilities
     background-color: (
         alias: get-alias(background-color, "bg"),
-        variants: get-variants(background-color, ("default", "hover", "focus")),
+        variants: get-variants(background-color, ("default", "hover", "focus", "active")),
         properties: (background-color),
         values: config.$background-color,
     ),
@@ -56,13 +56,13 @@ $all-utilities: (
     ),
     border-style: (
         alias: get-alias(border-style, "b"),
-        variants: get-variants(border-style, ("default")),
+        variants: get-variants(border-style, ("default", "focus")),
         properties: (border-style),
         values: config.$border-style,
     ),
     border-width: (
         alias: get-alias(border-width, "b"),
-        variants: get-variants(border-width, ("default")),
+        variants: get-variants(border-width, ("default", "focus")),
         properties: (border-width),
         values: config.$border-width,
     ),
@@ -70,7 +70,7 @@ $all-utilities: (
     // Effects utilities
     box-shadow: (
         alias: get-alias(box-shadow, "shadow"),
-        variants: get-variants(box-shadow, ("default")),
+        variants: get-variants(box-shadow, ("default", "hover", "focus")),
         properties: (box-shadow),
         values: config.$box-shadow,
     ),
@@ -190,7 +190,7 @@ $all-utilities: (
     ),
     float: (
         alias: get-alias(float, "float"),
-        variants: get-variants(float, ("default")),
+        variants: get-variants(float, ("default", "responsive")),
         properties: (float),
         values: config.$float,
     ),
@@ -238,7 +238,7 @@ $all-utilities: (
     ),
     z-index: (
         alias: get-alias(z-index, "z"),
-        variants: get-variants(z-index, ("default")),
+        variants: get-variants(z-index, ("default", "responsive")),
         properties: (z-index),
         values: config.$z-index,
     ),
@@ -388,43 +388,43 @@ $all-utilities: (
     ),
     font-weight: (
         alias: get-alias(font-weight, "font"),
-        variants: get-variants(font-weight, ("default", "hover", "responsive")),
+        variants: get-variants(font-weight, ("default", "hover", "focus", "responsive")),
         properties: (font-weight),
         valueS: config.$font-weight,
     ),
     line-height: (
         alias: get-alias(line-height, "lh"),
-        variants: get-variants(line-height, ("default")),
+        variants: get-variants(line-height, ("default", "responsive")),
         properties: (line-height),
         values: config.$line-height,
     ),
     text-align: (
         alias: get-alias(text-align, "text"),
-        variants: get-variants(text-align, ("default")),
+        variants: get-variants(text-align, ("default", "responsive")),
         properties: (text-align),
         values: config.$text-align,
     ),
     text-color: (
         alias: get-alias(text-color, "text"),
-        variants: get-variants(text-color, ("default", "hover", "focus")),
+        variants: get-variants(text-color, ("default", "hover", "focus", "active", "responsive")),
         properties: (color),
         values: config.$text-color,
     ),
     text-decoration: (
         alias: get-alias(text-decoration, "text"),
-        variants: get-variants(text-decoration, ("default", "hover")),
+        variants: get-variants(text-decoration, ("default", "hover", "focus")),
         properties: (text-decoration),
         values: config.$text-decoration,
     ),
     text-transform: (
         alias: get-alias(text-transform, "text"),
-        variants: get-variants(text-transform, ("default", "hover")),
+        variants: get-variants(text-transform, ("default", "hover", "focus")),
         properties: (text-transform),
         values: config.$text-transform,
     ),
     vertical-align: (
         alias: get-alias(vertical-align, "align"),
-        variants: get-variants(vertical-align, ("default")),
+        variants: get-variants(vertical-align, ("default", "responsive")),
         properties: (vertical-align),
         values: config.$vertical-align,
     ),
