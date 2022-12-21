@@ -180,7 +180,7 @@ $all-utilities: (
         alias: get-alias(bottom, "bottom"),
         variants: get-variants(bottom, ("default", "responsive")),
         properties: (bottom),
-        values: config.$bottom,
+        values: config.$inset,
     ),
     display: (
         alias: get-alias(display, "d"),
@@ -198,7 +198,7 @@ $all-utilities: (
         alias: get-alias(left, "left"),
         variants: get-variants(left, ("default", "responsive")),
         properties: (left),
-        values: config.$left,
+        values: config.$inset,
     ),
     overflow: (
         alias: get-alias(overflow, "overflow"),
@@ -228,13 +228,13 @@ $all-utilities: (
         alias: get-alias(right, "right"),
         variants: get-variants(right, ("default", "responsive")),
         properties: (right),
-        values: config.$position,
+        values: config.$inset,
     ),
     top: (
         alias: get-alias(top, "top"),
         variants: get-variants(top, ("default", "responsive")),
         properties: (top),
-        values: config.$top,
+        values: config.$inset,
     ),
     z-index: (
         alias: get-alias(z-index, "z"),
