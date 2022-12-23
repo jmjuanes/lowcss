@@ -66,6 +66,30 @@ $all-utilities: (
         properties: (border-width),
         values: config.$border-width,
     ),
+    outline-color: (
+        alias: get-alias(outline-color, "outline"),
+        variants: get-variants(outline-color, ("default", "focus", "hover", "active", "checked")),
+        properties: (outline-color),
+        values: config.$outline-color,
+    ),
+    outline-offset: (
+        alias: get-alias(outline-offset, "outline"),
+        variants: get-variants(outline-offset, ("default", "focus", "hover", "active", "checked")),
+        properties: (outline-offset),
+        values: config.$outline-offset,
+    ),
+    outline-style: (
+        alias: get-alias(outline-style, "outline"),
+        variants: get-variants(outline-style, ("default", "focus", "hover", "active", "checked")),
+        properties: (outline-style),
+        values: config.$outline-style,
+    ),
+    outline-width: (
+        alias: get-alias(outline-width, "outline"),
+        variants: get-variants(outline-width, ("default", "focus", "hover", "active", "checked")),
+        properties: (outline-width),
+        values: config.$outline-width,
+    ),
 
     // Effects utilities
     box-shadow: (

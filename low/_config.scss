@@ -558,6 +558,33 @@ $order: (
     12: 12,
 ) !default;
 
+$outline-color: $colors !default;
+
+$outline-offset: (
+    0: 0,
+    1: 1px,
+    2: 2px,
+    4: 4px,
+    6: 6px,
+    8: 8px,
+) !default;
+
+$outline-style: (
+    solid: solid,
+    dashed: dashed,
+    dotted: dotted,
+    none: none,
+) !default;
+
+$outline-width: (
+    0: 0,
+    1: 1px,
+    2: 2px,
+    4: 4px,
+    6: 6px,
+    8: 8px,
+) !default;
+
 $overflow: (
     auto: auto,
     scroll: scroll,
