@@ -239,12 +239,11 @@ $border-style: (
 
 $border-width: (
     0: 0,
-    px: 1px,
-    1: 0.125rem,
-    2: 0.25rem,
-    4: 0.5rem,
-    6: 0.75rem,
-    8: 1rem,
+    1: 1px,
+    2: 2px,
+    4: 4px,
+    6: 6px,
+    8: 8px,
 ) !default;
 
 $box-shadow: (
