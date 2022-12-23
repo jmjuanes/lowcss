@@ -1,0 +1,129 @@
+$background-color: #ffffff;
+$border-color: #6c757d;
+$active-color: #0d6efd;
+
+$checked-image: "PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJNIDQuNTEyODQ1NSw4LjQ5MzQ5OCA2LjUyMDg1MzgsMTAuNTIxODM3IDExLjUyMDYxMyw1LjQ5NDIwOTciLz4KPC9zdmc+Cg==";
+$indeterminate-image: "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQgOGg4Ii8+Cjwvc3ZnPgo=";
+$radio-image: "PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8Y2lyY2xlIGZpbGw9IndoaXRlIiBjeD0iOCIgY3k9IjgiIHI9IjMiLz4KPC9zdmc+Cg==";
+$select-image: "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+CiAgICA8cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiMyZjJmMzciIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBkPSJtMiA1IDYgNiA2LTYiLz4KPC9zdmc+Cgo=";
+
+@mixin use-forms() {
+    // Common styles for inputs, select and textareas
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        appearance: none;
+        background-color: $background-color;
+        border-color: $border-color;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0.5rem 0.75rem;
+    }
+
+    // Customize placeholder for input and textarea
+    input::placeholder,
+    textarea::placeholder {
+        color: currentColor;
+        opacity: 0.5;
+    }
+
+    // Common checkbox and radio styles
+    input[type="checkbox"],
+    input[type="radio"] {
+        appearance: none;
+        background-color: $background-color;
+        background-origin: border-box;
+        border-color: $border-color;
+        border-style: solid;
+        border-width: 1px;
+        color: $active-color;
+        display: inline-block;
+        height: 1rem;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+        vertical-align: middle;
+        width: 1rem;
+    }
+
+    // Checkbox custom styles
+    input[type="checkbox"] {
+        // border-radius: 0px;
+        &:checked {
+            background-color: currentColor;
+            background-image: url("data:image/svg+xml;base64,#{$checked-image}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-color: transparent;
+        }
+        &:indeterminate {
+            background-color: currentColor;
+            background-image: url("data:image/svg+xml;base64,#{$indeterminate-image}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-color: transparent;
+        }
+    }
+
+    // Radio custom styles
+    input[type="radio"] {
+        border-radius: 999px;
+        &:checked {
+            background-color: currentColor;
+            background-image: url("data:image/svg+xml;base64,#{$radio-image}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            border-color: transparent;
+        }
+    }
+
+    // Range custom styles
+    input[type="range"] {
+        appearance: none;
+        background-color: $border-color;
+        border-radius: 1rem;
+        color: $active-color;
+        display: block;
+        height: 0.25rem;
+        margin: 0;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        min-width: 0;
+        outline: none;
+        &:-webkit-slider-thumb,
+        &:-moz-range-thumb,
+        &:-ms-thumb {
+            box-sizing: border-box;
+            background-color: currentColor;
+            border: none;
+            border-radius: 999px;
+            height: 1rem;
+            width: 1rem;
+        }
+        &:-webkit-slider-thumb {
+            appearance: none;
+        }
+        &:-ms-thumb {
+            margin-top: 0;
+        }
+    }
+
+    // Select custom styles
+    select {
+        background-image: url("data:image/svg+xml;base64,#{$select-image}");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1em 1em;
+        padding-right: 2.5rem;
+    }
+}

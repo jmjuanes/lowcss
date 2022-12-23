@@ -24,6 +24,7 @@ $version: "0.4.0";
 // Include lowcss modules
 @use "config";
 @use "reset";
+@use "forms";
 @use "utilities";
 
 // @description check if the provided utility name is enabled
@@ -127,6 +128,11 @@ $version: "0.4.0";
             @include utility($utility-config);
         }
     }
+}
+
+// Include forms
+@if config.$output == "css" and config.$forms {
+    @include forms.use-forms();
 }
 
 /*! LowCSS #{$version} | Released under the MIT License | github.com/jmjuanes/lowcss */
