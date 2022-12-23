@@ -24,7 +24,7 @@ $all-utilities: (
     // Background utilities
     background-color: (
         alias: get-alias(background-color, "bg"),
-        variants: get-variants(background-color, ("default", "hover", "focus", "active")),
+        variants: get-variants(background-color, ("default", "hover", "focus", "active", "checked")),
         properties: (background-color),
         values: config.$background-color,
     ),
@@ -44,7 +44,7 @@ $all-utilities: (
     // Border utilities
     border-color: (
         alias: get-alias(border-color, "b"),
-        variants: get-variants(border-color, ("default", "hover", "focus")),
+        variants: get-variants(border-color, ("default", "hover", "focus", "active", "checked")),
         properties: (border-color),
         values: config.$border-color,
     ),
@@ -430,7 +430,7 @@ $all-utilities: (
     ),
     text-color: (
         alias: get-alias(text-color, "text"),
-        variants: get-variants(text-color, ("default", "hover", "focus", "active", "responsive")),
+        variants: get-variants(text-color, ("default", "hover", "focus", "active", "checked", "responsive")),
         properties: (color),
         values: config.$text-color,
     ),
