@@ -390,7 +390,7 @@ $all-utilities: (
         alias: get-alias(font-weight, "font"),
         variants: get-variants(font-weight, ("default", "hover", "focus", "responsive")),
         properties: (font-weight),
-        valueS: config.$font-weight,
+        values: config.$font-weight,
     ),
     line-height: (
         alias: get-alias(line-height, "lh"),
