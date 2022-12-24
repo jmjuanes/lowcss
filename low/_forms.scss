@@ -16,18 +16,18 @@ $select-image: svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
 $radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
 
 @mixin use-forms() {
-    input[type="text"],
-    input[type="email"],
-    input[type="url"],
-    input[type="password"],
-    input[type="number"],
-    input[type="date"],
-    input[type="datetime"],
-    input[type="datetime-local"],
-    input[type="month"],
-    input[type="tel"],
-    input[type="time"],
-    input[type="week"],
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
     select,
     textarea {
         appearance: none;
@@ -40,8 +40,8 @@ $radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
         color: currentColor;
         opacity: 0.5;
     }
-    input[type="checkbox"],
-    input[type="radio"] {
+    [type="checkbox"],
+    [type="radio"] {
         appearance: none;
         background-origin: border-box;
         display: inline-block;
@@ -52,28 +52,28 @@ $radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
         vertical-align: middle;
         width: 1rem;
     }
-    input[type="checkbox"]:checked,
-    input[type="checkbox"]:indeterminate,
-    input[type="radio"]:checked {
+    [type="checkbox"]:checked,
+    [type="checkbox"]:indeterminate,
+    [type="radio"]:checked {
         background-color: currentColor;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         border-color: transparent;
     }
-    input[type="checkbox"]:checked {
+    [type="checkbox"]:checked {
         background-image: url("data:image/svg+xml,#{$checked-image}");
     }
-    input[type="checkbox"]:indeterminate {
+    [type="checkbox"]:indeterminate {
         background-image: url("data:image/svg+xml,#{$indeterminate-image}");
     }
-    input[type="radio"] {
+    [type="radio"] {
         border-radius: 999px;
     }
-    input[type="radio"]:checked {
+    [type="radio"]:checked {
         background-image: url("data:image/svg+xml,#{$radio-image}");
     }
-    input[type="range"] {
+    [type="range"] {
         appearance: none;
         border-radius: 1rem;
         display: block;
