@@ -2,8 +2,6 @@
 $important: false !default;
 $dark-mode: false !default;
 $output: "css" !default;
-$reset: true !default;
-$forms: true !default;
 
 // @description classnames prefix
 // Used to avoid collissions with other css frameworks
@@ -42,7 +40,7 @@ $pseudos: (
     even: ":nth-child(even)",
 ) !default;
 
-// @description List of utilities to include or exclude
+// @description List of modules to include or exclude
 $include: null !default;
 $exclude: null !default;
 

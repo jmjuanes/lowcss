@@ -27,19 +27,19 @@ $version: "0.4.0";
 @use "forms";
 @use "utilities";
 
-// @description check if the provided utility name is enabled
-@function is-utility-enabled($name) {
-    // If we have provided a list of included utilities, we will check
-    // if this utility is in the list
+// @description check if the provided module or utility name is enabled
+@function is-enabled($name) {
+    // If we have provided a list of included modules, we will check
+    // if this module is in the list
     @if meta.type-of(config.$include) == "list" {
         @return list.index(config.$include, $name) != null;
     }
-    // If we have provided a list of excluded utilities, we will check
-    // if this utility is not in the list
+    // If we have provided a list of excluded modules, we will check
+    // if this module is not in the list
     @else if meta.type-of(config.$exclude) == "list" {
         @return list.index(config.$exclude, $name) == null;
     }
-    // Other case, utility is enabled
+    // Other case, module is enabled
     @else {
         @return true;
     }
@@ -53,7 +53,7 @@ $version: "0.4.0";
         $properties: list.append((), $properties);
     }
     @each $property in $properties {
-        @if config.$important == true {
+        @if config.$important {
             #{string.unquote($property)}: #{$value} !important;
         }
         @else {
@@ -117,21 +117,21 @@ $version: "0.4.0";
 }
 
 // Include reset
-@if config.$output == "css" and config.$reset {
+@if config.$output == "css" and is-enabled("reset") {
     @include reset.use-reset();
 }
 
 // Generate utilities
 @if config.$output == "css" {
     @each $utility-name,$utility-config in utilities.$all-utilities {
-        @if is-utility-enabled(($utility-name)) {
+        @if is-enabled(($utility-name)) {
             @include utility($utility-config);
         }
     }
 }
 
 // Include forms
-@if config.$output == "css" and config.$forms {
+@if config.$output == "css" and is-enabled("forms") {
     @include forms.use-forms();
 }
 

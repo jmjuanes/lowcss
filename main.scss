@@ -15,10 +15,7 @@
 // 1.2 Import lowcss with customization
 @use "low" with (
     $prefix: "",
-    $output: "css",
     $important: false,
-    $reset: true,
-    $forms: true,
 );
 
 // 2. Generate output css with sass
