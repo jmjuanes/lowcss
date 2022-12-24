@@ -121,6 +121,11 @@ $version: "0.4.0";
     @include reset.use-reset();
 }
 
+// Include forms
+@if config.$output == "css" and is-enabled("forms") {
+    @include forms.use-forms();
+}
+
 // Generate utilities
 @if config.$output == "css" {
     @each $utility-name,$utility-config in utilities.$all-utilities {
@@ -128,11 +133,6 @@ $version: "0.4.0";
             @include utility($utility-config);
         }
     }
-}
-
-// Include forms
-@if config.$output == "css" and is-enabled("forms") {
-    @include forms.use-forms();
 }
 
 /*! LowCSS #{$version} | Released under the MIT License | github.com/jmjuanes/lowcss */
