@@ -1,10 +1,10 @@
 // @description Generate an inline SVG image from the provided content
 @function svg($content: "", $ns: "http://www.w3.org/2000/svg", $vb: "0 0 16 16") {
-    @return "%3csvg xmlns='#{$ns}' viewBox='#{vb}'%3e#{$content}%3c/svg%3e";
+    @return "%3csvg xmlns='#{$ns}' viewBox='#{$vb}'%3e#{$content}%3c/svg%3e";
 }
 
 // @description generate an inline SVG from the provided path
-@function svg-from-path($d: "", $stroke: "#fff") {
+@function svg-from-path($d: "", $stroke: "%23fff") {
     $attr: "fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'";
     $path: "%3cpath #{$attr} stroke='#{$stroke}' d='#{$d}'/%3e";
     @return svg($path);
@@ -12,8 +12,8 @@
 
 $checked-image: svg-from-path("M4,8l3,3l5,-6");
 $indeterminate-image: svg-from-path("M4,8h8");
-$select-image: svg-from-path("M6,8l4,4l4,-4", $stroke: "#6c757d");
-$radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='#fff'/%3e");
+$select-image: svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
+$radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
 
 @mixin use-forms() {
     input[type="text"],
