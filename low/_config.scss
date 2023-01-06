@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // @description global flags
 $important: false !default;
 $dark-mode: false !default;
@@ -175,6 +177,55 @@ $colors: (
     "yellow-700": hsl(45,100%,30%),
     "yellow-800": hsl(45,100%,20%),
     "yellow-900": hsl(45,100%,10%),
+) !default;
+
+// @description global sizes, for using in height and width utilities
+$sizes: (
+    0: 0,
+    px: 1px,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    6: 1.5rem,
+    8: 2rem,
+    10: 2.5rem,
+    12: 3rem,
+    16: 4rem,
+    20: 5rem,
+    24: 6rem,
+    32: 8rem,
+    40: 10rem,
+    48: 12rem,
+    56: 14rem,
+    64: 16rem,
+    72: 18rem,
+    80: 20rem,
+    88: 22rem,
+    96: 24rem,
+    half: 50%,
+    full: 100%,
+) !default;
+
+// @description global space values, for using in margin and padding utilities
+$space: (
+    0: 0,
+    px: 1px,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    6: 1.5rem,
+    8: 2rem,
+    10: 2.5rem,
+    12: 3rem,
+    14: 3.5rem,
+    16: 4rem,
+    18: 4.5rem,
+    20: 5rem,
+    24: 6rem,
+    28: 7rem,
+    32: 8rem,
 ) !default;
 
 // @description values configuration
@@ -411,33 +462,9 @@ $grid-template-rows: (
     none: none,
 ) !default;
 
-$height: (
-    0: 0,
-    px: 1px,
-    1: 0.25rem,
-    2: 0.5rem,
-    3: 0.75rem,
-    4: 1rem,
-    6: 1.5rem,
-    8: 2rem,
-    10: 2.5rem,
-    12: 3rem,
-    16: 4rem,
-    20: 5rem,
-    24: 6rem,
-    32: 8rem,
-    40: 10rem,
-    48: 12rem,
-    56: 14rem,
-    64: 16rem,
-    72: 18rem,
-    80: 20rem,
-    88: 22rem,
-    96: 24rem,
-    half: 50%,
-    full: 100%,
+$height: map.merge($sizes, (
     screen: 100vh,
-) !default;
+)) !default;
 
 $inset: (
     0: 0px,
@@ -463,26 +490,9 @@ $line-height: (
     loose: 2,
 ) !default;
 
-$margin: (
-    0: 0,
-    px: 1px,
-    1: 0.25rem,
-    2: 0.5rem,
-    3: 0.75rem,
-    4: 1rem,
-    6: 1.5rem,
-    8: 2rem,
-    10: 2.5rem,
-    12: 3rem,
-    14: 3.5rem,
-    16: 4rem,
-    18: 4.5rem,
-    20: 5rem,
-    24: 6rem,
-    28: 7rem,
-    32: 8rem,
+$margin: map.merge($space, (
     auto: auto,
-) !default;
+)) !default;
 
 $max-height: (
     0: 0px,
@@ -590,25 +600,7 @@ $overflow: (
     visible: visible,
 ) !default;
 
-$padding: (
-    0: 0,
-    px: 1px,
-    1: 0.25rem,
-    2: 0.5rem,
-    3: 0.75rem,
-    4: 1rem,
-    6: 1.5rem,
-    8: 2rem,
-    10: 2.5rem,
-    12: 3rem,
-    14: 3.5rem,
-    16: 4rem,
-    18: 4.5rem,
-    20: 5rem,
-    24: 6rem,
-    28: 7rem,
-    32: 8rem,
-) !default;
+$padding: map.merge((), $space) !default;
 
 $position: (
     relative: relative,
@@ -655,34 +647,9 @@ $vertical-align: (
     text-bottom: text-bottom,
 ) !default;
 
-$width: (
-    0: 0,
-    px: 1px,
-    1: 0.25rem,
-    2: 0.5rem,
-    3: 0.75rem,
-    4: 1rem,
-    6: 1.5rem,
-    8: 2rem,
-    10: 2.5rem,
-    12: 3rem,
-    16: 4rem,
-    20: 5rem,
-    24: 6rem,
-    32: 8rem,
-    40: 10rem,
-    48: 12rem,
-    56: 14rem,
-    64: 16rem,
-    72: 18rem,
-    80: 20rem,
-    88: 22rem,
-    96: 24rem,
-    auto: auto,
-    half: 50%,
-    full: 100%,
+$width: map.merge($space, (
     screen: 100vw,
-) !default;
+)) !default;
 
 $z-index: (
     auto: auto,
