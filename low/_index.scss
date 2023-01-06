@@ -45,7 +45,7 @@
 }
 
 // @description Generate the utility from the given configuration
-@mixin generate-utility($utility-name, $utility-config) {
+@mixin utility($utility-name, $utility-config) {
     // Get utility alias from configuration
     $class: map.get($utility-config, "alias");
     @if map.has-key(config.$aliases, $utility-name) {
@@ -61,6 +61,12 @@
     }
     $properties: map.get($utility-config, "properties");
     $values: map.get($utility-config, "values");
+    @if map.has-key(config.$extend, $utility-name) {
+        $new-values: map.get(config.$extend, $utility-name);
+        @if meta.type-of($new-values) == "map" {
+            $values: map.merge($values, $new-values);
+        }
+    }
     // $is-dark: functions.list-includes($variants, "dark");
     // Check if the variants list includes the "default" variant
     // @if not functions.list-includes($variants, "default") {
@@ -113,7 +119,7 @@
 @mixin utilities() {
     @each $utility-name,$utility-config in utilities.$all-utilities {
         @if is-enabled(($utility-name)) {
-            @include generate-utility($utility-name, $utility-config);
+            @include utility($utility-name, $utility-config);
         }
     }
 }

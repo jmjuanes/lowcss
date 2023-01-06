@@ -46,6 +46,9 @@ $pseudos: (
 $include: null !default;
 $exclude: null !default;
 
+// @description extend low css values
+$extend: () !default;
+
 // @description List of custom variants for utilities
 // @example
 // $variants: (
