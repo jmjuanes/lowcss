@@ -23,5 +23,13 @@
 @include low.forms();
 @include low.utilities();
 
-// 3. Generate output css with sass
+// 3.1 (optional) Generate custom utilities
+// @include low.utility($name, $config);
+
+// 3.2 (optional) Generate custom components using utilities
+// .button {
+//     @include low.apply("text:white bg:blue-500 bg:blue-700:hover");
+// }
+
+// 4. Generate output css with sass
 // $ sass --load-path=./ --style compressed main.scss low.css

@@ -24,7 +24,8 @@
 // Include lowcss modules
 @use "config";
 @use "api";
-@use "utilities";
+@use "internal";
+@use "utilities" as *;
 
 // @description check if the provided module or utility name is enabled
 @function is-enabled($name) {
@@ -44,6 +45,20 @@
     }
 }
 
+// @description get utility values
+@function utility-values($utility-name, $default-values) {
+    @if meta.type-of($default-values) != "map" {
+        $default-values: ();
+    }
+    @if map.has-key(config.$extend, $utility-name) {
+        $new-values: map.get(config.$extend, $utility-name);
+        @if meta.type-of($new-values) == "map" {
+            @return map.merge($default-values, $new-values);
+        }
+    }
+    @return $default-values;
+}
+
 // @description Generate the utility from the given configuration
 @mixin utility($utility-name, $utility-config) {
     // Get utility alias from configuration
@@ -60,13 +75,7 @@
         }
     }
     $properties: map.get($utility-config, "properties");
-    $values: map.get($utility-config, "values");
-    @if map.has-key(config.$extend, $utility-name) {
-        $new-values: map.get(config.$extend, $utility-name);
-        @if meta.type-of($new-values) == "map" {
-            $values: map.merge($values, $new-values);
-        }
-    }
+    $values: utility-values($utility-name, map.get($utility-config, "values"));
     // $is-dark: functions.list-includes($variants, "dark");
     // Check if the variants list includes the "default" variant
     // @if not functions.list-includes($variants, "default") {
@@ -117,9 +126,97 @@
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-name,$utility-config in utilities.$all-utilities {
+    @each $utility-name,$utility-config in $all-utilities {
         @if is-enabled(($utility-name)) {
             @include utility($utility-name, $utility-config);
         }
     }
 }
+
+// @description utility mixin to apply utilities
+@mixin apply($utilities) {
+    $utilities-list: internal.str-split($utilities, " ");
+    $parsed-separator: internal.str-replace(config.$separator, "\\", "");
+    $parsed-pseudo-separator: internal.str-replace(config.$pseudo-separator, "\\", "");
+    $parsed-breakpoint-separator: internal.str-replace(config.$breakpoint-separator, "\\", "");
+    @each $utility in $utilities-list {
+        @if string.index($utility, $parsed-separator) == null {
+            @error "Invalid utility '#{$utility}'";
+        }
+        // First parse utility alias
+        $utility-alias: string.slice($utility, 1, string.index($utility, $parsed-separator) - 1);
+        $utility-alias: internal.str-replace($utility-alias, config.$prefix, "");
+        $utility-name: null;
+        $utility-config: false;
+        // First we need to check if this is a custom alias
+        @each $alias in map.keys(config.$aliases) {
+            @if $alias == $utility-alias {
+                $utility-name: map.get(config.$aliases, $alias);
+            }
+        }
+        // Get utility config
+        @each $name,$config in $all-utilities {
+            @if $name == $utility-name or map.get($config, "alias") == $utility-alias {
+                $utility-config: $config;
+            }
+        }
+        // Check for not found
+        @if not $utility-config {
+            @error "Utility '#{$utility-alias}' not found.";
+        }
+        // Get utility values
+        $utility-properties: map.get($utility-config, "properties");
+        $utility-values: utility-values($utility-name, map.get($utility-config, "values"));
+        $utility-value: null;
+        $utility-pseudo: null;
+        $utility-breakpoint: null;
+        $rest-utility: string.slice($utility, string.index($utility, $parsed-separator) + string.length($parsed-separator));
+        // Check for pseudo modifier
+        @if string.index($rest-utility, $parsed-pseudo-separator) != null {
+            $rest-utility-items: internal.str-split($rest-utility, $parsed-pseudo-separator);
+            @if list.length($rest-utility-items) != 2 {
+                @error "Invalid utility '#{$utility}'";
+            }
+            $utility-value: list.nth($rest-utility-items, 1);
+            $utility-pseudo: list.nth($rest-utility-items, 2);
+        }
+        @else if string.index($rest-utility, $parsed-breakpoint-separator) != null {
+            $rest-utility-items: internal.str-split($rest-utility, $parsed-breakpoint-separator);
+            @if list.length($rest-utility-items) != 2 {
+                @error "Invalid utility '#{$utility}'";
+            }
+            $utility-value: list.nth($rest-utility-items, 1);
+            $utility-breakpoint: list.nth($rest-utility-items, 2);
+        }
+        @else {
+            $utility-value: $rest-utility;
+        }
+        // Check if this utility value exists
+        @if map.has-key($utility-values, $utility-value) == false {
+            @error "Utility value '#{$utility-value}' not found in utility configuration.";
+        }
+        // Apply pseudo selector
+        @if $utility-pseudo != null {
+            @if map.has-key(config.$pseudos, $utility-pseudo) == false {
+                @error "Pseudo '#{$utility-pseudo}' not found in utility '#{$utility}'";
+            }
+            $pseudo: map.get(config.$pseudos, $utility-pseudo);
+            #{&}#{$pseudo} {
+                @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+            }
+        }
+        // Apply breakpoint selector
+        @else if $utility-breakpoint != null {
+            @if map.has-key(config.$breakpoints, $utility-breakpoint) == false {
+                @error "Breakpoint '#{$utility-breakpoint}' not found in utility '#{$utility}'";
+            }
+            @include api.screen-above($utility-breakpoint) {
+                @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+            }
+        }
+        // Apply default utility
+        @else {
+            @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+        }
+    }
+} 
