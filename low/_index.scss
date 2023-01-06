@@ -145,29 +145,14 @@
         }
         // First parse utility alias
         $utility-alias: string.slice($utility, 1, string.index($utility, $parsed-separator) - 1);
-        $utility-alias: internal.str-replace($utility-alias, config.$prefix, "");
+        @if config.$prefix != "" {
+            $utility-alias: internal.str-replace($utility-alias, config.$prefix, "");
+        }
         $utility-name: null;
-        $utility-config: false;
-        // First we need to check if this is a custom alias
-        @each $alias in map.keys(config.$aliases) {
-            @if $alias == $utility-alias {
-                $utility-name: map.get(config.$aliases, $alias);
-            }
-        }
-        // Get utility config
-        @each $name,$config in $all-utilities {
-            @if $name == $utility-name or map.get($config, "alias") == $utility-alias {
-                $utility-config: $config;
-            }
-        }
-        // Check for not found
-        @if not $utility-config {
-            @error "Utility '#{$utility-alias}' not found.";
-        }
-        // Get utility values
-        $utility-properties: map.get($utility-config, "properties");
-        $utility-values: utility-values($utility-name, map.get($utility-config, "values"));
+        $utility-config: null;
+        $utility-key: null;
         $utility-value: null;
+        $utility-properties: null;
         $utility-pseudo: null;
         $utility-breakpoint: null;
         $rest-utility: string.slice($utility, string.index($utility, $parsed-separator) + string.length($parsed-separator));
@@ -177,7 +162,7 @@
             @if list.length($rest-utility-items) != 2 {
                 @error "Invalid utility '#{$utility}'";
             }
-            $utility-value: list.nth($rest-utility-items, 1);
+            $utility-key: list.nth($rest-utility-items, 1);
             $utility-pseudo: list.nth($rest-utility-items, 2);
         }
         @else if string.index($rest-utility, $parsed-breakpoint-separator) != null {
@@ -185,15 +170,37 @@
             @if list.length($rest-utility-items) != 2 {
                 @error "Invalid utility '#{$utility}'";
             }
-            $utility-value: list.nth($rest-utility-items, 1);
+            $utility-key: list.nth($rest-utility-items, 1);
             $utility-breakpoint: list.nth($rest-utility-items, 2);
         }
         @else {
-            $utility-value: $rest-utility;
+            $utility-key: $rest-utility;
         }
-        // Check if this utility value exists
-        @if map.has-key($utility-values, $utility-value) == false {
-            @error "Utility value '#{$utility-value}' not found in utility configuration.";
+        // Check for alias of the utility
+        @each $alias in map.keys(config.$aliases) {
+            @if $alias == $utility-alias {
+                $utility-name: map.get(config.$aliases, $alias);
+            }
+        }
+        // Get utility config
+        @each $name,$config in $all-utilities {
+            @if $utility-value == null {
+                @if $name == $utility-name or map.get($config, "alias") == $utility-alias {
+                    $values: utility-values($name, map.get($config, "values"));
+                    @each $key,$value in $values {
+                        @if "#{$key}" == "#{$utility-key}" {
+                            // $utility-value: map.get($values, $utility-key);
+                            $utility-value: $value;
+                            $utility-properties: map.get($config, "properties");
+                        }
+                    }
+                }
+            }
+        }
+        // Check for not found
+        @if $utility-value == null {
+            // @error "Utility '#{$utility-alias}' not found.";
+            @error "Utility value '#{$utility-key}' not found in utility configuration.";
         }
         // Apply pseudo selector
         @if $utility-pseudo != null {
@@ -201,8 +208,8 @@
                 @error "Pseudo '#{$utility-pseudo}' not found in utility '#{$utility}'";
             }
             $pseudo: map.get(config.$pseudos, $utility-pseudo);
-            #{&}#{$pseudo} {
-                @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+            &#{$pseudo} {
+                @include api.rule($utility-properties, $utility-value);
             }
         }
         // Apply breakpoint selector
@@ -211,12 +218,12 @@
                 @error "Breakpoint '#{$utility-breakpoint}' not found in utility '#{$utility}'";
             }
             @include api.screen-above($utility-breakpoint) {
-                @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+                @include api.rule($utility-properties, $utility-value);
             }
         }
         // Apply default utility
         @else {
-            @include api.rule($utility-properties, map.get($utility-values, $utility-value));
+            @include api.rule($utility-properties, $utility-value);
         }
     }
 } 
