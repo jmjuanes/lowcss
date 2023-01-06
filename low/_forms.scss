@@ -15,7 +15,7 @@ $indeterminate-image: svg-from-path("M4,8h8");
 $select-image: svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
 $radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
 
-@mixin use-forms() {
+@mixin forms() {
     [type="text"],
     [type="email"],
     [type="url"],
