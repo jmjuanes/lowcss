@@ -10,13 +10,18 @@
  */
 
 // 1.1 Import lowcss without customization
-// @use "low";
+@use "low";
 
 // 1.2 Import lowcss with customization
-@use "low" with (
-    $prefix: "",
-    $important: false,
-);
+// @use "low" with (
+//     $prefix: "",
+//     $important: false,
+// );
 
-// 2. Generate output css with sass
+// 2. Include low mixins
+@include low.reset();
+@include low.forms();
+@include low.utilities();
+
+// 3. Generate output css with sass
 // $ sass --load-path=./ --style compressed main.scss low.css
