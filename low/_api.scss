@@ -1,0 +1,56 @@
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+
+@use "config";
+
+// @description generate media screen above the specified breakpoint
+@mixin screen-above($breakpoint) {
+    // TODO: display an error message if breakpoint is not found
+    $breakpoint-size: map.get(config.$breakpoints, $breakpoint);
+    @media screen and (min-width: $breakpoint-size) {
+        @content;
+    }
+}
+
+// @description generate media screen below the specified breakpoint
+@mixin screen-below($breakpoint) {
+    // TODO: display an error message if breakpoint is not found
+    $breakpoint-size: map.get(config.$breakpoints, $breakpoint);
+    @media screen and (max-width: $breakpoint-size) {
+        @content;
+    }
+}
+
+// @description generate media screen between the two breakpoints
+@mixin screen-between($breakpoint-lower, $breakpoint-higher) {
+    // TODO: display an error message if breakpoint is not found
+    $lower: map.get(config.$breakpoints, $breakpoint-lower);
+    $higher: map.get(config.$breakpoints, $breakpoint-higher);
+    @media screen and (min-width: $lower) and (max-width: $higher) {
+        @content;
+    }
+}
+
+// @description Generate a rule
+@mixin rule($properties, $value) {
+    // $properties: $props;
+    // We need to make sure that $properties is a list
+    @if meta.type-of($properties) != "list" {
+        $properties: list.append((), $properties);
+    }
+    @each $property in $properties {
+        @if config.$important {
+            #{string.unquote($property)}: #{$value} !important;
+        }
+        @else {
+            #{string.unquote($property)}: #{$value};
+        }
+    }
+}
+
+// @description alias for rule mixin
+@mixin generate-rule($properties, $value) {
+    @include rule($properties, $value);
+}

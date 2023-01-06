@@ -9,11 +9,11 @@
  *
  */
 
-$version: "0.5.1";
-
 // Forward configuration variables and public api
 @forward "config";
 @forward "reset";
+@forward "forms";
+@forward "api";
 
 // Include sass modules
 @use "sass:list";
@@ -23,8 +23,7 @@ $version: "0.5.1";
 
 // Include lowcss modules
 @use "config";
-@use "reset";
-@use "forms";
+@use "api";
 @use "utilities";
 
 // @description check if the provided module or utility name is enabled
@@ -45,27 +44,21 @@ $version: "0.5.1";
     }
 }
 
-// @description Generate a rule
-@mixin rule($properties, $value) {
-    // $properties: $props;
-    // We need to make sure that $properties is a list
-    @if meta.type-of($properties) != "list" {
-        $properties: list.append((), $properties);
-    }
-    @each $property in $properties {
-        @if config.$important {
-            #{string.unquote($property)}: #{$value} !important;
-        }
-        @else {
-            #{string.unquote($property)}: #{$value};
-        }
-    }
-}
-
 // @description Generate the utility from the given configuration
-@mixin utility($utility-config) {
+@mixin generate-utility($utility-name, $utility-config) {
+    // Get utility alias from configuration
     $class: map.get($utility-config, "alias");
+    @if map.has-key(config.$aliases, $utility-name) {
+        $class: map.get(config.$aliases, $utility-name);
+    }
+    // Get utility variants list
     $variants: map.get($utility-config, "variants");
+    @if map.has-key(config.$variants, $utility-name) {
+        $variants: map.get(config.$variants, $utility-name);
+        @if meta.type-of($variants) != "list" {
+            $variants: ("default");
+        }
+    }
     $properties: map.get($utility-config, "properties");
     $values: map.get($utility-config, "values");
     // $is-dark: functions.list-includes($variants, "dark");
@@ -87,16 +80,16 @@ $version: "0.5.1";
                 //     }
                 // }
                 .#{$selector}#{config.$pseudo-separator}#{$variant}#{$pseudo} {
-                    @include rule($properties, $value);
+                    @include api.rule($properties, $value);
                 }
             }
             // For responsive variants, we will register the style
             // for each breakpoint in the list of breakpoints
             @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "map" {
-                @each $breakpoint-name,$breakpoint-size in config.$breakpoints {
-                    @media screen and (min-width: #{$breakpoint-size}) {
-                        .#{$selector}#{config.$breakpoint-separator}#{$breakpoint-name} {
-                            @include rule($properties, $value);
+                @each $breakpoint in map.keys(config.$breakpoints) {
+                    @include api.screen-above($breakpoint) {
+                        .#{$selector}#{config.$breakpoint-separator}#{$breakpoint} {
+                            @include api.rule($properties, $value);
                         }
                     }
                 }
@@ -109,30 +102,18 @@ $version: "0.5.1";
                 //     }
                 // }
                 .#{$selector} {
-                    @include rule($properties, $value);
+                    @include api.rule($properties, $value);
                 }
             }
         }
     }
 }
 
-// Include reset
-@if config.$output == "css" and is-enabled("reset") {
-    @include reset.use-reset();
-}
-
-// Include forms
-@if config.$output == "css" and is-enabled("forms") {
-    @include forms.use-forms();
-}
-
-// Generate utilities
-@if config.$output == "css" {
+// @description generate utilities
+@mixin utilities() {
     @each $utility-name,$utility-config in utilities.$all-utilities {
         @if is-enabled(($utility-name)) {
-            @include utility($utility-config);
+            @include generate-utility($utility-name, $utility-config);
         }
     }
 }
-
-/*! LowCSS #{$version} | Released under the MIT License | github.com/jmjuanes/lowcss */
