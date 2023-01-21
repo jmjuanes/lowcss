@@ -698,3 +698,100 @@ $filter-invert: (
     none: invert(0),
     full: invert(100%),
 ) !default;
+
+$transform-scale: (
+    0: scale(0),
+    25: scale(0.25),
+    50: scale(0.5),
+    75: scale(0.75),
+    100: scale(1),
+    125: scale(1.25),
+    150: scale(1.5),
+) !default;
+
+$transform-scale-x: (
+    0: scaleX(0),
+    25: scaleX(0.25),
+    50: scaleX(0.5),
+    75: scaleX(0.75),
+    100: scaleX(1),
+    125: scaleX(1.25),
+    150: scaleX(1.5),
+) !default;
+
+$transform-scale-y: (
+    0: scaleY(0),
+    25: scaleY(0.25),
+    50: scaleY(0.5),
+    75: scaleY(0.75),
+    100: scaleY(1),
+    125: scaleY(1.25),
+    150: scaleY(1.5),
+) !default;
+
+$transform-rotate: (
+    0: rotate(0),
+    45: rotate(45deg),
+    90: rotate(90deg),
+    180: rotate(180deg),
+) !default;
+
+$transform-translate-x: (
+    0: translateX(0),
+    px: transpateX(1px),
+    1: translateX(0.25rem),
+    2: translateX(0.5rem),
+    3: translateX(0.75rem),
+    4: translateX(1rem),
+    6: translateX(1.5rem),
+    8: translateX(2rem),
+    10: translateX(2.5rem),
+    12: translateX(3rem),
+    14: translateX(3.5rem),
+    16: translateX(4rem),
+    18: translateX(4.5rem),
+    20: translateX(5rem),
+    24: translateX(6rem),
+    28: translateX(7rem),
+    32: translateX(8rem),
+    half: translateX(50%),
+    full: translateX(100%),
+    half-n: tanslateX(-50%),
+    full-n: translateX(-100%),
+) !default;
+
+$transform-translate-y: (
+    0: translateY(0),
+    px: transpateY(1px),
+    1: translateY(0.25rem),
+    2: translateY(0.5rem),
+    3: translateY(0.75rem),
+    4: translateY(1rem),
+    6: translateY(1.5rem),
+    8: translateY(2rem),
+    10: translateY(2.5rem),
+    12: translateY(3rem),
+    14: translateY(3.5rem),
+    16: translateY(4rem),
+    18: translateY(4.5rem),
+    20: translateY(5rem),
+    24: translateY(6rem),
+    28: translateY(7rem),
+    32: translateY(8rem),
+    half: translateY(50%),
+    full: translateY(100%),
+    half-n: tanslateY(-50%),
+    full-n: translateY(-100%),
+) !default;
+
+$transform-origin: (
+    center: center,
+    top: top,
+    top-right: (top right),
+    right: right,
+    bottom-right: (bottom right),
+    bottom: bottom,
+    bottom-left: (bottom left),
+    left: left,
+    top-left: (top left),
+) !default;

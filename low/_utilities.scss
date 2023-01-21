@@ -461,4 +461,48 @@ $all-utilities: (
         properties: (filter),
         values: config.$filter-invert,
     ),
+
+    // Transform
+    transform-scale: (
+        alias: "scale",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-scale,
+    ),
+    transform-scale-x: (
+        alias: "scale-x",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-scale-x,
+    ),
+    transform-scale-y: (
+        alias: "scale-y",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-scale-y,
+    ),
+    transform-rotate: (
+        alias: "rotate",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-rotate,
+    ),
+    transform-translate-x: (
+        alias: "translate-x",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-translate-x,
+    ),
+    transform-translate-y: (
+        alias: "translate-y",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: config.$transform-translate-y,
+    ),
+    transform-origin: (
+        alias: "origin",
+        variants: ("default", "responsive"),
+        properties: (transform-origin),
+        values: config.$transform-origin,
+    ),
 );
