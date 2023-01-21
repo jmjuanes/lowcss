@@ -85,7 +85,7 @@
     // Generate utility rules for each variant
     @each $variant in $variants {
         @each $key,$value in $values {
-            $selector: "#{$class}#{config.$separator}#{$key}";
+            $selector: "#{config.$prefix}#{$class}#{config.$separator}#{$key}";
             // Pseudo variant selector
             @if map.has-key(config.$pseudos, $variant) {
                 $pseudo: map.get(config.$pseudos, $variant);
