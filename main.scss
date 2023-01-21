@@ -21,6 +21,7 @@
 // 2. Include low mixins
 @include low.reset();
 @include low.forms();
+@include low.keyframes();
 @include low.utilities();
 
 // 3.1 (optional) Generate custom utilities
