@@ -441,4 +441,24 @@ $all-utilities: (
         properties: (animation),
         values: config.$animation,
     ),
+
+    // Filter
+    filter-blur: (
+        alias: "blur",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: config.$filter-blur,
+    ),
+    filter-sepia: (
+        alias: "sepia",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: config.$filter-sepia,
+    ),
+    filter-invert: (
+        alias: "invert",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: config.$filter-invert,
+    ),
 );

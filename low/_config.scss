@@ -678,3 +678,23 @@ $animation: (
     pulse: (pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite),
     spin: (spin 1s linear infinite),
 ) !default;
+
+$filter-blur: (
+    none: blur(0px),
+    sm: blur(2px),
+    md: blur(4px),
+    lg: blur(8px),
+    xl: blur(16px),
+    2xl: blur(32px),
+    3xl: blur(48px),
+) !default;
+
+$filter-sepia: (
+    none: sepia(0),
+    full: sepia(100%),
+) !default;
+
+$filter-invert: (
+    none: invert(0),
+    full: invert(100%),
+) !default;
