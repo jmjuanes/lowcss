@@ -433,4 +433,12 @@ $all-utilities: (
         properties: (vertical-align),
         values: config.$vertical-align,
     ),
+
+    // Animations
+    animation: (
+        alias: "animation",
+        variants: ("default", "responsive"),
+        properties: (animation),
+        values: config.$animation,
+    ),
 );

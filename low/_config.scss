@@ -668,3 +668,13 @@ $z-index: (
     9: 90,
     10: 100,
 ) !default;
+
+$animation: (
+    none: none,
+    bounce: (bounce 1s infinite),
+    fadein: (fadein ease 1s),
+    fadeout: (fadeout ease 1s),
+    ping: (ping 1s cubic-bezier(0, 0, 0.2, 1) infinite),
+    pulse: (pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite),
+    spin: (spin 1s linear infinite),
+) !default;
