@@ -258,6 +258,13 @@ $align-self: (
     baseline: baseline,
 ) !default;
 
+$background-clip: (
+    border: border-box,
+    padding: padding-box,
+    content: content-box,
+    text: text,
+) !default;
+
 $background-color: $colors !default;
 
 $background-repeat: (

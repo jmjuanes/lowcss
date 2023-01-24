@@ -3,6 +3,12 @@
 // @description All utilities
 $all-utilities: (
     // Background utilities
+    background-clip: (
+        alias: "bg-clip",
+        variants: ("default"),
+        properties: (background-clip),
+        values: config.$background-clip,
+    ),
     background-color: (
         alias: "bg",
         variants: ("default", "hover", "focus", "active", "checked"),
