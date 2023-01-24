@@ -2,9 +2,17 @@
 
 // @description All utilities
 $all-utilities: (
+    // Animations
+    animation: (
+        alias: "animation",
+        variants: ("default", "responsive"),
+        properties: (animation),
+        values: config.$animation,
+    ),
+
     // Background utilities
     background-clip: (
-        alias: "bg-clip",
+        alias: "bg",
         variants: ("default"),
         properties: (background-clip),
         values: config.$background-clip,
@@ -14,6 +22,12 @@ $all-utilities: (
         variants: ("default", "hover", "focus", "active", "checked"),
         properties: (background-color),
         values: config.$background-color,
+    ),
+    background-image: (
+        alias: "bg",
+        variants: ("default"),
+        properties: (background-image),
+        values: config.$background-image,
     ),
     background-repeat: (
         alias: "bg",
@@ -26,6 +40,20 @@ $all-utilities: (
         variants: ("default"),
         properties: (background-size),
         values: config.$background-size,
+    ),
+
+    // Gradients utilities
+    gradient-from: (
+        alias: "from",
+        variants: ("default"),
+        properties: (--low-gradient-start),
+        values: config.$background-color,
+    ),
+    gradient-to: (
+        alias: "to",
+        variants: ("default"),
+        properties: (--low-gradient-stop),
+        values: config.$background-color,
     ),
 
     // Border utilities
@@ -438,14 +466,6 @@ $all-utilities: (
         variants: ("default", "responsive"),
         properties: (vertical-align),
         values: config.$vertical-align,
-    ),
-
-    // Animations
-    animation: (
-        alias: "animation",
-        variants: ("default", "responsive"),
-        properties: (animation),
-        values: config.$animation,
     ),
 
     // Filter

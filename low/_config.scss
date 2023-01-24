@@ -267,6 +267,14 @@ $background-clip: (
 
 $background-color: $colors !default;
 
+$background-image: (
+    none: none,
+    gradient-to-right: linear-gradient(to right, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-lelft: linear-gradient(to left, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-bottom: linear-gradient(to bottom, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-top: linear-gradient(to top, var(--low-gradient-start), var(--low-gradient-stop)),
+) !default;
+
 $background-repeat: (
     repeat: repeat,
     no-repeat: no-repeat,
