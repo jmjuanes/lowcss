@@ -665,7 +665,7 @@ $vertical-align: (
     text-bottom: text-bottom,
 ) !default;
 
-$width: map.merge($space, (
+$width: map.merge($sizes, (
     screen: 100vw,
 )) !default;
 
