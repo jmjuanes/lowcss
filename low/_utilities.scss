@@ -19,7 +19,7 @@ $all-utilities: (
     ),
     background-color: (
         alias: "bg",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked"),
         properties: (background-color),
         values: config.$background-color,
     ),
@@ -59,7 +59,7 @@ $all-utilities: (
     // Border utilities
     border-color: (
         alias: "b",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked"),
         properties: (border-color),
         values: config.$border-color,
     ),
@@ -83,25 +83,25 @@ $all-utilities: (
     ),
     outline-color: (
         alias: "outline",
-        variants: ("default", "focus", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-color),
         values: config.$outline-color,
     ),
     outline-offset: (
         alias: "outline",
-        variants: ("default", "focus", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-offset),
         values: config.$outline-offset,
     ),
     outline-style: (
         alias: "outline",
-        variants: ("default", "focus", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-style),
         values: config.$outline-style,
     ),
     outline-width: (
         alias: "outline",
-        variants: ("default", "focus", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-width),
         values: config.$outline-width,
     ),
@@ -109,13 +109,13 @@ $all-utilities: (
     // Effects utilities
     box-shadow: (
         alias: "shadow",
-        variants: ("default", "hover", "focus"),
+        variants: ("default", "hover", "focus", "focus-within"),
         properties: (box-shadow),
         values: config.$box-shadow,
     ),
     opacity: (
         alias: "o",
-        variants: ("default", "responsive", "hover", "focus"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within"),
         properties: (opacity),
         values: config.$opacity,
     ),
@@ -427,7 +427,7 @@ $all-utilities: (
     ),
     font-weight: (
         alias: "font",
-        variants: ("default", "hover", "focus", "responsive"),
+        variants: ("default", "hover", "focus", "focus-within", "responsive"),
         properties: (font-weight),
         values: config.$font-weight,
     ),
@@ -445,19 +445,19 @@ $all-utilities: (
     ),
     text-color: (
         alias: "text",
-        variants: ("default", "hover", "focus", "active", "checked", "responsive"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "responsive"),
         properties: (color),
         values: config.$text-color,
     ),
     text-decoration: (
         alias: "text",
-        variants: ("default", "hover", "focus"),
+        variants: ("default", "hover", "focus", "focus-within"),
         properties: (text-decoration),
         values: config.$text-decoration,
     ),
     text-transform: (
         alias: "text",
-        variants: ("default", "hover", "focus"),
+        variants: ("default", "hover", "focus", "focus-within"),
         properties: (text-transform),
         values: config.$text-transform,
     ),
