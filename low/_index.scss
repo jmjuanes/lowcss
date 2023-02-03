@@ -84,8 +84,17 @@
                 //         @include generate-rule($properties, $value, false);
                 //     }
                 // }
-                .#{$selector}#{config.$pseudo-separator}#{$variant}#{$pseudo} {
-                    @include api.rule($properties, $value);
+                // Group selector
+                @if internal.str-starts-with($variant, "group-") {
+                    .group#{$pseudo} .#{$selector}#{config.$pseudo-separator}#{$variant} {
+                        @include api.rule($properties, $value);
+                    }
+                }
+                // Default pseudo selector
+                @else {
+                    .#{$selector}#{config.$pseudo-separator}#{$variant}#{$pseudo} {
+                        @include api.rule($properties, $value);
+                    }
                 }
             }
             // For responsive variants, we will register the style

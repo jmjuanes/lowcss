@@ -35,3 +35,11 @@
     }
     @return $string;
 }
+
+// @description Check if '$str' starts with the given '$search' sctring.
+// @param {String} $str - Source string
+// @param {String} $search - Substring to search for at the start of '$str'
+// @return {Boolean} - 'true' if '$str' starts with '$search', 'false' in other case.
+@function str-starts-with($str, $search) {
+    @return string.index($str, $search) == 1;
+}

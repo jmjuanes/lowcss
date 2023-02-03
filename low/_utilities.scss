@@ -19,7 +19,7 @@ $all-utilities: (
     ),
     background-color: (
         alias: "bg",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: (background-color),
         values: config.$background-color,
     ),
@@ -59,7 +59,7 @@ $all-utilities: (
     // Border utilities
     border-color: (
         alias: "b",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: (border-color),
         values: config.$border-color,
     ),
@@ -115,7 +115,7 @@ $all-utilities: (
     ),
     opacity: (
         alias: "o",
-        variants: ("default", "responsive", "hover", "focus", "focus-within"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (opacity),
         values: config.$opacity,
     ),
@@ -223,7 +223,7 @@ $all-utilities: (
     ),
     display: (
         alias: "d",
-        variants: ("default", "responsive"),
+        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (display),
         values: config.$display,
     ),
@@ -427,7 +427,7 @@ $all-utilities: (
     ),
     font-weight: (
         alias: "font",
-        variants: ("default", "hover", "focus", "focus-within", "responsive"),
+        variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (font-weight),
         values: config.$font-weight,
     ),
@@ -445,19 +445,19 @@ $all-utilities: (
     ),
     text-color: (
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "responsive"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (color),
         values: config.$text-color,
     ),
     text-decoration: (
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-decoration),
         values: config.$text-decoration,
     ),
     text-transform: (
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-transform),
         values: config.$text-transform,
     ),
