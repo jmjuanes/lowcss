@@ -1,0 +1,38 @@
+@use "sass:list";
+@use "sass:map";
+@use "low/utilities" as *;
+
+@function json($arg) {
+    $type: meta.type-of($arg);
+    @if $type == "map" {
+        $output: ();
+        @each $key,$value in $arg {
+            $output: list.append($output, "\"#{$key}\": #{json($value)}", $separator: comma);
+        }
+        @return "{#{$output}}";
+    }
+    @else if $type == "list" {
+        $output: ();
+        @each $item in $arg {
+            $output: list.append($output, json($item), $separator: comma);
+        }
+        @return "[#{$output}]";
+    }
+    @else if $type == "bool" {
+        @return if($arg == true, "true", "false");
+    }
+    @else if $type == "null" {
+        @return "null";
+    }
+    // @else if $type == "string" or $type == "color" {
+    //     @return "\"#{$arg}\"";
+    // }
+    @else {
+        @return "\"#{$arg}\"";
+        // @return "#{$arg}";
+    }
+}
+
+/*!
+#{json($all-utilities)}
+*/
