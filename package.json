@@ -14,7 +14,7 @@
         "build:css": "sass --load-path=./ --style compressed main.scss dist/low.css",
         "postbuild:css": "postcss dist/low.css -o dist/low.css && csso dist/low.css --output dist/low.css --source-map dist/low.css.map",
         "build:json": "sass --no-source-map --load-path=./ json.scss dist/low.raw.json",
-        "postbuild:json": "cat dist/low.raw.json | tail -n 2 | head -n 1 > dist/low.json && rm dist/low.raw.json",
+        "postbuild:json": "cat dist/low.raw.json | tail -n 2 | head -n 1 | node pretty.js > dist/low.json && rm dist/low.raw.json",
         "build": "yarn build:css && yarn build:json",
         "prebuild": "rm -rf ./dist"
     },
