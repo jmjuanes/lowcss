@@ -291,7 +291,7 @@ $all-utilities: (
     ),
     display: (
         alias: "d",
-        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last"),
         properties: (display),
         values: config.$display,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
