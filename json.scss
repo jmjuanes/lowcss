@@ -1,7 +1,9 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+@use "low/config" as config;
 @use "low/utilities" as *;
+@use "low/version" as *;
 
 @function json($arg) {
     $type: meta.type-of($arg);
@@ -34,6 +36,15 @@
     }
 }
 
+// Data to print
+$data: (
+    "version": $version,
+    "colors": config.$colors,
+    "sizes": config.$sizes,
+    "space": config.$space,
+    "utilities": $all-utilities,
+);
+
 /*!
-#{json($all-utilities)}
+#{json($data)}
 */
