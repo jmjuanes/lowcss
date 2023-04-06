@@ -4,6 +4,7 @@
 $all-utilities: (
     // Animations
     animation: (
+        group: "animation",
         alias: "animation",
         variants: ("default", "responsive"),
         properties: (animation),
@@ -14,6 +15,7 @@ $all-utilities: (
 
     // Background utilities
     background-clip: (
+        group: "background",
         alias: "bg",
         variants: ("default"),
         properties: (background-clip),
@@ -22,6 +24,7 @@ $all-utilities: (
         description: "Utilities for setting the background-clip property of the element.",
     ),
     background-color: (
+        group: "background",
         alias: "bg",
         variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: (background-color),
@@ -30,6 +33,7 @@ $all-utilities: (
         description: "Utilities for setting the background-color property of the element.",
     ),
     background-image: (
+        group: "background",
         alias: "bg",
         variants: ("default"),
         properties: (background-image),
@@ -38,6 +42,7 @@ $all-utilities: (
         description: "Utilities for setting the background-image property of the element.",
     ),
     background-repeat: (
+        group: "background",
         alias: "bg",
         variants: ("default"),
         properties: (background-repeat),
@@ -46,6 +51,7 @@ $all-utilities: (
         description: "Utilities for setting the background-repeat property of the element.",
     ),
     background-size: (
+        group: "background",
         alias: "bg",
         variants: ("default"),
         properties: (background-size),
@@ -56,6 +62,7 @@ $all-utilities: (
 
     // Gradients utilities
     gradient-from: (
+        group: "gradient",
         alias: "from",
         variants: ("default"),
         properties: (--low-gradient-start),
@@ -64,6 +71,7 @@ $all-utilities: (
         description: "Utilities to specify the starting color for the gradient.",
     ),
     gradient-to: (
+        group: "gradient",
         alias: "to",
         variants: ("default"),
         properties: (--low-gradient-stop),
@@ -74,6 +82,7 @@ $all-utilities: (
 
     // Border utilities
     border-color: (
+        group: "border",
         alias: "b",
         variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: (border-color),
@@ -82,6 +91,7 @@ $all-utilities: (
         description: "Utilities for setting the border color of the element.",
     ),
     border-radius: (
+        group: "border",
         alias: "r",
         variants: ("default"),
         properties: (border-radius),
@@ -90,6 +100,7 @@ $all-utilities: (
         description: "Utilities for setting the radius of the element.",
     ),
     border-style: (
+        group: "border",
         alias: "b",
         variants: ("default", "focus"),
         properties: (border-style),
@@ -98,6 +109,7 @@ $all-utilities: (
         description: "Utilities for setting the border-style property of the element.",
     ),
     border-width: (
+        group: "border",
         alias: "b",
         variants: ("default", "focus"),
         properties: (border-width),
@@ -106,6 +118,7 @@ $all-utilities: (
         description: "Utilities for setting the border-width property of the element.",
     ),
     outline-color: (
+        group: "border",
         alias: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-color),
@@ -114,6 +127,7 @@ $all-utilities: (
         description: "Utilities for setting the outline-color property of the element.",
     ),
     outline-offset: (
+        group: "border",
         alias: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-offset),
@@ -122,6 +136,7 @@ $all-utilities: (
         description: "Utilities for setting the outline-offset property of the element.",
     ),
     outline-style: (
+        group: "border",
         alias: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-style),
@@ -130,6 +145,7 @@ $all-utilities: (
         description: "Utilities for setting the outline-style property of the element.",
     ),
     outline-width: (
+        group: "border",
         alias: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
         properties: (outline-width),
@@ -140,6 +156,7 @@ $all-utilities: (
 
     // Effects utilities
     box-shadow: (
+        group: "effects",
         alias: "shadow",
         variants: ("default", "hover", "focus", "focus-within"),
         properties: (box-shadow),
@@ -148,6 +165,7 @@ $all-utilities: (
         description: "Utilities for setting the box-shadow property of the element.",
     ),
     opacity: (
+        group: "effects",
         alias: "o",
         variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (opacity),
@@ -158,6 +176,7 @@ $all-utilities: (
 
     // Flexbox and grid utilities
     align-content: (
+        group: "flexbox",
         alias: "content",
         variants: ("default", "responsive"),
         properties: (align-content),
@@ -166,6 +185,7 @@ $all-utilities: (
         description: "Utilities for setting the align-content property of the element.",
     ),
     align-items: (
+        group: "flexbox",
         alias: "items",
         variants: ("default", "responsive"),
         properties: (align-items),
@@ -174,6 +194,7 @@ $all-utilities: (
         description: "Utilities for setting the align-items property of the element.",
     ),
     align-self: (
+        group: "flexbox",
         alias: "self",
         variants: ("default", "responsive"),
         properties: (align-self),
@@ -182,6 +203,7 @@ $all-utilities: (
         description: "Utilities for setting the align-self property of the element.",
     ),
     flex: (
+        group: "flexbox",
         alias: "flex",
         variants: ("default", "responsive"),
         properties: (flex),
@@ -190,6 +212,7 @@ $all-utilities: (
         description: "Utilities for setting the flex property of the element.",
     ),
     flex-direction: (
+        group: "flexbox",
         alias: "flex",
         variants: ("default", "responsive"),
         properties: (flex-direction),
@@ -198,6 +221,7 @@ $all-utilities: (
         description: "Utilities for setting the flex-direction property of the element.", 
     ),
     flex-grow: (
+        group: "flexbox",
         alias: "flex",
         variants: ("default", "responsive"),
         properties: (flex-grow),
@@ -206,6 +230,7 @@ $all-utilities: (
         description: "Utilities for setting the flex-grow property of the element.",
     ),
     flex-shrink: (
+        group: "flexbox",
         alias: "flex",
         variants: ("default", "responsive"),
         properties: (flex-shrink),
@@ -214,6 +239,7 @@ $all-utilities: (
         description: "Utilities for setting the flex-shrink property of the element.",
     ),
     flex-wrap: (
+        group: "flexbox",
         alias: "flex",
         variants: ("default", "responsive"),
         properties: (flex-wrap),
@@ -222,6 +248,7 @@ $all-utilities: (
         description: "Utilities for setting the flex-wrap property of the element.",
     ),
     gap: (
+        group: "flexbox",
         alias: "gap",
         variants: ("default", "responsive"),
         properties: (gap),
@@ -230,6 +257,7 @@ $all-utilities: (
         description: "Utilities for setting the gap property of the element.",
     ),
     grid-template-columns: (
+        group: "flexbox",
         alias: "cols",
         variants: ("default", "responsive"),
         properties: (grid-template-columns),
@@ -238,6 +266,7 @@ $all-utilities: (
         description: "Utilities for setting the grid-template-columns property of the element.",
     ),
     gid-template-rows: (
+        group: "flexbox",
         alias: "rows",
         variants: ("default", "responsive"),
         properties: (grid-template-rows),
@@ -246,6 +275,7 @@ $all-utilities: (
         description: "Utilities for setting the grid-template-rows property of the element.",
     ),
     justify-content: (
+        group: "flexbox",
         alias: "justify",
         variants: ("default", "responsive"),
         properties: (justify-content),
@@ -254,6 +284,7 @@ $all-utilities: (
         description: "Utilities for setting the justify-content property of the element.",
     ),
     order: (
+        group: "flexbox",
         alias: "order",
         variants: ("default", "responsive"),
         properties: (order),
@@ -264,6 +295,7 @@ $all-utilities: (
 
     // Interactivity utilities
     cursor: (
+        group: "interactivity",
         alias: "cursor",
         variants: ("default"),
         properties: (cursor),
@@ -272,6 +304,7 @@ $all-utilities: (
         description: "Utilities for setting the cursor property of the element.",
     ),
     user-select: (
+        group: "interactivity",
         alias: "select",
         variants: ("default"),
         properties: (user-select),
@@ -282,6 +315,7 @@ $all-utilities: (
 
     // Layout utilities
     bottom: (
+        group: "layout",
         alias: "bottom",
         variants: ("default", "responsive"),
         properties: (bottom),
@@ -290,6 +324,7 @@ $all-utilities: (
         description: "Utilities for setting the bottom property of the element.",
     ),
     display: (
+        group: "layout",
         alias: "d",
         variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last"),
         properties: (display),
@@ -298,6 +333,7 @@ $all-utilities: (
         description: "Utilities for setting the display property of the element.",
     ),
     float: (
+        group: "layout",
         alias: "float",
         variants: ("default", "responsive"),
         properties: (float),
@@ -306,6 +342,7 @@ $all-utilities: (
         description: "Utilities for setting the float property of the element.",
     ),
     left: (
+        group: "layout",
         alias: "left",
         variants: ("default", "responsive"),
         properties: (left),
@@ -314,6 +351,7 @@ $all-utilities: (
         description: "Utilities for setting the left property of the element.",
     ),
     overflow: (
+        group: "layout",
         alias: "overflow",
         variants: ("default", "responsive"),
         properties: (overflow),
@@ -322,6 +360,7 @@ $all-utilities: (
         description: "Utilities for setting the overflow property of the element.",
     ),
     overflow-x: (
+        group: "layout",
         alias: "overflow-x",
         variants: ("default", "responsive"),
         properties: (overflow-x),
@@ -330,6 +369,7 @@ $all-utilities: (
         description: "Utilities for setting the overflow-x property of the element.",
     ),
     overflow-y: (
+        group: "layout",
         alias: "overflow-y",
         variants: ("default", "responsive"),
         properties: (overflow-y),
@@ -338,6 +378,7 @@ $all-utilities: (
         description: "Utilities for setting the overflow-y property of the element.",
     ),
     position: (
+        group: "layout",
         alias: "position",
         variants: ("default", "responsive"),
         properties: (position),
@@ -346,6 +387,7 @@ $all-utilities: (
         description: "Utilities for setting the position property of the element.",
     ),
     right: (
+        group: "layout",
         alias: "right",
         variants: ("default", "responsive"),
         properties: (right),
@@ -354,6 +396,7 @@ $all-utilities: (
         description: "Utilities for setting the right property of the element.",
     ),
     top: (
+        group: "layout",
         alias: "top",
         variants: ("default", "responsive"),
         properties: (top),
@@ -362,6 +405,7 @@ $all-utilities: (
         description: "Utilities for setting the top property of the element.",
     ),
     z-index: (
+        group: "layout",
         alias: "z",
         variants: ("default", "responsive"),
         properties: (z-index),
@@ -372,6 +416,7 @@ $all-utilities: (
 
     // Sizing utilities
     height: (
+        group: "sizing",
         alias: "h",
         variants: ("default", "responsive"),
         properties: (height),
@@ -380,6 +425,7 @@ $all-utilities: (
         description: "Utilities for setting the height property of the element.",
     ),
     max-height: (
+        group: "sizing",
         alias: "maxh",
         variants: ("default", "responsive"),
         properties: (max-height),
@@ -388,6 +434,7 @@ $all-utilities: (
         description: "Utilities for setting the max-height property of the element.",
     ),
     max-width: (
+        group: "sizing",
         alias: "maxw",
         variants: ("default", "responsive"),
         properties: (max-width),
@@ -396,6 +443,7 @@ $all-utilities: (
         description: "Utilities for setting the max-width property of the element.",
     ),
     min-height: (
+        group: "sizing",
         alias: "minh",
         variants: ("default", "responsive"),
         properties: (min-height),
@@ -404,6 +452,7 @@ $all-utilities: (
         description: "Utilities for setting the min-height property of the element.",
     ),
     min-width: (
+        group: "sizing",
         alias: "minw",
         variants: ("default", "responsive"),
         properties: (min-width),
@@ -412,6 +461,7 @@ $all-utilities: (
         description: "Utilities for setting the min-width property of the element.",
     ),
     width: (
+        group: "sizing",
         alias: "w",
         variants: ("default", "responsive"),
         properties: (width),
@@ -422,6 +472,7 @@ $all-utilities: (
 
     // Spacing utilities
     margin: (
+        group: "spacing",
         alias: "m",
         variants: ("default", "responsive"),
         properties: (margin),
@@ -430,6 +481,7 @@ $all-utilities: (
         description: "Utilities for setting the margin property of the element.",
     ),
     margin-bottom: (
+        group: "spacing",
         alias: "mb",
         variants: ("default", "responsive"),
         properties: (margin-bottom),
@@ -438,6 +490,7 @@ $all-utilities: (
         description: "Utilities for setting the margin-bottom property of the element.",
     ),
     margin-left: (
+        group: "spacing",
         alias: "ml",
         variants: ("default", "responsive"),
         properties: (margin-left),
@@ -446,6 +499,7 @@ $all-utilities: (
         description: "Utilities for setting the margin-left property of the element.",
     ),
     margin-right: (
+        group: "spacing",
         alias: "mr",
         variants: ("default", "responsive"),
         properties: (margin-right),
@@ -454,6 +508,7 @@ $all-utilities: (
         description: "Utilities for setting the margin-right property of the element.",
     ),
     margin-top: (
+        group: "spacing",
         alias: "mt",
         variants: ("default", "responsive"),
         properties: (margin-top),
@@ -462,6 +517,7 @@ $all-utilities: (
         description: "Utilities for setting the margin-top property of the element.",
     ),
     margin-x: (
+        group: "spacing",
         alias: "mx",
         variants: ("default", "responsive"),
         properties: (margin-left margin-right),
@@ -470,6 +526,7 @@ $all-utilities: (
         description: "Utilities for setting both margin-left and margin-right properties of the element.",
     ),
     margin-y: (
+        group: "spacing",
         alias: "my",
         variants: ("default", "responsive"),
         properties: (margin-top margin-bottom),
@@ -478,6 +535,7 @@ $all-utilities: (
         description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
     ),
     padding: (
+        group: "spacing",
         alias: "p",
         variants: ("default", "responsive"),
         properties: (padding),
@@ -486,6 +544,7 @@ $all-utilities: (
         description: "Utilities for setting the padding property of the element.",
     ),
     padding-bottom: (
+        group: "spacing",
         alias: "pb",
         variants: ("default", "responsive"),
         properties: (padding-bottom),
@@ -494,6 +553,7 @@ $all-utilities: (
         description: "Utilities for setting the padding-bottom property of the element.",
     ),
     padding-left: (
+        group: "spacing",
         alias: "pl",
         variants: ("default", "responsive"),
         properties: (padding-left),
@@ -502,6 +562,7 @@ $all-utilities: (
         description: "Utilities for setting the padding-left property of the element.",
     ),
     padding-right: (
+        group: "spacing",
         alias: "pr",
         variants: ("default", "responsive"),
         properties: (padding-right),
@@ -510,6 +571,7 @@ $all-utilities: (
         description: "Utilities for setting the padding-right property of the element.",
     ),
     padding-top: (
+        group: "spacing",
         alias: "pt",
         variants: ("default", "responsive"),
         properties: (padding-top),
@@ -518,6 +580,7 @@ $all-utilities: (
         description: "Utilities for setting the padding-top property of the element.",
     ),
     padding-x: (
+        group: "spacing",
         alias: "px",
         variants: ("default", "responsive"),
         properties: (padding-left padding-right),
@@ -526,6 +589,7 @@ $all-utilities: (
         description: "Utilities for setting both padding-left and padding-right properties of the element.",
     ),
     padding-y: (
+        group: "spacing",
         alias: "py",
         variants: ("default", "responsive"),
         properties: (padding-top padding-bottom),
@@ -536,6 +600,7 @@ $all-utilities: (
 
     // Typography utilities
     font-family: (
+        group: "typography",
         alias: "font",
         variants: ("default"),
         properties: (font-family),
@@ -544,6 +609,7 @@ $all-utilities: (
         description: "Utilities for setting the font-family property of the element.",
     ),
     font-size: (
+        group: "typography",
         alias: "text",
         variants: ("default", "responsive"),
         properties: (font-size),
@@ -552,6 +618,7 @@ $all-utilities: (
         description: "Utilities for setting the font-size property of the element.",
     ),
     font-style: (
+        group: "typography",
         alias: "text",
         variants: ("default"),
         properties: (font-style),
@@ -560,6 +627,7 @@ $all-utilities: (
         description: "Utilities for setting the font-style property of the element.",
     ),
     font-weight: (
+        group: "typography",
         alias: "font",
         variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (font-weight),
@@ -568,6 +636,7 @@ $all-utilities: (
         description: "Utilities for setting the font-weight property of the element.",
     ),
     line-height: (
+        group: "typography",
         alias: "lh",
         variants: ("default", "responsive"),
         properties: (line-height),
@@ -576,6 +645,7 @@ $all-utilities: (
         description: "Utilities for setting the line-height property of the element.",
     ),
     text-align: (
+        group: "typography",
         alias: "text",
         variants: ("default", "responsive"),
         properties: (text-align),
@@ -584,6 +654,7 @@ $all-utilities: (
         description: "Utilities for setting the text-align property of the element.",
     ),
     text-color: (
+        group: "typography",
         alias: "text",
         variants: ("default", "hover", "focus", "focus-within", "active", "checked", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (color),
@@ -592,6 +663,7 @@ $all-utilities: (
         description: "Utilities for setting the color property of the element.",
     ),
     text-decoration: (
+        group: "typography",
         alias: "text",
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-decoration),
@@ -600,6 +672,7 @@ $all-utilities: (
         description: "Utilities for setting the text-decoration property of the element.",
     ),
     text-transform: (
+        group: "typography",
         alias: "text",
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-transform),
@@ -608,6 +681,7 @@ $all-utilities: (
         description: "Utilities for setting the text-transform property of the element.",
     ),
     vertical-align: (
+        group: "typography",
         alias: "align",
         variants: ("default", "responsive"),
         properties: (vertical-align),
@@ -618,6 +692,7 @@ $all-utilities: (
 
     // Filter
     filter-blur: (
+        group: "filter",
         alias: "blur",
         variants: ("default", "responsive"),
         properties: (filter),
@@ -626,6 +701,7 @@ $all-utilities: (
         description: "Utilities for applying a blur filter to the element.",
     ),
     filter-sepia: (
+        group: "filter",
         alias: "sepia",
         variants: ("default", "responsive"),
         properties: (filter),
@@ -634,6 +710,7 @@ $all-utilities: (
         description: "Utilities for applying a sepia filter the element.",
     ),
     filter-invert: (
+        group: "filter",
         alias: "invert",
         variants: ("default", "responsive"),
         properties: (filter),
@@ -644,6 +721,7 @@ $all-utilities: (
 
     // Transform
     transform-scale: (
+        group: "transform",
         alias: "scale",
         variants: ("default", "responsive"),
         properties: (transform),
@@ -652,15 +730,16 @@ $all-utilities: (
         description: "Utilities for applying a scale transform to the element.",
     ),
     transform-scale-x: (
+        group: "transform",
         alias: "scale-x",
         variants: ("default", "responsive"),
         properties: (transform),
         values: config.$transform-scale-x,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
         description: "Utilities for applying a scale in the X axis to the element.",
-
     ),
     transform-scale-y: (
+        group: "transform",
         alias: "scale-y",
         variants: ("default", "responsive"),
         properties: (transform),
@@ -669,6 +748,7 @@ $all-utilities: (
         description: "Utilities for applying a scale in the Y axis of the element.",
     ),
     transform-rotate: (
+        group: "transform",
         alias: "rotate",
         variants: ("default", "responsive"),
         properties: (transform),
@@ -677,6 +757,7 @@ $all-utilities: (
         description: "Utilities for applying a rotation transform to the element.",
     ),
     transform-translate-x: (
+        group: "transform",
         alias: "translate-x",
         variants: ("default", "responsive"),
         properties: (transform),
@@ -685,6 +766,7 @@ $all-utilities: (
         description: "Utilities for applying a translation in the X axis to the element.",
     ),
     transform-translate-y: (
+        group: "transform",
         alias: "translate-y",
         variants: ("default", "responsive"),
         properties: (transform),
@@ -693,6 +775,7 @@ $all-utilities: (
         description: "Utilities for applying a translation in the Y axis to the element.",
     ),
     transform-origin: (
+        group: "transform",
         alias: "origin",
         variants: ("default", "responsive"),
         properties: (transform-origin),
