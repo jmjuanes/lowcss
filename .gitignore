@@ -6,3 +6,4 @@ yarn.lock
 ## Output files
 dist
 low/_version.scss
+public

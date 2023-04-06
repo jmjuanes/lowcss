@@ -1,0 +1,74 @@
+## Installation
+
+<SubHead>How to install and get started with LowCSS.</SubHead>
+
+<Separator />
+
+##### Install using a Package Manager
+
+###### 1. Add LowCSS to your project
+
+Use **YARN** or **NPM** for adding LowCSS as a dependency to your project. Just run the following command in the root folder of your project:
+
+```bash
+$ yarn add lowcss
+```
+
+###### 2. Import LowCSS in your main Sass file
+
+Include the following line to your main `.scss` file:
+
+```scss
+@use "low";
+``` 
+
+Optionally, you can also customize LowCSS loading it with customization. See the [configuration](configuration.html) guide for more information.
+
+```scss
+@use "low" with (
+    $prefix: "ui-",
+    $colors: (
+        primary: blue,
+        secondary: green,
+    ),
+);
+``` 
+
+<div className="px:6 py:1 r:md bg:blue-100 mb:6">
+Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
+</div>
+
+
+###### 3. Load the modules of LowCSS that you need
+
+Use the `@include` directive to load the modules of LowCSS:
+
+```scss
+@include low.reset();
+@include low.forms();
+@include low.keyframes();
+@include low.scrollbars();
+@include low.utilities();
+```
+
+###### 4. Compile your styles
+
+Use the Sass CLI to generate the output Css:
+
+```bash
+$ sass --load-path=./node_modules/lowcss main.scss dist/low.css
+``` 
+
+Read more about the Sass CLI usage and available flags in the [Sass CLI documentation](https://sass-lang.com/documentation/cli).
+
+<Separator />
+
+##### Install using a CDN
+
+This is the easiest way for adding LowCSS to your project. Just include the following line in the head of your `.html` file:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/lowcss@0.9.0/dist/low.css">
+```
+
+Note that this method does not allow customization of the Css utilities.

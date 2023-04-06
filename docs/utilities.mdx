@@ -1,0 +1,26 @@
+## Utilities API
+
+<SubHead>All LowCSS utilities.</SubHead>
+
+{Object.keys(props.data.utilities).map(key => (
+<div className="mb:12" key={key}>
+    <div className="text:xl font:bold mb:4">
+        <a name={key} className="text:gray-800 text:no-underline">{key}</a>
+    </div>
+    <div className="mb:4">
+        {props.data.utilities[key].description}
+    </div>
+    <div className="w:full p:4 bg:gray-800 text:white text:sm lh:relaxed r:md font:mono mb:4">
+        {props.data.utilities[key].variants.join(", ")}
+    </div>
+    <div className="d:block w:full r:md">
+        {Object.entries(props.data.utilities[key].values).map(item => (
+        <div key={item[0]} className="d:flex w:full b:solid b:1 b:gray-300">
+            <div className="p:4 w:full font:mono bg:gray-200 text:indigo-700">{item[0]}</div>
+            <div className="p:4 w:full font:mono">{item[1]}</div>
+        </div>
+        ))}
+    </div>
+</div>
+))}
+

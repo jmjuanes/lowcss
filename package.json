@@ -16,9 +16,11 @@
         "build:json": "sass --no-source-map --load-path=./ json.scss dist/low.raw.json",
         "postbuild:json": "cat dist/low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > dist/low.json && rm dist/low.raw.json",
         "build": "yarn build:css && yarn build:json",
-        "prebuild": "echo '$version: \"{{ version }}\";' | node scripts/mustache.js --data=package.json > low/_version.scss",
-        "docs": "cat index.mustache | node ./scripts/mustache.js --data=dist/low.json > dist/index.html",
-        "serve": "stattic --folder dist --port 5000"
+        "prebuild": "node scripts/version.js > low/_version.scss",
+        "docs": "babel-node --presets '@babel/preset-react' scripts/mdx.js",
+        "predocs": "rm -rf public && mkdir public",
+        "postdocs": "cp dist/low.css public/ && cp dist/low.css.map public/",
+        "serve": "stattic --folder public --port 5000"
     },
     "keywords": [
         "css",
@@ -39,10 +41,17 @@
         "json.scss"
     ],
     "devDependencies": {
+        "@babel/core": "^7.21.4",
+        "@babel/node": "^7.20.7",
+        "@babel/preset-react": "^7.18.6",
+        "@mdx-js/mdx": "^2.3.0",
+        "@mochicons/node": "^0.0.1",
         "autoprefixer": "^10.4.12",
         "csso-cli": "^4.0.1",
         "postcss": "^8.4.18",
         "postcss-cli": "^10.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
         "sass": "^1.55.0"
     },
     "peerDependencies": {
