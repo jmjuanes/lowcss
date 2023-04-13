@@ -39,6 +39,7 @@
 // Data to print
 $data: (
     "version": $version,
+    "breakpoints": config.$breakpoints,
     "colors": config.$colors,
     "sizes": config.$sizes,
     "space": config.$space,
