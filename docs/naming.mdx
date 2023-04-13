@@ -1,0 +1,27 @@
+---
+layout: "docs"
+title: "Naming Utilities"
+description: "Learn how utilities classes are designed."
+---
+
+Our utility class name design consists of the following components:
+
+```
+[{prefix}]{class}:{modifier}[:{state_variant}][@{responsive_variant}]
+``` 
+
+- `prefix` (optional): you can configure LowCSS to add a prefix to all utility classes to avoid class name collisions.
+- `class`: is the utility class name (e.g. `text` for text utilities, `bg` for background utilities, and so on).
+- `modifier`: allow you to specify the utility value such as text sizes, colors, spacing, effects, filters, and more.
+- `state_variant`: you can use the state variants to conditionally apply the utility class when the target variant is triggered (e.g. `:hover` when the user hovers the element, `:focus` when the element is focussed, and so on).
+- `responsive_variant`: to conditionally apply the utility class with different breakpoints.
+
+<ExampleCode className="">
+    <div className="text:teal-500:hover text:center">This text will change color when hovered!</div>
+</ExampleCode>
+
+```html
+<div class="text:teal-500:hover text:center">
+    This text will change color when hovered!
+</div>
+```

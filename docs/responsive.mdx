@@ -1,0 +1,35 @@
+---
+layout: "docs"
+title: "Responsive Variants"
+description: "Learn how to apply utilities based on breakpoints."
+---
+
+Every utility class can be configured with different breakpoints without using the `@media` rule in your CSS and without leaving your HTML. The following breakpoings are defined by default in LowCSS:
+
+<table className="w:full text:sm">
+    <thead>
+        <tr className="bb:1 bb:solid bb:gray-200">
+            <td className="p:2 font:bold">Breakpoint</td>
+            <td className="p:2 font:bold">Minimum width</td>
+            <td className="p:2 font:bold">Rule</td>
+        </tr>
+    </thead>
+    <tbody>
+        {Object.keys(props.data.breakpoints).map(key => (
+        <tr key={key}>
+            <td className="p:2 font:mono">{key}</td>
+            <td className="p:2 font:mono">{props.data.breakpoints[key]}</td>
+            <td className="p:2 font:mono">@media (min-width: {props.data.breakpoints[key]}) {"{"} ... {"}"}</td>
+        </tr>
+        ))}
+    </tbody>
+</table>
+
+To conditionally apply a utility at a specific breakpoint, just add a suffix `@` followed by the breakpoint name to the utility class:
+
+```html
+<!-- Hidden on small screens, visible on medium screens -->
+<div class="d:none d:block@md [...]">
+    [...]
+</div>
+```

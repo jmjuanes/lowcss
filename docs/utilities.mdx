@@ -1,6 +1,8 @@
-## Utilities API
-
-<SubHead>All LowCSS utilities.</SubHead>
+---
+layout: "docs"
+title: "Utilities API"
+description: "All LowCSS utilities."
+---
 
 {Object.keys(props.data.utilities).map(key => (
 <div className="mb:12" key={key}>
@@ -13,13 +15,17 @@
     <div className="w:full p:4 bg:gray-800 text:white text:sm lh:relaxed r:md font:mono mb:4">
         {props.data.utilities[key].variants.join(", ")}
     </div>
-    <div className="d:block w:full r:md">
-        {Object.entries(props.data.utilities[key].values).map(item => (
-        <div key={item[0]} className="d:flex w:full b:solid b:1 b:gray-300">
-            <div className="p:4 w:full font:mono bg:gray-200 text:indigo-700">{item[0]}</div>
-            <div className="p:4 w:full font:mono">{item[1]}</div>
-        </div>
-        ))}
+    <div className="maxh:96 overflow:auto text:gray-300 scrollbar">
+        <table className="w:full">
+            {Object.entries(props.data.utilities[key].values).map(item => (
+            <tr key={item[0]} className="b:solid b:1 b:gray-300">
+                <td className="p:4 font:mono bg:gray-200 text:indigo-700">
+                    <span>{props.data.utilities[key].alias}:{item[0]}</span>
+                </td>
+                <td className="p:4 font:mono text:gray-700">{item[1]}</td>
+            </tr>
+            ))}
+        </table>
     </div>
 </div>
 ))}
