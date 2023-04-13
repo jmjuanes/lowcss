@@ -97,13 +97,6 @@ const DocsLayout = props => (
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="introduction.html" text="Introduction" />
                     <MenuLink href="installation.html" text="Installation" />
-                    <MenuLink href="naming.html" text="Naming Utilities" />
-                </MenuSection>
-                <MenuSection>
-                    <MenuGroup text="Basics" />
-                    <MenuLink href="state.html" text="State Variants" />
-                    <MenuLink href="responsive.html" text="Responsive Variants" />
-                    <MenuLink href="colors.html" text="Colors" />
                 </MenuSection>
                 {Object.entries(getSections()).map(section => (
                     <MenuSection key={section[0]}>
