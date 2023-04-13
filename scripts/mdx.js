@@ -3,6 +3,7 @@ const path = require("node:path");
 const React = require("react");
 const {renderToStaticMarkup} = require("react-dom/server");
 const runtime = require("react/jsx-runtime");
+const matter = require("gray-matter");
 const mochicons = require("@mochicons/node");
 
 const pkg = require("../package.json");
@@ -11,6 +12,18 @@ const data = require("../dist/low.json");
 const docsFolder = path.join(process.cwd(), "docs");
 const publicFolder = path.join(process.cwd(), "public");
 const log = msg => console.log(`[docs] ${msg}`);
+
+const importPackages = () => {
+    return Promise.all([
+        import("@mdx-js/mdx"),
+    ]);
+};
+
+const Icon = props => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+        <path d={mochicons[props.icon].path} fill="none" strokeWidth="2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
 
 const pageComponents = {
     "h1": props => <h1 className="mt:0 mb:4 text:5xl font:black">{props.children}</h1>,
@@ -27,13 +40,13 @@ const pageComponents = {
         </pre>
     ),
     "a": props => <a {...props} className="text:no-underline text:blue-500 text:blue-600:hover">{props.children}</a>,
-    SubHead: props => <div className="mt:0 mb:8 text:xl font:medium lh:relaxed">{props.children}</div>,
-    Icon: props => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-            <path d={mochicons[props.icon].path} fill="none" strokeWidth="2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    ),
+    Icon: props => <Icon {...props} />,
     Separator: () => <div className="my:16 b:2 b:dashed b:gray-300" />,
+    ExampleCode: props => (
+        <div className={`${props.className || ""} bg:gray-100 p:8 r:md mb:4 mt:6`}>
+            {props.children}
+        </div>
+    ),
 };
 
 const getSections = () => {
@@ -53,8 +66,63 @@ const MenuGroup = props => (
 
 const MenuLink = props => (
     <a href={props.href} className="d:block text:gray-800 text:blue-700:hover text:no-underline py:2">
-        <span>{props.text}</span>
+        <span className="text:sm">{props.text}</span>
     </a>
+);
+
+const HomeLayout = props => (
+    <div className="maxw:screen-xl mx:auto">
+        {props.page.element}
+        {props.page.data.features && (
+            <div className="w:full d:grid gap:8 cols:2@md cols:1">
+                {props.page.data.features.map(feature => (
+                    <div className="bg:gray-100 r:md p:8" key={feature.title}>
+                        <div className="mb:4 text:2xl">
+                            {React.createElement(pageComponents.Icon, {icon: feature.icon})}
+                        </div>
+                        <div className="font:bold text:lg mb:4">{feature.title}</div>
+                        <div className="">{feature.description}</div>
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+);
+
+const DocsLayout = props => (
+    <React.Fragment>
+        <div className="d:none d:block@lg w:64 flex:shrink-0">
+            <div className="w:full position:sticky top:0 px:6 py:8 h:screen overflow-y:auto text:gray-300 scrollbar">
+                <MenuSection>
+                    <MenuGroup text="Getting Started" />
+                    <MenuLink href="introduction.html" text="Introduction" />
+                    <MenuLink href="installation.html" text="Installation" />
+                    <MenuLink href="naming.html" text="Naming Utilities" />
+                </MenuSection>
+                <MenuSection>
+                    <MenuGroup text="Basics" />
+                    <MenuLink href="state.html" text="State Variants" />
+                    <MenuLink href="responsive.html" text="Responsive Variants" />
+                    <MenuLink href="colors.html" text="Colors" />
+                </MenuSection>
+                {Object.entries(getSections()).map(section => (
+                    <MenuSection key={section[0]}>
+                        <MenuGroup text={section[0]} />
+                        {section[1].map(item => (
+                            <MenuLink key={item} href={`utilities.html#${item}`} text={item} />
+                        ))}
+                    </MenuSection>
+                ))}
+            </div>
+        </div>
+        <div className="w:full maxw:screen-md mx:auto px:6 px:0@lg py:8">
+            <h1 className="mt:0 mb:0 text:5xl font:black">
+                {props.page.data.title}
+            </h1>
+            <div className="mt:0 mb:10 text:xl text:gray-500 font:medium lh:relaxed">{props.page.data.description}</div>
+            {props.page.element}
+        </div>
+    </React.Fragment>
 );
 
 const PageWrapper = props => (
@@ -69,10 +137,13 @@ const PageWrapper = props => (
         </head>
         <body className="bg:white m:0 p:0 font:inter text:gray-800 lh:normal">
             {/* Header */}
-            <div className="w:full h:16 px:6 mx:auto d:flex items:center justify:between">
-                <div className="font:bold">
-                    <a href="./index.html" className="text:gray-800 text:no-underline">LowCSS</a>
-                </div>
+            <div className="w:full maxw:screen-2xl h:16 px:6 mx:auto d:flex items:center justify:between">
+                <a href="./index.html" className="d:flex items:center gap:1 text:gray-800 text:no-underline">
+                    <div className="text:2xl">
+                        <Icon icon="arrow-square-down" />
+                    </div>
+                    <div className="font:bold text:lg">LowCSS.</div>
+                </a>
                 <div className="d:flex gap:4 text:sm">
                     <a href="./utilities.html" className="text:gray-800 font:bold text:no-underline">Utilities</a>
                     <a href={pkg.repository} className="text:gray-800 font:bold text:no-underline">GitHub</a>
@@ -80,32 +151,27 @@ const PageWrapper = props => (
             </div>
             {/* Main content */}
             <div className="d:flex w:full maxw:screen-2xl mx:auto gap:4 pt:8">
-                <div className="d:none d:block@lg w:64 flex:shrink-0">
-                    <div className="w:full position:sticky top:0 px:6 py:8 h:screen overflow-y:auto text:gray-300 scrollbar">
-                        <MenuSection>
-                            <MenuGroup text="Getting Started" />
-                            <MenuLink href="index.html" text="Introduction" />
-                            <MenuLink href="installation.html" text="Installation" />
-                        </MenuSection>
-                        {Object.entries(getSections()).map(section => (
-                            <MenuSection key={section[0]}>
-                                <MenuGroup text={section[0]} />
-                                {section[1].map(item => (
-                                    <MenuLink key={item} href={`utilities.html#${item}`} text={item} />
-                                ))}
-                            </MenuSection>
-                        ))}
-                    </div>
-                </div>
-                <div className="w:full maxw:screen-md mx:auto px:6 px:0@lg py:8">
-                    {React.createElement(props.page, {data: props.data, components: pageComponents})}
+                {props.page.data?.layout === "home" && (
+                    <HomeLayout {...props} />
+                )}
+                {props.page.data?.layout === "docs" && (
+                    <DocsLayout {...props} />
+                )}
+            </div>
+            {/* Footer */}
+            <div className="py:20 w:full maxw:screen-2xl mx:auto">
+                <div className="mb:12 b:1 b:dashed b:gray-200" />
+                <div className="text:center text:sm">
+                    Designed by <a href="https://josemi.xyz" className="text:no-underline text:gray-800 text:gray-700:hover font:bold">Josemi</a>. 
+                    Released under the <b>MIT</b> License.
                 </div>
             </div>
         </body>
     </html>
 );
 
-import("@mdx-js/mdx").then(mdx => {
+importPackages().then(pkgs => {
+    const [mdx] = pkgs;
     log("Starting build...");
     log("Reading .mdx files from 'docs/' folder.");
     fs.readdir(docsFolder)
@@ -114,15 +180,28 @@ import("@mdx-js/mdx").then(mdx => {
             log(`Processing ${files.length} files.`);
             const filesIterator = files.map(file => {
                 const outputFile = path.basename(file, ".mdx") + ".html";
+                const pageData = {};
                 return fs.readFile(path.join(docsFolder, file), "utf8")
+                    .then(fileContent => {
+                        const {data, content} = matter(fileContent);
+                        Object.assign(pageData, data);
+                        return content;
+                    })
                     .then(fileContent => mdx.evaluate(fileContent, {...runtime}))
                     .then(page => {
-                        const element = React.createElement(PageWrapper, {
+                        const pageContent = React.createElement(PageWrapper, {
                             version: pkg.version,
                             data: data,
-                            page: page.default,
+                            page: {
+                                data: pageData,
+                                element: React.createElement(page.default, {
+                                    page: pageData,
+                                    data: data,
+                                    components: pageComponents,
+                                }),
+                            },
                         });
-                        return renderToStaticMarkup(element);
+                        return renderToStaticMarkup(pageContent);
                     })
                     .then(content => fs.writeFile(path.join(publicFolder, outputFile), content, "utf8"))
                     .then(() => {
