@@ -779,6 +779,15 @@ $all-utilities: (
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
         description: "Utilities for setting the font-weight property of the element.",
     ),
+    letter-spacing: (
+        group: "typography",
+        alias: "tracking",
+        variants: ("default"),
+        properties: (letter-spacing),
+        values: config.$letter-spacing,
+        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing",
+        description: "Utilities for setting the horizontal spacing behavior between text characters.",
+    ),
     line-height: (
         group: "typography",
         alias: "lh",

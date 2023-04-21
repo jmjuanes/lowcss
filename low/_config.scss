@@ -509,6 +509,15 @@ $justify-content: (
     around: space-around,
 ) !default;
 
+$letter-spacing: (
+    tighter: -0.05em,
+    tight: -0.025em,
+    normal: 0,
+    wide: 0.025em,
+    wider: 0.05em,
+    widest: 0.1em,
+) !default;
+
 $line-height: (
     none: 1,
     tight: 1.25,
