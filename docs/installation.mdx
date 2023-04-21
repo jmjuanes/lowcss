@@ -2,12 +2,14 @@
 layout: "docs"
 title: "Installation"
 description: "How to install and get started with LowCSS."
+next: "syntax.html"
 ---
 
+<Separator />
 
-##### Install using a Package Manager
+# Install using a Package Manager
 
-###### 1. Add LowCSS to your project
+## 1. Add LowCSS to your project
 
 Use **YARN** or **NPM** for adding LowCSS as a dependency to your project. Just run the following command in the root folder of your project:
 
@@ -15,7 +17,7 @@ Use **YARN** or **NPM** for adding LowCSS as a dependency to your project. Just 
 $ yarn add lowcss
 ```
 
-###### 2. Import LowCSS in your main Sass file
+## 2. Import LowCSS in your main Sass file
 
 Include the following line to your main `.scss` file:
 
@@ -39,8 +41,7 @@ Optionally, you can also customize LowCSS loading it with customization. See the
 Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
 </div>
 
-
-###### 3. Load the modules of LowCSS that you need
+## 3. Load the modules of LowCSS that you need
 
 Use the `@include` directive to load the modules of LowCSS:
 
@@ -52,7 +53,7 @@ Use the `@include` directive to load the modules of LowCSS:
 @include low.utilities();
 ```
 
-###### 4. Compile your styles
+## 4. Compile your styles
 
 Use the Sass CLI to generate the output Css:
 
@@ -62,8 +63,9 @@ $ sass --load-path=./node_modules/lowcss main.scss dist/low.css
 
 Read more about the Sass CLI usage and available flags in the [Sass CLI documentation](https://sass-lang.com/documentation/cli).
 
+<Separator />
 
-##### Install using a CDN
+# Install using a CDN
 
 This is the easiest way for adding LowCSS to your project. Just include the following line in the head of your `.html` file:
 
@@ -71,4 +73,4 @@ This is the easiest way for adding LowCSS to your project. Just include the foll
 <link rel="stylesheet" href="https://unpkg.com/lowcss@0.9.0/dist/low.css">
 ```
 
-Note that this method does not allow customization of the Css utilities.
+Note that this method does not allow customization of the CSS utilities.

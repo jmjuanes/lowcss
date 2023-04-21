@@ -7,11 +7,18 @@ const matter = require("gray-matter");
 const mochicons = require("@mochicons/node");
 
 const pkg = require("../package.json");
-const data = require("../dist/low.json");
+const lowData = require("../dist/low.json");
 
 const docsFolder = path.join(process.cwd(), "docs");
 const publicFolder = path.join(process.cwd(), "public");
 const log = msg => console.log(`[docs] ${msg}`);
+
+// Generate utilities map
+const utilitiesMap = Object.keys(lowData.utilities)
+    .reduce((prevUtilities, key) => ({
+        ...prevUtilities,
+        [lowData.utilities[key].group]: [...(prevUtilities[lowData.utilities[key].group] || []), key],
+    }), {});
 
 const importPackages = () => {
     return Promise.all([
@@ -26,34 +33,29 @@ const Icon = props => (
 );
 
 const pageComponents = {
-    "h1": props => <h1 className="mt:0 mb:4 text:5xl font:black">{props.children}</h1>,
-    "h2": props => <h2 className="mt:0 mb:4 text:4xl font:black">{props.children}</h2>,
-    "h3": props => <h3 className="mt:0 mb:4 text:3xl font:black">{props.children}</h3>,
-    "h4": props => <h4 className="mt:8 mb:4 text:2xl font:black">{props.children}</h4>,
-    "h5": props => <h5 className="mt:8 mb:4 text:xl font:bold">{props.children}</h5>,
-    "h6": props => <h6 className="mt:8 mb:4 text:lg font:bold">{props.children}</h6>,
-    "p": props => <p className="mt:6 mb:6">{props.children}</p>,
+    "h1": props => <h1 className="mt:8 mb:4 text:gray-800 text:xl font:bold">{props.children}</h1>,
+    "h2": props => <h2 className="mt:8 mb:4 text:gray-800 text:lg font:bold">{props.children}</h2>,
+    "p": props => <p className="mt:6 mb:6 text:justify">{props.children}</p>,
+    "li": props => <li className="mb:3">{props.children}</li>,
     "code": props => <code className="font:mono text:sm">{props.children}</code>,
     "pre": props => (
         <pre className="p:6 r:md bg:gray-800 text:white overflow:auto mb:8">
             {props.children}
         </pre>
     ),
-    "a": props => <a {...props} className="text:no-underline text:blue-500 text:blue-600:hover">{props.children}</a>,
+    "a": props => (
+        <a {...props} className={`text:no-underline text:underline:hover text:blue-500 text:blue-600:hover ${props.className || ""}`}>
+            {props.children}
+        </a>
+    ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my:16 b:2 b:dashed b:gray-300" />,
+    Separator: () => <div className="my:12 b:1 b:dashed b:gray-100" />,
     ExampleCode: props => (
         <div className={`${props.className || ""} bg:gray-100 p:8 r:md mb:4 mt:6`}>
             {props.children}
         </div>
     ),
-};
-
-const getSections = () => {
-    return Object.keys(data.utilities).reduce((prevGroups, key) => ({
-        ...prevGroups,
-        [data.utilities[key].group]: [...(prevGroups[data.utilities[key].group] || []), key],
-    }), {});
+    Fragment: React.Fragment,
 };
 
 const MenuSection = props => (
@@ -65,13 +67,39 @@ const MenuGroup = props => (
 );
 
 const MenuLink = props => (
-    <a href={props.href} className="d:block text:gray-800 text:blue-700:hover text:no-underline py:2">
+    <a href={props.href} className="d:block text:gray-800 text:blue-700:hover text:no-underline text:underline:hover py:2">
         <span className="text:sm">{props.text}</span>
     </a>
 );
 
+const PageNavigation = props => {
+    const prevPage = props.pages.find(p => p.fileName === props.page.data.prev);
+    const nextPage = props.pages.find(p => p.fileName === props.page.data.next);
+
+    return (
+        <div className="mt:12 w:full d:grid cols:2 gap:4">
+            <div className="w:full">
+                {prevPage && (
+                    <a href={prevPage.fileName} className="text:no-underline text:gray-800 d:block p:4 r:md b:1 b:solid b:gray-300 b:gray-400:hover">
+                        <div className="text:xs text:gray-500">Previous page</div>
+                        <div className="font:medium">{prevPage.data.title}</div>
+                    </a>
+                )}
+            </div>
+            <div className="w:full">
+                {nextPage && (
+                    <a href={nextPage.fileName} className="text:no-underline text:gray-800 d:block p:4 r:md b:1 b:solid b:gray-300 b:gray-400:hover">
+                        <div className="text:xs text:gray-500 text:right">Next page</div>
+                        <div className="font:medium text:right">{nextPage.data.title}</div>
+                    </a>
+                )}
+            </div>
+        </div>
+    );
+};
+
 const HomeLayout = props => (
-    <div className="maxw:screen-xl mx:auto">
+    <div className="w:full">
         {props.page.element}
         {props.page.data.features && (
             <div className="w:full d:grid gap:8 cols:2@md cols:1">
@@ -91,14 +119,14 @@ const HomeLayout = props => (
 
 const DocsLayout = props => (
     <React.Fragment>
-        <div className="d:none d:block@lg w:64 flex:shrink-0">
-            <div className="w:full position:sticky top:0 px:6 py:8 h:screen overflow-y:auto text:gray-300 scrollbar">
+        <div className="d:none d:block@lg w:56 flex:shrink-0">
+            <div className="w:full position:sticky top:0 px:0 py:4 h:screen overflow-y:auto text:gray-300 scrollbar">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
-                    <MenuLink href="introduction.html" text="Introduction" />
                     <MenuLink href="installation.html" text="Installation" />
+                    <MenuLink href="syntax.html" text="Syntax Guide" />
                 </MenuSection>
-                {Object.entries(getSections()).map(section => (
+                {Object.entries(utilitiesMap).map(section => (
                     <MenuSection key={section[0]}>
                         <MenuGroup text={section[0]} />
                         {section[1].map(item => (
@@ -108,12 +136,13 @@ const DocsLayout = props => (
                 ))}
             </div>
         </div>
-        <div className="w:full maxw:screen-md mx:auto px:6 px:0@lg py:8">
-            <h1 className="mt:0 mb:0 text:5xl font:black">
+        <div className="w:full maxw:screen-md mx:auto">
+            <h1 className="mt:0 mb:0 text:3xl text:4xl@md text:gray-800 font:black">
                 {props.page.data.title}
             </h1>
             <div className="mt:0 mb:10 text:xl text:gray-500 font:medium lh:relaxed">{props.page.data.description}</div>
             {props.page.element}
+            <PageNavigation {...props} />
         </div>
     </React.Fragment>
 );
@@ -125,25 +154,32 @@ const PageWrapper = props => (
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
             <meta name="description" content="" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700;900&display=swap" />
             <link rel="stylesheet" href="./low.css" />
-            <title>LowCSS {props.version}</title>
+            <title>{props.page.data.title ? `${props.page.data.title} - ` : ""}LowCSS {pkg.version}</title>
+            <style dangerouslySetInnerHTML={{__html: `
+                :not(pre) > code {
+                    color: #034096 !important;
+                    font-weight: bold !important;
+                }
+            `}} />
         </head>
-        <body className="bg:white m:0 p:0 font:inter text:gray-800 lh:normal">
+        <body className="bg:white m:0 p:0 font:inter text:gray-700 lh:normal">
             {/* Header */}
-            <div className="w:full maxw:screen-2xl h:16 px:6 mx:auto d:flex items:center justify:between">
+            <div className="w:full maxw:screen-xl h:20 px:6 mx:auto d:flex items:center justify:between">
                 <a href="./index.html" className="d:flex items:center gap:1 text:gray-800 text:no-underline">
-                    <div className="text:2xl">
-                        <Icon icon="arrow-square-down" />
+                    <div className="font:black font:crimson text:xl tracking:tight">
+                        low<span className="text:gray-500">CSS</span>.
                     </div>
-                    <div className="font:bold text:lg">LowCSS.</div>
                 </a>
-                <div className="d:flex gap:4 text:sm">
-                    <a href="./utilities.html" className="text:gray-800 font:bold text:no-underline">Utilities</a>
-                    <a href={pkg.repository} className="text:gray-800 font:bold text:no-underline">GitHub</a>
+                <div className="d:flex gap:6">
+                    <a href="./installation.html" className="font:medium text:gray-700 text:gray-900:hover text:no-underline">Installation</a>
+                    <a href="./utilities.html" className="font:medium text:gray-700 text:gray-900:hover text:no-underline">Utilities</a>
+                    <a href={pkg.repository} className="font:medium text:gray-700 text:gray-900:hover text:no-underline">GitHub</a>
                 </div>
             </div>
             {/* Main content */}
-            <div className="d:flex w:full maxw:screen-2xl mx:auto gap:4 pt:8">
+            <div className="d:flex w:full maxw:screen-xl mx:auto gap:4 p:6">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
@@ -152,7 +188,7 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="py:20 w:full maxw:screen-2xl mx:auto">
+            <div className="w:full maxw:screen-xl mx:auto px:6 pt:10 pb:20">
                 <div className="mb:12 b:1 b:dashed b:gray-200" />
                 <div className="text:center text:sm">
                     Designed by <a href="https://josemi.xyz" className="text:no-underline text:gray-800 text:gray-700:hover font:bold">Josemi</a>. 
@@ -171,37 +207,43 @@ importPackages().then(pkgs => {
         .then(files => files.filter(file => path.extname(file) === ".mdx"))
         .then(files => {
             log(`Processing ${files.length} files.`);
-            const filesIterator = files.map(file => {
-                const outputFile = path.basename(file, ".mdx") + ".html";
-                const pageData = {};
+            return Promise.all(files.map(file => {
                 return fs.readFile(path.join(docsFolder, file), "utf8")
                     .then(fileContent => {
                         const {data, content} = matter(fileContent);
-                        Object.assign(pageData, data);
-                        return content;
-                    })
-                    .then(fileContent => mdx.evaluate(fileContent, {...runtime}))
-                    .then(page => {
-                        const pageContent = React.createElement(PageWrapper, {
-                            version: pkg.version,
+                        return {
                             data: data,
+                            content: content,
+                            fileName: path.basename(file, ".mdx") + ".html",
+                        };
+                    });
+            }));
+        })
+        .then(pages => {
+            return Promise.all(pages.map(page => {
+                return mdx.evaluate(page.content, {...runtime})
+                    .then(pageComponent => {
+                        const pageContent = React.createElement(PageWrapper, {
                             page: {
-                                data: pageData,
-                                element: React.createElement(page.default, {
-                                    page: pageData,
-                                    data: data,
+                                ...page,
+                                element: React.createElement(pageComponent.default, {
+                                    page: page,
+                                    utilities: lowData.utilities,
+                                    utilitiesMap: utilitiesMap,
+                                    colors: lowData.colors,
+                                    breakpoints: lowData.breakpoints,
                                     components: pageComponents,
                                 }),
                             },
+                            pages: pages,
                         });
                         return renderToStaticMarkup(pageContent);
                     })
-                    .then(content => fs.writeFile(path.join(publicFolder, outputFile), content, "utf8"))
+                    .then(content => fs.writeFile(path.join(publicFolder, page.fileName), content, "utf8"))
                     .then(() => {
-                        log(`Saved file 'public/${outputFile}'.`);
+                        log(`Saved file 'public/${page.fileName}'.`);
                     });
-            });
-            return Promise.all(filesIterator);
+            }));
         })
         .then(() => log("Build finished."));
 });
