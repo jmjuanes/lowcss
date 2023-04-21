@@ -26,7 +26,7 @@ $all-utilities: (
     background-color: (
         group: "background",
         alias: "bg",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "first", "last", "odd", "even"),
         properties: (background-color),
         values: config.$background-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
