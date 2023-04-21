@@ -26,7 +26,7 @@ $all-utilities: (
     background-color: (
         group: "background",
         alias: "bg",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus"),
         properties: (background-color),
         values: config.$background-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
@@ -129,7 +129,7 @@ $all-utilities: (
     border-color: (
         group: "border",
         alias: "b",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus"),
         properties: (border-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color",
@@ -156,7 +156,7 @@ $all-utilities: (
     border-bottom-color: (
         group: "border",
         alias: "bb",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "active", "checked", "disabled", "required"),
         properties: (border-bottom-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-color",
@@ -183,7 +183,7 @@ $all-utilities: (
     border-left-color: (
         group: "border",
         alias: "bl",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "active", "checked", "disabled", "required"),
         properties: (border-left-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-color",
@@ -210,7 +210,7 @@ $all-utilities: (
     border-right-color: (
         group: "border",
         alias: "br",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "active", "checked", "disabled", "required"),
         properties: (border-right-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-color",
@@ -237,7 +237,7 @@ $all-utilities: (
     border-top-color: (
         group: "border",
         alias: "bt",
-        variants: ("default", "hover", "focus", "active", "checked"),
+        variants: ("default", "hover", "focus", "active", "checked", "disabled", "required"),
         properties: (border-top-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-color",
@@ -264,7 +264,7 @@ $all-utilities: (
     outline-color: (
         group: "border",
         alias: "outline",
-        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-color),
         values: config.$outline-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color",
@@ -273,7 +273,7 @@ $all-utilities: (
     outline-offset: (
         group: "border",
         alias: "outline",
-        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-offset),
         values: config.$outline-offset,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset",
@@ -282,7 +282,7 @@ $all-utilities: (
     outline-style: (
         group: "border",
         alias: "outline",
-        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-style),
         values: config.$outline-style,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style",
@@ -291,7 +291,7 @@ $all-utilities: (
     outline-width: (
         group: "border",
         alias: "outline",
-        variants: ("default", "focus", "focus-within", "hover", "active", "checked"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-width),
         values: config.$outline-width,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width",
@@ -311,7 +311,7 @@ $all-utilities: (
     opacity: (
         group: "effects",
         alias: "o",
-        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus"),
         properties: (opacity),
         values: config.$opacity,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
@@ -470,7 +470,7 @@ $all-utilities: (
     display: (
         group: "layout",
         alias: "d",
-        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last"),
+        variants: ("default", "responsive", "group-hover", "group-focus", "first", "last"),
         properties: (display),
         values: config.$display,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
@@ -773,7 +773,7 @@ $all-utilities: (
     font-weight: (
         group: "typography",
         alias: "font",
-        variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus"),
         properties: (font-weight),
         values: config.$font-weight,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
@@ -809,7 +809,7 @@ $all-utilities: (
     text-color: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "responsive", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "responsive", "group-hover", "group-focus"),
         properties: (color),
         values: config.$text-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
@@ -818,7 +818,7 @@ $all-utilities: (
     text-decoration: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus"),
         properties: (text-decoration),
         values: config.$text-decoration,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
@@ -827,7 +827,7 @@ $all-utilities: (
     text-transform: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus"),
         properties: (text-transform),
         values: config.$text-transform,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
