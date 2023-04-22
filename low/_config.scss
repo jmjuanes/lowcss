@@ -10,7 +10,7 @@ $output: "css" !default;
 $prefix: "" !default;
 
 // @description separator between utility alias and value
-$separator: "\\:" !default;
+$separator: "-" !default;
 
 // @description separator between utility class and pseudo name
 $pseudo-separator: "\\:" !default;
