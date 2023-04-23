@@ -45,6 +45,7 @@ $pseudos: (
     even: ":nth-child(even)",
     group-hover: ":hover",
     group-focus: ":focus",
+    group-focus-within: ":focus-within",
 ) !default;
 
 // @description List of modules to include or exclude

@@ -26,7 +26,7 @@ $all-utilities: (
     background-color: (
         group: "background",
         alias: "bg",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "first", "last", "odd", "even"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: (background-color),
         values: config.$background-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
@@ -129,7 +129,7 @@ $all-utilities: (
     border-color: (
         group: "border",
         alias: "b",
-        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
         properties: (border-color),
         values: config.$border-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color",
@@ -311,7 +311,7 @@ $all-utilities: (
     opacity: (
         group: "effects",
         alias: "o",
-        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (opacity),
         values: config.$opacity,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
@@ -470,7 +470,7 @@ $all-utilities: (
     display: (
         group: "layout",
         alias: "d",
-        variants: ("default", "responsive", "group-hover", "group-focus", "first", "last"),
+        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: (display),
         values: config.$display,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
@@ -773,7 +773,7 @@ $all-utilities: (
     font-weight: (
         group: "typography",
         alias: "font",
-        variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (font-weight),
         values: config.$font-weight,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
@@ -809,7 +809,7 @@ $all-utilities: (
     text-color: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "responsive", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "responsive", "group-hover", "group-focus", "group-focus-within"),
         properties: (color),
         values: config.$text-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
@@ -818,7 +818,7 @@ $all-utilities: (
     text-decoration: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-decoration),
         values: config.$text-decoration,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
@@ -827,7 +827,7 @@ $all-utilities: (
     text-transform: (
         group: "typography",
         alias: "text",
-        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus"),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-transform),
         values: config.$text-transform,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
