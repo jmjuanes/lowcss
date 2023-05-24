@@ -34,7 +34,7 @@ $all-utilities: (
         group: "background",
         name: "bg",
         responsive: false,
-        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "first", "last", "odd", "even"),
+        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: (background-color),
         values: config.$background-color,
         url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
@@ -147,7 +147,7 @@ $all-utilities: (
     border-color: generate-utility("border-color", (
         group: "border",
         name: "b",
-        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
         responsive: false,
         properties: (border-color),
         values: config.$border-color,
@@ -349,7 +349,7 @@ $all-utilities: (
     opacity: generate-utility("opacity", (
         group: "effects",
         name: "o",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: true,
         properties: (opacity),
         values: config.$opacity,
@@ -525,7 +525,7 @@ $all-utilities: (
     display: generate-utility("display", (
         group: "layout",
         name: "d",
-        pseudos: ("group-hover", "group-focus", "first", "last"),
+        pseudos: ("group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         responsive: true,
         properties: (display),
         values: config.$display,
@@ -861,7 +861,7 @@ $all-utilities: (
     font-weight: generate-utility("font-weight", (
         group: "typography",
         name: "font",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: true,
         properties: (font-weight),
         values: config.$font-weight,
@@ -901,7 +901,7 @@ $all-utilities: (
     text-color: generate-utility("text-color", (
         group: "typography",
         name: "text",
-        pseudos: ("hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
         responsive: true,
         properties: (color),
         values: config.$text-color,
@@ -911,7 +911,7 @@ $all-utilities: (
     text-decoration: generate-utility("text-decoration", (
         group: "typography",
         name: "text",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: false,
         properties: (text-decoration),
         values: config.$text-decoration,
@@ -921,7 +921,7 @@ $all-utilities: (
     text-transform: generate-utility("text-transform", (
         group: "typography",
         name: "text",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus"),
+        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: false,
         properties: (text-transform),
         values: config.$text-transform,

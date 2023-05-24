@@ -1,6 +1,6 @@
 {
     "name": "lowcss",
-    "version": "0.10.0",
+    "version": "0.11.1",
     "description": "A low-level functional CSS toolkit",
     "author": "Josemi Juanes <hello@josemi.xyz>",
     "license": "MIT",

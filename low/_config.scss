@@ -10,7 +10,7 @@ $output: "css" !default;
 $prefix: "" !default;
 
 // @description separator between utility alias and value
-$separator: "\\:" !default;
+$separator: "-" !default;
 
 // @description separator between utility class and pseudo name
 $pseudo-separator: "\\:" !default;
@@ -45,6 +45,7 @@ $pseudos: (
     even: ":nth-child(even)",
     group-hover: ":hover",
     group-focus: ":focus",
+    group-focus-within: ":focus-within",
 ) !default;
 
 // @description List of utilities to include or exclude

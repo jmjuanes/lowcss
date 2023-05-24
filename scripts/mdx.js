@@ -27,31 +27,31 @@ const importPackages = () => {
 };
 
 const Icon = props => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+    <svg xmlns="http-//www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
         <path d={mochicons[props.icon].path} fill="none" strokeWidth="2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 );
 
 const pageComponents = {
-    "h1": props => <h1 className="mt:8 mb:4 text:gray-800 text:xl font:bold">{props.children}</h1>,
-    "h2": props => <h2 className="mt:8 mb:4 text:gray-800 text:lg font:bold">{props.children}</h2>,
-    "p": props => <p className="mt:6 mb:6 text:justify">{props.children}</p>,
-    "li": props => <li className="mb:3">{props.children}</li>,
-    "code": props => <code className="font:mono text:sm">{props.children}</code>,
+    "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h1>,
+    "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-lg font-bold">{props.children}</h2>,
+    "p": props => <p className="mt-6 mb-6 text-justify">{props.children}</p>,
+    "li": props => <li className="mb-3">{props.children}</li>,
+    "code": props => <code className="font-mono text-sm">{props.children}</code>,
     "pre": props => (
-        <pre className="p:6 r:md bg:gray-800 text:white overflow:auto mb:8">
+        <pre className="p-6 r-md bg-gray-800 text-white overflow-auto mb-8">
             {props.children}
         </pre>
     ),
     "a": props => (
-        <a {...props} className={`text:no-underline text:underline:hover text:blue-500 text:blue-600:hover ${props.className || ""}`}>
+        <a {...props} className={`text-no-underline text-underline:hover text-blue-500 text-blue-600:hover ${props.className || ""}`}>
             {props.children}
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my:12 b:1 b:dashed b:gray-100" />,
+    Separator: () => <div className="my-12 b-1 b-dashed b-gray-100" />,
     ExampleCode: props => (
-        <div className={`${props.className || ""} bg:gray-100 p:8 r:md mb:4 mt:6`}>
+        <div className={`${props.className || ""} bg-gray-100 p-8 r-md mb-4 mt-6`}>
             {props.children}
         </div>
     ),
@@ -59,16 +59,16 @@ const pageComponents = {
 };
 
 const MenuSection = props => (
-    <div className="text:gray-800 mb:6">{props.children}</div>
+    <div className="text-gray-800 mb-6">{props.children}</div>
 );
 
 const MenuGroup = props => (
-    <div className="font:bold mb:1 text:capitalize">{props.text}</div>
+    <div className="font-bold mb-1 text-capitalize">{props.text}</div>
 );
 
 const MenuLink = props => (
-    <a href={props.href} className="d:block text:gray-800 text:blue-700:hover text:no-underline text:underline:hover py:2">
-        <span className="text:sm">{props.text}</span>
+    <a href={props.href} className="d-block text-gray-800 text-blue-700:hover text-no-underline text-underline:hover py-2">
+        <span className="text-sm">{props.text}</span>
     </a>
 );
 
@@ -77,20 +77,20 @@ const PageNavigation = props => {
     const nextPage = props.pages.find(p => p.fileName === props.page.data.next);
 
     return (
-        <div className="mt:12 w:full d:grid cols:2 gap:4">
-            <div className="w:full">
+        <div className="mt-12 w-full d-grid cols-2 gap-4">
+            <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.fileName} className="text:no-underline text:gray-800 d:block p:4 r:md b:1 b:solid b:gray-300 b:gray-400:hover">
-                        <div className="text:xs text:gray-500">Previous page</div>
-                        <div className="font:medium">{prevPage.data.title}</div>
+                    <a href={prevPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 b-gray-400:hover">
+                        <div className="text-xs text-gray-500">Previous page</div>
+                        <div className="font-medium">{prevPage.data.title}</div>
                     </a>
                 )}
             </div>
-            <div className="w:full">
+            <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.fileName} className="text:no-underline text:gray-800 d:block p:4 r:md b:1 b:solid b:gray-300 b:gray-400:hover">
-                        <div className="text:xs text:gray-500 text:right">Next page</div>
-                        <div className="font:medium text:right">{nextPage.data.title}</div>
+                    <a href={nextPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 b-gray-400:hover">
+                        <div className="text-xs text-gray-500 text-right">Next page</div>
+                        <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
                 )}
             </div>
@@ -99,16 +99,16 @@ const PageNavigation = props => {
 };
 
 const HomeLayout = props => (
-    <div className="w:full">
+    <div className="w-full">
         {props.page.element}
         {props.page.data.features && (
-            <div className="w:full d:grid gap:8 cols:2@md cols:1">
+            <div className="w-full d-grid gap-8 cols-2@md cols-1">
                 {props.page.data.features.map(feature => (
-                    <div className="bg:gray-100 r:md p:8" key={feature.title}>
-                        <div className="mb:4 text:2xl">
+                    <div className="bg-gray-100 r-md p-8" key={feature.title}>
+                        <div className="mb-4 text-2xl">
                             {React.createElement(pageComponents.Icon, {icon: feature.icon})}
                         </div>
-                        <div className="font:bold text:lg mb:4">{feature.title}</div>
+                        <div className="font-bold text-lg mb-4">{feature.title}</div>
                         <div className="">{feature.description}</div>
                     </div>
                 ))}
@@ -119,8 +119,8 @@ const HomeLayout = props => (
 
 const DocsLayout = props => (
     <React.Fragment>
-        <div className="d:none d:block@lg w:56 flex:shrink-0">
-            <div className="w:full position:sticky top:0 px:0 py:4 h:screen overflow-y:auto text:gray-300 scrollbar">
+        <div className="d-none d-block@lg w-56 flex-shrink-0">
+            <div className="w-full position-sticky top-0 px-0 py-4 h-screen overflow-y-auto text-gray-300 scrollbar">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
@@ -136,11 +136,11 @@ const DocsLayout = props => (
                 ))}
             </div>
         </div>
-        <div className="w:full maxw:screen-md mx:auto">
-            <h1 className="mt:0 mb:0 text:3xl text:4xl@md text:gray-800 font:black">
+        <div className="w-full maxw-screen-md mx-auto">
+            <h1 className="mt-0 mb-0 text-3xl text-4xl@md text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
-            <div className="mt:0 mb:10 text:xl text:gray-500 font:medium lh:relaxed">{props.page.data.description}</div>
+            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium lh-relaxed">{props.page.data.description}</div>
             {props.page.element}
             <PageNavigation {...props} />
         </div>
@@ -164,22 +164,22 @@ const PageWrapper = props => (
                 }
             `}} />
         </head>
-        <body className="bg:white m:0 p:0 font:inter text:gray-700 lh:normal">
+        <body className="bg-white m-0 p-0 font-inter text-gray-700 lh-normal">
             {/* Header */}
-            <div className="w:full maxw:screen-xl h:20 px:6 mx:auto d:flex items:center justify:between">
-                <a href="./index.html" className="d:flex items:center gap:1 text:gray-800 text:no-underline">
-                    <div className="font:black font:crimson text:xl tracking:tight">
-                        low<span className="text:gray-500">CSS</span>.
+            <div className="w-full maxw-screen-xl h-20 px-6 mx-auto d-flex items-center justify-between">
+                <a href="./index.html" className="d-flex items-center gap-1 text-gray-800 text-no-underline">
+                    <div className="font-black font-crimson text-xl tracking-tight">
+                        low<span className="text-gray-500">CSS</span>.
                     </div>
                 </a>
-                <div className="d:flex gap:6">
-                    <a href="./installation.html" className="font:medium text:gray-700 text:gray-900:hover text:no-underline">Installation</a>
-                    <a href="./utilities.html" className="font:medium text:gray-700 text:gray-900:hover text:no-underline">Utilities</a>
-                    <a href={pkg.repository} className="font:medium text:gray-700 text:gray-900:hover text:no-underline">GitHub</a>
+                <div className="d-flex gap-6">
+                    <a href="./installation.html" className="font-medium text-gray-700 text-gray-900:hover text-no-underline">Installation</a>
+                    <a href="./utilities.html" className="font-medium text-gray-700 text-gray-900:hover text-no-underline">Utilities</a>
+                    <a href={pkg.repository} className="font-medium text-gray-700 text-gray-900:hover text-no-underline">GitHub</a>
                 </div>
             </div>
             {/* Main content */}
-            <div className="d:flex w:full maxw:screen-xl mx:auto gap:4 p:6">
+            <div className="d-flex w-full maxw-screen-xl mx-auto gap-4 p-6">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
@@ -188,10 +188,10 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="w:full maxw:screen-xl mx:auto px:6 pt:10 pb:20">
-                <div className="mb:12 b:1 b:dashed b:gray-200" />
-                <div className="text:center text:sm">
-                    Designed by <a href="https://josemi.xyz" className="text:no-underline text:gray-800 text:gray-700:hover font:bold">Josemi</a>. 
+            <div className="w-full maxw-screen-xl mx-auto px-6 pt-10 pb-20">
+                <div className="mb-12 b-1 b-dashed b-gray-200" />
+                <div className="text-center text-sm">
+                    Designed by <a href="https://josemi.xyz" className="text-no-underline text-gray-800 text-gray-700:hover font-bold">Josemi</a>. 
                     Released under the <b>MIT</b> License.
                 </div>
             </div>
