@@ -39,7 +39,7 @@
 
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
-    $class: map.get($utility-config, "name");
+    $class: map.get($utility-config, "classname");
     $properties: map.get($utility-config, "properties");
     $values: map.get($utility-config, "values");
     $pseudos: map.get($utility-config, "pseudos");
@@ -84,7 +84,8 @@
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-name,$utility-config in $all-utilities {
+    @each $utility-config in $all-utilities {
+        $utility-name: map.get($utility-config, "key");
         @if is-enabled(($utility-name)) {
             @include utility($utility-config);
         }
