@@ -1,5 +1,4 @@
 // Forward configuration variables and public api
-@forward "version";
 @forward "config";
 @forward "reset";
 @forward "forms";
@@ -23,12 +22,14 @@
 @function is-enabled($name) {
     // If we have provided a list of included modules, we will check
     // if this module is in the list
-    @if meta.type-of(config.$include) == "list" {
+    // @if meta.type-of(config.$include) == "list" {
+    @if config.$include {
         @return list.index(config.$include, $name) != null;
     }
     // If we have provided a list of excluded modules, we will check
     // if this module is not in the list
-    @else if meta.type-of(config.$exclude) == "list" {
+    // @else if meta.type-of(config.$exclude) == "list" {
+    @else if config.$exclude {
         @return list.index(config.$exclude, $name) == null;
     }
     // Other case, module is enabled
@@ -37,88 +38,45 @@
     }
 }
 
-// @description get utility values
-@function utility-values($utility-name, $default-values) {
-    @if meta.type-of($default-values) != "map" {
-        $default-values: ();
-    }
-    @if map.has-key(config.$extend, $utility-name) {
-        $new-values: map.get(config.$extend, $utility-name);
-        @if meta.type-of($new-values) == "map" {
-            @return map.merge($default-values, $new-values);
-        }
-    }
-    @return $default-values;
-}
-
 // @description Generate the utility from the given configuration
-@mixin utility($utility-name, $utility-config) {
-    // Get utility alias from configuration
-    $class: map.get($utility-config, "alias");
-    @if map.has-key(config.$aliases, $utility-name) {
-        $class: map.get(config.$aliases, $utility-name);
-    }
-    // Get utility variants list
-    $variants: map.get($utility-config, "variants");
-    @if map.has-key(config.$variants, $utility-name) {
-        $variants: map.get(config.$variants, $utility-name);
-        @if meta.type-of($variants) != "list" {
-            $variants: ("default");
-        }
-    }
+@mixin utility($utility-config) {
+    $class: map.get($utility-config, "classname");
     $properties: map.get($utility-config, "properties");
-    $values: utility-values($utility-name, map.get($utility-config, "values"));
-    // $is-dark: functions.list-includes($variants, "dark");
-    // Check if the variants list includes the "default" variant
-    // @if not functions.list-includes($variants, "default") {
-    //     $variants: list.append($variants, "default");
-    // }
-    // Generate utility rules for each variant
-    @each $variant in $variants {
-        @each $key,$value in $values {
-            $selector: "#{config.$prefix}#{$class}#{config.$separator}#{$key}";
-            // Pseudo variant selector
-            @if map.has-key(config.$pseudos, $variant) {
-                $pseudo: map.get(config.$pseudos, $variant);
-                // Check if dark mode is enabled for this utility
-                // @if $is-dark and config.$use-darkmode {
-                //     html.dark .dark\:#{$variant}\:#{$classname}-#{$key}:#{$pseudo-value} {
-                //         @include generate-rule($properties, $value, false);
-                //     }
-                // }
+    $values: map.get($utility-config, "values");
+    $pseudos: map.get($utility-config, "pseudos");
+    $responsive: map.get($utility-config, "responsive");
+    @each $key,$value in $values {
+        $selector: "#{config.$prefix}#{$class}#{config.$separator}#{$key}";
+        // Default selector for this utility
+        .#{$selector} {
+            @include api.rule($properties, $value);
+        }
+        // For responsive variants, we will register the style
+        // for each breakpoint in the list of breakpoints
+        @if $responsive == true and meta.type-of(config.$breakpoints) == "map" {
+            @each $breakpoint in map.keys(config.$breakpoints) {
+                @include api.screen-above($breakpoint) {
+                    .#{$selector}#{config.$breakpoint-separator}#{$breakpoint} {
+                        @include api.rule($properties, $value);
+                    }
+                }
+            }
+        }
+        // Pseudo variants
+        @each $pseudo in $pseudos {
+            @if map.has-key(config.$pseudos, $pseudo) {
+                $pseudo-selector: map.get(config.$pseudos, $pseudo);
                 // Group selector
-                @if internal.str-starts-with($variant, "group-") {
-                    .group#{$pseudo} .#{$selector}#{config.$pseudo-separator}#{$variant} {
+                @if internal.str-starts-with($pseudo, "group-") {
+                    .group#{$pseudo-selector} .#{$selector}#{config.$pseudo-separator}#{$pseudo} {
                         @include api.rule($properties, $value);
                     }
                 }
                 // Default pseudo selector
                 @else {
-                    .#{$selector}#{config.$pseudo-separator}#{$variant}#{$pseudo} {
+                    .#{$selector}#{config.$pseudo-separator}#{$pseudo}#{$pseudo-selector} {
                         @include api.rule($properties, $value);
                     }
-                }
-            }
-            // For responsive variants, we will register the style
-            // for each breakpoint in the list of breakpoints
-            @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "map" {
-                @each $breakpoint in map.keys(config.$breakpoints) {
-                    @include api.screen-above($breakpoint) {
-                        .#{$selector}#{config.$breakpoint-separator}#{$breakpoint} {
-                            @include api.rule($properties, $value);
-                        }
-                    }
-                }
-            }
-            // Check for default variant
-            @else if $variant == "default" {
-                // @if $is-dark and config.$use-darkmode {
-                //     html.dark .dark\:#{$classname}-#{$key} {
-                //         @include generate-rule($properties, $value, false);
-                //     }
-                // }
-                .#{$selector} {
-                    @include api.rule($properties, $value);
                 }
             }
         }
@@ -127,9 +85,10 @@
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-name,$utility-config in $all-utilities {
+    @each $utility-config in $all-utilities {
+        $utility-name: map.get($utility-config, "key");
         @if is-enabled(($utility-name)) {
-            @include utility($utility-name, $utility-config);
+            @include utility($utility-config);
         }
     }
 }

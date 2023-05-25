@@ -14,11 +14,13 @@ const publicFolder = path.join(process.cwd(), "public");
 const log = msg => console.log(`[docs] ${msg}`);
 
 // Generate utilities map
-const utilitiesMap = Object.keys(lowData.utilities)
-    .reduce((prevUtilities, key) => ({
+const utilitiesMap = lowData.utilities.reduce((prevUtilities, utility) => {
+    const prevItems = prevUtilities[utility.attributes.group] || [];
+    return {
         ...prevUtilities,
-        [lowData.utilities[key].group]: [...(prevUtilities[lowData.utilities[key].group] || []), key],
-    }), {});
+        [utility.attributes.group]: [...prevItems, utility.key],
+    };
+}, {});
 
 const importPackages = () => {
     return Promise.all([

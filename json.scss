@@ -3,7 +3,6 @@
 @use "sass:meta";
 @use "low/config" as config;
 @use "low/utilities" as *;
-@use "low/version" as *;
 
 @function json($arg) {
     $type: meta.type-of($arg);
@@ -15,6 +14,9 @@
         @return "{#{$output}}";
     }
     @else if $type == "list" {
+        @if list.length($arg) == 0 {
+            @return "[]";
+        }
         $output: ();
         @each $item in $arg {
             $output: list.append($output, json($item), $separator: comma);
@@ -38,7 +40,7 @@
 
 // Data to print
 $data: (
-    "version": $version,
+    "version": "__version__",
     "breakpoints": config.$breakpoints,
     "colors": config.$colors,
     "sizes": config.$sizes,

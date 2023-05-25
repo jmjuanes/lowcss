@@ -17,7 +17,6 @@
         "build:json": "sass --no-source-map --load-path=./ json.scss dist/low.raw.json",
         "postbuild:json": "cat dist/low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > dist/low.json && rm dist/low.raw.json",
         "build": "yarn build:css && yarn build:json",
-        "prebuild": "node scripts/version.js > low/_version.scss",
         "docs": "babel-node --presets '@babel/preset-react' scripts/mdx.js",
         "predocs": "rm -rf public && mkdir public",
         "postdocs": "cp dist/low.css public/ && cp dist/low.css.map public/",

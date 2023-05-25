@@ -1,6 +1,6 @@
 @use "sass:map";
 
-// @description global flags
+// @description allow to set the !important flag to all utilities
 $important: false !default;
 $dark-mode: false !default;
 $output: "css" !default;
@@ -48,26 +48,28 @@ $pseudos: (
     group-focus-within: ":focus-within",
 ) !default;
 
-// @description List of modules to include or exclude
+// @description List of utilities to include or exclude
 $include: null !default;
 $exclude: null !default;
 
-// @description extend low css values
-$extend: () !default;
-
-// @description List of custom variants for utilities
+// @description custom theme
 // @example
-// $variants: (
-//     background-color: ("default", "hover", "focus"),
+// $theme: (
+//     "background-color": (
+//         "black": #000,
+//         "white": #fff,
+//     ),
 // );
-$variants: () !default;
+$theme: () !default;
 
-// @description List of custom aliases for utilities
+// @description custom configuration for utilities
 // @example
-// $aliases: (
-//     background-color: "bg",
+// $utilities: (
+//     background-color: (
+//         name: "bg",
+//     ),
 // );
-$aliases: () !default;
+$utilities: () !default;
 
 // @description custom colors
 // Used in background-color, border-color and color properties
