@@ -1,3 +1,5 @@
+const pkg = require("../package.json");
+
 const printJson = content => {
     return JSON.stringify(content, null, "    ");
 };
@@ -8,6 +10,7 @@ const run = () => {
     process.stdin.on("data", chunk => data.push(chunk));
     process.stdin.on("end", () => {
         const content = JSON.parse(data.join(""));
+        content.version = pkg.version;
         content.utilities = content.utilities.map(utility => {
             // Fix pseudos and properties fields of json
             // If those lists only contains one item, it is saved as a string instead of as an array
