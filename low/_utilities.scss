@@ -1442,7 +1442,7 @@ $all-utilities: (
         properties: (transform),
         values: config.$transform-translate-y,
     )),
-    enerate-utility((
+    generate-utility((
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin",
