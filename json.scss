@@ -15,6 +15,9 @@
         @return "{#{$output}}";
     }
     @else if $type == "list" {
+        @if list.length($arg) == 0 {
+            @return "[]";
+        }
         $output: ();
         @each $item in $arg {
             $output: list.append($output, json($item), $separator: comma);
