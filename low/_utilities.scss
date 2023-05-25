@@ -5,13 +5,46 @@
 
 // @description internal function to generate utilities configuration
 @function generate-utility($config) {
-    // @if config.$utilities and meta.type-of(config.$utilities) == "map" {
-    //     // @if map.has-key(config.$utilities, )
-    // }
+    $key: map.get($config, "key");
+    // 1. Merge utilities configuration
+    @if config.$utilities and meta.type-of(config.$utilities) == "map" {
+        $config-extend: map.get(config.$utilities, $key);
+        @if $config-extend and meta.type-of($config-extend) == "map" {
+            @each $k,$v in $config-extend {
+                @if $k == "classname" and meta.type-of($v) == "string" {
+                    $config: map.set($config, "classname", $v);
+                }
+                @else if $k == "responsive" and meta.type-of($v) == "bool" {
+                    $config: map.set($config, "responsive", $v);
+                }
+                @else if $k == "pseudos" and $v {
+                    $config: map.set($config, "pseudos", $v);
+                }
+            }
+        }
+    }
     // Set theme values
-    // @if map.has-key(config.$theme, $theme) {
-    //     $theme-value: map.get(config.$theme, $theme);
-    // }
+    $themeKey: map.get($config, "themeKey");
+    @if meta.type-of($themeKey) == "string" {
+        @if config.$theme and meta.type-of(config.$theme) == "map" {
+            $theme-values: map.get(config.$theme, $themeKey);
+            @if meta.type-of($theme-values) == "map" {
+                $config: map.set($config, "values", $theme-values);
+            }
+            @else if map.has-key(config.$theme, "extend") {
+                $extend-config: map.get(config.$theme, "extend");
+                @if meta.type-of($extend-config) == "map" and map.has-key($extend-config, $key) {
+                    $extend-values: map.get($extend-config, $key);
+                    @if meta.type-of($extend-values) == "map" {
+                        $current-values: map.get($config, "values");
+                        $new-values: map.merge($current-values, $extend-values);
+                        $config: map.set($config, "values", $new-values);
+                    }
+                }
+            }
+        }
+    }
+    // Return parsed configuration
     @return $config;
 };
 
