@@ -10,7 +10,7 @@ prev: "utilities-map.html"
 {props.utilities.map(utility => (
 <div className="mb-16" key={utility.key}>
     <div className="text-xl font-bold mb-4">
-        <a href={`#${utility.key}`} name={utility.key} className="text-gray-800 text-gray-900:hover">{utility.key}</a>
+        <a href={`#${utility.key}`} name={utility.key} className="text-gray-800 hover:text-gray-900">{utility.key}</a>
     </div>
     <div className="mb-4">
         {utility.attributes.description}

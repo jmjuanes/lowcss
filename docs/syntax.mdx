@@ -32,28 +32,28 @@ Example:
 
 # Pseudo-class variants
 
-Some utilities can be applied conditionally by adding a modifier at the end of the utility class that describes the condition that you want to apply. For example, to apply `bg-blue-500` but only on hover, use `bg-blue-500:hover`.
+Some utilities can be applied conditionally by adding a modifier at the beginning of the utility class that describes the condition that you want to apply. For example, to apply `bg-blue-500` but only on hover, use `hover:bg-blue-500`.
 
 
 ## Hover, focus and active
 
-Add the `:hover`, `:focus` and `:active` pseudo selectors to apply utilities only on hover, focus or active.
+Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover, focus or active.
 
 <ExampleCode className="d-flex justify-center">
-    <div className="bg-blue-500 bg-blue-800:hover text-white text-sm px-4 py-2 r-md cursor-pointer">
+    <div className="bg-blue-500 hover:bg-blue-800 text-white text-sm px-4 py-2 r-md cursor-pointer">
         <strong>Hover me</strong>
     </div>
 </ExampleCode>
 
 ```html
-<div class="bg-blue-500 bg-blue-800:hover [...]">
+<div class="bg-blue-500 hover:bg-blue-800 [...]">
     Hover me
 </div>
 ```
 
 ## First, last, odd and even
 
-Add `:first`, `:last`, `:odd` and `:even` to select and style elements based on their position.
+Use `first`, `last`, `odd` and `even` modifiers to select and style elements based on their position.
 
 <ExampleCode className="d-flex justify-center">
     <table className="w-full b-1 b-solid b-gray-300">
@@ -65,27 +65,27 @@ Add `:first`, `:last`, `:odd` and `:even` to select and style elements based on 
             </tr>
         </thead>
         <tbody>
-            <tr className="bg-white:odd bg-gray-100:even bb-1 bb-solid bb-gray-300">
+            <tr className="odd:bg-white even:bg-gray-100 bb-1 bb-solid bb-gray-300">
                 <td className="px-4 py-2">Haviva Bryant</td>
                 <td className="px-4 py-2">(632) 207-4278</td>
                 <td className="px-4 py-2">Luik</td>
             </tr>
-            <tr className="bg-white:odd bg-gray-100:even bb-1 bb-solid bb-gray-300">
+            <tr className="odd:bg-white even:bg-gray-100 bb-1 bb-solid bb-gray-300">
                 <td className="px-4 py-2">Desiree Herman</td>
                 <td className="px-4 py-2">(841) 241-1710</td>
                 <td className="px-4 py-2">Maine</td>
             </tr>
-            <tr className="bg-white:odd bg-gray-100:even bb-1 bb-solid bb-gray-300">
+            <tr className="odd:bg-white even:bg-gray-100 bb-1 bb-solid bb-gray-300">
                 <td className="px-4 py-2">Matthew Everett</td>
                 <td className="px-4 py-2">(213) 555-4551</td>
                 <td className="px-4 py-2">Coahuila</td> 
             </tr>
-            <tr className="bg-white:odd bg-gray-100:even bb-1 bb-solid bb-gray-300">
+            <tr className="odd:bg-white even:bg-gray-100 bb-1 bb-solid bb-gray-300">
                 <td className="px-4 py-2">Jorden Roberts</td>
                 <td className="px-4 py-2">1-605-465-2126</td>
                 <td className="px-4 py-2">Lombardia</td>
             </tr>
-            <tr className="bg-white:odd bg-gray-100:even">
+            <tr className="odd:bg-white even:bg-gray-100">
                 <td className="px-4 py-2">Petra Parks</td>
                 <td className="px-4 py-2">1-402-623-1650</td>
                 <td className="px-4 py-2">Soccsksargen</td>
@@ -98,7 +98,7 @@ Add `:first`, `:last`, `:odd` and `:even` to select and style elements based on 
 <table class="w-full b-1 b-solid b-gray-300">
     <!-- table head -->
     <tbody>
-        <tr class="bg-white:odd bg-gray-100:even [...]">
+        <tr class="odd:bg-white even:bg-gray-100 [...]">
             <td class="px-4 py-2">Haviva Bryant</td>
             <td class="px-4 py-2">(632) 207-4278</td>
             <td class="px-4 py-2">Luik</td>
@@ -110,7 +110,7 @@ Add `:first`, `:last`, `:odd` and `:even` to select and style elements based on 
 
 ## Checked, disabled and required
 
-Use `:checked`, `:disabled` and `:required` selectors to style form elements.
+Use `checked`, `disabled` and `required` modifiers to style form elements.
 
 <ExampleCode className="d-flex items-center justify-center">
     <div className="p-6 r-md bg-white w-full maxw-xs">
@@ -118,7 +118,7 @@ Use `:checked`, `:disabled` and `:required` selectors to style form elements.
             <div className="font-bold text-sm mb-1">Username (required)</div>
             <input
                 type="text"
-                className="d-block p-2 r-md b-1 b-solid b-gray-300 b-red-500:required bg-white w-full text-sm text-red-500:required outline-none"
+                className="d-block p-2 r-md b-1 b-solid b-gray-300 required:b-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
                 required
             />
         </div>
@@ -127,12 +127,12 @@ Use `:checked`, `:disabled` and `:required` selectors to style form elements.
             <input
                 type="email"
                 value="bob@company.com"
-                className="d-block p-2 r-md b-1 b-solid b-gray-300 bg-white bg-gray-200:disabled w-full text-sm"
+                className="d-block p-2 r-md b-1 b-solid b-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
                 disabled
             />
         </div>
         <div className="d-flex flex-row-reverse">
-            <div className="px-4 py-2 bg-blue-500 bg-blue-600:hover text-white r-md text-sm cursor-pointer">
+            <div className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white r-md text-sm cursor-pointer">
                 <strong>Update</strong>
             </div>
         </div>
@@ -142,7 +142,7 @@ Use `:checked`, `:disabled` and `:required` selectors to style form elements.
 ```html
 <form>
     <!-- Change background-color when is disabled -->
-    <input type="email" disabled className="bg-white bg-gray-200:disabled [...]" >
+    <input type="email" disabled className="bg-white disabled:bg-gray-200 [...]" >
 </form>
 ```
 
@@ -158,11 +158,11 @@ You can conditionally style an element based on the state of a parent element. A
         <span className="text-gray-600 ml-2">Menu</span>
         <div className="d-none d-block:group-hover position-absolute w-48 left-0 top-full pt-1">
             <div className="bg-white b-1 b-gray-300 b-solid r-md d-flex flex-col gap-1 py-1">
-                <div className="px-4 py-2 bg-gray-200:hover cursor-pointer">Dashboard</div>
-                <div className="px-4 py-2 bg-gray-200:hover cursor-pointer">Profile</div>
-                <div className="px-4 py-2 bg-gray-200:hover cursor-pointer">Settings</div>
+                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</div>
+                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</div>
+                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</div>
                 <div className="h-0 w-full b-1 b-gray-200 b-solid" />
-                <div className="px-4 py-2 bg-gray-200:hover cursor-pointer">Sign out</div>
+                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Sign out</div>
             </div>
         </div>
     </div>
@@ -204,11 +204,11 @@ Every utility class can be configured with different breakpoints without using t
     </tbody>
 </table>
 
-To conditionally apply a utility at a specific breakpoint, just add a suffix `@` followed by the breakpoint name to the utility class:
+To conditionally apply a utility at a specific breakpoint, just prefix the utility with the breakpoint name followed by the `:` character:
 
 ```html
 <!-- Hidden on small screens, visible on medium screens -->
-<div class="d-none d-block@md [...]">
+<div class="d-none md:d-block [...]">
     [...]
 </div>
 ```
