@@ -7,41 +7,37 @@ prev: "utilities-map.html"
 
 <Separator />
 
-{Object.keys(props.utilities).map(key => (
-<div className="mb-16" key={key}>
+{props.utilities.map(utility => (
+<div className="mb-16" key={utility.key}>
     <div className="text-xl font-bold mb-4">
-        <a href={`#${key}`} name={key} className="text-gray-800 text-gray-900:hover">{key}</a>
+        <a href={`#${utility.key}`} name={utility.key} className="text-gray-800 text-gray-900:hover">{utility.key}</a>
     </div>
     <div className="mb-4">
-        {props.utilities[key].description}
+        {utility.attributes.description}
     </div>
-    {props.utilities[key].variants.filter(v => v !== "default").length > 0 && (
+    {(utility.responsive || utility.pseudos?.length > 0) > 0 && (
         <div className="mb-4 d-flex gap-2 flex-wrap">
-            {props.utilities[key].variants.filter(v => v !== "default").map(v => (
-                <Fragment key={v}>
-                    {v === "responsive" && (
-                        <div className="py-1 px-2 bg-gray-800 text-white text-xs r-md">
-                            <span className="font-bold">responsive</span>
-                        </div>
-                    )}
-                    {v !== "responsive" && (
-                        <div className="py-1 px-2 bg-gray-300 text-xs r-md">
-                            <span>pseudo: <span className="font-bold">{v}</span></span>
-                        </div>
-                    )}
-                </Fragment>
+            {utility.responsive && (
+                <div className="py-1 px-2 bg-gray-800 text-white text-xs r-md">
+                    <span className="font-bold">responsive</span>
+                </div>
+            )}
+            {utility.pseudos.map(v => (
+                <div key={v} className="py-1 px-2 bg-gray-300 text-xs r-md">
+                    <span>pseudo: <span className="font-bold">{v}</span></span>
+                </div>
             ))}
         </div>
     )}
     <div className="maxh-96 overflow-auto text-gray-300 scrollbar">
         <table className="w-full">
-            {Object.entries(props.utilities[key].values).map(item => (
+            {Object.entries(utility.values).map(item => (
             <tr key={item[0]} className="b-solid b-1 b-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
-                    <span>{props.utilities[key].alias}-{item[0]}</span>
+                    <span>{utility.classname}-{item[0]}</span>
                 </td>
                 <td className="p-4 font-mono text-gray-700">
-                {props.utilities[key].properties.map(p => (
+                {utility.properties.map(p => (
                     <div key={p} className="mb-1">
                         <span className="text-indigo-700">{p}</span>: {item[1]};
                     </div>
