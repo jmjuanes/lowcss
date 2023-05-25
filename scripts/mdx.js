@@ -46,7 +46,7 @@ const pageComponents = {
         </pre>
     ),
     "a": props => (
-        <a {...props} className={`text-no-underline text-underline:hover text-blue-500 text-blue-600:hover ${props.className || ""}`}>
+        <a {...props} className={`text-no-underline hover:text-underline text-blue-500 hover:text-blue-600 ${props.className || ""}`}>
             {props.children}
         </a>
     ),
@@ -69,7 +69,7 @@ const MenuGroup = props => (
 );
 
 const MenuLink = props => (
-    <a href={props.href} className="d-block text-gray-800 text-blue-700:hover text-no-underline text-underline:hover py-2">
+    <a href={props.href} className="d-block text-gray-800 hover:text-blue-700 text-no-underline hover:text-underline py-2">
         <span className="text-sm">{props.text}</span>
     </a>
 );
@@ -82,7 +82,7 @@ const PageNavigation = props => {
         <div className="mt-12 w-full d-grid cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 b-gray-400:hover">
+                    <a href={prevPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 hover:b-gray-400">
                         <div className="text-xs text-gray-500">Previous page</div>
                         <div className="font-medium">{prevPage.data.title}</div>
                     </a>
@@ -90,7 +90,7 @@ const PageNavigation = props => {
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 b-gray-400:hover">
+                    <a href={nextPage.fileName} className="text-no-underline text-gray-800 d-block p-4 r-md b-1 b-solid b-gray-300 hover:b-gray-400">
                         <div className="text-xs text-gray-500 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
@@ -104,7 +104,7 @@ const HomeLayout = props => (
     <div className="w-full">
         {props.page.element}
         {props.page.data.features && (
-            <div className="w-full d-grid gap-8 cols-2@md cols-1">
+            <div className="w-full d-grid gap-8 md:cols-2 cols-1">
                 {props.page.data.features.map(feature => (
                     <div className="bg-gray-100 r-md p-8" key={feature.title}>
                         <div className="mb-4 text-2xl">
@@ -121,7 +121,7 @@ const HomeLayout = props => (
 
 const DocsLayout = props => (
     <React.Fragment>
-        <div className="d-none d-block@lg w-56 flex-shrink-0">
+        <div className="d-none lg:d-block w-56 flex-shrink-0">
             <div className="w-full position-sticky top-0 px-0 py-4 h-screen overflow-y-auto text-gray-300 scrollbar">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
@@ -139,7 +139,7 @@ const DocsLayout = props => (
             </div>
         </div>
         <div className="w-full maxw-screen-md mx-auto">
-            <h1 className="mt-0 mb-0 text-3xl text-4xl@md text-gray-800 font-black">
+            <h1 className="mt-0 mb-0 text-3xl md:text-4xl text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
             <div className="mt-0 mb-10 text-xl text-gray-500 font-medium lh-relaxed">{props.page.data.description}</div>
@@ -175,9 +175,9 @@ const PageWrapper = props => (
                     </div>
                 </a>
                 <div className="d-flex gap-6">
-                    <a href="./installation.html" className="font-medium text-gray-700 text-gray-900:hover text-no-underline">Installation</a>
-                    <a href="./utilities.html" className="font-medium text-gray-700 text-gray-900:hover text-no-underline">Utilities</a>
-                    <a href={pkg.repository} className="font-medium text-gray-700 text-gray-900:hover text-no-underline">GitHub</a>
+                    <a href="./installation.html" className="font-medium text-gray-700 hover:text-gray-900 text-no-underline">Installation</a>
+                    <a href="./utilities.html" className="font-medium text-gray-700 hover:text-gray-900 text-no-underline">Utilities</a>
+                    <a href={pkg.repository} className="font-medium text-gray-700 hover:text-gray-900 text-no-underline">GitHub</a>
                 </div>
             </div>
             {/* Main content */}
@@ -193,7 +193,7 @@ const PageWrapper = props => (
             <div className="w-full maxw-screen-xl mx-auto px-6 pt-10 pb-20">
                 <div className="mb-12 b-1 b-dashed b-gray-200" />
                 <div className="text-center text-sm">
-                    Designed by <a href="https://josemi.xyz" className="text-no-underline text-gray-800 text-gray-700:hover font-bold">Josemi</a>. 
+                    Designed by <a href="https://josemi.xyz" className="text-no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
                     Released under the <b>MIT</b> License.
                 </div>
             </div>

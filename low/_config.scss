@@ -2,21 +2,13 @@
 
 // @description allow to set the !important flag to all utilities
 $important: false !default;
-$dark-mode: false !default;
-$output: "css" !default;
 
 // @description classnames prefix
 // Used to avoid collissions with other css frameworks
 $prefix: "" !default;
 
-// @description separator between utility alias and value
-$separator: "-" !default;
-
-// @description separator between utility class and pseudo name
-$pseudo-separator: "\\:" !default;
-
-// @descript separator between utility class and breakpoint
-$breakpoint-separator: "\\@" !default;
+// @description separator character between modifier and utility names
+$separator: "\\:" !default;
 
 // @description custom breakpoints sizes
 $breakpoints: (
@@ -24,7 +16,7 @@ $breakpoints: (
     md: 768px,
     lg: 1024px,
     xl: 1280px,
-    2xl: 1536px,
+    // 2xl: 1536px,
 ) !default;
 
 // @description Pseudo states map

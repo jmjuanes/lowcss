@@ -46,7 +46,7 @@
     $pseudos: map.get($utility-config, "pseudos");
     $responsive: map.get($utility-config, "responsive");
     @each $key,$value in $values {
-        $selector: "#{config.$prefix}#{$class}#{config.$separator}#{$key}";
+        $selector: "#{config.$prefix}#{$class}-#{$key}";
         // Default selector for this utility
         .#{$selector} {
             @include api.rule($properties, $value);
@@ -56,7 +56,7 @@
         @if $responsive == true and meta.type-of(config.$breakpoints) == "map" {
             @each $breakpoint in map.keys(config.$breakpoints) {
                 @include api.screen-above($breakpoint) {
-                    .#{$selector}#{config.$breakpoint-separator}#{$breakpoint} {
+                    .#{$breakpoint}#{config.$separator}#{$selector} {
                         @include api.rule($properties, $value);
                     }
                 }
@@ -68,13 +68,13 @@
                 $pseudo-selector: map.get(config.$pseudos, $pseudo);
                 // Group selector
                 @if internal.str-starts-with($pseudo, "group-") {
-                    .group#{$pseudo-selector} .#{$selector}#{config.$pseudo-separator}#{$pseudo} {
+                    .group#{$pseudo-selector} .#{$pseudo}#{config.$separator}#{$selector} {
                         @include api.rule($properties, $value);
                     }
                 }
                 // Default pseudo selector
                 @else {
-                    .#{$selector}#{config.$pseudo-separator}#{$pseudo}#{$pseudo-selector} {
+                    .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {
                         @include api.rule($properties, $value);
                     }
                 }
