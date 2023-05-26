@@ -332,7 +332,7 @@ $cursor: (
 ) !default;
 
 $display: (
-    none: none,
+    hidden: none,
     inline: inline,
     block: block,
     inline-block: inline-block,
@@ -365,22 +365,12 @@ $flex-direction: (
 
 $flex-grow: (
     grow-0: 0,
-    grow-1: 1,
-    grow-2: 2,
-    grow-3: 3,
-    grow-4: 4,
-    grow-5: 5,
-    grow-6: 6,
+    grow: 1,
 ) !default;
 
 $flex-shrink: (
     shrink-0: 0,
-    shrink-1: 1,
-    shrink-2: 2,
-    shrink-3: 3,
-    shrink-4: 4,
-    shrink-5: 5,
-    shrink-6: 6,
+    shrink: 1,
 ) !default;
 
 $flex-wrap: (
