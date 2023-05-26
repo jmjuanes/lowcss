@@ -22,13 +22,9 @@
 @include low.reset();
 @include low.forms();
 @include low.keyframes();
-@include low.scrollbars();
 @include low.utilities();
 
-// 3.1 (optional) Generate custom utilities
-// @include low.utility($name, $config);
-
-// 3.2 (optional) Generate custom components using utilities
+// 3. (optional) Generate custom components using utilities
 // .button {
 //     @include low.apply("text:white bg:blue-500 bg:blue-700:hover");
 // }
