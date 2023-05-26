@@ -6,78 +6,35 @@
 // @description internal function to generate utilities configuration
 @function generate-utility($config) {
     $key: map.get($config, "key");
-    // 1. Merge utilities configuration
-    @if config.$utilities and meta.type-of(config.$utilities) == "map" {
-        $config-extend: map.get(config.$utilities, $key);
-        @if $config-extend and meta.type-of($config-extend) == "map" {
-            @each $k,$v in $config-extend {
-                @if $k == "classname" and meta.type-of($v) == "string" {
-                    $config: map.set($config, "classname", $v);
-                }
-                @else if $k == "responsive" and meta.type-of($v) == "bool" {
-                    $config: map.set($config, "responsive", $v);
-                }
-                @else if $k == "pseudos" and $v {
-                    $config: map.set($config, "pseudos", $v);
-                }
-            }
-        }
-    }
-    // Set theme values
     $themeKey: map.get($config, "themeKey");
+    // 1. merge with theme values
     @if meta.type-of($themeKey) == "string" {
         @if config.$theme and meta.type-of(config.$theme) == "map" {
             $theme-values: map.get(config.$theme, $themeKey);
+            $extend-values: map.get(config.$theme, "extend", $key);
+            $values: map.get($config, "values");
+            // Check for replacing the current values with the values provided in the theme
             @if meta.type-of($theme-values) == "map" {
-                $config: map.set($config, "values", $theme-values);
+                $values: $theme-values;
             }
-            @else if map.has-key(config.$theme, "extend") {
-                $extend-config: map.get(config.$theme, "extend");
-                @if meta.type-of($extend-config) == "map" and map.has-key($extend-config, $key) {
-                    $extend-values: map.get($extend-config, $key);
-                    @if meta.type-of($extend-values) == "map" {
-                        $current-values: map.get($config, "values");
-                        $new-values: map.merge($current-values, $extend-values);
-                        $config: map.set($config, "values", $new-values);
-                    }
-                }
+            // Check for extending with additional values
+            @if meta.type-of($extend-values) == "map" {
+                $values: map.merge($values, $extend-values);
             }
+            // Save values
+            $config: map.set($config, "values", $values);
+        }
+    }
+    // 2. Merge utilities configuration
+    @if config.$utilities and meta.type-of(config.$utilities) == "map" {
+        $extend-config: map.get(config.$utilities, $key);
+        @if $config-extend and meta.type-of($config-extend) == "map" {
+            $config: map.merge($config, $config-extend);
         }
     }
     // Return parsed configuration
     @return $config;
 };
-
-// @description generate utility selector
-@function get-utility-selector($config, $key) {
-    $classname: map.get($config, "classname");
-    @if meta.type-of($classname) == "string" and $classname != "" {
-        @return "#{config.$prefix}#{$classname}-#{$key}";
-    }
-    @else {
-        @return "#{config.$prefix}#{$key}";
-    }
-}
-
-// @description check if the provided utility is enabled
-@function is-utility-enabled($name) {
-    // If we have provided a list of included modules, we will check
-    // if this module is in the list
-    // @if meta.type-of(config.$include) == "list" {
-    @if config.$include {
-        @return list.index(config.$include, $name) != null;
-    }
-    // If we have provided a list of excluded modules, we will check
-    // if this module is not in the list
-    // @else if meta.type-of(config.$exclude) == "list" {
-    @else if config.$exclude {
-        @return list.index(config.$exclude, $name) == null;
-    }
-    // Other case, module is enabled
-    @else {
-        @return true;
-    }
-}
 
 // @description utilities configuration
 $utilities: (

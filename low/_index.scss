@@ -20,13 +20,16 @@
 
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
-    $class: map.get($utility-config, "classname");
+    $classname: map.get($utility-config, "classname");
     $properties: map.get($utility-config, "properties");
     $values: map.get($utility-config, "values");
     $pseudos: map.get($utility-config, "pseudos");
     $responsive: map.get($utility-config, "responsive");
     @each $key,$value in $values {
-        $selector: utilities.get-utility-selector($utility-config, $key);
+        $selector: "#{config.$prefix}#{$key}";
+        @if meta.type-of($classname) == "string" and $classname != "" {
+            $selector: "#{config.$prefix}#{$classname}-#{$key}";
+        }
         // Default selector for this utility
         .#{$selector} {
             @include api.rule($properties, $value);
@@ -67,7 +70,19 @@
 @mixin utilities() {
     @each $utility-config in utilities.$utilities {
         $utility-name: map.get($utility-config, "key");
-        @if utilities.is-utility-enabled($utility-name) {
+        $include-utility: true;
+        // If we have provided a list of included utilities, we will check
+        // if this utility is in the list
+        @if config.$include {
+            $include-utility: list.index(config.$include, $utility-name) != null;
+        }
+        // If we have provided a list of excluded modules, we will check
+        // if this module is not in the list
+        @else if config.$exclude {
+            $include-utility: list.index(config.$exclude, $utility-name) == null;
+        }
+        // Check for including this utility
+        @if $include-utility {
             @include utility($utility-config);
         }
     }
