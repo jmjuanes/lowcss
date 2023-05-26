@@ -18,26 +18,6 @@
 @use "internal";
 @use "utilities";
 
-// @description check if the provided module or utility name is enabled
-@function is-enabled($name) {
-    // If we have provided a list of included modules, we will check
-    // if this module is in the list
-    // @if meta.type-of(config.$include) == "list" {
-    @if config.$include {
-        @return list.index(config.$include, $name) != null;
-    }
-    // If we have provided a list of excluded modules, we will check
-    // if this module is not in the list
-    // @else if meta.type-of(config.$exclude) == "list" {
-    @else if config.$exclude {
-        @return list.index(config.$exclude, $name) == null;
-    }
-    // Other case, module is enabled
-    @else {
-        @return true;
-    }
-}
-
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
     $class: map.get($utility-config, "classname");
@@ -87,7 +67,7 @@
 @mixin utilities() {
     @each $utility-config in utilities.$utilities {
         $utility-name: map.get($utility-config, "key");
-        @if is-enabled(($utility-name)) {
+        @if utilities.is-utility-enabled($utility-name) {
             @include utility($utility-config);
         }
     }
