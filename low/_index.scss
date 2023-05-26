@@ -16,27 +16,7 @@
 @use "config";
 @use "api";
 @use "internal";
-@use "utilities" as *;
-
-// @description check if the provided module or utility name is enabled
-@function is-enabled($name) {
-    // If we have provided a list of included modules, we will check
-    // if this module is in the list
-    // @if meta.type-of(config.$include) == "list" {
-    @if config.$include {
-        @return list.index(config.$include, $name) != null;
-    }
-    // If we have provided a list of excluded modules, we will check
-    // if this module is not in the list
-    // @else if meta.type-of(config.$exclude) == "list" {
-    @else if config.$exclude {
-        @return list.index(config.$exclude, $name) == null;
-    }
-    // Other case, module is enabled
-    @else {
-        @return true;
-    }
-}
+@use "utilities";
 
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
@@ -46,7 +26,7 @@
     $pseudos: map.get($utility-config, "pseudos");
     $responsive: map.get($utility-config, "responsive");
     @each $key,$value in $values {
-        $selector: "#{config.$prefix}#{$class}-#{$key}";
+        $selector: utilities.get-utility-selector($utility-config, $key);
         // Default selector for this utility
         .#{$selector} {
             @include api.rule($properties, $value);
@@ -85,9 +65,9 @@
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-config in $all-utilities {
+    @each $utility-config in utilities.$utilities {
         $utility-name: map.get($utility-config, "key");
-        @if is-enabled(($utility-name)) {
+        @if utilities.is-utility-enabled($utility-name) {
             @include utility($utility-config);
         }
     }

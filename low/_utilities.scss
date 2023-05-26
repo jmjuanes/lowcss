@@ -48,8 +48,39 @@
     @return $config;
 };
 
+// @description generate utility selector
+@function get-utility-selector($config, $key) {
+    $classname: map.get($config, "classname");
+    @if meta.type-of($classname) == "string" and $classname != "" {
+        @return "#{config.$prefix}#{$classname}-#{$key}";
+    }
+    @else {
+        @return "#{config.$prefix}#{$key}";
+    }
+}
+
+// @description check if the provided utility is enabled
+@function is-utility-enabled($name) {
+    // If we have provided a list of included modules, we will check
+    // if this module is in the list
+    // @if meta.type-of(config.$include) == "list" {
+    @if config.$include {
+        @return list.index(config.$include, $name) != null;
+    }
+    // If we have provided a list of excluded modules, we will check
+    // if this module is not in the list
+    // @else if meta.type-of(config.$exclude) == "list" {
+    @else if config.$exclude {
+        @return list.index(config.$exclude, $name) == null;
+    }
+    // Other case, module is enabled
+    @else {
+        @return true;
+    }
+}
+
 // @description utilities configuration
-$all-utilities: (
+$utilities: (
     // Animations
     generate-utility((
         attributes: (
@@ -615,7 +646,7 @@ $all-utilities: (
         ),
         key: "flex-grow",
         themeKey: "flex-grow",
-        classname: "flex",
+        classname: null,
         pseudos: (),
         responsive: true,
         properties: (flex-grow),
@@ -629,7 +660,7 @@ $all-utilities: (
         ),
         key: "flex-shrink",
         themeKey: "flex-shrink",
-        classname: "flex",
+        classname: null,
         pseudos: (),
         responsive: true,
         properties: (flex-shrink),
@@ -772,8 +803,8 @@ $all-utilities: (
             description: "Utilities for setting the display property of the element.",
         ),
         key: "display",
-        themeKey: null, // "display"
-        classname: "d",
+        themeKey: null,
+        classname: null,
         pseudos: ("group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         responsive: true,
         properties: (display),
@@ -857,7 +888,7 @@ $all-utilities: (
         ),
         key: "position",
         themeKey: null,
-        classname: "position",
+        classname: null,
         pseudos: (),
         responsive: true,
         properties: (position),
@@ -1227,7 +1258,7 @@ $all-utilities: (
         ),
         key: "font-style",
         themeKey: "font-style",
-        classname: "text",
+        classname: null,
         pseudos: (),
         responsive: false,
         properties: (font-style),
@@ -1311,7 +1342,7 @@ $all-utilities: (
         ),
         key: "text-decoration",
         themeKey: "text-decoration",
-        classname: "text",
+        classname: null,
         pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: false,
         properties: (text-decoration),
@@ -1325,7 +1356,7 @@ $all-utilities: (
         ),
         key: "text-transform",
         themeKey: "text-transform",
-        classname: "text",
+        classname: null,
         pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         responsive: false,
         properties: (text-transform),
