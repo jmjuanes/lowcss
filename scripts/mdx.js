@@ -46,7 +46,7 @@ const pageComponents = {
         </pre>
     ),
     "a": props => (
-        <a {...props} className={`no-underline hover:text-underline text-blue-500 hover:text-blue-600 ${props.className || ""}`}>
+        <a {...props} className={`no-underline hover:underline text-blue-500 hover:text-blue-600 ${props.className || ""}`}>
             {props.children}
         </a>
     ),
@@ -69,7 +69,7 @@ const MenuGroup = props => (
 );
 
 const MenuLink = props => (
-    <a href={props.href} className="block text-gray-800 hover:text-blue-700 no-underline hover:text-underline py-2">
+    <a href={props.href} className="block text-gray-800 hover:text-blue-700 no-underline hover:underline py-2">
         <span className="text-sm">{props.text}</span>
     </a>
 );

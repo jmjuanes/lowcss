@@ -34,7 +34,7 @@ prev: "utilities-map.html"
             {Object.entries(utility.values).map(item => (
             <tr key={item[0]} className="b-solid b-1 b-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
-                    <span>{utility.classname ? `${utility.classname}-` : ""}{item[0]}</span>
+                    <span>{utility.classname || ""}{item[0] !== "DEFAULT" ? "-" + item[0] : ""}</span>
                 </td>
                 <td className="p-4 font-mono text-gray-700">
                 {utility.properties.map(p => (
