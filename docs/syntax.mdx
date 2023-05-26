@@ -39,7 +39,7 @@ Some utilities can be applied conditionally by adding a modifier at the beginnin
 
 Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover, focus or active.
 
-<ExampleCode className="d-flex justify-center">
+<ExampleCode className="flex justify-center">
     <div className="bg-blue-500 hover:bg-blue-800 text-white text-sm px-4 py-2 r-md cursor-pointer">
         <strong>Hover me</strong>
     </div>
@@ -55,7 +55,7 @@ Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover
 
 Use `first`, `last`, `odd` and `even` modifiers to select and style elements based on their position.
 
-<ExampleCode className="d-flex justify-center">
+<ExampleCode className="flex justify-center">
     <table className="w-full b-1 b-solid b-gray-300">
         <thead>
             <tr className="bg-blue-100 bb-1 bb-solid bb-gray-300">
@@ -112,13 +112,13 @@ Use `first`, `last`, `odd` and `even` modifiers to select and style elements bas
 
 Use `checked`, `disabled` and `required` modifiers to style form elements.
 
-<ExampleCode className="d-flex items-center justify-center">
+<ExampleCode className="flex items-center justify-center">
     <div className="p-6 r-md bg-white w-full maxw-xs">
         <div className="mb-4">
             <div className="font-bold text-sm mb-1">Username (required)</div>
             <input
                 type="text"
-                className="d-block p-2 r-md b-1 b-solid b-gray-300 required:b-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
+                className="block p-2 r-md b-1 b-solid b-gray-300 required:b-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
                 required
             />
         </div>
@@ -127,11 +127,11 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
             <input
                 type="email"
                 value="bob@company.com"
-                className="d-block p-2 r-md b-1 b-solid b-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
+                className="block p-2 r-md b-1 b-solid b-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
                 disabled
             />
         </div>
-        <div className="d-flex flex-row-reverse">
+        <div className="flex flex-row-reverse">
             <div className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white r-md text-sm cursor-pointer">
                 <strong>Update</strong>
             </div>
@@ -150,14 +150,14 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
 
 You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `:group-hover` or `:group-focus` to style the element.
 
-<ExampleCode className="d-flex justify-center">
-    <div className="group d-flex items-center justify-center bg-white position-relative r-md py-2 px-4 b-1 b-solid b-gray-300">
+<ExampleCode className="flex justify-center">
+    <div className="group flex items-center justify-center bg-white relative r-md py-2 px-4 b-1 b-solid b-gray-300">
         <span className="text-lg text-gray-600">
             <Icon icon="bars" />
         </span>
         <span className="text-gray-600 ml-2">Menu</span>
-        <div className="d-none d-block:group-hover position-absolute w-48 left-0 top-full pt-1">
-            <div className="bg-white b-1 b-gray-300 b-solid r-md d-flex flex-col gap-1 py-1">
+        <div className="hidden group-hover:block absolute w-48 left-0 top-full pt-1">
+            <div className="bg-white b-1 b-gray-300 b-solid r-md flex flex-col gap-1 py-1">
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</div>
@@ -171,7 +171,7 @@ You can conditionally style an element based on the state of a parent element. A
 ```html
 <div class="group [...]">
     <!-- button content -->
-    <div class="d-none d-block:group-hover [...]">
+    <div class="hidden block:group-hover [...]">
         <!-- dropdown items -->
     </div>
 </div>
@@ -208,7 +208,7 @@ To conditionally apply a utility at a specific breakpoint, just prefix the utili
 
 ```html
 <!-- Hidden on small screens, visible on medium screens -->
-<div class="d-none md:d-block [...]">
+<div class="hidden md:block [...]">
     [...]
 </div>
 ```

@@ -16,7 +16,7 @@ prev: "utilities-map.html"
         {utility.attributes.description}
     </div>
     {(utility.responsive || utility.pseudos?.length > 0) > 0 && (
-        <div className="mb-4 d-flex gap-2 flex-wrap">
+        <div className="mb-4 flex gap-2 flex-wrap">
             {utility.responsive && (
                 <div className="py-1 px-2 bg-gray-800 text-white text-xs r-md">
                     <span className="font-bold">responsive</span>
@@ -34,7 +34,7 @@ prev: "utilities-map.html"
             {Object.entries(utility.values).map(item => (
             <tr key={item[0]} className="b-solid b-1 b-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
-                    <span>{utility.classname}-{item[0]}</span>
+                    <span>{utility.classname ? `${utility.classname}-` : ""}{item[0]}</span>
                 </td>
                 <td className="p-4 font-mono text-gray-700">
                 {utility.properties.map(p => (
