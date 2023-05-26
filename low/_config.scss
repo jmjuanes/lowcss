@@ -341,8 +341,8 @@ $background-size: (
 $border-color: $colors !default;
 
 $border-radius: (
-    0: 0,
-    sm: 0.25rem,
+    sm: 0.125rem,
+    DEFAULT: 0.25rem,
     md: 0.5rem,
     lg: 0.75rem,
     xl: 1rem,
@@ -359,7 +359,8 @@ $border-style: (
 
 $border-width: (
     0: 0,
-    1: 1px,
+    1: 1px, // DEPRECATED
+    DEFAULT: 1px,
     2: 2px,
     4: 4px,
     6: 6px,

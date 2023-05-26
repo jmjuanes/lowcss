@@ -41,7 +41,7 @@ const pageComponents = {
     "li": props => <li className="mb-3">{props.children}</li>,
     "code": props => <code className="font-mono text-sm">{props.children}</code>,
     "pre": props => (
-        <pre className="p-6 r-md bg-gray-800 text-white overflow-auto mb-8">
+        <pre className="p-6 rounded-md bg-gray-800 text-white overflow-auto mb-8">
             {props.children}
         </pre>
     ),
@@ -51,9 +51,9 @@ const pageComponents = {
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my-12 b-1 b-dashed b-gray-100" />,
+    Separator: () => <div className="my-12 border border-dashed border-gray-100" />,
     ExampleCode: props => (
-        <div className={`${props.className || ""} bg-gray-100 p-8 r-md mb-4 mt-6`}>
+        <div className={`${props.className || ""} bg-gray-100 p-8 rounded-md mb-4 mt-6`}>
             {props.children}
         </div>
     ),
@@ -82,7 +82,7 @@ const PageNavigation = props => {
         <div className="mt-12 w-full grid cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 r-md b-1 b-solid b-gray-300 hover:b-gray-400">
+                    <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500">Previous page</div>
                         <div className="font-medium">{prevPage.data.title}</div>
                     </a>
@@ -90,7 +90,7 @@ const PageNavigation = props => {
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.fileName} className="no-underline text-gray-800 block p-4 r-md b-1 b-solid b-gray-300 hover:b-gray-400">
+                    <a href={nextPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
@@ -106,7 +106,7 @@ const HomeLayout = props => (
         {props.page.data.features && (
             <div className="w-full grid gap-8 md:cols-2 cols-1">
                 {props.page.data.features.map(feature => (
-                    <div className="bg-gray-100 r-md p-8" key={feature.title}>
+                    <div className="bg-gray-100 rounded-md p-8" key={feature.title}>
                         <div className="mb-4 text-2xl">
                             {React.createElement(pageComponents.Icon, {icon: feature.icon})}
                         </div>
@@ -191,7 +191,7 @@ const PageWrapper = props => (
             </div>
             {/* Footer */}
             <div className="w-full maxw-screen-xl mx-auto px-6 pt-10 pb-20">
-                <div className="mb-12 b-1 b-dashed b-gray-200" />
+                <div className="mb-12 border border-dashed border-gray-200" />
                 <div className="text-center text-sm">
                     Designed by <a href="https://josemi.xyz" className="no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
                     Released under the <b>MIT</b> License.

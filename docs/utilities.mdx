@@ -18,12 +18,12 @@ prev: "utilities-map.html"
     {(utility.responsive || utility.pseudos?.length > 0) > 0 && (
         <div className="mb-4 flex gap-2 flex-wrap">
             {utility.responsive && (
-                <div className="py-1 px-2 bg-gray-800 text-white text-xs r-md">
+                <div className="py-1 px-2 bg-gray-800 text-white text-xs rounded-md">
                     <span className="font-bold">responsive</span>
                 </div>
             )}
             {utility.pseudos.map(v => (
-                <div key={v} className="py-1 px-2 bg-gray-300 text-xs r-md">
+                <div key={v} className="py-1 px-2 bg-gray-300 text-xs rounded-md">
                     <span>pseudo: <span className="font-bold">{v}</span></span>
                 </div>
             ))}
@@ -32,7 +32,7 @@ prev: "utilities-map.html"
     <div className="maxh-96 overflow-auto text-gray-300 scrollbar">
         <table className="w-full">
             {Object.entries(utility.values).map(item => (
-            <tr key={item[0]} className="b-solid b-1 b-gray-300 text-xs">
+            <tr key={item[0]} className="border-solid border border-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
                     <span>{utility.classname || ""}{item[0] !== "DEFAULT" ? "-" + item[0] : ""}</span>
                 </td>
