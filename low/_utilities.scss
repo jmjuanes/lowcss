@@ -48,8 +48,19 @@
     @return $config;
 };
 
+// @description generate utility selector
+@function get-utility-selector($config, $key) {
+    $classname: map.get($config, "classname");
+    @if meta.type-of($classname) == "string" and $classname != "" {
+        @return "#{config.$prefix}#{$classname}-#{$key}";
+    }
+    @else {
+        @return "#{config.$prefix}#{$key}";
+    }
+}
+
 // @description utilities configuration
-$all-utilities: (
+$utilities: (
     // Animations
     generate-utility((
         attributes: (

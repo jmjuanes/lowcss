@@ -16,7 +16,7 @@
 @use "config";
 @use "api";
 @use "internal";
-@use "utilities" as *;
+@use "utilities";
 
 // @description check if the provided module or utility name is enabled
 @function is-enabled($name) {
@@ -46,7 +46,7 @@
     $pseudos: map.get($utility-config, "pseudos");
     $responsive: map.get($utility-config, "responsive");
     @each $key,$value in $values {
-        $selector: "#{config.$prefix}#{$class}-#{$key}";
+        $selector: utilities.get-utility-selector($utility-config, $key);
         // Default selector for this utility
         .#{$selector} {
             @include api.rule($properties, $value);
@@ -85,7 +85,7 @@
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-config in $all-utilities {
+    @each $utility-config in utilities.$utilities {
         $utility-name: map.get($utility-config, "key");
         @if is-enabled(($utility-name)) {
             @include utility($utility-config);
