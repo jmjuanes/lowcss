@@ -28,8 +28,8 @@
     // 2. Merge utilities configuration
     @if config.$utilities and meta.type-of(config.$utilities) == "map" {
         $extend-config: map.get(config.$utilities, $key);
-        @if $config-extend and meta.type-of($config-extend) == "map" {
-            $config: map.merge($config, $config-extend);
+        @if $extend-config and meta.type-of($extend-config) == "map" {
+            $config: map.merge($config, $extend-config);
         }
     }
     // Return parsed configuration
