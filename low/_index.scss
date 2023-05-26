@@ -27,8 +27,13 @@
     $responsive: map.get($utility-config, "responsive");
     @each $key,$value in $values {
         $selector: "#{config.$prefix}#{$key}";
+        // Check if classname has been provided for building the selector
         @if meta.type-of($classname) == "string" and $classname != "" {
             $selector: "#{config.$prefix}#{$classname}-#{$key}";
+            // Check for default key --> remove this from selector
+            @if $key == "DEFAULT" {
+                $selector: "#{config.$prefix}#{$classname}";
+            }
         }
         // Default selector for this utility
         .#{$selector} {
