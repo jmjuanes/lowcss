@@ -2,7 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 @use "low/config" as config;
-@use "low/utilities" as *;
+@use "low/utilities" as utilities;
 
 @function json($arg) {
     $type: meta.type-of($arg);
@@ -45,7 +45,7 @@ $data: (
     "colors": config.$colors,
     "sizes": config.$sizes,
     "space": config.$space,
-    "utilities": $all-utilities,
+    "utilities": utilities.$utilities,
 );
 
 /*!
