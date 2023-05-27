@@ -35,8 +35,8 @@ const Icon = props => (
 );
 
 const pageComponents = {
-    "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h1>,
-    "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-lg font-bold">{props.children}</h2>,
+    "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-2xl font-bold">{props.children}</h1>,
+    "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h2>,
     "p": props => <p className="mt-6 mb-6 text-justify">{props.children}</p>,
     "li": props => <li className="mb-3">{props.children}</li>,
     "code": props => <code className="font-mono text-sm">{props.children}</code>,
@@ -107,10 +107,10 @@ const HomeLayout = props => (
             <div className="w-full grid gap-8 md:grod-cols-2 grid-cols-1">
                 {props.page.data.features.map(feature => (
                     <div className="bg-gray-100 rounded-md p-8" key={feature.title}>
-                        <div className="mb-4 text-2xl">
+                        <div className="mb-4 text-4xl">
                             {React.createElement(pageComponents.Icon, {icon: feature.icon})}
                         </div>
-                        <div className="font-bold text-lg mb-4">{feature.title}</div>
+                        <div className="font-bold text-xl mb-4">{feature.title}</div>
                         <div className="">{feature.description}</div>
                     </div>
                 ))}
@@ -138,11 +138,11 @@ const DocsLayout = props => (
                 ))}
             </div>
         </div>
-        <div className="w-full maxw-screen-md mx-auto">
-            <h1 className="mt-0 mb-0 text-3xl md:text-4xl text-gray-800 font-black">
+        <div className="w-full maxw-3xl mx-auto">
+            <h1 className="mt-0 mb-0 text-5xl md:text-6xl text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
-            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
+            <div className="mt-0 mb-10 text-2xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
             {props.page.element}
             <PageNavigation {...props} />
         </div>
@@ -168,9 +168,9 @@ const PageWrapper = props => (
         </head>
         <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
-            <div className="w-full maxw-screen-xl h-20 px-6 mx-auto flex items-center justify-between">
+            <div className="w-full maxw-xl h-20 px-6 mx-auto flex items-center justify-between">
                 <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
-                    <div className="font-black font-crimson text-xl tracking-tight">
+                    <div className="font-black font-crimson text-2xl tracking-tight">
                         low<span className="text-gray-500">CSS</span>.
                     </div>
                 </a>
@@ -181,7 +181,7 @@ const PageWrapper = props => (
                 </div>
             </div>
             {/* Main content */}
-            <div className="flex w-full maxw-screen-xl mx-auto gap-4 p-6">
+            <div className="flex w-full maxw-7xl mx-auto gap-4 p-6">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
@@ -190,7 +190,7 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="w-full maxw-screen-xl mx-auto px-6 pt-10 pb-20">
+            <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20">
                 <div className="mb-12 border border-dashed border-gray-200" />
                 <div className="text-center text-sm">
                     Designed by <a href="https://josemi.xyz" className="no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
