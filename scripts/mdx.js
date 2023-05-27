@@ -142,7 +142,7 @@ const DocsLayout = props => (
             <h1 className="mt-0 mb-0 text-3xl md:text-4xl text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
-            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium lh-relaxed">{props.page.data.description}</div>
+            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
             {props.page.element}
             <PageNavigation {...props} />
         </div>
@@ -166,7 +166,7 @@ const PageWrapper = props => (
                 }
             `}} />
         </head>
-        <body className="bg-white m-0 p-0 font-inter text-gray-700 lh-normal">
+        <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
             <div className="w-full maxw-screen-xl h-20 px-6 mx-auto flex items-center justify-between">
                 <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
