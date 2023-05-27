@@ -79,7 +79,7 @@ const PageNavigation = props => {
     const nextPage = props.pages.find(p => p.fileName === props.page.data.next);
 
     return (
-        <div className="mt-12 w-full grid cols-2 gap-4">
+        <div className="mt-12 w-full grid grid-cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
                     <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
@@ -104,7 +104,7 @@ const HomeLayout = props => (
     <div className="w-full">
         {props.page.element}
         {props.page.data.features && (
-            <div className="w-full grid gap-8 md:cols-2 cols-1">
+            <div className="w-full grid gap-8 md:grod-cols-2 grid-cols-1">
                 {props.page.data.features.map(feature => (
                     <div className="bg-gray-100 rounded-md p-8" key={feature.title}>
                         <div className="mb-4 text-2xl">
