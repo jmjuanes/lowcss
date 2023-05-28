@@ -19,7 +19,7 @@
         "build": "yarn build:css && yarn build:json",
         "docs": "babel-node --presets '@babel/preset-react' scripts/mdx.js",
         "predocs": "rm -rf public && mkdir public",
-        "postdocs": "cp dist/low.css public/ && cp dist/low.css.map public/",
+        "postdocs": "cp dist/low.css public/ && cp dist/low.css.map public/ && cp node_modules/highlight.js/styles/atom-one-light.css public/highlight.css",
         "serve": "stattic --folder public --port 5000"
     },
     "keywords": [
@@ -49,11 +49,13 @@
         "autoprefixer": "^10.4.12",
         "csso-cli": "^4.0.1",
         "gray-matter": "^4.0.3",
+        "highlight.js": "^11.8.0",
         "postcss": "^8.4.18",
         "postcss-cli": "^10.0.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "sass": "^1.55.0"
+        "sass": "^1.55.0",
+        "stattic": "^0.4.0"
     },
     "peerDependencies": {
         "sass": ">=1.23.0"

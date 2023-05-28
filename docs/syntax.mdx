@@ -169,7 +169,7 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
             <div className="font-bold text-sm mb-1">Username (required)</div>
             <input
                 type="text"
-                className="block p-2 rounded-md border border-solid border-gray-300 required:b-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
+                className="block p-2 rounded-md border border-solid border-gray-300 required:border-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
                 required
             />
         </div>
@@ -222,7 +222,7 @@ You can conditionally style an element based on the state of a parent element. A
 ```html
 <div class="group [...]">
     <!-- button content -->
-    <div class="hidden block:group-hover [...]">
+    <div class="hidden group-hover:block [...]">
         <!-- dropdown items -->
     </div>
 </div>

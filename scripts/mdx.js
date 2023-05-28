@@ -4,6 +4,7 @@ const React = require("react");
 const {renderToStaticMarkup} = require("react-dom/server");
 const runtime = require("react/jsx-runtime");
 const matter = require("gray-matter");
+const hljs = require("highlight.js/lib/common");
 const mochicons = require("@mochicons/node");
 
 const pkg = require("../package.json");
@@ -40,20 +41,33 @@ const pageComponents = {
     "p": props => <p className="mt-6 mb-6 text-justify">{props.children}</p>,
     "li": props => <li className="mb-3">{props.children}</li>,
     "code": props => <code className="font-mono text-sm">{props.children}</code>,
-    "pre": props => (
-        <pre className="p-6 rounded-md bg-gray-800 text-white overflow-auto mb-8">
-            {props.children}
-        </pre>
-    ),
+    "pre": props => {
+        const className = "p-4 rounded-md bg-white border border-solid border-gray-300 overflow-auto mb-8";
+        const items = React.Children.toArray(props.children);
+        const code = items[0].props.children;
+        const language = (items[0].props.className || "").replace("language-", "");
+        if (language) {
+            return React.createElement("pre", {
+                className: className,
+                dangerouslySetInnerHTML: {
+                    __html: hljs.highlight(code, {language: language}).value,
+                },
+            });
+        }
+        // Default: render without code highlight
+        return (
+            <pre className={className}>{code}</pre>
+        );
+    },
     "a": props => (
         <a {...props} className={`no-underline hover:underline text-blue-500 hover:text-blue-600 ${props.className || ""}`}>
             {props.children}
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my-12 border border-dashed border-gray-100" />,
+    Separator: () => <div className="my-12 border-2 border-dashed border-gray-200" />,
     ExampleCode: props => (
-        <div className={`${props.className || ""} bg-gray-100 p-8 rounded-md mb-4 mt-6`}>
+        <div className={`${props.className || ""} bg-white border border-solid border-gray-300 p-6 rounded-md mb-4 mt-6`}>
             {props.children}
         </div>
     ),
@@ -82,7 +96,7 @@ const PageNavigation = props => {
         <div className="mt-12 w-full grid grid-cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
+                    <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500">Previous page</div>
                         <div className="font-medium">{prevPage.data.title}</div>
                     </a>
@@ -90,7 +104,7 @@ const PageNavigation = props => {
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
+                    <a href={nextPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
@@ -126,7 +140,8 @@ const DocsLayout = props => (
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
-                    <MenuLink href="syntax.html" text="Syntax Guide" />
+                    <MenuLink href="syntax.html" text="Utilities Syntax" />
+                    <MenuLink href="customize.html" text="Customize" />
                 </MenuSection>
                 {Object.entries(utilitiesMap).map(section => (
                     <MenuSection key={section[0]}>
@@ -158,6 +173,7 @@ const PageWrapper = props => (
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700;900&display=swap" />
             <link rel="stylesheet" href="./low.css" />
+            <link rel="stylesheet" href="./highlight.css" />
             <title>{props.page.data.title ? `${props.page.data.title} - ` : ""}LowCSS {pkg.version}</title>
             <style dangerouslySetInnerHTML={{__html: `
                 :not(pre) > code {
@@ -168,7 +184,7 @@ const PageWrapper = props => (
         </head>
         <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
-            <div className="w-full maxw-xl h-20 px-6 mx-auto flex items-center justify-between">
+            <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
                 <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
                     <div className="font-black font-crimson text-2xl tracking-tight">
                         low<span className="text-gray-500">CSS</span>.
@@ -191,7 +207,7 @@ const PageWrapper = props => (
             </div>
             {/* Footer */}
             <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20">
-                <div className="mb-12 border border-dashed border-gray-200" />
+                <div className="mb-12 border border-dashed border-gray-200" />
                 <div className="text-center text-sm">
                     Designed by <a href="https://josemi.xyz" className="no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
                     Released under the <b>MIT</b> License.
