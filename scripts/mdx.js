@@ -118,7 +118,7 @@ const HomeLayout = props => (
     <div className="w-full">
         {props.page.element}
         {props.page.data.features && (
-            <div className="w-full grid gap-8 md:grod-cols-2 grid-cols-1">
+            <div className="w-full grid gap-8 md:grid-cols-2 grid-cols-1">
                 {props.page.data.features.map(feature => (
                     <div className="bg-gray-100 rounded-md p-8" key={feature.title}>
                         <div className="mb-4 text-4xl">
