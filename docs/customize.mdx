@@ -1,0 +1,125 @@
+---
+layout: "docs"
+title: "Customize"
+description: "How to customize and generate your own version of LowCSS."
+prev: "syntax.html"
+next: "utilities.html"
+---
+
+<Separator />
+
+LowCSS provides extensive customization options, allowing you to tailor the CSS utilities to match your project's specific needs and design requirements. By modifying the SASS variables, you can customize the utility class prefix, separator, theme, utilities, and inclusion/exclusion of specific utilities.
+
+# Modifying SASS Variables
+
+To customize the CSS utilities, you can modify the following SASS variables in your project:
+
+## $prefix
+
+The `$prefix` variable allows you to specify a custom prefix for all utility classes. By default, the prefix is set to an empty string. However, you can change it to match your project's naming conventions or to avoid conflicts with other CSS frameworks.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $prefix: "my-prefix-",
+);
+```
+
+With this customization, utility classes will be prefixed with `my-prefix-`, such as `my-prefix-text-red-500` or `my-prefix-bg-blue-100`.
+
+## $separator
+
+The `$separator` variable defines the character used to separate breakpoints and modifiers from utility names. By default, the separator is set to `:`. However, you can change it to another character if desired.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $separator: "_",
+);
+```
+
+With this customization, utility classes will use an underscore (`_`) as the separator, such as `hover_text-red-500` or `focus:bg-blue-100`.
+
+## $theme
+
+The `$theme` variable is a SASS map that contains the configuration for your theme, similar to the Tailwind CSS approach. It allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values in this map to match your project's design system.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $theme: (
+        "text-color": (
+            "primary": #ff0000,
+            "secondary": #00ff00,
+        ),
+        "width": (
+            "small": 8px,
+            "medium": 16px,
+        ),
+        // Add more theme configurations...
+    ),
+);
+```
+
+With this customization, you can use the defined theme colors and spacing values in your utility classes.
+
+## $utilities
+
+The `$utilities` variable is a SASS map that allows you to customize specific utility classes. You can override or extend the default utility configurations by modifying the values in this map.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $utilities: (
+        "background-color": (
+            "classname": "background",
+            "responsive": true,
+            "pseudos": ("hover", "focus", "active"),
+        ),
+        // Add more customized utility configurations...
+    ),
+);
+```
+
+## $include and $exclude
+
+The `$include` and `$exclude` variables are lists that allow you to selectively include or exclude specific utility classes in the final CSS output. By default, all utilities are included. Use these variables to fine-tune the set of utilities you want to include in your project.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $exclude: (
+        "background-color",
+        "text-color",
+    ),
+);
+```
+
+With this customization, the background color and text color utilities will be excluded from the final CSS output.
+
+# Compiling SASS and Generating CSS
+
+To compile the SASS files and generate the CSS output, follow these steps:
+
+1. Install SASS: If you haven't already, install the SASS compiler on your system by following the instructions provided in the official SASS documentation.
+
+2. Compile SASS: Use the SASS compiler to compile your customized SASS files into CSS. Here's an example command:
+
+```bash
+$ sass --load-path=./node_modules/lowcss input.scss output.css
+```
+
+Replace `input.scss` with the path to your main SASS file, and `output.css` with the desired path and filename for the generated CSS file.
+
+3. Link the CSS: In your HTML file, link the generated CSS file using a `<link>` tag in the `<head>` section:
+
+```html
+<link rel="stylesheet" href="path/to/output.css">
+```
+
+Replace `path/to/output.css` with the actual path to your generated CSS file.
