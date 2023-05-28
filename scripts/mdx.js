@@ -184,16 +184,21 @@ const PageWrapper = props => (
         </head>
         <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
-            <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
-                <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
-                    <div className="font-black font-crimson text-2xl tracking-tight">
-                        low<span className="text-gray-500">CSS</span>.
+            <div className="border-b-1 border-solid border-gray-300 mb-4">
+                <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
+                    <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
+                        <div className="font-black font-crimson text-2xl tracking-tight">
+                            <span>lowCSS.</span>
+                        </div>
+                    </a>
+                    <div className="flex gap-6 items-center">
+                        <a href="./installation.html" className="font-medium text-gray-600 hover:text-gray-800 no-underline">Installation</a>
+                        <a href="./utilities.html" className="font-medium text-gray-600 hover:text-gray-800 no-underline">Utilities</a>
+                        <div className="w-px h-6 bg-gray-300" />
+                        <a href={pkg.repository} className="font-medium text-gray-600 hover:text-gray-800 no-underline">
+                            <img src="https://www.josemi.xyz/github.svg" />
+                        </a>
                     </div>
-                </a>
-                <div className="flex gap-6">
-                    <a href="./installation.html" className="font-medium text-gray-700 hover:text-gray-900 no-underline">Installation</a>
-                    <a href="./utilities.html" className="font-medium text-gray-700 hover:text-gray-900 no-underline">Utilities</a>
-                    <a href={pkg.repository} className="font-medium text-gray-700 hover:text-gray-900 no-underline">GitHub</a>
                 </div>
             </div>
             {/* Main content */}
