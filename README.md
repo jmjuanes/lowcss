@@ -75,7 +75,7 @@ Access the LowCSS documentation at [josemi.xyz/lowcss](https://www.josemi.xyz/lo
 
 ## Contributing
 
-We welcome contributions from the community to help improve LowCSS. Whether it's bug fixes, feature enhancements, or new utility classes, your contributions are valuable. Please read our Contribution Guidelines for more information on how to contribute.
+We welcome contributions from the community to help improve LowCSS. Whether it's bug fixes, feature enhancements, or new utility classes, your contributions are valuable. Please read our [Contribution Guidelines](./CONTRIBUTING.md) for more information on how to contribute.
 
 ## Acknowledgements
 
