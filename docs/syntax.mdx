@@ -107,7 +107,7 @@ Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover
 Use `first`, `last`, `odd` and `even` modifiers to select and style elements based on their position.
 
 <ExampleCode className="flex justify-center">
-    <table className="w-full border border-solid border-gray-300">
+    <table className="w-full border border-solid border-gray-300">
         <thead>
             <tr className="bg-blue-100 border-b border-solid border-gray-300">
                 <td className="px-4 py-2 font-bold">Name</td>
@@ -164,12 +164,12 @@ Use `first`, `last`, `odd` and `even` modifiers to select and style elements bas
 Use `checked`, `disabled` and `required` modifiers to style form elements.
 
 <ExampleCode className="flex items-center justify-center">
-    <div className="p-6 rounded-md bg-white w-full maxw-xs">
+    <div className="w-full maxw-xs rounded-md p-6 shadow-sm border border-gray-300">
         <div className="mb-4">
             <div className="font-bold text-sm mb-1">Username (required)</div>
             <input
                 type="text"
-                className="block p-2 rounded-md border border-solid border-gray-300 required:border-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
+                className="block p-2 rounded-md border border-solid border-gray-300 required:border-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
                 required
             />
         </div>
@@ -178,7 +178,7 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
             <input
                 type="email"
                 value="bob@company.com"
-                className="block p-2 rounded-md border border-solid border-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
+                className="block p-2 rounded-md border border-solid border-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
                 disabled
             />
         </div>
@@ -202,17 +202,17 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
 You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `group-hover`, `group-focus` or `group-focus-within` modifiers to style the element.
 
 <ExampleCode className="flex justify-center">
-    <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
+    <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
         <span className="text-xl text-gray-600">
             <Icon icon="bars" />
         </span>
         <span className="text-gray-600 ml-2">Menu</span>
         <div className="hidden group-hover:block absolute w-48 left-0 top-full pt-1">
-            <div className="bg-white border border-gray-300 border-solid rounded-md flex flex-col gap-1 py-1">
+            <div className="bg-white border border-gray-300 border-solid rounded-md flex flex-col gap-1 py-1">
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</div>
-                <div className="h-0 w-full border border-gray-200 border-solid" />
+                <div className="h-0 w-full border-b border-gray-200 border-solid" />
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Sign out</div>
             </div>
         </div>

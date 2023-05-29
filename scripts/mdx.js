@@ -75,11 +75,11 @@ const pageComponents = {
 };
 
 const MenuSection = props => (
-    <div className="text-gray-800 mb-6">{props.children}</div>
+    <div className="text-gray-800">{props.children}</div>
 );
 
 const MenuGroup = props => (
-    <div className="font-bold mb-1 text-capitalize">{props.text}</div>
+    <div className="font-bold mb-1 capitalize">{props.text}</div>
 );
 
 const MenuLink = props => (
@@ -136,7 +136,7 @@ const HomeLayout = props => (
 const DocsLayout = props => (
     <React.Fragment>
         <div className="hidden lg:block w-56 shrink-0">
-            <div className="w-full sticky top-0 px-0 py-4 h-screen overflow-y-auto text-gray-300 scrollbar">
+            <div className="w-full sticky top-0 py-8 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
@@ -153,7 +153,7 @@ const DocsLayout = props => (
                 ))}
             </div>
         </div>
-        <div className="w-full maxw-3xl mx-auto">
+        <div className="w-full maxw-3xl mx-auto py-4">
             <h1 className="mt-0 mb-0 text-5xl md:text-6xl text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
@@ -184,7 +184,7 @@ const PageWrapper = props => (
         </head>
         <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
-            <div className="border-b-1 border-solid border-gray-300 mb-4">
+            <div className="border-b-1 border-solid border-gray-300">
                 <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
                     <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
                         <div className="font-black font-crimson text-2xl tracking-tight">
@@ -202,7 +202,7 @@ const PageWrapper = props => (
                 </div>
             </div>
             {/* Main content */}
-            <div className="flex w-full maxw-7xl mx-auto gap-4 p-6">
+            <div className="flex w-full maxw-7xl mx-auto gap-4 px-6">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
