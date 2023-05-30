@@ -136,13 +136,19 @@ const HomeLayout = props => (
 const DocsLayout = props => (
     <React.Fragment>
         <div className="hidden lg:block w-56 shrink-0">
-            <div className="w-full sticky top-0 py-8 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6">
+            <div className="w-full sticky top-0 py-12 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
                     <MenuLink href="syntax.html" text="Utilities Syntax" />
                     <MenuLink href="customize.html" text="Customize" />
                 </MenuSection>
+                <MenuSection>
+                    <MenuGroup text="Extra Styles" />
+                    <MenuLink href="reset.html" text="Reset CSS" />
+                    <MenuLink href="keyframes.html" text="Keyframes" />
+                </MenuSection>
+
                 {Object.entries(utilitiesMap).map(section => (
                     <MenuSection key={section[0]}>
                         <MenuGroup text={section[0]} />
@@ -153,7 +159,7 @@ const DocsLayout = props => (
                 ))}
             </div>
         </div>
-        <div className="w-full maxw-3xl mx-auto py-4">
+        <div className="w-full maxw-3xl mx-auto py-10">
             <h1 className="mt-0 mb-0 text-5xl md:text-6xl text-gray-800 font-black">
                 {props.page.data.title}
             </h1>
