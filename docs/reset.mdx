@@ -3,7 +3,7 @@ layout: "docs"
 title: "Reset CSS"
 description: "Normalize the default rendering of HTML elements."
 prev: "customize.html"
-next: "keyframes.html"
+next: "utilities.html"
 ---
 
 <Separator />
@@ -41,9 +41,23 @@ It changes the `box-sizing` property of all elements to `border-box`. This ensur
 }
 ```
 
-## Margin and Padding
+## Borders are removed in all elements
 
-It resets the margin and padding of some elements (including headings and paragraphs) to `0`. This eliminates any inconsistencies in default spacing applied by different browsers.
+It resets the `border-width` to `0` and initializes the `border-syle` to `solid` in all elements.
+
+```css
+*,
+*:before,
+*:after {
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 0;
+}
+```
+
+## Margins
+
+It resets the default margin of some elements (including headings and paragraphs) to `0`. This eliminates any inconsistencies in default spacing applied by different browsers.
 
 ```css
 blockquote,
@@ -76,6 +90,17 @@ h6 {
 }
 ```
 
+## Links
+
+Sets the default styles for anchor links elements to remove underline and inherit color:
+
+```css
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+```
+
 ## Lists
 
 It removes the default styles for unordered and ordered lists (`ul` and `ol`) to eliminate any browser-specific list styles.
@@ -100,16 +125,28 @@ table {
 }
 ```
 
+## Form elements
 
-## Borders are removed in all elements
-
-It resets the `border-width` to `0` and initializes the `border-syle` to `solid` in all elements.
+It resets the default typography, padding, and margin properties common form elements:
 
 ```css
-*,
-::before,
-::after {
-    border-width: 0;
-    border-style: solid;
+button,
+input,
+select,
+textarea {
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+```
+
+It also prevents resizing textareas horizontally by default:
+
+```css
+textarea {
+    resize: vertical;
 }
 ```

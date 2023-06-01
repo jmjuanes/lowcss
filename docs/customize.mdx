@@ -8,7 +8,7 @@ next: "reset.html"
 
 <Separator />
 
-LowCSS provides extensive customization options, allowing you to tailor the CSS utilities to match your project's specific needs and design requirements. By modifying the SASS variables, you can customize the utility class prefix, separator, theme, utilities, and inclusion/exclusion of specific utilities.
+LowCSS provides extensive customization options, allowing you to tailor the CSS utilities to match your project's specific needs and design requirements.
 
 # Modifying SASS Variables
 
@@ -40,31 +40,85 @@ Example usage:
 );
 ```
 
-With this customization, utility classes will use an underscore (`_`) as the separator, such as `hover_text-red-500` or `focus:bg-blue-100`.
+With this customization, utility classes will use an underscore (`_`) as the separator, such as `hover_text-red-500` or `focus_bg-blue-100`.
 
-## $theme
+## $breakpoints
 
-The `$theme` variable is a SASS map that contains the configuration for your theme, similar to the Tailwind CSS approach. It allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values in this map to match your project's design system.
+LowCSS includes a set of predefined breakpoints for responsive utilities. You can customize these breakpoints using the `$breakpoints` SASS map.
+
+Example:
+
+```scss
+@use "low" with (
+    $breakpoints: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+    ),
+);
+```
+
+Adjust the values within the map to match your desired screen size breakpoints.
+
+## Theme variables
+
+The theme variables allows you to configure the values for the utilities. It allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values of those variables to match your project's design system.
 
 Example usage:
 
 ```scss
 @use "low" with (
-    $theme: (
-        "text-color": (
-            "primary": #ff0000,
-            "secondary": #00ff00,
-        ),
-        "width": (
-            "small": 8px,
-            "medium": 16px,
-        ),
-        // Add more theme configurations...
+    $text-color: (
+        "primary": #ff0000,
+        "secondary": #00ff00,
     ),
+    $width: (
+        "small": 8px,
+        "medium": 16px,
+    ),
+    // Add more configurations...
 );
 ```
 
 With this customization, you can use the defined theme colors and spacing values in your utility classes.
+
+This is the list of available theme variables that are allowed for customizing utilities values:
+
+<div className="maxh-96 overflow-auto text-gray-300">
+    <table className="w-full leading-normal">
+        <thead>
+            <tr className="border border-gray-300">
+                <td className="p-4 font-bold">Variable</td>
+                <td className="p-4 font-bold">Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            {Array.from(new Set(props.utilities.map(u => u.themeKey))).filter(k => !!k).map(key => (
+            <tr key={key} className="border border-gray-300 text-xs">
+                <td className="p-4 font-mono text-blue-600">
+                    <span>${key}</span>
+                </td>
+                <td className="p-4 text-gray-700">
+                    <span>Values for </span>
+                    <span>
+                        {props.utilities.filter(u => u.themeKey === key).map(u => (
+                            <Fragment>
+                                <span className="font-mono font-bold text-gray-900" key={u.key}>{u.key}</span>
+                                <span className="last:hidden">, </span>
+                            </Fragment>
+                        ))}
+                    </span> utilities.
+                </td>
+            </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
+
+
+
+
 
 ## $utilities
 
@@ -102,21 +156,41 @@ Example usage:
 
 With this customization, the background color and text color utilities will be excluded from the final CSS output.
 
+# Inject LowCSS styles
+
+Use the following mixins to include the LowCSS styles into your CSS:
+
+- `low.reset()`: this mixin injects the CSS reset styles. Read more in the [Reset CSS](./reset.html) section.
+- `low.forms()`: this mixin injects a simple reset for the most common form elements.
+- `low.utilities()`: this mixin injects the utility classes.
+
+Example usage:
+
+```scss
+// 1. Import and configure lowcss
+@use "low" with (
+    // ...custom configuration
+);
+
+// 2. Inject lowcss styles
+@include low.reset();
+@include low.forms();
+@include low.utilities();
+```
+
 # Compiling SASS and Generating CSS
 
 To compile the SASS files and generate the CSS output, follow these steps:
 
-1. Install SASS: If you haven't already, install the SASS compiler on your system by following the instructions provided in the official SASS documentation.
+**1. Install SASS**. If you haven't already, install the SASS compiler on your system by following the instructions provided in the official SASS documentation.
 
-2. Compile SASS: Use the SASS compiler to compile your customized SASS files into CSS. Here's an example command:
+**2. Compile SASS**. Use the SASS compiler to compile your customized SASS files into CSS. Here's an example command:
 
 ```bash
 $ sass --load-path=./node_modules/lowcss input.scss output.css
 ```
 
-Replace `input.scss` with the path to your main SASS file, and `output.css` with the desired path and filename for the generated CSS file.
-
-3. Link the CSS: In your HTML file, link the generated CSS file using a `<link>` tag in the `<head>` section:
+**3. Link the CSS**. In your HTML file, link the generated CSS file using a `<link>` tag in the `<head>` section:
 
 ```html
 <link rel="stylesheet" href="path/to/output.css">
