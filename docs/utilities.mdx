@@ -2,7 +2,7 @@
 layout: "docs"
 title: "Utilities API"
 description: "The reference for all LowCSS utilities."
-prev: "utilities-map.html"
+prev: "reset.html"
 ---
 
 <Separator />
@@ -29,10 +29,10 @@ prev: "utilities-map.html"
             ))}
         </div>
     )}
-    <div className="maxh-96 overflow-auto text-gray-300 scrollbar">
+    <div className="maxh-96 overflow-auto text-gray-300">
         <table className="w-full">
             {Object.entries(utility.values).map(item => (
-            <tr key={item[0]} className="border-solid border border-gray-300 text-xs">
+            <tr key={item[0]} className="border border-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
                     <span>{utility.classname || ""}{item[0] !== "DEFAULT" ? "-" + item[0] : ""}</span>
                 </td>

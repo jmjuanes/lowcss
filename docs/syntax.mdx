@@ -1,41 +1,92 @@
 ---
 layout: "docs"
-title: "Syntax"
+title: "Utilities Syntax"
 description: "Learn how utilities names are designed."
 prev: "installation.html"
-next: "utilities.html"
+next: "customize.html"
 ---
 
 <Separator />
 
-# Utility class names design
+LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
 
-**LowCSS** uses the following utility class name design:
+# Basic Usage
+
+To apply a utility class, simply add the class name to your HTML element. 
+
+The basic naming pattern for our utility classes is as follows:
 
 ```
-[prefix]{class}-{value}
+[{prefix}]{property}-{value}
 ```
 
-- **prefix** (optional): you can provide a prefix for all utilities.
-- **class**: is the utility class name (e.g. `text`, `bg`, or `flex`).
-- **value**: this allows you to provide the utility value such as text size, color shades, spacing, effects, or filters.
+Let's break down each component of the naming pattern:
 
-Example:
+- `{prefix}` (optional): you can configure LowCSS for adding a custom prefix to all utilities.
+- `{property}`: specifies the CSS property that the utility class modifies. Examples of properties include `bg` for background, `text` for text-related styles, `p` for padding, `m` for margin, and so on. This component is not always present and depends on the utility class.
+- `{value}`: indicates the specific value or variation for the CSS property. 
+
+For example, to set the text color to red, use the following class:
 
 ```html
-<div class="text-gray-800 font-bold p-4">
-    Hello world
+<p class="text-red-500">Hello, world!</p>
+```
+
+This will apply the specified style to the element, resulting in red-colored text.
+
+# Responsive Design
+
+LowCSS makes it easy to create responsive designs using the following utility syntax: 
+
+```
+{breakpoint}:[{prefix}]{property}-{value}
+```
+
+- `{prefix}`, `{property}`, and `{value}` follow the same structure as mentioned above.
+- `{breakpoint}`: represents a specific breakpoint where the utility class should apply. 
+
+The following breakpoints are defined by default in LowCSS:
+
+<table className="w-full text-sm">
+    <thead>
+        <tr className="border-b border-solid border-gray-200">
+            <td className="p-3 font-bold">Breakpoint</td>
+            <td className="p-3 font-bold">Minimum width</td>
+            <td className="p-3 font-bold">Rule</td>
+        </tr>
+    </thead>
+    <tbody>
+        {Object.keys(props.breakpoints).map(key => (
+        <tr key={key}>
+            <td className="p-3 font-mono">{key}</td>
+            <td className="p-3 font-mono">{props.breakpoints[key]}</td>
+            <td className="p-3 font-mono">
+                <code>@media (min-width: {props.breakpoints[key]}) {"{"} ... {"}"}</code>
+            </td>
+        </tr>
+        ))}
+    </tbody>
+</table>
+
+You can apply different styles at different breakpoints:
+
+```html
+<div class="hidden md:block [...]">
+    Content
 </div>
 ```
 
-<Separator />
+In ths example, the content text will be hidden at screens sizes lower than the medium breakpoint, and visible is screens sizes upper than the medium breakpoint.
 
-# Pseudo-class variants
+# Pseudo Modifiers
 
-Some utilities can be applied conditionally by adding a modifier at the beginning of the utility class that describes the condition that you want to apply. For example, to apply `bg-blue-500` but only on hover, use `hover:bg-blue-500`.
+LowCSS includes a range of utility classes for working with pseudo modifiers, allowing you to easily style elements in specific states. We use the following syntax:
 
+```
+{pseudo-modifier}:[{prefix}]{property}-{value}
+```
 
-## Hover, focus and active
+## Hover, Focus, and Active
 
 Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover, focus or active.
 
@@ -51,12 +102,12 @@ Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover
 </div>
 ```
 
-## First, last, odd and even
+## First, Last, Odd, and Even
 
 Use `first`, `last`, `odd` and `even` modifiers to select and style elements based on their position.
 
 <ExampleCode className="flex justify-center">
-    <table className="w-full border border-solid border-gray-300">
+    <table className="w-full border border-solid border-gray-300">
         <thead>
             <tr className="bg-blue-100 border-b border-solid border-gray-300">
                 <td className="px-4 py-2 font-bold">Name</td>
@@ -108,17 +159,17 @@ Use `first`, `last`, `odd` and `even` modifiers to select and style elements bas
 </table>
 ```
 
-## Checked, disabled and required
+## Checked, Disabled, and Required
 
 Use `checked`, `disabled` and `required` modifiers to style form elements.
 
 <ExampleCode className="flex items-center justify-center">
-    <div className="p-6 rounded-md bg-white w-full maxw-xs">
+    <div className="w-full maxw-xs rounded-md p-6 shadow-sm border border-gray-300">
         <div className="mb-4">
             <div className="font-bold text-sm mb-1">Username (required)</div>
             <input
                 type="text"
-                className="block p-2 rounded-md border border-solid border-gray-300 required:b-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
+                className="block p-2 rounded-md border border-solid border-gray-300 required:border-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
                 required
             />
         </div>
@@ -127,7 +178,7 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
             <input
                 type="email"
                 value="bob@company.com"
-                className="block p-2 rounded-md border border-solid border-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
+                className="block p-2 rounded-md border border-solid border-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
                 disabled
             />
         </div>
@@ -146,22 +197,22 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
 </form>
 ```
 
-## Group modifiers
+## Group Modifiers
 
-You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `:group-hover` or `:group-focus` to style the element.
+You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `group-hover`, `group-focus` or `group-focus-within` modifiers to style the element.
 
 <ExampleCode className="flex justify-center">
-    <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
+    <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
         <span className="text-xl text-gray-600">
             <Icon icon="bars" />
         </span>
         <span className="text-gray-600 ml-2">Menu</span>
         <div className="hidden group-hover:block absolute w-48 left-0 top-full pt-1">
-            <div className="bg-white border border-gray-300 border-solid rounded-md flex flex-col gap-1 py-1">
+            <div className="bg-white border border-gray-300 border-solid rounded-md flex flex-col gap-1 py-1">
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</div>
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</div>
-                <div className="h-0 w-full border border-gray-200 border-solid" />
+                <div className="h-0 w-full border-b border-gray-200 border-solid" />
                 <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Sign out</div>
             </div>
         </div>
@@ -171,44 +222,8 @@ You can conditionally style an element based on the state of a parent element. A
 ```html
 <div class="group [...]">
     <!-- button content -->
-    <div class="hidden block:group-hover [...]">
+    <div class="hidden group-hover:block [...]">
         <!-- dropdown items -->
     </div>
-</div>
-```
-
-<Separator />
-
-# Responsive
-
-Every utility class can be configured with different breakpoints without using the `@media` rule in your CSS and without leaving your HTML. The following breakpoints are defined by default in LowCSS:
-
-<table className="w-full text-sm">
-    <thead>
-        <tr className="border-b border-solid border-gray-200">
-            <td className="p-3 font-bold">Breakpoint</td>
-            <td className="p-3 font-bold">Minimum width</td>
-            <td className="p-3 font-bold">Rule</td>
-        </tr>
-    </thead>
-    <tbody>
-        {Object.keys(props.breakpoints).map(key => (
-        <tr key={key}>
-            <td className="p-3 font-mono">{key}</td>
-            <td className="p-3 font-mono">{props.breakpoints[key]}</td>
-            <td className="p-3 font-mono">
-                <code>@media (min-width: {props.breakpoints[key]}) {"{"} ... {"}"}</code>
-            </td>
-        </tr>
-        ))}
-    </tbody>
-</table>
-
-To conditionally apply a utility at a specific breakpoint, just prefix the utility with the breakpoint name followed by the `:` character:
-
-```html
-<!-- Hidden on small screens, visible on medium screens -->
-<div class="hidden md:block [...]">
-    [...]
 </div>
 ```

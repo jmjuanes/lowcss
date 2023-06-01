@@ -7,33 +7,49 @@ next: "syntax.html"
 
 <Separator />
 
-# Install using a Package Manager
+# Package Installation
 
-## 1. Add LowCSS to your project
+To get started with LowCSS, you can install the package using either **Yarn** or **npm**. Follow the instructions below based on your preferred package manager:
 
-Use **YARN** or **NPM** for adding LowCSS as a dependency to your project. Just run the following command in the root folder of your project:
+Installation with **Yarn**:
 
 ```bash
 $ yarn add lowcss
-```
-
-## 2. Import LowCSS in your main Sass file
-
-Include the following line to your main `.scss` file:
-
-```scss
-@use "low";
 ``` 
 
-Optionally, you can also customize LowCSS loading it with customization. See the [configuration](configuration.html) guide for more information.
+Installation usin **npm**:
+
+```bash
+$ npm install lowcss
+```
+
+# Including Precompiled CSS
+
+LowCSS provides precompiled CSS files located in the `dist` folder of the package. To include the precompiled CSS in your project, follow these steps:
+
+**1.** Locate the `dist` folder within the LowCSS package in your project's `node_modules` directory.
+
+**2.** Copy the precompiled CSS file `low.css` from the `dist` folder to your project's assets or CSS directory.
+
+**3.** Link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
+
+```html
+<link rel="stylesheet" href="path/to/low.css">
+```
+
+# Generating Custom Version with SASS
+
+To generate a custom version of LowCSS using SASS, follow these steps:
+
+**1.** If you haven't already, install the SASS compiler on your system by following the instructions provided in the official [SASS documentation](https://sass-lang.com).
+
+**2.** Add a new SASS file with `.scss` extension (e.g., `main.scss`) in your project.
+
+**3.** Import LowCSS in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. Refer to the [Customization section](./customize.html) for more details on available variables and customization options.
 
 ```scss
 @use "low" with (
-    $prefix: "ui-",
-    $colors: (
-        primary: blue,
-        secondary: green,
-    ),
+    // custom configuration
 );
 ``` 
 
@@ -41,36 +57,31 @@ Optionally, you can also customize LowCSS loading it with customization. See the
 Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
 </div>
 
-## 3. Load the modules of LowCSS that you need
 
-Use the `@include` directive to load the modules of LowCSS:
+**4.** Load the modules of LowCSS that you need using the `@include` directive:
 
 ```scss
 @include low.reset();
 @include low.forms();
-@include low.keyframes();
-@include low.scrollbars();
 @include low.utilities();
 ```
 
-## 4. Compile your styles
-
-Use the Sass CLI to generate the output Css:
+**5.** Compile SASS file into CSS using the SASS compiler. Run the following command:
 
 ```bash
-$ sass --load-path=./node_modules/lowcss main.scss dist/low.css
-``` 
-
-Read more about the Sass CLI usage and available flags in the [Sass CLI documentation](https://sass-lang.com/documentation/cli).
-
-<Separator />
-
-# Install using a CDN
-
-This is the easiest way for adding LowCSS to your project. Just include the following line in the head of your `.html` file:
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/lowcss@0.9.0/dist/low.css">
+$ sass --load-path=./node_modules/lowcss main.scss output.css
 ```
 
-Note that this method does not allow customization of the CSS utilities.
+Replace `main.scss` with the path to your custom SASS file, and `output.css` with the desired path and filename for the generated CSS file.
+
+**6.** Link the generated CSS file in your HTML file using a `<link>` tag in the `<head>` section, as described in the "Including Precompiled CSS" section.
+
+# Using Hosted Version from CDN
+
+If you prefer not to install or compile [Framework Name] locally, you can utilize the hosted version from a Content Delivery Network (CDN). Simply include the following `<link>` tag in the `<head>` section of your HTML file:
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/lowcss/dist/low.css">
+```
+
+**Note**: Using the hosted version means you won't have direct control over customizations. Consider the custom version generation with SASS for more flexibility.
