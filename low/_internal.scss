@@ -55,3 +55,19 @@
     $path: "%3cpath #{$attr} stroke='#{$stroke}' d='#{$d}'/%3e";
     @return svg($path);
 }
+
+// @description tiny utility to check if a module is enabled
+@function is-enabled($name, $include-list, $exclude-list, $default: true) {
+    // If we have provided a list of included utilities, we will check
+    // if this utility is in the list
+    @if $include-list {
+        @return list.index($include-list, $name) != null;
+    }
+    // If we have provided a list of excluded modules, we will check
+    // if this module is not in the list
+    @else if $exclude-list {
+        @return list.index($exclude-list, $name) == null;
+    }
+    // Return default
+    @return $default;
+}
