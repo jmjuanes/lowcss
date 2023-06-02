@@ -24,45 +24,57 @@
     $values: map.get($utility-config, "values");
     $pseudos: map.get($utility-config, "pseudos");
     $responsive: map.get($utility-config, "responsive");
-    @each $key,$value in $values {
-        $selector: "#{config.$prefix}#{$key}";
-        // Check if classname has been provided for building the selector
-        @if meta.type-of($classname) == "string" and $classname != "" {
-            $selector: "#{config.$prefix}#{$classname}-#{$key}";
-            // Check for default key --> remove this from selector
-            @if $key == "DEFAULT" {
-                $selector: "#{config.$prefix}#{$classname}";
+    // Terrible hack for generating utilities in batches
+    // 1. all utilities without modifiers
+    // 2. utilities with responsive modifiers
+    // 3. utilities with pseudo modifiers
+    @each $type in ("default", "responsive", "pseudos") {
+        @each $key,$value in $values {
+            $selector: "#{config.$prefix}#{$key}";
+            // Check if classname has been provided for building the selector
+            @if meta.type-of($classname) == "string" and $classname != "" {
+                $selector: "#{config.$prefix}#{$classname}-#{$key}";
+                // Check for default key --> remove this from selector
+                @if $key == "DEFAULT" {
+                    $selector: "#{config.$prefix}#{$classname}";
+                }
             }
-        }
-        // Default selector for this utility
-        .#{$selector} {
-            @include api.rule($properties, $value);
-        }
-        // For responsive variants, we will register the style
-        // for each breakpoint in the list of breakpoints
-        @if $responsive == true and meta.type-of(config.$breakpoints) == "map" {
-            @each $breakpoint in map.keys(config.$breakpoints) {
-                @include api.screen-above($breakpoint) {
-                    .#{$breakpoint}#{config.$separator}#{$selector} {
-                        @include api.rule($properties, $value);
+            // Default selector for this utility
+            @if $type == "default" {
+                .#{$selector} {
+                    @include api.rule($properties, $value);
+                }
+            }
+            // For responsive modifiers, we will register the style
+            // for each breakpoint in the list of breakpoints
+            @if $type == "responsive" {
+                @if $responsive == true and meta.type-of(config.$breakpoints) == "map" {
+                    @each $breakpoint in map.keys(config.$breakpoints) {
+                        @include api.screen-above($breakpoint) {
+                            .#{$breakpoint}#{config.$separator}#{$selector} {
+                                @include api.rule($properties, $value);
+                            }
+                        }
                     }
                 }
             }
-        }
-        // Pseudo variants
-        @each $pseudo in $pseudos {
-            @if map.has-key(config.$pseudos, $pseudo) {
-                $pseudo-selector: map.get(config.$pseudos, $pseudo);
-                // Group selector
-                @if internal.str-starts-with($pseudo, "group-") {
-                    .group#{$pseudo-selector} .#{$pseudo}#{config.$separator}#{$selector} {
-                        @include api.rule($properties, $value);
-                    }
-                }
-                // Default pseudo selector
-                @else {
-                    .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {
-                        @include api.rule($properties, $value);
+            // Pseudo modifiers
+            @if $type == "pseudos" {
+                @each $pseudo in $pseudos {
+                    @if map.has-key(config.$pseudos, $pseudo) {
+                        $pseudo-selector: map.get(config.$pseudos, $pseudo);
+                        // Group selector
+                        @if internal.str-starts-with($pseudo, "group-") {
+                            .group#{$pseudo-selector} .#{$pseudo}#{config.$separator}#{$selector} {
+                                @include api.rule($properties, $value);
+                            }
+                        }
+                        // Default pseudo selector
+                        @else {
+                            .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {
+                                @include api.rule($properties, $value);
+                            }
+                        }
                     }
                 }
             }
