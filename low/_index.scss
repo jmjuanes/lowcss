@@ -1,8 +1,5 @@
 // Forward configuration variables and public api
 @forward "config";
-@forward "reset";
-@forward "forms";
-@forward "keyframes";
 @forward "api";
 
 // Include sass modules
@@ -13,9 +10,17 @@
 
 // Include lowcss modules
 @use "config";
+@use "base";
 @use "api";
 @use "internal";
 @use "utilities";
+
+// @description Inject base styles
+@mixin base() {
+    @include base.reset();
+    @include base.forms();
+    @include base.keyframes();
+}
 
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
