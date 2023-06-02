@@ -17,9 +17,15 @@
 
 // @description Inject base styles
 @mixin base() {
-    @include base.reset();
-    @include base.forms();
-    @include base.keyframes();
+    @if internal.is-enabled("reset", config.$include, config.$exclude) {
+        @include base.reset();
+    }
+    @if internal.is-enabled("forms", config.$include, config.$exclude) {
+        @include base.forms();
+    }
+    @if internal.is-enabled("keyframes", config.$include, config.$exclude) {
+        @include base.keyframes();
+    }
 }
 
 // @description Generate the utility from the given configuration
@@ -91,19 +97,7 @@
 @mixin utilities() {
     @each $utility-config in utilities.$utilities {
         $utility-name: map.get($utility-config, "key");
-        $include-utility: true;
-        // If we have provided a list of included utilities, we will check
-        // if this utility is in the list
-        @if config.$include {
-            $include-utility: list.index(config.$include, $utility-name) != null;
-        }
-        // If we have provided a list of excluded modules, we will check
-        // if this module is not in the list
-        @else if config.$exclude {
-            $include-utility: list.index(config.$exclude, $utility-name) == null;
-        }
-        // Check for including this utility
-        @if $include-utility {
+        @if internal.is-enabled($utility-name, config.$include, config.$exclude) {
             @include utility($utility-config);
         }
     }
