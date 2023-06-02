@@ -712,6 +712,7 @@ $vertical-align: (
 ) !default;
 
 $width: map.merge($sizes, (
+    auto: auto,
     screen: 100vw,
 )) !default;
 
