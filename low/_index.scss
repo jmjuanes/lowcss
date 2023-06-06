@@ -26,6 +26,9 @@
     @if internal.is-enabled("keyframes", config.$include, config.$exclude) {
         @include base.keyframes();
     }
+    @if internal.is-enabled("scrollbar", config.$include, config.$exclude) {
+        @include base.scrollbar();
+    }
 }
 
 // @description Generate the utility from the given configuration

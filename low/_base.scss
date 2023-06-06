@@ -251,3 +251,29 @@
         }
     }
 }
+
+// Scrollbar styles
+// Note that those styles do not force to display scrollbars
+@mixin scrollbar {
+    .scrollbar {
+        &::-webkit-scrollbar {
+            height: 0.4rem;
+            width: 0.4rem;
+        }
+        &::-webkit-scrollbar-track, 
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: currentColor;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+        // &::-webkit-scrollbar-thumb:hover {
+        //     opacity: 1;
+        // }
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}
