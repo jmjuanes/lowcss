@@ -211,58 +211,6 @@ $space: (
     32: 8rem,
 ) !default;
 
-// @description keyframes configuration
-$keyframes: (
-    bounce: (
-        "0%,100%": (
-            transform: translateY(-25%),
-            animation-timing-function: cubic-bezier(0.8, 0, 1, 1),
-        ),
-        "50%": (
-            transform: translateY(0),
-            animation-timing-function: cubic-bezier(0, 0, 0.2, 1),
-        ),
-    ),
-    fadein: (
-        from: (
-            opacity: 0,
-        ),
-        to: (
-            opacity: 1,
-        ),
-    ),
-    fadeout: (
-        from: (
-            opacity: 1,
-        ),
-        to: (
-            opacity: 0,
-        ),
-    ),
-    ping: (
-        "75%,100%": (
-            transform: scale(2),
-            opacity: 0,
-        )
-    ),
-    pulse: (
-        "0%,100%": (
-            opacity: 1,
-        ),
-        "50%": (
-            opacity: 0.5,
-        ),
-    ),
-    spin: (
-        from: (
-            transform: rotate(0deg),
-        ),
-        to: (
-            transform: rotate(360deg),
-        ),
-    ),
-) !default;
-
 // @description values configuration
 $align-content: (
     start: flex-start,

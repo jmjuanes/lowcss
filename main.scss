@@ -19,9 +19,7 @@
 // );
 
 // 2. Include low mixins
-@include low.reset();
-@include low.forms();
-@include low.keyframes();
+@include low.base();
 @include low.utilities();
 
 // 3. (optional) Generate custom components using utilities

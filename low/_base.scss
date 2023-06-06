@@ -1,0 +1,279 @@
+@use "internal";
+
+// Reset CSS styles
+@mixin reset() {
+    // Reset box sizing and borders of all elements
+    *,
+    *:before,
+    *:after {
+        border-color: currentColor;
+        border-style: solid;
+        border-width: 0;
+        box-sizing: border-box;
+    }
+    // Set default html style
+    html {
+        line-height: 1.5;
+        scroll-behavior: smooth;
+    }
+     // Set default body style
+    body {
+        line-height: inherit;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+    // Reset margins in some elements
+    blockquote,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    hr,
+    p,
+    pre {
+        margin: 0;
+    }
+    // Normalize typography in headings
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: inherit;
+        font-weight: inherit;
+    }
+    // Reset margins on lists
+    ul,
+    ol,
+    dl {
+        margin: 0;
+        padding: 0;
+    }
+    // Fix bold weight (in firefox)
+    strong,
+    b {
+        font-weight: bold;
+    }
+    // Reset links
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    // Make images and videos responsive by default
+    img,
+    video {
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+    // Reset table border
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    // td,
+    // th {
+    //     padding: 0;
+    // }
+    // Reset form elements
+    button,
+    input,
+    select,
+    textarea {
+        color: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        margin: 0;
+        padding: 0;
+    }
+    // Prevent resizing textareas horizontally
+    textarea {
+        resize: vertical;
+    }
+}
+
+// Forms reset styles
+@mixin forms() {
+    $checked-image: internal.svg-from-path("M4,8l3,3l5,-6");
+    $indeterminate-image: internal.svg-from-path("M4,8h8");
+    $select-image: internal.svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
+    $radio-image: internal.svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
+    // Reset styles in common form elements
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    select,
+    textarea {
+        appearance: none;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0.5rem 0.75rem;
+    }
+    // Reset placeholder style in input and textare elements
+    input::placeholder,
+    textarea::placeholder {
+        color: currentColor;
+        opacity: 0.5;
+    }
+    // Reset checkbox and radio inputs
+    [type="checkbox"],
+    [type="radio"] {
+        appearance: none;
+        background-origin: border-box;
+        display: inline-block;
+        height: 1rem;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+        vertical-align: middle;
+        width: 1rem;
+    }
+    [type="radio"] {
+        border-radius: 999px;
+    }
+    // Reset checked and indeterminate states in checkbox and radio inputs
+    [type="checkbox"]:checked,
+    [type="checkbox"]:indeterminate,
+    [type="radio"]:checked {
+        background-color: currentColor;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border-color: transparent;
+    }
+    [type="checkbox"]:checked {
+        background-image: url("data:image/svg+xml,#{$checked-image}");
+    }
+    [type="checkbox"]:indeterminate {
+        background-image: url("data:image/svg+xml,#{$indeterminate-image}");
+    }
+    [type="radio"]:checked {
+        background-image: url("data:image/svg+xml,#{$radio-image}");
+    }
+    // Reset range input element
+    [type="range"] {
+        appearance: none;
+        border-radius: 1rem;
+        display: block;
+        margin: 0;
+        min-width: 0;
+        outline: none;
+        &:-webkit-slider-thumb,
+        &:-moz-range-thumb {
+            background-color: currentColor;
+            border: none;
+            border-radius: 999px;
+            height: 1rem;
+            width: 1rem;
+        }
+        &:-webkit-slider-thumb {
+            appearance: none;
+        }
+    }
+    // Display a custom caret icon in select element
+    select {
+        background-image: url("data:image/svg+xml,#{$select-image}");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 16px 12px;
+        padding-right: 2.5rem;
+    }
+}
+
+// Keyframes styles
+@mixin keyframes() {
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    @keyframes ping {
+        75%,
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+// Scrollbar styles
+// Note that those styles do not force to display scrollbars
+@mixin scrollbar {
+    .scrollbar {
+        &::-webkit-scrollbar {
+            height: 0.4rem;
+            width: 0.4rem;
+        }
+        &::-webkit-scrollbar-track, 
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: currentColor;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+        // &::-webkit-scrollbar-thumb:hover {
+        //     opacity: 1;
+        // }
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}
