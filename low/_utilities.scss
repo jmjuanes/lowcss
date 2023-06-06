@@ -36,67 +36,63 @@
     @return $config;
 };
 
+@function get-utility-values($default-values, $theme-keys: null) {
+    @return $default-values;
+}
+
 // @description utilities configuration
 $utilities: (
     // Animations
-    generate-utility((
+    animation: (
         attributes: (
             group: "animation",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
             description: "Predefined CSS animations.",
+            theme: ("animation"),
         ),
-        key: "animation",
-        themeKey: "animation",
         classname: "animation",
-        responsive: true,
-        pseudos: (),
+        variants: ("responsive"),
         properties: (animation),
-        values: config.$animation,
-    )),
+        values: get-utility-values(config.$animation, ("animation")),
+    ),
 
     // Background utilities
-    generate-utility((
+    background-clip: (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip",
             description: "Utilities for setting the background-clip property of the element.",
+            theme: (),
         ),
-        key: "background-clip",
-        themeKey: "background-clip",
         classname: "bg",
-        responsive: false,
-        pseudos: (),
+        variants: (),
         properties: (background-clip),
         values: config.$background-clip,
-    )),
-    generate-utility((
+    ),
+    background-color: (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
             description: "Utilities for setting the background-color property of the element.",
+            theme: ("color", "background-color"),
         ),
-        key: "background-color",
-        themeKey: "background-color",
         classname: "bg",
-        responsive: false,
-        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        variants: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: (background-color),
-        values: config.$background-color,
-    )),
-    generate-utility((
+        values: get-utility-values(config.$background-color, ("color", "background-color")),
+    ),
+    background-image: (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-image",
             description: "Utilities for setting the background-image property of the element.",
+            theme: (),
         ),
-        key: "background-image",
-        themeKey: "background-image",
         classname: "bg",
-        pseudos: (),
-        responsive: false,
+        variants: (),
         properties: (background-image),
         values: config.$background-image,
-    )),
+    ),
     generate-utility((
         attributes: (
             group: "background",
