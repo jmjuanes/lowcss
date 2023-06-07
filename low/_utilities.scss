@@ -2,642 +2,557 @@
 @use "sass:map";
 @use "sass:meta";
 @use "config";
+@use "internal";
 
 // @description internal function to generate utilities configuration
-@function generate-utility($config) {
-    $key: map.get($config, "key");
-    $themeKey: map.get($config, "themeKey");
-    // 1. merge with theme values
-    @if meta.type-of($themeKey) == "string" {
+@function create-utility($name, $config) {
+    // 1. Merge custom theme values
+    $theme-keys: map.get($config, "theme");
+    @if list.length($theme-keys) > 1 {
         @if config.$theme and meta.type-of(config.$theme) == "map" {
-            $theme-values: map.get(config.$theme, $themeKey);
-            $extend-values: map.get(config.$theme, "extend", $key);
-            $values: map.get($config, "values");
-            // Check for replacing the current values with the values provided in the theme
-            @if meta.type-of($theme-values) == "map" {
-                $values: $theme-values;
+            $new-values: ();
+            @each $theme-key in $theme-keys {
+                @if map.has-key(config.$theme, $theme-key) {
+                    $new-values: map.get(config.$theme, $theme-key);
+                }
             }
-            // Check for extending with additional values
-            @if meta.type-of($extend-values) == "map" {
-                $values: map.merge($values, $extend-values);
-            }
-            // Save values
-            $config: map.set($config, "values", $values);
+            // Save new utilities values
+            $config: map.set($config, "values", $new-values);
         }
     }
-    // 2. Merge utilities configuration
-    @if config.$utilities and meta.type-of(config.$utilities) == "map" {
-        $extend-config: map.get(config.$utilities, $key);
-        @if $extend-config and meta.type-of($extend-config) == "map" {
-            $config: map.merge($config, $extend-config);
+    // 2. Merge custom variants
+    @if config.$variants and meta.type-of(config.$variants) == "map" {
+        @if map.has-key(config.$variants, $name) {
+            $new-variants: map.get(config.$variants, $name);
+            $config: map.set($config, "variants", $new-variants);
         }
     }
     // Return parsed configuration
     @return $config;
 };
 
-@function get-utility-values($default-values, $theme-keys: null) {
-    @return $default-values;
-}
-
 // @description utilities configuration
 $utilities: (
     // Animations
-    animation: (
+    animation: create-utility("animation", (
         attributes: (
             group: "animation",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
             description: "Predefined CSS animations.",
-            theme: ("animation"),
         ),
         classname: "animation",
-        variants: ("responsive"),
-        properties: (animation),
-        values: get-utility-values(config.$animation, ("animation")),
-    ),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(animation),
+        theme: internal.list-from("animation"),
+        values: config.$animation,
+    )),
 
     // Background utilities
-    background-clip: (
+    background-clip: create-utility("background-clip", (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip",
             description: "Utilities for setting the background-clip property of the element.",
-            theme: (),
         ),
         classname: "bg",
-        variants: (),
-        properties: (background-clip),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(background-clip),
+        theme: internal.list-empty(),
         values: config.$background-clip,
-    ),
-    background-color: (
+    )),
+    background-color: create-utility("background-color", (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
             description: "Utilities for setting the background-color property of the element.",
-            theme: ("color", "background-color"),
         ),
         classname: "bg",
-        variants: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
-        properties: (background-color),
-        values: get-utility-values(config.$background-color, ("color", "background-color")),
-    ),
-    background-image: (
+        variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        properties: internal.list-from(background-color),
+        theme: internal.list-from("color", "background-color"),
+        values: config.$background-color,
+    )),
+    background-image: create-utility("background-image", (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-image",
             description: "Utilities for setting the background-image property of the element.",
-            theme: (),
         ),
         classname: "bg",
-        variants: (),
-        properties: (background-image),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(background-image),
+        theme: internal.list-from("background-image"),
         values: config.$background-image,
-    ),
-    generate-utility((
+    )),
+    background-repeat: create-utility("background-repeat", (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat",
             description: "Utilities for setting the background-repeat property of the element.",
         ),
-        key: "background-repeat",
-        themeKey: "background-repeat",
         classname: "bg",
-        pseudos: (),
-        responsive: false,
-        properties: (background-repeat),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(background-repeat),
+        theme: internal.list-empty(),
         values: config.$background-repeat,
     )),
-    generate-utility((
+    background-size: create-utility("background-size", (
         attributes: (
             group: "background",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-size",
             description: "Utilities for setting the background-size property of the element.",
         ),
-        key: "background-size",
-        themeKey: "background-size",
         classname: "bg",
-        pseudos: (),
-        responsive: false,
-        properties: (background-size),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(background-size),
+        theme: internal.list-empty(),
         values: config.$background-size,
     )),
 
     // Gradients utilities
-    generate-utility((
+    gradient-from: create-utility("gradient-from", (
         attributes: (
             group: "gradient",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients",
             description: "Utilities to specify the starting color for the gradient.",
         ),
-        key: "gradient-from",
-        themeKey: "background-color",
         classname: "from",
-        pseudos: (),
-        responsive: false,
-        properties: (--low-gradient-start),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(--low-gradient-start),
+        theme: internal.list-from("color", "background-color"),
         values: config.$background-color,
     )),
-    generate-utility((
+    gradient-to: create-utility("gradient-to", (
         attributes: (
             group: "gradient",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients",
             description: "Utilities to specify the ending color for the gradient.",
         ),
-        key: "gradient-to",
-        themeKey: "background-color",
         classname: "to",
-        pseudos: (),
-        responsive: false,
-        properties: (--low-gradient-stop),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(--low-gradient-stop),
+        theme: internal.list-from("color", "background-color"),
         values: config.$background-color,
     )),
 
     // Border utilities
-    generate-utility((
+    border-radius: create-utility("border-radius", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
             description: "Utilities for setting the radius of the element.",
         ),
-        key: "border-radius",
-        themeKey: "border-radius",
         classname: "rounded",
-        pseudos: (),
-        responsive: false,
-        properties: (border-radius),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(border-radius),
+        theme: internal.list-from("border-radius"),
         values: config.$border-radius,
     )),
-    generate-utility((
+    border-color: create-utility("border-color", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color",
             description: "Utilities for setting the border color of the element.",
         ),
-        key: "border-color",
-        themeKey: "border-color",
         classname: "border",
-        pseudos: ("hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
-        responsive: false,
-        properties: (border-color),
+        variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(border-color),
+        theme: internal.list-from("color", "border-color"),
         values: config.$border-color,
     )),
-    generate-utility((
+    border-style: create-utility("border-style", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-style",
             description: "Utilities for setting the border-style property of the element.",
         ),
-        key: "border-style",
-        themeKey: "border-style",
         classname: "border",
-        pseudos: ("focus"),
-        responsive: false,
-        properties: (border-style),
+        variants: internal.list-from("default", "focus"),
+        properties: internal.list-from(border-style),
+        theme: internal.list-empty(),
         values: config.$border-style,
     )),
-    generate-utility((
+    border-width: create-utility("border-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-width",
             description: "Utilities for setting the border-width property of the element.",
         ),
-        key: "border-width",
-        themeKey: "border-width",
         classname: "border",
-        pseudos: ("focus"),
-        responsive: false,
-        properties: (border-width),
+        variants: internal.list-from("default", "focus"),
+        properties: internal.list-from(border-width),
+        theme: internal.list-from("sizing", "border-width"),
         values: config.$border-width,
     )),
-    generate-utility((
+    border-bottom-width: create-utility("border-bottom-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width",
             description: "Utilities for setting the element's border bottom width.",
         ),
-        key: "border-bottom-width",
-        themeKey: "border-width",
         classname: "border-b",
-        pseudos: ("focus", "first", "last"),
-        responsive: false,
-        properties: (border-bottom-width),
+        variants: internal.list-from("default", "focus", "first", "last"),
+        properties: internal.list-from(border-bottom-width),
+        theme: internal.list-from("sizing", "border-width"),
         values: config.$border-width,
     )),
-    generate-utility((
+    border-left-width: create-utility("border-left-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width",
             description: "Utilities for setting the element's border left width.",
         ),
-        key: "border-left-width",
-        themeKey: "border-width",
         classname: "border-l",
-        pseudos: ("focus", "first", "last"),
-        responsive: false,
-        properties: (border-left-width),
+        variants: internal.list-from("default", "focus", "first", "last"),
+        properties: internal.list-from(border-left-width),
+        theme: internal.list-from("sizing", "border-width"),
         values: config.$border-width,
     )),
-    generate-utility((
+    border-right-width: create-utility("border-right-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width",
             description: "Utilities for setting the element's border right width.",
         ),
-        key: "border-right-width",
-        themeKey: "border-width",
         classname: "border-r",
-        pseudos: ("focus", "first", "last"),
-        responsive: false,
-        properties: (border-right-width),
+        variants: internal.list-from("default", "focus", "first", "last"),
+        properties: internal.list-from(border-right-width),
+        theme: internal.list-from("sizing", "border-width"),
         values: config.$border-width,
     )),
-    generate-utility((
+    border-top-width: create-utility("border-top-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width",
             description: "Utilities for setting the element's border top width.",
         ),
-        key: "border-top-width",
-        themeKey: "border-width",
         classname: "border-t",
-        pseudos: ("focus", "first", "last"),
-        responsive: false,
-        properties: (border-top-width),
+        variants: internal.list-from("default", "focus", "first", "last"),
+        properties: internal.list-from(border-top-width),
+        theme: internal.list-from("sizing", "border-width"),
         values: config.$border-width,
     )),
-    generate-utility((
+    outline-color: create-utility("outline-color", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color",
             description: "Utilities for setting the outline-color property of the element.",
         ),
-        key: "outline-color",
-        themeKey: "outline-color",
         classname: "outline",
-        pseudos: ("focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        responsive: false,
-        properties: (outline-color),
+        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: internal.list-from(outline-color),
+        theme: internal.list-from("color", "outline-color"),
         values: config.$outline-color,
     )),
-    generate-utility((
+    outline-offset: create-utility("outline-offset", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset",
             description: "Utilities for setting the outline-offset property of the element.",
         ),
-        key: "outline-offset",
-        themeKey: "outline-offset",
         classname: "outline",
-        pseudos: ("focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        responsive: false,
-        properties: (outline-offset),
+        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: internal.list-from(outline-offset),
+        theme: internal.list-from("outline-offset"),
         values: config.$outline-offset,
     )),
-    generate-utility((
+    outline-style: create-utility("outline-style", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style",
             description: "Utilities for setting the outline-style property of the element.",
         ),
-        key: "outline-style",
-        themeKey: "outline-style",
         classname: "outline",
-        pseudos: ("focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        responsive: false,
-        properties: (outline-style),
+        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: internal.list-from(outline-style),
+        theme: internal.list-empty(),
         values: config.$outline-style,
     )),
-    generate-utility((
+    outline-width: create-utility("outline-width", (
         attributes: (
             group: "border",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width",
             description: "Utilities for setting the outline-width property of the element.",
         ),
-        key: "outline-width",
-        themeKey: "outline-width",
         classname: "outline",
-        pseudos: ("focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        responsive: false,
-        properties: (outline-width),
+        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: internal.list-from(outline-width),
+        theme: internal.list-from("outline-width"),
         values: config.$outline-width,
     )),
 
     // Effects utilities
-    generate-utility((
+    box-shadow: create-utility("box-shadow", (
         attributes: (
             group: "effects",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow",
             description: "Utilities for setting the box-shadow property of the element.",
         ),
-        key: "box-shadow",
-        themeKey: "box-shadow",
         classname: "shadow",
-        pseudos: ("hover", "focus", "focus-within"),
-        responsive: false,
-        properties: (box-shadow),
+        variants: internal.list-from("default", "hover", "focus", "focus-within"),
+        properties: internal.list-from(box-shadow),
+        theme: internal.list-from("box-shadow"),
         values: config.$box-shadow,
     )),
-    generate-utility((
+    opacity: create-utility("opacity", (
         attributes: (
             group: "effects",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
             description: "Utilities for setting the opacity property of the element.",
         ),
-        key: "opacity",
-        themeKey: "opacity",
         classname: "o",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        responsive: true,
-        properties: (opacity),
+        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(opacity),
+        theme: internal.list-from("opacity"),
         values: config.$opacity,
     )),
 
     // Flexbox and grid utilities
-    generate-utility((
+    align-content: create-utility("align-content", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-content",
             description: "Utilities for setting the align-content property of the element.",
         ),
-        key: "align-content",
-        themeKey: "align-content",
         classname: "content",
-        pseudos: (),
-        responsive: true,
-        properties: (align-content),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(align-content),
+        theme: internal.list-empty(),
         values: config.$align-content,
     )),
-    generate-utility((
+    align-items: create-utility("align-itens", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-items",
             description: "Utilities for setting the align-items property of the element.",
         ),
-        key: "align-items",
-        themeKey: "align-items",
         classname: "items",
-        pseudos: (),
-        responsive: true,
-        properties: (align-items),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(align-items),
+        theme: internal.list-empty(),
         values: config.$align-items,
     )),
-    generate-utility((
+    align-self: create-utility("align-self", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-self",
             description: "Utilities for setting the align-self property of the element.",
         ),
-        key: "align-self",
-        themeKey: "align-self",
         classname: "self",
-        pseudos: (),
-        responsive: true,
-        properties: (align-self),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(align-self),
+        theme: internal.list-empty(),
         values: config.$align-self,
     )),
-    generate-utility((
+    flex: create-utility("flex", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex",
             description: "Utilities for setting the flex property of the element.",
         ),
-        key: "flex",
-        themeKey: "flex",
         classname: "flex",
-        pseudos: (),
-        responsive: true,
-        properties: (flex),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(flex),
+        theme: internal.list-from("flex"),
         values: config.$flex,
     )),
-    generate-utility((
+    flex-direction: create-utility("flex-direction", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction",
             description: "Utilities for setting the flex-direction property of the element.", 
         ),
-        key: "flex-direction",
-        themeKey: "flex-direction",
         classname: "flex",
-        pseudos: (),
-        responsive: true,
-        properties: (flex-direction),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(flex-direction),
+        theme: internal.list-empty(),
         values: config.$flex-direction,
     )),
-    generate-utility((
+    flex-grow: create-utility("flex-grow", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow",
             description: "Utilities for setting the flex-grow property of the element.",
         ),
-        key: "flex-grow",
-        themeKey: "flex-grow",
         classname: null,
-        pseudos: (),
-        responsive: true,
-        properties: (flex-grow),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(flex-grow),
+        theme: internal.list-from("flex-grow"),
         values: config.$flex-grow,
     )),
-    generate-utility((
+    flex-shrink: create-utility("flex-shrink", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink",
             description: "Utilities for setting the flex-shrink property of the element.",
         ),
-        key: "flex-shrink",
-        themeKey: "flex-shrink",
         classname: null,
-        pseudos: (),
-        responsive: true,
-        properties: (flex-shrink),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(flex-shrink),
+        theme: internal.list-from("flex-shrink"),
         values: config.$flex-shrink,
     )),
-    generate-utility((
+    flex-wrap: create-utility("flex-wrap", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap",
             description: "Utilities for setting the flex-wrap property of the element.",
         ),
-        key: "flex-wrap",
-        themeKey: "flex-wrap",
         classname: "flex",
-        pseudos: (),
-        responsive: true,
-        properties: (flex-wrap),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(flex-wrap),
+        theme: internal.list-empty(),
         values: config.$flex-wrap,
     )),
-    generate-utility((
+    gap: create-utility("gap", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
             description: "Utilities for setting the gap property of the element.",
         ),
-        key: "gap",
-        themeKey: "gap",
         classname: "gap",
-        pseudos: (),
-        responsive: true,
-        properties: (gap),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(gap),
+        theme: internal.list-from("gap"),
         values: config.$gap,
     )),
-    generate-utility((
+    grid-template-columns: create-utility("grid-template-columns", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns",
             description: "Utilities for setting the grid-template-columns property of the element.",
         ),
-        key: "grid-template-columns",
-        themeKey: "grid-template-columns",
         classname: "grid-cols",
-        pseudos: (),
-        responsive: true,
-        properties: (grid-template-columns),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(grid-template-columns),
+        theme: internal.list-from("grid-template-columns"),
         values: config.$grid-template-columns,
     )),
-    generate-utility((
+    grid-template-rows: create-utility("grid-template-rows", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows",
             description: "Utilities for setting the grid-template-rows property of the element.",
         ),
-        key: "grid-template-rows",
-        themeKey: "grid-template-rows",
         classname: "grid-rows",
-        pseudos: (),
-        responsive: true,
-        properties: (grid-template-rows),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(grid-template-rows),
+        theme: internal.list-from("grid-template-rows"),
         values: config.$grid-template-rows,
     )),
-    generate-utility((
+    justify-content: create-utility("justify-content", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content",
             description: "Utilities for setting the justify-content property of the element.",
         ),
-        key: "justify-content",
-        themeKey: "justify-content",
         classname: "justify",
-        pseudos: (),
-        responsive: true,
-        properties: (justify-content),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(justify-content),
+        theme: internal.list-empty(),
         values: config.$justify-content,
     )),
-    generate-utility((
+    order: create-utility("order", (
         attributes: (
             group: "flexbox",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/order",
             description: "Utilities for setting the order property of the element.",
         ),
-        key: "order",
-        themeKey: "order",
         classname: "order",
-        pseudos: (),
-        responsive: true,
-        properties: (order),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(order),
+        theme: internal.list-from("order"),
         values: config.$order,
     )),
 
     // Interactivity utilities
-    generate-utility((
+    cursor: create-utility("cursor", (
         attributes: (
             group: "interactivity",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/cursor",
             description: "Utilities for setting the cursor property of the element.",
         ),
-        key: "cursor",
-        themeKey: "cursor",
         classname: "cursor",
-        pseudos: (),
-        responsive: false,
-        properties: (cursor),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(cursor),
+        theme: internal.list-from("cursor"),
         values: config.$cursor,
     )),
-    generate-utility((
+    user-select: create-utility("user-select", (
         attributes: (
             group: "interactivity",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/user-select",
             description: "Utilities for setting the user-select property of the element.",
         ),
-        key: "user-select",
-        themeKey: "user-select",
         classname: "select",
-        pseudos: (),
-        responsive: false,
-        properties: (user-select),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(user-select),
+        theme: internal.list-empty(),
         values: config.$user-select,
     )),
 
     // Layout utilities
-    generate-utility((
+    bottom: create-utility("bottom", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/bottom",
             description: "Utilities for setting the bottom property of the element.",
         ),
-        key: "bottom",
-        themeKey: "inset",
         classname: "bottom",
-        pseudos: (),
-        responsive: true,
-        properties: (bottom),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(bottom),
+        theme: internal.list-from("inset"),
         values: config.$inset,
     )),
-    generate-utility((
+    display: create-utility("display", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
             description: "Utilities for setting the display property of the element.",
         ),
-        key: "display",
-        themeKey: null,
         classname: null,
-        pseudos: ("group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
-        responsive: true,
-        properties: (display),
+        variants: internal.list-from("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        properties: internal.list-from(display),
+        theme: internal.list-from(),
         values: config.$display,
     )),
-    generate-utility((
+    float: create-utility("float", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/float",
             description: "Utilities for setting the float property of the element.",
         ),
-        key: "float",
-        themeKey: null,
         classname: "float",
-        pseudos: (),
-        responsive: true,
-        properties: (float),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(float),
+        theme: internal.list-from(),
         values: config.$float,
     )),
-    generate-utility((
+    left :create-utility("left", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/left",
             description: "Utilities for setting the left property of the element.",
         ),
-        key: "left",
-        themeKey: "inset",
         classname: "left",
-        pseudos: (),
-        responsive: true,
-        properties: (left),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(left),
+        theme: internal.list-from("inset"),
         values: config.$inset,
     )),
-    generate-utility((
+    overflow: create-utility("overflow", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
             description: "Utilities for setting the overflow property of the element.",
         ),
-        key: "overflow",
-        themeKey: "overflow",
         classname: "overflow",
-        pseudos: (),
-        responsive: true,
-        properties: (overflow),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(overflow),
+        theme: internal.list-from(),
         values: config.$overflow,
     )),
-    generate-utility((
+    overflow-x: create-utility("overflow-x", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x",
@@ -648,10 +563,12 @@ $utilities: (
         classname: "overflow-x",
         pseudos: (),
         responsive: true,
-        properties: (overflow-x),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(overflow-x),
+        theme: internal.list-from(),
         values: config.$overflow,
     )),
-    generate-utility((
+    overflow-y: create-utility("overflow-y", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y",
@@ -660,649 +577,559 @@ $utilities: (
         key: "overflow-y",
         themeKey: "overflow",
         classname: "overflow-y",
-        pseudos: (),
-        responsive: true,
-        properties: (overflow-y),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(overflow-y),
+        theme: internal.list-from(),
         values: config.$overflow,
     )),
-    generate-utility((
+    position: create-utility("position", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
             description: "Utilities for setting the position property of the element.",
         ),
-        key: "position",
-        themeKey: null,
         classname: null,
-        pseudos: (),
-        responsive: true,
-        properties: (position),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(position),
+        theme: internal.list-from(),
         values: config.$position,
     )),
-    generate-utility((
+    right: create-utility("right", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/right",
             description: "Utilities for setting the right property of the element.",
         ),
-        key: "right",
-        themeKey: "inset",
         classname: "right",
-        pseudos: (),
-        responsive: true,
-        properties: (right),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(right),
+        theme: internal.list-from("inset"),
         values: config.$inset,
     )),
-    generate-utility((
+    top: create-utility("top", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/top",
             description: "Utilities for setting the top property of the element.",
         ),
-        key: "top",
-        themeKey: "inset",
         classname: "top",
-        pseudos: (),
-        responsive: true,
-        properties: (top),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(top),
+        theme: internal.list-from("inset"),
         values: config.$inset,
     )),
-    generate-utility((
+    z-index: create-utility("z-index", (
         attributes: (
             group: "layout",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
             description: "Utilities for setting the z-index property of the element.",
         ),
-        key: "z-index",
-        themeKey: "z-index",
         classname: "z",
-        pseudos: (),
-        responsive: true,
-        properties: (z-index),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(z-index),
+        theme: internal.list-from("z-index"),
         values: config.$z-index,
     )),
 
     // Sizing utilities
-    generate-utility((
+    height: create-utility("height", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/height",
             description: "Utilities for setting the height property of the element.",
         ),
-        key: "height",
-        themeKey: "height",
         classname: "h",
-        pseudos: (),
-        responsive: true,
-        properties: (height),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(height),
+        theme: internal.list-from("height"),
         values: config.$height,
     )),
-    generate-utility((
+    max-height: create-utility("max-height", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
             description: "Utilities for setting the max-height property of the element.",
         ),
-        key: "max-height",
-        themeKey: "max-height",
         classname: "maxh",
-        pseudos: (),
-        responsive: true,
-        properties: (max-height),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(max-height),
+        theme: internal.list-from("max-height"),
         values: config.$max-height,
     )),
-    generate-utility((
+    max-width: create-utility("max-width", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/max-width",
             description: "Utilities for setting the max-width property of the element.",
         ),
-        key: "max-width",
-        themeKey: "max-width",
         classname: "maxw",
-        pseudos: (),
-        responsive: true,
-        properties: (max-width),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(max-width),
+        theme: internal.list-from("max-width"),
         values: config.$max-width,
     )),
-    generate-utility((
+    min-height: create-utility("min-height", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/min-height",
             description: "Utilities for setting the min-height property of the element.",
         ),
-        key: "min-height",
-        themeKey: "min-height",
         classname: "minh",
-        pseudos: (),
-        responsive: true,
-        properties: (min-height),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(min-height),
+        theme: internal.list-from("min-height"),
         values: config.$min-height,
     )),
-    generate-utility((
+    min-width: create-utility("min-width", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
             description: "Utilities for setting the min-width property of the element.",
         ),
-        key: "min-width",
-        themeKey: "min-width",
         classname: "minw",
-        pseudos: (),
-        responsive: true,
-        properties: (min-width),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(min-width),
+        theme: internal.list-from("min-width"),
         values: config.$min-width,
     )),
-    generate-utility((
+    width: create-utility("width", (
         attributes: (
             group: "sizing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
             description: "Utilities for setting the width property of the element.",
         ),
-        key: "width",
-        themeKey: "width",
         classname: "w",
-        pseudos: (),
-        responsive: true,
-        properties: (width),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(width),
+        theme: internal.list-from("width"),
         values: config.$width,
     )),
 
     // Spacing utilities
-    generate-utility((
+    margin: create-utility("margin", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
             description: "Utilities for setting the margin property of the element.",
         ),
-        key: "margin",
-        themeKey: "margin",
         classname: "m",
-        pseudos: (),
-        responsive: true,
-        properties: (margin),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-bottom: create-utility("margin-bottom", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom",
             description: "Utilities for setting the margin-bottom property of the element.",
         ),
-        key: "margin-bottom",
-        themeKey: "margin",
         classname: "mb",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-bottom),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-bottom),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-left: create-utility("mrgin-left", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left",
             description: "Utilities for setting the margin-left property of the element.",
         ),
-        key: "margin-left",
-        themeKey: "margin",
         classname: "ml",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-left),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-left),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-right: create-utility("margin-right", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right",
             description: "Utilities for setting the margin-right property of the element.",
         ),
-        key: "margin-right",
-        themeKey: "margin",
         classname: "mr",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-right),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-right),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-top: create-utility("margin-top", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top",
             description: "Utilities for setting the margin-top property of the element.",
         ),
-        key: "margin-top",
-        themeKey: "margin",
         classname: "mt",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-top),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-top),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-x: create-utility("margin-x", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
             description: "Utilities for setting both margin-left and margin-right properties of the element.",
         ),
-        key: "margin-x",
-        themeKey: "margin",
         classname: "mx",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-left margin-right),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-left, margin-right),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    margin-y: create-utility("margin-y", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
             description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
         ),
-        key: "margin-y",
-        themeKey: "margin",
         classname: "my",
-        pseudos: (),
-        responsive: true,
-        properties: (margin-top margin-bottom),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(margin-top, margin-bottom),
+        theme: internal.list-from("margin"),
         values: config.$margin,
     )),
-    generate-utility((
+    padding: create-utility("padding", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
             description: "Utilities for setting the padding property of the element.",
         ),
-        key: "padding",
-        themeKey: "padding",
         classname: "p",
-        pseudos: (),
-        responsive: true,
-        properties: (padding),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-bottom: create-utility("padding-bottom", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom",
             description: "Utilities for setting the padding-bottom property of the element.",
         ),
-        key: "padding-bottom",
-        themeKey: "padding",
         classname: "pb",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-bottom),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-bottom),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-left: create-utility("padding-left", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left",
             description: "Utilities for setting the padding-left property of the element.",
         ),
-        key: "padding-left",
-        themeKey: "padding",
         classname: "pl",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-left),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-left),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-right: create-utility("padding-right", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right",
             description: "Utilities for setting the padding-right property of the element.",
         ),
-        key: "padding-right",
-        themeKey: "padding",
         classname: "pr",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-right),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-right),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-top: create-utility("padding-top", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top",
             description: "Utilities for setting the padding-top property of the element.",
         ),
-        key: "padding-top",
-        themeKey: "padding",
         classname: "pt",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-top),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-top),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-x: create-utility("padding-x", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
             description: "Utilities for setting both padding-left and padding-right properties of the element.",
         ),
-        key: "padding-x",
-        themeKey: "padding",
         classname: "px",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-left padding-right),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-left, padding-right),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
-    generate-utility((
+    padding-y: create-utility("padding-y", (
         attributes: (
             group: "spacing",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
             description: "Utilities for setting both padding-bottom and padding-top properties of the element.",
         ),
-        key: "padding-y",
-        themeKey: "padding",
         classname: "py",
-        pseudos: (),
-        responsive: true,
-        properties: (padding-top padding-bottom),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(padding-top, padding-bottom),
+        theme: internal.list-from("padding"),
         values: config.$padding,
     )),
 
     // Typography utilities
-    generate-utility((
+    font-family: create-utility("font-family", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family",
             description: "Utilities for setting the font-family property of the element.",
         ),
-        key: "font-family",
-        themeKey: "font-family",
         classname: "font",
-        pseudos: (),
-        responsive: false,
-        properties: (font-family),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(font-family),
+        theme: internal.list-from("font-family"),
         values: config.$font-family,
     )),
-    generate-utility((
+    font-size: create-utility("font-size", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size",
             description: "Utilities for setting the font-size property of the element.",
         ),
-        key: "font-size",
-        themeKey: "font-size",
         classname: "text",
-        pseudos: (),
-        responsive: true,
-        properties: (font-size),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(font-size),
+        theme: internal.list-from("font-size"),
         values: config.$font-size,
     )),
-    generate-utility((
+    font-style: create-utility("font-style", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-style",
             description: "Utilities for setting the font-style property of the element.",
         ),
-        key: "font-style",
-        themeKey: "font-style",
         classname: null,
-        pseudos: (),
-        responsive: false,
-        properties: (font-style),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(font-style),
+        theme: internal.list-from(),
         values: config.$font-style,
     )),
-    generate-utility((
+    font-weight: create-utility("font-weight", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
             description: "Utilities for setting the font-weight property of the element.",
         ),
-        key: "font-weight",
-        themeKey: "font-weight",
         classname: "font",
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        responsive: true,
-        properties: (font-weight),
+        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(font-weight),
+        theme: internal.list-from(),
         values: config.$font-weight,
     )),
-    generate-utility((
+    letter-spacing: create-utility("letter-spacing", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing",
             description: "Utilities for setting the horizontal spacing behavior between text characters.",
         ),
-        key: "letter-spacing",
-        themeKey: "letter-spacing",
         classname: "tracking",
-        pseudos: (),
-        responsive: false,
-        properties: (letter-spacing),
+        variants: internal.list-from("default"),
+        properties: internal.list-from(letter-spacing),
+        theme: internal.list-from("letter-spacing"),
         values: config.$letter-spacing,
     )),
-    generate-utility((
+    line-height: create-utility("line-height", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
             description: "Utilities for setting the line-height property of the element.",
         ),
-        key: "line-height",
-        themeKey: "line-height",
         classname: "leading",
-        pseudos: (),
-        responsive: true,
-        properties: (line-height),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(line-height),
+        theme: internal.list-from("line-height"),
         values: config.$line-height,
     )),
-    generate-utility((
+    text-align: create-utility("text-align", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-align",
             description: "Utilities for setting the text-align property of the element.",
         ),
-        key: "text-align",
-        themeKey: null,
         classname: "text",
-        pseudos: (),
-        responsive: true,
-        properties: (text-align),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(text-align),
+        theme: internal.list-from(),
         values: config.$text-align,
     )),
-    generate-utility((
+    text-color: create-utility("text-color", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
             description: "Utilities for setting the color property of the element.",
         ),
-        key: "text-color",
-        themeKey: "text-color",
         classname: "text",
-        pseudos: ("hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
-        responsive: true,
-        properties: (color),
+        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(color),
+        theme: internal.list-from("color", "text-color"),
         values: config.$text-color,
     )),
-    generate-utility((
+    text-decoration: create-utility("text-decoration", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
             description: "Utilities for setting the text-decoration property of the element.",
         ),
-        key: "text-decoration",
-        themeKey: "text-decoration",
         classname: null,
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        responsive: false,
-        properties: (text-decoration),
+        variants: internal.list-from("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(text-decoration),
+        theme: internal.list-from(),
         values: config.$text-decoration,
     )),
-    generate-utility((
+    text-transform: create-utility("text-transform", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
             description: "Utilities for setting the text-transform property of the element.",
         ),
-        key: "text-transform",
-        themeKey: "text-transform",
         classname: null,
-        pseudos: ("hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        responsive: false,
-        properties: (text-transform),
+        variants: internal.list-from("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: internal.list-from(text-transform),
+        theme: internal.list-from(),
         values: config.$text-transform,
     )),
-    generate-utility((
+    vertical-align: create-utility("vertical-align", (
         attributes: (
             group: "typography",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align",
             description: "Utilities for setting the vertical-align property of the element.",
         ),
-        key: "vertical-align",
-        themeKey: "vertical-align",
         classname: "align",
-        pseudos: (),
-        responsive: true,
-        properties: (vertical-align),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(vertical-align),
+        theme: internal.list-from(),
         values: config.$vertical-align,
     )),
 
     // Filter
-    generate-utility((
+    filter-blur: create-utility("filter-blur", (
         attributes: (
             group: "filter",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
             description: "Utilities for applying a blur filter to the element.",
         ),
-        key: "filter-blur",
-        themeKey: "filter-blur",
         classname: "blur",
-        pseudos: (),
-        responsive: true,
-        properties: (filter),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(filter),
+        theme: internal.list-from("blur"),
         values: config.$filter-blur,
     )),
-    generate-utility((
+    filter-sepia: create-utility("filter-sepia", (
         attributes: (
             group: "filter",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
             description: "Utilities for applying a sepia filter the element.",
         ),
-        key: "filter-sepia",
-        themeKey: "filter-sepia",
         classname: "sepia",
-        pseudos: (),
-        responsive: true,
-        properties: (filter),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(filter),
+        theme: internal.list-from("sepia"),
         values: config.$filter-sepia,
     )),
-    generate-utility((
+    filter-invert: create-utility("filter-invert", (
         attributes: (
             group: "filter",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
             description: "Utilities for applying an invert filter to the element.",
         ),
-        key: "filter-invert",
-        themeKey: "filter-invert",
         classname: "invert",
-        pseudos: (),
-        responsive: true,
-        properties: (filter),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(filter),
+        theme: internal.list-from("invert"),
         values: config.$filter-invert,
     )),
 
     // Transform
-    generate-utility((
+    scale: create-utility("scale", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a scale transform to the element.",
         ),
-        key: "transform-scale",
-        themeKey: "transform-scale",
         classname: "scale",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("scale"),
         values: config.$transform-scale,
     )),
-    generate-utility((
+    scale-x: create-utility("scale-x", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a scale in the X axis to the element.",
         ),
-        key: "transform-scale-x",
-        themeKey: "transform-scale-x",
         classname: "scale-x",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
-        values: config.$transform-scale-x,
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("scale"),
+        values: config.$transform-scale,
     )),
-    generate-utility((
+    scale-y: create-utility("scale-y", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a scale in the Y axis of the element.",
         ),
-        key: "transform-scale-y",
-        themeKey: "transform-scale-y",
         classname: "scale-y",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
-        values: config.$transform-scale-y,
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("scale"),
+        values: config.$transform-scale,
     )),
-    generate-utility((
+    rotate: create-utility("rotate", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a rotation transform to the element.",
         ),
-        key: "transform-rotate",
-        themeKey: "transform-rotate",
         classname: "rotate",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("rotate"),
         values: config.$transform-rotate,
     )),
-    generate-utility((
+    translate-x: create-utility("translate-x", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a translation in the X axis to the element.",
         ),
-        key: "transform-translate-x",
-        themeKey: "transform-translate-x",
         classname: "translate-x",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("translate-x"),
         values: config.$transform-translate-x,
     )),
-    generate-utility((
+    translate-y: create-utility("translate-y", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
             description: "Utilities for applying a translation in the Y axis to the element.",
         ),
-        key: "transform-translate-y",
-        themeKey: "transform-translate-y",
         classname: "translate-y",
-        pseudos: (),
-        responsive: true,
-        properties: (transform),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform),
+        theme: internal.list-from("translate-x"),
         values: config.$transform-translate-y,
     )),
-    generate-utility((
+    transform-origin: create-utility("transform-origin", (
         attributes: (
             group: "transform",
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin",
             description: "Utilities for setting the transform-origin property of the element.",
         ),
-        key: "transform-origin",
-        themeKey: "transform-origin",
         classname: "origin",
-        pseudos: (),
-        responsive: true,
-        properties: (transform-origin),
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(transform-origin),
+        theme: internal.list-from("transform-origin"),
         values: config.$transform-origin,
     )),
 );
