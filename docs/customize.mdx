@@ -61,21 +61,23 @@ Example:
 
 Adjust the values within the map to match your desired screen size breakpoints.
 
-## Theme variables
+## $theme
 
-The theme variables allows you to configure the values for the utilities. It allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values of those variables to match your project's design system.
+The `$theme` variable is a SASS map that contains the configuration for your theme, and allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values in this map to match your project's design system.
 
 Example usage:
 
 ```scss
 @use "low" with (
-    $text-color: (
-        "primary": #ff0000,
-        "secondary": #00ff00,
-    ),
-    $width: (
-        "small": 8px,
-        "medium": 16px,
+    $theme: (
+        "text-color": (
+            "primary": #ff0000,
+            "secondary": #00ff00,
+        ),
+        "width": (
+            "small": 8px,
+            "medium": 16px,
+        ),
     ),
     // Add more configurations...
 );
@@ -83,7 +85,7 @@ Example usage:
 
 With this customization, you can use the defined theme colors and spacing values in your utility classes.
 
-This is the list of available theme variables that are allowed for customizing utilities values:
+This is the list of allowed fields in the `$theme` variable for customizing utilities values:
 
 <table className="w-full leading-normal">
     <thead>
@@ -115,24 +117,28 @@ This is the list of available theme variables that are allowed for customizing u
 </table>
 
 
-## $utilities
+## $variants
 
-The `$utilities` variable is a SASS map that allows you to customize specific utility classes. You can override or extend the default utility configurations by modifying the values in this map.
+The `$variants` variable is a SASS map that allows you to customize the variants for utilities, such as responsive and pseudo-class modifiers. 
 
 Example usage:
 
 ```scss
 @use "low" with (
-    $utilities: (
-        "background-color": (
-            "classname": "background",
-            "responsive": true,
-            "pseudos": ("hover", "focus", "active"),
-        ),
-        // Add more customized utility configurations...
+    $variants: (
+        "background-color": ("default", "responsive", "hover", "focus", "active"),
+        // Add more variants customizations...
     ),
 );
 ```
+
+This is the default variants configuration:
+
+<CodeBlock language="scss">
+{`$variants: (
+${Object.keys(props.utilities).map(key => `    ${key}: (${props.utilities[key].variants.map(v => `'${v}'`).join(", ")}),`).join("\n")}
+);`}
+</CodeBlock>
 
 ## $include and $exclude
 
@@ -155,8 +161,7 @@ With this customization, the background color and text color utilities will be e
 
 Use the following mixins to include the LowCSS styles into your CSS:
 
-- `low.reset()`: this mixin injects the CSS reset styles. Read more in the [Reset CSS](./reset.html) section.
-- `low.forms()`: this mixin injects a simple reset for the most common form elements.
+- `low.base()`: this mixin injects the base styles. Read more in the [Base Styles](./base.html) section.
 - `low.utilities()`: this mixin injects the utility classes.
 
 Example usage:
@@ -168,8 +173,7 @@ Example usage:
 );
 
 // 2. Inject lowcss styles
-@include low.reset();
-@include low.forms();
+@include low.base();
 @include low.utilities();
 ```
 
