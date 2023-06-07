@@ -2,6 +2,21 @@
 @use "sass:meta";
 @use "sass:string";
 
+// @description Generate a list from the given arguments
+@function list-from($values...) {
+    @return list.join((), $values);
+}
+
+// @description Generate an empty list
+@function list-empty() {
+    @return list.join((), ());
+}
+
+// @description Check if an item is included in the list
+@function list-includes($list, $value) {
+    @return list.index($list, $value) != null;
+}
+
 // @description split the provided string
 @function str-split($string, $delimiter: null) {
     @if meta.type-of($delimiter) != "string" or not $delimiter {
