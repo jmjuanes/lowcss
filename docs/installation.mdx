@@ -57,12 +57,10 @@ To generate a custom version of LowCSS using SASS, follow these steps:
 Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
 </div>
 
-
 **4.** Load the modules of LowCSS that you need using the `@include` directive:
 
 ```scss
-@include low.reset();
-@include low.forms();
+@include low.base();
 @include low.utilities();
 ```
 
