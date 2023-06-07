@@ -19,28 +19,7 @@ $breakpoints: (
     // 2xl: 1536px,
 ) !default;
 
-// @description Pseudo states map
-// key: pseudo state name
-// value: pesudo state selector
-$pseudos: (
-    active: ":active",
-    focus: ":focus",
-    focus-within: ":focus-within",
-    hover: ":hover",
-    visited: ":visited",
-    checked: ":checked",
-    disabled: ":disabled",
-    required: ":required",
-    first: ":first-child",
-    last: ":last-child",
-    odd: ":nth-child(odd)",
-    even: ":nth-child(even)",
-    group-hover: ":hover",
-    group-focus: ":focus",
-    group-focus-within: ":focus-within",
-) !default;
-
-// @description List of utilities to include or exclude
+// @description List of features to include or exclude from output css
 $include: null !default;
 $exclude: null !default;
 
@@ -60,6 +39,31 @@ $theme: () !default;
 //     background-color: ("responsive", "hover", "focus"),
 // );
 $variants: () !default;
+
+// 
+// Global variables (not editable by default)
+// 
+
+// @description Pseudo states map
+// key: pseudo state name
+// value: pesudo state selector
+$pseudos: (
+    active: ":active",
+    focus: ":focus",
+    focus-within: ":focus-within",
+    hover: ":hover",
+    visited: ":visited",
+    checked: ":checked",
+    disabled: ":disabled",
+    required: ":required",
+    first: ":first-child",
+    last: ":last-child",
+    odd: ":nth-child(odd)",
+    even: ":nth-child(even)",
+    group-hover: ":hover",
+    group-focus: ":focus",
+    group-focus-within: ":focus-within",
+);
 
 // @description custom colors
 // Used in background-color, border-color and color properties
@@ -158,7 +162,7 @@ $colors: (
     "yellow-700": hsl(45,100%,30%),
     "yellow-800": hsl(45,100%,20%),
     "yellow-900": hsl(45,100%,10%),
-) !default;
+);
 
 // @description global sizes, for using in height and width utilities
 $sizes: (
@@ -186,7 +190,7 @@ $sizes: (
     96: 24rem,
     half: 50%,
     full: 100%,
-) !default;
+);
 
 // @description global space values, for using in margin and padding utilities
 $space: (
@@ -207,7 +211,7 @@ $space: (
     24: 6rem,
     28: 7rem,
     32: 8rem,
-) !default;
+);
 
 // @description values configuration
 $align-content: (
