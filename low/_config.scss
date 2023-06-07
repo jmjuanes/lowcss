@@ -347,19 +347,19 @@ $flex-direction: (
 ) !default;
 
 $flex-grow: (
-    grow-0: 0,
-    grow: 1,
+    0: 0,
+    DEFAULT: 1,
 ) !default;
 
 $flex-shrink: (
-    shrink-0: 0,
-    shrink: 1,
+    0: 0,
+    DEFAULT: 1,
 ) !default;
 
 $flex-wrap: (
     wrap: wrap,
     wrap-reverse: wrap-reverse,
-    no-wrap: nowrap,
+    nowrap: nowrap,
 ) !default;
 
 $float: (
