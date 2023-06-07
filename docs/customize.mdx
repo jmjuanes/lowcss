@@ -85,39 +85,34 @@ With this customization, you can use the defined theme colors and spacing values
 
 This is the list of available theme variables that are allowed for customizing utilities values:
 
-<div className="maxh-96 overflow-auto text-gray-300">
-    <table className="w-full leading-normal">
-        <thead>
-            <tr className="border border-gray-300">
-                <td className="p-4 font-bold">Variable</td>
-                <td className="p-4 font-bold">Description</td>
-            </tr>
-        </thead>
-        <tbody>
-            {Array.from(new Set(props.utilities.map(u => u.themeKey))).filter(k => !!k).map(key => (
-            <tr key={key} className="border border-gray-300 text-xs">
-                <td className="p-4 font-mono text-blue-600">
-                    <span>${key}</span>
-                </td>
-                <td className="p-4 text-gray-700">
-                    <span>Values for </span>
-                    <span>
-                        {props.utilities.filter(u => u.themeKey === key).map(u => (
-                            <Fragment>
-                                <span className="font-mono font-bold text-gray-900" key={u.key}>{u.key}</span>
-                                <span className="last:hidden">, </span>
-                            </Fragment>
-                        ))}
-                    </span> utilities.
-                </td>
-            </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
-
-
-
+<table className="w-full leading-normal">
+    <thead>
+        <tr className="border border-gray-300">
+            <td className="p-4 font-bold bg-gray-100">Variable</td>
+            <td className="p-4 font-bold bg-gray-100">Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        {Array.from(new Set(Object.values(props.utilities).map(u => u.theme).flat())).map(key => (
+        <tr key={key} className="border border-gray-300 text-xs">
+            <td className="p-4 font-mono text-blue-600">
+                <span>{key}</span>
+            </td>
+            <td className="p-4 text-gray-700">
+                <span>Values for </span>
+                <span>
+                    {Object.keys(props.utilities).filter(u => props.utilities[u].theme.includes(key)).map(u => (
+                        <Fragment key={u}>
+                            <span className="font-mono font-bold text-gray-900">{u}</span>
+                            <span className="last:hidden">, </span>
+                        </Fragment>
+                    ))}
+                </span> utilities.
+            </td>
+        </tr>
+        ))}
+    </tbody>
+</table>
 
 
 ## $utilities
