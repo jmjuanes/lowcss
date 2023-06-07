@@ -54,14 +54,12 @@ $exclude: null !default;
 // );
 $theme: () !default;
 
-// @description custom configuration for utilities
+// @description custom variants
 // @example
-// $utilities: (
-//     background-color: (
-//         name: "bg",
-//     ),
+// $variants: (
+//     background-color: ("responsive", "hover", "focus"),
 // );
-$utilities: () !default;
+$variants: () !default;
 
 // @description custom colors
 // Used in background-color, border-color and color properties
