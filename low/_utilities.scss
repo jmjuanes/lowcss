@@ -69,7 +69,7 @@ $utilities: (
         classname: "bg",
         variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: internal.list-from(background-color),
-        theme: internal.list-from("color", "background-color"),
+        theme: internal.list-from("background-color"),
         values: config.$background-color,
     )),
     background-image: create-utility("background-image", (
@@ -119,7 +119,7 @@ $utilities: (
         classname: "from",
         variants: internal.list-from("default"),
         properties: internal.list-from(--low-gradient-start),
-        theme: internal.list-from("color", "background-color"),
+        theme: internal.list-from("background-color"),
         values: config.$background-color,
     )),
     gradient-to: create-utility("gradient-to", (
@@ -131,7 +131,7 @@ $utilities: (
         classname: "to",
         variants: internal.list-from("default"),
         properties: internal.list-from(--low-gradient-stop),
-        theme: internal.list-from("color", "background-color"),
+        theme: internal.list-from("background-color"),
         values: config.$background-color,
     )),
 
@@ -157,7 +157,7 @@ $utilities: (
         classname: "border",
         variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
         properties: internal.list-from(border-color),
-        theme: internal.list-from("color", "border-color"),
+        theme: internal.list-from("border-color"),
         values: config.$border-color,
     )),
     border-style: create-utility("border-style", (
@@ -181,7 +181,7 @@ $utilities: (
         classname: "border",
         variants: internal.list-from("default", "focus"),
         properties: internal.list-from(border-width),
-        theme: internal.list-from("sizing", "border-width"),
+        theme: internal.list-from("border-width"),
         values: config.$border-width,
     )),
     border-bottom-width: create-utility("border-bottom-width", (
@@ -193,7 +193,7 @@ $utilities: (
         classname: "border-b",
         variants: internal.list-from("default", "focus", "first", "last"),
         properties: internal.list-from(border-bottom-width),
-        theme: internal.list-from("sizing", "border-width"),
+        theme: internal.list-from("border-width"),
         values: config.$border-width,
     )),
     border-left-width: create-utility("border-left-width", (
@@ -205,7 +205,7 @@ $utilities: (
         classname: "border-l",
         variants: internal.list-from("default", "focus", "first", "last"),
         properties: internal.list-from(border-left-width),
-        theme: internal.list-from("sizing", "border-width"),
+        theme: internal.list-from("border-width"),
         values: config.$border-width,
     )),
     border-right-width: create-utility("border-right-width", (
@@ -217,7 +217,7 @@ $utilities: (
         classname: "border-r",
         variants: internal.list-from("default", "focus", "first", "last"),
         properties: internal.list-from(border-right-width),
-        theme: internal.list-from("sizing", "border-width"),
+        theme: internal.list-from("border-width"),
         values: config.$border-width,
     )),
     border-top-width: create-utility("border-top-width", (
@@ -229,7 +229,7 @@ $utilities: (
         classname: "border-t",
         variants: internal.list-from("default", "focus", "first", "last"),
         properties: internal.list-from(border-top-width),
-        theme: internal.list-from("sizing", "border-width"),
+        theme: internal.list-from("border-width"),
         values: config.$border-width,
     )),
     outline-color: create-utility("outline-color", (
@@ -241,7 +241,7 @@ $utilities: (
         classname: "outline",
         variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: internal.list-from(outline-color),
-        theme: internal.list-from("color", "outline-color"),
+        theme: internal.list-from("outline-color"),
         values: config.$outline-color,
     )),
     outline-offset: create-utility("outline-offset", (
@@ -969,7 +969,7 @@ $utilities: (
         classname: "text",
         variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: internal.list-from(color),
-        theme: internal.list-from("color", "text-color"),
+        theme: internal.list-from("text-color"),
         values: config.$text-color,
     )),
     text-decoration: create-utility("text-decoration", (
