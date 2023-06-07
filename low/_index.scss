@@ -36,13 +36,13 @@
     $classname: map.get($utility-config, "classname");
     $properties: map.get($utility-config, "properties");
     $values: map.get($utility-config, "values");
-    $pseudos: map.get($utility-config, "pseudos");
-    $responsive: map.get($utility-config, "responsive");
-    // Terrible hack for generating utilities in batches
-    // 1. all utilities without modifiers
-    // 2. utilities with responsive modifiers
-    // 3. utilities with pseudo modifiers
-    @each $type in ("default", "responsive", "pseudos") {
+    $variants: map.get($utility-config, "variants");
+    // Check if the variants list includes the "default" variant
+    // @if not internal.list-includes($variants, "default") {
+    //     $variants: list.join(("default"), $variants);
+    // }
+    // Generate utilities for each variant
+    @each $variant in $variants {
         @each $key,$value in $values {
             $selector: "#{config.$prefix}#{$key}";
             // Check if classname has been provided for building the selector
@@ -54,52 +54,47 @@
                 }
             }
             // Default selector for this utility
-            @if $type == "default" {
+            @if $variant == "default" {
                 .#{$selector} {
                     @include api.rule($properties, $value);
                 }
             }
             // For responsive modifiers, we will register the style
             // for each breakpoint in the list of breakpoints
-            @if $type == "responsive" {
-                @if $responsive == true and meta.type-of(config.$breakpoints) == "map" {
-                    @each $breakpoint in map.keys(config.$breakpoints) {
-                        @include api.screen-above($breakpoint) {
-                            .#{$breakpoint}#{config.$separator}#{$selector} {
-                                @include api.rule($properties, $value);
-                            }
+            @else if $variant == "responsive" and meta.type-of(config.$breakpoints) == "map"{
+                @each $breakpoint in map.keys(config.$breakpoints) {
+                    @include api.screen-above($breakpoint) {
+                        .#{$breakpoint}#{config.$separator}#{$selector} {
+                            @include api.rule($properties, $value);
                         }
                     }
                 }
             }
             // Pseudo modifiers
-            @if $type == "pseudos" {
-                @each $pseudo in $pseudos {
-                    @if map.has-key(config.$pseudos, $pseudo) {
-                        $pseudo-selector: map.get(config.$pseudos, $pseudo);
-                        // Group selector
-                        @if internal.str-starts-with($pseudo, "group-") {
-                            .group#{$pseudo-selector} .#{$pseudo}#{config.$separator}#{$selector} {
-                                @include api.rule($properties, $value);
-                            }
-                        }
-                        // Default pseudo selector
-                        @else {
-                            .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {
-                                @include api.rule($properties, $value);
-                            }
-                        }
+            @else if map.has-key(config.$pseudos, $variant) {
+                $pseudo: $variant;
+                $pseudo-selector: map.get(config.$pseudos, $pseudo);
+                // Group selector
+                @if internal.str-starts-with($pseudo, "group-") {
+                    .group#{$pseudo-selector} .#{$pseudo}#{config.$separator}#{$selector} {
+                        @include api.rule($properties, $value);
+                    }
+                }
+                // Default pseudo selector
+                @else {
+                    .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {
+                        @include api.rule($properties, $value);
                     }
                 }
             }
+            // TODO: display no valid variant error
         }
     }
 }
 
 // @description generate utilities
 @mixin utilities() {
-    @each $utility-config in utilities.$utilities {
-        $utility-name: map.get($utility-config, "key");
+    @each $utility-name,$utility-config in utilities.$utilities {
         @if internal.is-enabled($utility-name, config.$include, config.$exclude) {
             @include utility($utility-config);
         }
