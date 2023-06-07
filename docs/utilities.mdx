@@ -2,31 +2,40 @@
 layout: "docs"
 title: "Utilities API"
 description: "The reference for all LowCSS utilities."
-prev: "reset.html"
+prev: "customize.html"
 ---
 
 <Separator />
 
-{props.utilities.map(utility => (
-<div className="mb-16" key={utility.key}>
+{Object.entries(props.utilities).map(([key, utility]) => (
+<div className="mb-16" key={key}>
     <div className="text-2xl font-bold mb-4">
-        <a href={`#${utility.key}`} name={utility.key} className="text-gray-800 hover:text-gray-900">{utility.key}</a>
+        <a href={`#${key}`} name={key} className="text-gray-800 hover:text-gray-900">{key}</a>
     </div>
     <div className="mb-4">
         {utility.attributes.description}
     </div>
-    {(utility.responsive || utility.pseudos?.length > 0) > 0 && (
+    {(utility.variants?.length > 0) && (
         <div className="mb-4 flex gap-2 flex-wrap">
-            {utility.responsive && (
+        {utility.variants.map(variant => (
+            <Fragment key={variant}>
+            {variant === "default" && (
                 <div className="py-1 px-2 bg-gray-800 text-white text-xs rounded-md">
+                    <span className="font-bold">default</span>
+                </div>
+            )}
+            {variant === "responsive" && (
+                <div className="py-1 px-2 bg-gray-600 text-white text-xs rounded-md">
                     <span className="font-bold">responsive</span>
                 </div>
             )}
-            {utility.pseudos.map(v => (
-                <div key={v} className="py-1 px-2 bg-gray-300 text-xs rounded-md">
-                    <span>pseudo: <span className="font-bold">{v}</span></span>
+            {variant !== "responsive" && variant !== "default" && (
+                <div className="py-1 px-2 bg-gray-300 text-xs rounded-md">
+                    <span>pseudo: <span className="font-bold">{variant}</span></span>
                 </div>
-            ))}
+            )}
+            </Fragment>
+        ))}
         </div>
     )}
     <div className="maxh-96 overflow-auto text-gray-300">
@@ -34,7 +43,15 @@ prev: "reset.html"
             {Object.entries(utility.values).map(item => (
             <tr key={item[0]} className="border border-gray-300 text-xs">
                 <td className="p-4 font-mono bg-gray-200 text-blue-600">
-                    <span>{utility.classname || ""}{item[0] !== "DEFAULT" ? "-" + item[0] : ""}</span>
+                    {utility.classname && item[0] !== "DEFAULT" && (
+                        <span>{utility.classname}-{item[0]}</span>
+                    )}
+                    {!utility.classname && item[0] !== "DEFAULT" && (
+                        <span>{item[0]}</span>
+                    )}
+                    {utility.classname && item[0] === "DEFAULT" && (
+                        <span>{utility.classname}</span>
+                    )}
                 </td>
                 <td className="p-4 font-mono text-gray-700">
                 {utility.properties.map(p => (

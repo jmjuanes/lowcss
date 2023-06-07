@@ -2,7 +2,7 @@
 layout: "docs"
 title: "Installation"
 description: "How to install and get started with LowCSS."
-next: "syntax.html"
+next: "usage.html"
 ---
 
 <Separator />
@@ -23,6 +23,8 @@ Installation usin **npm**:
 $ npm install lowcss
 ```
 
+<Separator />
+
 # Including Precompiled CSS
 
 LowCSS provides precompiled CSS files located in the `dist` folder of the package. To include the precompiled CSS in your project, follow these steps:
@@ -36,6 +38,8 @@ LowCSS provides precompiled CSS files located in the `dist` folder of the packag
 ```html
 <link rel="stylesheet" href="path/to/low.css">
 ```
+
+<Separator />
 
 # Generating Custom Version with SASS
 
@@ -57,12 +61,10 @@ To generate a custom version of LowCSS using SASS, follow these steps:
 Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
 </div>
 
-
 **4.** Load the modules of LowCSS that you need using the `@include` directive:
 
 ```scss
-@include low.reset();
-@include low.forms();
+@include low.base();
 @include low.utilities();
 ```
 
@@ -75,6 +77,8 @@ $ sass --load-path=./node_modules/lowcss main.scss output.css
 Replace `main.scss` with the path to your custom SASS file, and `output.css` with the desired path and filename for the generated CSS file.
 
 **6.** Link the generated CSS file in your HTML file using a `<link>` tag in the `<head>` section, as described in the "Including Precompiled CSS" section.
+
+<Separator />
 
 # Using Hosted Version from CDN
 

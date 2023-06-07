@@ -14,11 +14,12 @@ const publicFolder = path.join(process.cwd(), "public");
 const log = msg => console.log(`[docs] ${msg}`);
 
 // Generate utilities map
-const utilitiesMap = lowData.utilities.reduce((prevUtilities, utility) => {
+const utilitiesMap = Object.keys(lowData.utilities).reduce((prevUtilities, key) => {
+    const utility = lowData.utilities[key];
     const prevItems = prevUtilities[utility.attributes.group] || [];
     return {
         ...prevUtilities,
-        [utility.attributes.group]: [...prevItems, utility.key],
+        [utility.attributes.group]: [...prevItems, key],
     };
 }, {});
 
@@ -42,6 +43,22 @@ const Icon = props => (
     </svg>
 );
 
+const CodeBlock = props => {
+    const className = "p-4 rounded-md bg-gray-100 border border-solid border-gray-300 overflow-auto mb-8";
+    if (props.language) {
+        return React.createElement("pre", {
+            className: className,
+            dangerouslySetInnerHTML: {
+                __html: hljs.highlight(props.children, {language: props.language}).value,
+            },
+        });
+    }
+    // Default: render without code highlight
+    return (
+        <pre className={className}>{props.children}</pre>
+    );
+};
+
 const pageComponents = {
     "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-2xl font-bold">{props.children}</h1>,
     "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h2>,
@@ -51,21 +68,11 @@ const pageComponents = {
     "li": props => <li className="mb-3">{props.children}</li>,
     "code": props => <code className="font-mono text-sm">{props.children}</code>,
     "pre": props => {
-        const className = "p-4 rounded-md bg-gray-100 border border-solid border-gray-300 overflow-auto mb-8";
         const items = React.Children.toArray(props.children);
         const code = items[0].props.children;
         const language = (items[0].props.className || "").replace("language-", "");
-        if (language) {
-            return React.createElement("pre", {
-                className: className,
-                dangerouslySetInnerHTML: {
-                    __html: hljs.highlight(code, {language: language}).value,
-                },
-            });
-        }
-        // Default: render without code highlight
         return (
-            <pre className={className}>{code}</pre>
+            <CodeBlock language={language}>{code}</CodeBlock>
         );
     },
     "a": props => (
@@ -80,6 +87,7 @@ const pageComponents = {
             {props.children}
         </div>
     ),
+    CodeBlock: CodeBlock,
     Fragment: React.Fragment,
 };
 
@@ -155,13 +163,9 @@ const DocsLayout = props => (
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
-                    <MenuLink href="syntax.html" text="Utilities Syntax" />
+                    <MenuLink href="usage.html" text="Usage" />
+                    <MenuLink href="base.html" text="Base styles" />
                     <MenuLink href="customize.html" text="Customize" />
-                </MenuSection>
-                <MenuSection>
-                    <MenuGroup text="Additional Styles" />
-                    <MenuLink href="reset.html" text="Reset CSS" />
-                    {/* <MenuLink href="keyframes.html" text="Keyframes" /> */}
                 </MenuSection>
                 {Object.entries(utilitiesMap).map(section => (
                     <MenuSection key={section[0]}>
@@ -217,10 +221,10 @@ const PageWrapper = props => (
                         </div>
                         <div className="absolute sm:initial w-full sm:w-auto top-full left-0 bg-white p-8 sm:p-0 hidden sm:block group-focus-within:block">
                             <div className="flex flex-col sm:flex-row gap-6 items-center">
-                                <NavbarLink href="./installation.html" text="Installation" />
-                                <NavbarLink href="./syntax.html" text="Syntax" />
-                                <NavbarLink href="./customize.html" text="Customize" />
-                                <NavbarLink href="./utilities.html" text="Utilities" />
+                                <NavbarLink href="installation.html" text="Installation" />
+                                <NavbarLink href="usage.html" text="Usage" />
+                                <NavbarLink href="customize.html" text="Customize" />
+                                <NavbarLink href="utilities.html" text="Utilities" />
                                 <div className="w-px h-6 bg-gray-300 hidden sm:block" />
                                 <a href={pkg.repository} className="no-underline o-70 hover:o-100">
                                     <img className="w-6 h-6" src="./github.svg" />
