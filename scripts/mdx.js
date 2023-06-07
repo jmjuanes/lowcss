@@ -163,13 +163,9 @@ const DocsLayout = props => (
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
-                    <MenuLink href="syntax.html" text="Utilities Syntax" />
+                    <MenuLink href="usage.html" text="Usage" />
+                    <MenuLink href="base.html" text="Base styles" />
                     <MenuLink href="customize.html" text="Customize" />
-                </MenuSection>
-                <MenuSection>
-                    <MenuGroup text="Additional Styles" />
-                    <MenuLink href="reset.html" text="Reset CSS" />
-                    {/* <MenuLink href="keyframes.html" text="Keyframes" /> */}
                 </MenuSection>
                 {Object.entries(utilitiesMap).map(section => (
                     <MenuSection key={section[0]}>
@@ -225,10 +221,10 @@ const PageWrapper = props => (
                         </div>
                         <div className="absolute sm:initial w-full sm:w-auto top-full left-0 bg-white p-8 sm:p-0 hidden sm:block group-focus-within:block">
                             <div className="flex flex-col sm:flex-row gap-6 items-center">
-                                <NavbarLink href="./installation.html" text="Installation" />
-                                <NavbarLink href="./syntax.html" text="Syntax" />
-                                <NavbarLink href="./customize.html" text="Customize" />
-                                <NavbarLink href="./utilities.html" text="Utilities" />
+                                <NavbarLink href="installation.html" text="Installation" />
+                                <NavbarLink href="usage.html" text="Usage" />
+                                <NavbarLink href="customize.html" text="Customize" />
+                                <NavbarLink href="utilities.html" text="Utilities" />
                                 <div className="w-px h-6 bg-gray-300 hidden sm:block" />
                                 <a href={pkg.repository} className="no-underline o-70 hover:o-100">
                                     <img className="w-6 h-6" src="./github.svg" />
