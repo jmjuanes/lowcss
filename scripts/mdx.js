@@ -43,6 +43,22 @@ const Icon = props => (
     </svg>
 );
 
+const CodeBlock = props => {
+    const className = "p-4 rounded-md bg-gray-100 border border-solid border-gray-300 overflow-auto mb-8";
+    if (props.language) {
+        return React.createElement("pre", {
+            className: className,
+            dangerouslySetInnerHTML: {
+                __html: hljs.highlight(props.children, {language: props.language}).value,
+            },
+        });
+    }
+    // Default: render without code highlight
+    return (
+        <pre className={className}>{props.children}</pre>
+    );
+};
+
 const pageComponents = {
     "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-2xl font-bold">{props.children}</h1>,
     "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h2>,
@@ -52,21 +68,11 @@ const pageComponents = {
     "li": props => <li className="mb-3">{props.children}</li>,
     "code": props => <code className="font-mono text-sm">{props.children}</code>,
     "pre": props => {
-        const className = "p-4 rounded-md bg-gray-100 border border-solid border-gray-300 overflow-auto mb-8";
         const items = React.Children.toArray(props.children);
         const code = items[0].props.children;
         const language = (items[0].props.className || "").replace("language-", "");
-        if (language) {
-            return React.createElement("pre", {
-                className: className,
-                dangerouslySetInnerHTML: {
-                    __html: hljs.highlight(code, {language: language}).value,
-                },
-            });
-        }
-        // Default: render without code highlight
         return (
-            <pre className={className}>{code}</pre>
+            <CodeBlock language={language}>{code}</CodeBlock>
         );
     },
     "a": props => (
@@ -81,6 +87,7 @@ const pageComponents = {
             {props.children}
         </div>
     ),
+    CodeBlock: CodeBlock,
     Fragment: React.Fragment,
 };
 
