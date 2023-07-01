@@ -100,13 +100,13 @@ const MenuGroup = props => (
 );
 
 const MenuLink = props => (
-    <a href={props.href} className="block text-gray-800 hover:text-blue-700 no-underline hover:underline py-2">
+    <a href={props.href} className="block text-gray-800 no-underline py-2 px-3 hover:bg-gray-200 rounded-md">
         <span className="text-sm">{props.text}</span>
     </a>
 );
 
 const NavbarLink = props => (
-    <a href={props.href} className="font-medium text-gray-600 hover:text-gray-800 no-underline">
+    <a href={props.href} className="font-medium text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
         {props.text}
     </a>
 );
@@ -193,12 +193,12 @@ const PageWrapper = props => (
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-            <meta name="description" content="" />
+            <meta name="title" content="lowCSS" />
+            <meta name="description" content="A low-level functional CSS toolkit" />
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@700;900&display=swap" />
             <link rel="stylesheet" href="./low.css" />
             <link rel="stylesheet" href="./highlight.css" />
-            <title>{props.page.data.title ? `${props.page.data.title} - ` : ""}LowCSS {pkg.version}</title>
+            <title>{`${props.page.data.title ? `${props.page.data.title} - ` : ""}LowCSS ${pkg.version}`}</title>
             <style dangerouslySetInnerHTML={{__html: `
                 :not(pre) > code {
                     color: #034096 !important;
@@ -206,12 +206,12 @@ const PageWrapper = props => (
                 }
             `}} />
         </head>
-        <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
+        <body className="bg-white m-0 p-0 font-inter text-gray-800 leading-normal">
             {/* Header */}
             <div className="border-b-1 border-gray-300 relative">
                 <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
                     <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
-                        <div className="font-black font-crimson text-2xl tracking-tight">
+                        <div className="font-bold text-xl">
                             <span>lowCSS.</span>
                         </div>
                     </a>
@@ -220,12 +220,11 @@ const PageWrapper = props => (
                             <Icon icon="bars" />
                         </div>
                         <div className="absolute sm:initial w-full sm:w-auto top-full left-0 bg-white p-8 sm:p-0 hidden sm:block group-focus-within:block">
-                            <div className="flex flex-col sm:flex-row gap-6 items-center">
+                            <div className="flex flex-col sm:flex-row gap-4 items-center">
                                 <NavbarLink href="installation.html" text="Installation" />
                                 <NavbarLink href="usage.html" text="Usage" />
                                 <NavbarLink href="customize.html" text="Customize" />
                                 <NavbarLink href="utilities.html" text="Utilities" />
-                                <div className="w-px h-6 bg-gray-300 hidden sm:block" />
                                 <a href={pkg.repository} className="no-underline o-70 hover:o-100">
                                     <img className="w-6 h-6" src="./github.svg" />
                                 </a>
