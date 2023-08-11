@@ -511,7 +511,7 @@ $utilities: (
             description: "Utilities for setting the display property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        variants: internal.list-from("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even", "peer-hover", "peer-focus", "peer-focus-within", "peer-active", "peer-checked"),
         properties: internal.list-from(display),
         theme: internal.list-from(),
         values: config.$display,

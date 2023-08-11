@@ -80,6 +80,12 @@
                         @include api.rule($properties, $value);
                     }
                 }
+                // Peer selector
+                @else if internal.str-starts-with($pseudo, "peer-") {
+                    .peer#{$pseudo-selector}~.#{$pseudo}#{config.$separator}#{$selector} {
+                        @include api.rule($properties, $value);
+                    }
+                }
                 // Default pseudo selector
                 @else {
                     .#{$pseudo}#{config.$separator}#{$selector}#{$pseudo-selector} {

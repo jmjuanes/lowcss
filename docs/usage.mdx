@@ -51,21 +51,21 @@ LowCSS makes it easy to create responsive designs using the following utility sy
 
 The following breakpoints are defined by default in LowCSS:
 
-<table className="w-full text-sm">
+<table className="w-full leading-normal text-sm">
     <thead>
-        <tr className="border-b border-solid border-gray-200">
-            <td className="p-3 font-bold">Breakpoint</td>
-            <td className="p-3 font-bold">Minimum width</td>
-            <td className="p-3 font-bold">Rule</td>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Breakpoint</td>
+            <td className="p-4 font-medium text-gray-500">Minimum width</td>
+            <td className="p-4 font-medium text-gray-500">Rule</td>
         </tr>
     </thead>
     <tbody>
         {Object.keys(props.breakpoints).map(key => (
-        <tr key={key}>
-            <td className="p-3 font-mono">{key}</td>
-            <td className="p-3 font-mono">{props.breakpoints[key]}</td>
-            <td className="p-3 font-mono">
-                <code>@media (min-width: {props.breakpoints[key]}) {"{"} ... {"}"}</code>
+        <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-mono font-bold text-gray-900">{key}</td>
+            <td className="p-4 font-mono text-gray-700">{props.breakpoints[key]}</td>
+            <td className="p-4 font-mono font-bold text-gray-900">
+                @media (min-width: {props.breakpoints[key]}) {"{"} ... {"}"}
             </td>
         </tr>
         ))}
@@ -203,9 +203,9 @@ Use `checked`, `disabled` and `required` modifiers to style form elements.
 </form>
 ```
 
-## Group Modifiers
+## Style based on a parent state
 
-You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `group-hover`, `group-focus` or `group-focus-within` modifiers to style the element.
+You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `group-hover`, `group-focus` or `group-focus-within` modifiers to style the target element.
 
 <ExampleCode className="flex justify-center">
     <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
@@ -233,3 +233,48 @@ You can conditionally style an element based on the state of a parent element. A
     </div>
 </div>
 ```
+
+## Style based on a sibling state
+
+> This feature was added in **v0.13.0**.
+
+You can conditionally style an element based on the state of a sibling element. Add a `peer` class to the sibling element, and use any of the `peer-*` modifiers to style the target element.
+
+```html
+<input type="checkbox" class="peer [...]" >
+<!-- This message will be only visible when checkbox is checked -->
+<label class="hidden peer-checked:block [...]">
+    You checked it!
+</label>
+```
+
+This is a list of all `peer-*` modifiers available:
+
+<table className="w-full leading-normal text-sm">
+    <thead>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Modifier</td>
+            <td className="p-4 font-medium text-gray-500">Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">peer-hover</td>
+            <td className="p-4 text-gray-700">Applied when the sibling element is hovered.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">peer-focus</td>
+            <td className="p-4 text-gray-700">Applied when the sibling element is focussed.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">peer-checked</td>
+            <td className="p-4 text-gray-700">Applied when the sibling element is checked.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">peer-active</td>
+            <td className="p-4 text-gray-700">Applied when the sibling element has an <b>active</b> state.</td>
+        </tr>
+    </tbody>
+</table>
+
+

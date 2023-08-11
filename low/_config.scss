@@ -63,6 +63,11 @@ $pseudos: (
     group-hover: ":hover",
     group-focus: ":focus",
     group-focus-within: ":focus-within",
+    peer-hover: ":hover",
+    peer-focus: ":focus",
+    peer-focus-within: ":focus-within",
+    peer-active: ":active",
+    peer-checked: ":checked",
 );
 
 // @description custom colors
