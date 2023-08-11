@@ -5,6 +5,7 @@ const {renderToStaticMarkup} = require("react-dom/server");
 const runtime = require("react/jsx-runtime");
 const matter = require("gray-matter");
 const hljs = require("highlight.js/lib/common");
+const {renderIcon} = require("@josemi-icons/react/index.cjs.js");
 
 const pkg = require("../package.json");
 const lowData = require("../dist/low.json");
@@ -29,22 +30,12 @@ const importPackages = () => {
     ]);
 };
 
-const ICONS = {
-    "arrow-right": "M4 12L20 12M14 6L20 12L14 18",
-    "bars": "M4 6L20 6M4 12L20 12M4 18L20 18",
-    "bolt": "M14 3L5 14L11 14L10 21L19 10L13 10L14 3Z",
-    "mobile": "M8 3C6 3 6 5 6 5L6 19C6 19 6 21 8 21L16 21C18 21 18 19 18 19L18 5C18 5 18 3 16 3L8 3ZM12 17L12 17M10 4L14 4",
-    "palette": "M6 20C4 20 4 18 4 18L4 6C4 6 4 4 6 4L10 4C12 4 12 6 12 6L12 18C12 18 12 20 10 20L6 20ZM10 20L18 20C20 20 20 18 20 18L20 15C20 15 20 13 18 13L17 13M12 8L14 6C15 5 16 5 17 6L19 8C20 9 20 10 19 11L12 18M8 16L8 16",
+const Icon = props => {
+    return renderIcon(props.icon);
 };
 
-const Icon = props => (
-    <svg xmlns="http-//www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-        <path d={ICONS[props.icon]} fill="none" strokeWidth="2" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-);
-
 const CodeBlock = props => {
-    const className = "p-4 rounded-md bg-gray-100 border border-solid border-gray-300 overflow-auto mb-8";
+    const className = "p-4 rounded-md bg-gray-100 overflow-auto mb-8";
     if (props.language) {
         return React.createElement("pre", {
             className: className,
@@ -60,6 +51,7 @@ const CodeBlock = props => {
 };
 
 const pageComponents = {
+    "blockquote": props => <blockquote className="border-l-2 border-gray-500 text-gray-500 pl-3">{props.children}</blockquote>,
     "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-2xl font-bold">{props.children}</h1>,
     "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h2>,
     "p": props => <p className="mt-6 mb-6">{props.children}</p>,
@@ -76,12 +68,12 @@ const pageComponents = {
         );
     },
     "a": props => (
-        <a {...props} className={`no-underline hover:underline text-blue-500 hover:text-blue-600 ${props.className || ""}`}>
+        <a {...props} className={`underline text-gray-900 font-medium ${props.className || ""}`}>
             {props.children}
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my-12 border-2 border-dashed border-gray-200" />,
+    Separator: () => <div className="my-12 h-px w-full bg-gray-300" />,
     ExampleCode: props => (
         <div className={`${props.className || ""} bg-white border border-solid border-gray-300 p-6 rounded-md mb-4 mt-6`}>
             {props.children}
@@ -106,7 +98,7 @@ const MenuLink = props => (
 );
 
 const NavbarLink = props => (
-    <a href={props.href} className="font-medium text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
+    <a href={props.href} className="flex font-medium text-sm text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
         {props.text}
     </a>
 );
@@ -159,7 +151,7 @@ const HomeLayout = props => (
 const DocsLayout = props => (
     <React.Fragment>
         <div className="hidden lg:block w-56 shrink-0">
-            <div className="w-full sticky top-0 py-12 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6">
+            <div className="w-full sticky top-0 py-12 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6 scrollbar">
                 <MenuSection>
                     <MenuGroup text="Getting Started" />
                     <MenuLink href="installation.html" text="Installation" />
@@ -178,10 +170,10 @@ const DocsLayout = props => (
             </div>
         </div>
         <div className="w-full maxw-3xl mx-auto py-10">
-            <h1 className="mt-0 mb-0 text-5xl md:text-6xl text-gray-800 font-black">
+            <h1 className="mt-0 mb-0 text-5xl text-gray-800 font-bold">
                 {props.page.data.title}
             </h1>
-            <div className="mt-0 mb-10 text-2xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
+            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
             {props.page.element}
             <PageNavigation {...props} />
         </div>
@@ -201,7 +193,7 @@ const PageWrapper = props => (
             <title>{`${props.page.data.title ? `${props.page.data.title} - ` : ""}LowCSS ${pkg.version}`}</title>
             <style dangerouslySetInnerHTML={{__html: `
                 :not(pre) > code {
-                    color: #034096 !important;
+                    color: #101623 !important;
                     font-weight: bold !important;
                 }
             `}} />
@@ -209,28 +201,37 @@ const PageWrapper = props => (
         <body className="bg-white m-0 p-0 font-inter text-gray-800 leading-normal">
             {/* Header */}
             <div className="border-b-1 border-gray-300 relative">
-                <div className="w-full maxw-7xl h-20 px-6 mx-auto flex items-center justify-between">
-                    <a href="./index.html" className="flex items-center gap-1 text-gray-800 no-underline">
+                <div className="w-full maxw-7xl h-16 px-6 mx-auto flex items-center justify-between">
+                    <a href="./index.html" className="flex items-center gap-2 text-gray-800 no-underline">
                         <div className="font-bold text-xl">
                             <span>lowCSS.</span>
                         </div>
+                        <div className="flex items-center font-bold text-2xs bg-gray-200 px-2 py-1 rounded-lg">
+                            <span>{pkg.version}</span>
+                        </div>
                     </a>
-                    <div className="group" tabIndex="0">
-                        <div className="flex sm:hidden text-xl p-2 border border-gray-300 rounded-md">
+                    <div className="group peer" tabIndex="0">
+                        <div className="flex sm:hidden text-xl p-2 border border-gray-300 rounded-md cursor-pointer">
                             <Icon icon="bars" />
                         </div>
-                        <div className="absolute sm:initial w-full sm:w-auto top-full left-0 bg-white p-8 sm:p-0 hidden sm:block group-focus-within:block">
-                            <div className="flex flex-col sm:flex-row gap-4 items-center">
-                                <NavbarLink href="installation.html" text="Installation" />
-                                <NavbarLink href="usage.html" text="Usage" />
-                                <NavbarLink href="customize.html" text="Customize" />
-                                <NavbarLink href="utilities.html" text="Utilities" />
-                                <a href={pkg.repository} className="no-underline o-70 hover:o-100">
-                                    <img className="w-6 h-6" src="./github.svg" />
-                                </a>
+                        <div className="fixed sm:initial top-0 right-0 p-6 sm:p-0 hidden sm:block group-focus-within:block z-5">
+                            <div className="flex flex-col sm:flex-row gap-3 sm:items-center rounded-md bg-white p-4 sm:p-0 w-72 sm:w-auto">
+                                <div className="pr-12 sm:pr-0 sm:flex sm:gap-3">
+                                    <NavbarLink href="installation.html" text="Installation" />
+                                    <NavbarLink href="usage.html" text="Usage" />
+                                    <NavbarLink href="customize.html" text="Customize" />
+                                    <NavbarLink href="utilities.html" text="Utilities" />
+                                </div>
+                                <div className="h-px w-full sm:h-8 sm:w-px bg-gray-300" />
+                                <div className="flex">
+                                    <a href={pkg.repository} className="no-underline o-70 hover:o-100">
+                                        <img className="w-6 h-6" src="./github.svg" />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className="fixed top-0 left-0 w-full h-full sm:h-0 peer-focus-within:block hidden sm:hidden bg-gray-900 o-60 z-2" />
                 </div>
             </div>
             {/* Main content */}

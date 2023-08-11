@@ -91,17 +91,17 @@ With this customization, you can use the defined theme colors and spacing values
 
 This is the list of allowed fields in the `$theme` variable for customizing utilities values:
 
-<table className="w-full leading-normal">
+<table className="w-full leading-normal text-sm">
     <thead>
-        <tr className="border border-gray-300">
-            <td className="p-4 font-bold bg-gray-100">Theme Field</td>
-            <td className="p-4 font-bold bg-gray-100">Description</td>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Theme Field</td>
+            <td className="p-4 font-medium text-gray-500">Description</td>
         </tr>
     </thead>
     <tbody>
         {Array.from(new Set(Object.values(props.utilities).map(u => u.theme).flat())).map(key => (
-        <tr key={key} className="border border-gray-300 text-xs">
-            <td className="p-4 font-mono text-blue-600">
+        <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-mono text-gray-900 font-bold">
                 <span>{key}</span>
             </td>
             <td className="p-4 text-gray-700">
