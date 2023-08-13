@@ -176,10 +176,20 @@ const DocsLayout = props => {
                 <div className="w-full py-12 text-gray-300 flex flex-col gap-6 sticky top-0">
                     <MenuSection>
                         <MenuGroup text="Getting Started" />
+                        <MenuLink active={current === "introduction.html"} href="introduction.html" text="Introduction" />
                         <MenuLink active={current === "installation.html"} href="installation.html" text="Installation" />
                         <MenuLink active={current === "usage.html"} href="usage.html" text="Usage" />
-                        <MenuLink active={current === "base.html"} href="base.html" text="Base styles" />
+                    </MenuSection>
+                    <MenuSection>
+                        <MenuGroup text="Customization" />
                         <MenuLink active={current === "customize.html"} href="customize.html" text="Customize" />
+                        <MenuLink active={current === "variables.html"} href="variables.html" text="Variables" />
+                        <MenuLink active={current === "colors.html"} href="colors.html" text="Colors" />
+                    </MenuSection>
+                    <MenuSection>
+                        <MenuGroup text="Base styles" />
+                        <MenuLink active={current === "reset.html"} href="reset.html" text="Reset CSS" />
+                        <MenuLink active={current === "keyframes.html"} href="keyframes.html" text="Keyframes" />
                     </MenuSection>
                     <MenuSection>
                         <MenuGroup text="Utilities" />
@@ -238,7 +248,7 @@ const PageWrapper = props => (
                         <div className="fixed sm:initial top-0 right-0 p-6 sm:p-0 hidden sm:block group-focus-within:block z-5">
                             <div className="flex flex-col sm:flex-row gap-3 sm:items-center rounded-md bg-white p-4 sm:p-0 w-72 sm:w-auto">
                                 <div className="pr-12 sm:pr-0 sm:flex sm:gap-1">
-                                    <NavbarLink href="installation.html" text="Installation" icon="download" />
+                                    <NavbarLink href="introduction.html" text="Getting Started" icon="rocket" />
                                     <NavbarLink href="usage.html" text="Usage" icon="book" />
                                     <NavbarLink href="customize.html" text="Customize" icon="color-swatch" />
                                     <NavbarLink href="utilities.html" text="Utilities API" icon="list" />
