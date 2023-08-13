@@ -18,16 +18,6 @@ const log = msg => console.log(`[docs] ${msg}`);
 // Clear urls and remove .html extension
 const cleanUrl = p => p.replace(".html", "");
 
-// Generate utilities map
-const utilitiesMap = Object.keys(lowData.utilities).reduce((prevUtilities, key) => {
-    const utility = lowData.utilities[key];
-    const prevItems = prevUtilities[utility.attributes.group] || [];
-    return {
-        ...prevUtilities,
-        [utility.attributes.group]: [...prevItems, key],
-    };
-}, {});
-
 const importPackages = () => {
     return Promise.all([
         import("@mdx-js/mdx"),
@@ -315,7 +305,6 @@ importPackages().then(pkgs => {
                                 element: React.createElement(pageComponent.default, {
                                     page: page,
                                     utilities: lowData.utilities,
-                                    utilitiesMap: utilitiesMap,
                                     colors: lowData.colors,
                                     breakpoints: lowData.breakpoints,
                                     components: pageComponents,
