@@ -4,8 +4,9 @@ const React = require("react");
 const {renderToStaticMarkup} = require("react-dom/server");
 const runtime = require("react/jsx-runtime");
 const matter = require("gray-matter");
+const classnames = require("classnames");
 const hljs = require("highlight.js/lib/common");
-const {renderIcon} = require("@josemi-icons/react/index.cjs.js");
+const {renderIcon} = require("@josemi-icons/react/cjs");
 
 const pkg = require("../package.json");
 const lowData = require("../dist/low.json");
@@ -13,6 +14,9 @@ const lowData = require("../dist/low.json");
 const docsFolder = path.join(process.cwd(), "docs");
 const publicFolder = path.join(process.cwd(), "public");
 const log = msg => console.log(`[docs] ${msg}`);
+
+// Clear urls and remove .html extension
+const cleanUrl = p => p.replace(".html", "");
 
 // Generate utilities map
 const utilitiesMap = Object.keys(lowData.utilities).reduce((prevUtilities, key) => {
@@ -35,7 +39,7 @@ const Icon = props => {
 };
 
 const CodeBlock = props => {
-    const className = "p-4 rounded-md bg-gray-100 overflow-auto mb-8";
+    const className = "p-4 rounded-md bg-gray-900 text-white overflow-auto mb-8";
     if (props.language) {
         return React.createElement("pre", {
             className: className,
@@ -73,7 +77,7 @@ const pageComponents = {
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my-12 h-px w-full bg-gray-300" />,
+    Separator: () => <div className="my-10 h-px w-full bg-gray-200" />,
     ExampleCode: props => (
         <div className={`${props.className || ""} bg-white border border-solid border-gray-300 p-6 rounded-md mb-4 mt-6`}>
             {props.children}
@@ -88,18 +92,34 @@ const MenuSection = props => (
 );
 
 const MenuGroup = props => (
-    <div className="font-bold mb-1 capitalize">{props.text}</div>
+    <div className="font-bold mb-1 capitalize px-3">{props.text}</div>
 );
 
-const MenuLink = props => (
-    <a href={props.href} className="block text-gray-800 no-underline py-2 px-3 hover:bg-gray-200 rounded-md">
-        <span className="text-sm">{props.text}</span>
-    </a>
-);
+const MenuLink = props => {
+    const classList = classnames({
+        "block text-gray-800 py-2 px-3 rounded-md hover:underline": true,
+        "font-bold": props.active,
+        "bg-white hover:bg-gray-200": !props.active,
+    });
+    return (
+        <a href={cleanUrl(props.href)} className={classList}>
+            <span className="text-sm">{props.text}</span>
+        </a>
+    );
+};
 
 const NavbarLink = props => (
-    <a href={props.href} className="flex font-medium text-sm text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
-        {props.text}
+    <a href={cleanUrl(props.href)} className="flex items-center gap-2 text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
+        {props.icon && (
+            <div className="flex items-center text-lg">
+                {renderIcon(props.icon)}
+            </div>
+        )}
+        {props.text && (
+            <div className="flex items-center text-sm font-medium">
+                <span>{props.text}</span>
+            </div>
+        )}
     </a>
 );
 
@@ -111,7 +131,7 @@ const PageNavigation = props => {
         <div className="mt-12 w-full grid grid-cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
+                    <a href={cleanUrl(prevPage.fileName)} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500">Previous page</div>
                         <div className="font-medium">{prevPage.data.title}</div>
                     </a>
@@ -119,7 +139,7 @@ const PageNavigation = props => {
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.fileName} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
+                    <a href={cleanUrl(nextPage.fileName)} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
                         <div className="text-xs text-gray-500 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
@@ -148,37 +168,38 @@ const HomeLayout = props => (
     </div>
 );
 
-const DocsLayout = props => (
-    <React.Fragment>
-        <div className="hidden lg:block w-56 shrink-0">
-            <div className="w-full sticky top-0 py-12 h-screen overflow-y-auto text-gray-300 flex flex-col gap-6 scrollbar">
-                <MenuSection>
-                    <MenuGroup text="Getting Started" />
-                    <MenuLink href="installation.html" text="Installation" />
-                    <MenuLink href="usage.html" text="Usage" />
-                    <MenuLink href="base.html" text="Base styles" />
-                    <MenuLink href="customize.html" text="Customize" />
-                </MenuSection>
-                {Object.entries(utilitiesMap).map(section => (
-                    <MenuSection key={section[0]}>
-                        <MenuGroup text={section[0]} />
-                        {section[1].map(item => (
-                            <MenuLink key={item} href={`utilities.html#${item}`} text={item} />
-                        ))}
+const DocsLayout = props => {
+    const current = props.page.fileName;
+    return (
+        <React.Fragment>
+            <div className="hidden lg:block w-56 shrink-0">
+                <div className="w-full py-12 text-gray-300 flex flex-col gap-6 sticky top-0">
+                    <MenuSection>
+                        <MenuGroup text="Getting Started" />
+                        <MenuLink active={current === "installation.html"} href="installation.html" text="Installation" />
+                        <MenuLink active={current === "usage.html"} href="usage.html" text="Usage" />
+                        <MenuLink active={current === "base.html"} href="base.html" text="Base styles" />
+                        <MenuLink active={current === "customize.html"} href="customize.html" text="Customize" />
                     </MenuSection>
-                ))}
+                    <MenuSection>
+                        <MenuGroup text="Utilities" />
+                        <MenuLink active={current === "utilities.html"} href="utilities.html" text="Utilities API" />
+                    </MenuSection>
+                </div>
             </div>
-        </div>
-        <div className="w-full maxw-3xl mx-auto py-10">
-            <h1 className="mt-0 mb-0 text-5xl text-gray-800 font-bold">
-                {props.page.data.title}
-            </h1>
-            <div className="mt-0 mb-10 text-xl text-gray-500 font-medium leading-relaxed">{props.page.data.description}</div>
-            {props.page.element}
-            <PageNavigation {...props} />
-        </div>
-    </React.Fragment>
-);
+            <div className="w-full maxw-3xl mx-auto py-10">
+                <div className="mb-10">
+                    <div className="text-4xl font-bold mb-1">{props.page.data.title}</div>
+                    <div className="text-lg text-gray-500 font-medium leading-relaxed">
+                        <span>{props.page.data.description}</span>
+                    </div>
+                </div>
+                {props.page.element}
+                <PageNavigation {...props} />
+            </div>
+        </React.Fragment>
+    );
+};
 
 const PageWrapper = props => (
     <html lang="en">
@@ -202,7 +223,7 @@ const PageWrapper = props => (
             {/* Header */}
             <div className="border-b-1 border-gray-300 relative">
                 <div className="w-full maxw-7xl h-16 px-6 mx-auto flex items-center justify-between">
-                    <a href="./index.html" className="flex items-center gap-2 text-gray-800 no-underline">
+                    <a href="./" className="flex items-center gap-2 text-gray-800 no-underline">
                         <div className="font-bold text-xl">
                             <span>lowCSS.</span>
                         </div>
@@ -216,11 +237,11 @@ const PageWrapper = props => (
                         </div>
                         <div className="fixed sm:initial top-0 right-0 p-6 sm:p-0 hidden sm:block group-focus-within:block z-5">
                             <div className="flex flex-col sm:flex-row gap-3 sm:items-center rounded-md bg-white p-4 sm:p-0 w-72 sm:w-auto">
-                                <div className="pr-12 sm:pr-0 sm:flex sm:gap-3">
-                                    <NavbarLink href="installation.html" text="Installation" />
-                                    <NavbarLink href="usage.html" text="Usage" />
-                                    <NavbarLink href="customize.html" text="Customize" />
-                                    <NavbarLink href="utilities.html" text="Utilities" />
+                                <div className="pr-12 sm:pr-0 sm:flex sm:gap-1">
+                                    <NavbarLink href="installation.html" text="Installation" icon="download" />
+                                    <NavbarLink href="usage.html" text="Usage" icon="book" />
+                                    <NavbarLink href="customize.html" text="Customize" icon="color-swatch" />
+                                    <NavbarLink href="utilities.html" text="Utilities API" icon="list" />
                                 </div>
                                 <div className="h-px w-full sm:h-8 sm:w-px bg-gray-300" />
                                 <div className="flex">
@@ -235,7 +256,7 @@ const PageWrapper = props => (
                 </div>
             </div>
             {/* Main content */}
-            <div className="flex w-full maxw-7xl mx-auto gap-4 px-6">
+            <div className="flex w-full maxw-7xl mx-auto gap-4 px-6 pb-16">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
@@ -244,9 +265,8 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20">
-                <div className="mb-12 border-t-1 border-gray-300" />
-                <div className="text-center text-sm">
+            <div className="w-full border-t-1 border-gray-300">
+                <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20 text-sm">
                     Designed by <a href="https://josemi.xyz" className="no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
                     Released under the <b>MIT</b> License.
                 </div>
