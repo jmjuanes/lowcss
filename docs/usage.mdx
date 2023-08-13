@@ -84,23 +84,17 @@ In ths example, the content text will be hidden at screens sizes lower than the 
 
 <Separator />
 
-# Pseudo Modifiers
+# State Modifiers
 
-LowCSS includes a range of utility classes for working with pseudo modifiers, allowing you to easily style elements in specific states. We use the following syntax:
+LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
 
 ```
-{pseudo-modifier}:[{prefix}]{property}-{value}
+{modifier}:[{prefix}]{property}-{value}
 ```
 
-## Hover, Focus, and Active
+## Pseudo modifiers
 
-Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover, focus or active.
-
-<ExampleCode className="flex justify-center">
-    <div className="bg-blue-500 hover:bg-blue-800 text-white text-sm px-4 py-2 rounded-md cursor-pointer">
-        <strong>Hover me</strong>
-    </div>
-</ExampleCode>
+Pseudo modifiers allows you to conditionally apply an utility class based on the pseudo state, such as `hover` or `focus`.
 
 ```html
 <div class="bg-blue-500 hover:bg-blue-800 [...]">
@@ -108,100 +102,66 @@ Add the `hover`, `focus` and `active` modifiers to apply utilities only on hover
 </div>
 ```
 
-## First, Last, Odd, and Even
+This is the list of available pseudo modifiers:
 
-Use `first`, `last`, `odd` and `even` modifiers to select and style elements based on their position.
-
-<ExampleCode className="flex justify-center">
-    <table className="w-full border border-solid border-gray-300">
-        <thead>
-            <tr className="bg-blue-100 border-b border-solid border-gray-300">
-                <td className="px-4 py-2 font-bold">Name</td>
-                <td className="px-4 py-2 font-bold">Phone</td>
-                <td className="px-4 py-2 font-bold">Region</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr className="odd:bg-white even:bg-gray-100 border-b border-solid border-gray-300">
-                <td className="px-4 py-2">Haviva Bryant</td>
-                <td className="px-4 py-2">(632) 207-4278</td>
-                <td className="px-4 py-2">Luik</td>
-            </tr>
-            <tr className="odd:bg-white even:bg-gray-100 border-b border-solid border-gray-300">
-                <td className="px-4 py-2">Desiree Herman</td>
-                <td className="px-4 py-2">(841) 241-1710</td>
-                <td className="px-4 py-2">Maine</td>
-            </tr>
-            <tr className="odd:bg-white even:bg-gray-100 border-b border-solid border-gray-300">
-                <td className="px-4 py-2">Matthew Everett</td>
-                <td className="px-4 py-2">(213) 555-4551</td>
-                <td className="px-4 py-2">Coahuila</td> 
-            </tr>
-            <tr className="odd:bg-white even:bg-gray-100 border-b border-solid border-gray-300">
-                <td className="px-4 py-2">Jorden Roberts</td>
-                <td className="px-4 py-2">1-605-465-2126</td>
-                <td className="px-4 py-2">Lombardia</td>
-            </tr>
-            <tr className="odd:bg-white even:bg-gray-100">
-                <td className="px-4 py-2">Petra Parks</td>
-                <td className="px-4 py-2">1-402-623-1650</td>
-                <td className="px-4 py-2">Soccsksargen</td>
-            </tr>
-        </tbody>
-    </table>
-</ExampleCode>
-
-```html
-<table class="w-full border border-solid border-gray-300">
-    <!-- table head -->
-    <tbody>
-        <tr class="odd:bg-white even:bg-gray-100 [...]">
-            <td class="px-4 py-2">Haviva Bryant</td>
-            <td class="px-4 py-2">(632) 207-4278</td>
-            <td class="px-4 py-2">Luik</td>
+<table className="w-full leading-normal text-sm">
+    <thead>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Modifier</td>
+            <td className="p-4 font-medium text-gray-500">Description</td>
         </tr>
-        <!-- other table rows -->
+    </thead>
+    <tbody>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">hover</td>
+            <td className="p-4 text-gray-700">Applied when the user hovers the element.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">focus</td>
+            <td className="p-4 text-gray-700">Applied to the element when it has focus.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">focus-within</td>
+            <td className="p-4 text-gray-700">Applied to the element when it or one of its descendants has focus.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">active</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is being pressed.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">visited</td>
+            <td className="p-4 text-gray-700">Applied to the element when it has already visited.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">checked</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is checked (only for radio or checkbox).</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">disabled</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is disabled.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">required</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is required.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">first</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is the first child.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">last</td>
+            <td className="p-4 text-gray-700">Applied to the element when it is the last child.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">odd</td>
+            <td className="p-4 text-gray-700">Applied to the whose numeric position in a series of siblings is odd.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">even</td>
+            <td className="p-4 text-gray-700">Applied to the whose numeric position in a series of siblings is even.</td>
+        </tr>
     </tbody>
 </table>
-```
-
-## Checked, Disabled, and Required
-
-Use `checked`, `disabled` and `required` modifiers to style form elements.
-
-<ExampleCode className="flex items-center justify-center">
-    <div className="w-full maxw-xs rounded-md p-6 shadow-sm border border-gray-300">
-        <div className="mb-4">
-            <div className="font-bold text-sm mb-1">Username (required)</div>
-            <input
-                type="text"
-                className="block p-2 rounded-md border border-solid border-gray-300 required:border-red-500 bg-white w-full text-sm required:text-red-500 outline-none"
-                required
-            />
-        </div>
-        <div className="mb-4">
-            <div className="font-bold text-sm mb-1">Email (disabled)</div>
-            <input
-                type="email"
-                value="bob@company.com"
-                className="block p-2 rounded-md border border-solid border-gray-300 bg-white disabled:bg-gray-200 w-full text-sm"
-                disabled
-            />
-        </div>
-        <div className="flex flex-row-reverse">
-            <div className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm cursor-pointer">
-                <strong>Update</strong>
-            </div>
-        </div>
-    </div>
-</ExampleCode>
-
-```html
-<form>
-    <!-- Change background-color when is disabled -->
-    <input type="email" disabled className="bg-white disabled:bg-gray-200 [...]" >
-</form>
-```
 
 ## Style based on a parent state
 
@@ -276,5 +236,3 @@ This is a list of all `peer-*` modifiers available:
         </tr>
     </tbody>
 </table>
-
-
