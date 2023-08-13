@@ -2,10 +2,9 @@
 layout: "docs"
 title: "Installation"
 description: "How to install and get started with LowCSS."
+prev: "introduction.html"
 next: "usage.html"
 ---
-
-<Separator />
 
 # Package Installation
 
@@ -49,17 +48,13 @@ To generate a custom version of LowCSS using SASS, follow these steps:
 
 **2.** Add a new SASS file with `.scss` extension (e.g., `main.scss`) in your project.
 
-**3.** Import LowCSS in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. Refer to the [Customization section](./customize.html) for more details on available variables and customization options.
+**3.** Import LowCSS in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. Refer to the [SASS variables](./variables) section for more details on available variables and customization options.
 
 ```scss
 @use "low" with (
     // custom configuration
 );
 ``` 
-
-<div className="px-6 py-1 rounded-md bg-blue-100 mb-6">
-Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
-</div>
 
 **4.** Load the modules of LowCSS that you need using the `@include` directive:
 

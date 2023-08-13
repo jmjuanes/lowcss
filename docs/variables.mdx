@@ -1,0 +1,173 @@
+---
+layout: "docs"
+title: "Variables"
+description: "Configure LowCSS by editing the SASS Variables."
+prev: "customize.html"
+next: "colors.html"
+---
+
+You can customize LowCSS by importing it in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. 
+
+```scss
+@use "low" with (
+    $prefix: "lw-",
+    $breakpoints: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+    ),
+    $theme: (
+        "colors": (
+            "primary": hsl(215,96%,50%),
+            "secondary": hsl(218,19%,26%),
+        ),
+    ),
+);
+``` 
+
+Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
+
+
+## $prefix
+
+The `$prefix` variable allows you to specify a custom prefix for all utility classes. By default, the prefix is set to an empty string. However, you can change it to match your project's naming conventions or to avoid conflicts with other CSS frameworks.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $prefix: "my-prefix-",
+);
+```
+
+With this customization, utility classes will be prefixed with `my-prefix-`, such as `my-prefix-text-red-500` or `my-prefix-bg-blue-100`.
+
+## $separator
+
+The `$separator` variable defines the character used to separate breakpoints and modifiers from utility names. By default, the separator is set to `:`. However, you can change it to another character if desired.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $separator: "_",
+);
+```
+
+With this customization, utility classes will use an underscore (`_`) as the separator, such as `hover_text-red-500` or `focus_bg-blue-100`.
+
+## $breakpoints
+
+LowCSS includes a set of predefined breakpoints for responsive utilities. You can customize these breakpoints using the `$breakpoints` SASS map.
+
+Example:
+
+```scss
+@use "low" with (
+    $breakpoints: (
+        "sm": 640px,
+        "md": 768px,
+        "lg": 1024px,
+        "xl": 1280px,
+    ),
+);
+```
+
+Adjust the values within the map to match your desired screen size breakpoints.
+
+## $theme
+
+The `$theme` variable is a SASS map that contains the configuration for your theme, and allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values in this map to match your project's design system.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $theme: (
+        "text-color": (
+            "primary": #ff0000,
+            "secondary": #00ff00,
+        ),
+        "width": (
+            "small": 8px,
+            "medium": 16px,
+        ),
+    ),
+    // Add more configurations...
+);
+```
+
+With this customization, you can use the defined theme colors and spacing values in your utility classes.
+
+This is the list of allowed fields in the `$theme` variable for customizing utilities values:
+
+<table className="w-full leading-normal text-sm">
+    <thead>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Theme Field</td>
+            <td className="p-4 font-medium text-gray-500">Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        {Array.from(new Set(Object.values(props.utilities).map(u => u.theme).flat())).map(key => (
+        <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-mono text-gray-900 font-bold">
+                <span>{key}</span>
+            </td>
+            <td className="p-4 text-gray-700">
+                <span>Values for </span>
+                <span>
+                    {Object.keys(props.utilities).filter(u => props.utilities[u].theme.includes(key)).map(u => (
+                        <Fragment key={u}>
+                            <span className="font-mono font-bold text-gray-900">{u}</span>
+                            <span className="last:hidden">, </span>
+                        </Fragment>
+                    ))}
+                </span> utilities.
+            </td>
+        </tr>
+        ))}
+    </tbody>
+</table>
+
+
+## $variants
+
+The `$variants` variable is a SASS map that allows you to customize the variants for utilities, such as responsive and pseudo-class modifiers. 
+
+Example usage:
+
+```scss
+@use "low" with (
+    $variants: (
+        "background-color": ("default", "responsive", "hover", "focus", "active"),
+        // Add more variants customizations...
+    ),
+);
+```
+
+This is the default variants configuration:
+
+<CodeBlock language="scss">
+{`$variants: (
+${Object.keys(props.utilities).map(key => `    ${key}: (${props.utilities[key].variants.map(v => `'${v}'`).join(", ")}),`).join("\n")}
+);`}
+</CodeBlock>
+
+## $include and $exclude
+
+The `$include` and `$exclude` variables are lists that allow you to selectively include or exclude specific utility classes in the final CSS output. By default, all utilities are included. Use these variables to fine-tune the set of utilities you want to include in your project.
+
+Example usage:
+
+```scss
+@use "low" with (
+    $exclude: (
+        "background-color",
+        "text-color",
+    ),
+);
+```
+
+With this customization, the background color and text color utilities will be excluded from the final CSS output.
