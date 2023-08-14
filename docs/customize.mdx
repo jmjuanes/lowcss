@@ -15,7 +15,6 @@ LowCSS provides extensive customization options, allowing you to tailor the CSS 
 To customize the CSS utilities, you can import LowCSS into your project and modify the SASS variables that it exports to generate custom utilities matching you specific needs:
 
 ```scss
-@use "low/colors" as colors;
 @use "low" with (
     $prefix: "lw-",
     $breakpoints: (
@@ -25,9 +24,9 @@ To customize the CSS utilities, you can import LowCSS into your project and modi
         "xl": 1280px,
     ),
     $theme: (
-        "colors": (
-            "primary": colors.get-color("blue-500"),
-            "secondary": colors.get-color("gray-500"),
+        "background-color": (
+            "primary": #0456C9,
+            "secondary": #a4abb6,
         ),
     ),
 );

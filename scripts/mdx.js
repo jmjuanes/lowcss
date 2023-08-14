@@ -67,7 +67,7 @@ const pageComponents = {
         </a>
     ),
     Icon: props => <Icon {...props} />,
-    Separator: () => <div className="my-10 h-px w-full bg-gray-200" />,
+    Separator: () => <div className="my-8 h-px w-full bg-gray-200" />,
     ExampleCode: props => (
         <div className={`${props.className || ""} bg-white border border-solid border-gray-300 p-6 rounded-md mb-4 mt-6`}>
             {props.children}
