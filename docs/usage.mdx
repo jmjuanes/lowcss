@@ -161,25 +161,7 @@ This is the list of available pseudo modifiers:
 
 ## Style based on a parent state
 
-You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use `group-hover`, `group-focus` or `group-focus-within` modifiers to style the target element.
-
-<ExampleCode className="flex justify-center">
-    <div className="group flex items-center justify-center bg-white relative rounded-md py-2 px-4 border border-solid border-gray-300">
-        <span className="text-xl text-gray-600">
-            <Icon icon="bars" />
-        </span>
-        <span className="text-gray-600 ml-2">Menu</span>
-        <div className="hidden group-hover:block absolute w-48 left-0 top-full pt-1">
-            <div className="bg-white border border-gray-300 border-solid rounded-md flex flex-col gap-1 py-1">
-                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Dashboard</div>
-                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Profile</div>
-                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Settings</div>
-                <div className="h-0 w-full border-b border-gray-200 border-solid" />
-                <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Sign out</div>
-            </div>
-        </div>
-    </div>
-</ExampleCode>
+You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use one of the `group-*` modifiers to style the target element.
 
 ```html
 <div class="group [...]">
@@ -189,6 +171,31 @@ You can conditionally style an element based on the state of a parent element. A
     </div>
 </div>
 ```
+
+This is a list of all `group-*` modifiers available:
+
+<table className="w-full leading-normal text-sm">
+    <thead>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-500">Modifier</td>
+            <td className="p-4 font-medium text-gray-500">Description</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">group-hover</td>
+            <td className="p-4 text-gray-700">Applied when the parent element is hovered.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">group-focus</td>
+            <td className="p-4 text-gray-700">Applied when the parent element is focussed.</td>
+        </tr>
+        <tr className="border-t border-gray-300 hover:bg-gray-100">
+            <td className="p-4 font-bold font-mono text-gray-900">group-focus-within</td>
+            <td className="p-4 text-gray-700">Applied when the parent element or one of its descendants are focussed.</td>
+        </tr>
+    </tbody>
+</table>
 
 ## Style based on a sibling state
 

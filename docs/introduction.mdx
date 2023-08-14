@@ -5,83 +5,52 @@ description: "An introduction to the LowCSS utility framework."
 next: "installation.html"
 ---
 
-In the ever-evolving landscape of web development, **CSS** (Cascading Style Sheets) plays a pivotal role in shaping the visual aesthetics and user experience of websites and applications. Over the years, CSS methodologies have evolved to keep up with the demands of modern web design, resulting in various approaches to managing and organizing styles.
+**LowCSS** is a powerful **Utility CSS framework** built with SASS, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tainwindcss.com), LowCSS follows a similar structure and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
 
-Traditionally, developers have relied on writing custom CSS rules for individual elements and components. While this approach allowed for precise control, it often led to bloated stylesheets, redundant code, and increased development time. The emergence of utility-first CSS methodologies has revolutionized the way we think about styling.
+##  Intuitive Utility Classes
 
-# Traditional CSS vs. Utility CSS
-
-## Traditional CSS
-
-In traditional CSS development, styles are written on a per-element or per-component basis. This approach involves creating custom classes for specific styling needs, which can lead to a high degree of specificity and make it challenging to manage styles across different breakpoints and components. This method often results in larger CSS files, slower load times, and increased complexity.
-
-There is an example of how a simple button is styled using traditional CSS approach:
+Use utility classes to apply styles directly to HTML elements, avoiding repetitive CSS coding. Prototype and iterate at lightning speed using a wide range of pre-designed utility classes that cover virtually every styling need.
 
 ```html
-<style>
-    .btn {
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        padding: 0.75rem 0.5rem;
-    }
-    .btn:hover {
-        background-color: #d4d8dd;
-    }
-    .btn-primary {
-        background-color: #056bfa;
-        color: #fff;
-    }
-    .btn-primary:hover {
-        background-color: #034096;
-    }
-    .btn-secondary {
-        background-color: #14b8aa;
-        color: #fff;
-    }
-    .btn-secondary {
-        background-color: #0a5c55;
-    }
-</style>
-<button class="btn">Default Button</button>
-<button class="btn btn-primary">Primary Button</button>
-<button class="btn btn-secondary">Secondary Button</button>
-```
-
-This traditional CSS approach involves writing custom CSS rules for each button variant. This leads to a longer stylesheet and specific class names for different styles.
-
-## Utility CSS
-
-Utility-first CSS, on the other hand, introduces a paradigm shift. It emphasizes the use of utility classes that are small, single-purpose classes that apply specific styles directly to HTML elements. This approach promotes code reusability, encourages consistency, and significantly reduces the amount of custom CSS that needs to be written. With utility classes, you can quickly apply styles for common tasks such as margin, padding, colors, typography, and responsiveness without the need for extensive custom classes.
-
-There is an example of how to style the previous button using the utility CSS approach:
-
-```html
-<button class="inline-block px-3 py-2 hover:bg-gray-300 rounded">
-    Default Button
-</button>
-<button class="inline-block px-3 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded">
-    Primary Button
-</button>
-<button class="inline-block px-3 py-2 bg-team-600 hover:bg-teal-800 text-white rounded">
-    Secondary Button
+<button class="px-3 py-2 bg-gray-800 text-white">
+    Click me!
 </button>
 ```
 
-In this example, the utility CSS approach offers a more compact and expressive way to apply styles to the button. It allows developers to quickly compose and customize styles using intuitive classnames. This can lead to faster development, reduced code repetition, and easier maintenance compared to traditional CSS.
+## Responsiveness made easy
 
-Utility-first CSS minimizes the need for writing custom CSS rules, reduces code duplication, and speeds up development by providing a set of reusable utility classes that can be combined to achieve the desired styles.
+Craft responsive layouts effortlessly using responsive utility classes that adapt styles based on breakpoints.
 
-# Introducing LowCSS
+```html
+<div class="w-full text-center md:text-left">
+    Centerd text in mobile devices.<br>
+    Left aligned in desktop an tablet.
+</div>
+```
 
-LowCSS takes utility-first CSS to the next level. With an intuitive syntax, an extensive library of utility classes, and customization options, you can harness the full potential of utility CSS while maintaining the flexibility to adapt to your project's unique design requirements.
+## Pseudo-Class modifiers
 
-By leveraging LowCSS, you'll experience:
+Apply styles to elements in specific states like hover, focus, and active.
 
-- **Rapid development**: prototype and iterate at lightning speed using a wide range of pre-designed utility classes that cover virtually every styling need.
-- **Consistency**: ensure a consistent design language across your project by adhering to a set of predefined styles and patterns.
-- **Responsiveness made easy**: craft responsive layouts effortlessly using responsive utility classes that adapt styles based on breakpoints.
-- **Customization**: tailor your design by customizing colors, spacing, and other styles with ease, all while keeping your CSS concise and organized.
+```html
+<button class="bg-gray-800 hover:bg-gray-900 focus:outline-blue-200 text-white px-3 py-2">
+    Hover me!
+</button>
+```
 
-Whether you're building a small website, a complex web application, or anything in between, LowCSS equips you with the tools to create stunning and responsive user interfaces while promoting clean, maintainable, and efficient code.
+## Fully customizable
+
+Tailor your design by customizing colors, spacing, and other styles with ease, all while keeping your CSS concise and organized.
+
+```scss
+@use "low" with (
+    $prefix: "lw-",
+    $theme: (
+        "colors": (
+            "blue": blue,
+            "red": red,
+            "green": green,
+        ),
+    ),
+);
+```

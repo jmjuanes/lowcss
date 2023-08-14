@@ -26,16 +26,16 @@ $ npm install lowcss
 
 # Including Precompiled CSS
 
-LowCSS provides precompiled CSS files located in the `dist` folder of the package. To include the precompiled CSS in your project, follow these steps:
+LowCSS provides precompiled CSS files located in the `dist` folder of the package. To include the precompiled CSS in your project, copy the precompiled CSS file `low.css` from the `dist` folder to your project's assets or CSS directory.
 
-**1.** Locate the `dist` folder within the LowCSS package in your project's `node_modules` directory.
+```bash
+$ cp ./node_modules/lowcss/dist/low.css ./assets/
+```
 
-**2.** Copy the precompiled CSS file `low.css` from the `dist` folder to your project's assets or CSS directory.
-
-**3.** Link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
+Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
 
 ```html
-<link rel="stylesheet" href="path/to/low.css">
+<link rel="stylesheet" href="assets/low.css">
 ```
 
 <Separator />
@@ -44,11 +44,21 @@ LowCSS provides precompiled CSS files located in the `dist` folder of the packag
 
 To generate a custom version of LowCSS using SASS, follow these steps:
 
-**1.** If you haven't already, install the SASS compiler on your system by following the instructions provided in the official [SASS documentation](https://sass-lang.com).
+## 1. Install SASS
 
-**2.** Add a new SASS file with `.scss` extension (e.g., `main.scss`) in your project.
+If you haven't already, install the SASS compiler on your system by following the instructions provided in the official [SASS documentation](https://sass-lang.com).
 
-**3.** Import LowCSS in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. Refer to the [SASS variables](./variables) section for more details on available variables and customization options.
+## 2. Create a SASS file 
+
+Add a new SASS file with `.scss` extension (e.g., `main.scss`) in your project.
+
+```bash
+$ touch main.scss
+```
+
+## 3. Import and customize LowCSS
+
+Import LowCSS in your SASS file and customize the imported SASS variables and utility classes to match your project's needs. Refer to the [SASS variables](./variables) section for more details on available variables and customization options.
 
 ```scss
 @use "low" with (
@@ -56,14 +66,16 @@ To generate a custom version of LowCSS using SASS, follow these steps:
 );
 ``` 
 
-**4.** Load the modules of LowCSS that you need using the `@include` directive:
+Load the modules of LowCSS that you need using the `@include` directive:
 
 ```scss
 @include low.base();
 @include low.utilities();
 ```
 
-**5.** Compile SASS file into CSS using the SASS compiler. Run the following command:
+## 4. Compile SASS
+
+Compile SASS file into CSS using the SASS compiler. Run the following command:
 
 ```bash
 $ sass --load-path=./node_modules/lowcss main.scss output.css
@@ -71,7 +83,13 @@ $ sass --load-path=./node_modules/lowcss main.scss output.css
 
 Replace `main.scss` with the path to your custom SASS file, and `output.css` with the desired path and filename for the generated CSS file.
 
-**6.** Link the generated CSS file in your HTML file using a `<link>` tag in the `<head>` section, as described in the "Including Precompiled CSS" section.
+## 5. Include the output CSS
+
+Link the generated CSS file in your HTML file using a `<link>` tag in the `<head>` section:
+
+```html
+<link rel="stylesheet" href="output.css">
+```
 
 <Separator />
 
