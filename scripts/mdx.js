@@ -87,9 +87,9 @@ const MenuGroup = props => (
 
 const MenuLink = props => {
     const classList = classnames({
-        "block text-gray-800 py-2 px-3 rounded-md hover:underline": true,
-        "font-bold": props.active,
-        "bg-white hover:bg-gray-200": !props.active,
+        "block py-2 px-3 rounded-md no-underline": true,
+        "bg-gray-200 font-bold text-gray-800": props.active,
+        "bg-white hover:bg-gray-100 text-gray-500 hover:text-gray-700": !props.active,
     });
     return (
         <a href={cleanUrl(props.href)} className={classList}>
@@ -232,18 +232,18 @@ const PageWrapper = props => (
                         </div>
                     </a>
                     <div className="group peer" tabIndex="0">
-                        <div className="flex sm:hidden text-xl p-2 border border-gray-300 rounded-md cursor-pointer">
+                        <div className="flex md:hidden text-xl p-2 border border-gray-300 rounded-md cursor-pointer">
                             <Icon icon="bars" />
                         </div>
-                        <div className="fixed sm:initial top-0 right-0 p-6 sm:p-0 hidden sm:block group-focus-within:block z-5">
-                            <div className="flex flex-col sm:flex-row gap-3 sm:items-center rounded-md bg-white p-4 sm:p-0 w-72 sm:w-auto">
-                                <div className="pr-12 sm:pr-0 sm:flex sm:gap-1">
+                        <div className="fixed md:initial top-0 right-0 p-6 md:p-0 hidden md:block group-focus-within:block z-5">
+                            <div className="flex flex-col md:flex-row gap-3 md:items-center rounded-md bg-white p-4 md:p-0 w-72 md:w-auto">
+                                <div className="pr-12 md:pr-0 md:flex md:gap-1">
                                     <NavbarLink href="introduction.html" text="Getting Started" icon="rocket" />
                                     <NavbarLink href="usage.html" text="Usage" icon="book" />
                                     <NavbarLink href="customize.html" text="Customize" icon="color-swatch" />
                                     <NavbarLink href="utilities.html" text="Utilities API" icon="list" />
                                 </div>
-                                <div className="h-px w-full sm:h-8 sm:w-px bg-gray-300" />
+                                <div className="h-px w-full md:h-8 md:w-px bg-gray-300" />
                                 <div className="flex">
                                     <a href={pkg.repository} className="no-underline o-70 hover:o-100">
                                         <img className="w-6 h-6" src="./github.svg" />
@@ -252,7 +252,7 @@ const PageWrapper = props => (
                             </div>
                         </div>
                     </div>
-                    <div className="fixed top-0 left-0 w-full h-full sm:h-0 peer-focus-within:block hidden sm:hidden bg-gray-900 o-60 z-2" />
+                    <div className="fixed top-0 left-0 w-full h-full md:h-0 peer-focus-within:block hidden md:hidden bg-gray-900 o-60 z-2" />
                 </div>
             </div>
             {/* Main content */}
@@ -267,8 +267,8 @@ const PageWrapper = props => (
             {/* Footer */}
             <div className="w-full border-t-1 border-gray-300">
                 <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20 text-sm">
-                    Designed by <a href="https://josemi.xyz" className="no-underline text-gray-800 hover:text-gray-700 font-bold">Josemi</a>. 
-                    Released under the <b>MIT</b> License.
+                    Designed by <a href="https://josemi.xyz" className="underline text-gray-800 hover:text-gray-900 font-medium">Josemi</a>. 
+                    Source code available on <a href={pkg.repository} className="underline text-gray-800 hover:text-gray-900 font-medium">GitHub</a>. 
                 </div>
             </div>
         </body>
