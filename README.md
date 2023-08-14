@@ -59,13 +59,13 @@ Using LowCSS is simple. Add the utility classes directly to your HTML elements t
 </div>
 ``` 
 
-Refer to the [Utility Classes Documentation](https://www.josemi.xyz/lowcss/utilities.html) for a complete list of available utility classes and their usage.
+Refer to the [Utility Classes Documentation](https://www.josemi.xyz/lowcss/utilities) for a complete list of available utility classes and their usage.
 
 ## Customization
 
 LowCSS is highly customizable to match your project's unique requirements and branding. Modify the SASS variables to adjust colors, typography, spacing, and more. Customize the framework to create a consistent and cohesive design system for your website.
 
-Refer to the [Customization Guide](https://www.josemi.xyz/lowcss/customize.html) for instructions on customizing LowCSS to suit your needs.
+Refer to the [Customization Guide](https://www.josemi.xyz/lowcss/customize) for instructions on customizing LowCSS to suit your needs.
 
 ## Documentation
 

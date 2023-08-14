@@ -14,20 +14,40 @@ features:
 ---
 
 
-<div className="pb-28 pt-20 md:pt-28">
-    <div className="font-black md:text-8xl text-7xl text-gray-800 leading-tight">
-        <span>lowCSS.</span>
+<div className="flex gap-12 pb-28 pt-20 md:pt-28">
+    <div className="w-full grow">
+        <div className="font-black md:text-8xl text-7xl text-gray-800 leading-tight">
+            <span>lowCSS.</span>
+        </div>
+        <div className="font-bold text-6xl mb-6 leading-none text-gray-800">Functional CSS. Easy. Fast.</div>
+        <div className="maxw-2xl mt-0 mb-8 text-2xl leading-relaxed">
+            <span>A low-level CSS utility framework for building elegant user interfaces using reusable and responsive building blocks.</span>
+        </div>
+        <div className="flex">
+            <a href="./introduction" className="flex items-center p-4 rounded-md bg-gray-900 hover:bg-gray-800 text-white no-underline cursor-pointer">
+                <strong>Getting started</strong>
+                <div className="text-xl ml-2">
+                    <Icon icon="arrow-right" />
+                </div>
+            </a>
+        </div>
     </div>
-    <div className="font-bold text-6xl mb-6 leading-none text-gray-800">Functional CSS. Easy. Fast.</div>
-    <div className="maxw-2xl mt-0 mb-8 text-2xl font-medium leading-relaxed">
-        <span>A low-level CSS utility framework for building elegant user interfaces using reusable and responsive building blocks.</span>
-    </div>
-    <div className="flex">
-        <a href="installation.html" className="flex items-center p-4 rounded-md bg-gray-900 hover:bg-gray-800 text-white no-underline cursor-pointer">
-            <strong>Getting started</strong>
-            <div className="text-xl ml-2">
-                <Icon icon="arrow-right" />
+    <div className="hidden lg:flex flex-col items-center justify-center w-full maxw-sm">
+        <div className="rounded-lg bg-gray-900 text-white w-full"> 
+            <div className="flex items-center gap-2 p-4 border-b border-gray-600">
+                <div className="w-4 h-4 rounded-full bg-gray-600" />
+                <div className="w-4 h-4 rounded-full bg-gray-600" />
+                <div className="w-4 h-4 rounded-full bg-gray-600" />
             </div>
-        </a>
+            <div className="px-4 py-6 font-mono">
+                <div className="o-40 select-none">## Install using Yarn</div>
+                <div className="mb-4">$ yarn add lowcss</div>
+                <div className="o-40 select-none">## Or Install using Npm</div>
+                <div className="">$ npm install --save lowcss</div>
+            </div>
+        </div>
+        <div className="mt-4 text-gray-600 text-sm">
+            <span>Read more in the <a href="installation" className="text-gray-900 font-medium underline">Installation</a> section.</span>
+        </div>
     </div>
 </div>

@@ -1,0 +1,86 @@
+---
+layout: "docs"
+title: "Colors"
+description: "A flexible color palette for your project."
+prev: "variables.html"
+next: "reset.html"
+---
+
+LowCSS comes equipped with a carefully curated default color palette designed to streamline your design process and enhance the visual appeal of your web projects. This palette serves as a foundation for consistent and harmonious color choices, allowing you to effortlessly create stunning user interfaces.
+
+<Separator />
+
+# Available colors
+
+Here are the colors available in the default palette:
+
+<div className="">
+{Array.from(new Set(Object.keys(props.colors).filter(c => c.endsWith("00")).map(c => c.split("-")[0]))).map(key => (
+    <div key={key} className="mb-4">
+        <div className="text-lg font-bold mb-1">{key}</div>
+        <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
+        {Object.keys(props.colors).filter(c => c.startsWith(key)).map(color => (
+            <div key={color} className="w-full">
+                <div className={`bg-${color} rounded w-full h-10 mb-2`} />
+                <div className="text-xs text-gray-700 font-bold">{color.split("-")[1]}</div>
+                <div className="text-3xs text-gray-500">{props.colors[color]}</div>
+            </div>
+        ))}
+        </div>
+    </div>
+))}
+</div>
+
+<Separator />
+
+# Using the color palette with SASS
+
+You can harness the power of the default color palette within your SASS styles by utilizing the predefined color variables. This approach allows you to maintain consistency across your styles while leveraging the flexibility of SASS.
+
+For using the color palette you would need first to import the color palette module in you SASS file:
+
+```scss
+@use "low/colors" as colors;
+```
+
+## colors.get-color($color-name)
+
+Use the `get-color` to get a color from the color palette:
+
+```scss
+.btn {
+    background-color: colors.get-color("blue-500");
+}
+```
+
+You can use this function to customize utilities:
+
+```scss
+@use "low/colors" as colors;
+@use "low" with (
+    $theme: (
+        "colors": (
+            "primary": colors.get-color("blue-500"),
+            "secondary": colors.get-color("gray-500"),
+            "success": colors.get-color("green-500"),
+            "warning": colors.get-color("yellow-600"),
+            "error": colors.get-color("red-500"),
+        ),
+    ),
+);
+```
+
+## colors.$colors
+
+This variable is a SASS map containing all colors of the color palette. The key is the color name plus the color shade (example `blue-400`), and the value is the color value in `hsl` format.
+
+You can use the SASS function `map.get` from the `sass:map` module to access individual colors:
+
+```scss
+@use "sass:map";
+@use "low/colors" as colors;
+
+.btn {
+    background-color: map.get(colors.$colors, "blue-600");
+}
+```
