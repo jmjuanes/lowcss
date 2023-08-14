@@ -54,3 +54,13 @@
 @mixin generate-rule($properties, $value) {
     @include rule($properties, $value);
 }
+
+// @description get a color from the color palette
+@function get-color($color-name) {
+    @if map.has-key(config.$colors, $color-name) {
+        @return map.get(config.$colors, $color-name);
+    }
+    // Color not found, display a warning message and return black
+    @warn "Color '#{$color-name}' not found in the color palette.";
+    @return #000;
+}
