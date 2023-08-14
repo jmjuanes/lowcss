@@ -1,6 +1,6 @@
 {
     "name": "lowcss",
-    "version": "0.12.1",
+    "version": "0.13.0",
     "description": "A low-level functional CSS toolkit",
     "author": {
         "name": "Josemi Juanes",
