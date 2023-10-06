@@ -1,20 +1,59 @@
 name: Generate a release of LowCSS
 
+## This workflow is limited only when a new tag is created
 on:
-  release:
-    types: [created]
+  push:
+    tags: ["*"]
+
+## Set permissions to the github token
+## https://github.com/softprops/action-gh-release#permissions 
+permissions:
+  contents: write
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - run: yarn install
+      - run: yarn run build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+          retention-days: 1
+    
+  release:
+    if: ${{ github.repository == 'jmjuanes/lowcss' }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - run: zip lowcss.zip dist/low.*
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: lowcss.zip
+  
   publish:
-    runs-on: ubuntu-20.04
+    if: ${{ github.repository == 'jmjuanes/lowcss' }}
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn
-      - run: yarn run build
+      - uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
