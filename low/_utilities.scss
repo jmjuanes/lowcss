@@ -1046,6 +1046,18 @@ $utilities: (
         theme: internal.list-from("invert"),
         values: config.$filter-invert,
     )),
+    filter-backdrop-blur: create-utility("filter-backdrop-blur", (
+        attributes: (
+            group: "filter",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter",
+            description: "Utilities for applying a blurring effect to the area behind the element",
+        ),
+        classname: "backdrop-blur",
+        variants: internal.list-from("default", "responsive"),
+        properties: internal.list-from(backdrop-filter),
+        theme: internal.list-from("backdrop-blur"),
+        values: config.$filter-backdrop-blur,
+    )),
 
     // Transform
     scale: create-utility("scale", (

@@ -717,6 +717,8 @@ $filter-invert: (
     full: invert(100%),
 ) !default;
 
+$filter-backdrop-blur: $filter-blur;
+
 $transform-scale: (
     0: scale(0),
     25: scale(0.25),
