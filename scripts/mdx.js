@@ -187,7 +187,7 @@ const DocsLayout = props => {
                     </MenuSection>
                 </div>
             </div>
-            <div className="w-full maxw-3xl mx-auto py-10">
+            <div className="w-full max-w-3xl mx-auto py-10">
                 <div className="mb-10">
                     <div className="text-4xl font-bold mb-1">{props.page.data.title}</div>
                     <div className="text-lg text-gray-500 font-medium leading-relaxed">
@@ -222,7 +222,7 @@ const PageWrapper = props => (
         <body className="bg-white m-0 p-0 font-inter text-gray-800 leading-normal">
             {/* Header */}
             <div className="border-b-1 border-gray-300 relative">
-                <div className="w-full maxw-7xl h-16 px-6 mx-auto flex items-center justify-between">
+                <div className="w-full max-w-7xl h-16 px-6 mx-auto flex items-center justify-between">
                     <a href="./" className="flex items-center gap-2 text-gray-800 no-underline">
                         <div className="font-bold text-xl">
                             <span>lowCSS.</span>
@@ -256,7 +256,7 @@ const PageWrapper = props => (
                 </div>
             </div>
             {/* Main content */}
-            <div className="flex w-full maxw-7xl mx-auto gap-4 px-6 pb-16">
+            <div className="flex w-full max-w-7xl mx-auto gap-4 px-6 pb-16">
                 {props.page.data?.layout === "home" && (
                     <HomeLayout {...props} />
                 )}
@@ -266,7 +266,7 @@ const PageWrapper = props => (
             </div>
             {/* Footer */}
             <div className="w-full border-t-1 border-gray-300">
-                <div className="w-full maxw-7xl mx-auto px-6 pt-10 pb-20 text-sm">
+                <div className="w-full max-w-7xl mx-auto px-6 pt-10 pb-20 text-sm">
                     Designed by <a href="https://josemi.xyz" className="underline text-gray-800 hover:text-gray-900 font-medium">Josemi</a>. 
                     Source code available on <a href={pkg.repository} className="underline text-gray-800 hover:text-gray-900 font-medium">GitHub</a>. 
                 </div>
