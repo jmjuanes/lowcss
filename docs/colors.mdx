@@ -15,15 +15,15 @@ LowCSS comes equipped with a carefully curated default color palette designed to
 Here are the colors available in the default palette:
 
 <div className="">
-{Array.from(new Set(Object.keys(props.colors).filter(c => c.endsWith("00")).map(c => c.split("-")[0]))).map(key => (
+{Array.from(new Set(Object.keys(props.site.low.colors).filter(c => c.endsWith("00")).map(c => c.split("-")[0]))).map(key => (
     <div key={key} className="mb-4">
         <div className="text-lg font-bold mb-1">{key}</div>
         <div className="w-full grid grid-cols-3 md:grid-cols-9 gap-2">
-        {Object.keys(props.colors).filter(c => c.startsWith(key)).map(color => (
+        {Object.keys(props.site.low.colors).filter(c => c.startsWith(key)).map(color => (
             <div key={color} className="w-full">
                 <div className={`bg-${color} rounded w-full h-10 mb-2`} />
                 <div className="text-xs text-gray-700 font-bold">{color.split("-")[1]}</div>
-                <div className="text-3xs text-gray-500">{props.colors[color]}</div>
+                <div className="text-3xs text-gray-500">{props.site.low.colors[color]}</div>
             </div>
         ))}
         </div>
