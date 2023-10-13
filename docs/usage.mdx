@@ -56,12 +56,12 @@ The following breakpoints are defined by default in LowCSS:
         </tr>
     </thead>
     <tbody>
-        {Object.keys(props.breakpoints).map(key => (
+        {Object.keys(props.site.low.breakpoints).map(key => (
         <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
             <td className="p-4 font-mono font-bold text-gray-900">{key}</td>
-            <td className="p-4 font-mono text-gray-700">{props.breakpoints[key]}</td>
+            <td className="p-4 font-mono text-gray-700">{props.site.low.breakpoints[key]}</td>
             <td className="p-4 font-mono font-bold text-gray-900">
-                @media (min-width: {props.breakpoints[key]}) {"{"} ... {"}"}
+                @media (min-width: {props.site.low.breakpoints[key]}) {"{"} ... {"}"}
             </td>
         </tr>
         ))}

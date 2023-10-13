@@ -5,7 +5,7 @@ description: "The reference for all LowCSS utilities."
 prev: "keyframes.html"
 ---
 
-{Object.entries(props.utilities).map(([key, utility]) => (
+{Object.entries(props.site.low.utilities).map(([key, utility]) => (
 <div className="mb-16" key={key}>
     <div className="text-2xl font-bold mb-4">
         <a href={`#${key}`} name={key} className="text-gray-800 hover:text-gray-900">{key}</a>
