@@ -20,7 +20,7 @@
         "build:json": "sass --no-source-map --load-path=./ json.scss dist/low.raw.json",
         "postbuild:json": "cat dist/low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > dist/low.json && rm dist/low.raw.json",
         "prebuild:docs": "rm -rf public && mkdir public",
-        "build:docs": "babel-node --presets '@babel/preset-react' scripts/mdx.js",
+        "build:docs": "redocus --config redocus.config.js",
         "postbuild:docs": "cp dist/low.css public/ && cp dist/low.css.map public/ && cp node_modules/highlight.js/styles/nord.css public/highlight.css && cp assets/* public/",
         "build": "yarn run build:css && yarn run build:json",
         "docs": "yarn run build:docs",
