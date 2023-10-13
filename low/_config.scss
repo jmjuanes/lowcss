@@ -1,5 +1,7 @@
 @use "sass:map";
 
+@use "colors" as colors;
+
 // @description allow to set the !important flag to all utilities
 $important: false !default;
 
@@ -19,30 +21,18 @@ $breakpoints: (
     // 2xl: 1536px,
 ) !default;
 
-// @description List of features to include or exclude from output css
-$include: null !default;
-$exclude: null !default;
+// @description List of utilities to include or exclude from output css
+$include-utilities: null !default;
+$exclude-utilities: null !default;
 
-// @description custom theme
+// @description custom utilities configuration
 // @example
-// $theme: (
+// $utilities: (
 //     "background-color": (
-//         "black": #000,
-//         "white": #fff,
+//         classname: "background",
 //     ),
 // );
-$theme: () !default;
-
-// @description custom variants
-// @example
-// $variants: (
-//     background-color: ("responsive", "hover", "focus"),
-// );
-$variants: () !default;
-
-// 
-// Global variables (not editable by default)
-// 
+$utilities: () !default;
 
 // @description Pseudo states map
 // key: pseudo state name
@@ -68,106 +58,16 @@ $pseudos: (
     peer-focus-within: ":focus-within",
     peer-active: ":active",
     peer-checked: ":checked",
-);
+) !default;
 
 // @description custom colors
 // Used in background-color, border-color and color properties
-$colors: (
-    "black": #000,
-    "white": #fff,
+$colors: map.merge(colors.$color-palette, (
+    "black": colors.$black,
+    "white": colors.$white,
+    "transparent": colors.$transparent,
     "current": currentColor,
-    "transparent": transparent,
-
-    "blue-100": hsl(215,96%,90%),
-    "blue-200": hsl(215,96%,80%),
-    "blue-300": hsl(215,96%,70%),
-    "blue-400": hsl(215,96%,60%),
-    "blue-500": hsl(215,96%,50%),
-    "blue-600": hsl(215,96%,40%),
-    "blue-700": hsl(215,96%,30%),
-    "blue-800": hsl(215,96%,20%),
-    "blue-900": hsl(215,96%,10%),
-
-    "gray-100": hsl(220,20%,97%),
-    "gray-200": hsl(210,11%,93%),
-    "gray-300": hsl(213,12%,85%),
-    "gray-400": hsl(217,11%,68%),
-    "gray-500": hsl(219, 9%,50%),
-    "gray-600": hsl(215,14%,34%),
-    "gray-700": hsl(218,19%,26%),
-    "gray-800": hsl(214,28%,16%),
-    "gray-900": hsl(221,37%,10%),
-
-    "green-100": hsl(145,45%,90%),
-    "green-200": hsl(145,45%,80%),
-    "green-300": hsl(145,45%,70%),
-    "green-400": hsl(145,45%,60%),
-    "green-500": hsl(145,45%,50%),
-    "green-600": hsl(145,45%,40%),
-    "green-700": hsl(145,45%,30%),
-    "green-800": hsl(145,45%,20%),
-    "green-900": hsl(145,45%,10%),
-
-    "indigo-100": hsl(263,90%,90%),
-    "indigo-200": hsl(263,90%,80%),
-    "indigo-300": hsl(263,90%,70%),
-    "indigo-400": hsl(263,90%,60%),
-    "indigo-500": hsl(263,90%,50%),
-    "indigo-600": hsl(263,90%,40%),
-    "indigo-700": hsl(263,90%,30%),
-    "indigo-800": hsl(263,90%,20%),
-    "indigo-900": hsl(263,90%,10%),
-
-    "orange-100": hsl(27,98%,90%),
-    "orange-200": hsl(27,98%,80%),
-    "orange-300": hsl(27,98%,70%),
-    "orange-400": hsl(27,98%,60%),
-    "orange-500": hsl(27,98%,50%),
-    "orange-600": hsl(27,98%,40%),
-    "orange-700": hsl(27,98%,30%),
-    "orange-800": hsl(27,98%,20%),
-    "orange-900": hsl(27,98%,10%),
-
-    "pink-100": hsl(330,65%,90%),
-    "pink-200": hsl(330,65%,80%),
-    "pink-300": hsl(330,65%,70%),
-    "pink-400": hsl(330,65%,60%),
-    "pink-500": hsl(330,65%,50%),
-    "pink-600": hsl(330,65%,40%),
-    "pink-700": hsl(330,65%,30%),
-    "pink-800": hsl(330,65%,20%),
-    "pink-900": hsl(330,65%,10%),
-
-    "red-100": hsl(354,75%,90%),
-    "red-200": hsl(354,75%,80%),
-    "red-300": hsl(354,75%,70%),
-    "red-400": hsl(354,75%,60%),
-    "red-500": hsl(354,75%,50%),
-    "red-600": hsl(354,75%,40%),
-    "red-700": hsl(354,75%,30%),
-    "red-800": hsl(354,75%,20%),
-    "red-900": hsl(354,75%,10%),
-
-    "teal-100": hsl(175,80%,90%),
-    "teal-200": hsl(175,80%,80%),
-    "teal-300": hsl(175,80%,70%),
-    "teal-400": hsl(175,80%,60%),
-    "teal-500": hsl(175,80%,50%),
-    "teal-600": hsl(175,80%,40%),
-    "teal-700": hsl(175,80%,30%),
-    "teal-800": hsl(175,80%,20%),
-    "teal-900": hsl(175,80%,10%),
-
-    "yellow-100": hsl(45,100%,90%),
-    "yellow-200": hsl(45,100%,80%),
-    "yellow-300": hsl(45,100%,70%),
-    "yellow-400": hsl(45,100%,60%),
-    "yellow-500": hsl(45,100%,50%),
-    "yellow-600": hsl(45,100%,40%),
-    "yellow-700": hsl(45,100%,30%),
-    "yellow-800": hsl(45,100%,20%),
-    "yellow-900": hsl(45,100%,10%),
-);
+)) !default;
 
 // @description global sizes, for using in height and width utilities
 $sizes: (
@@ -195,7 +95,7 @@ $sizes: (
     96: 24rem,
     half: 50%,
     full: 100%,
-);
+) !default;
 
 // @description global space values, for using in margin and padding utilities
 $space: (
@@ -217,7 +117,7 @@ $space: (
     28: 7rem,
     32: 8rem,
     40: 10rem,
-);
+) !default;
 
 // @description values configuration
 $align-content: (
@@ -253,7 +153,7 @@ $background-clip: (
     text: text,
 ) !default;
 
-$background-color: $colors !default;
+$background-color: map.merge((), $colors) !default;
 
 $background-image: (
     none: none,
@@ -274,7 +174,7 @@ $background-size: (
     contain: contain,
 ) !default;
 
-$border-color: $colors !default;
+$border-color: map.merge((), $colors) !default;
 
 $border-radius: (
     sm: 0.125rem,
@@ -586,7 +486,7 @@ $order: (
     12: 12,
 ) !default;
 
-$outline-color: $colors !default;
+$outline-color: map.merge((), $colors) !default;
 
 $outline-offset: (
     0: 0,
@@ -637,7 +537,7 @@ $text-align: (
     right: right,
 ) !default;
 
-$text-color: $colors !default;
+$text-color: map.merge((), $colors) !default;
 
 $text-decoration: (
     strike: line-through,
@@ -717,7 +617,15 @@ $filter-invert: (
     full: invert(100%),
 ) !default;
 
-$filter-backdrop-blur: $filter-blur;
+$filter-backdrop-blur: (
+    none: blur(0px),
+    sm: blur(2px),
+    md: blur(4px),
+    lg: blur(8px),
+    xl: blur(16px),
+    2xl: blur(32px),
+    3xl: blur(48px),
+) !default;
 
 $transform-scale: (
     0: scale(0),
