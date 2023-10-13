@@ -115,16 +115,13 @@ When generating you own customized version of LowCSS, you can add keyframes styl
 @include low.base();
 ```
 
-Individual styles can be included or excluded using the `$include` or `$exclude` variables:
+Individual styles can be included using the `low.keyframes()` mixin:
 
 ```scss
 @use "low" with (
-    $include: (
-        "keyframes",
-    ),
-    // ...other custom configuration
+    // ...custom configuration
 );
 
 // This will include only keyframes styles
-@include low.base();
+@include low.keyframes();
 ```

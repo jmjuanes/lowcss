@@ -49,15 +49,20 @@ For convenience and rapid development, you can apply color classes directly to y
 
 You can harness the power of the default color palette within your SASS styles by utilizing the predefined color variables. This approach allows you to maintain consistency across your styles while leveraging the flexibility of SASS.
 
-
-## low.get-color($color-name)
-
-Use the `get-color` to get a color from the color palette:
+You will need to import the `low/colors` module in your SASS file in order to use the default color palette:
 
 ```scss
-@use "low";
+@use "low/colors" as colors;
+```
+
+## colors.get-color($color-name)
+
+Use the `get-color` function to get a color from the color palette:
+
+```scss
+@use "low/colors" as colors;
 
 .btn {
-    background-color: low.get-color("blue-500");
+    background-color: colors.get-color("blue-500");
 }
 ```
