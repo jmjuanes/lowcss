@@ -1,34 +1,29 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
+
 @use "config";
 @use "internal";
 
 // @description internal function to generate utilities configuration
-@function create-utility($name, $config) {
-    // 1. Merge custom theme values
-    $theme-keys: map.get($config, "theme");
-    @if list.length($theme-keys) > 1 {
-        @if config.$theme and meta.type-of(config.$theme) == "map" {
-            $new-values: ();
-            @each $theme-key in $theme-keys {
-                @if map.has-key(config.$theme, $theme-key) {
-                    $new-values: map.get(config.$theme, $theme-key);
-                }
+@function create-utility($utility-name, $utility-config) {
+    // 1. Merge with custom utilities configuration
+    @if map.has-key(config.$utilities, $utility-name) {
+        $custom-config: map.get(config.$utilities, $utility-name);
+        @each $field in ("classname", "variants", "properties", "values") {
+            @if map.has-key($custom-config, $field) {
+                $utility-config: map.set($utility-config, $field, map.get($custom-config, $field));
             }
-            // Save new utilities values
-            $config: map.set($config, "values", $new-values);
         }
     }
-    // 2. Merge custom variants
-    @if config.$variants and meta.type-of(config.$variants) == "map" {
-        @if map.has-key(config.$variants, $name) {
-            $new-variants: map.get(config.$variants, $name);
-            $config: map.set($config, "variants", $new-variants);
-        }
+    // 2. Convert items to lists
+    @each $field in ("variants", "properties") {
+        $current-value: map.get($utility-config, $field);
+        $new-value: internal.list-from($current-value...);
+        $utility-config: map.set($utility-config, $field, $new-value);
     }
-    // Return parsed configuration
-    @return $config;
+    // 3. Return parsed configuration
+    @return $utility-config;
 };
 
 // @description utilities configuration
@@ -41,9 +36,8 @@ $utilities: (
             description: "Predefined CSS animations.",
         ),
         classname: "animation",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(animation),
-        theme: internal.list-from("animation"),
+        variants: ("default", "responsive"),
+        properties: (animation),
         values: config.$animation,
     )),
 
@@ -55,9 +49,8 @@ $utilities: (
             description: "Utilities for setting the background-clip property of the element.",
         ),
         classname: "bg",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(background-clip),
-        theme: internal.list-empty(),
+        variants: ("default"),
+        properties: (background-clip),
         values: config.$background-clip,
     )),
     background-color: create-utility("background-color", (
@@ -67,9 +60,8 @@ $utilities: (
             description: "Utilities for setting the background-color property of the element.",
         ),
         classname: "bg",
-        variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
-        properties: internal.list-from(background-color),
-        theme: internal.list-from("background-color"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        properties: (background-color),
         values: config.$background-color,
     )),
     background-image: create-utility("background-image", (
@@ -79,9 +71,8 @@ $utilities: (
             description: "Utilities for setting the background-image property of the element.",
         ),
         classname: "bg",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(background-image),
-        theme: internal.list-from("background-image"),
+        variants: ("default"),
+        properties: (background-image),
         values: config.$background-image,
     )),
     background-repeat: create-utility("background-repeat", (
@@ -91,9 +82,8 @@ $utilities: (
             description: "Utilities for setting the background-repeat property of the element.",
         ),
         classname: "bg",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(background-repeat),
-        theme: internal.list-empty(),
+        variants: ("default"),
+        properties: (background-repeat),
         values: config.$background-repeat,
     )),
     background-size: create-utility("background-size", (
@@ -103,9 +93,8 @@ $utilities: (
             description: "Utilities for setting the background-size property of the element.",
         ),
         classname: "bg",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(background-size),
-        theme: internal.list-empty(),
+        variants: ("default"),
+        properties: (background-size),
         values: config.$background-size,
     )),
 
@@ -117,9 +106,8 @@ $utilities: (
             description: "Utilities to specify the starting color for the gradient.",
         ),
         classname: "from",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(--low-gradient-start),
-        theme: internal.list-from("background-color"),
+        variants: ("default"),
+        properties: (--low-gradient-start),
         values: config.$background-color,
     )),
     gradient-to: create-utility("gradient-to", (
@@ -129,9 +117,8 @@ $utilities: (
             description: "Utilities to specify the ending color for the gradient.",
         ),
         classname: "to",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(--low-gradient-stop),
-        theme: internal.list-from("background-color"),
+        variants: ("default"),
+        properties: (--low-gradient-stop),
         values: config.$background-color,
     )),
 
@@ -143,9 +130,8 @@ $utilities: (
             description: "Utilities for setting the radius of the element.",
         ),
         classname: "rounded",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(border-radius),
-        theme: internal.list-from("border-radius"),
+        variants: ("default"),
+        properties: (border-radius),
         values: config.$border-radius,
     )),
     border-color: create-utility("border-color", (
@@ -155,9 +141,8 @@ $utilities: (
             description: "Utilities for setting the border color of the element.",
         ),
         classname: "border",
-        variants: internal.list-from("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(border-color),
-        theme: internal.list-from("border-color"),
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
+        properties: (border-color),
         values: config.$border-color,
     )),
     border-style: create-utility("border-style", (
@@ -167,9 +152,8 @@ $utilities: (
             description: "Utilities for setting the border-style property of the element.",
         ),
         classname: "border",
-        variants: internal.list-from("default", "focus"),
-        properties: internal.list-from(border-style),
-        theme: internal.list-empty(),
+        variants: ("default", "focus"),
+        properties: (border-style),
         values: config.$border-style,
     )),
     border-width: create-utility("border-width", (
@@ -179,9 +163,8 @@ $utilities: (
             description: "Utilities for setting the border-width property of the element.",
         ),
         classname: "border",
-        variants: internal.list-from("default", "focus"),
-        properties: internal.list-from(border-width),
-        theme: internal.list-from("border-width"),
+        variants: ("default", "focus"),
+        properties: (border-width),
         values: config.$border-width,
     )),
     border-bottom-width: create-utility("border-bottom-width", (
@@ -191,9 +174,8 @@ $utilities: (
             description: "Utilities for setting the element's border bottom width.",
         ),
         classname: "border-b",
-        variants: internal.list-from("default", "focus", "first", "last"),
-        properties: internal.list-from(border-bottom-width),
-        theme: internal.list-from("border-width"),
+        variants: ("default", "focus", "first", "last"),
+        properties: (border-bottom-width),
         values: config.$border-width,
     )),
     border-left-width: create-utility("border-left-width", (
@@ -203,9 +185,8 @@ $utilities: (
             description: "Utilities for setting the element's border left width.",
         ),
         classname: "border-l",
-        variants: internal.list-from("default", "focus", "first", "last"),
-        properties: internal.list-from(border-left-width),
-        theme: internal.list-from("border-width"),
+        variants: ("default", "focus", "first", "last"),
+        properties: (border-left-width),
         values: config.$border-width,
     )),
     border-right-width: create-utility("border-right-width", (
@@ -215,9 +196,8 @@ $utilities: (
             description: "Utilities for setting the element's border right width.",
         ),
         classname: "border-r",
-        variants: internal.list-from("default", "focus", "first", "last"),
-        properties: internal.list-from(border-right-width),
-        theme: internal.list-from("border-width"),
+        variants: ("default", "focus", "first", "last"),
+        properties: (border-right-width),
         values: config.$border-width,
     )),
     border-top-width: create-utility("border-top-width", (
@@ -227,9 +207,8 @@ $utilities: (
             description: "Utilities for setting the element's border top width.",
         ),
         classname: "border-t",
-        variants: internal.list-from("default", "focus", "first", "last"),
-        properties: internal.list-from(border-top-width),
-        theme: internal.list-from("border-width"),
+        variants: ("default", "focus", "first", "last"),
+        properties: (border-top-width),
         values: config.$border-width,
     )),
     outline-color: create-utility("outline-color", (
@@ -239,9 +218,8 @@ $utilities: (
             description: "Utilities for setting the outline-color property of the element.",
         ),
         classname: "outline",
-        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        properties: internal.list-from(outline-color),
-        theme: internal.list-from("outline-color"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-color),
         values: config.$outline-color,
     )),
     outline-offset: create-utility("outline-offset", (
@@ -251,9 +229,8 @@ $utilities: (
             description: "Utilities for setting the outline-offset property of the element.",
         ),
         classname: "outline",
-        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        properties: internal.list-from(outline-offset),
-        theme: internal.list-from("outline-offset"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-offset),
         values: config.$outline-offset,
     )),
     outline-style: create-utility("outline-style", (
@@ -263,9 +240,8 @@ $utilities: (
             description: "Utilities for setting the outline-style property of the element.",
         ),
         classname: "outline",
-        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        properties: internal.list-from(outline-style),
-        theme: internal.list-empty(),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-style),
         values: config.$outline-style,
     )),
     outline-width: create-utility("outline-width", (
@@ -275,9 +251,8 @@ $utilities: (
             description: "Utilities for setting the outline-width property of the element.",
         ),
         classname: "outline",
-        variants: internal.list-from("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
-        properties: internal.list-from(outline-width),
-        theme: internal.list-from("outline-width"),
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-width),
         values: config.$outline-width,
     )),
 
@@ -289,9 +264,8 @@ $utilities: (
             description: "Utilities for setting the box-shadow property of the element.",
         ),
         classname: "shadow",
-        variants: internal.list-from("default", "hover", "focus", "focus-within"),
-        properties: internal.list-from(box-shadow),
-        theme: internal.list-from("box-shadow"),
+        variants: ("default", "hover", "focus", "focus-within"),
+        properties: (box-shadow),
         values: config.$box-shadow,
     )),
     opacity: create-utility("opacity", (
@@ -301,9 +275,8 @@ $utilities: (
             description: "Utilities for setting the opacity property of the element.",
         ),
         classname: "o",
-        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(opacity),
-        theme: internal.list-from("opacity"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (opacity),
         values: config.$opacity,
     )),
 
@@ -315,9 +288,8 @@ $utilities: (
             description: "Utilities for setting the align-content property of the element.",
         ),
         classname: "content",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(align-content),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (align-content),
         values: config.$align-content,
     )),
     align-items: create-utility("align-itens", (
@@ -327,9 +299,8 @@ $utilities: (
             description: "Utilities for setting the align-items property of the element.",
         ),
         classname: "items",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(align-items),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (align-items),
         values: config.$align-items,
     )),
     align-self: create-utility("align-self", (
@@ -339,9 +310,8 @@ $utilities: (
             description: "Utilities for setting the align-self property of the element.",
         ),
         classname: "self",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(align-self),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (align-self),
         values: config.$align-self,
     )),
     flex: create-utility("flex", (
@@ -351,9 +321,8 @@ $utilities: (
             description: "Utilities for setting the flex property of the element.",
         ),
         classname: "flex",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(flex),
-        theme: internal.list-from("flex"),
+        variants: ("default", "responsive"),
+        properties: (flex),
         values: config.$flex,
     )),
     flex-direction: create-utility("flex-direction", (
@@ -363,9 +332,8 @@ $utilities: (
             description: "Utilities for setting the flex-direction property of the element.", 
         ),
         classname: "flex",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(flex-direction),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (flex-direction),
         values: config.$flex-direction,
     )),
     flex-grow: create-utility("flex-grow", (
@@ -375,9 +343,8 @@ $utilities: (
             description: "Utilities for setting the flex-grow property of the element.",
         ),
         classname: "grow",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(flex-grow),
-        theme: internal.list-from("flex-grow"),
+        variants: ("default", "responsive"),
+        properties: (flex-grow),
         values: config.$flex-grow,
     )),
     flex-shrink: create-utility("flex-shrink", (
@@ -387,9 +354,8 @@ $utilities: (
             description: "Utilities for setting the flex-shrink property of the element.",
         ),
         classname: "shrink",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(flex-shrink),
-        theme: internal.list-from("flex-shrink"),
+        variants: ("default", "responsive"),
+        properties: (flex-shrink),
         values: config.$flex-shrink,
     )),
     flex-wrap: create-utility("flex-wrap", (
@@ -399,9 +365,8 @@ $utilities: (
             description: "Utilities for setting the flex-wrap property of the element.",
         ),
         classname: "flex",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(flex-wrap),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (flex-wrap),
         values: config.$flex-wrap,
     )),
     gap: create-utility("gap", (
@@ -411,9 +376,8 @@ $utilities: (
             description: "Utilities for setting the gap property of the element.",
         ),
         classname: "gap",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(gap),
-        theme: internal.list-from("gap"),
+        variants: ("default", "responsive"),
+        properties: (gap),
         values: config.$gap,
     )),
     grid-template-columns: create-utility("grid-template-columns", (
@@ -423,9 +387,8 @@ $utilities: (
             description: "Utilities for setting the grid-template-columns property of the element.",
         ),
         classname: "grid-cols",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(grid-template-columns),
-        theme: internal.list-from("grid-template-columns"),
+        variants: ("default", "responsive"),
+        properties: (grid-template-columns),
         values: config.$grid-template-columns,
     )),
     grid-template-rows: create-utility("grid-template-rows", (
@@ -435,9 +398,8 @@ $utilities: (
             description: "Utilities for setting the grid-template-rows property of the element.",
         ),
         classname: "grid-rows",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(grid-template-rows),
-        theme: internal.list-from("grid-template-rows"),
+        variants: ("default", "responsive"),
+        properties: (grid-template-rows),
         values: config.$grid-template-rows,
     )),
     justify-content: create-utility("justify-content", (
@@ -447,9 +409,8 @@ $utilities: (
             description: "Utilities for setting the justify-content property of the element.",
         ),
         classname: "justify",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(justify-content),
-        theme: internal.list-empty(),
+        variants: ("default", "responsive"),
+        properties: (justify-content),
         values: config.$justify-content,
     )),
     order: create-utility("order", (
@@ -459,9 +420,8 @@ $utilities: (
             description: "Utilities for setting the order property of the element.",
         ),
         classname: "order",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(order),
-        theme: internal.list-from("order"),
+        variants: ("default", "responsive"),
+        properties: (order),
         values: config.$order,
     )),
 
@@ -473,9 +433,8 @@ $utilities: (
             description: "Utilities for setting the cursor property of the element.",
         ),
         classname: "cursor",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(cursor),
-        theme: internal.list-from("cursor"),
+        variants: ("default"),
+        properties: (cursor),
         values: config.$cursor,
     )),
     user-select: create-utility("user-select", (
@@ -485,9 +444,8 @@ $utilities: (
             description: "Utilities for setting the user-select property of the element.",
         ),
         classname: "select",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(user-select),
-        theme: internal.list-empty(),
+        variants: ("default"),
+        properties: (user-select),
         values: config.$user-select,
     )),
 
@@ -499,9 +457,8 @@ $utilities: (
             description: "Utilities for setting the bottom property of the element.",
         ),
         classname: "bottom",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(bottom),
-        theme: internal.list-from("inset"),
+        variants: ("default", "responsive"),
+        properties: (bottom),
         values: config.$inset,
     )),
     display: create-utility("display", (
@@ -511,9 +468,8 @@ $utilities: (
             description: "Utilities for setting the display property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even", "peer-hover", "peer-focus", "peer-focus-within", "peer-active", "peer-checked"),
-        properties: internal.list-from(display),
-        theme: internal.list-from(),
+        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even", "peer-hover", "peer-focus", "peer-focus-within", "peer-active", "peer-checked"),
+        properties: (display),
         values: config.$display,
     )),
     float: create-utility("float", (
@@ -523,9 +479,8 @@ $utilities: (
             description: "Utilities for setting the float property of the element.",
         ),
         classname: "float",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(float),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (float),
         values: config.$float,
     )),
     left :create-utility("left", (
@@ -535,9 +490,8 @@ $utilities: (
             description: "Utilities for setting the left property of the element.",
         ),
         classname: "left",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(left),
-        theme: internal.list-from("inset"),
+        variants: ("default", "responsive"),
+        properties: (left),
         values: config.$inset,
     )),
     overflow: create-utility("overflow", (
@@ -547,9 +501,8 @@ $utilities: (
             description: "Utilities for setting the overflow property of the element.",
         ),
         classname: "overflow",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(overflow),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (overflow),
         values: config.$overflow,
     )),
     overflow-x: create-utility("overflow-x", (
@@ -558,14 +511,9 @@ $utilities: (
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x",
             description: "Utilities for setting the overflow-x property of the element.",
         ),
-        key: "overflow-x",
-        themeKey: "overflow",
         classname: "overflow-x",
-        pseudos: (),
-        responsive: true,
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(overflow-x),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (overflow-x),
         values: config.$overflow,
     )),
     overflow-y: create-utility("overflow-y", (
@@ -574,12 +522,9 @@ $utilities: (
             url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y",
             description: "Utilities for setting the overflow-y property of the element.",
         ),
-        key: "overflow-y",
-        themeKey: "overflow",
         classname: "overflow-y",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(overflow-y),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (overflow-y),
         values: config.$overflow,
     )),
     position: create-utility("position", (
@@ -589,9 +534,8 @@ $utilities: (
             description: "Utilities for setting the position property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(position),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (position),
         values: config.$position,
     )),
     right: create-utility("right", (
@@ -601,9 +545,8 @@ $utilities: (
             description: "Utilities for setting the right property of the element.",
         ),
         classname: "right",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(right),
-        theme: internal.list-from("inset"),
+        variants: ("default", "responsive"),
+        properties: (right),
         values: config.$inset,
     )),
     top: create-utility("top", (
@@ -613,9 +556,8 @@ $utilities: (
             description: "Utilities for setting the top property of the element.",
         ),
         classname: "top",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(top),
-        theme: internal.list-from("inset"),
+        variants: ("default", "responsive"),
+        properties: (top),
         values: config.$inset,
     )),
     z-index: create-utility("z-index", (
@@ -625,9 +567,8 @@ $utilities: (
             description: "Utilities for setting the z-index property of the element.",
         ),
         classname: "z",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(z-index),
-        theme: internal.list-from("z-index"),
+        variants: ("default", "responsive"),
+        properties: (z-index),
         values: config.$z-index,
     )),
 
@@ -639,9 +580,8 @@ $utilities: (
             description: "Utilities for setting the height property of the element.",
         ),
         classname: "h",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(height),
-        theme: internal.list-from("height"),
+        variants: ("default", "responsive"),
+        properties: (height),
         values: config.$height,
     )),
     max-height: create-utility("max-height", (
@@ -651,9 +591,8 @@ $utilities: (
             description: "Utilities for setting the max-height property of the element.",
         ),
         classname: "max-h",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(max-height),
-        theme: internal.list-from("max-height"),
+        variants: ("default", "responsive"),
+        properties: (max-height),
         values: config.$max-height,
     )),
     max-width: create-utility("max-width", (
@@ -663,9 +602,8 @@ $utilities: (
             description: "Utilities for setting the max-width property of the element.",
         ),
         classname: "max-w",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(max-width),
-        theme: internal.list-from("max-width"),
+        variants: ("default", "responsive"),
+        properties: (max-width),
         values: config.$max-width,
     )),
     min-height: create-utility("min-height", (
@@ -675,9 +613,8 @@ $utilities: (
             description: "Utilities for setting the min-height property of the element.",
         ),
         classname: "min-h",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(min-height),
-        theme: internal.list-from("min-height"),
+        variants: ("default", "responsive"),
+        properties: (min-height),
         values: config.$min-height,
     )),
     min-width: create-utility("min-width", (
@@ -687,9 +624,8 @@ $utilities: (
             description: "Utilities for setting the min-width property of the element.",
         ),
         classname: "min-w",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(min-width),
-        theme: internal.list-from("min-width"),
+        variants: ("default", "responsive"),
+        properties: (min-width),
         values: config.$min-width,
     )),
     width: create-utility("width", (
@@ -699,9 +635,8 @@ $utilities: (
             description: "Utilities for setting the width property of the element.",
         ),
         classname: "w",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(width),
-        theme: internal.list-from("width"),
+        variants: ("default", "responsive"),
+        properties: (width),
         values: config.$width,
     )),
 
@@ -713,9 +648,8 @@ $utilities: (
             description: "Utilities for setting the margin property of the element.",
         ),
         classname: "m",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin),
         values: config.$margin,
     )),
     margin-bottom: create-utility("margin-bottom", (
@@ -725,9 +659,8 @@ $utilities: (
             description: "Utilities for setting the margin-bottom property of the element.",
         ),
         classname: "mb",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-bottom),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-bottom),
         values: config.$margin,
     )),
     margin-left: create-utility("mrgin-left", (
@@ -737,9 +670,8 @@ $utilities: (
             description: "Utilities for setting the margin-left property of the element.",
         ),
         classname: "ml",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-left),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-left),
         values: config.$margin,
     )),
     margin-right: create-utility("margin-right", (
@@ -749,9 +681,8 @@ $utilities: (
             description: "Utilities for setting the margin-right property of the element.",
         ),
         classname: "mr",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-right),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-right),
         values: config.$margin,
     )),
     margin-top: create-utility("margin-top", (
@@ -761,9 +692,8 @@ $utilities: (
             description: "Utilities for setting the margin-top property of the element.",
         ),
         classname: "mt",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-top),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-top),
         values: config.$margin,
     )),
     margin-x: create-utility("margin-x", (
@@ -773,9 +703,8 @@ $utilities: (
             description: "Utilities for setting both margin-left and margin-right properties of the element.",
         ),
         classname: "mx",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-left, margin-right),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-left, margin-right),
         values: config.$margin,
     )),
     margin-y: create-utility("margin-y", (
@@ -785,9 +714,8 @@ $utilities: (
             description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
         ),
         classname: "my",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(margin-top, margin-bottom),
-        theme: internal.list-from("margin"),
+        variants: ("default", "responsive"),
+        properties: (margin-top, margin-bottom),
         values: config.$margin,
     )),
     padding: create-utility("padding", (
@@ -797,9 +725,8 @@ $utilities: (
             description: "Utilities for setting the padding property of the element.",
         ),
         classname: "p",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding),
         values: config.$padding,
     )),
     padding-bottom: create-utility("padding-bottom", (
@@ -809,9 +736,8 @@ $utilities: (
             description: "Utilities for setting the padding-bottom property of the element.",
         ),
         classname: "pb",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-bottom),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-bottom),
         values: config.$padding,
     )),
     padding-left: create-utility("padding-left", (
@@ -821,9 +747,8 @@ $utilities: (
             description: "Utilities for setting the padding-left property of the element.",
         ),
         classname: "pl",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-left),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-left),
         values: config.$padding,
     )),
     padding-right: create-utility("padding-right", (
@@ -833,9 +758,8 @@ $utilities: (
             description: "Utilities for setting the padding-right property of the element.",
         ),
         classname: "pr",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-right),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-right),
         values: config.$padding,
     )),
     padding-top: create-utility("padding-top", (
@@ -845,9 +769,8 @@ $utilities: (
             description: "Utilities for setting the padding-top property of the element.",
         ),
         classname: "pt",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-top),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-top),
         values: config.$padding,
     )),
     padding-x: create-utility("padding-x", (
@@ -857,9 +780,8 @@ $utilities: (
             description: "Utilities for setting both padding-left and padding-right properties of the element.",
         ),
         classname: "px",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-left, padding-right),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-left, padding-right),
         values: config.$padding,
     )),
     padding-y: create-utility("padding-y", (
@@ -869,9 +791,8 @@ $utilities: (
             description: "Utilities for setting both padding-bottom and padding-top properties of the element.",
         ),
         classname: "py",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(padding-top, padding-bottom),
-        theme: internal.list-from("padding"),
+        variants: ("default", "responsive"),
+        properties: (padding-top, padding-bottom),
         values: config.$padding,
     )),
 
@@ -883,9 +804,8 @@ $utilities: (
             description: "Utilities for setting the font-family property of the element.",
         ),
         classname: "font",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(font-family),
-        theme: internal.list-from("font-family"),
+        variants: ("default"),
+        properties: (font-family),
         values: config.$font-family,
     )),
     font-size: create-utility("font-size", (
@@ -895,9 +815,8 @@ $utilities: (
             description: "Utilities for setting the font-size property of the element.",
         ),
         classname: "text",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(font-size),
-        theme: internal.list-from("font-size"),
+        variants: ("default", "responsive"),
+        properties: (font-size),
         values: config.$font-size,
     )),
     font-style: create-utility("font-style", (
@@ -907,9 +826,8 @@ $utilities: (
             description: "Utilities for setting the font-style property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default"),
-        properties: internal.list-from(font-style),
-        theme: internal.list-from(),
+        variants: ("default"),
+        properties: (font-style),
         values: config.$font-style,
     )),
     font-weight: create-utility("font-weight", (
@@ -919,9 +837,8 @@ $utilities: (
             description: "Utilities for setting the font-weight property of the element.",
         ),
         classname: "font",
-        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(font-weight),
-        theme: internal.list-from(),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (font-weight),
         values: config.$font-weight,
     )),
     letter-spacing: create-utility("letter-spacing", (
@@ -931,9 +848,8 @@ $utilities: (
             description: "Utilities for setting the horizontal spacing behavior between text characters.",
         ),
         classname: "tracking",
-        variants: internal.list-from("default"),
-        properties: internal.list-from(letter-spacing),
-        theme: internal.list-from("letter-spacing"),
+        variants: ("default"),
+        properties: (letter-spacing),
         values: config.$letter-spacing,
     )),
     line-height: create-utility("line-height", (
@@ -943,9 +859,8 @@ $utilities: (
             description: "Utilities for setting the line-height property of the element.",
         ),
         classname: "leading",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(line-height),
-        theme: internal.list-from("line-height"),
+        variants: ("default", "responsive"),
+        properties: (line-height),
         values: config.$line-height,
     )),
     text-align: create-utility("text-align", (
@@ -955,9 +870,8 @@ $utilities: (
             description: "Utilities for setting the text-align property of the element.",
         ),
         classname: "text",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(text-align),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (text-align),
         values: config.$text-align,
     )),
     text-color: create-utility("text-color", (
@@ -967,9 +881,8 @@ $utilities: (
             description: "Utilities for setting the color property of the element.",
         ),
         classname: "text",
-        variants: internal.list-from("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(color),
-        theme: internal.list-from("text-color"),
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
+        properties: (color),
         values: config.$text-color,
     )),
     text-decoration: create-utility("text-decoration", (
@@ -979,9 +892,8 @@ $utilities: (
             description: "Utilities for setting the text-decoration property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(text-decoration),
-        theme: internal.list-from(),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-decoration),
         values: config.$text-decoration,
     )),
     text-transform: create-utility("text-transform", (
@@ -991,9 +903,8 @@ $utilities: (
             description: "Utilities for setting the text-transform property of the element.",
         ),
         classname: null,
-        variants: internal.list-from("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: internal.list-from(text-transform),
-        theme: internal.list-from(),
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-transform),
         values: config.$text-transform,
     )),
     vertical-align: create-utility("vertical-align", (
@@ -1003,9 +914,8 @@ $utilities: (
             description: "Utilities for setting the vertical-align property of the element.",
         ),
         classname: "align",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(vertical-align),
-        theme: internal.list-from(),
+        variants: ("default", "responsive"),
+        properties: (vertical-align),
         values: config.$vertical-align,
     )),
 
@@ -1017,9 +927,8 @@ $utilities: (
             description: "Utilities for applying a blur filter to the element.",
         ),
         classname: "blur",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(filter),
-        theme: internal.list-from("blur"),
+        variants: ("default", "responsive"),
+        properties: (filter),
         values: config.$filter-blur,
     )),
     filter-sepia: create-utility("filter-sepia", (
@@ -1029,9 +938,8 @@ $utilities: (
             description: "Utilities for applying a sepia filter the element.",
         ),
         classname: "sepia",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(filter),
-        theme: internal.list-from("sepia"),
+        variants: ("default", "responsive"),
+        properties: (filter),
         values: config.$filter-sepia,
     )),
     filter-invert: create-utility("filter-invert", (
@@ -1041,9 +949,8 @@ $utilities: (
             description: "Utilities for applying an invert filter to the element.",
         ),
         classname: "invert",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(filter),
-        theme: internal.list-from("invert"),
+        variants: ("default", "responsive"),
+        properties: (filter),
         values: config.$filter-invert,
     )),
     filter-backdrop-blur: create-utility("filter-backdrop-blur", (
@@ -1053,9 +960,8 @@ $utilities: (
             description: "Utilities for applying a blurring effect to the area behind the element",
         ),
         classname: "backdrop-blur",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(backdrop-filter),
-        theme: internal.list-from("backdrop-blur"),
+        variants: ("default", "responsive"),
+        properties: (backdrop-filter),
         values: config.$filter-backdrop-blur,
     )),
 
@@ -1067,9 +973,8 @@ $utilities: (
             description: "Utilities for applying a scale transform to the element.",
         ),
         classname: "scale",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("scale"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-scale,
     )),
     scale-x: create-utility("scale-x", (
@@ -1079,9 +984,8 @@ $utilities: (
             description: "Utilities for applying a scale in the X axis to the element.",
         ),
         classname: "scale-x",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("scale"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-scale,
     )),
     scale-y: create-utility("scale-y", (
@@ -1091,9 +995,8 @@ $utilities: (
             description: "Utilities for applying a scale in the Y axis of the element.",
         ),
         classname: "scale-y",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("scale"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-scale,
     )),
     rotate: create-utility("rotate", (
@@ -1103,9 +1006,8 @@ $utilities: (
             description: "Utilities for applying a rotation transform to the element.",
         ),
         classname: "rotate",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("rotate"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-rotate,
     )),
     translate-x: create-utility("translate-x", (
@@ -1115,9 +1017,8 @@ $utilities: (
             description: "Utilities for applying a translation in the X axis to the element.",
         ),
         classname: "translate-x",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("translate-x"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-translate-x,
     )),
     translate-y: create-utility("translate-y", (
@@ -1127,9 +1028,8 @@ $utilities: (
             description: "Utilities for applying a translation in the Y axis to the element.",
         ),
         classname: "translate-y",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform),
-        theme: internal.list-from("translate-x"),
+        variants: ("default", "responsive"),
+        properties: (transform),
         values: config.$transform-translate-y,
     )),
     transform-origin: create-utility("transform-origin", (
@@ -1139,9 +1039,8 @@ $utilities: (
             description: "Utilities for setting the transform-origin property of the element.",
         ),
         classname: "origin",
-        variants: internal.list-from("default", "responsive"),
-        properties: internal.list-from(transform-origin),
-        theme: internal.list-from("transform-origin"),
+        variants: ("default", "responsive"),
+        properties: (transform-origin),
         values: config.$transform-origin,
     )),
 );
