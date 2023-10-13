@@ -1,6 +1,8 @@
 // Forward configuration variables and public api
 @forward "config";
 @forward "api";
+@forward "colors";
+@forward "base";
 
 // Include sass modules
 @use "sass:list";
@@ -17,18 +19,10 @@
 
 // @description Inject base styles
 @mixin base() {
-    @if internal.is-enabled("reset", config.$include, config.$exclude) {
-        @include base.reset();
-    }
-    @if internal.is-enabled("forms", config.$include, config.$exclude) {
-        @include base.forms();
-    }
-    @if internal.is-enabled("keyframes", config.$include, config.$exclude) {
-        @include base.keyframes();
-    }
-    @if internal.is-enabled("scrollbar", config.$include, config.$exclude) {
-        @include base.scrollbar();
-    }
+    @include base.reset();
+    @include base.forms();
+    @include base.keyframes();
+    @include base.scrollbar();
 }
 
 // @description Generate the utility from the given configuration
@@ -101,7 +95,7 @@
 // @description generate utilities
 @mixin utilities() {
     @each $utility-name,$utility-config in utilities.$utilities {
-        @if internal.is-enabled($utility-name, config.$include, config.$exclude) {
+        @if internal.is-enabled($utility-name, config.$include-utilities, config.$exclude-utilities) {
             @include utility($utility-config);
         }
     }
