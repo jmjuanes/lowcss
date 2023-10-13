@@ -17,14 +17,32 @@ You can customize LowCSS by importing it in your SASS file and customize the imp
         "lg": 1024px,
         "xl": 1280px,
     ),
-    $theme: (
+    $utilities: (
         "background-color": (
-            "primary": #0456C9,
-            "secondary": #a4abb6,
+            "classname": "background",
+            "variants": ("default"),
+            "values": (
+                "primary": #0456C9,
+                "secondary": #a4abb6,
+            ),
         ),
+    ),
+    $include-utilities: (
+        "background-color",
     ),
 );
 ``` 
+
+This configuration will generate the following CSS:
+
+```css
+.background-primary {
+    background-color: #0456C9;
+}
+.background-secondary {
+    background-color: #a4abb6;
+}
+```
 
 Read more about how to override variables with the `@use` rule in the [Sass documentation](https://sass-lang.com/documentation/at-rules/use#configuration).
 
@@ -79,94 +97,55 @@ Example:
 
 Adjust the values within the map to match your desired screen size breakpoints.
 
-## $theme
+## $colors
 
-The `$theme` variable is a SASS map that contains the configuration for your theme, and allows you to define colors, spacing, fonts, and other theme-related settings. Modify the values in this map to match your project's design system.
+Use this map to provide your custom color palette for all utilities.
+
+```scss
+@use "low" with (
+    $colors: (
+        "black": #000,
+        "white": #fff,
+        "primary": #0456C9,
+        "secondary": #a4abb6,
+    ),
+);
+```
+
+## $utilities
+
+The `$theme` variable is a SASS map that contains the custom configuration for your utilities. The key of this map is the utility name, and the value should be a map with your custom configuration. The following keys are available:
+
+- `classname`: a string with the classname of the utility.
+- `variants`: a list with the variants for the utility, such as responsive and pseudo-class modifiers.
+- `values`: a map with your custom values.
 
 Example usage:
 
 ```scss
 @use "low" with (
-    $theme: (
+    $utilities: (
         "text-color": (
-            "primary": #ff0000,
-            "secondary": #00ff00,
-        ),
-        "width": (
-            "small": 8px,
-            "medium": 16px,
+            "variants": ("default", "responsive", "hover", "focus", "active"),
+            "values": (
+                "primary": #ff0000,
+                "secondary": #00ff00,
+            ),
         ),
     ),
     // Add more configurations...
 );
 ```
 
-With this customization, you can use the defined theme colors and spacing values in your utility classes.
+## $include-utilities and $exclude-utilities
 
-This is the list of allowed fields in the `$theme` variable for customizing utilities values:
-
-<table className="w-full leading-normal text-sm">
-    <thead>
-        <tr className="">
-            <td className="p-4 font-medium text-gray-500">Theme Field</td>
-            <td className="p-4 font-medium text-gray-500">Description</td>
-        </tr>
-    </thead>
-    <tbody>
-        {Array.from(new Set(Object.values(props.utilities).map(u => u.theme).flat())).map(key => (
-        <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
-            <td className="p-4 font-mono text-gray-900 font-bold">
-                <span>{key}</span>
-            </td>
-            <td className="p-4 text-gray-700">
-                <span>Values for </span>
-                <span>
-                    {Object.keys(props.utilities).filter(u => props.utilities[u].theme.includes(key)).map(u => (
-                        <Fragment key={u}>
-                            <span className="font-mono font-bold text-gray-900">{u}</span>
-                            <span className="last:hidden">, </span>
-                        </Fragment>
-                    ))}
-                </span> utilities.
-            </td>
-        </tr>
-        ))}
-    </tbody>
-</table>
-
-
-## $variants
-
-The `$variants` variable is a SASS map that allows you to customize the variants for utilities, such as responsive and pseudo-class modifiers. 
+The `$include-utilities` and `$exclude-utilities` variables are lists that allow you to selectively include or exclude specific utility classes in the final CSS output. By default, all utilities are included. Use these variables to fine-tune the set of utilities you want to include in your project.
 
 Example usage:
 
 ```scss
 @use "low" with (
-    $variants: (
-        "background-color": ("default", "responsive", "hover", "focus", "active"),
-        // Add more variants customizations...
-    ),
-);
-```
-
-This is the default variants configuration:
-
-<CodeBlock language="scss">
-{`$variants: (
-${Object.keys(props.utilities).map(key => `    ${key}: (${props.utilities[key].variants.map(v => `'${v}'`).join(", ")}),`).join("\n")}
-);`}
-</CodeBlock>
-
-## $include and $exclude
-
-The `$include` and `$exclude` variables are lists that allow you to selectively include or exclude specific utility classes in the final CSS output. By default, all utilities are included. Use these variables to fine-tune the set of utilities you want to include in your project.
-
-Example usage:
-
-```scss
-@use "low" with (
-    $exclude: (
+    $exclude-utilities: (
         "background-color",
         "text-color",
     ),

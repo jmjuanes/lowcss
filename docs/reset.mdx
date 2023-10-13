@@ -148,16 +148,13 @@ When generating you own customized version of LowCSS, you can add reset styles b
 @include low.base();
 ```
 
-Individual styles can be included or excluded using the `$include` or `$exclude` variables:
+Individual styles can be included using the `low.reset()` mixin:
 
 ```scss
 @use "low" with (
-    $include: (
-        "reset",
-    ),
-    // ...other custom configuration
+    // ...custom configuration
 );
 
 // This will include only reset styles
-@include low.base();
+@include low.reset();
 ```
