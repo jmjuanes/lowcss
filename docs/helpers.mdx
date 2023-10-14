@@ -54,9 +54,11 @@ To fix an element to the bottom, use the `fixed-bottom` class:
 
 ## Sticky Elements to Top/Bottom
 
-The `sticky-top` and `sticky-bottom` helpers enable elements to become sticky, meaning they remain in their natural flow until scrolling pushes them off-screen, at which point they become fixed to the top or bottom of the viewport.
+The `sticky-top` and `sticky-bottom` helpers allow you to make elements sticky, ensuring they remain in their natural flow until scrolling pushes them off-screen. At that point, they become fixed to the top or bottom of the viewport.
 
-To make an element sticky at the top, use the `sticky-top` class:
+### Sticky to top
+
+Use the `sticky-top` class to make an element sticky at the top of the viewport. This is ideal for navigation menus, headers, or other elements that you want to stay visible as users scroll down the page.
 
 ```html
 <div class="sticky-top">
@@ -64,11 +66,35 @@ To make an element sticky at the top, use the `sticky-top` class:
 </div>
 ```
 
-To make an element sticky at the bottom, apply the `sticky-bottom` class:
+#### Responsive Sticky to top
+
+In responsive web design, you may want to apply sticky behavior differently on various screen sizes. LowCSS provides responsive classes that allow you to control the sticky behavior based on your breakpoints. For example, you can make an element sticky on medium and larger screens but not on smaller ones.
+
+```html
+<div class="md:sticky-top">
+    <!-- Sticky on medium and larger screens, not sticky on smaller screens -->
+</div>
+```
+
+In this example, the element will be sticky for `md` (medium) and larger screen sizes, but it won't be sticky on smaller screens.
+
+### Sticky to Bottom
+
+Use the `sticky-bottom` class to make an element sticky at the bottom of the viewport. This is often used for footers, call-to-action buttons, or other content that should remain visible as users scroll.
 
 ```html
 <div class="sticky-bottom">
     <!-- Content to be sticky at the bottom -->
+</div>
+```
+
+#### Responsive Sticky to bottom
+
+Just like with the `sticky-top` class, you can make the `sticky-bottom` element responsive by using the provided responsive classes. For instance, you might want an element to be sticky at the bottom only on medium or larger screens.
+
+```html
+<div class="md:sticky-bottom">
+    <!-- Sticky at the bottom on medium or large and larger screens, not sticky on smaller screens -->
 </div>
 ```
 
