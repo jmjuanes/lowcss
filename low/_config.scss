@@ -555,6 +555,11 @@ $text-transform: (
     lowercase: lowercase,
 ) !default;
 
+$text-overflow: (
+    ellipsis: ellipsis,
+    clip: clip,
+) !default;
+
 $user-select: (
     none: none,
     text: text,
