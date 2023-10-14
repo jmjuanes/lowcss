@@ -336,3 +336,31 @@
         white-space: nowrap;
     }
 }
+
+// Additional fonts
+@mixin fonts {
+    .font-inter {
+        font-family: Inter, sans-serif;
+    }
+    .font-lato {
+        font-family: Lato, sans-serif;
+    }
+    .font-poppins {
+        font-family: Poppins, sans-serif;
+    }
+    .font-crimson {
+        font-family: Crimson Pro, serif;
+    }
+    .font-nunito {
+        font-family: Nunito, sans-serif;
+    }
+    .font-plex-sans {
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .font-plex-serif {
+        font-family: 'IBM Plex Serif', serif;
+    }
+    .font-plex-mono {
+        font-family: 'IBM Plex Mono', monospace;
+    }
+}

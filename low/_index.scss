@@ -24,6 +24,7 @@
     @include base.keyframes();
     @include base.scrollbar();
     @include base.helpers();
+    @include base.fonts();
 }
 
 // @description Generate the utility from the given configuration
