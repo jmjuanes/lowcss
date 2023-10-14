@@ -17,6 +17,15 @@
     @return list.index($list, $value) != null;
 }
 
+// @description Get keys of the specified map
+@function keys($map) {
+    @if meta.type-of($map) == "map" {
+        @return map.keys($map);
+    }
+    // Fallback: return empty list
+    @return list-empty();
+}
+
 // @description split the provided string
 @function str-split($string, $delimiter: null) {
     @if meta.type-of($delimiter) != "string" or not $delimiter {
