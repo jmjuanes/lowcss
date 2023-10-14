@@ -1,0 +1,96 @@
+---
+layout: "docs"
+title: "Helpers"
+description: "Helpers styles like text truncation."
+prev: "keyframes.html"
+next: "utilities.html"
+---
+
+LowCSS introduces a set of helper styles to assist you in common layout and text formatting tasks. These helpers are designed to simplify your development process and enhance the visual presentation of your web projects.
+
+## Clearfix
+
+The `clearfix` helper is used to clear floated elements within a container. It ensures that the container expands to encompass all floated child elements, preventing layout issues and maintaining the desired flow of content.
+
+To apply the `clearfix` helper, simply add the `clearfix` class to the parent container:
+
+```html
+<div class="clearfix">
+    <!-- Floated child elements go here -->
+</div>
+```
+
+## Text Truncation
+
+The `truncate` helper provides a straightforward way to truncate text that overflows its container. This is particularly useful for avoiding text overflow issues in limited space scenarios.
+
+To truncate text, add the `truncate` class to the element:
+
+```html
+<p class="truncate">
+    This is a long text that will be truncated if it overflows its container.
+</p>
+```
+
+## Fix Elements to Top/Bottom
+
+The `fixed-top` and `fixex-bottom` helpers allow you to fix elements in position at the top or bottom of the viewport. This is commonly used for navigation menus, banners, or other content that should remain visible as the user scrolls.
+
+To fix an element to the top, add the `fixed-top` class:
+
+```html
+<div class="fixed-top">
+    <!-- Content to be fixed at the top -->
+</div>
+```
+
+To fix an element to the bottom, use the `fixed-bottom` class:
+
+```html
+<div class="fix-to-bottom">
+    <!-- Content to be fixed at the bottom -->
+</div>
+```
+
+## Sticky Elements to Top/Bottom
+
+The `sticky-top` and `sticky-bottom` helpers enable elements to become sticky, meaning they remain in their natural flow until scrolling pushes them off-screen, at which point they become fixed to the top or bottom of the viewport.
+
+To make an element sticky at the top, use the `sticky-top` class:
+
+```html
+<div class="sticky-top">
+    <!-- Content to be sticky at the top -->
+</div>
+```
+
+To make an element sticky at the bottom, apply the `sticky-bottom` class:
+
+```html
+<div class="sticky-bottom">
+    <!-- Content to be sticky at the bottom -->
+</div>
+```
+
+# Enable or disable helpers
+
+When generating you own customized version of LowCSS, you can add helpers styles by including the `low.base()` mixin in your SCSS stylesheet:
+
+```scss
+@use "low" with (
+    // ...custom configuration
+);
+
+@include low.base();
+```
+
+Individual styles can be included using the `low.helpers()` mixin:
+
+```scss
+@use "low" with (
+    // ...custom configuration
+);
+
+// This will include only helpers styles
+@include low.helpers();
+```
