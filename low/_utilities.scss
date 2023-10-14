@@ -863,6 +863,28 @@ $utilities: (
         properties: (line-height),
         values: config.$line-height,
     )),
+    list-style-position: create-utility("list-style-position", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position",
+            description: "Utilities for setting the position of bullets/numbers in lists",
+        ),
+        classname: "list",
+        variants: ("default"),
+        properties: (list-style-position),
+        values: config.$list-style-position,
+    )),
+    list-style-type: create-utility("list-style-type", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type",
+            description: "Utilities for setting the bullets/numbers type in lists",
+        ),
+        classname: "list",
+        variants: ("default"),
+        properties: (list-style-type),
+        values: config.$list-style-type,
+    )),
     text-align: create-utility("text-align", (
         attributes: (
             group: "typography",
