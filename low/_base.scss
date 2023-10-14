@@ -1,3 +1,5 @@
+@use "api";
+@use "config";
 @use "internal";
 
 // Reset CSS styles
@@ -275,5 +277,62 @@
         &::-webkit-scrollbar-button {
             display: none;
         }
+    }
+}
+
+// Helpers styles
+@mixin helpers {
+    // Clear float elements
+    .clearfix::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+    // Fix elements to top or bottom
+    .fixed-top,
+    .fixed-bottom {
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: config.$zindex-fixed;
+    }
+    .fixed-top {
+        top: 0;
+    }
+    .fixed-bottom {
+        bottom: 0;
+    }
+    // Sticky elements
+    .sticky-top,
+    .sticky-bottom {
+        position: sticky;
+        z-index: config.$zindex-sticky;
+    }
+    .sticky-top {
+        top: 0;
+    }
+    .sticky-bottom {
+        bottom: 0;
+    }
+    @each $breakpoint in internal.keys(config.$breakpoints) {
+        @include api.screen-above($breakpoint) {
+            .#{$breakpoint}#{config.$separator}sticky-top, 
+            .#{$breakpoint}#{config.$separator}sticky-bottom {
+                position: sticky;
+                z-index: config.$zindex-sticky;
+            }
+            .#{$breakpoint}#{config.$separator}sticky-top {
+                top: 0;
+            }
+            .#{$breakpoint}#{config.$separator}sticky-bottom {
+                bottom: 0;
+            }
+        }
+    }
+    // Truncate text
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 }
