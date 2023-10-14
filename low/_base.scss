@@ -319,7 +319,7 @@
             .#{$breakpoint}#{config.$separator}sticky-top, 
             .#{$breakpoint}#{config.$separator}sticky-bottom {
                 position: sticky;
-                z-index: $zindex-sticky;
+                z-index: config.$zindex-sticky;
             }
             .#{$breakpoint}#{config.$separator}sticky-top {
                 top: 0;
