@@ -405,6 +405,17 @@ $line-height: (
     loose: 2,
 ) !default;
 
+$list-style-position: (
+    inside: inside,
+    outside: outside,
+) !default;
+
+$list-style-type: (
+    none: none,
+    disc: disc,
+    decimal: decimal,
+) !default;
+
 $margin: map.merge($space, (
     auto: auto,
 )) !default;
