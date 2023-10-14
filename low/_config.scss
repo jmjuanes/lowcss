@@ -60,6 +60,10 @@ $pseudos: (
     peer-checked: ":checked",
 ) !default;
 
+// Z-index values for position helpers
+$zindex-fixed: 1100 !default;
+$zindex-sticky: 1050 !default;
+
 // @description custom colors
 // Used in background-color, border-color and color properties
 $colors: map.merge(colors.$color-palette, (
