@@ -896,6 +896,17 @@ $utilities: (
         properties: (text-decoration),
         values: config.$text-decoration,
     )),
+    text-overflow: create-utility("text-overflow", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow",
+            description: "Utilities for setting the text-overflow property of the element.",
+        ),
+        classname: "text",
+        variants: ("default", "responsive"),
+        properties: (text-overflow),
+        values: config.$text-overflow,
+    )),
     text-transform: create-utility("text-transform", (
         attributes: (
             group: "typography",
