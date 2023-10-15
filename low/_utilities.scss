@@ -134,6 +134,50 @@ $utilities: (
         properties: (border-radius),
         values: config.$border-radius,
     )),
+    border-top-left-radius: create-utility("border-top-left-radius", (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-tl",
+        variants: ("default"),
+        properties: (border-top-left-radius),
+        values: config.$border-radius,
+    )),
+    border-top-right-radius: create-utility("border-top-right-radius", (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-tr",
+        variants: ("default"),
+        properties: (border-top-right-radius),
+        values: config.$border-radius,
+    )),
+    border-bottom-left-radius: create-utility("border-bottom-left-radius", (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-bl",
+        variants: ("default"),
+        properties: (border-bottom-left-radius),
+        values: config.$border-radius,
+    )),
+    border-bottom-right-radius: create-utility("border-bottom-right-radius", (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-br",
+        variants: ("default"),
+        properties: (border-bottom-right-radius),
+        values: config.$border-radius,
+    )),
     border-color: create-utility("border-color", (
         attributes: (
             group: "border",
