@@ -23,9 +23,9 @@ const CodeBlock = props => {
 };
 
 const pageComponents = {
-    "blockquote": props => <blockquote className="border-l-2 border-gray-500 text-gray-500 pl-3">{props.children}</blockquote>,
-    "h1": props => <h1 className="mt-8 mb-4 text-gray-800 text-2xl font-bold">{props.children}</h1>,
-    "h2": props => <h2 className="mt-8 mb-4 text-gray-800 text-xl font-bold">{props.children}</h2>,
+    "blockquote": props => <blockquote className="border-l-2 border-gray-700 text-gray-700 pl-3">{props.children}</blockquote>,
+    "h1": props => <h1 className="mt-8 mb-4 text-gray-950 text-2xl font-bold">{props.children}</h1>,
+    "h2": props => <h2 className="mt-8 mb-4 text-gray-950 text-xl font-bold">{props.children}</h2>,
     "p": props => <p className="mt-6 mb-6">{props.children}</p>,
     "ul": props => <ul style={{listStylePosition: "inside"}}>{props.children}</ul>,
     "ol": props => <ol style={{listStylePosition: "inside"}}>{props.children}</ol>,
@@ -40,12 +40,12 @@ const pageComponents = {
         );
     },
     "a": props => (
-        <a {...props} className={`underline text-gray-900 font-medium ${props.className || ""}`}>
+        <a {...props} className={`underline text-gray-950 font-medium ${props.className || ""}`}>
             {props.children}
         </a>
     ),
     Icon: props => renderIcon(props.icon),
-    Separator: () => <div className="my-8 h-px w-full bg-gray-200" />,
+    Separator: () => <div className="my-8 h-px w-full bg-gray-100" />,
     ExampleCode: props => (
         <div className={`${props.className || ""} bg-white border border-solid border-gray-300 p-6 rounded-md mb-4 mt-6`}>
             {props.children}
@@ -56,7 +56,7 @@ const pageComponents = {
 };
 
 const MenuSection = props => (
-    <div className="text-gray-800">{props.children}</div>
+    <div className="text-gray-900">{props.children}</div>
 );
 
 const MenuGroup = props => (
@@ -66,8 +66,8 @@ const MenuGroup = props => (
 const MenuLink = props => {
     const classList = classnames({
         "block py-2 px-3 rounded-md no-underline": true,
-        "bg-gray-200 font-bold text-gray-800": props.active,
-        "bg-white hover:bg-gray-100 text-gray-500 hover:text-gray-700": !props.active,
+        "bg-gray-100 font-bold text-gray-900": props.active,
+        "bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-800": !props.active,
     });
     return (
         <a href={props.href} className={classList}>
@@ -77,7 +77,7 @@ const MenuLink = props => {
 };
 
 const NavbarLink = props => (
-    <a href={props.href} className="flex items-center gap-2 text-gray-800 px-3 py-2 rounded-md hover:bg-gray-200 no-underline">
+    <a href={props.href} className="flex items-center gap-2 text-gray-900 px-3 py-2 rounded-md hover:bg-gray-100 no-underline">
         {props.icon && (
             <div className="flex items-center text-lg">
                 {renderIcon(props.icon)}
@@ -98,16 +98,16 @@ const PageNavigation = props => {
         <div className="mt-12 w-full grid grid-cols-2 gap-4">
             <div className="w-full">
                 {prevPage && (
-                    <a href={prevPage.url} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
-                        <div className="text-xs text-gray-500">Previous page</div>
+                    <a href={prevPage.url} className="no-underline text-gray-900 block p-4 rounded-md border border-solid border-gray-200 hover:border-gray-300">
+                        <div className="text-xs text-gray-700">Previous page</div>
                         <div className="font-medium">{prevPage.data.title}</div>
                     </a>
                 )}
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.url} className="no-underline text-gray-800 block p-4 rounded-md border border-solid border-gray-300 hover:border-gray-400">
-                        <div className="text-xs text-gray-500 text-right">Next page</div>
+                    <a href={nextPage.url} className="no-underline text-gray-900 block p-4 rounded-md border border-solid border-gray-200 hover:border-gray-400">
+                        <div className="text-xs text-gray-700 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
                 )}
@@ -121,7 +121,7 @@ const DocsLayout = props => {
     return (
         <React.Fragment>
             <div className="hidden lg:block w-56 shrink-0">
-                <div className="w-full py-12 text-gray-300 flex flex-col gap-6 sticky top-0">
+                <div className="w-full py-12 flex flex-col gap-6 sticky top-0">
                     <MenuSection>
                         <MenuGroup text="Getting Started" />
                         <MenuLink active={current === "introduction.html"} href="./introduction" text="Introduction" />
@@ -149,7 +149,7 @@ const DocsLayout = props => {
             <div className="w-full max-w-3xl mx-auto py-10">
                 <div className="mb-10">
                     <div className="text-4xl font-bold mb-1">{props.page.data.title}</div>
-                    <div className="text-lg text-gray-500 font-medium leading-relaxed">
+                    <div className="text-lg text-gray-800 font-medium leading-relaxed">
                         <span>{props.page.data.description}</span>
                     </div>
                 </div>
@@ -178,20 +178,20 @@ const PageWrapper = props => (
                 }
             `}} />
         </head>
-        <body className="bg-white m-0 p-0 font-inter text-gray-800 leading-normal">
+        <body className="bg-white m-0 p-0 font-inter text-gray-900 leading-normal">
             {/* Header */}
-            <div className="border-b-1 border-gray-300 relative">
+            <div className="border-b-1 border-gray-200 relative">
                 <div className="w-full max-w-7xl h-16 px-6 mx-auto flex items-center justify-between">
-                    <a href="./" className="flex items-center gap-2 text-gray-800 no-underline">
+                    <a href="./" className="flex items-center gap-2 text-gray-900 no-underline">
                         <div className="font-black text-xl">
                             <span>lowCSS.</span>
                         </div>
-                        <div className="flex items-center font-bold text-2xs bg-gray-200 px-2 py-1 rounded-lg">
+                        <div className="flex items-center font-bold text-2xs bg-gray-100 px-2 py-1 rounded-lg">
                             <span>{props.site.version}</span>
                         </div>
                     </a>
                     <div className="group peer" tabIndex="0">
-                        <div className="flex md:hidden text-xl p-2 border border-gray-300 rounded-md cursor-pointer">
+                        <div className="flex md:hidden text-xl p-2 border border-gray-200 rounded-md cursor-pointer">
                             {renderIcon("bars")}
                         </div>
                         <div className="fixed md:initial top-0 right-0 p-6 md:p-0 hidden md:block group-focus-within:block z-5">
@@ -202,7 +202,7 @@ const PageWrapper = props => (
                                     <NavbarLink href="./customize" text="Customize" icon="color-swatch" />
                                     <NavbarLink href="./utilities" text="Utilities" icon="list" />
                                 </div>
-                                <div className="h-px w-full md:h-8 md:w-px bg-gray-300" />
+                                <div className="h-px w-full md:h-8 md:w-px bg-gray-200" />
                                 <div className="flex">
                                     <a href={props.site.repository} className="no-underline o-70 hover:o-100">
                                         <img className="w-6 h-6" src="./github.svg" />
@@ -211,7 +211,7 @@ const PageWrapper = props => (
                             </div>
                         </div>
                     </div>
-                    <div className="fixed top-0 left-0 w-full h-full md:h-0 peer-focus-within:block hidden md:hidden bg-gray-900 o-60 z-2" />
+                    <div className="fixed top-0 left-0 w-full h-full md:h-0 peer-focus-within:block hidden md:hidden bg-gray-900 o-70 z-2" />
                 </div>
             </div>
             {/* Main content */}
@@ -226,10 +226,10 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="w-full border-t-1 border-gray-300">
+            <div className="w-full border-t-1 border-gray-200">
                 <div className="w-full max-w-7xl mx-auto px-6 pt-10 pb-20 text-sm">
-                    Designed by <a href="https://josemi.xyz" className="underline text-gray-800 hover:text-gray-900 font-medium">Josemi</a>. 
-                    Source code available on <a href={props.site.repository} className="underline text-gray-800 hover:text-gray-900 font-medium">GitHub</a>. 
+                    Designed by <a href="https://josemi.xyz" className="underline text-gray-900 hover:text-gray-950 font-medium">Josemi</a>. 
+                    Source code available on <a href={props.site.repository} className="underline text-gray-900 hover:text-gray-950 font-medium">GitHub</a>. 
                 </div>
             </div>
         </body>

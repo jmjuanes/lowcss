@@ -8,7 +8,7 @@ prev: "helpers.html"
 {Object.entries(props.site.low.utilities).map(([key, utility]) => (
 <div className="mb-16" key={key}>
     <div className="text-2xl font-bold mb-4">
-        <a href={`#${key}`} name={key} className="text-gray-800 hover:text-gray-900">{key}</a>
+        <a href={`#${key}`} name={key} className="text-gray-900 hover:text-gray-950">{key}</a>
     </div>
     <div className="mb-4">
         {utility.attributes.description}
@@ -18,17 +18,17 @@ prev: "helpers.html"
         {utility.variants.map(variant => (
             <Fragment key={variant}>
             {variant === "default" && (
-                <div className="py-1 px-2 bg-gray-800 text-white text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-900 text-white text-xs rounded-md">
                     <span className="font-bold">default</span>
                 </div>
             )}
             {variant === "responsive" && (
-                <div className="py-1 px-2 bg-gray-600 text-white text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-700 text-white text-xs rounded-md">
                     <span className="font-bold">responsive</span>
                 </div>
             )}
             {variant !== "responsive" && variant !== "default" && (
-                <div className="py-1 px-2 bg-gray-300 text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-200 text-xs rounded-md">
                     <span>pseudo: <span className="font-bold">{variant}</span></span>
                 </div>
             )}
@@ -36,11 +36,11 @@ prev: "helpers.html"
         ))}
         </div>
     )}
-    <div className="max-h-96 overflow-auto text-gray-300">
+    <div className="max-h-96 overflow-auto text-gray-500">
         <table className="w-full">
             {Object.entries(utility.values).map(item => (
-            <tr key={item[0]} className="border border-gray-300 text-xs">
-                <td className="p-4 font-mono bg-gray-200 text-blue-600">
+            <tr key={item[0]} className="border border-gray-200 text-xs">
+                <td className="p-4 font-mono bg-gray-100 text-blue-600">
                     {utility.classname && item[0] !== "DEFAULT" && (
                         <span>{utility.classname}-{item[0]}</span>
                     )}
@@ -51,7 +51,7 @@ prev: "helpers.html"
                         <span>{utility.classname}</span>
                     )}
                 </td>
-                <td className="p-4 font-mono text-gray-700">
+                <td className="p-4 font-mono text-gray-800">
                 {utility.properties.map(p => (
                     <div key={p} className="mb-1">
                         <span className="text-indigo-700">{p}</span>: {item[1]};
