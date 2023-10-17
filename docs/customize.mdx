@@ -43,6 +43,7 @@ Read more in the [SASS variables configuration](./variables) section.
 
 Use the following mixins to include the LowCSS styles into your CSS:
 
+- `low.root()`: this mixin generates CSS Variables from the color palette.
 - `low.base()`: this mixin injects the base styles. Read more in the [Base Styles](./base.html) section.
 - `low.utilities()`: this mixin injects the utility classes.
 
@@ -55,6 +56,7 @@ Example usage:
 );
 
 // 2. Inject lowcss styles
+@include low.root();
 @include low.base();
 @include low.utilities();
 ```

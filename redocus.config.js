@@ -135,6 +135,10 @@ const DocsLayout = props => {
                         <MenuLink active={current === "colors.html"} href="./colors" text="Colors" />
                     </MenuSection>
                     <MenuSection>
+                        <MenuGroup text="Globals" />
+                        <MenuLink active={current === "root.html"} href="./root" text="Root CSS Variables" />
+                    </MenuSection>
+                    <MenuSection>
                         <MenuGroup text="Base styles" />
                         <MenuLink active={current === "reset.html"} href="./reset" text="Reset CSS" />
                         <MenuLink active={current === "keyframes.html"} href="./keyframes" text="Keyframes" />
