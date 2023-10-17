@@ -1,0 +1,57 @@
+---
+layout: "docs"
+title: "Root CSS Variables"
+description: "How to use CSS Variables generated from the color palette."
+prev: "colors.html"
+next: "reset.html"
+---
+
+LowCSS provides CSS variables generated from the color palette, making it even easier to maintain a consistent color scheme across your project.
+
+# Available CSS Variables
+
+The following CSS variables are available, derived from the default color palette:
+
+<table className="w-full leading-normal text-sm">
+    <thead>
+        <tr className="">
+            <td className="p-4 font-medium text-gray-700">Variable name</td>
+            <td className="p-4 font-medium text-gray-700">Value</td>
+            <td className="p-4 font-medium text-gray-700"></td>
+        </tr>
+    </thead>
+    <tbody>
+        {Object.keys(props.site.low.colors).map(key => (
+        <tr key={key} className="border-t border-gray-200 hover:bg-gray-50">
+            <td className="p-4 font-bold font-mono text-gray-900">--low-{key}</td>
+            <td className="p-4 font-mono text-indigo-600">{props.site.low.colors[key].toLowerCase()}</td>
+            <td className="p-4">
+                <div className={`bg-${key} rounded-md h-8 w-20`} />
+            </td>
+        </tr>
+        ))}
+    </tbody>
+</table>
+
+# Using CSS Variables
+
+You can access the CSS variables in your CSS or SASS code. For example:
+
+```css
+.my-element {
+    background-color: var(--low-blue-600);
+    color: var(--low-white);
+}
+```
+
+# Enable or disable CSS Variables
+
+When generating you own customized version of LowCSS, you can add CSS variables by including the `low.root()` mixin in your SCSS stylesheet:
+
+```scss
+@use "low" with (
+    // ...custom configuration
+);
+
+@include low.root();
+```
