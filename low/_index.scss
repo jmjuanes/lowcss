@@ -27,6 +27,16 @@
     @include base.fonts();
 }
 
+// @description Generate root variables
+@mixin root() {
+    :root {
+        // Colors variables
+        @each $color-name,$color-value in config.$colors {
+            --low-#{$color-name}: #{$color-value};
+        }
+    }
+}
+
 // @description Generate the utility from the given configuration
 @mixin utility($utility-config) {
     $classname: map.get($utility-config, "classname");
