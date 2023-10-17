@@ -50,16 +50,16 @@ The following breakpoints are defined by default in LowCSS:
 <table className="w-full leading-normal text-sm">
     <thead>
         <tr className="">
-            <td className="p-4 font-medium text-gray-500">Breakpoint</td>
-            <td className="p-4 font-medium text-gray-500">Minimum width</td>
-            <td className="p-4 font-medium text-gray-500">Rule</td>
+            <td className="p-4 font-medium text-gray-700">Breakpoint</td>
+            <td className="p-4 font-medium text-gray-700">Minimum width</td>
+            <td className="p-4 font-medium text-gray-700">Rule</td>
         </tr>
     </thead>
     <tbody>
         {Object.keys(props.site.low.breakpoints).map(key => (
-        <tr key={key} className="border-t border-gray-300 hover:bg-gray-100">
+        <tr key={key} className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-mono font-bold text-gray-900">{key}</td>
-            <td className="p-4 font-mono text-gray-700">{props.site.low.breakpoints[key]}</td>
+            <td className="p-4 font-mono text-gray-800">{props.site.low.breakpoints[key]}</td>
             <td className="p-4 font-mono font-bold text-gray-900">
                 @media (min-width: {props.site.low.breakpoints[key]}) {"{"} ... {"}"}
             </td>
@@ -103,58 +103,58 @@ This is the list of available pseudo modifiers:
 <table className="w-full leading-normal text-sm">
     <thead>
         <tr className="">
-            <td className="p-4 font-medium text-gray-500">Modifier</td>
-            <td className="p-4 font-medium text-gray-500">Description</td>
+            <td className="p-4 font-medium text-gray-700">Modifier</td>
+            <td className="p-4 font-medium text-gray-700">Description</td>
         </tr>
     </thead>
     <tbody>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">hover</td>
-            <td className="p-4 text-gray-700">Applied when the user hovers the element.</td>
+            <td className="p-4 text-gray-800">Applied when the user hovers the element.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">focus</td>
-            <td className="p-4 text-gray-700">Applied to the element when it has focus.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it has focus.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">focus-within</td>
-            <td className="p-4 text-gray-700">Applied to the element when it or one of its descendants has focus.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it or one of its descendants has focus.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">active</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is being pressed.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is being pressed.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">visited</td>
-            <td className="p-4 text-gray-700">Applied to the element when it has already visited.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it has already visited.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">checked</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is checked (only for radio or checkbox).</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is checked (only for radio or checkbox).</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">disabled</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is disabled.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is disabled.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">required</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is required.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is required.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">first</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is the first child.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is the first child.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">last</td>
-            <td className="p-4 text-gray-700">Applied to the element when it is the last child.</td>
+            <td className="p-4 text-gray-800">Applied to the element when it is the last child.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">odd</td>
-            <td className="p-4 text-gray-700">Applied to the whose numeric position in a series of siblings is odd.</td>
+            <td className="p-4 text-gray-800">Applied to the whose numeric position in a series of siblings is odd.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">even</td>
-            <td className="p-4 text-gray-700">Applied to the whose numeric position in a series of siblings is even.</td>
+            <td className="p-4 text-gray-800">Applied to the whose numeric position in a series of siblings is even.</td>
         </tr>
     </tbody>
 </table>
@@ -177,22 +177,22 @@ This is a list of all `group-*` modifiers available:
 <table className="w-full leading-normal text-sm">
     <thead>
         <tr className="">
-            <td className="p-4 font-medium text-gray-500">Modifier</td>
-            <td className="p-4 font-medium text-gray-500">Description</td>
+            <td className="p-4 font-medium text-gray-700">Modifier</td>
+            <td className="p-4 font-medium text-gray-700">Description</td>
         </tr>
     </thead>
     <tbody>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">group-hover</td>
-            <td className="p-4 text-gray-700">Applied when the parent element is hovered.</td>
+            <td className="p-4 text-gray-800">Applied when the parent element is hovered.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">group-focus</td>
-            <td className="p-4 text-gray-700">Applied when the parent element is focussed.</td>
+            <td className="p-4 text-gray-800">Applied when the parent element is focussed.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">group-focus-within</td>
-            <td className="p-4 text-gray-700">Applied when the parent element or one of its descendants are focussed.</td>
+            <td className="p-4 text-gray-800">Applied when the parent element or one of its descendants are focussed.</td>
         </tr>
     </tbody>
 </table>
@@ -216,26 +216,26 @@ This is a list of all `peer-*` modifiers available:
 <table className="w-full leading-normal text-sm">
     <thead>
         <tr className="">
-            <td className="p-4 font-medium text-gray-500">Modifier</td>
-            <td className="p-4 font-medium text-gray-500">Description</td>
+            <td className="p-4 font-medium text-gray-700">Modifier</td>
+            <td className="p-4 font-medium text-gray-700">Description</td>
         </tr>
     </thead>
     <tbody>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">peer-hover</td>
-            <td className="p-4 text-gray-700">Applied when the sibling element is hovered.</td>
+            <td className="p-4 text-gray-800">Applied when the sibling element is hovered.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">peer-focus</td>
-            <td className="p-4 text-gray-700">Applied when the sibling element is focussed.</td>
+            <td className="p-4 text-gray-800">Applied when the sibling element is focussed.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">peer-checked</td>
-            <td className="p-4 text-gray-700">Applied when the sibling element is checked.</td>
+            <td className="p-4 text-gray-800">Applied when the sibling element is checked.</td>
         </tr>
-        <tr className="border-t border-gray-300 hover:bg-gray-100">
+        <tr className="border-t border-gray-200 hover:bg-gray-50">
             <td className="p-4 font-bold font-mono text-gray-900">peer-active</td>
-            <td className="p-4 text-gray-700">Applied when the sibling element has an <b>active</b> state.</td>
+            <td className="p-4 text-gray-800">Applied when the sibling element has an <b>active</b> state.</td>
         </tr>
     </tbody>
 </table>
