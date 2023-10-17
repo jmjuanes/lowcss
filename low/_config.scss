@@ -64,6 +64,18 @@ $pseudos: (
 $zindex-fixed: 1100 !default;
 $zindex-sticky: 1050 !default;
 
+// Default fonts
+$font-sans: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+$font-serif: (Georgia, Cambria, "Times New Roman", Times, serif);
+$font-mono: ("SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+
+// @description: available fonts
+$fonts: (
+    sans: $font-sans,
+    serif: $font-serif,
+    mono: $font-mono,
+) !default;
+
 // @description custom colors
 // Used in background-color, border-color and color properties
 $colors: map.merge(colors.$color-palette, (
@@ -278,11 +290,7 @@ $float: (
     none: none,
 ) !default;
 
-$font-family: (
-    sans: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif),
-    serif: (Georgia, Cambria, "Times New Roman", Times, serif),
-    mono: ("SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace),
-) !default;
+$font-family: map.merge((), $fonts) !default;
 
 $font-size: (
     3xs: 0.5rem,

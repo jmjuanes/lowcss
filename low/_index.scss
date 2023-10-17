@@ -30,6 +30,10 @@
 // @description Generate root variables
 @mixin root() {
     :root {
+        // Fonts
+        @each $font-name,$font-value in config.$fonts {
+            --low-font-#{$font-name}: #{$font-value};
+        }
         // Colors variables
         @each $color-name,$color-value in config.$colors {
             --low-#{$color-name}: #{$color-value};
