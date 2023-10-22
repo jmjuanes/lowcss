@@ -23,7 +23,7 @@ const CodeBlock = props => {
 };
 
 const pageComponents = {
-    "blockquote": props => <blockquote className="border-l-2 border-gray-700 text-gray-700 pl-3">{props.children}</blockquote>,
+    "blockquote": props => <blockquote className="border-l-2 border-gray-600 text-gray-600 pl-3">{props.children}</blockquote>,
     "h1": props => <h1 className="mt-8 mb-4 text-gray-950 text-2xl font-bold">{props.children}</h1>,
     "h2": props => <h2 className="mt-8 mb-4 text-gray-950 text-xl font-bold">{props.children}</h2>,
     "p": props => <p className="mt-6 mb-6">{props.children}</p>,
@@ -106,7 +106,7 @@ const PageNavigation = props => {
             </div>
             <div className="w-full">
                 {nextPage && (
-                    <a href={nextPage.url} className="no-underline text-gray-900 block p-4 rounded-md border border-solid border-gray-200 hover:border-gray-400">
+                    <a href={nextPage.url} className="no-underline text-gray-900 block p-4 rounded-md border border-solid border-gray-200 hover:border-gray-300">
                         <div className="text-xs text-gray-700 text-right">Next page</div>
                         <div className="font-medium text-right">{nextPage.data.title}</div>
                     </a>
@@ -152,7 +152,7 @@ const DocsLayout = props => {
             </div>
             <div className="w-full max-w-3xl mx-auto py-10">
                 <div className="mb-10">
-                    <div className="text-4xl font-bold mb-1">{props.page.data.title}</div>
+                    <div className="text-4xl text-gray-950 font-bold mb-1">{props.page.data.title}</div>
                     <div className="text-lg text-gray-800 font-medium leading-relaxed">
                         <span>{props.page.data.description}</span>
                     </div>
@@ -182,9 +182,9 @@ const PageWrapper = props => (
                 }
             `}} />
         </head>
-        <body className="bg-white m-0 p-0 font-inter text-gray-900 leading-normal">
+        <body className="bg-white m-0 p-0 font-inter text-gray-700 leading-normal">
             {/* Header */}
-            <div className="border-b-1 border-gray-200 relative">
+            <div className="border-b-1 border-gray-100 relative">
                 <div className="w-full max-w-7xl h-16 px-6 mx-auto flex items-center justify-between">
                     <a href="./" className="flex items-center gap-2 text-gray-900 no-underline">
                         <div className="font-black text-xl">
@@ -230,8 +230,8 @@ const PageWrapper = props => (
                 )}
             </div>
             {/* Footer */}
-            <div className="w-full border-t-1 border-gray-200">
-                <div className="w-full max-w-7xl mx-auto px-6 pt-10 pb-20 text-sm">
+            <div className="w-full border-t-1 border-gray-100">
+                <div className="w-full max-w-7xl mx-auto px-6 pt-10 pb-20 text-sm text-gray-600">
                     Designed by <a href="https://josemi.xyz" className="underline text-gray-900 hover:text-gray-950 font-medium">Josemi</a>. 
                     Source code available on <a href={props.site.repository} className="underline text-gray-900 hover:text-gray-950 font-medium">GitHub</a>. 
                 </div>
