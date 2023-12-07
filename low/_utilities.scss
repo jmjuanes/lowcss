@@ -492,6 +492,17 @@ $utilities: (
         properties: (user-select),
         values: config.$user-select,
     )),
+    pointer-events: create-utility("pointer-events", (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events",
+            description: "Utilities for setting the pointer-events property of the element",
+        ),
+        classname: "pointer-events",
+        variants: ("default"),
+        properties: (pointer-events),
+        values: config.$pointer-events,
+    )),
 
     // Layout utilities
     bottom: create-utility("bottom", (
