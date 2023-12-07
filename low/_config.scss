@@ -536,6 +536,11 @@ $overflow: (
 
 $padding: map.merge((), $space) !default;
 
+$pointer-events: (
+    auto: auto,
+    none: none,
+) !default;
+
 $position: (
     relative: relative,
     absolute: absolute,
