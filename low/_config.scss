@@ -367,6 +367,28 @@ $grid-template-rows: (
     none: none,
 ) !default;
 
+$grid-auto-flow: (
+    row: row,
+    col: column,
+    dense: dense,
+    row-dense: row dense,
+    col-dense: column dense,
+) !default;
+
+$grid-auto-columns: (
+    auto: auto,
+    min: min-content,
+    max: max-content,
+    fr: minmax(0, 1fr),
+) !default;
+
+$grid-auto-rows: (
+    auto: auto,
+    min: min-content,
+    max: max-content,
+    fr: minmax(0, 1fr),
+) !default;
+
 $height: map.merge($sizes, (
     screen: 100vh,
 )) !default;

@@ -446,6 +446,39 @@ $utilities: (
         properties: (grid-template-rows),
         values: config.$grid-template-rows,
     )),
+    grid-auto-flow: create-utility("grid-auto-flow", (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow",
+            description: "Utilities for setting the grid-auto-flow property of the element.",
+        ),
+        classname: "grid-flow",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-flow),
+        values: config.$grid-auto-flow,
+    )),
+    grid-auto-columns: create-utility("grid-auto-columns", (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns",
+            description: "Utilities for setting the grid-auto-columns property of the element.",
+        ),
+        classname: "auto-cols",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-columns),
+        values: config.$grid-auto-columns,
+    )),
+    grid-auto-rows: create-utility("grid-auto-rows", (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows",
+            description: "Utilities for setting the grid-auto-rows property of the element.",
+        ),
+        classname: "auto-rows",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-rows),
+        values: config.$grid-auto-rows,
+    )),
     justify-content: create-utility("justify-content", (
         attributes: (
             group: "flexbox",
