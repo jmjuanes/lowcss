@@ -536,7 +536,17 @@ $utilities: (
         properties: (pointer-events),
         values: config.$pointer-events,
     )),
-
+    touch-action: create-utility("touch-action", (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action",
+            description: "Utilities for setting the touch-action property of the element",
+        ),
+        classname: "touch",
+        variants: ("default"),
+        properties: (touch-action),
+        values: config.$touch-action,
+    )),
     // Layout utilities
     bottom: create-utility("bottom", (
         attributes: (

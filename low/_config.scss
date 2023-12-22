@@ -597,6 +597,19 @@ $text-overflow: (
     clip: clip,
 ) !default;
 
+$touch-action: (
+    auto: auto,
+    none: none,
+    pan-x: pan-x,
+    pan-y: pan-y,
+    pan-left: pan-left,
+    pan-right: pan-right,
+    pan-up: pan-up,
+    pan-down: pan-down,
+    pinch-zoom: pinch-zoom,
+    manipulation: manipulation,
+) !default;
+
 $user-select: (
     none: none,
     text: text,
