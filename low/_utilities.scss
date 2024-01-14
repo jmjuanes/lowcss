@@ -750,6 +750,28 @@ $utilities: (
         properties: (margin),
         values: config.$margin,
     )),
+    margin-x: create-utility("margin-x", (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+            description: "Utilities for setting both margin-left and margin-right properties of the element.",
+        ),
+        classname: "mx",
+        variants: ("default", "responsive"),
+        properties: (margin-left, margin-right),
+        values: config.$margin,
+    )),
+    margin-y: create-utility("margin-y", (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+            description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
+        ),
+        classname: "my",
+        variants: ("default", "responsive"),
+        properties: (margin-top, margin-bottom),
+        values: config.$margin,
+    )),
     margin-bottom: create-utility("margin-bottom", (
         attributes: (
             group: "spacing",
@@ -794,28 +816,6 @@ $utilities: (
         properties: (margin-top),
         values: config.$margin,
     )),
-    margin-x: create-utility("margin-x", (
-        attributes: (
-            group: "spacing",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
-            description: "Utilities for setting both margin-left and margin-right properties of the element.",
-        ),
-        classname: "mx",
-        variants: ("default", "responsive"),
-        properties: (margin-left, margin-right),
-        values: config.$margin,
-    )),
-    margin-y: create-utility("margin-y", (
-        attributes: (
-            group: "spacing",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
-            description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
-        ),
-        classname: "my",
-        variants: ("default", "responsive"),
-        properties: (margin-top, margin-bottom),
-        values: config.$margin,
-    )),
     padding: create-utility("padding", (
         attributes: (
             group: "spacing",
@@ -825,6 +825,28 @@ $utilities: (
         classname: "p",
         variants: ("default", "responsive"),
         properties: (padding),
+        values: config.$padding,
+    )),
+    padding-x: create-utility("padding-x", (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
+            description: "Utilities for setting both padding-left and padding-right properties of the element.",
+        ),
+        classname: "px",
+        variants: ("default", "responsive"),
+        properties: (padding-left, padding-right),
+        values: config.$padding,
+    )),
+    padding-y: create-utility("padding-y", (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
+            description: "Utilities for setting both padding-bottom and padding-top properties of the element.",
+        ),
+        classname: "py",
+        variants: ("default", "responsive"),
+        properties: (padding-top, padding-bottom),
         values: config.$padding,
     )),
     padding-bottom: create-utility("padding-bottom", (
@@ -869,28 +891,6 @@ $utilities: (
         classname: "pt",
         variants: ("default", "responsive"),
         properties: (padding-top),
-        values: config.$padding,
-    )),
-    padding-x: create-utility("padding-x", (
-        attributes: (
-            group: "spacing",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
-            description: "Utilities for setting both padding-left and padding-right properties of the element.",
-        ),
-        classname: "px",
-        variants: ("default", "responsive"),
-        properties: (padding-left, padding-right),
-        values: config.$padding,
-    )),
-    padding-y: create-utility("padding-y", (
-        attributes: (
-            group: "spacing",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
-            description: "Utilities for setting both padding-bottom and padding-top properties of the element.",
-        ),
-        classname: "py",
-        variants: ("default", "responsive"),
-        properties: (padding-top, padding-bottom),
         values: config.$padding,
     )),
 
