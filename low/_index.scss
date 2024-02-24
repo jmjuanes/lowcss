@@ -63,6 +63,7 @@
                     $selector: "#{config.$prefix}#{$classname}";
                 }
             }
+            $selector: internal.escape-selector($selector);
             // Default selector for this utility
             @if $variant == "default" {
                 .#{$selector} {

@@ -96,3 +96,11 @@
     // Return default
     @return $default;
 }
+
+// @description escape especial characters from selector
+@function escape-selector($selector: "", $chars: (".", "/")) {
+    @each $char in $chars {
+        $selector: str-replace($selector, $char, "\\#{$char}");
+    }
+    @return $selector;
+}
