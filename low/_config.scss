@@ -450,16 +450,14 @@ $margin: map.merge($space, (
 )) !default;
 
 $max-height: map.merge($sizes, (
-    0: 0px,
-    full: 100%,
     screen: 100vh,
     max: max-content,
     min: min-content,
     fit: fit-content,
 )) !default;
 
-$max-width: (
-    0: 0px,
+$max-width: map.merge($sizes, (
+    none: none,
     xs: 20rem,
     sm: 24rem,
     md: 28rem,
@@ -473,30 +471,25 @@ $max-width: (
     7xl: 80rem,
     8xl: 88rem,
     9xl: 96rem,
-    full: 100%,
     screen: 100vw,
     max: max-content,
     min: min-content,
     fit: fit-content,
-) !default;
+)) !default;
 
-$min-height: (
-    0: 0px,
-    full: 100%,
+$min-height: map.merge($sizes, (
     screen: 100vh,
     max: max-content,
     min: min-content,
     fit: fit-content,
-) !default;
+)) !default;
 
-$min-width: (
-    0: 0px,
-    full: 100%,
+$min-width: map.merge($sizes, (
     screen: 100vw,
     max: max-content,
     min: min-content,
     fit: fit-content,
-) !default;
+)) !default;
 
 $opacity: (
     0: 0,
