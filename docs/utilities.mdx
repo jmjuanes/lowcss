@@ -18,17 +18,17 @@ prev: "helpers.html"
         {utility.variants.map(variant => (
             <Fragment key={variant}>
             {variant === "default" && (
-                <div className="py-1 px-2 bg-gray-900 text-white text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-900 text-white text-xs rounded-lg">
                     <span className="font-bold">default</span>
                 </div>
             )}
             {variant === "responsive" && (
-                <div className="py-1 px-2 bg-gray-700 text-white text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-700 text-white text-xs rounded-lg">
                     <span className="font-bold">responsive</span>
                 </div>
             )}
             {variant !== "responsive" && variant !== "default" && (
-                <div className="py-1 px-2 bg-gray-200 text-xs rounded-md">
+                <div className="py-1 px-2 bg-gray-200 text-xs rounded-lg">
                     <span>pseudo: <span className="font-bold">{variant}</span></span>
                 </div>
             )}
