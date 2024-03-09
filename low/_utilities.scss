@@ -737,6 +737,17 @@ $utilities: (
         properties: (width),
         values: config.$width,
     )),
+    size: create-utility("size", (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
+            description: "Utilities for setting width and height properties of the element at the same time.",
+        ),
+        classname: "size",
+        variants: ("default", "responsive"),
+        properties: (width, height),
+        values: config.$sizes,
+    )),
 
     // Spacing utilities
     margin: create-utility("margin", (
