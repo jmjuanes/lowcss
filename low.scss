@@ -44,41 +44,2462 @@
     @return $input;
 }
 
+// @description Generate a list from the given arguments
+@function list-from($values...) {
+    @return list.join((), $values);
+}
+
+// @description Generate an empty list
+@function list-empty() {
+    @return list.join((), ());
+}
+
+// @description Check if an item is included in the list
+@function list-includes($list, $value) {
+    @return list.index($list, $value) != null;
+}
+
+// @description split the provided string
+@function str-split($string, $delimiter: null) {
+    @if meta.type-of($delimiter) != "string" or not $delimiter {
+        @return list.append((), $string);
+    }
+	$list: ();
+    $index: string.index($string, $delimiter);
+    @while $index != null {
+        $list: list.append($list, string.slice($string, 1, $index - 1));
+        $string: string.slice($string, $index + 1);
+        $index: string.index($string, $delimiter)
+    }
+    // Append last element
+    @if string.length($string) > 0 {
+		$list: list.append($list, $string);
+    }
+	@return $list;
+};
+
+// @description replace in the provided string
+// @param {String} $string - Source string
+// @param {String} $search - Substring to replace
+// @param {String} $replace - New value
+// @return {String} - New string
+@function str-replace($string, $search, $replace: "") {
+    $index: string.index($string, $search);
+    @if $index {
+        $substring: string.slice($string, $index + string.length($search));
+        $rest: str-replace($substring, $search, $replace);
+        @return string.slice($string, 1, $index - 1) + $replace + $rest;
+    }
+    @return $string;
+}
+
+// @description Check if '$str' starts with the given '$search' sctring.
+// @param {String} $str - Source string
+// @param {String} $search - Substring to search for at the start of '$str'
+// @return {Boolean} - 'true' if '$str' starts with '$search', 'false' in other case.
+@function str-starts-with($str, $search) {
+    @return string.index($str, $search) == 1;
+}
+
+// @description escape especial characters from selector
+@function str-escape($str: "", $chars: (".", "/")) {
+    @each $char in $chars {
+        $str: str-replace($str, $char, "\\#{$char}");
+    }
+    @return $str;
+}
+
+// @description Generate an inline SVG image from the provided content
+@function svg($content: "", $ns: "http://www.w3.org/2000/svg", $vb: "0 0 16 16") {
+    @return "%3csvg xmlns='#{$ns}' viewBox='#{$vb}'%3e#{$content}%3c/svg%3e";
+}
+
+// @description generate an inline SVG from the provided path
+@function svg-from-path($d: "", $stroke: "%23fff") {
+    $attr: "fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'";
+    $path: "%3cpath #{$attr} stroke='#{$stroke}' d='#{$d}'/%3e";
+    @return svg($path);
+}
+
+// @description generate spacing values
+@function spacing($args...) {
+    $result: ();
+    @each $arg in $args {
+        @if $arg == "px" {
+            $result: map.set($result, "px", 1px);
+        }
+        @else if $arg == 0 {
+            $result: map.set($result, "0", 0);
+        }
+        @else {
+            $result: map.set($result, $arg, ($arg * 0.25)rem);
+        }
+    }
+    @return $result;
+}
+
 // Default global colors
 $black: #000;
 $white: #fff;
 $transparent: transparent;
 
 // @description list with all the color shades
-$shades: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
+$shades-keys: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950);
 
-// @description color palette
-$colors: map-flat((
-    "cool":    map-zip($shades, (#F6F7F9, #E7E9EF, #CBD1DC, #ACB6C8, #8E9AB4, #6F7F9F, #5A6987, #455168, #313949, #1F242E, #14181F)),
-    "gray":    map-zip($shades, (#F9FAFA, #F3F4F5, #D5D9DC, #B7BDC3, #9BA3AC, #7C8792, #646E78, #4A5259, #31363A, #191C1F, #0C0D0E)),
-    "neutral": map-zip($shades, (#FAFAFA, #F5F5F5, #E6E6E6, #C9C9C9, #ABABAB, #8F8F8F, #737373, #545454, #383838, #1A1A1A, #0D0D0D)),
-    "red":     map-zip($shades, (#FCE9EB, #F9D2D6, #F2A6AD, #EC7985, #E54D5C, #DF2033, #B21A29, #86131F, #590D14, #2D060A, #160305)),
-    "orange":  map-zip($shades, (#FEF0E6, #FEE1CD, #FDC49B, #FBA66A, #FA8938, #F96B06, #C75605, #954004, #642B02, #321501, #190B01)),
-    "yellow":  map-zip($shades, (#FFF9E5, #FFF2CC, #FFE699, #FFD966, #FFCC33, #FFBF00, #CC9900, #997300, #664D00, #332600, #191300)),
-    "green":   map-zip($shades, (#E5FBED, #CBF6DB, #9BEEB9, #66E595, #36DD73, #1FB757, #199446, #126D34, #0D4A23, #062311, #031108)),
-    "teal":    map-zip($shades, (#E3FCFA, #CCFAF6, #99F5ED, #66F0E4, #33EADB, #15D0C1, #11A79A, #0D7D74, #08534D, #042A27, #021311)),
-    "blue":    map-zip($shades, (#E6F0FF, #CDE1FE, #9BC4FD, #69A6FC, #3789FB, #056BFA, #0456C8, #034096, #022B64, #011532, #000B19)),
-    "indigo":  map-zip($shades, (#ECECFD, #DEDEFC, #B8B9F9, #9799F7, #7173F4, #5053F1, #1316EC, #0E11B3, #090B76, #05063D, #02031C)),
-    "violet":  map-zip($shades, (#F3ECFE, #E6D8FD, #CEB1FB, #B58BF9, #9C64F7, #843DF5, #610CE9, #4809AF, #300674, #18033A, #0C011D)),
-    "pink":    map-zip($shades, (#FDE8F2, #FBD5E8, #F6ACD1, #F282BA, #ED59A3, #E92F8C, #CB1570, #981054, #650B38, #33051C, #17020D)),
+// @description color shades
+$shades: map-flat((
+    "cool":    map-zip($shades-keys, (#F6F7F9, #E7E9EF, #CBD1DC, #ACB6C8, #8E9AB4, #6F7F9F, #5A6987, #455168, #313949, #1F242E, #14181F)),
+    "gray":    map-zip($shades-keys, (#F9FAFA, #F3F4F5, #D5D9DC, #B7BDC3, #9BA3AC, #7C8792, #646E78, #4A5259, #31363A, #191C1F, #0C0D0E)),
+    "neutral": map-zip($shades-keys, (#FAFAFA, #F5F5F5, #E6E6E6, #C9C9C9, #ABABAB, #8F8F8F, #737373, #545454, #383838, #1A1A1A, #0D0D0D)),
+    "red":     map-zip($shades-keys, (#FCE9EB, #F9D2D6, #F2A6AD, #EC7985, #E54D5C, #DF2033, #B21A29, #86131F, #590D14, #2D060A, #160305)),
+    "orange":  map-zip($shades-keys, (#FEF0E6, #FEE1CD, #FDC49B, #FBA66A, #FA8938, #F96B06, #C75605, #954004, #642B02, #321501, #190B01)),
+    "yellow":  map-zip($shades-keys, (#FFF9E5, #FFF2CC, #FFE699, #FFD966, #FFCC33, #FFBF00, #CC9900, #997300, #664D00, #332600, #191300)),
+    "green":   map-zip($shades-keys, (#E5FBED, #CBF6DB, #9BEEB9, #66E595, #36DD73, #1FB757, #199446, #126D34, #0D4A23, #062311, #031108)),
+    "teal":    map-zip($shades-keys, (#E3FCFA, #CCFAF6, #99F5ED, #66F0E4, #33EADB, #15D0C1, #11A79A, #0D7D74, #08534D, #042A27, #021311)),
+    "blue":    map-zip($shades-keys, (#E6F0FF, #CDE1FE, #9BC4FD, #69A6FC, #3789FB, #056BFA, #0456C8, #034096, #022B64, #011532, #000B19)),
+    "indigo":  map-zip($shades-keys, (#ECECFD, #DEDEFC, #B8B9F9, #9799F7, #7173F4, #5053F1, #1316EC, #0E11B3, #090B76, #05063D, #02031C)),
+    "violet":  map-zip($shades-keys, (#F3ECFE, #E6D8FD, #CEB1FB, #B58BF9, #9C64F7, #843DF5, #610CE9, #4809AF, #300674, #18033A, #0C011D)),
+    "pink":    map-zip($shades-keys, (#FDE8F2, #FBD5E8, #F6ACD1, #F282BA, #ED59A3, #E92F8C, #CB1570, #981054, #650B38, #33051C, #17020D)),
 ));
 
-// @description get a color from the color palette
-@function get-color($color-name) {
-    @if map.has-key($colors, $color-name) {
-        @return map.get($colors, $color-name);
+// @description default fonts
+$font-sans: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+$font-serif: (Georgia, Cambria, "Times New Roman", Times, serif);
+$font-mono: ("SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+
+// @description default fonts
+$fonts: (
+    sans: $font-sans,
+    serif: $font-serif,
+    mono: $font-mono,
+) !default;
+
+// Used in background-color, border-color and color properties
+$colors: map.merge($shades, (
+    "black": $black,
+    "white": $white,
+    "transparent": $transparent,
+    "current": currentColor,
+)) !default;
+
+// @description Pseudo states map
+// key: pseudo state name
+// value: pesudo state selector
+$pseudos: (
+    active: ":active",
+    focus: ":focus",
+    focus-within: ":focus-within",
+    hover: ":hover",
+    visited: ":visited",
+    checked: ":checked",
+    disabled: ":disabled",
+    required: ":required",
+    first: ":first-child",
+    last: ":last-child",
+    odd: ":nth-child(odd)",
+    even: ":nth-child(even)",
+    group-hover: ":hover",
+    group-focus: ":focus",
+    group-focus-within: ":focus-within",
+    peer-hover: ":hover",
+    peer-focus: ":focus",
+    peer-focus-within: ":focus-within",
+    peer-active: ":active",
+    peer-checked: ":checked",
+);
+
+// @description allow to set the !important flag to all utilities
+$important: false !default;
+
+// @description classnames prefix
+// Used to avoid collissions with other css frameworks
+$prefix: "" !default;
+
+// @description separator character between modifier and utility names
+$separator: "\\:" !default;
+
+// @description custom breakpoints sizes
+$breakpoints: (
+    sm: 640px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    // 2xl: 1536px,
+) !default;
+
+// @description global sizes, for using in height and width utilities
+$sizes: (
+    0: 0,
+    px: 1px,
+    "0.5": 0.125rem,
+    1: 0.25rem,
+    "1.5": 0.375rem,
+    2: 0.5rem,
+    "2.5": 0.625rem,
+    3: 0.75rem,
+    "3.5": 0.875rem,
+    4: 1rem,
+    5: 1.25rem,
+    6: 1.5rem,
+    7: 1.75rem,
+    8: 2rem,
+    9: 2.25rem,
+    10: 2.5rem,
+    11: 2.75rem,
+    12: 3rem,
+    14: 3.5rem,
+    16: 4rem,
+    20: 5rem,
+    24: 6rem,
+    28: 7rem,
+    32: 8rem,
+    36: 9rem,
+    40: 10rem,
+    44: 11rem,
+    48: 12rem,
+    52: 13rem,
+    56: 14rem,
+    60: 15rem,
+    64: 16rem,
+    72: 18rem,
+    80: 20rem,
+    88: 22rem,
+    96: 24rem,
+    half: 50%,
+    full: 100%,
+) !default;
+
+// @description global space values, for using in margin and padding utilities
+$space: (
+    0: 0,
+    px: 1px,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    6: 1.5rem,
+    8: 2rem,
+    10: 2.5rem,
+    12: 3rem,
+    14: 3.5rem,
+    16: 4rem,
+    18: 4.5rem,
+    20: 5rem,
+    24: 6rem,
+    28: 7rem,
+    32: 8rem,
+    40: 10rem,
+) !default;
+
+// @description values configuration
+$align-content: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly,
+) !default;
+
+$align-items: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    stretch: stretch,
+    baseline: baseline,
+) !default;
+
+$align-self: (
+    auto: auto,
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    stretch: stretch,
+    baseline: baseline,
+) !default;
+
+$background-clip: (
+    border: border-box,
+    padding: padding-box,
+    content: content-box,
+    text: text,
+) !default;
+
+$background-color: map.merge((), $colors) !default;
+
+$background-image: (
+    none: none,
+    gradient-to-right: linear-gradient(to right, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-lelft: linear-gradient(to left, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-bottom: linear-gradient(to bottom, var(--low-gradient-start), var(--low-gradient-stop)),
+    gradient-to-top: linear-gradient(to top, var(--low-gradient-start), var(--low-gradient-stop)),
+) !default;
+
+$background-repeat: (
+    repeat: repeat,
+    no-repeat: no-repeat,
+) !default;
+
+$background-size: (
+    auto: auto,
+    cover: cover, 
+    contain: contain,
+) !default;
+
+$border-color: map.merge((), $colors) !default;
+
+$border-radius: (
+    sm: 0.125rem,
+    DEFAULT: 0.25rem,
+    md: 0.375rem,
+    lg: 0.5rem,
+    xl: 0.75rem,
+    2xl: 1rem,
+    full: 9999px,
+    none: 0,
+) !default;
+
+$border-style: (
+    solid: solid,
+    dashed: dashed,
+    dotted: dotted,
+    none: none,
+) !default;
+
+$border-width: (
+    0: 0,
+    1: 1px, // DEPRECATED
+    DEFAULT: 1px,
+    2: 2px,
+    4: 4px,
+    6: 6px,
+    8: 8px,
+) !default;
+
+
+$cursor: (
+    auto: auto,
+    default: default,
+    hand: pointer,
+    pointer: pointer,
+    move: move,
+    none: none,
+    zoom-in: zoom-in,
+    zoom-out: zoom-out,
+    not-allowed: not-allowed,
+    wait: wait,
+    text: text,
+    help: help,
+    context-menu: context-menu,
+    progress: progress,
+    cell: cell,
+    crosshair: crosshair,
+    vertical-text: vertical-text,
+    alias: alias,
+    copy: copy,
+    no-drop: no-drop,
+    grab: grab,
+    grabbing: grabbing,
+    all-scroll: all-scroll,
+    col-resize: col-resize,
+    row-resize: row-resize,
+    n-resize: n-resize,
+    e-resize: e-resize,
+    s-resize: s-resize,
+    w-resize: w-resize,
+    ne-resize: ne-resize,
+    nw-resize: nw-resize,
+    se-resize: se-resize,
+    sw-resize: sw-resize,
+    ew-resize: ew-resize,
+    ns-resize: ns-resize,
+    nesw-resize: nesw-resize,
+) !default;
+
+$display: (
+    hidden: none,
+    inline: inline,
+    block: block,
+    inline-block: inline-block,
+    flex: flex,
+    inline-flex: inline-flex,
+    grid: grid,
+    inline-grid: inline-grid,
+    table: table,
+    table-cell: table-cell,
+    table-row: table-row,
+    table-row-group: table-row-group,
+    table-column: table-column,
+    table-column-grup: table-column-group,
+    table-header-group: table-header-group,
+    table-footer-group: table-footer-group,
+) !default;
+
+$flex: (
+    none: none,
+    initial: initial,
+    auto: auto,
+) !default;
+
+$flex-direction: (
+    row: row, 
+    col: column, 
+    row-reverse: row-reverse, 
+    col-reverse: column-reverse,
+) !default;
+
+$flex-grow: (
+    0: 0,
+    DEFAULT: 1,
+) !default;
+
+$flex-shrink: (
+    0: 0,
+    DEFAULT: 1,
+) !default;
+
+$flex-wrap: (
+    wrap: wrap,
+    wrap-reverse: wrap-reverse,
+    nowrap: nowrap,
+) !default;
+
+$float: (
+    left: left,
+    right: right,
+    none: none,
+) !default;
+
+$font-family: (
+    sans: $font-sans,
+    serif: $font-serif,
+    mono: $font-mono,
+) !default;
+
+$font-size: (
+    3xs: 0.5rem,
+    2xs: 0.625rem,
+    xs: 0.75rem,
+    sm: 0.875rem,
+    base: 1rem,
+    lg: 1.125rem,
+    xl: 1.25rem,
+    2xl: 1.5rem,
+    3xl: 1.875rem,
+    4xl: 2.25rem,
+    5xl: 3rem,
+    6xl: 3.75rem,
+    7xl: 4.5rem,
+    8xl: 6rem,
+    9xl: 8rem,
+) !default;
+
+$font-style: (
+    italic: italic,
+    not-italic: normal,
+) !default;
+
+$font-weight: (
+    thin: 100,
+    extralight: 200,
+    light: 300,
+    normal: 400,
+    medium: 500,
+    bold: 700,
+    extrabold: 800,
+    "black": 900,
+) !default;
+
+$gap: (
+    0: 0,
+    px: 1px,
+    1: 0.25rem,
+    2: 0.5rem,
+    3: 0.75rem,
+    4: 1rem,
+    6: 1.5rem,
+    8: 2rem,
+    12: 3rem,
+    16: 4rem,
+    24: 6rem,
+    32: 8rem,
+) !default;
+
+$grid-template-columns: (
+    1: repeat(1, minmax(0, 1fr)),
+    2: repeat(2, minmax(0, 1fr)),
+    3: repeat(3, minmax(0, 1fr)),
+    4: repeat(4, minmax(0, 1fr)),
+    5: repeat(5, minmax(0, 1fr)),
+    6: repeat(6, minmax(0, 1fr)),
+    7: repeat(7, minmax(0, 1fr)),
+    8: repeat(8, minmax(0, 1fr)),
+    9: repeat(9, minmax(0, 1fr)),
+    10: repeat(10, minmax(0, 1fr)),
+    11: repeat(11, minmax(0, 1fr)),
+    12: repeat(12, minmax(0, 1fr)),
+    none: none,
+) !default;
+
+$grid-template-rows: (
+    1: repeat(1, minmax(0, 1fr)),
+    2: repeat(2, minmax(0, 1fr)),
+    3: repeat(3, minmax(0, 1fr)),
+    4: repeat(4, minmax(0, 1fr)),
+    5: repeat(5, minmax(0, 1fr)),
+    6: repeat(6, minmax(0, 1fr)),
+    none: none,
+) !default;
+
+$grid-auto-flow: (
+    row: row,
+    col: column,
+    dense: dense,
+    row-dense: row dense,
+    col-dense: column dense,
+) !default;
+
+
+$inset: (
+    0: 0px,
+    half: 50%,
+    full: 100%,
+    auto: auto,
+) !default;
+
+
+
+$max-width: map.merge($sizes, (
+    none: none,
+    xs: 20rem,
+    sm: 24rem,
+    md: 28rem,
+    lg: 32rem,
+    xl: 36rem,
+    2xl: 42rem,
+    3xl: 48rem,
+    4xl: 56rem,
+    5xl: 64rem,
+    6xl: 72rem,
+    7xl: 80rem,
+    8xl: 88rem,
+    9xl: 96rem,
+    screen: 100vw,
+    max: max-content,
+    min: min-content,
+    fit: fit-content,
+)) !default;
+
+
+
+$width: map.merge($sizes, (
+    "1/2": 50%,
+    "1/3": 33.33333%,
+    "2/3": 66.66667%,
+    "1/4": 25%,
+    "2/4": 50%,
+    "3/4": 75%,
+    "1/5": 20%,
+    "2/5": 40%,
+    "3/5": 60%,
+    "4/5": 80%,
+    "1/6": 16.66667%,
+    "2/6": 33.33333%,
+    "3/6": 50%,
+    "4/6": 66.66667%,
+    "5/6": 83.33333%,
+    "1/12": 8.33333%,
+    "2/12": 16.66667%,
+    "3/12": 25%,
+    "4/12": 33.33333%,
+    "5/12": 41.66667%,
+    "6/12": 50%,
+    "7/12": 58.33333%,
+    "8/12": 66.66667%,
+    "9/12": 75%,
+    "10/12": 83.33333%,
+    "11/12": 91.66667%,
+    auto: auto,
+    screen: 100vw,
+)) !default;
+
+// @description opacity values
+$opacity: (
+    0: 0,
+    10: 0.1,
+    20: 0.2,
+    30: 0.3,
+    40: 0.4,
+    50: 0.5,
+    60: 0.6,
+    70: 0.7,
+    80: 0.8,
+    90: 0.9,
+    100: 100,
+) !default;
+
+// @description order values
+$order: (
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 8,
+    9: 9,
+    10: 10,
+    11: 11,
+    12: 12,
+) !default;
+
+// @description utilities configuration
+$utilities: (
+    // Animations
+    animation: (
+        attributes: (
+            group: "animation",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
+            description: "Predefined CSS animations.",
+        ),
+        classname: "animation",
+        variants: ("default", "responsive"),
+        properties: (animation),
+        values: (
+            none: none,
+            bounce: (bounce 1s infinite),
+            fadein: (fadein ease 1s),
+            fadeout: (fadeout ease 1s),
+            ping: (ping 1s cubic-bezier(0, 0, 0.2, 1) infinite),
+            pulse: (pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite),
+            spin: (spin 1s linear infinite),
+        ),
+    ),
+    // Background utilities
+    background-clip: (
+        attributes: (
+            group: "background",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip",
+            description: "Utilities for setting the background-clip property of the element.",
+        ),
+        classname: "bg",
+        variants: ("default"),
+        properties: (background-clip),
+        values: $background-clip,
+    ),
+    background-color: (
+        attributes: (
+            group: "background",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
+            description: "Utilities for setting the background-color property of the element.",
+        ),
+        classname: "bg",
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
+        properties: (background-color),
+        values: $background-color,
+    ),
+    background-image: (
+        attributes: (
+            group: "background",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-image",
+            description: "Utilities for setting the background-image property of the element.",
+        ),
+        classname: "bg",
+        variants: ("default"),
+        properties: (background-image),
+        values: $background-image,
+    ),
+    background-repeat: (
+        attributes: (
+            group: "background",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat",
+            description: "Utilities for setting the background-repeat property of the element.",
+        ),
+        classname: "bg",
+        variants: ("default"),
+        properties: (background-repeat),
+        values: $background-repeat,
+    ),
+    background-size: (
+        attributes: (
+            group: "background",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-size",
+            description: "Utilities for setting the background-size property of the element.",
+        ),
+        classname: "bg",
+        variants: ("default"),
+        properties: (background-size),
+        values: $background-size,
+    ),
+
+    // Gradients utilities
+    gradient-from: (
+        attributes: (
+            group: "gradient",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients",
+            description: "Utilities to specify the starting color for the gradient.",
+        ),
+        classname: "from",
+        variants: ("default"),
+        properties: (--low-gradient-start),
+        values: $background-color,
+    ),
+    gradient-to: (
+        attributes: (
+            group: "gradient",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Images/Using_CSS_gradients",
+            description: "Utilities to specify the ending color for the gradient.",
+        ),
+        classname: "to",
+        variants: ("default"),
+        properties: (--low-gradient-stop),
+        values: $background-color,
+    ),
+
+    // Border utilities
+    border-radius: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded",
+        variants: ("default"),
+        properties: (border-radius),
+        values: $border-radius,
+    ),
+    border-top-left-radius: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-tl",
+        variants: ("default"),
+        properties: (border-top-left-radius),
+        values: $border-radius,
+    ),
+    border-top-right-radius: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-tr",
+        variants: ("default"),
+        properties: (border-top-right-radius),
+        values: $border-radius,
+    ),
+    border-bottom-left-radius: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-bl",
+        variants: ("default"),
+        properties: (border-bottom-left-radius),
+        values: $border-radius,
+    ),
+    border-bottom-right-radius: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
+            description: "Utilities for setting the radius of the element.",
+        ),
+        classname: "rounded-br",
+        variants: ("default"),
+        properties: (border-bottom-right-radius),
+        values: $border-radius,
+    ),
+    border-color: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color",
+            description: "Utilities for setting the border color of the element.",
+        ),
+        classname: "border",
+        variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
+        properties: (border-color),
+        values: $border-color,
+    ),
+    border-style: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-style",
+            description: "Utilities for setting the border-style property of the element.",
+        ),
+        classname: "border",
+        variants: ("default", "focus"),
+        properties: (border-style),
+        values: $border-style,
+    ),
+    border-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-width",
+            description: "Utilities for setting the border-width property of the element.",
+        ),
+        classname: "border",
+        variants: ("default", "responsive", "focus"),
+        properties: (border-width),
+        values: $border-width,
+    ),
+    border-bottom-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width",
+            description: "Utilities for setting the element's border bottom width.",
+        ),
+        classname: "border-b",
+        variants: ("default", "responsive", "focus", "first", "last"),
+        properties: (border-bottom-width),
+        values: $border-width,
+    ),
+    border-left-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width",
+            description: "Utilities for setting the element's border left width.",
+        ),
+        classname: "border-l",
+        variants: ("default", "responsive", "focus", "first", "last"),
+        properties: (border-left-width),
+        values: $border-width,
+    ),
+    border-right-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width",
+            description: "Utilities for setting the element's border right width.",
+        ),
+        classname: "border-r",
+        variants: ("default", "responsive", "focus", "first", "last"),
+        properties: (border-right-width),
+        values: $border-width,
+    ),
+    border-top-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width",
+            description: "Utilities for setting the element's border top width.",
+        ),
+        classname: "border-t",
+        variants: ("default", "responsive", "focus", "first", "last"),
+        properties: (border-top-width),
+        values: $border-width,
+    ),
+    outline-color: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color",
+            description: "Utilities for setting the outline-color property of the element.",
+        ),
+        classname: "outline",
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-color),
+        values: $colors,
+    ),
+    outline-offset: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset",
+            description: "Utilities for setting the outline-offset property of the element.",
+        ),
+        classname: "outline",
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-offset),
+        values: (
+            0: 0,
+            1: 1px,
+            2: 2px,
+            4: 4px,
+            6: 6px,
+            8: 8px,
+        ),
+    ),
+    outline-style: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style",
+            description: "Utilities for setting the outline-style property of the element.",
+        ),
+        classname: "outline",
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-style),
+        values: (
+            solid: solid,
+            dashed: dashed,
+            dotted: dotted,
+            none: none,
+        ),
+    ),
+    outline-width: (
+        attributes: (
+            group: "border",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width",
+            description: "Utilities for setting the outline-width property of the element.",
+        ),
+        classname: "outline",
+        variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
+        properties: (outline-width),
+        values: (
+            0: 0,
+            1: 1px,
+            2: 2px,
+            4: 4px,
+            6: 6px,
+            8: 8px,
+        ),
+    ),
+    // Effects utilities
+    box-shadow: (
+        attributes: (
+            group: "effects",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow",
+            description: "Utilities for setting the box-shadow property of the element.",
+        ),
+        classname: "shadow",
+        variants: ("default", "hover", "focus", "focus-within"),
+        properties: (box-shadow),
+        values: (
+            sm: (0 0.25rem 1rem -0.125rem rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.02)),
+            md: (0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.02)),
+            lg: (0rem 1rem 1rem -0.5rem rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.02)),
+            none: none,
+        ),
+    ),
+    opacity: (
+        attributes: (
+            group: "effects",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
+            description: "Utilities for setting the opacity property of the element.",
+        ),
+        classname: "opacity",
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "disabled", "group-hover", "group-focus", "group-focus-within"),
+        properties: (opacity),
+        values: $opacity,
+    ),
+    // Flexbox and grid utilities
+    align-content: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-content",
+            description: "Utilities for setting the align-content property of the element.",
+        ),
+        classname: "content",
+        variants: ("default", "responsive"),
+        properties: (align-content),
+        values: $align-content,
+    ),
+    align-items: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-items",
+            description: "Utilities for setting the align-items property of the element.",
+        ),
+        classname: "items",
+        variants: ("default", "responsive"),
+        properties: (align-items),
+        values: $align-items,
+    ),
+    align-self: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-self",
+            description: "Utilities for setting the align-self property of the element.",
+        ),
+        classname: "self",
+        variants: ("default", "responsive"),
+        properties: (align-self),
+        values: $align-self,
+    ),
+    flex: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex",
+            description: "Utilities for setting the flex property of the element.",
+        ),
+        classname: "flex",
+        variants: ("default", "responsive"),
+        properties: (flex),
+        values: $flex,
+    ),
+    flex-direction: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction",
+            description: "Utilities for setting the flex-direction property of the element.", 
+        ),
+        classname: "flex",
+        variants: ("default", "responsive"),
+        properties: (flex-direction),
+        values: $flex-direction,
+    ),
+    flex-grow: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow",
+            description: "Utilities for setting the flex-grow property of the element.",
+        ),
+        classname: "grow",
+        variants: ("default", "responsive"),
+        properties: (flex-grow),
+        values: "flex-grow",
+    ),
+    flex-shrink: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink",
+            description: "Utilities for setting the flex-shrink property of the element.",
+        ),
+        classname: "shrink",
+        variants: ("default", "responsive"),
+        properties: (flex-shrink),
+        values: "flex-shrink",
+    ),
+    flex-wrap: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap",
+            description: "Utilities for setting the flex-wrap property of the element.",
+        ),
+        classname: "flex",
+        variants: ("default", "responsive"),
+        properties: (flex-wrap),
+        values: (
+            wrap: wrap,
+            wrap-reverse: wrap-reverse,
+            nowrap: nowrap,
+        ),
+    ),
+    gap: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
+            description: "Utilities for setting the gap property of the element.",
+        ),
+        classname: "gap",
+        variants: ("default", "responsive"),
+        properties: (gap),
+        values: "gap",
+    ),
+    grid-template-columns: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns",
+            description: "Utilities for setting the grid-template-columns property of the element.",
+        ),
+        classname: "grid-cols",
+        variants: ("default", "responsive"),
+        properties: (grid-template-columns),
+        values: "grid-template-columns",
+    ),
+    grid-template-rows: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows",
+            description: "Utilities for setting the grid-template-rows property of the element.",
+        ),
+        classname: "grid-rows",
+        variants: ("default", "responsive"),
+        properties: (grid-template-rows),
+        values: "grid-template-rows",
+    ),
+    grid-auto-flow: create-utility("grid-auto-flow", (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow",
+            description: "Utilities for setting the grid-auto-flow property of the element.",
+        ),
+        classname: "grid-flow",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-flow),
+        values: config.$grid-auto-flow,
+    )),
+    grid-auto-columns: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns",
+            description: "Utilities for setting the grid-auto-columns property of the element.",
+        ),
+        classname: "auto-cols",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-columns),
+        values: (
+            auto: auto,
+            min: min-content,
+            max: max-content,
+            fr: minmax(0, 1fr),
+        ),
+    ),
+    grid-auto-rows: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows",
+            description: "Utilities for setting the grid-auto-rows property of the element.",
+        ),
+        classname: "auto-rows",
+        variants: ("default", "responsive"),
+        properties: (grid-auto-rows),
+        values: (
+            auto: auto,
+            min: min-content,
+            max: max-content,
+            fr: minmax(0, 1fr),
+        ),
+    ),
+    justify-content: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content",
+            description: "Utilities for setting the justify-content property of the element.",
+        ),
+        classname: "justify",
+        variants: ("default", "responsive"),
+        properties: (justify-content),
+        values: (
+            start: flex-start,
+            end: flex-end,
+            center: center,
+            between: space-between,
+            around: space-around,
+        ),
+    ),
+    order: (
+        attributes: (
+            group: "flexbox",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/order",
+            description: "Utilities for setting the order property of the element.",
+        ),
+        classname: "order",
+        variants: ("default", "responsive"),
+        properties: (order),
+        values: map.merge($order, (
+            none: 0,
+            first: -999,
+            last: 999,
+        )),
+    ),
+    // Interactivity utilities
+    cursor: create-utility("cursor", (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/cursor",
+            description: "Utilities for setting the cursor property of the element.",
+        ),
+        classname: "cursor",
+        variants: ("default"),
+        properties: (cursor),
+        values: config.$cursor,
+    )),
+    user-select: (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/user-select",
+            description: "Utilities for setting the user-select property of the element.",
+        ),
+        classname: "select",
+        variants: ("default"),
+        properties: (user-select),
+        values: (
+            none: none,
+            text: text,
+            all: all,
+            auto: auto,
+        ),
+    ),
+    pointer-events: (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events",
+            description: "Utilities for setting the pointer-events property of the element",
+        ),
+        classname: "pointer-events",
+        variants: ("default"),
+        properties: (pointer-events),
+        values: (
+            auto: auto,
+            none: none,
+        ),
+    ),
+    touch-action: (
+        attributes: (
+            group: "interactivity",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action",
+            description: "Utilities for setting the touch-action property of the element",
+        ),
+        classname: "touch",
+        variants: ("default"),
+        properties: (touch-action),
+        values: (
+            auto: auto,
+            none: none,
+            pan-x: pan-x,
+            pan-y: pan-y,
+            pan-left: pan-left,
+            pan-right: pan-right,
+            pan-up: pan-up,
+            pan-down: pan-down,
+            pinch-zoom: pinch-zoom,
+            manipulation: manipulation,
+        ),
+    ),
+    // Layout utilities
+    bottom: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/bottom",
+            description: "Utilities for setting the bottom property of the element.",
+        ),
+        classname: "bottom",
+        variants: ("default", "responsive"),
+        properties: (bottom),
+        values: $inset,
+    ),
+    display: create-utility("display", (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
+            description: "Utilities for setting the display property of the element.",
+        ),
+        classname: null,
+        variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even", "peer-hover", "peer-focus", "peer-focus-within", "peer-active", "peer-checked"),
+        properties: (display),
+        values: config.$display,
+    )),
+    float: create-utility("float", (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/float",
+            description: "Utilities for setting the float property of the element.",
+        ),
+        classname: "float",
+        variants: ("default", "responsive"),
+        properties: (float),
+        values: config.$float,
+    )),
+    left: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/left",
+            description: "Utilities for setting the left property of the element.",
+        ),
+        classname: "left",
+        variants: ("default", "responsive"),
+        properties: (left),
+        values: $inset,
+    ),
+    overflow: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
+            description: "Utilities for setting the overflow property of the element.",
+        ),
+        classname: "overflow",
+        variants: ("default", "responsive"),
+        properties: (overflow),
+        values: (
+            auto: auto,
+            scroll: scroll,
+            hidden: hidden,
+            visible: visible,
+        ),
+    ),
+    overflow-x: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x",
+            description: "Utilities for setting the overflow-x property of the element.",
+        ),
+        classname: "overflow-x",
+        variants: ("default", "responsive"),
+        properties: (overflow-x),
+        values: (
+            auto: auto,
+            scroll: scroll,
+            hidden: hidden,
+            visible: visible,
+        ),
+    ),
+    overflow-y: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y",
+            description: "Utilities for setting the overflow-y property of the element.",
+        ),
+        classname: "overflow-y",
+        variants: ("default", "responsive"),
+        properties: (overflow-y),
+        values: (
+            auto: auto,
+            scroll: scroll,
+            hidden: hidden,
+            visible: visible,
+        ),
+    ),
+    position: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
+            description: "Utilities for setting the position property of the element.",
+        ),
+        classname: null,
+        variants: ("default", "responsive"),
+        properties: (position),
+        values: (
+            relative: relative,
+            absolute: absolute,
+            sticky: sticky,
+            fixed: fixed,
+            initial: initial,
+        ),
+    ),
+    right: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/right",
+            description: "Utilities for setting the right property of the element.",
+        ),
+        classname: "right",
+        variants: ("default", "responsive"),
+        properties: (right),
+        values: $inset,
+    ),
+    top: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/top",
+            description: "Utilities for setting the top property of the element.",
+        ),
+        classname: "top",
+        variants: ("default", "responsive"),
+        properties: (top),
+        values: $inset,
+    ),
+    z-index: (
+        attributes: (
+            group: "layout",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
+            description: "Utilities for setting the z-index property of the element.",
+        ),
+        classname: "z",
+        variants: ("default", "responsive"),
+        properties: (z-index),
+        values: (
+            auto: auto,
+            0: 0,
+            10: 10,
+            20: 20,
+            30: 30,
+            40: 40,
+            50: 50,
+        ),
+    ),
+    // Sizing utilities
+    height: (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/height",
+            description: "Utilities for setting the height property of the element.",
+        ),
+        classname: "h",
+        variants: ("default", "responsive"),
+        properties: (height),
+        values: map.merge($sizes, (
+            screen: 100vh,
+        )),
+    ),
+    max-height: (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
+            description: "Utilities for setting the max-height property of the element.",
+        ),
+        classname: "max-h",
+        variants: ("default", "responsive"),
+        properties: (max-height),
+        values: map.merge($sizes, (
+            screen: 100vh,
+            max: max-content,
+            min: min-content,
+            fit: fit-content,
+        )),
+    ),
+    max-width: create-utility("max-width", (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/max-width",
+            description: "Utilities for setting the max-width property of the element.",
+        ),
+        classname: "max-w",
+        variants: ("default", "responsive"),
+        properties: (max-width),
+        values: config.$max-width,
+    )),
+    min-height: (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/min-height",
+            description: "Utilities for setting the min-height property of the element.",
+        ),
+        classname: "min-h",
+        variants: ("default", "responsive"),
+        properties: (min-height),
+        values: map.merge($sizes, (
+            screen: 100vh,
+            max: max-content,
+            min: min-content,
+            fit: fit-content,
+        )),
+    ),
+    min-width: (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+            description: "Utilities for setting the min-width property of the element.",
+        ),
+        classname: "min-w",
+        variants: ("default", "responsive"),
+        properties: (min-width),
+        values: map.merge($sizes, (
+            screen: 100vw,
+            max: max-content,
+            min: min-content,
+            fit: fit-content,
+        )),
+    ),
+    width: create-utility("width", (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
+            description: "Utilities for setting the width property of the element.",
+        ),
+        classname: "w",
+        variants: ("default", "responsive"),
+        properties: (width),
+        values: config.$width,
+    )),
+    size: (
+        attributes: (
+            group: "sizing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
+            description: "Utilities for setting width and height properties of the element at the same time.",
+        ),
+        classname: "size",
+        variants: ("default", "responsive"),
+        properties: (width, height),
+        values: $sizes,
+    ),
+    // Spacing utilities
+    margin: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+            description: "Utilities for setting the margin property of the element.",
+        ),
+        classname: "m",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-x: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+            description: "Utilities for setting both margin-left and margin-right properties of the element.",
+        ),
+        classname: "mx",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-left, margin-right),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-y: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
+            description: "Utilities for setting both margin-bottom and margin-top properties of the element.",
+        ),
+        classname: "my",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-top, margin-bottom),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-bottom: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom",
+            description: "Utilities for setting the margin-bottom property of the element.",
+        ),
+        classname: "mb",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-bottom),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-left: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left",
+            description: "Utilities for setting the margin-left property of the element.",
+        ),
+        classname: "ml",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-left),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-right: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right",
+            description: "Utilities for setting the margin-right property of the element.",
+        ),
+        classname: "mr",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-right),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    margin-top: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top",
+            description: "Utilities for setting the margin-top property of the element.",
+        ),
+        classname: "mt",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (margin-top),
+        values: map.merge($space, (
+            auto: auto,
+        )),
+    ),
+    padding: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
+            description: "Utilities for setting the padding property of the element.",
+        ),
+        classname: "p",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding),
+        values: $space,
+    ),
+    padding-x: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
+            description: "Utilities for setting both padding-left and padding-right properties of the element.",
+        ),
+        classname: "px",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-left, padding-right),
+        values: $space,
+    ),
+    padding-y: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
+            description: "Utilities for setting both padding-bottom and padding-top properties of the element.",
+        ),
+        classname: "py",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-top, padding-bottom),
+        values: $space,
+    ),
+    padding-bottom: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom",
+            description: "Utilities for setting the padding-bottom property of the element.",
+        ),
+        classname: "pb",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-bottom),
+        values: $space,
+    ),
+    padding-left: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left",
+            description: "Utilities for setting the padding-left property of the element.",
+        ),
+        classname: "pl",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-left),
+        values: $space,
+    ),
+    padding-right: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right",
+            description: "Utilities for setting the padding-right property of the element.",
+        ),
+        classname: "pr",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-right),
+        values: $space,
+    ),
+    padding-top: (
+        attributes: (
+            group: "spacing",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top",
+            description: "Utilities for setting the padding-top property of the element.",
+        ),
+        classname: "pt",
+        variants: ("default", "responsive", "first", "last"),
+        properties: (padding-top),
+        values: $space,
+    ),
+    // Typography utilities
+    font-family: create-utility("font-family", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family",
+            description: "Utilities for setting the font-family property of the element.",
+        ),
+        classname: "font",
+        variants: ("default"),
+        properties: (font-family),
+        values: config.$font-family,
+    )),
+    font-size: create-utility("font-size", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size",
+            description: "Utilities for setting the font-size property of the element.",
+        ),
+        classname: "text",
+        variants: ("default", "responsive"),
+        properties: (font-size),
+        values: config.$font-size,
+    )),
+    font-style: create-utility("font-style", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-style",
+            description: "Utilities for setting the font-style property of the element.",
+        ),
+        classname: null,
+        variants: ("default"),
+        properties: (font-style),
+        values: config.$font-style,
+    )),
+    font-weight: create-utility("font-weight", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
+            description: "Utilities for setting the font-weight property of the element.",
+        ),
+        classname: "font",
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (font-weight),
+        values: config.$font-weight,
+    )),
+    letter-spacing: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing",
+            description: "Utilities for setting the horizontal spacing behavior between text characters.",
+        ),
+        classname: "tracking",
+        variants: ("default"),
+        properties: (letter-spacing),
+        values: (
+            tighter: -0.05em,
+            tight: -0.025em,
+            normal: 0,
+            wide: 0.025em,
+            wider: 0.05em,
+            widest: 0.1em,
+        ),
+    ),
+    line-height: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
+            description: "Utilities for setting the line-height property of the element.",
+        ),
+        classname: "leading",
+        variants: ("default", "responsive"),
+        properties: (line-height),
+        values: (
+            none: 1,
+            tight: 1.25,
+            snug: 1.375,
+            normal: 1.5,
+            relaxed: 1.625,
+            loose: 2,
+            3: 0.75rem,
+            4: 1rem,
+            5: 1.25rem,
+            6: 1.5rem,
+            7: 1.75rem,
+            8: 2rem,
+            9: 2.25rem,
+            10: 2.5rem,
+        ),
+    ),
+    list-style-position: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position",
+            description: "Utilities for setting the position of bullets/numbers in lists",
+        ),
+        classname: "list",
+        variants: ("default"),
+        properties: (list-style-position),
+        values: (
+            inside: inside,
+            outside: outside,
+        ),
+    ),
+    list-style-type: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type",
+            description: "Utilities for setting the bullets/numbers type in lists",
+        ),
+        classname: "list",
+        variants: ("default"),
+        properties: (list-style-type),
+        values: (
+            none: none,
+            disc: disc,
+            decimal: decimal,
+        ),
+    ),
+    text-align: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-align",
+            description: "Utilities for setting the text-align property of the element.",
+        ),
+        classname: "text",
+        variants: ("default", "responsive"),
+        properties: (text-align),
+        values: (
+            justify: justify, 
+            left: left, 
+            center: center, 
+            right: right,
+        ),
+    ),
+    text-color: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
+            description: "Utilities for setting the color property of the element.",
+        ),
+        classname: "text",
+        variants: ("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
+        properties: (color),
+        values: $colors,
+    ),
+    text-decoration: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
+            description: "Utilities for setting the text-decoration property of the element.",
+        ),
+        classname: null,
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-decoration),
+        values: (
+            strike: line-through,
+            underline: underline,
+            no-underline: none,
+        ),
+    ),
+    text-overflow: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow",
+            description: "Utilities for setting the text-overflow property of the element.",
+        ),
+        classname: "text",
+        variants: ("default", "responsive"),
+        properties: (text-overflow),
+        values: (
+            ellipsis: ellipsis,
+            clip: clip,
+        ),
+    ),
+    text-transform: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
+            description: "Utilities for setting the text-transform property of the element.",
+        ),
+        classname: null,
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-transform),
+        values: (
+            capitalize: capitalize,
+            uppercase: uppercase,
+            lowercase: lowercase,
+        ),
+    ),
+    vertical-align: (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align",
+            description: "Utilities for setting the vertical-align property of the element.",
+        ),
+        classname: "align",
+        variants: ("default", "responsive"),
+        properties: (vertical-align),
+        values: (
+            baseline: baseline,
+            top: top,
+            middle: middle,
+            bottom: bottom,
+            text-top: text-top,
+            text-bottom: text-bottom,
+        ),
+    ),
+
+    // Filter
+    filter-blur: (
+        attributes: (
+            group: "filter",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
+            description: "Utilities for applying a blur filter to the element.",
+        ),
+        classname: "blur",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: (
+            none: blur(0px),
+            sm: blur(2px),
+            md: blur(4px),
+            lg: blur(8px),
+            xl: blur(16px),
+            2xl: blur(32px),
+            3xl: blur(48px),
+        ),
+    ),
+    filter-sepia: (
+        attributes: (
+            group: "filter",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
+            description: "Utilities for applying a sepia filter the element.",
+        ),
+        classname: "sepia",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: (
+            none: sepia(0),
+            full: sepia(100%),
+        ),
+    ),
+    filter-invert: (
+        attributes: (
+            group: "filter",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/filter",
+            description: "Utilities for applying an invert filter to the element.",
+        ),
+        classname: "invert",
+        variants: ("default", "responsive"),
+        properties: (filter),
+        values: (
+            none: invert(0),
+            full: invert(100%),
+        ),
+    ),
+    filter-backdrop-blur: (
+        attributes: (
+            group: "filter",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter",
+            description: "Utilities for applying a blurring effect to the area behind the element",
+        ),
+        classname: "backdrop-blur",
+        variants: ("default", "responsive"),
+        properties: (backdrop-filter),
+        values: (
+            none: blur(0px),
+            sm: blur(2px),
+            md: blur(4px),
+            lg: blur(8px),
+            xl: blur(16px),
+            2xl: blur(32px),
+            3xl: blur(48px),
+        ),
+    ),
+
+    // Transform
+    scale: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a scale transform to the element.",
+        ),
+        classname: "scale",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: scale(0),
+            25: scale(0.25),
+            50: scale(0.5),
+            75: scale(0.75),
+            100: scale(1),
+            125: scale(1.25),
+            150: scale(1.5),
+        ),
+    ),
+    scale-x: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a scale in the X axis to the element.",
+        ),
+        classname: "scale-x",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: scaleX(0),
+            25: scaleX(0.25),
+            50: scaleX(0.5),
+            75: scaleX(0.75),
+            100: scaleX(1),
+            125: scaleX(1.25),
+            150: scaleX(1.5),
+        ),
+    ),
+    scale-y: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a scale in the Y axis of the element.",
+        ),
+        classname: "scale-y",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: scaleY(0),
+            25: scaleY(0.25),
+            50: scaleY(0.5),
+            75: scaleY(0.75),
+            100: scaleY(1),
+            125: scaleY(1.25),
+            150: scaleY(1.5),
+        ),
+    ),
+    rotate: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a rotation transform to the element.",
+        ),
+        classname: "rotate",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: rotate(0),
+            45: rotate(45deg),
+            90: rotate(90deg),
+            180: rotate(180deg),
+        ),
+    ),
+    translate-x: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a translation in the X axis to the element.",
+        ),
+        classname: "translate-x",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: translateX(0),
+            px: transpateX(1px),
+            1: translateX(0.25rem),
+            2: translateX(0.5rem),
+            3: translateX(0.75rem),
+            4: translateX(1rem),
+            6: translateX(1.5rem),
+            8: translateX(2rem),
+            10: translateX(2.5rem),
+            12: translateX(3rem),
+            14: translateX(3.5rem),
+            16: translateX(4rem),
+            18: translateX(4.5rem),
+            20: translateX(5rem),
+            24: translateX(6rem),
+            28: translateX(7rem),
+            32: translateX(8rem),
+            half: translateX(50%),
+            full: translateX(100%),
+            half-n: tanslateX(-50%),
+            full-n: translateX(-100%),
+        ),
+    ),
+    translate-y: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform",
+            description: "Utilities for applying a translation in the Y axis to the element.",
+        ),
+        classname: "translate-y",
+        variants: ("default", "responsive"),
+        properties: (transform),
+        values: (
+            0: translateY(0),
+            px: transpateY(1px),
+            1: translateY(0.25rem),
+            2: translateY(0.5rem),
+            3: translateY(0.75rem),
+            4: translateY(1rem),
+            6: translateY(1.5rem),
+            8: translateY(2rem),
+            10: translateY(2.5rem),
+            12: translateY(3rem),
+            14: translateY(3.5rem),
+            16: translateY(4rem),
+            18: translateY(4.5rem),
+            20: translateY(5rem),
+            24: translateY(6rem),
+            28: translateY(7rem),
+            32: translateY(8rem),
+            half: translateY(50%),
+            full: translateY(100%),
+            half-n: tanslateY(-50%),
+            full-n: translateY(-100%),
+        ),
+    ),
+    transform-origin: (
+        attributes: (
+            group: "transform",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin",
+            description: "Utilities for setting the transform-origin property of the element.",
+        ),
+        classname: "origin",
+        variants: ("default", "responsive"),
+        properties: (transform-origin),
+        values: (
+            center: center,
+            top: top,
+            top-right: (top right),
+            right: right,
+            bottom-right: (bottom right),
+            bottom: bottom,
+            bottom-left: (bottom left),
+            left: left,
+            top-left: (top left),
+        ),
+    ),
+);
+
+// @description generate media screen above the specified breakpoint
+@mixin screen-above($breakpoint) {
+    // TODO: display an error message if breakpoint is not found
+    $breakpoint-size: map.get($config, "breakpoints", $breakpoint);
+    @media screen and (min-width: $breakpoint-size) {
+        @content;
     }
-    // Color not found, display a warning message and return black
-    @warn "Color '#{$color-name}' not found in the color palette.";
-    @return $black;
+}
+
+// @description generate media screen below the specified breakpoint
+@mixin screen-below($breakpoint) {
+    // TODO: display an error message if breakpoint is not found
+    $breakpoint-size: map.get($config, "breakpoints", $breakpoint);
+    @media screen and (max-width: $breakpoint-size) {
+        @content;
+    }
+}
+
+// @description generate media screen between the two breakpoints
+@mixin screen-between($breakpoint-lower, $breakpoint-higher) {
+    // TODO: display an error message if breakpoint is not found
+    $lower: map.get($config, "breakpoints", $breakpoint-lower);
+    $higher: map.get($config, "breakpoints", $breakpoint-higher);
+    @media screen and (min-width: $lower) and (max-width: $higher) {
+        @content;
+    }
+}
+
+// @description Generate a rule
+@mixin rule($properties, $value) {
+    // $properties: $props;
+    // We need to make sure that $properties is a list
+    @if meta.type-of($properties) != "list" {
+        $properties: list.append((), $properties);
+    }
+    $is-important: map.get($config, "important") == true;
+    @each $property in $properties {
+        @if $is-important {
+            #{string.unquote($property)}: #{$value} !important;
+        }
+        @else {
+            #{string.unquote($property)}: #{$value};
+        }
+    }
 }
 
 
+// @description reset CSS styles
+@mixin reset() {
+    // Reset box sizing and borders of all elements
+    *,
+    *:before,
+    *:after {
+        border-color: currentColor;
+        border-style: solid;
+        border-width: 0;
+        box-sizing: border-box;
+    }
+    // Set default html style
+    html {
+        font-size: 16px;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+    }
+     // Set default body style
+    body {
+        line-height: inherit;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+    // Reset margins in some elements
+    blockquote,
+    h1, h2, h3, h4, h5, h6,
+    hr,
+    p,
+    pre {
+        margin: 0;
+    }
+    // Normalize typography in headings
+    h1, h2, h3, h4, h5, h6 {
+        font-size: inherit;
+        font-weight: inherit;
+    }
+    // Reset margins on lists
+    ul,
+    ol,
+    dl {
+        margin: 0;
+        padding: 0;
+    }
+    // Fix bold weight (in firefox)
+    strong,
+    b {
+        font-weight: bold;
+    }
+    // Reset links
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+    // Make images and videos responsive by default
+    img,
+    video {
+        display: block;
+        height: auto;
+        max-width: 100%;
+    }
+    // Reset table border
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    // Reset form elements
+    button,
+    input,
+    select,
+    textarea {
+        color: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        margin: 0;
+        padding: 0;
+    }
+    // Prevent resizing textareas horizontally
+    textarea {
+        resize: vertical;
+    }
+}
+
+// @description forms reset styles
+@mixin forms() {
+    $checked-image: svg-from-path("M4,8l3,3l5,-6");
+    $indeterminate-image: svg-from-path("M4,8h8");
+    $select-image: svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
+    $radio-image: svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
+    // Reset styles in common form elements
+    [type="text"],
+    [type="email"],
+    [type="url"],
+    [type="password"],
+    [type="number"],
+    [type="date"],
+    [type="datetime"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="tel"],
+    [type="time"],
+    [type="week"],
+    select,
+    textarea {
+        appearance: none;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 0.5rem 0.75rem;
+    }
+    // Reset placeholder style in input and textare elements
+    input::placeholder,
+    textarea::placeholder {
+        color: currentColor;
+        opacity: 0.5;
+    }
+    // Reset checkbox and radio inputs
+    [type="checkbox"],
+    [type="radio"] {
+        appearance: none;
+        background-origin: border-box;
+        display: inline-block;
+        height: 1rem;
+        margin: 0;
+        padding: 0;
+        user-select: none;
+        vertical-align: middle;
+        width: 1rem;
+    }
+    [type="radio"] {
+        border-radius: 999px;
+    }
+    // Reset checked and indeterminate states in checkbox and radio inputs
+    [type="checkbox"]:checked,
+    [type="checkbox"]:indeterminate,
+    [type="radio"]:checked {
+        background-color: currentColor;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border-color: transparent;
+    }
+    [type="checkbox"]:checked {
+        background-image: url("data:image/svg+xml,#{$checked-image}");
+    }
+    [type="checkbox"]:indeterminate {
+        background-image: url("data:image/svg+xml,#{$indeterminate-image}");
+    }
+    [type="radio"]:checked {
+        background-image: url("data:image/svg+xml,#{$radio-image}");
+    }
+    // Reset range input element
+    [type="range"] {
+        appearance: none;
+        border-radius: 1rem;
+        display: block;
+        margin: 0;
+        min-width: 0;
+        outline: none;
+        &:-webkit-slider-thumb,
+        &:-moz-range-thumb {
+            background-color: currentColor;
+            border: none;
+            border-radius: 999px;
+            height: 1rem;
+            width: 1rem;
+        }
+        &:-webkit-slider-thumb {
+            appearance: none;
+        }
+    }
+    // Display a custom caret icon in select element
+    select {
+        background-image: url("data:image/svg+xml,#{$select-image}");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 16px 12px;
+        padding-right: 2.5rem;
+    }
+}
+
+// @description keyframes styles
+@mixin keyframes() {
+    @keyframes bounce {
+        0%,
+        100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+    @keyframes ping {
+        75%,
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+// @description scrollbar styles
+// Note that those styles do not force to display scrollbars
+@mixin scrollbar {
+    .scrollbar {
+        &::-webkit-scrollbar {
+            height: 0.4rem;
+            width: 0.4rem;
+        }
+        &::-webkit-scrollbar-track, 
+        &::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: currentColor;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+        // &::-webkit-scrollbar-thumb:hover {
+        //     opacity: 1;
+        // }
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}
+
+// @description helpers styles
+@mixin helpers($options: ()) {
+    $zindex-fixed: map-get-in($options, "zindex-fixed", 1100);
+    $zindex-sticky: map-get-in($options, "zindex-sticky", 1050);
+    // Clear float elements
+    .clearfix::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+    // Fix elements to top or bottom
+    .fixed-top,
+    .fixed-bottom {
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: $zindex-fixed;
+    }
+    .fixed-top {
+        top: 0;
+    }
+    .fixed-bottom {
+        bottom: 0;
+    }
+    // Sticky elements
+    .sticky-top,
+    .sticky-bottom {
+        position: sticky;
+        z-index: $zindex-sticky;
+    }
+    .sticky-top {
+        top: 0;
+    }
+    .sticky-bottom {
+        bottom: 0;
+    }
+    $breakpoints: map.get($config, "breakpoints");
+    $separator: map.get($config, "separator");
+    @each $breakpoint in map.keys($breakpoints) {
+        @include api.screen-above($breakpoint) {
+            .#{$breakpoint}#{$separator}sticky-top, 
+            .#{$breakpoint}#{$separator}sticky-bottom {
+                position: sticky;
+                z-index: $zindex-sticky;
+            }
+            .#{$breakpoint}#{$separator}sticky-top {
+                top: 0;
+            }
+            .#{$breakpoint}#{$separator}sticky-bottom {
+                bottom: 0;
+            }
+        }
+    }
+    // Truncate text
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+// Additional fonts
+@mixin fonts {
+    .font-inter {
+        font-family: Inter, sans-serif;
+    }
+    .font-lato {
+        font-family: Lato, sans-serif;
+    }
+    .font-poppins {
+        font-family: Poppins, sans-serif;
+    }
+    .font-crimson {
+        font-family: Crimson Pro, serif;
+    }
+    .font-nunito {
+        font-family: Nunito, sans-serif;
+    }
+    .font-plex-sans {
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .font-plex-serif {
+        font-family: 'IBM Plex Serif', serif;
+    }
+    .font-plex-mono {
+        font-family: 'IBM Plex Mono', monospace;
+    }
+}
 
 // @description Inject base styles
 @mixin base() {
@@ -94,12 +2515,26 @@ $colors: map-flat((
 @mixin root() {
     :root {
         // Fonts
-        @each $font-name,$font-value in config.$fonts {
+        @each $font-name,$font-value in $fonts {
             --low-font-#{$font-name}: #{$font-value};
         }
         // Colors variables
-        @each $color-name,$color-value in config.$colors {
+        @each $color-name,$color-value in $colors {
             --low-#{$color-name}: #{$color-value};
+        }
+    }
+}
+
+// @description update lowcss configuration
+@mixin configure($new-config: ()) {
+    @each $key,$value in $new-config {
+        @if $key == "theme" and meta.type-of($value) == "map" {
+            @each $theme-key,$theme-value in $value {
+                $config: map.set($config, "theme", $theme-key, $theme-value) !global;
+            }
+        }
+        @else {
+            $config: map.set($config, $key, $value) !global;
         }
     }
 }
