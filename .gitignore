@@ -6,3 +6,7 @@ yarn.lock
 ## Output files
 dist
 public
+low.scss
+low.css
+low.css.map
+low.json
