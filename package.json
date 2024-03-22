@@ -23,6 +23,7 @@
         "build:docs": "redocus --config redocus.config.js",
         "postbuild:docs": "cp dist/low.css public/ && cp dist/low.css.map public/ && cp node_modules/highlight.js/styles/nord.css public/highlight.css && cp assets/* public/",
         "build": "yarn run build:css && yarn run build:json",
+        "bundle": "node ./scripts/bundle.js low/_index.scss low.scss",
         "docs": "yarn run build:docs",
         "serve": "serve ./public"
     },
