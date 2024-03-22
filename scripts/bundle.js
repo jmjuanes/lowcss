@@ -50,7 +50,7 @@ const parseScss = (name, content) => {
         });
     }
     return {
-        name: name,
+        name: name.replace("_", ""),
         content: lines.join(endl),
         modules: allModules,
     };
@@ -58,17 +58,16 @@ const parseScss = (name, content) => {
 
 //Convert a SCSS file object to string
 const stringifyScss = file => {
-    let content = file.content; //Initialize the content
-    //Add the modules at the start of the file
+    let content = file.content;
+    // Add the modules at the start of the file
     file.modules.forEach(m => {
-        let moduleImport = (m.as !== null) ? `@use "${m.name}" as ${m.as};` : `@use "${m.name}";`
-        content = moduleImport + endl + content;
+        // const  moduleImport = (m.as !== null) ? `@use "${m.name}" as ${m.as};` : `@use "${m.name}";`
+        content = `@use "${m}";` + endl + content;
     });
-    //Add the bundle header
+    // Add the bundle header
     if (typeof file.header === "string") {
         content = file.header + endl + endl + content;
     }
-    //Return the file content
     return content;
 };
 
@@ -79,7 +78,7 @@ const readScssFile = (file, processedFiles = []) => {
     result.modules.forEach(m => {
         if (!m.name.startsWith("sass:")) {
             if (!processedFiles.find(f => f.name === m.name)) {
-                const moduleFile = path.join(path.dirname(file), `${m.name}.scss`);
+                const moduleFile = path.join(path.dirname(file), `_${m.name}.scss`);
                 readScssFile(moduleFile, processedFiles);
             }
         }
@@ -94,24 +93,14 @@ const bundle = args => {
     const input = path.join(process.cwd(), args[0]);
     const output = path.join(process.cwd(), args[1]);
     const files = readScssFile(input);
-    // Generate the list of required sass modules
-    const sassModules = new Set();
-    const contents = files.map(file => {
-        // 1. Get all sass modules
-        file.modules.forEach(m => {
-            if (m.name.startsWith("sass:")) {
-                sassModules.add(m.name);
-            }
-        });
-        // 2. return content
-        return file.content;
+    const sassModules = files.map(f => {
+        return f.modules.filter(m => m.name.startsWith("sass:")).map(m => m.name);
     });
-    const sassImports = Array.from(sassModules).map(name => {
-        return `@use "${name}";`;
+    const content = stringifyScss({
+        content: files.map(f => f.content).join(endl),
+        modules: Array.from(new Set(sassModules.flat())),
     });
-    const content = sassImports.join(endl) + endl + contents.join(endl);
-    // Save file
-    fs.writeFile(output, content, "utf8");
+    fs.writeFileSync(output, content, "utf8");
 };
 
 bundle(process.argv.slice(2));
