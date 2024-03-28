@@ -10,7 +10,7 @@
  */
 
 // 1.1 Import lowcss without customization
-@use "index";
+@use "index" as low;
 
 // 1.2 Import lowcss with customization
 // @use "low" with (
