@@ -10,8 +10,8 @@
     "homepage": "https://www.josemi.xyz/lowcss",
     "repository": "https://github.com/jmjuanes/lowcss",
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
-    "main": "dist/low.css",
-    "style": "dist/low.css",
+    "main": "low.css",
+    "style": "low.css",
     "sass": "low.scss",
     "scripts": {
         "build:dev": "sass sass/main.scss low.dev.css",
@@ -39,8 +39,10 @@
     "files": [
         "README.md",
         "LICENSE",
-        "dist",
-        "low.scss"
+        "low.scss",
+        "low.css",
+        "low.css.map",
+        "low.json"
     ],
     "devDependencies": {
         "@josemi-icons/react": "^0.3.2",
