@@ -25,7 +25,7 @@
         "build": "yarn bundle && yarn build:css && yarn build:json",
         "bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "docs": "yarn run build:docs",
-        "serve": "serve ./public",
+        "serve": "stattic --folder ./public --port 3000",
         "pack": "zip lowcss.zip low.*"
     },
     "keywords": [
@@ -46,19 +46,14 @@
         "low.json"
     ],
     "devDependencies": {
-        "@josemi-icons/react": "^0.3.2",
-        "@mdx-js/mdx": "^2.3.0",
-        "autoprefixer": "^10.4.12",
-        "classnames": "^2.3.2",
+        "@josemi-icons/svg": "^0.6.0",
+        "autoprefixer": "^10.4.19",
         "csso-cli": "^4.0.1",
         "highlight.js": "^11.8.0",
-        "postcss": "^8.4.18",
-        "postcss-cli": "^10.0.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "redocus": "^0.1.1",
-        "sass": "^1.55.0",
-        "serve": "^14.2.0",
+        "mikel": "^0.3.1",
+        "postcss": "^8.4.38",
+        "postcss-cli": "^11.0.0",
+        "sass": "^1.72.0",
         "stattic": "^0.4.0"
     },
     "peerDependencies": {
