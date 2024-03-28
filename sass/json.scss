@@ -1,8 +1,9 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:meta";
-@use "low/config" as config;
-@use "low/utilities" as utilities;
+
+@use "config" as config;
+@use "utilities" as utilities;
 
 @function json($arg) {
     $type: meta.type-of($arg);
