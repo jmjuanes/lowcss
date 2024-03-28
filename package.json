@@ -25,7 +25,8 @@
         "build": "yarn bundle && yarn build:css && yarn build:json",
         "bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "docs": "yarn run build:docs",
-        "serve": "serve ./public"
+        "serve": "serve ./public",
+        "pack": "zip lowcss.zip low.*"
     },
     "keywords": [
         "css",

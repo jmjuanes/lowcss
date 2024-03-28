@@ -7,3 +7,7 @@ yarn.lock
 dist
 public
 low.*
+lowcss.zip
+
+## Other files
+.DS_Store
