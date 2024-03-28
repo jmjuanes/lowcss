@@ -31,9 +31,9 @@ const parseScss = (name, content) => {
     const allModules = []; // To store files includes
     let lines = splitLines(content).filter((line, index) => {
         line = line.trim();
-        if (line.length === 0 || line.startsWith("//")) {
-            return false; // Ignore empty lines or comments
-        }
+        // if (line.length === 0 || line.startsWith("//")) {
+        //     return false; // Ignore empty lines or comments
+        // }
         // Check for include library
         if (line.startsWith("@use")) {
             allModules.push(parseSCSSImport(line, index));
