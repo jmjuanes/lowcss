@@ -12,7 +12,7 @@
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "main": "dist/low.css",
     "style": "dist/low.css",
-    "sass": "low/_index.scss",
+    "sass": "low.scss",
     "scripts": {
         "build:dev": "sass --load-path=./ main.scss dist/low.dev.css",
         "build:css": "sass --load-path=./ --style compressed main.scss dist/low.css",
@@ -22,7 +22,7 @@
         "prebuild:docs": "rm -rf public && mkdir public",
         "build:docs": "redocus --config redocus.config.js",
         "postbuild:docs": "cp dist/low.css public/ && cp dist/low.css.map public/ && cp node_modules/highlight.js/styles/nord.css public/highlight.css && cp assets/* public/",
-        "build": "yarn run build:css && yarn run build:json",
+        "build": "yarn bundle && yarn build:css && yarn build:json",
         "bundle": "node ./scripts/bundle.js low/_index.scss low.scss",
         "docs": "yarn run build:docs",
         "serve": "serve ./public"
@@ -40,9 +40,7 @@
         "README.md",
         "LICENSE",
         "dist",
-        "low",
-        "main.scss",
-        "json.scss"
+        "low.scss"
     ],
     "devDependencies": {
         "@josemi-icons/react": "^0.3.2",
