@@ -21,7 +21,7 @@
         "postbuild:json": "cat low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > low.json && rm low.raw.json",
         "prebuild:site": "rm -rf public && mkdir public",
         "build:site": "node ./scripts/site.js",
-        "postbuild:site": "cp low.css public/ && cp low.css.map public/ && cp node_modules/highlight.js/styles/nord.css public/highlight.css && cp assets/* public/",
+        "postbuild:site": "cp low.css public/ && cp low.css.map public/ && cp node_modules/@josemi-icons/svg/sprite.svg public/ && cp assets/* public/",
         "build": "yarn bundle && yarn build:css && yarn build:json",
         "bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "docs": "yarn run build:site",
