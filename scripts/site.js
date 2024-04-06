@@ -10,6 +10,23 @@ const getData = () => {
             description: pkg.description,
             repository: pkg.repository,
         },
+        features: [
+            {
+                title: "Lightning-fast development",
+                description: "Prototype and develop at an accelerated pace, focusing on the functionality and design.",
+                icon: "bolt",
+            },
+            {
+                title: "Customizable to your brand",
+                description: "Tailor the framework to match your brand's aesthetic seamlessly.",
+                icon: "color-swatch",
+            },
+            {
+                title: "Responsive design made easy",
+                description: "Effortlessly create layouts that adapt to different screen sizes and devices.",
+                icon: "mobile",
+            },
+        ],
     };
 };
 
