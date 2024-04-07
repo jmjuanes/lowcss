@@ -1,9 +1,4 @@
----
-layout: "docs"
-title: "Introduction"
-description: "An introduction to the LowCSS utility framework."
-next: "installation.html"
----
+# Introduction
 
 **LowCSS** is a powerful **Utility CSS framework** built with SASS, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tainwindcss.com), LowCSS follows a similar structure and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
 
@@ -36,20 +31,4 @@ Apply styles to elements in specific states like hover, focus, and active.
 <button class="bg-gray-800 hover:bg-gray-900 focus:outline-blue-200 text-white px-3 py-2">
     Hover me!
 </button>
-```
-
-## Fully customizable
-
-Tailor your design by customizing colors, spacing, and other styles with ease, all while keeping your CSS concise and organized.
-
-```scss
-@use "low" with (
-    $prefix: "lw-",
-    $theme: (
-        "background-color": (
-            "primary": #0456C9,
-            "secondary": #a4abb6,
-        ),
-    ),
-);
 ```
