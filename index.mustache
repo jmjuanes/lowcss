@@ -68,9 +68,19 @@
     </div>
     <!-- Content -->
     <div class="flex w-full max-w-7xl mx-auto px-6">
-        <div class="h-screen sticky w-64 shrink-0" style="top:65px;">Sidebar</div>
+        <div class="h-screen sticky w-64 shrink-0" style="top:65px;">
+        {{#site.sidenav}}
+            <div class="">
+                <div class="font-bold">{{title}}</div>
+                {{#items}}
+                <a href="{{link}}" class="block">{{title}}</a>
+                {{/items}}
+            </div>
+        {{/site.sidenav}}
+        </div>
         <div class="w-full max-w-3xl px-6 py-4 typography">
-            <h1>Introduction</h1>
+            <a name="introduction" class=""></a>
+            {{> introduction}}
         </div>
     </div>
     <div class="w-full border-t-1 border-neutral-100">
