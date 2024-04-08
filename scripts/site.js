@@ -26,7 +26,7 @@ const getUtilities = () => {
         const config = low.utilities[utilityName];
         return {
             name: utilityName,
-            groupName: capitalize(config.attributes.group),
+            groupName: config.attributes.group,
             description: config.attributes.description,
             variants: config.variants,
             hasDefaultVariant: config.variants.includes("default"),
@@ -48,19 +48,22 @@ const getUtilitiesMenu = utilities => {
     utilities.forEach(item => {
         if (!menu[item.groupName]) {
             menu[item.groupName] = {
-                title: item.groupName,
+                title: capitalize(item.groupName),
                 items: [],
             };
         }
         menu[item.groupName].items.push({
             title: item.name,
             link: `#${item.name}`,
+            description: item.description,
+            keywords: item.name.split("-"),
         });
     });
     return menu;
 };
 
 const getData = () => {
+    const colors = getColorNames();
     const utilities = getUtilities();
     return {
         site: {
@@ -80,7 +83,7 @@ const getData = () => {
                 customization: {
                     title: "Customize",
                     items: [
-                        {title: "Colors", link: "#colors"},
+                        {title: "Colors", link: "#colors", keywords: colors},
                     ],
                 },
                 globals: {
@@ -117,7 +120,7 @@ const getData = () => {
                 icon: "mobile",
             },
         ],
-        colors: getColorNames().map(color => {
+        colors: colors.map(color => {
             const shades = Object.keys(low.colors)
                 .filter(key => key.startsWith(color + "-"))
                 .map(key => ({
@@ -150,11 +153,14 @@ const getPartials = async () => {
 };
 
 const build = async () => {
+    const cwd = process.cwd();
     const m = (await import("mikel")).default;
-    const template = await fs.readFile(path.join(process.cwd(), "index.mustache"), "utf8");
+    const template = await fs.readFile(path.join(cwd, "index.mustache"), "utf8");
     const partials = await getPartials();
-    const result = m(template, getData(), {partials});
-    await fs.writeFile(path.join(process.cwd(), "www", "index.html"), result, "utf8");
+    const data = getData();
+    const result = m(template, data, {partials});
+    await fs.writeFile(path.join(cwd, "www/index.html"), result, "utf8");
+    await fs.writeFile(path.join(cwd, "www/navigation.json"), JSON.stringify(data.site.sidenav), "utf8");
 };
 
 build();
