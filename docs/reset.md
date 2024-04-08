@@ -1,10 +1,4 @@
----
-layout: "docs"
-title: "Reset CSS"
-description: "Normalize default styles applied by browsers."
-prev: "root.html"
-next: "keyframes.html"
----
+# Reset
 
 **Reset CSS** is a collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements. It helps normalize the default styles applied by different browsers, ensuring a more consistent and predictable rendering of web pages across various devices and browsers.
 
@@ -132,29 +126,4 @@ It also prevents resizing textareas horizontally by default:
 textarea {
     resize: vertical;
 }
-```
-
-<Separator />
-
-# Enable or disable Reset CSS
-
-When generating you own customized version of LowCSS, you can add reset styles by including the `low.base()` mixin in your SCSS stylesheet:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-@include low.base();
-```
-
-Individual styles can be included using the `low.reset()` mixin:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-// This will include only reset styles
-@include low.reset();
 ```
