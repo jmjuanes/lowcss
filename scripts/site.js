@@ -154,7 +154,7 @@ const build = async () => {
     const template = await fs.readFile(path.join(process.cwd(), "index.mustache"), "utf8");
     const partials = await getPartials();
     const result = m(template, getData(), {partials});
-    await fs.writeFile(path.join(process.cwd(), "public", "index.html"), result, "utf8");
+    await fs.writeFile(path.join(process.cwd(), "www", "index.html"), result, "utf8");
 };
 
 build();
