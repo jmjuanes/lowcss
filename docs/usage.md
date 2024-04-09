@@ -37,26 +37,12 @@ LowCSS makes it easy to create responsive designs using the following utility sy
 
 The following breakpoints are defined by default in LowCSS:
 
-<table className="w-full leading-normal text-sm">
-    <thead>
-        <tr className="">
-            <td className="p-4 font-medium text-gray-700">Breakpoint</td>
-            <td className="p-4 font-medium text-gray-700">Minimum width</td>
-            <td className="p-4 font-medium text-gray-700">Rule</td>
-        </tr>
-    </thead>
-    <tbody>
-        {Object.keys(props.site.low.breakpoints).map(key => (
-        <tr key={key} className="border-t border-gray-200 hover:bg-gray-50">
-            <td className="p-4 font-mono font-bold text-gray-900">{key}</td>
-            <td className="p-4 font-mono text-gray-800">{props.site.low.breakpoints[key]}</td>
-            <td className="p-4 font-mono font-bold text-gray-900">
-                @media (min-width: {props.site.low.breakpoints[key]}) {"{"} ... {"}"}
-            </td>
-        </tr>
-        ))}
-    </tbody>
-</table>
+| Breakpoint | Minimum width | Rule |
+|------------|---------------|------|
+| `sm` | `640px` | `@media (min-width: 640px) { ... }` |
+| `md` | `768px` | `@media (min-width: 768px) { ... }` |
+| `lg` | `1024px` | `@media (min-width: 1024px) { ... }` |
+| `xl` | `1280px` | `@media (min-width: 1280px) { ... }` |
 
 You can apply different styles at different breakpoints:
 

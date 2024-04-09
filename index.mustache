@@ -12,6 +12,9 @@
             color: #101623 !important;
             font-weight: bold !important;
         }
+        .typography > h1:first-of-type {
+            margin-top: 0px !important;
+        }
     </style>
 </head>
 <body class="bg-white m-0 p-0 font-inter text-neutral-800 leading-normal">
@@ -27,7 +30,7 @@
             </a>
             <div class="flex items-center grow relative max-w-2xl">
                 <input data-role="search-input" type="text" class="w-full outline-0 bg-neutral-100 rounded-md" placeholder="Search utilities..." />
-                <div data-role="search-results" class="absolute top-full w-full mt-4 rounded-md p-4 bg-white border border-neutral-200 max-h-60 overflow-y-auto scrollbar" style="display:none;"></div>
+                <div data-role="search-results" class="absolute top-full w-full mt-4 rounded-md px-4 pt-4 pb-2 bg-white border border-neutral-200 max-h-60 overflow-y-auto scrollbar" style="display:none;"></div>
             </div>
             <div class="flex items-center">
                 <a href="{{site.repository}}" class="no-underline opacity-70 hover:opacity-100">
@@ -69,8 +72,8 @@
     </div>
     <!-- Content -->
     <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
-        <div class="sticky w-64 shrink-0 h-screen hidden md:block" style="top:65px">
-            <div class="h-full overflow-y-scroll">
+        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-4 pr-8" style="top:65px">
+            <div class="h-full overflow-y-scroll scrollbar">
                 {{#site.sidenav}}
                 <div class="mb-4 text-sm">
                     <div class="text-neutral-950 font-bold mb-1">{{title}}</div>
@@ -82,17 +85,15 @@
                 <div class="h-16"></div>
             </div>
         </div>
-        <div class="w-full max-w-3xl py-4 typography">
+        <div class="w-full max-w-3xl typography">
             <a name="introduction" class=""></a>
             {{> introduction}}
-            <a name="installtion" class=""></a>
+            <a name="installation" class=""></a>
             {{> installation}}
             <a name="usage" class=""></a>
             {{> usage}}
             <a name="colors" class=""></a>
             {{> colors}}
-            <a name="root" class=""></a>
-            {{> root}}
             <a name="reset" class=""></a>
             {{> reset}}
             <a name="keyframes" class=""></a>

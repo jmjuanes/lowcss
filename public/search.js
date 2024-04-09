@@ -15,7 +15,7 @@ const init = async () => {
             const items = results.map(result => {
                 const matches = result.items.map(item => {
                     return `
-                        <a href="${item.link}" class="block p-2 rounded bg-neutral-50 hover:neutral-100">
+                        <a href="${item.link}" class="block p-2 rounded bg-neutral-50 hover:bg-neutral-100">
                             <span class="text-sm">${item.title}</span>
                         </a>
                     `;
@@ -60,7 +60,7 @@ const init = async () => {
     inputElement.addEventListener("focus", () => handleSearch());
     inputElement.addEventListener("blur", () => {
         inputElement.value = "";
-        window.setTimeout(() => hideResults(), 50);
+        window.setTimeout(() => hideResults(), 150);
     });
 };
 

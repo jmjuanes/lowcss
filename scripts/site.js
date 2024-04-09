@@ -86,12 +86,12 @@ const getData = () => {
                         {title: "Colors", link: "#colors", keywords: colors},
                     ],
                 },
-                globals: {
-                    title: "Globals",
-                    items: [
-                        {title: "Root CSS Variables", link: "#root"},
-                    ],
-                },
+                // globals: {
+                //     title: "Globals",
+                //     items: [
+                //         {title: "Root CSS Variables", link: "#root"},
+                //     ],
+                // },
                 base: {
                     title: "Base Styles",
                     items: [
