@@ -37,10 +37,10 @@ $ yarn add lowcss
 
 ### Using LowCSS on a static site
 
-LowCSS includes a compiled CSS version, so you do not need to install any modules for using it on a static site. Just download the compiled CSS from [unpkg](https://unpkg.com/lowcss/dist/low.css), or include the following link to the CDN in your HTML file:
+LowCSS includes a compiled CSS version, so you do not need to install any modules for using it on a static site. Just download the compiled CSS from [unpkg](https://unpkg.com/lowcss/low.css), or include the following link to the CDN in your HTML file:
 
 ```html
-<link href="https://unpkg.com/lowcss/dist/low.css" rel="stylesheet" />
+<link href="https://unpkg.com/lowcss/low.css" rel="stylesheet" />
 ```
 
 ### Download from releases
@@ -59,13 +59,11 @@ Using LowCSS is simple. Add the utility classes directly to your HTML elements t
 </div>
 ``` 
 
-Refer to the [Utility Classes Documentation](https://www.josemi.xyz/lowcss/utilities) for a complete list of available utility classes and their usage.
+Refer to the [Utility Classes Documentation](https://www.josemi.xyz/lowcss/#utilities) for a complete list of available utility classes and their usage.
 
 ## Customization
 
 LowCSS is highly customizable to match your project's unique requirements and branding. Modify the SASS variables to adjust colors, typography, spacing, and more. Customize the framework to create a consistent and cohesive design system for your website.
-
-Refer to the [Customization Guide](https://www.josemi.xyz/lowcss/customize) for instructions on customizing LowCSS to suit your needs.
 
 ## Documentation
 

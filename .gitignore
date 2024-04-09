@@ -5,7 +5,7 @@ yarn.lock
 
 ## Output files
 dist
-public
+www
 low.*
 lowcss.zip
 

@@ -1,10 +1,4 @@
----
-layout: "docs"
-title: "Helpers"
-description: "Helpers styles like text truncation."
-prev: "keyframes.html"
-next: "utilities.html"
----
+# Helpers
 
 LowCSS introduces a set of helper styles to assist you in common layout and text formatting tasks. These helpers are designed to simplify your development process and enhance the visual presentation of your web projects.
 
@@ -96,27 +90,4 @@ Just like with the `sticky-top` class, you can make the `sticky-bottom` element 
 <div class="md:sticky-bottom">
     <!-- Sticky at the bottom on medium or large and larger screens, not sticky on smaller screens -->
 </div>
-```
-
-# Enable or disable helpers
-
-When generating you own customized version of LowCSS, you can add helpers styles by including the `low.base()` mixin in your SCSS stylesheet:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-@include low.base();
-```
-
-Individual styles can be included using the `low.helpers()` mixin:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-// This will include only helpers styles
-@include low.helpers();
 ```

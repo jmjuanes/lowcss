@@ -1,10 +1,4 @@
----
-layout: "docs"
-title: "Keyframes"
-description: "Add commonly used animations."
-prev: "reset.html"
-next: "helpers.html"
----
+# Keyframes
 
 We provide a collection of keyframes animation styles that can be used in conjunction with the animation utilities to create engaging and dynamic animations in your web projects. These predefined keyframes styles provide a quick and convenient way to add commonly used animations without the need to write complex CSS animations from scratch.
 
@@ -99,29 +93,4 @@ The `spin` animation rotates an element continuously, creating a spinning effect
         transform: rotate(360deg);
     }
 }
-```
-
-<Separator />
-
-# Enable or disable keyframes
-
-When generating you own customized version of LowCSS, you can add keyframes styles by including the `low.base()` mixin in your SCSS stylesheet:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-@include low.base();
-```
-
-Individual styles can be included using the `low.keyframes()` mixin:
-
-```scss
-@use "low" with (
-    // ...custom configuration
-);
-
-// This will include only keyframes styles
-@include low.keyframes();
 ```
