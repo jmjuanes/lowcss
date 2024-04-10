@@ -1,4 +1,4 @@
-# Root
+# Root CSS Variables
 
 LowCSS provides CSS variables generated from your custom configuration, making it even easier to maintain a consistent color scheme across your project.
 
@@ -8,24 +8,24 @@ The following CSS variables are available, derived from the default configuratio
 
 The colors variables are generated from values in `low.$colors`:
 
-<table className="w-full leading-normal text-sm">
+<table>
     <thead>
-        <tr className="">
-            <td className="p-4 font-medium text-gray-700">Variable name</td>
-            <td className="p-4 font-medium text-gray-700">Value</td>
-            <td className="p-4 font-medium text-gray-700"></td>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        {Object.keys(props.site.low.colors).map(key => (
-        <tr key={key} className="border-t border-gray-200 hover:bg-gray-50">
-            <td className="p-4 font-bold font-mono text-gray-900">--low-{key}</td>
-            <td className="p-4 font-mono text-indigo-600">{props.site.low.colors[key].toLowerCase()}</td>
-            <td className="p-4">
-                <div className={`bg-${key} rounded-lg h-8 w-20`} />
+        {{#variables.colors}}
+        <tr>
+            <td><code>--low-{{key}}</code></td>
+            <td><code>{{value}}</code></td>
+            <td>
+                <div class="bg-{{key}} border border-neutral-200 rounded-lg h-4 w-16 mx-auto"></div>
             </td>
         </tr>
-        ))}
+        {{/variables.colors}}
     </tbody>
 </table>
 
@@ -33,20 +33,20 @@ The colors variables are generated from values in `low.$colors`:
 
 The fonts variables are generated from values in `low.$fonts`;
 
-<table className="w-full leading-normal text-sm">
+<table>
     <thead>
-        <tr className="">
-            <td className="p-4 font-medium text-gray-700">Variable name</td>
-            <td className="p-4 font-medium text-gray-700">Value</td>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
         </tr>
     </thead>
     <tbody>
-        {Object.keys(props.site.low.fonts).map(key => (
-        <tr key={key} className="border-t border-gray-200 hover:bg-gray-50">
-            <td className="p-4 font-bold font-mono text-gray-900">--low-font-{key}</td>
-            <td className="p-4 font-mono text-indigo-600">{props.site.low.fonts[key].join(", ")}</td>
+        {{#variables.fonts}}
+        <tr>
+            <td><code>--low-font-{{key}}</code></td>
+            <td><code>{{value}}</code></td>
         </tr>
-        ))}
+        {{/variables.fonts}}
     </tbody>
 </table>
 
