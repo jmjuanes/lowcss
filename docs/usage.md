@@ -37,12 +37,12 @@ LowCSS makes it easy to create responsive designs using the following utility sy
 
 The following breakpoints are defined by default in LowCSS:
 
-| Breakpoint | Minimum width | Rule |
-|------------|---------------|------|
-| `sm` | `640px` | `@media (min-width: 640px) { ... }` |
-| `md` | `768px` | `@media (min-width: 768px) { ... }` |
-| `lg` | `1024px` | `@media (min-width: 1024px) { ... }` |
-| `xl` | `1280px` | `@media (min-width: 1280px) { ... }` |
+| Breakpoint | Name | Minimum width | Rule |
+|------------|------|---------------|------|
+| Small | `sm` | `640px` | `@media (min-width: 640px) { ... }` |
+| Medium | `md` | `768px` | `@media (min-width: 768px) { ... }` |
+| Large | `lg` | `1024px` | `@media (min-width: 1024px) { ... }` |
+| Extra Large | `xl` | `1280px` | `@media (min-width: 1280px) { ... }` |
 
 You can apply different styles at different breakpoints:
 
