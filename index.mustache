@@ -78,7 +78,10 @@
                 <div class="mb-4 text-sm">
                     <div class="text-neutral-950 font-bold mb-1">{{title}}</div>
                     {{#items}}
-                    <a href="{{link}}" class="block text-neutral-700 hover:underline py-1">{{title}}</a>
+                    <a href="{{link}}" class="block text-neutral-700 hover:underline py-1">
+                        <span>{{title}}</span>
+                        {{#version}}<span class="text-2xs text-white bg-neutral-900 p-1 rounded-md font-medium ml-1">{{version}}{{/version}}
+                    </a>
                     {{/items}}
                 </div>
                 {{/site.sidenav}}
@@ -100,6 +103,8 @@
             {{> keyframes}}
             <a name="helpers" class=""></a>
             {{> helpers}}
+            <a name="markup" class=""></a>
+            {{> markup}}
             <a name="utilities" class=""></a>
             {{> utilities}}
         </div>
