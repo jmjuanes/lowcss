@@ -339,8 +339,8 @@
     }
 }
 
-// @description typography module
-@mixin typography($p: "typography") {
+// @description markup module
+@mixin markup($p: "markup") {
     :root {
         --low-#{$p}-body: #{colors.get-color("neutral-800")};
         --low-#{$p}-lead: #{colors.get-color("neutral-700")};
@@ -355,6 +355,9 @@
         --low-#{$p}-counter: #{colors.get-color("neutral-500")};
         --low-#{$p}-code-body: #{colors.get-color("neutral-100")};
         --low-#{$p}-code-bg: #{colors.get-color("neutral-900")};
+        --low-#{$p}-table-border: #{colors.get-color("neutral-200")};
+        --low-#{$p}-table-bg-default: #fff;
+        --low-#{$p}-table-bg: #{colors.get-color("neutral-100")};
     }
     .#{$p} {
         color: var(--low-#{$p}-body);
@@ -384,7 +387,7 @@
             background-color: var(--low-#{$p}-code-bg);
             border-radius: 0.375rem;
             color: var(--low-#{$p}-code-body);
-            font-size: 0.875em;
+            font-size: 0.85em;
             font-weight: 400;
             line-height: 1.75;
             margin-top: 1.75em;
@@ -489,6 +492,34 @@
         & :where(li) {
             margin-bottom: 0.5em;
             margin-top: 0.5em;
+        }
+        // Table
+        & :where(table) {
+            // font-size: 0.875em;
+            // line-height: 1.75;
+            margin-bottom: 1.5em;
+            margin-top: 1.5em;
+            table-layout: auto;
+            text-align: left;
+            width: 100%;
+        }
+        & :where(thead th) {
+            color: var(--low-#{$p}-heading);
+            font-weight: 600;
+            vertical-align: bottom;
+        }
+        & :where(thead th, tbody td) {
+            border: 1px solid var(--low-#{$p}-table-border);
+            padding: 0.6em 0.75em;
+        }
+        & :where(thead tr, tbody tr:nth-child(2n + 1)) {
+            background-color: var(--low-#{$p}-table-bg-default);
+        }
+        & :where(tbody tr:nth-child(2n)) {
+            background-color: var(--low-#{$p}-table-bg);
+        }
+        & :where(tbody tr) {
+            vertical-align: baseline;
         }
         // First or last childs
         & > *:first-child {
