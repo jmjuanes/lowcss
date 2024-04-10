@@ -86,7 +86,7 @@ This is the list of available pseudo modifiers:
 | `checked` | Applied to the element when it is checked (only for radio or checkbox). |
 | `disabled` | Applied to the element when it is disabled. |
 | `required` | Applied to the element when it is required. |
-| `first`  Applied to the element when it is the first child. |
+| `first` | Applied to the element when it is the first child. |
 | `last` | Applied to the element when it is the last child. |
 | `odd` | Applied to the whose numeric position in a series of siblings is odd. |
 | `even` | Applied to the whose numeric position in a series of siblings is even. |
