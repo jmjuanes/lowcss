@@ -17,6 +17,7 @@
     @include base.scrollbar();
     @include base.helpers();
     @include base.fonts();
+    @include base.markup();
 }
 
 // @description Generate root variables

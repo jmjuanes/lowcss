@@ -98,6 +98,7 @@ const getData = () => {
                         {title: "Reset", link: "#reset"},
                         {title: "Keyframes", link: "#keyframes"},
                         {title: "Helpers", link: "#helpers"},
+                        {title: "Markup", link: "#markup", version: "v0.22.0"},
                     ],
                 },
                 ...getUtilitiesMenu(utilities),

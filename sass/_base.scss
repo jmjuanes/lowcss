@@ -1,4 +1,5 @@
 @use "api";
+@use "colors";
 @use "config";
 @use "internal";
 
@@ -335,6 +336,198 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+}
+
+// @description markup module
+@mixin markup($p: "markup") {
+    :root {
+        --low-#{$p}-body: #{colors.get-color("neutral-800")};
+        --low-#{$p}-lead: #{colors.get-color("neutral-700")};
+        --low-#{$p}-link: #{colors.get-color("neutral-900")};
+        --low-#{$p}-bold: #{colors.get-color("neutral-900")};
+        --low-#{$p}-code: #{colors.get-color("neutral-900")};
+        --low-#{$p}-quote-body: #{colors.get-color("neutral-900")};
+        --low-#{$p}-quote-border: #{colors.get-color("neutral-200")};
+        --low-#{$p}-heading: #{colors.get-color("neutral-900")};
+        --low-#{$p}-rule: #{colors.get-color("neutral-200")};
+        --low-#{$p}-bullet: #{colors.get-color("neutral-300")};
+        --low-#{$p}-counter: #{colors.get-color("neutral-500")};
+        --low-#{$p}-code-body: #{colors.get-color("neutral-100")};
+        --low-#{$p}-code-bg: #{colors.get-color("neutral-900")};
+        --low-#{$p}-table-border: #{colors.get-color("neutral-200")};
+        --low-#{$p}-table-bg-default: #fff;
+        --low-#{$p}-table-bg: #{colors.get-color("neutral-100")};
+    }
+    .#{$p} {
+        color: var(--low-#{$p}-body);
+        line-height: 1.75;
+        // Default paragraphs
+        & :where(p) {
+            margin-top: 1.5em;
+            margin-bottom: 1.5em;
+        }
+        // Lead paragraphs
+        & :where(p[class~="lead"]) {
+            color: var(--low-#{$p}-lead);
+        }
+        // Bold text
+        & :where(b, strong) {
+            color: var(--low-#{$p}-bold);
+            font-weight: 600;
+        }
+        // inline code
+        & :where(code) {
+            color: var(--low-#{$p}-code);
+            font-size: 0.875em;
+            font-weight: 600;
+        }
+        // Block code
+        & :where(pre) {
+            background-color: var(--low-#{$p}-code-bg);
+            border-radius: 0.375rem;
+            color: var(--low-#{$p}-code-body);
+            font-size: 0.85em;
+            font-weight: 400;
+            line-height: 1.75;
+            margin-top: 1.75em;
+            margin-bottom: 1.75em;
+            overflow-x: auto;
+            padding: 1.25em;
+            & code {
+                background-color: transparent;
+                color: inherit;
+                border-width: 0;
+                border-radius: 0;
+                font-size: inherit;
+                font-family: inherit;
+                font-weight: inherit;
+                line-height: inherit;
+                padding: 0;
+            }
+        }
+        // Blockquote
+        & :where(blockquote) {
+            border-left-color: var(--low-#{$p}-quote-border);
+            border-left-width: 0.25rem;
+            color: var(--low-#{$p}-quote-body);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 1.5em;
+            margin-top: 1.5em;
+            padding-left: 1em;
+        }
+        // Headings
+        & :where(h1, h2, h3, h4) {
+            color: var(--low-#{$p}-heading);
+            // font-weight: 800;
+            // & strong {
+            //     color: inherit;
+            //     font-weight: 700;
+            // }
+        }
+        & :where(h1) {
+            font-size: 2.25em;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1em;
+            margin-top: 2.5em;
+        }
+        & :where(h2) {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 1em;
+            margin-top: 2em;
+        }
+        & :where(h3) {
+            font-size: 1.25em;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.75em;
+            margin-top: 1.5em;
+        }
+        & :where(h4) {
+            // font-size: 1em;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.5em;
+            margin-top: 1.5em;
+        }
+        // Horizontal rule
+        & :where(hr) {
+            border-color: var(--low-#{$p}-rule);
+            border-top-width: 1px;
+            height: 0px;
+            margin-top: 3em;
+            margin-bottom: 3em;
+        }
+        // Links
+        & :where(a) {
+            color: var(--low-#{$p}-link);
+            font-weight: 500;
+            text-decoration: underline;
+        }
+        // List
+        & :where(ul, ol) {
+            margin-bottom: 1.25em;
+            margin-top: 1.25em;
+            padding-left: 1.625em;
+            & > li {
+                padding-left: 0.25em;
+            }
+        }
+        & :where(ul) {
+            list-style-type: disc;
+            & > li::marker {
+                color: var(--low-#{$p}-bullet);
+            }
+        }
+        & :where(ol) {
+            list-style-type: decimal;
+            & > li::marker {
+                color: var(--low-#{$p}-counter);
+            }
+        }
+        & :where(li) {
+            margin-bottom: 0.5em;
+            margin-top: 0.5em;
+        }
+        // Table
+        & :where(table) {
+            // font-size: 0.875em;
+            // line-height: 1.75;
+            margin-bottom: 1.5em;
+            margin-top: 1.5em;
+            table-layout: auto;
+            text-align: left;
+            width: 100%;
+        }
+        & :where(thead th) {
+            color: var(--low-#{$p}-heading);
+            font-weight: 600;
+            vertical-align: bottom;
+        }
+        & :where(thead th, tbody td) {
+            border: 1px solid var(--low-#{$p}-table-border);
+            padding: 0.6em 0.75em;
+        }
+        & :where(thead tr, tbody tr:nth-child(2n + 1)) {
+            background-color: var(--low-#{$p}-table-bg-default);
+        }
+        & :where(tbody tr:nth-child(2n)) {
+            background-color: var(--low-#{$p}-table-bg);
+        }
+        & :where(tbody tr) {
+            vertical-align: baseline;
+        }
+        // First or last childs
+        & > *:first-child {
+            margin-top: 0;
+        }
+        & > *:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
