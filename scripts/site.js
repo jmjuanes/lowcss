@@ -38,7 +38,7 @@ const getUtilities = () => {
             hasResponsiveVariant: config.variants.includes("responsive"),
             pseudos: config.variants.filter(v => v !== "default" && v !== "responsive"),
             values: Object.keys(config.values).map(key => ({
-                name: `${config.classname}${key !== "DEFAULT" ? "-" + key : ""}`,
+                name: `${config.classname || ""}${(key !== "DEFAULT" && !!config.classname) ? "-" + key : ""}`,
                 values: config.properties.map(prop => {
                     return {key: prop, value: config.values[key]};
                 }),
@@ -165,7 +165,7 @@ const getPartials = async () => {
 const build = async () => {
     const cwd = process.cwd();
     const m = (await import("mikel")).default;
-    const template = await fs.readFile(path.join(cwd, "index.mustache"), "utf8");
+    const template = await fs.readFile(path.join(cwd, "index.html"), "utf8");
     const partials = await getPartials();
     const data = getData();
     const result = m(template, data, {partials});
