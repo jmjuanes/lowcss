@@ -165,7 +165,7 @@ const getPartials = async () => {
 const build = async () => {
     const cwd = process.cwd();
     const m = (await import("mikel")).default;
-    const template = await fs.readFile(path.join(cwd, "index.mustache"), "utf8");
+    const template = await fs.readFile(path.join(cwd, "index.html"), "utf8");
     const partials = await getPartials();
     const data = getData();
     const result = m(template, data, {partials});
