@@ -38,7 +38,7 @@ const getUtilities = () => {
             hasResponsiveVariant: config.variants.includes("responsive"),
             pseudos: config.variants.filter(v => v !== "default" && v !== "responsive"),
             values: Object.keys(config.values).map(key => ({
-                name: `${config.classname || ""}${(key !== "DEFAULT" && !!config.classname) ? "-" + key : ""}`,
+                name: [config.classname || "", (key !== "DEFAULT" ? key : "")].filter(Boolean).join("-"),
                 values: config.properties.map(prop => {
                     return {key: prop, value: config.values[key]};
                 }),
