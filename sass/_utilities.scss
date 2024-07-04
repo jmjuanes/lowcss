@@ -1186,3 +1186,8 @@ $utilities: (
         values: variables.$transform-origin,
     )),
 );
+
+// @description function to get an utility by name
+@function get-utility($utility-name) {
+    @return map.get($utilities, $utility-name);
+}
