@@ -34,80 +34,10 @@
     }
 }
 
-// @description Generate the utility from the given configuration
-@mixin utility($utility-config) {
-    $classname: map.get($utility-config, "classname");
-    $properties: map.get($utility-config, "properties");
-    $values: map.get($utility-config, "values");
-    $variants: map.get($utility-config, "variants");
-    // Check if the variants list includes the "default" variant
-    // @if not functions.list-includes($variants, "default") {
-    //     $variants: list.join(("default"), $variants);
-    // }
-    // Generate utilities for each variant
-    @each $variant in $variants {
-        @each $key,$value in $values {
-            $selector: "#{variables.$prefix}#{$key}";
-            // Check if classname has been provided for building the selector
-            @if meta.type-of($classname) == "string" and $classname != "" {
-                $selector: "#{variables.$prefix}#{$classname}-#{$key}";
-                // Check for default key --> remove this from selector
-                @if $key == "DEFAULT" {
-                    $selector: "#{variables.$prefix}#{$classname}";
-                }
-            }
-            $selector: functions.escape-selector($selector);
-            // Default selector for this utility
-            @if $variant == "default" {
-                .#{$selector} {
-                    @include mixins.rule($properties, $value);
-                }
-            }
-            // For responsive modifiers, we will register the style
-            // for each breakpoint in the list of breakpoints
-            @else if $variant == "responsive" and meta.type-of(variables.$breakpoints) == "map" {
-                @each $breakpoint in map.keys(variables.$breakpoints) {
-                    @include mixins.screen-above($breakpoint) {
-                        .#{$breakpoint}#{variables.$separator}#{$selector} {
-                            @include mixins.rule($properties, $value);
-                        }
-                    }
-                }
-            }
-            // Pseudo modifiers
-            @else if map.has-key(variables.$pseudos, $variant) {
-                $pseudo: $variant;
-                $pseudo-selector: map.get(variables.$pseudos, $pseudo);
-                // Group selector
-                @if functions.str-starts-with($pseudo, "group-") {
-                    .group#{$pseudo-selector} .#{$pseudo}#{variables.$separator}#{$selector} {
-                        @include mixins.rule($properties, $value);
-                    }
-                }
-                // Peer selector
-                @else if functions.str-starts-with($pseudo, "peer-") {
-                    .peer#{$pseudo-selector}~.#{$pseudo}#{variables.$separator}#{$selector} {
-                        @include mixins.rule($properties, $value);
-                    }
-                }
-                // Default pseudo selector
-                @else {
-                    .#{$pseudo}#{variables.$separator}#{$selector}#{$pseudo-selector} {
-                        @include mixins.rule($properties, $value);
-                    }
-                }
-            }
-            // TODO: display no valid variant error
-        }
-    }
-}
-
 // @description generate utilities
 @mixin utilities() {
     @each $utility-name,$utility-config in utilities.$utilities {
-        @if functions.is-enabled($utility-name, variables.$include-utilities, variables.$exclude-utilities) {
-            @include utility($utility-config);
-        }
+        @include mixins.utility($utility-config);
     }
 }
 
