@@ -1,7 +1,7 @@
-@use "api";
+@use "mixins";
 @use "colors";
-@use "config";
-@use "internal";
+@use "variables";
+@use "functions";
 
 // Reset CSS styles
 @mixin reset() {
@@ -106,10 +106,10 @@
 
 // Forms reset styles
 @mixin forms() {
-    $checked-image: internal.svg-from-path("M4,8l3,3l5,-6");
-    $indeterminate-image: internal.svg-from-path("M4,8h8");
-    $select-image: internal.svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
-    $radio-image: internal.svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
+    $checked-image: functions.svg-from-path("M4,8l3,3l5,-6");
+    $indeterminate-image: functions.svg-from-path("M4,8h8");
+    $select-image: functions.svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
+    $radio-image: functions.svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
     // Reset styles in common form elements
     [type="text"],
     [type="email"],
@@ -296,7 +296,7 @@
         left: 0;
         position: fixed;
         right: 0;
-        z-index: config.$zindex-fixed;
+        z-index: variables.$zindex-fixed;
     }
     .fixed-top {
         top: 0;
@@ -308,7 +308,7 @@
     .sticky-top,
     .sticky-bottom {
         position: sticky;
-        z-index: config.$zindex-sticky;
+        z-index: variables.$zindex-sticky;
     }
     .sticky-top {
         top: 0;
@@ -316,17 +316,17 @@
     .sticky-bottom {
         bottom: 0;
     }
-    @each $breakpoint in internal.keys(config.$breakpoints) {
-        @include api.screen-above($breakpoint) {
-            .#{$breakpoint}#{config.$separator}sticky-top, 
-            .#{$breakpoint}#{config.$separator}sticky-bottom {
+    @each $breakpoint in functions.keys(variables.$breakpoints) {
+        @include mixins.screen-above($breakpoint) {
+            .#{$breakpoint}#{variables.$separator}sticky-top, 
+            .#{$breakpoint}#{variables.$separator}sticky-bottom {
                 position: sticky;
-                z-index: config.$zindex-sticky;
+                z-index: variables.$zindex-sticky;
             }
-            .#{$breakpoint}#{config.$separator}sticky-top {
+            .#{$breakpoint}#{variables.$separator}sticky-top {
                 top: 0;
             }
-            .#{$breakpoint}#{config.$separator}sticky-bottom {
+            .#{$breakpoint}#{variables.$separator}sticky-bottom {
                 bottom: 0;
             }
         }

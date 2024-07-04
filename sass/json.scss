@@ -2,7 +2,7 @@
 @use "sass:map";
 @use "sass:meta";
 
-@use "config" as config;
+@use "variables" as config;
 @use "utilities" as utilities;
 
 @function json($arg) {
@@ -42,11 +42,11 @@
 // Data to print
 $data: (
     "version": "__version__",
-    "breakpoints": config.$breakpoints,
-    "colors": config.$colors,
-    "fonts": config.$fonts,
-    "sizes": config.$sizes,
-    "space": config.$space,
+    "breakpoints": variables.$breakpoints,
+    "colors": variables.$colors,
+    "fonts": variables.$fonts,
+    "sizes": variables.$sizes,
+    "space": variables.$space,
     "utilities": utilities.$utilities,
 );
 

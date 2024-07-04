@@ -3,12 +3,12 @@
 @use "sass:meta";
 @use "sass:string";
 
-@use "config";
+@use "variables";
 
 // @description generate media screen above the specified breakpoint
 @mixin screen-above($breakpoint) {
     // TODO: display an error message if breakpoint is not found
-    $breakpoint-size: map.get(config.$breakpoints, $breakpoint);
+    $breakpoint-size: map.get(variables.$breakpoints, $breakpoint);
     @media screen and (min-width: $breakpoint-size) {
         @content;
     }
@@ -17,7 +17,7 @@
 // @description generate media screen below the specified breakpoint
 @mixin screen-below($breakpoint) {
     // TODO: display an error message if breakpoint is not found
-    $breakpoint-size: map.get(config.$breakpoints, $breakpoint);
+    $breakpoint-size: map.get(variables.$breakpoints, $breakpoint);
     @media screen and (max-width: $breakpoint-size) {
         @content;
     }
@@ -26,8 +26,8 @@
 // @description generate media screen between the two breakpoints
 @mixin screen-between($breakpoint-lower, $breakpoint-higher) {
     // TODO: display an error message if breakpoint is not found
-    $lower: map.get(config.$breakpoints, $breakpoint-lower);
-    $higher: map.get(config.$breakpoints, $breakpoint-higher);
+    $lower: map.get(variables.$breakpoints, $breakpoint-lower);
+    $higher: map.get(variables.$breakpoints, $breakpoint-higher);
     @media screen and (min-width: $lower) and (max-width: $higher) {
         @content;
     }
@@ -41,7 +41,7 @@
         $properties: list.append((), $properties);
     }
     @each $property in $properties {
-        @if config.$important {
+        @if variables.$important {
             #{string.unquote($property)}: #{$value} !important;
         }
         @else {
