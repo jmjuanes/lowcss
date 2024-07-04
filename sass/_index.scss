@@ -20,20 +20,6 @@
     @include base.markup();
 }
 
-// @description Generate root variables
-@mixin root() {
-    :root {
-        // Fonts
-        @each $font-name,$font-value in variables.$fonts {
-            --low-font-#{$font-name}: #{$font-value};
-        }
-        // Colors variables
-        @each $color-name,$color-value in variables.$colors {
-            --low-#{$color-name}: #{$color-value};
-        }
-    }
-}
-
 // @description generate utilities
 @mixin utilities() {
     @each $utility-name,$utility-config in utilities.$utilities {
