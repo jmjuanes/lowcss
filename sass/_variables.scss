@@ -19,19 +19,6 @@ $breakpoints: (
     // 2xl: 1536px,
 ) !default;
 
-// @description List of utilities to include or exclude from output css
-$include-utilities: null !default;
-$exclude-utilities: null !default;
-
-// @description custom utilities configuration
-// @example
-// $utilities: (
-//     "background-color": (
-//         classname: "background",
-//     ),
-// );
-$utilities: () !default;
-
 // @description Pseudo states map
 // key: pseudo state name
 // value: pesudo state selector

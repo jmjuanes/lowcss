@@ -8,14 +8,14 @@
 // @description internal function to generate utilities configuration
 @function create-utility($utility-name, $utility-config) {
     // 1. Merge with custom utilities configuration
-    @if map.has-key(variables.$utilities, $utility-name) {
-        $custom-config: map.get(variables.$utilities, $utility-name);
-        @each $field in ("classname", "variants", "properties", "values") {
-            @if map.has-key($custom-config, $field) {
-                $utility-config: map.set($utility-config, $field, map.get($custom-config, $field));
-            }
-        }
-    }
+    // @if map.has-key(variables.$utilities, $utility-name) {
+    //     $custom-config: map.get(variables.$utilities, $utility-name);
+    //     @each $field in ("classname", "variants", "properties", "values") {
+    //         @if map.has-key($custom-config, $field) {
+    //             $utility-config: map.set($utility-config, $field, map.get($custom-config, $field));
+    //         }
+    //     }
+    // }
     // 2. Convert items to lists
     @each $field in ("variants", "properties") {
         $current-value: map.get($utility-config, $field);
