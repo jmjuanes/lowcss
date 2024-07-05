@@ -372,9 +372,9 @@ $colors: (
     "pink-900": $pink-900,
     "pink-950": $pink-950,
 
-    "black": colors.$black,
-    "white": colors.$white,
-    "transparent": colors.$transparent,
+    "black": $black,
+    "white": $white,
+    "transparent": $transparent,
     "current": currentColor,
 ) !default;
 
