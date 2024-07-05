@@ -3,20 +3,20 @@
 :root {
     --low-markup-body: #{variables.$neutral-800};
     --low-markup-lead: #{variables.$neutral-700};
-    --low-markup-link: #{colors.get-color("neutral-900")};
-    --low-markup-bold: #{colors.get-color("neutral-900")};
-    --low-markup-code: #{colors.get-color("neutral-900")};
-    --low-markup-quote-body: #{colors.get-color("neutral-900")};
-    --low-markup-quote-border: #{colors.get-color("neutral-200")};
-    --low-markup-heading: #{colors.get-color("neutral-900")};
-    --low-markup-rule: #{colors.get-color("neutral-200")};
-    --low-markup-bullet: #{colors.get-color("neutral-300")};
-    --low-markup-counter: #{colors.get-color("neutral-500")};
-    --low-markup-code-body: #{colors.get-color("neutral-100")};
-    --low-markup-code-bg: #{colors.get-color("neutral-900")};
-    --low-markup-table-border: #{colors.get-color("neutral-200")};
-    --low-markup-table-bg-default: #fff;
-    --low-markup-table-bg: #{colors.get-color("neutral-100")};
+    --low-markup-link: #{variables.$neutral-900};
+    --low-markup-bold: #{variables.$neutral-900};
+    --low-markup-code: #{variables.$neutral-900};
+    --low-markup-quote-body: #{variables.$neutral-900};
+    --low-markup-quote-border: #{variables.$neutral-200};
+    --low-markup-heading: #{variables.$neutral-900};
+    --low-markup-rule: #{variables.$neutral-200};
+    --low-markup-bullet: #{variables.$neutral-300};
+    --low-markup-counter: #{variables.$neutral-500};
+    --low-markup-code-body: #{variables.$neutral-100};
+    --low-markup-code-bg: #{variables.$neutral-900};
+    --low-markup-table-border: #{variables.$neutral-200};
+    --low-markup-table-bg-default: variables.$white;
+    --low-markup-table-bg: #{variables.$neutral-100};
 }
 .markup {
     color: var(--low-markup-body);
