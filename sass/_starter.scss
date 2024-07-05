@@ -1,0 +1,258 @@
+@use "mixins";
+@use "variables";
+@use "functions";
+
+// Forms reset styles
+$checked-image: functions.svg-from-path("M4,8l3,3l5,-6");
+$indeterminate-image: functions.svg-from-path("M4,8h8");
+$select-image: functions.svg-from-path("M6,8l4,4l4,-4", $stroke: "%236c757d");
+$radio-image: functions.svg("%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e");
+
+// Reset styles in common form elements
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="tel"],
+[type="time"],
+[type="week"],
+select,
+textarea {
+    appearance: none;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+}
+// Reset placeholder style in input and textare elements
+input::placeholder,
+textarea::placeholder {
+    color: currentColor;
+    opacity: 0.5;
+}
+// Reset checkbox and radio inputs
+[type="checkbox"],
+[type="radio"] {
+    appearance: none;
+    background-origin: border-box;
+    display: inline-block;
+    height: 1rem;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    vertical-align: middle;
+    width: 1rem;
+}
+[type="radio"] {
+    border-radius: 999px;
+}
+// Reset checked and indeterminate states in checkbox and radio inputs
+[type="checkbox"]:checked,
+[type="checkbox"]:indeterminate,
+[type="radio"]:checked {
+    background-color: currentColor;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-color: transparent;
+}
+[type="checkbox"]:checked {
+    background-image: url("data:image/svg+xml,#{$checked-image}");
+}
+[type="checkbox"]:indeterminate {
+    background-image: url("data:image/svg+xml,#{$indeterminate-image}");
+}
+[type="radio"]:checked {
+    background-image: url("data:image/svg+xml,#{$radio-image}");
+}
+// Reset range input element
+[type="range"] {
+    appearance: none;
+    border-radius: 1rem;
+    display: block;
+    margin: 0;
+    min-width: 0;
+    outline: none;
+    &:-webkit-slider-thumb,
+    &:-moz-range-thumb {
+        background-color: currentColor;
+        border: none;
+        border-radius: 999px;
+        height: 1rem;
+        width: 1rem;
+    }
+    &:-webkit-slider-thumb {
+        appearance: none;
+    }
+}
+// Display a custom caret icon in select element
+select {
+    background-image: url("data:image/svg+xml,#{$select-image}");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}
+
+// Keyframes styles
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes ping {
+    75%,
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Scrollbar styles
+// Note that those styles do not force to display scrollbars
+.scrollbar {
+    &::-webkit-scrollbar {
+        height: 0.4rem;
+        width: 0.4rem;
+    }
+    &::-webkit-scrollbar-track, 
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: currentColor;
+        border-radius: 1rem;
+        cursor: pointer;
+    }
+    // &::-webkit-scrollbar-thumb:hover {
+    //     opacity: 1;
+    // }
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+}
+
+// Helpers styles
+
+// Clear float elements
+.clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+// Fix elements to top or bottom
+.fixed-top,
+.fixed-bottom {
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: variables.$zindex-fixed;
+}
+.fixed-top {
+    top: 0;
+}
+.fixed-bottom {
+    bottom: 0;
+}
+// Sticky elements
+.sticky-top,
+.sticky-bottom {
+    position: sticky;
+    z-index: variables.$zindex-sticky;
+}
+.sticky-top {
+    top: 0;
+}
+.sticky-bottom {
+    bottom: 0;
+}
+@each $breakpoint in functions.keys(variables.$breakpoints) {
+    @include mixins.screen-above($breakpoint) {
+        .#{$breakpoint}#{variables.$separator}sticky-top, 
+        .#{$breakpoint}#{variables.$separator}sticky-bottom {
+            position: sticky;
+            z-index: variables.$zindex-sticky;
+        }
+        .#{$breakpoint}#{variables.$separator}sticky-top {
+            top: 0;
+        }
+        .#{$breakpoint}#{variables.$separator}sticky-bottom {
+            bottom: 0;
+        }
+    }
+}
+// Truncate text
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Additional fonts
+.font-inter {
+    font-family: Inter, sans-serif;
+}
+.font-lato {
+    font-family: Lato, sans-serif;
+}
+.font-poppins {
+    font-family: Poppins, sans-serif;
+}
+.font-crimson {
+    font-family: Crimson Pro, serif;
+}
+.font-nunito {
+    font-family: Nunito, sans-serif;
+}
+.font-plex-sans {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.font-plex-serif {
+    font-family: 'IBM Plex Serif', serif;
+}
+.font-plex-mono {
+    font-family: 'IBM Plex Mono', monospace;
+}

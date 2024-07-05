@@ -9,24 +9,17 @@
  *
  */
 
-// 1.1 Import lowcss without customization
-@use "index" as low;
+// 1. Include internal modules
+@use "mixins";
+@use "utilities";
 
-// 1.2 Import lowcss with customization
-// @use "low" with (
-//     $prefix: "",
-//     $important: false,
-// );
+// 2. Include base styles
+@use "root";
+@use "reset";
+@use "starter";
+@use "markup";
 
-// 2. Include low mixins
-@include low.root();
-@include low.base();
-@include low.utilities();
-
-// 3. (optional) Generate custom components using utilities
-// .button {
-//     @include low.apply("text:white bg:blue-500 bg:blue-700:hover");
-// }
-
-// 4. Generate output css with sass
-// $ sass --load-path=./ --style compressed main.scss low.css
+// 3. Generate utilities
+@each $utility-name,$utility-config in utilities.$utilities {
+    @include mixins.utility($utility-config);
+}

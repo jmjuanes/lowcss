@@ -1,0 +1,15 @@
+@use "variables";
+
+:root {
+    // Fonts variables
+    @each $font-name,$font-value in variables.$fonts {
+        --low-font-#{$font-name}: #{$font-value};
+    }
+    // Colors variables
+    @each $color-name,$color-value in variables.$colors {
+        --low-#{$color-name}: #{$color-value};
+    }
+    // Spacing variables (TODO)
+    // Radius variables (TODO)
+    // Shadows variables (TODO)
+}

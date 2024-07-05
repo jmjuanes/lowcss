@@ -1,7 +1,5 @@
 @use "sass:map";
 
-@use "colors" as colors;
-
 // @description allow to set the !important flag to all utilities
 $important: false !default;
 
@@ -20,19 +18,6 @@ $breakpoints: (
     xl: 1280px,
     // 2xl: 1536px,
 ) !default;
-
-// @description List of utilities to include or exclude from output css
-$include-utilities: null !default;
-$exclude-utilities: null !default;
-
-// @description custom utilities configuration
-// @example
-// $utilities: (
-//     "background-color": (
-//         classname: "background",
-//     ),
-// );
-$utilities: () !default;
 
 // @description Pseudo states map
 // key: pseudo state name
@@ -76,14 +61,322 @@ $fonts: (
     mono: $font-mono,
 ) !default;
 
+
+// Colors
+
+// @description basic colors (black, white, and transparent)
+$black: #000;
+$white: #fff;
+$transparent: transparent;
+
+// @description cool (gray) colors
+$cool-50:  #F6F7F9 !default;
+$cool-100: #E7E9EF !default;
+$cool-200: #CBD1DC !default;
+$cool-300: #ACB6C8 !default;
+$cool-400: #8E9AB4 !default;
+$cool-500: #6F7F9F !default;
+$cool-600: #5A6987 !default;
+$cool-700: #455168 !default;
+$cool-800: #313949 !default;
+$cool-900: #1F242E !default;
+$cool-950: #14181F !default;
+
+// @description base gray colors
+$gray-50:  #F9FAFA !default;
+$gray-100: #F3F4F5 !default;
+$gray-200: #D5D9DC !default;
+$gray-300: #B7BDC3 !default;
+$gray-400: #9BA3AC !default;
+$gray-500: #7C8792 !default;
+$gray-600: #646E78 !default;
+$gray-700: #4A5259 !default;
+$gray-800: #31363A !default;
+$gray-900: #191C1F !default;
+$gray-950: #0C0D0E !default;
+
+// @description neutral (gray) colors
+$neutral-50:  #FAFAFA !default;
+$neutral-100: #F5F5F5 !default;
+$neutral-200: #E6E6E6 !default;
+$neutral-300: #C9C9C9 !default;
+$neutral-400: #ABABAB !default;
+$neutral-500: #8F8F8F !default;
+$neutral-600: #737373 !default;
+$neutral-700: #545454 !default;
+$neutral-800: #383838 !default;
+$neutral-900: #1A1A1A !default;
+$neutral-950: #0D0D0D !default;
+
+// @description red colors
+$red-50:  #FCE9EB !default;
+$red-100: #F9D2D6 !default;
+$red-200: #F2A6AD !default;
+$red-300: #EC7985 !default;
+$red-400: #E54D5C !default;
+$red-500: #DF2033 !default;
+$red-600: #B21A29 !default;
+$red-700: #86131F !default;
+$red-800: #590D14 !default;
+$red-900: #2D060A !default;
+$red-950: #160305 !default;
+
+// @description orange colors
+$orange-50:  #FEF0E6 !default;
+$orange-100: #FEE1CD !default;
+$orange-200: #FDC49B !default;
+$orange-300: #FBA66A !default;
+$orange-400: #FA8938 !default;
+$orange-500: #F96B06 !default;
+$orange-600: #C75605 !default;
+$orange-700: #954004 !default;
+$orange-800: #642B02 !default;
+$orange-900: #321501 !default;
+$orange-950: #190B01 !default;
+
+// @description yellow colors
+$yellow-50:  #FFF9E5 !default;
+$yellow-100: #FFF2CC !default;
+$yellow-200: #FFE699 !default;
+$yellow-300: #FFD966 !default;
+$yellow-400: #FFCC33 !default;
+$yellow-500: #FFBF00 !default;
+$yellow-600: #CC9900 !default;
+$yellow-700: #997300 !default;
+$yellow-800: #664D00 !default;
+$yellow-900: #332600 !default;
+$yellow-950: #191300 !default;
+
+// @description green colors
+$green-50:  #E5FBED !default;
+$green-100: #CBF6DB !default;
+$green-200: #9BEEB9 !default;
+$green-300: #66E595 !default;
+$green-400: #36DD73 !default;
+$green-500: #1FB757 !default;
+$green-600: #199446 !default;
+$green-700: #126D34 !default;
+$green-800: #0D4A23 !default;
+$green-900: #062311 !default;
+$green-950: #031108 !default;
+
+// @description teal (mint) colors
+$teal-50:  #E3FCFA !default;
+$teal-100: #CCFAF6 !default;
+$teal-200: #99F5ED !default;
+$teal-300: #66F0E4 !default;
+$teal-400: #33EADB !default;
+$teal-500: #15D0C1 !default;
+$teal-600: #11A79A !default;
+$teal-700: #0D7D74 !default;
+$teal-800: #08534D !default;
+$teal-900: #042A27 !default;
+$teal-950: #021311 !default;
+
+// @description blue colors
+$blue-50:  #E6F0FF !default;
+$blue-100: #CDE1FE !default;
+$blue-200: #9BC4FD !default;
+$blue-300: #69A6FC !default;
+$blue-400: #3789FB !default;
+$blue-500: #056BFA !default;
+$blue-600: #0456C8 !default;
+$blue-700: #034096 !default;
+$blue-800: #022B64 !default;
+$blue-900: #011532 !default;
+$blue-950: #000B19 !default;
+
+// @description indigo colors
+$indigo-50:  #ECECFD !default;
+$indigo-100: #DEDEFC !default;
+$indigo-200: #B8B9F9 !default;
+$indigo-300: #9799F7 !default;
+$indigo-400: #7173F4 !default;
+$indigo-500: #5053F1 !default;
+$indigo-600: #1316EC !default;
+$indigo-700: #0E11B3 !default;
+$indigo-800: #090B76 !default;
+$indigo-900: #05063D !default;
+$indigo-950: #02031C !default;
+
+// @description violet colors
+$violet-50:  #F3ECFE !default;
+$violet-100: #E6D8FD !default;
+$violet-200: #CEB1FB !default;
+$violet-300: #B58BF9 !default;
+$violet-400: #9C64F7 !default;
+$violet-500: #843DF5 !default;
+$violet-600: #610CE9 !default;
+$violet-700: #4809AF !default;
+$violet-800: #300674 !default;
+$violet-900: #18033A !default;
+$violet-950: #0C011D !default;
+
+// @description pink colors
+$pink-50:  #FDE8F2 !default;
+$pink-100: #FBD5E8 !default;
+$pink-200: #F6ACD1 !default;
+$pink-300: #F282BA !default;
+$pink-400: #ED59A3 !default;
+$pink-500: #E92F8C !default;
+$pink-600: #CB1570 !default;
+$pink-700: #981054 !default;
+$pink-800: #650B38 !default;
+$pink-900: #33051C !default;
+$pink-950: #17020D !default;
+
 // @description custom colors
 // Used in background-color, border-color and color properties
-$colors: map.merge(colors.$color-palette, (
-    "black": colors.$black,
-    "white": colors.$white,
-    "transparent": colors.$transparent,
+$colors: (
+    "cool-50":  $cool-50,
+    "cool-100": $cool-100,
+    "cool-200": $cool-200,
+    "cool-300": $cool-300,
+    "cool-400": $cool-400,
+    "cool-500": $cool-500,
+    "cool-600": $cool-600,
+    "cool-700": $cool-700,
+    "cool-800": $cool-800,
+    "cool-900": $cool-900,
+    "cool-950": $cool-950,
+
+    "gray-50":  $gray-50,
+    "gray-100": $gray-100,
+    "gray-200": $gray-200,
+    "gray-300": $gray-300,
+    "gray-400": $gray-400,
+    "gray-500": $gray-500,
+    "gray-600": $gray-600,
+    "gray-700": $gray-700,
+    "gray-800": $gray-800,
+    "gray-900": $gray-900,
+    "gray-950": $gray-950,
+
+    "neutral-50":  $neutral-50,
+    "neutral-100": $neutral-100,
+    "neutral-200": $neutral-200,
+    "neutral-300": $neutral-300,
+    "neutral-400": $neutral-400,
+    "neutral-500": $neutral-500,
+    "neutral-600": $neutral-600,
+    "neutral-700": $neutral-700,
+    "neutral-800": $neutral-800,
+    "neutral-900": $neutral-900,
+    "neutral-950": $neutral-950,
+
+    "red-50":  $red-50,
+    "red-100": $red-100,
+    "red-200": $red-200,
+    "red-300": $red-300,
+    "red-400": $red-400,
+    "red-500": $red-500,
+    "red-600": $red-600,
+    "red-700": $red-700,
+    "red-800": $red-800,
+    "red-900": $red-900,
+    "red-950": $red-950,
+
+    "orange-50":  $orange-50,
+    "orange-100": $orange-100,
+    "orange-200": $orange-200,
+    "orange-300": $orange-300,
+    "orange-400": $orange-400,
+    "orange-500": $orange-500,
+    "orange-600": $orange-600,
+    "orange-700": $orange-700,
+    "orange-800": $orange-800,
+    "orange-900": $orange-900,
+    "orange-950": $orange-950,
+
+    "yellow-50":  $yellow-50,
+    "yellow-100": $yellow-100,
+    "yellow-200": $yellow-200,
+    "yellow-300": $yellow-300,
+    "yellow-400": $yellow-400,
+    "yellow-500": $yellow-500,
+    "yellow-600": $yellow-600,
+    "yellow-700": $yellow-700,
+    "yellow-800": $yellow-800,
+    "yellow-900": $yellow-900,
+    "yellow-950": $yellow-950,
+
+    "green-50":  $green-50,
+    "green-100": $green-100,
+    "green-200": $green-200,
+    "green-300": $green-300,
+    "green-400": $green-400,
+    "green-500": $green-500,
+    "green-600": $green-600,
+    "green-700": $green-700,
+    "green-800": $green-800,
+    "green-900": $green-900,
+    "green-950": $green-950,
+
+    "teal-50":  $teal-50,
+    "teal-100": $teal-100,
+    "teal-200": $teal-200,
+    "teal-300": $teal-300,
+    "teal-400": $teal-400,
+    "teal-500": $teal-500,
+    "teal-600": $teal-600,
+    "teal-700": $teal-700,
+    "teal-800": $teal-800,
+    "teal-900": $teal-900,
+    "teal-950": $teal-950,
+
+    "blue-50":  $blue-50,
+    "blue-100": $blue-100,
+    "blue-200": $blue-200,
+    "blue-300": $blue-300,
+    "blue-400": $blue-400,
+    "blue-500": $blue-500,
+    "blue-600": $blue-600,
+    "blue-700": $blue-700,
+    "blue-800": $blue-800,
+    "blue-900": $blue-900,
+    "blue-950": $blue-950,
+
+    "indigo-50":  $indigo-50,
+    "indigo-100": $indigo-100,
+    "indigo-200": $indigo-200,
+    "indigo-300": $indigo-300,
+    "indigo-400": $indigo-400,
+    "indigo-500": $indigo-500,
+    "indigo-600": $indigo-600,
+    "indigo-700": $indigo-700,
+    "indigo-800": $indigo-800,
+    "indigo-900": $indigo-900,
+    "indigo-950": $indigo-950,
+
+    "violet-50":  $violet-50,
+    "violet-100": $violet-100,
+    "violet-200": $violet-200,
+    "violet-300": $violet-300,
+    "violet-400": $violet-400,
+    "violet-500": $violet-500,
+    "violet-600": $violet-600,
+    "violet-700": $violet-700,
+    "violet-800": $violet-800,
+    "violet-900": $violet-900,
+    "violet-950": $violet-950,
+
+    "pink-50":  $pink-50,
+    "pink-100": $pink-100,
+    "pink-200": $pink-200,
+    "pink-300": $pink-300,
+    "pink-400": $pink-400,
+    "pink-500": $pink-500,
+    "pink-600": $pink-600,
+    "pink-700": $pink-700,
+    "pink-800": $pink-800,
+    "pink-900": $pink-900,
+    "pink-950": $pink-950,
+
+    "black": $black,
+    "white": $white,
+    "transparent": $transparent,
     "current": currentColor,
-)) !default;
+) !default;
 
 // @description global sizes, for using in height and width utilities
 $sizes: (
