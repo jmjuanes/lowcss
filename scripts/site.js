@@ -103,27 +103,28 @@ const getData = () => {
                 },
                 ...getUtilitiesMenu(utilities),
             }),
-            data: {},
+            data: {
+                utilities: utilities,
+                colors: colors.map(color => {
+                    const shades = Object.keys(low.colors)
+                        .filter(key => key.startsWith(color + "-"))
+                        .map(key => ({
+                            name: key,
+                            shade: key.split("-")[1],
+                            value: low.colors[key],
+                        }));
+                    return {
+                        name: color,
+                        shades: shades,
+                    };
+                }),
+                variables: {
+                    colors: entries(low.colors),
+                    fonts: entries(low.fonts),
+                },
+            },
             pages: [],
             partials: {},
-        },
-        colors: colors.map(color => {
-            const shades = Object.keys(low.colors)
-                .filter(key => key.startsWith(color + "-"))
-                .map(key => ({
-                    name: key,
-                    shade: key.split("-")[1],
-                    value: low.colors[key],
-                }));
-            return {
-                name: color,
-                shades: shades,
-            };
-        }),
-        utilities: utilities,
-        variables: {
-            colors: entries(low.colors),
-            fonts: entries(low.fonts),
         },
         page: null,
     };
