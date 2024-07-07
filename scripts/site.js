@@ -29,6 +29,7 @@ const getUtilities = () => {
             name: utilityName,
             groupName: config.attributes.group,
             description: config.attributes.description,
+            url: config.attributes.url,
             variants: config.variants,
             hasDefaultVariant: config.variants.includes("default"),
             hasResponsiveVariant: config.variants.includes("responsive"),
