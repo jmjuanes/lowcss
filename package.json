@@ -60,6 +60,7 @@
         "@josemi-icons/svg": "^0.6.0",
         "autoprefixer": "^10.4.19",
         "csso-cli": "^4.0.1",
+        "front-matter": "^4.0.2",
         "marked": "^13.0.1",
         "mikel": "^0.7.0",
         "postcss": "^8.4.38",
