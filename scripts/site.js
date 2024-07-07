@@ -1,6 +1,7 @@
-const fs = require("node:fs/promises");
+const fs = require("node:fs");
 const path = require("node:path");
 const marked = require("marked");
+const frontMatter = require("front-matter");
 const pkg = require("../package.json");
 const low = require("../low.json");
 
@@ -85,12 +86,6 @@ const getData = () => {
                         {title: "Usage", link: "#usage"},
                     ],
                 },
-                customization: {
-                    title: "Customize",
-                    items: [
-                        {title: "Colors", link: "#colors", keywords: colors},
-                    ],
-                },
                 globals: {
                     title: "Globals",
                     items: [
@@ -108,24 +103,10 @@ const getData = () => {
                 },
                 ...getUtilitiesMenu(utilities),
             }),
+            data: {},
+            pages: [],
+            partials: {},
         },
-        features: [
-            {
-                title: "Lightning-fast development",
-                description: "Prototype and develop at an accelerated pace, focusing on the functionality and design.",
-                icon: "bolt",
-            },
-            {
-                title: "Customizable to your brand",
-                description: "Tailor the framework to match your brand's aesthetic seamlessly.",
-                icon: "color-swatch",
-            },
-            {
-                title: "Responsive design made easy",
-                description: "Effortlessly create layouts that adapt to different screen sizes and devices.",
-                icon: "mobile",
-            },
-        ],
         colors: colors.map(color => {
             const shades = Object.keys(low.colors)
                 .filter(key => key.startsWith(color + "-"))
@@ -144,33 +125,54 @@ const getData = () => {
             colors: entries(low.colors),
             fonts: entries(low.fonts),
         },
+        page: null,
     };
 };
 
-// @description get partials
-const getPartials = async () => {
-    const partials = {};
-    const docsPath = path.join(process.cwd(), "docs");
-    const markdownFiles = await fs.readdir(docsPath, "utf8");
-    for (let i = 0; i < markdownFiles.length; i++) {
-        const file = markdownFiles[i];
-        if (path.extname(file) === ".md") {
-            const content = await fs.readFile(path.join(docsPath, file), "utf8");
-            partials[path.basename(file, ".md")] = marked.parse(content);
-        }
-    }
-    return partials;
+// @description read a markdown file
+const readMarkdownFile = file => {
+    const fileContent = fs.readFileSync(file, "utf8");
+    const page = frontMatter(fileContent);
+    return {
+        name: path.basename(file, ".md"),
+        content: marked.parse(page.body || ""),
+        data: page.attributes || {},
+    };
 };
 
+// @description build site
 const build = async () => {
-    const cwd = process.cwd();
+    const input = path.join(process.cwd(), "docs");
+    const output = path.join(process.cwd(), "www");
     const m = (await import("mikel")).default;
-    const template = await fs.readFile(path.join(cwd, "index.html"), "utf8");
-    const partials = await getPartials();
     const data = getData();
-    const result = m(template, data, {partials});
-    await fs.writeFile(path.join(cwd, "www/index.html"), result, "utf8");
-    await fs.writeFile(path.join(cwd, "www/navigation.json"), JSON.stringify(data.site.sidenav), "utf8");
+    const template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
+    const files = fs.readdirSync(input, "utf8");
+    // 1. Process partials files
+    files.filter(file => path.extname(file) === ".md" && file.startsWith("_")).forEach(file => {
+        const page = readMarkdownFile(path.join(input, file));
+        data.site.partials[page.name.slice(1)] = page.content;
+    });
+    // 2. Process pages files
+    files.filter(file => path.extname(file) === ".md" && !file.startsWith("_")).forEach(file => {
+        const page = readMarkdownFile(path.join(input, file));
+        page.content = page.content.replaceAll("{{&gt;", "{{>");
+        data.site.pages.push(page);
+    });
+    // 3. Generate documentation pages
+    data.site.pages.forEach(page => {
+        const content = m(template, {...data, page}, {
+            helpers: {},
+            partials: {
+                ...data.site.partials,
+                content: page.content,
+            },
+        });
+        console.log(`[build:site] saving file to www/${page.name}.html`);
+        fs.writeFileSync(path.join(output, page.name + ".html"), content, "utf8");
+    });
+    // await fs.writeFile(path.join(cwd, "www/index.html"), result, "utf8");
+    // await fs.writeFile(path.join(cwd, "www/navigation.json"), JSON.stringify(data.site.sidenav), "utf8");
 };
 
 build();
