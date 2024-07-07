@@ -54,8 +54,6 @@ You can apply different styles at different breakpoints:
 
 In ths example, the content text will be hidden at screens sizes lower than the medium breakpoint, and visible is screens sizes upper than the medium breakpoint.
 
-<Separator />
-
 ## State Modifiers
 
 LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
