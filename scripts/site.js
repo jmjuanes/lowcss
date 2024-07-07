@@ -13,11 +13,6 @@ const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-// @private convert an object to an array of entries
-const entries = obj => {
-    return Object.keys(obj).map(key => ({key: key, value: obj[key]}));
-};
-
 // @description get colors names
 const getColorNames = () => {
     const colors = Object.keys(low.colors)
@@ -119,8 +114,8 @@ const getData = () => {
                     };
                 }),
                 variables: {
-                    colors: entries(low.colors),
-                    fonts: entries(low.fonts),
+                    colors: low.colors,
+                    fonts: low.fonts,
                 },
             },
             pages: [],

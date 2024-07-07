@@ -19,10 +19,10 @@ The colors variables are generated from values in `low.$colors`:
     <tbody>
         {{#each site.data.variables.colors}}
         <tr>
-            <td><code>--low-{{key}}</code></td>
-            <td><code>{{value}}</code></td>
+            <td><code>--low-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
             <td>
-                <div class="bg-{{key}} border border-neutral-200 rounded-lg h-4 w-16 mx-auto"></div>
+                <div class="bg-{{@key}} border border-neutral-200 rounded-lg h-4 w-16 mx-auto"></div>
             </td>
         </tr>
         {{/each}}
@@ -43,8 +43,8 @@ The fonts variables are generated from values in `low.$fonts`;
     <tbody>
         {{#each site.data.variables.fonts}}
         <tr>
-            <td><code>--low-font-{{key}}</code></td>
-            <td><code>{{value}}</code></td>
+            <td><code>--low-font-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
         </tr>
         {{/each}}
     </tbody>
