@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
     <meta name="title" content="{{site.title}}" />
     <meta name="description" content="{{site.description}}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
     <link rel="stylesheet" href="./low.css" />
     <title>{{page.data.title}} - lowCSS {{site.version}}</title>
     <style>
@@ -21,15 +21,22 @@
 </head>
 <body class="bg-white m-0 p-0 font-inter text-neutral-800 leading-normal">
     <div class="border-b-1 border-neutral-100 bg-white">
-        <div class="w-full max-w-7xl h-16 px-6 mx-auto flex items-center justify-between gap-4">
+        <div class="w-full max-w-7xl h-16 px-6 mx-auto flex items-center md:gap-6">
             <a href="/" class="flex items-center shrink-0 gap-2 text-neutral-900 no-underline">
-                <div class="font-bold font-poppins text-xl">
-                    <span>low<span class="text-neutral-600 pl-px">css</span>.</span>
+                <div class="font-semibold font-poppins text-xl tracking-tighter">
+                    <span>low<span class="text-neutral-800 pl-px">css</span>.</span>
                 </div>
                 <div class="hidden md:flex items-center font-bold text-2xs bg-neutral-100 px-2 py-1 rounded-xl">
                     <span>{{site.version}}</span>
                 </div>
             </a>
+            <div class="flex items-center grow relative gap-4">
+            {{#each site.navbar}}
+                <a href="{{link}}" class="text-sm font-medium text-neutral-600 hover:text-neutral-900">
+                    <span>{{title}}</span>
+                </a>
+            {{/each}}
+            </div>
             <!--
             <div class="flex items-center grow relative max-w-2xl">
                 <input data-role="search-input" type="text" class="w-full outline-0 bg-neutral-100 rounded-md" placeholder="Search utilities..." />
@@ -78,8 +85,10 @@
             Source code available on <a href="{{site.repository}}" class="underline text-neutral-900 hover:text-neutral-950 font-medium">GitHub</a>. 
         </div>
     </div>
+    <div data-role="toaster" class="fixed flex flex-col gap-4 w-full max-w-96" style="bottom:32px;right:32px;"></div>
     <!--
     <script type="text/javascript" src="search.js"></script>
     -->
+    <script type="text/javascript" src="/utils.js"></script>
 </body>
 </html>
