@@ -24,7 +24,7 @@ sidebar: false
         <div class="w-full grid grid-cols-3 md:grid-cols-11 gap-2">
             {{#each @value}}
             <div class="w-full">
-                <div data-color="{{@value}}" class="relative rounded w-full h-20 mb-2 cursor-pointer group" style="background-color:{{@value}};">
+                <div data-color="{{@value}}" class="relative rounded w-full h-20 mb-2 cursor-pointer group" style="background-color:{{@value}};color:{{=contrastColor @value}}">
                     <div class="absolute hidden group-hover:flex pointer-events-none top-0 right-0 mt-2 mr-2 text-lg">
                         <svg width="1em" height="1em"><use xlink:href="sprite.svg#clipboard"></use></svg>
                     </div>
