@@ -4,6 +4,7 @@ const marked = require("marked");
 const frontMatter = require("front-matter");
 const pkg = require("../package.json");
 const low = require("../low.json");
+const colors = require("../colors.json");
 
 // Excluded colors
 const excludedColors = ["black", "white", "transparent", "current"];
@@ -11,14 +12,6 @@ const excludedColors = ["black", "white", "transparent", "current"];
 // @private capitalize the provided string
 const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-// @description get colors names
-const getColorNames = () => {
-    const colors = Object.keys(low.colors)
-        .filter(color => !excludedColors.includes(color))
-        .map(color => color.split("-")[0]);
-    return Array.from(new Set(colors));
 };
 
 // @description Generate utilities data
@@ -65,7 +58,7 @@ const getUtilitiesMenu = utilities => {
 };
 
 const getData = () => {
-    const colors = getColorNames();
+    // const colors = getColorNames();
     const utilities = getUtilities();
     return {
         site: {
@@ -99,21 +92,26 @@ const getData = () => {
                 },
                 ...getUtilitiesMenu(utilities),
             }),
+            navbar: [
+                {title: "Documentation", link: "/docs"},
+                {title: "Colors", link: "/colors"},
+            ],
             data: {
                 utilities: utilities,
-                colors: colors.map(color => {
-                    const shades = Object.keys(low.colors)
-                        .filter(key => key.startsWith(color + "-"))
-                        .map(key => ({
-                            name: key,
-                            shade: key.split("-")[1],
-                            value: low.colors[key],
-                        }));
-                    return {
-                        name: color,
-                        shades: shades,
-                    };
-                }),
+                colors: colors,
+                // colors: colors.map(color => {
+                //     const shades = Object.keys(low.colors)
+                //         .filter(key => key.startsWith(color + "-"))
+                //         .map(key => ({
+                //             name: key,
+                //             shade: key.split("-")[1],
+                //             value: low.colors[key],
+                //         }));
+                //     return {
+                //         name: color,
+                //         shades: shades,
+                //     };
+                // }),
                 variables: {
                     colors: low.colors,
                     fonts: low.fonts,
@@ -163,6 +161,16 @@ const build = async () => {
             partials: {
                 ...data.site.partials,
                 content: page.content,
+            },
+            functions: {
+                contrastColor: color => {
+                    // https://www.w3.org/TR/AERT/#color-contrast
+                    // Source: https://stackoverflow.com/a/72595895 
+                    const lum = [0.299, 0.587, 0.114].reduce((result, value, index) => {
+                        return parseInt(color.substr(index * 2 + 1, 2), 16) * value + result;
+                    }, 0);
+                    return lum < 128 ? "#fff" : "#000";
+                },
             },
         });
         console.log(`[build:site] saving file to www/${page.name}.html`);
