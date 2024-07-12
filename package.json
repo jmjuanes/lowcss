@@ -62,7 +62,7 @@
         "csso-cli": "^4.0.1",
         "front-matter": "^4.0.2",
         "marked": "^13.0.1",
-        "mikel": "^0.8.0",
+        "mikel": "^0.8.1",
         "postcss": "^8.4.38",
         "postcss-cli": "^11.0.0",
         "sass": "^1.72.0",
