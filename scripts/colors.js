@@ -17,9 +17,9 @@ const run = args => {
             colors[key][shade] = low.colors[name];
         }
         // Other case, just save the color name and value
-        else {
-            colors[name] = low.colors[name];
-        }
+        // else {
+        //     colors[name] = low.colors[name];
+        // }
     });
     const filePath = path.join(process.cwd(), args[1]);
     fs.writeFileSync(filePath, JSON.stringify(colors, null, "    "), "utf8");
