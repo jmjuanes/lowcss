@@ -36,7 +36,7 @@
         "docs": "yarn run build:site",
         "serve": "stattic --folder ./www --port 3000",
         "site": "yarn build:site",
-        "pack": "zip lowcss.zip low.*"
+        "pack": "zip lowcss.zip low.* colors.json"
     },
     "keywords": [
         "css",
@@ -52,9 +52,8 @@
         "LICENSE",
         "low.scss",
         "low.css",
-        "low.css.map",
         "low.json",
-        "low.colors.json"
+        "colors.json"
     ],
     "devDependencies": {
         "@josemi-icons/svg": "^0.6.0",
