@@ -8,6 +8,7 @@ dist
 www
 low.*
 lowcss.zip
+colors.json
 
 ## Other files
 .DS_Store
