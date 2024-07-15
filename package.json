@@ -25,18 +25,18 @@
         "build:dev": "sass sass/main.scss low.dev.css",
         "build:css": "sass --style compressed sass/main.scss low.css",
         "postbuild:css": "postcss low.css -o low.css && csso low.css --output low.css --source-map low.css.map",
-        "build:colors": "node ./scripts/colors.js json low.colors.json",
+        "build:colors": "node ./scripts/colors.js json colors.json",
         "build:json": "sass --no-source-map sass/json.scss low.raw.json",
         "postbuild:json": "cat low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > low.json && rm low.raw.json",
         "prebuild:site": "rm -rf www && mkdir www",
         "build:site": "node ./scripts/site.js",
-        "postbuild:site": "cp low.* www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp public/* www/",
+        "postbuild:site": "cp low.* www/ && cp colors.json www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp public/* www/",
         "build": "yarn bundle && yarn build:css && yarn build:json && yarn build:colors",
         "bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "docs": "yarn run build:site",
         "serve": "stattic --folder ./www --port 3000",
         "site": "yarn build:site",
-        "pack": "zip lowcss.zip low.*"
+        "pack": "zip lowcss.zip low.* colors.json"
     },
     "keywords": [
         "css",
@@ -52,9 +52,8 @@
         "LICENSE",
         "low.scss",
         "low.css",
-        "low.css.map",
         "low.json",
-        "low.colors.json"
+        "colors.json"
     ],
     "devDependencies": {
         "@josemi-icons/svg": "^0.6.0",
@@ -62,7 +61,7 @@
         "csso-cli": "^4.0.1",
         "front-matter": "^4.0.2",
         "marked": "^13.0.1",
-        "mikel": "^0.7.0",
+        "mikel": "^0.8.1",
         "postcss": "^8.4.38",
         "postcss-cli": "^11.0.0",
         "sass": "^1.72.0",

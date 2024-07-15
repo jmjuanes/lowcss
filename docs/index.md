@@ -13,13 +13,13 @@ features:
     icon: "mobile"
 ---
 
-<div class="flex justify-between py-16 md:py-20">
-    <div class="w-full max-w-lg">
-        <div class="font-crimson text-6xl leading-none mb-4">
+<div class="flex justify-between py-16 md:py-20 md:gap-12">
+    <div class="w-full">
+        <div class="max-w-lg font-crimson text-6xl md:text-7xl leading-none mb-4 md:mb-6">
             <span class="font-medium tracking-tight text-neutral-950">Start building your next idea.</span>
         </div>
-        <div class="max-w-2xl mt-0 mb-8 text-xl leading-relaxed">
-            <span class="text-neutral-700">A low-level CSS utility framework for building elegant and responsive user interfaces. No configuration. Just import it and go!</span>
+        <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
+            <span class="text-neutral-700">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex">
             <a href="docs#introduction" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
@@ -30,7 +30,7 @@ features:
             </a>
         </div>
     </div>
-    <div class="hidden lg:flex flex-col items-center justify-center w-full max-w-md">
+    <div class="hidden md:flex flex-col items-center justify-center w-full max-w-md">
         <div class="rounded-xl bg-neutral-900 text-white w-full"> 
             <div class="flex items-center gap-2 p-4 border-b border-neutral-600">
                 <div class="w-4 h-4 rounded-full bg-neutral-100"></div>
