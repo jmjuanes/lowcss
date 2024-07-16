@@ -57,12 +57,12 @@
         <div class="z-40 fixed top-0 left-0 w-full h-screen opacity-70 bg-black hidden peer-focus-within:block" tabindex="0"></div>
     </div>
     <!-- Content -->
-    {{#unless page.data.sidebar}}
+    {{#eq page.data.layout "default"}}
     <div class="w-full max-w-7xl mx-auto px-6 mb-16">
         {{> content}}
     </div>
-    {{/unless}}
-    {{#if page.data.sidebar}}
+    {{/eq}}
+    {{#eq page.data.layout "docs"}}
     <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
         <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
             <div class="h-full overflow-y-scroll scrollbar">
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="w-full max-w-3xl">
-            <div class="markup py-6 md:py-8">
+            <div class="markup pt-6 md:pt-8 pb-16">
                 {{> content}}
             </div>
             <div class="grid items-center md:grid-cols-2 gap-4">
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    {{/if}}
+    {{/eq}}
     <div class="w-full max-w-7xl mx-auto px-6 pt-16 pb-20 text-sm text-neutral-600">
         Designed by <a href="https://www.josemi.xyz" class="underline text-neutral-900 hover:text-neutral-950 font-medium">Josemi</a>. 
         Source code available on <a href="{{site.repository}}" class="underline text-neutral-900 hover:text-neutral-950 font-medium">GitHub</a>. 
