@@ -64,7 +64,7 @@
     {{/unless}}
     {{#if page.data.sidebar}}
     <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
-        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-4 pr-8 top-0">
+        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
             <div class="h-full overflow-y-scroll scrollbar">
                 {{#each site.sidenav}}
                 <div class="mb-4 text-sm">
@@ -77,11 +77,10 @@
                     {{/each}}
                 </div>
                 {{/each}}
-                <div class="h-16"></div>
             </div>
         </div>
         <div class="w-full max-w-3xl">
-            <div class="markup mb-16">
+            <div class="markup py-6 md:py-8">
                 {{> content}}
             </div>
             <div class="grid items-center md:grid-cols-2 gap-4">
