@@ -6,9 +6,6 @@ const pkg = require("../package.json");
 const low = require("../low.json");
 const colors = require("../colors.json");
 
-// Excluded colors
-const excludedColors = ["black", "white", "transparent", "current"];
-
 // @private capitalize the provided string
 const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -99,19 +96,6 @@ const getData = () => {
             data: {
                 utilities: utilities,
                 colors: colors,
-                // colors: colors.map(color => {
-                //     const shades = Object.keys(low.colors)
-                //         .filter(key => key.startsWith(color + "-"))
-                //         .map(key => ({
-                //             name: key,
-                //             shade: key.split("-")[1],
-                //             value: low.colors[key],
-                //         }));
-                //     return {
-                //         name: color,
-                //         shades: shades,
-                //     };
-                // }),
                 variables: {
                     colors: low.colors,
                     fonts: low.fonts,
