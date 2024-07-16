@@ -13,7 +13,7 @@ sidebar: false
             <span class="text-neutral-700">Easily apply and customize colors to create stunning, cohesive visuals across your project.</span>
         </div>
         <div class="flex items-center gap-2">
-            <a href="/docs#root" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+            <a href="/docs/root" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
                 <span class="font-medium text-sm">Documentation</span>
             </a>
             <a href="/colors.json" target="_blank" class="flex items-center px-4 py-3 rounded-lg bg-white hover:bg-neutral-100 text-neutral-950 border border-neutral-200 no-underline cursor-pointer">
