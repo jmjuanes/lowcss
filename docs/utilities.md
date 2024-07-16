@@ -1,3 +1,10 @@
+---
+title: "Utilities"
+sidebar: true
+permalink: "/docs/utilities.html"
+prevPage: "markup"
+---
+
 # Utilities
 
 <div class="">

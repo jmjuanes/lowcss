@@ -1,3 +1,11 @@
+---
+title: "Markup"
+sidebar: true
+permalink: "/docs/markup.html"
+prevPage: "helpers"
+nextPage: "utilities"
+---
+
 # Markup
 
 > Markup styles was added in **v0.22.0**.

@@ -1,3 +1,11 @@
+---
+title: "Installation"
+sidebar: true
+permalink: "/docs/installation.html"
+prevPage: "introduction"
+nextPage: "usage"
+---
+
 # Installation
 
 ## Package Installation
