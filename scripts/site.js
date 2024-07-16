@@ -67,7 +67,7 @@ const getData = () => {
                 gettingStarted: {
                     title: "Getting Started",
                     items: [
-                        {title: "Introduction", link: "/docs/introduction"},
+                        {title: "Introduction", link: "/docs/"},
                         {title: "Installation", link: "/docs/installation"},
                         {title: "Usage", link: "/docs/usage"},
                     ],
