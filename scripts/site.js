@@ -49,7 +49,7 @@ const getUtilitiesMenu = utilities => {
         }
         menu[item.groupName].items.push({
             title: item.name,
-            link: `#${item.name}`,
+            link: `/docs/utilities#${item.name}`,
             description: item.description,
             keywords: item.name.split("-"),
         });
@@ -70,24 +70,24 @@ const getData = () => {
                 gettingStarted: {
                     title: "Getting Started",
                     items: [
-                        {title: "Introduction", link: "#introduction"},
-                        {title: "Installation", link: "#installation"},
-                        {title: "Usage", link: "#usage"},
+                        {title: "Introduction", link: "/docs/introduction"},
+                        {title: "Installation", link: "/docs/installation"},
+                        {title: "Usage", link: "/docs/usage"},
                     ],
                 },
                 globals: {
                     title: "Globals",
                     items: [
-                        {title: "Root CSS Variables", link: "#root"},
+                        {title: "Root CSS Variables", link: "/docs/root"},
                     ],
                 },
                 base: {
                     title: "Base Styles",
                     items: [
-                        {title: "Reset", link: "#reset"},
-                        {title: "Keyframes", link: "#keyframes"},
-                        {title: "Helpers", link: "#helpers"},
-                        {title: "Markup", link: "#markup", version: "v0.22.0"},
+                        {title: "Reset", link: "/docs/reset"},
+                        {title: "Keyframes", link: "/docs/keyframes"},
+                        {title: "Helpers", link: "/docs/helpers"},
+                        {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
                     ],
                 },
                 ...getUtilitiesMenu(utilities),
@@ -132,6 +132,7 @@ const readMarkdownFile = file => {
         name: path.basename(file, ".md"),
         content: marked.parse(page.body || ""),
         data: page.attributes || {},
+        url: page.attributes?.permalink || path.join("/", path.basename(file, ".md") + ".html"),
     };
 };
 
@@ -142,24 +143,26 @@ const build = async () => {
     const m = (await import("mikel")).default;
     const data = getData();
     const template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
-    const files = fs.readdirSync(input, "utf8");
+    // const files = fs.readdirSync(input, "utf8");
     // 1. Process partials files
-    files.filter(file => path.extname(file) === ".md" && file.startsWith("_")).forEach(file => {
-        const page = readMarkdownFile(path.join(input, file));
-        data.site.partials[page.name.slice(1)] = page.content;
-    });
+    // files.filter(file => path.extname(file) === ".md" && file.startsWith("_")).forEach(file => {
+    //     const page = readMarkdownFile(path.join(input, file));
+    //     data.site.partials[page.name.slice(1)] = page.content;
+    // });
     // 2. Process pages files
-    files.filter(file => path.extname(file) === ".md" && !file.startsWith("_")).forEach(file => {
-        const page = readMarkdownFile(path.join(input, file));
-        page.content = page.content.replaceAll("{{&gt;", "{{>");
-        data.site.pages.push(page);
-    });
+    data.site.pages = fs.readdirSync(input, "utf8")
+        .filter(file => path.extname(file) === ".md" && !file.startsWith("_"))
+        .map(file => readMarkdownFile(path.join(input, file)));
     // 3. Generate documentation pages
     data.site.pages.forEach(page => {
         const content = m(template, {...data, page}, {
-            helpers: {},
+            helpers: {
+                withPage: (pageName, opt) => {
+                    const p = data.site.pages.find(p => p.name === pageName);
+                    return p ? opt.fn(p) : "";
+                },
+            },
             partials: {
-                ...data.site.partials,
                 content: page.content,
             },
             functions: {
@@ -171,10 +174,17 @@ const build = async () => {
                     }, 0);
                     return lum < 128 ? "#fff" : "#000";
                 },
+                cleanUrl: pageUrl => {
+                    return path.join("/", path.dirname(pageUrl), path.basename(pageUrl, ".html"));
+                },
             },
         });
-        console.log(`[build:site] saving file to www/${page.name}.html`);
-        fs.writeFileSync(path.join(output, page.name + ".html"), content, "utf8");
+        const pageFolder = path.join(output, path.dirname(page.url));
+        if (!fs.existsSync(pageFolder)) {
+            fs.mkdirSync(pageFolder, {recursive: true});
+        }
+        console.log(`[build:site] saving file to www${page.url}`);
+        fs.writeFileSync(path.join(output, page.url), content, "utf8");
     });
     // await fs.writeFile(path.join(cwd, "www/index.html"), result, "utf8");
     // await fs.writeFile(path.join(cwd, "www/navigation.json"), JSON.stringify(data.site.sidenav), "utf8");
