@@ -1,6 +1,6 @@
 ---
 title: "A low-level CSS utility framework"
-sidebar: false
+layout: "default"
 features: 
   - title: "Lightning-fast development"
     description: "Prototype and develop at an accelerated pace, focusing on the functionality and design."

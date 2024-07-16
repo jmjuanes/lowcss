@@ -1,7 +1,7 @@
 ---
 title: "Colors"
 description: ""
-sidebar: false
+layout: "default"
 ---
 
 <div class="flex justify-between pt-16 pb-12 md:pt-20 md:pb-16">

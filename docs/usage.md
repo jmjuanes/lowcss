@@ -1,6 +1,6 @@
 ---
 title: "Usage"
-sidebar: true
+layout: "docs"
 permalink: "/docs/usage.html"
 prevPage: "installation"
 nextPage: "root"

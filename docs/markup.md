@@ -1,6 +1,6 @@
 ---
 title: "Markup"
-sidebar: true
+layout: "docs"
 permalink: "/docs/markup.html"
 prevPage: "helpers"
 nextPage: "utilities"

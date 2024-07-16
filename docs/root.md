@@ -1,6 +1,6 @@
 ---
 title: "Root CSS Variables"
-sidebar: true
+layout: "docs"
 permalink: "/docs/root.html"
 prevPage: "usage"
 nextPage: "reset"

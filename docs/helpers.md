@@ -1,6 +1,6 @@
 ---
 title: "Helpers"
-sidebar: true
+layout: "docs"
 permalink: "/docs/helpers.html"
 prevPage: "keyframes"
 nextPage: "markup"

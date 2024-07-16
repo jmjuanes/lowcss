@@ -1,6 +1,6 @@
 ---
 title: "Reset CSS"
-sidebar: true
+layout: "docs"
 permalink: "/docs/reset.html"
 prevPage: "root"
 nextPage: "keyframes"
