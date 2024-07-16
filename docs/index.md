@@ -1,6 +1,6 @@
 ---
 title: "A low-level CSS utility framework"
-sidebar: false
+layout: "default"
 features: 
   - title: "Lightning-fast development"
     description: "Prototype and develop at an accelerated pace, focusing on the functionality and design."
@@ -22,10 +22,10 @@ features:
             <span class="text-neutral-700">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex">
-            <a href="docs#introduction" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+            <a href="/docs" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
                 <strong class="text-lg">Getting started</strong>
                 <div class="text-xl ml-2">
-                    <svg width="1em" height="1em"><use xlink:href="sprite.svg#arrow-right"></use></svg>
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#arrow-right"></use></svg>
                 </div>
             </a>
         </div>
@@ -45,7 +45,7 @@ features:
             </div>
         </div>
         <div class="mt-4 text-neutral-800 text-sm">
-            <span>Read more in the <a href="docs#installation" class="text-neutral-900 font-medium underline">Installation</a> section.</span>
+            <span>Read more in the <a href="/docs/installation" class="text-neutral-900 font-medium underline">Installation</a> section.</span>
         </div>
     </div>
 </div>
@@ -53,7 +53,7 @@ features:
     {{#each page.data.features}}
     <div class="bg-neutral-100 rounded-lg p-8">
         <div class="mb-4 text-4xl text-neutral-800">
-            <svg width="1em" height="1em"><use xlink:href="sprite.svg#{{icon}}"></use></svg>
+            <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{icon}}"></use></svg>
         </div>
         <div class="font-bold text-lg mb-2 text-neutral-800">{{title}}</div>
         <div class="text-sm">{{description}}</div>

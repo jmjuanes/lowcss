@@ -1,3 +1,11 @@
+---
+title: "Reset CSS"
+layout: "docs"
+permalink: "/docs/reset.html"
+prevPage: "root"
+nextPage: "keyframes"
+---
+
 # Reset
 
 **Reset CSS** is a collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements. It helps normalize the default styles applied by different browsers, ensuring a more consistent and predictable rendering of web pages across various devices and browsers.

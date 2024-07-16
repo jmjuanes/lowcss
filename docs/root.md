@@ -1,3 +1,11 @@
+---
+title: "Root CSS Variables"
+layout: "docs"
+permalink: "/docs/root.html"
+prevPage: "usage"
+nextPage: "reset"
+---
+
 # Root CSS Variables
 
 LowCSS provides CSS variables generated from your custom configuration, making it even easier to maintain a consistent color scheme across your project.

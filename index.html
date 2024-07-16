@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
-    <link rel="stylesheet" href="./low.css" />
+    <link rel="stylesheet" href="/low.css" />
     <title>{{page.data.title}} - lowCSS {{site.version}}</title>
     <style>
         :not(pre) > code {
@@ -39,12 +39,12 @@
         </div>
         <div class="ml-auto flex items-center">
             <a href="{{site.repository}}" class="no-underline opacity-70 hover:opacity-100">
-                <img class="w-6 h-6" src="./github.svg" />
+                <img class="w-6 h-6" src="/github.svg" />
             </a>
         </div>
         <div class="peer group md:hidden" tabindex="0">
             <div class="text-xl flex items-center text-neutral-800">
-                <svg width="1em" height="1em"><use xlink:href="sprite.svg#dots-vertical"></use></svg>
+                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#dots-vertical"></use></svg>
             </div>
             <div class="z-50 fixed top-0 right-0 mt-8 mr-8 w-full max-w-xs bg-white p-4 hidden group-focus-within:block rounded-lg">
             {{#each site.navbar}}
@@ -57,14 +57,14 @@
         <div class="z-40 fixed top-0 left-0 w-full h-screen opacity-70 bg-black hidden peer-focus-within:block" tabindex="0"></div>
     </div>
     <!-- Content -->
-    {{#unless page.data.sidebar}}
+    {{#eq page.data.layout "default"}}
     <div class="w-full max-w-7xl mx-auto px-6 mb-16">
         {{> content}}
     </div>
-    {{/unless}}
-    {{#if page.data.sidebar}}
+    {{/eq}}
+    {{#eq page.data.layout "docs"}}
     <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
-        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-4 pr-8 top-0">
+        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
             <div class="h-full overflow-y-scroll scrollbar">
                 {{#each site.sidenav}}
                 <div class="mb-4 text-sm">
@@ -77,15 +77,34 @@
                     {{/each}}
                 </div>
                 {{/each}}
-                <div class="h-16"></div>
             </div>
         </div>
-        <div class="w-full max-w-3xl markup">
-            {{> content}}
+        <div class="w-full max-w-3xl">
+            <div class="markup pt-6 md:pt-8 pb-16">
+                {{> content}}
+            </div>
+            <div class="grid items-center md:grid-cols-2 gap-4">
+                <div class="w-full">
+                    {{#withPage page.data.prevPage}}
+                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col border border-neutral-200 hover:border-neutral-900 rounded-lg p-3">
+                        <div class="text-neutral-600 text-xs">Previous Page</div>
+                        <div class="font-medium text-neutral-950">{{data.title}}</div>
+                    </a>
+                    {{/withPage}}
+                </div>
+                <div class="w-full">
+                    {{#withPage page.data.nextPage}}
+                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col items-end border border-neutral-200 hover:border-neutral-900 rounded-lg p-3">
+                        <div class="text-neutral-600 text-xs">Next Page</div>
+                        <div class="font-medium text-neutral-950">{{data.title}}</div>
+                    </a>
+                    {{/withPage}}
+                </div>
+            </div>
         </div>
     </div>
-    {{/if}}
-    <div class="w-full max-w-7xl mx-auto px-6 pt-10 pb-20 text-sm text-neutral-600">
+    {{/eq}}
+    <div class="w-full max-w-7xl mx-auto px-6 pt-16 pb-20 text-sm text-neutral-600">
         Designed by <a href="https://www.josemi.xyz" class="underline text-neutral-900 hover:text-neutral-950 font-medium">Josemi</a>. 
         Source code available on <a href="{{site.repository}}" class="underline text-neutral-900 hover:text-neutral-950 font-medium">GitHub</a>. 
     </div>

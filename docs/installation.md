@@ -1,3 +1,11 @@
+---
+title: "Installation"
+layout: "docs"
+permalink: "/docs/installation.html"
+prevPage: "introduction"
+nextPage: "usage"
+---
+
 # Installation
 
 ## Package Installation

@@ -1,3 +1,11 @@
+---
+title: "Helpers"
+layout: "docs"
+permalink: "/docs/helpers.html"
+prevPage: "keyframes"
+nextPage: "markup"
+---
+
 # Helpers
 
 LowCSS introduces a set of helper styles to assist you in common layout and text formatting tasks. These helpers are designed to simplify your development process and enhance the visual presentation of your web projects.

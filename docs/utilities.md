@@ -1,3 +1,10 @@
+---
+title: "Utilities"
+layout: "docs"
+permalink: "/docs/utilities.html"
+prevPage: "markup"
+---
+
 # Utilities
 
 <div class="">
@@ -9,7 +16,7 @@
         <div class="mb-4 flex items-center gap-2">
             <a href="{{url}}" target="_blank" class="flex items-center gap-1 no-underline hover:underline text-neutral-700 cursor-pointer">
                 <div class="flex items-center text-base">
-                    <svg width="1em" height="1em"><use xlink:href="sprite.svg#external-link"></use></svg>
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#external-link"></use></svg>
                 </div>
                 <div class="text-sm">MDN Reference</div>
             </a>

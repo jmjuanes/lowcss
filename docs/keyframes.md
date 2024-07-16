@@ -1,3 +1,11 @@
+---
+title: "Keyframes"
+layout: "docs"
+permalink: "/docs/keyframes.html"
+prevPage: "reset"
+nextPage: "helpers"
+---
+
 # Keyframes
 
 We provide a collection of keyframes animation styles that can be used in conjunction with the animation utilities to create engaging and dynamic animations in your web projects. These predefined keyframes styles provide a quick and convenient way to add commonly used animations without the need to write complex CSS animations from scratch.

@@ -1,3 +1,11 @@
+---
+title: "Usage"
+layout: "docs"
+permalink: "/docs/usage.html"
+prevPage: "installation"
+nextPage: "root"
+---
+
 # Usage
 
 LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
