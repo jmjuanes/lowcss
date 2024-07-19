@@ -13,6 +13,24 @@ prices:
   - title: "Standard plan"
     price: "29.99"
     description: "Access to standard features."
+    features:
+      - "Up to 20 users"
+      - "50 GB of storage each user"
+      - "Advanced analytics"
+      - "Customizable dashboard"
+      - "Daily backups"
+      - "Priority email support"
+  - title: "Premium Plan"
+    price: "49.99"
+    description: "Access to premium features."
+    features:
+      - "Unlimited users"
+      - "Unlimited storage"
+      - "Premium analytics"
+      - "Customizable dashboard"
+      - "Real-time backups"
+      - "Dedicated account manager"
+      - "24/7 support (email and phone)"
 ---
 
 <div class="w-full py-16 px-6">
@@ -22,8 +40,8 @@ prices:
     </div>
     <div class="flex items-center justify-center mb-8">
         <div class="p-1 bg-neutral-100 rounded-lg flex items-center gap-1 text-sm">
-            <div class="font-medium cursor-pointer bg-transparent rounded-md px-2 py-1">Pay montly</div>
-            <div class="font-medium cursor-pointer bg-white shadow-sm rounded-md px-2 py-1">Pay yearly</div>
+            <div class="font-medium cursor-pointer bg-white shadow-sm rounded-md px-2 py-1">Pay montly</div>
+            <div class="font-medium cursor-pointer bg-transparent rounded-md px-2 py-1">Pay yearly</div>
         </div>
     </div>
     <div class="grid md:grid-cols-3 gap-4">
@@ -47,14 +65,14 @@ prices:
             <div class="p-6">
                 <div class="font-medium text-sm mb-2">Features</div>
                 <div class="flex flex-col gap-1">
-                    {{#each features}}
-                        <div class="flex items-center gap-2">
-                            <div class="flex items-center text-neutral-950 text-sm">
-                                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#check"></use></svg>
-                            </div>
-                            <div class="grow text-sm">{{.}}</div>
+                {{#each features}}
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center text-neutral-950 text-sm">
+                            <svg width="1em" height="1em"><use xlink:href="/sprite.svg#check"></use></svg>
                         </div>
-                    {{/each}}
+                        <div class="grow text-sm">{{.}}</div>
+                    </div>
+                {{/each}}
                 </div>
             </div>
         </div>
