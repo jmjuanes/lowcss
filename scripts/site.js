@@ -11,22 +11,6 @@ const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-// @description get examples
-const getExamples = () => {
-    const examplesFolder = path.join(process.cwd(), "examples");
-    return fs.readdirSync(examplesFolder, "utf8")
-        .filter(file => path.extname(file) === ".html")
-        .map(file => {
-            const fileContent = fs.readFileSync(path.join(examplesFolder, file), "utf8");
-            const example = frontMatter(fileContent);
-            return {
-                name: path.basename(file, ".html"),
-                content: example.body || "",
-                data: example.attributes || {},
-            };
-        });
-};
-
 // @description Generate utilities data
 const getUtilities = () => {
     return Object.keys(low.utilities).map(utilityName => {
@@ -117,7 +101,7 @@ const getData = () => {
                     colors: low.colors,
                     fonts: low.fonts,
                 },
-                examples: getExamples(),
+                examples: [],
             },
             pages: [],
             partials: {},
@@ -142,20 +126,27 @@ const readMarkdownFile = file => {
 const build = async () => {
     const input = path.join(process.cwd(), "docs");
     const output = path.join(process.cwd(), "www");
+    const examplesFolder = path.join(process.cwd(), "examples");
     const m = (await import("mikel")).default;
-    const data = getData();
     const template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
-    // const files = fs.readdirSync(input, "utf8");
-    // 1. Process partials files
-    // files.filter(file => path.extname(file) === ".md" && file.startsWith("_")).forEach(file => {
-    //     const page = readMarkdownFile(path.join(input, file));
-    //     data.site.partials[page.name.slice(1)] = page.content;
-    // });
-    // 2. Process pages files
+    const data = getData();
+    // Initialize examples data
+    data.site.data.examples = fs.readdirSync(examplesFolder, "utf8")
+        .filter(file => path.extname(file) === ".html")
+        .map(file => {
+            const fileContent = fs.readFileSync(path.join(examplesFolder, file), "utf8");
+            const example = frontMatter(fileContent);
+            return {
+                name: path.basename(file, ".html"),
+                content: m(example.body || "", example.attributes || {}),
+                data: example.attributes || {},
+            };
+        });
+    // 1. Process pages files
     data.site.pages = fs.readdirSync(input, "utf8")
         .filter(file => path.extname(file) === ".md" && !file.startsWith("_"))
         .map(file => readMarkdownFile(path.join(input, file)));
-    // 3. Generate documentation pages
+    // 2. Generate documentation pages
     data.site.pages.forEach(page => {
         const content = m(template, {...data, page}, {
             helpers: {
