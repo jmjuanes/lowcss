@@ -10,7 +10,7 @@ title: "Dashboard"
             </div>
             <div class="font-bold">Owl Inc.</div>
         </a>
-        <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center gap-4">
             <a href="#" class="text-sm font-medium text-neutral-950">Overview</a>
             <a href="#" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Products</a>
             <a href="#" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Orders</a>
@@ -47,11 +47,11 @@ title: "Dashboard"
                 </button>
             </div>
         </div>
-        <div class="w-full grid grid-cols-4 gap-4 mb-10">
+        <div class="w-full grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="w-full border border-neutral-200 rounded-lg p-6 shadow-sm">
                 <div class="text-neutral-950 text-sm font-medium mb-1">Total Sales</div>
-                <div class="text-neutral-950 text-2xl font-bold mb-0">$ 1,234,567.89</div>
-                <div class="text-neutral-600 text-xs">+123% from last month.</div>
+                <div class="text-neutral-950 text-2xl font-bold mb-0">$ 1,234,567</div>
+                <div class="text-neutral-600 text-xs">+12% from last month.</div>
             </div>
             <div class="w-full border border-neutral-200 rounded-lg p-6 shadow-sm">
                 <div class="text-neutral-950 text-sm font-medium mb-1">Total Orders</div>
@@ -65,13 +65,13 @@ title: "Dashboard"
             </div>
             <div class="w-full border border-neutral-200 rounded-lg p-6 shadow-sm">
                 <div class="text-neutral-950 text-sm font-medium mb-1">Visitors</div>
-                <div class="text-neutral-950 text-2xl font-bold mb-0">987,654,321</div>
+                <div class="text-neutral-950 text-2xl font-bold mb-0">87,654,321</div>
                 <div class="text-neutral-600 text-xs">+15% from last month.</div>
             </div>
         </div>
         <div class="w-full">
             <div class="text-xl text-neutral-950 font-bold mb-2">Recent orders</div>
-            <div class="rounded-lg border border-neutral-200 mb-4">
+            <div class="rounded-lg border border-neutral-200 mb-4 w-full overflow-y-auto">
                 <table class="w-full text-sm">
                     <thead class="border-b border-neutral-200">
                         <tr class="">
@@ -140,7 +140,7 @@ title: "Dashboard"
                 </table>
             </div>
             <div class="w-full flex items-center gap-4">
-                <div class="text-xs text-neutral-600">Showing 1 to 5 of 123 orders.</div>
+                <div class="hidden sm:block text-xs text-neutral-600">Showing 1 to 5 of 123 orders.</div>
                 <div class="flex items-center gap-1 ml-auto">
                     <button class="flex items-center justify-center rounded-md border border-neutral-200 w-8 h-8 p-0 text-lg bg-white cursor-not-allowed opacity-50">
                         <svg width="1em" height="1em"><use xlink:href="/sprite.svg#chevrons-left"></use></svg>
