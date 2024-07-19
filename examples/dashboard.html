@@ -16,6 +16,22 @@ title: "Dashboard"
             <a href="#" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Orders</a>
             <a href="#" class="text-sm font-medium text-neutral-700 hover:text-neutral-950">Analytics</a>
         </div>
+        <div class="flex items-center ml-auto">
+            <div class="relative group">
+                <button class="flex items-center justify-center rounded-full border border-neutral-200 h-8 w-8 cursor-pointer text-neutral-900 text-lg bg-white">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#user"></use></svg>
+                </button>
+                <div class="absolute hidden group-focus-within:block top-full right-0 mt-1">
+                    <div class="border border-neutral-200 p-1 rounded-lg bg-white text-sm shadow-sm w-40 select-none">
+                        <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Profile</a>
+                        <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Settings</a>
+                        <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Contact Support</a>
+                        <div class="w-full h-px bg-neutral-200 my-1"></div>
+                        <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="px-6 py-8">
         <div class="mb-12 w-full max-w-md">
