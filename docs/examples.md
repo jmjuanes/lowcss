@@ -21,12 +21,15 @@ layout: "default"
 
 <div class="">
 {{#each site.data.examples}}
+    <a name="{{name}}" class=""></a>
     <div data-role="example" data-example-name="{{name}}" class="mb-16">
         <div class="flex items-center mb-3">
-            <div class="text-lg font-medium">{{data.title}}</div>
+            <div class="text-lg font-medium">
+                <a href="#{{name}}" class="hover:underline">{{data.title}}</a>
+            </div>
             <div class="ml-auto">
                 <div data-role="example:tabs" class="p-1 bg-neutral-100 rounded-lg text-sm flex gap-1 font-medium">
-                    <div data-tab="preview" class="bg-white rounded-md px-2 py-1 cursor-pointer">Preview</div>
+                    <div data-tab="preview" class="bg-white shadow-sm rounded-md px-2 py-1 cursor-pointer">Preview</div>
                     <div data-tab="code" class="rounded-md px-2 py-1 cursor-pointer">Code</div>
                 </div>
             </div>
@@ -45,9 +48,9 @@ layout: "default"
     Array.from(document.querySelectorAll(`div[data-role="example"]`)).forEach(parent => {
         Array.from(parent.querySelectorAll(`div[data-tab]`)).forEach(tabElement => {
             tabElement.addEventListener("click", () => {
-                Array.from(tabElement.parentElement.children).forEach(tab => tab.classList.remove("bg-white"));
+                Array.from(tabElement.parentElement.children).forEach(tab => tab.classList.remove("bg-white", "shadow-sm"));
                 Array.from(parent.querySelectorAll(`div[data-example-mode]`)).forEach(el => el.style.display = "");
-                tabElement.classList.add("bg-white");
+                tabElement.classList.add("bg-white", "shadow-sm");
                 parent.querySelector(`div[data-example-mode="${tabElement.dataset.tab}"]`).style.display = "block";
             });
         });
