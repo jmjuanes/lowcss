@@ -1,28 +1,4 @@
-@use "sass:list";
-@use "sass:map";
-@use "sass:meta";
-@use "sass:string";
-
-@use "variables";
-@use "base";
-@use "mixins";
-@use "functions";
-@use "utilities";
-
-// @description Inject base styles
-@mixin base() {
-    @include base.reset();
-    @include base.forms();
-    @include base.keyframes();
-    @include base.scrollbar();
-    @include base.helpers();
-    @include base.fonts();
-    @include base.markup();
-}
-
-// @description generate utilities
-@mixin utilities() {
-    @each $utility-name,$utility-config in utilities.$utilities {
-        @include mixins.utility($utility-config);
-    }
-}
+@forward "variables";
+@forward "mixins";
+@forward "functions";
+@forward "utilities";
