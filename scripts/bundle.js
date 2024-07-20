@@ -3,7 +3,7 @@ const path = require("node:path");
 
 // Global variables
 const endl = "\n";
-const useRegexp = /@use\s+\"([^"]*)\"(?:\s+as\s+([^;].*))?\s*;/; //For capturing includes
+const useRegexp = /@(?:use|forward)\s+\"([^"]*)\"(?:\s+as\s+([^;].*))?\s*;/;
 
 // @description split lines
 const splitLines = lines => {
@@ -19,10 +19,9 @@ const parseSCSSImport = (line, index) => {
         console.error(`Unknown @use pattern '${line}' on line '${index}'`);
         process.exit(1);
     }
-    // const isLocal = !match[1].startsWith("sass:");
     return {
         name: match[1],
-        as: (typeof match[2] === "string") ? match[2] : null, // match[1].replace("sass:", ""),
+        as: (typeof match[2] === "string") ? match[2] : match[1],
     };
 };
 
@@ -35,7 +34,7 @@ const parseScss = (name, content) => {
         //     return false; // Ignore empty lines or comments
         // }
         // Check for include library
-        if (line.startsWith("@use")) {
+        if (line.startsWith("@use") || line.startsWith("@forward")) {
             allModules.push(parseSCSSImport(line, index));
             return false; // Ignore use lines
         }

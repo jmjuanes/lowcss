@@ -22,6 +22,7 @@
         "./colors": "./low.colors.json"
     },
     "scripts": {
+        "build:bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "build:dev": "sass sass/main.scss low.dev.css",
         "build:css": "sass --style compressed sass/main.scss low.css",
         "postbuild:css": "postcss low.css -o low.css && csso low.css --output low.css --source-map low.css.map",
@@ -31,8 +32,8 @@
         "prebuild:site": "rm -rf www && mkdir www",
         "build:site": "node ./scripts/site.js",
         "postbuild:site": "cp low.* www/ && cp colors.json www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp public/* www/",
-        "build": "yarn bundle && yarn build:css && yarn build:json && yarn build:colors",
-        "bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
+        "build": "yarn build:bundle && yarn build:css && yarn build:json && yarn build:colors",
+        "bundle": "yarn build:bundle",
         "docs": "yarn run build:site",
         "serve": "stattic --folder ./www --port 3000",
         "site": "yarn build:site",
