@@ -37,7 +37,7 @@ layout: "default"
         <div class="block w-full border border-neutral-200 rounded-lg overflow-hidden shadow-sm">
             <div data-example-mode="preview" class="hidden" style="display:block;">{{!content}}</div>
             <div data-example-mode="code" class="hidden">
-                <pre class="w-full bg-neutral-950 font-mono text-xs leading-relaxed text-white overflow-auto p-4" style="max-height:600px;">{{content}}</pre>
+                <pre class="w-full bg-neutral-950 font-mono text-xs leading-relaxed text-white overflow-auto p-4" style="max-height:600px;">{{=highlight content}}</pre>
             </div>
         </div>
     </div>

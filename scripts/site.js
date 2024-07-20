@@ -2,13 +2,21 @@ const fs = require("node:fs");
 const path = require("node:path");
 const marked = require("marked");
 const frontMatter = require("front-matter");
+const hljs = require("highlight.js/lib/common");
 const pkg = require("../package.json");
 const low = require("../low.json");
 const colors = require("../colors.json");
 
+const endl = "\n";
+
 // @private capitalize the provided string
 const capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+// @private remove empty lines in code
+const removeEmptyLines = code => {
+    return code.split(endl).filter(line => !!line.trim()).join(endl);
 };
 
 // @description Generate utilities data
@@ -169,6 +177,9 @@ const build = async () => {
                 },
                 cleanUrl: pageUrl => {
                     return path.join("/", path.dirname(pageUrl), path.basename(pageUrl, ".html"));
+                },
+                highlight: code => {
+                    return hljs.highlight(removeEmptyLines(code), {language: "html"}).value;
                 },
             },
         });
