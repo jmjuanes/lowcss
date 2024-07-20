@@ -746,7 +746,7 @@ $utilities: (
         classname: "size",
         variants: ("default", "responsive"),
         properties: (width, height),
-        values: variables.$sizes,
+        values: variables.$spacing,
     )),
 
     // Spacing utilities
