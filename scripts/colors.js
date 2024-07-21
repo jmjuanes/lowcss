@@ -7,14 +7,14 @@ const low = require("../low.json");
 const run = args => {
     // const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
     const colors = {}; // Output colors object
-    Object.keys(low.colors).forEach(name => {
+    Object.keys(low.variables.colors).forEach(name => {
         // Check if this color has a shace defined
         if (name.indexOf("-") > -1) {
             const [key, shade] = name.split("-");
             if (typeof colors[key] === "undefined") {
                 colors[key] = {};
             }
-            colors[key][shade] = low.colors[name];
+            colors[key][shade] = low.variables.colors[name];
         }
         // Other case, just save the color name and value
         // else {
