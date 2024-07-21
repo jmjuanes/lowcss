@@ -37,9 +37,9 @@ The colors variables are generated from values in `low.$colors`:
     </tbody>
 </table>
 
-## Fonts Variables
+## Font Family Variables
 
-The fonts variables are generated from values in `low.$fonts`;
+The font family variables are generated from values in `low.$font-families`;
 
 <table>
     <thead>
@@ -49,7 +49,7 @@ The fonts variables are generated from values in `low.$fonts`;
         </tr>
     </thead>
     <tbody>
-        {{#each site.data.variables.fonts}}
+        {{#each site.data.variables.font-families}}
         <tr>
             <td><code>--low-font-{{@key}}</code></td>
             <td><code>{{@value}}</code></td>
@@ -57,6 +57,124 @@ The fonts variables are generated from values in `low.$fonts`;
         {{/each}}
     </tbody>
 </table>
+
+## Font Size Variables
+
+> Font sizes variables were added in **v0.23.0**.
+
+The font size variables are generated from values in `low.$font-sizes`;
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each site.data.variables.font-sizes}}
+        <tr>
+            <td><code>--low-font-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+## Font Weight Variables
+
+> Font weights variables were added in **v0.23.0**.
+
+The font weight variables are generated from values in `low.$font-weights`;
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each site.data.variables.font-weights}}
+        <tr>
+            <td><code>--low-font-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+## Tracking Variables
+
+> Tracking variables were added in **v0.23.0**.
+
+The tracking variables (used for `letter-spacing`) are generated from values in `low.$trackings`;
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each site.data.variables.trackings}}
+        <tr>
+            <td><code>--low-tracking-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+## Leading Variables
+
+> Leading variables were added in **v0.23.0**.
+
+The leading variables (used for `line-height`) are generated from values in `low.$leadings`;
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each site.data.variables.leadings}}
+        <tr>
+            <td><code>--low-leading-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+## Spacing Variables
+
+> Spacing variables were added in **v0.23.0**.
+
+The spacing variables are generated from values in `low.$spacing`;
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable name</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each site.data.variables.spacing}}
+        <tr>
+            <td><code>--low-space-{{@key}}</code></td>
+            <td><code>{{@value}}</code></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+
 
 ## Using CSS Variables
 
