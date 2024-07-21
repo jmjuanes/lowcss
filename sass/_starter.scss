@@ -189,7 +189,7 @@ select {
     left: 0;
     position: fixed;
     right: 0;
-    z-index: variables.$zindex-fixed;
+    z-index: 1100;
 }
 .fixed-top {
     top: 0;
@@ -201,7 +201,7 @@ select {
 .sticky-top,
 .sticky-bottom {
     position: sticky;
-    z-index: variables.$zindex-sticky;
+    z-index: 1050;
 }
 .sticky-top {
     top: 0;
@@ -214,7 +214,7 @@ select {
         .#{$breakpoint}#{variables.$separator}sticky-top, 
         .#{$breakpoint}#{variables.$separator}sticky-bottom {
             position: sticky;
-            z-index: variables.$zindex-sticky;
+            z-index: 1050;
         }
         .#{$breakpoint}#{variables.$separator}sticky-top {
             top: 0;
@@ -242,17 +242,8 @@ select {
     font-family: Poppins, sans-serif;
 }
 .font-crimson {
-    font-family: Crimson Pro, serif;
+    font-family: 'Crimson Pro', serif;
 }
 .font-nunito {
     font-family: Nunito, sans-serif;
-}
-.font-plex-sans {
-    font-family: 'IBM Plex Sans', sans-serif;
-}
-.font-plex-serif {
-    font-family: 'IBM Plex Serif', serif;
-}
-.font-plex-mono {
-    font-family: 'IBM Plex Mono', monospace;
 }
