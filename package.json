@@ -1,6 +1,6 @@
 {
     "name": "lowcss",
-    "version": "0.22.4",
+    "version": "0.23.0",
     "description": "A low-level functional CSS toolkit",
     "author": {
         "name": "Josemi Juanes",
@@ -19,7 +19,7 @@
         "./scss": "./low.scss",
         "./json": "./low.json",
         "./package.json": "./package.json",
-        "./colors": "./low.colors.json"
+        "./colors": "./colors.json"
     },
     "scripts": {
         "build:bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
