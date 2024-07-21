@@ -105,10 +105,7 @@ const getData = () => {
             data: {
                 utilities: utilities,
                 colors: colors,
-                variables: {
-                    colors: low.colors,
-                    fonts: low.fonts,
-                },
+                variables: low.variables,
                 examples: [],
             },
             pages: [],
