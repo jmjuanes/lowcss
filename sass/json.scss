@@ -42,10 +42,21 @@
 // Data to print
 $data: (
     "version": "__version__",
+    "prefix": variables.$prefix,
     "breakpoints": variables.$breakpoints,
-    "colors": variables.$colors,
-    "fonts": variables.$fonts,
-    "spacing": variables.$spacing,
+    "variables": (
+        "colors": variables.$colors,
+        "font-families": variables.$font-families,
+        "font-sizes": variables.$font-sizes,
+        "font-weights": variables.$font-weights,
+        "trackings": variables.$trackings,
+        "leadings": variables.$leadings,
+        "borders": variables.$borders,
+        "spacing": variables.$spacing,
+        "opacities": variables.$opacities,
+        "raiuses": variables.$radiuses,
+        "shadows": variables.$shadows,
+    ),
     "utilities": utilities.$utilities,
 );
 
