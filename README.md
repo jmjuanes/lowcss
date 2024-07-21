@@ -2,9 +2,9 @@
 
 A low-level functional CSS toolkit.
 
-[![NPM Version](https://badgen.net/npm/v/lowcss)](https://npm.im/lowcss)
-[![MIT License](https://badgen.net/github/license/jmjuanes/lowcss)](https://github.com/jmjuanes/lowcss)
-[![PRs welcome](https://badgen.net/badge/PR/Welcome/green)](https://github.com/jmjuanes/lowcss)
+[![NPM Version](https://badgen.net/npm/v/lowcss?labelColor=1d2734&color=21bf81)](https://npm.im/lowcss)
+[![MIT License](https://badgen.net/github/license/jmjuanes/lowcss?labelColor=1d2734&color=21bf81)](https://github.com//jmjuanes/lowcss)
+[![PRs welcome](https://badgen.net/badge/PR/Welcome/green?labelColor=1d2734&color=21bf81)](https://github.com/jmjuanes/lowcss)
 
 ## About LowCSS
 
@@ -15,7 +15,6 @@ A low-level functional CSS toolkit.
 - **SASS-based**: Harness the power of SASS to create modular and maintainable CSS code.
 - **Intuitive Utility Classes**: Use utility classes to apply styles directly to HTML elements, avoiding repetitive CSS coding.
 - **Responsive Design**: Create responsive layouts effortlessly with built-in responsive utility classes.
-- **Customizable**: Customize the framework to match your brand's aesthetic by modifying SASS variables.
 - **Lightweight**: Keep your page load times low with optimized and minimal CSS file sizes.
 - **Pseudo-Class Modifiers**: Apply styles to elements in specific states like hover, focus, and active.
 
@@ -59,17 +58,17 @@ Using LowCSS is simple. Add the utility classes directly to your HTML elements t
 </div>
 ``` 
 
-Refer to the [Utility Classes Documentation](https://www.josemi.xyz/lowcss/#utilities) for a complete list of available utility classes and their usage.
-
-## Customization
-
-LowCSS is highly customizable to match your project's unique requirements and branding. Modify the SASS variables to adjust colors, typography, spacing, and more. Customize the framework to create a consistent and cohesive design system for your website.
+Refer to the [Utility Classes Documentation](https://low.josemi.xyz/docs/utilities) for a complete list of available utility classes and their usage.
 
 ## Documentation
 
-Comprehensive documentation is available to guide you through the usage, customization, and advanced features of LowCSS. Whether you're a beginner or an experienced developer, the documentation will provide you with the information you need to get the most out of the framework.
+Whether you are a beginner or an experienced developer, the documentation will provide you with the information you need to get the most out of the framework.
 
-Access the LowCSS documentation at [josemi.xyz/lowcss](https://www.josemi.xyz/lowcss).
+Access the LowCSS documentation at [low.josemi.xyz](https://low.josemi.xyz).
+
+## Examples
+
+This section showcases various use cases and implementations of the utility classes to inspire and guide your development process. Explore our examples at [low.josemi.xyz/examples](https://low.josemi.xyz/examples).
 
 ## Contributing
 
