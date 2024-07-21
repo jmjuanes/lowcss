@@ -38,7 +38,15 @@ $utilities: (
         classname: "animation",
         variants: ("default", "responsive"),
         properties: (animation),
-        values: variables.$animation,
+        values: (
+            "none": none,
+            "bounce": (bounce 1s infinite),
+            "fadein": (fadein ease 1s),
+            "fadeout": (fadeout ease 1s),
+            "ping": (ping 1s cubic-bezier(0, 0, 0.2, 1) infinite),
+            "pulse": (pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite),
+            "spin": (spin 1s linear infinite),
+        ),
     )),
 
     // Background utilities
@@ -51,7 +59,12 @@ $utilities: (
         classname: "bg",
         variants: ("default"),
         properties: (background-clip),
-        values: variables.$background-clip,
+        values: (
+            "border": border-box,
+            "padding": padding-box,
+            "content": content-box,
+            "text": text,
+        ),
     )),
     background-color: create-utility("background-color", (
         attributes: (
@@ -62,7 +75,7 @@ $utilities: (
         classname: "bg",
         variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even"),
         properties: (background-color),
-        values: variables.$background-color,
+        values: variables.$colors,
     )),
     background-image: create-utility("background-image", (
         attributes: (
@@ -73,7 +86,13 @@ $utilities: (
         classname: "bg",
         variants: ("default"),
         properties: (background-image),
-        values: variables.$background-image,
+        values: (
+            "none": none,
+            "gradient-to-right": linear-gradient(to right, var(--low-gradient-start), var(--low-gradient-stop)),
+            "gradient-to-lelft": linear-gradient(to left, var(--low-gradient-start), var(--low-gradient-stop)),
+            "gradient-to-bottom": linear-gradient(to bottom, var(--low-gradient-start), var(--low-gradient-stop)),
+            "gradient-to-top": linear-gradient(to top, var(--low-gradient-start), var(--low-gradient-stop)),
+        ),
     )),
     background-repeat: create-utility("background-repeat", (
         attributes: (
@@ -84,7 +103,10 @@ $utilities: (
         classname: "bg",
         variants: ("default"),
         properties: (background-repeat),
-        values: variables.$background-repeat,
+        values: (
+            "repeat": repeat,
+            "no-repeat": no-repeat,
+        ),
     )),
     background-size: create-utility("background-size", (
         attributes: (
@@ -95,7 +117,11 @@ $utilities: (
         classname: "bg",
         variants: ("default"),
         properties: (background-size),
-        values: variables.$background-size,
+        values: (
+            "auto": auto,
+            "cover": cover, 
+            "contain": contain,
+        ),
     )),
 
     // Gradients utilities
@@ -108,7 +134,7 @@ $utilities: (
         classname: "from",
         variants: ("default"),
         properties: (--low-gradient-start),
-        values: variables.$background-color,
+        values: variables.$colors,
     )),
     gradient-to: create-utility("gradient-to", (
         attributes: (
@@ -119,7 +145,7 @@ $utilities: (
         classname: "to",
         variants: ("default"),
         properties: (--low-gradient-stop),
-        values: variables.$background-color,
+        values: variables.$colors,
     )),
 
     // Border utilities
@@ -132,7 +158,7 @@ $utilities: (
         classname: "rounded",
         variants: ("default"),
         properties: (border-radius),
-        values: variables.$border-radius,
+        values: variables.$radiuses,
     )),
     border-top-left-radius: create-utility("border-top-left-radius", (
         attributes: (
@@ -143,7 +169,7 @@ $utilities: (
         classname: "rounded-tl",
         variants: ("default"),
         properties: (border-top-left-radius),
-        values: variables.$border-radius,
+        values: variables.$radiuses,
     )),
     border-top-right-radius: create-utility("border-top-right-radius", (
         attributes: (
@@ -154,7 +180,7 @@ $utilities: (
         classname: "rounded-tr",
         variants: ("default"),
         properties: (border-top-right-radius),
-        values: variables.$border-radius,
+        values: variables.$radiuses,
     )),
     border-bottom-left-radius: create-utility("border-bottom-left-radius", (
         attributes: (
@@ -165,7 +191,7 @@ $utilities: (
         classname: "rounded-bl",
         variants: ("default"),
         properties: (border-bottom-left-radius),
-        values: variables.$border-radius,
+        values: variables.$radiuses,
     )),
     border-bottom-right-radius: create-utility("border-bottom-right-radius", (
         attributes: (
@@ -176,7 +202,7 @@ $utilities: (
         classname: "rounded-br",
         variants: ("default"),
         properties: (border-bottom-right-radius),
-        values: variables.$border-radius,
+        values: variables.$radiuses,
     )),
     border-color: create-utility("border-color", (
         attributes: (
@@ -187,7 +213,7 @@ $utilities: (
         classname: "border",
         variants: ("default", "hover", "focus", "focus-within", "active", "checked", "disabled", "required", "group-hover", "group-focus", "group-focus-within"),
         properties: (border-color),
-        values: variables.$border-color,
+        values: variables.$colors,
     )),
     border-style: create-utility("border-style", (
         attributes: (
@@ -198,7 +224,12 @@ $utilities: (
         classname: "border",
         variants: ("default", "focus"),
         properties: (border-style),
-        values: variables.$border-style,
+        values: (
+            "solid": solid,
+            "dashed": dashed,
+            "dotted": dotted,
+            "none": none,
+        ),
     )),
     border-width: create-utility("border-width", (
         attributes: (
@@ -209,7 +240,7 @@ $utilities: (
         classname: "border",
         variants: ("default", "responsive", "focus"),
         properties: (border-width),
-        values: variables.$border-width,
+        values: variables.$borders,
     )),
     border-bottom-width: create-utility("border-bottom-width", (
         attributes: (
@@ -220,7 +251,7 @@ $utilities: (
         classname: "border-b",
         variants: ("default", "responsive", "focus", "first", "last"),
         properties: (border-bottom-width),
-        values: variables.$border-width,
+        values: variables.$borders,
     )),
     border-left-width: create-utility("border-left-width", (
         attributes: (
@@ -231,7 +262,7 @@ $utilities: (
         classname: "border-l",
         variants: ("default", "responsive", "focus", "first", "last"),
         properties: (border-left-width),
-        values: variables.$border-width,
+        values: variables.$borders,
     )),
     border-right-width: create-utility("border-right-width", (
         attributes: (
@@ -242,7 +273,7 @@ $utilities: (
         classname: "border-r",
         variants: ("default", "responsive", "focus", "first", "last"),
         properties: (border-right-width),
-        values: variables.$border-width,
+        values: variables.$borders,
     )),
     border-top-width: create-utility("border-top-width", (
         attributes: (
@@ -253,7 +284,7 @@ $utilities: (
         classname: "border-t",
         variants: ("default", "responsive", "focus", "first", "last"),
         properties: (border-top-width),
-        values: variables.$border-width,
+        values: variables.$borders,
     )),
     outline-color: create-utility("outline-color", (
         attributes: (
@@ -264,7 +295,7 @@ $utilities: (
         classname: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-color),
-        values: variables.$outline-color,
+        values: variables.$colors,
     )),
     outline-offset: create-utility("outline-offset", (
         attributes: (
@@ -275,7 +306,14 @@ $utilities: (
         classname: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-offset),
-        values: variables.$outline-offset,
+        values: (
+            "0": 0,
+            "1": 1px,
+            "2": 2px,
+            "4": 4px,
+            "6": 6px,
+            "8": 8px,
+        ),
     )),
     outline-style: create-utility("outline-style", (
         attributes: (
@@ -286,7 +324,12 @@ $utilities: (
         classname: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-style),
-        values: variables.$outline-style,
+        values: (
+            "solid": solid,
+            "dashed": dashed,
+            "dotted": dotted,
+            "none": none,
+        ),
     )),
     outline-width: create-utility("outline-width", (
         attributes: (
@@ -297,7 +340,14 @@ $utilities: (
         classname: "outline",
         variants: ("default", "focus", "focus-within", "hover", "active", "checked", "disabled", "required"),
         properties: (outline-width),
-        values: variables.$outline-width,
+        values: (
+            "0": 0,
+            "1": 1px,
+            "2": 2px,
+            "4": 4px,
+            "6": 6px,
+            "8": 8px,
+        ),
     )),
 
     // Effects utilities
@@ -310,7 +360,7 @@ $utilities: (
         classname: "shadow",
         variants: ("default", "hover", "focus", "focus-within"),
         properties: (box-shadow),
-        values: variables.$box-shadow,
+        values: variables.$shadows,
     )),
     opacity: create-utility("opacity", (
         attributes: (
@@ -321,7 +371,7 @@ $utilities: (
         classname: "opacity",
         variants: ("default", "responsive", "hover", "focus", "focus-within", "disabled", "group-hover", "group-focus", "group-focus-within"),
         properties: (opacity),
-        values: variables.$opacity,
+        values: variables.$opacities,
     )),
 
     // Flexbox and grid utilities
@@ -334,7 +384,14 @@ $utilities: (
         classname: "content",
         variants: ("default", "responsive"),
         properties: (align-content),
-        values: variables.$align-content,
+        values: (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "between": space-between,
+            "around": space-around,
+            "evenly": space-evenly,
+        ),
     )),
     align-items: create-utility("align-itens", (
         attributes: (
@@ -345,7 +402,13 @@ $utilities: (
         classname: "items",
         variants: ("default", "responsive"),
         properties: (align-items),
-        values: variables.$align-items,
+        values: (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "stretch": stretch,
+            "baseline": baseline,
+        ),
     )),
     align-self: create-utility("align-self", (
         attributes: (
@@ -356,7 +419,14 @@ $utilities: (
         classname: "self",
         variants: ("default", "responsive"),
         properties: (align-self),
-        values: variables.$align-self,
+        values: (
+            "auto": auto,
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "stretch": stretch,
+            "baseline": baseline,
+        ),
     )),
     flex: create-utility("flex", (
         attributes: (
@@ -367,7 +437,11 @@ $utilities: (
         classname: "flex",
         variants: ("default", "responsive"),
         properties: (flex),
-        values: variables.$flex,
+        values: (
+            "none": none,
+            "initial": initial,
+            "auto": auto,
+        ),
     )),
     flex-direction: create-utility("flex-direction", (
         attributes: (
@@ -378,7 +452,12 @@ $utilities: (
         classname: "flex",
         variants: ("default", "responsive"),
         properties: (flex-direction),
-        values: variables.$flex-direction,
+        values: (
+            "row": row, 
+            "col": column, 
+            "row-reverse": row-reverse, 
+            "col-reverse": column-reverse,
+        ),
     )),
     flex-grow: create-utility("flex-grow", (
         attributes: (
@@ -389,7 +468,10 @@ $utilities: (
         classname: "grow",
         variants: ("default", "responsive"),
         properties: (flex-grow),
-        values: variables.$flex-grow,
+        values: (
+            "0": 0,
+            "DEFAULT": 1,
+        ),
     )),
     flex-shrink: create-utility("flex-shrink", (
         attributes: (
@@ -400,7 +482,10 @@ $utilities: (
         classname: "shrink",
         variants: ("default", "responsive"),
         properties: (flex-shrink),
-        values: variables.$flex-shrink,
+        values: (
+            "0": 0,
+            "DEFAULT": 1,
+        ),
     )),
     flex-wrap: create-utility("flex-wrap", (
         attributes: (
@@ -411,7 +496,11 @@ $utilities: (
         classname: "flex",
         variants: ("default", "responsive"),
         properties: (flex-wrap),
-        values: variables.$flex-wrap,
+        values: (
+            "wrap": wrap,
+            "wrap-reverse": wrap-reverse,
+            "nowrap": nowrap,
+        ),
     )),
     gap: create-utility("gap", (
         attributes: (
@@ -422,7 +511,20 @@ $utilities: (
         classname: "gap",
         variants: ("default", "responsive"),
         properties: (gap),
-        values: variables.$gap,
+        values: (
+            "0": 0,
+            "px": 1px,
+            "1": 0.25rem,
+            "2": 0.5rem,
+            "3": 0.75rem,
+            "4": 1rem,
+            "6": 1.5rem,
+            "8": 2rem,
+            "12": 3rem,
+            "16": 4rem,
+            "24": 6rem,
+            "32": 8rem,
+        ),
     )),
     grid-template-columns: create-utility("grid-template-columns", (
         attributes: (
@@ -433,7 +535,21 @@ $utilities: (
         classname: "grid-cols",
         variants: ("default", "responsive"),
         properties: (grid-template-columns),
-        values: variables.$grid-template-columns,
+        values: (
+            "1": repeat(1, minmax(0, 1fr)),
+            "2": repeat(2, minmax(0, 1fr)),
+            "3": repeat(3, minmax(0, 1fr)),
+            "4": repeat(4, minmax(0, 1fr)),
+            "5": repeat(5, minmax(0, 1fr)),
+            "6": repeat(6, minmax(0, 1fr)),
+            "7": repeat(7, minmax(0, 1fr)),
+            "8": repeat(8, minmax(0, 1fr)),
+            "9": repeat(9, minmax(0, 1fr)),
+            "10": repeat(10, minmax(0, 1fr)),
+            "11": repeat(11, minmax(0, 1fr)),
+            "12": repeat(12, minmax(0, 1fr)),
+            "none": none,
+        ),
     )),
     grid-template-rows: create-utility("grid-template-rows", (
         attributes: (
@@ -444,7 +560,15 @@ $utilities: (
         classname: "grid-rows",
         variants: ("default", "responsive"),
         properties: (grid-template-rows),
-        values: variables.$grid-template-rows,
+        values: (
+            "1": repeat(1, minmax(0, 1fr)),
+            "2": repeat(2, minmax(0, 1fr)),
+            "3": repeat(3, minmax(0, 1fr)),
+            "4": repeat(4, minmax(0, 1fr)),
+            "5": repeat(5, minmax(0, 1fr)),
+            "6": repeat(6, minmax(0, 1fr)),
+            "none": none,
+        ),
     )),
     grid-auto-flow: create-utility("grid-auto-flow", (
         attributes: (
@@ -455,7 +579,13 @@ $utilities: (
         classname: "grid-flow",
         variants: ("default", "responsive"),
         properties: (grid-auto-flow),
-        values: variables.$grid-auto-flow,
+        values: (
+            "row": row,
+            "col": column,
+            "dense": dense,
+            "row-dense": row dense,
+            "col-dense": column dense,
+        ),
     )),
     grid-auto-columns: create-utility("grid-auto-columns", (
         attributes: (
@@ -466,7 +596,12 @@ $utilities: (
         classname: "auto-cols",
         variants: ("default", "responsive"),
         properties: (grid-auto-columns),
-        values: variables.$grid-auto-columns,
+        values: (
+            "auto": auto,
+            "min": min-content,
+            "max": max-content,
+            "fr": minmax(0, 1fr),
+        ),
     )),
     grid-auto-rows: create-utility("grid-auto-rows", (
         attributes: (
@@ -477,7 +612,12 @@ $utilities: (
         classname: "auto-rows",
         variants: ("default", "responsive"),
         properties: (grid-auto-rows),
-        values: variables.$grid-auto-rows,
+        values: (
+            "auto": auto,
+            "min": min-content,
+            "max": max-content,
+            "fr": minmax(0, 1fr),
+        ),
     )),
     justify-content: create-utility("justify-content", (
         attributes: (
@@ -488,7 +628,13 @@ $utilities: (
         classname: "justify",
         variants: ("default", "responsive"),
         properties: (justify-content),
-        values: variables.$justify-content,
+        values: (
+            "start": flex-start,
+            "end": flex-end,
+            "center": center,
+            "between": space-between,
+            "around": space-around,
+        ),
     )),
     order: create-utility("order", (
         attributes: (
@@ -499,7 +645,23 @@ $utilities: (
         classname: "order",
         variants: ("default", "responsive"),
         properties: (order),
-        values: variables.$order,
+        values: (
+            "none": 0,
+            "first": -999,
+            "last": 999,
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5,
+            "6": 6,
+            "7": 7,
+            "8": 8,
+            "9": 9,
+            "10": 10,
+            "11": 11,
+            "12": 12,
+        ),
     )),
 
     // Interactivity utilities
@@ -512,7 +674,44 @@ $utilities: (
         classname: "cursor",
         variants: ("default"),
         properties: (cursor),
-        values: variables.$cursor,
+        values: (
+            "auto": auto,
+            "default": default,
+            "hand": pointer,
+            "pointer": pointer,
+            "move": move,
+            "none": none,
+            "zoom-in": zoom-in,
+            "zoom-out": zoom-out,
+            "not-allowed": not-allowed,
+            "wait": wait,
+            "text": text,
+            "help": help,
+            "context-menu": context-menu,
+            "progress": progress,
+            "cell": cell,
+            "crosshair": crosshair,
+            "vertical-text": vertical-text,
+            "alias": alias,
+            "copy": copy,
+            "no-drop": no-drop,
+            "grab": grab,
+            "grabbing": grabbing,
+            "all-scroll": all-scroll,
+            "col-resize": col-resize,
+            "row-resize": row-resize,
+            "n-resize": n-resize,
+            "e-resize": e-resize,
+            "s-resize": s-resize,
+            "w-resize": w-resize,
+            "ne-resize": ne-resize,
+            "nw-resize": nw-resize,
+            "se-resize": se-resize,
+            "sw-resize": sw-resize,
+            "ew-resize": ew-resize,
+            "ns-resize": ns-resize,
+            "nesw-resize": nesw-resize,
+        ),
     )),
     user-select: create-utility("user-select", (
         attributes: (
@@ -523,7 +722,12 @@ $utilities: (
         classname: "select",
         variants: ("default"),
         properties: (user-select),
-        values: variables.$user-select,
+        values: (
+            "none": none,
+            "text": text,
+            "all": all,
+            "auto": auto,
+        ),
     )),
     pointer-events: create-utility("pointer-events", (
         attributes: (
@@ -534,7 +738,10 @@ $utilities: (
         classname: "pointer-events",
         variants: ("default"),
         properties: (pointer-events),
-        values: variables.$pointer-events,
+        values: (
+            "auto": auto,
+            "none": none,
+        ),
     )),
     touch-action: create-utility("touch-action", (
         attributes: (
@@ -545,7 +752,18 @@ $utilities: (
         classname: "touch",
         variants: ("default"),
         properties: (touch-action),
-        values: variables.$touch-action,
+        values: (
+            "auto": auto,
+            "none": none,
+            "pan-x": pan-x,
+            "pan-y": pan-y,
+            "pan-left": pan-left,
+            "pan-right": pan-right,
+            "pan-up": pan-up,
+            "pan-down": pan-down,
+            "pinch-zoom": pinch-zoom,
+            "manipulation": manipulation,
+        ),
     )),
     // Layout utilities
     bottom: create-utility("bottom", (
@@ -557,7 +775,12 @@ $utilities: (
         classname: "bottom",
         variants: ("default", "responsive"),
         properties: (bottom),
-        values: variables.$inset,
+        values: (
+            "0": 0px,
+            "half": 50%,
+            "full": 100%,
+            "auto": auto,
+        ),
     )),
     display: create-utility("display", (
         attributes: (
@@ -568,7 +791,24 @@ $utilities: (
         classname: null,
         variants: ("default", "responsive", "group-hover", "group-focus", "group-focus-within", "first", "last", "odd", "even", "peer-hover", "peer-focus", "peer-focus-within", "peer-active", "peer-checked"),
         properties: (display),
-        values: variables.$display,
+        values: (
+            "hidden": none,
+            "inline": inline,
+            "block": block,
+            "inline-block": inline-block,
+            "flex": flex,
+            "inline-flex": inline-flex,
+            "grid": grid,
+            "inline-grid": inline-grid,
+            "table": table,
+            "table-cell": table-cell,
+            "table-row": table-row,
+            "table-row-group": table-row-group,
+            "table-column": table-column,
+            "table-column-grup": table-column-group,
+            "table-header-group": table-header-group,
+            "table-footer-group": table-footer-group,
+        ),
     )),
     float: create-utility("float", (
         attributes: (
@@ -579,7 +819,11 @@ $utilities: (
         classname: "float",
         variants: ("default", "responsive"),
         properties: (float),
-        values: variables.$float,
+        values: (
+            "left": left,
+            "right": right,
+            "none": none,
+        ),
     )),
     left :create-utility("left", (
         attributes: (
@@ -590,7 +834,12 @@ $utilities: (
         classname: "left",
         variants: ("default", "responsive"),
         properties: (left),
-        values: variables.$inset,
+        values: (
+            "0": 0px,
+            "half": 50%,
+            "full": 100%,
+            "auto": auto,
+        ),
     )),
     overflow: create-utility("overflow", (
         attributes: (
@@ -601,7 +850,12 @@ $utilities: (
         classname: "overflow",
         variants: ("default", "responsive"),
         properties: (overflow),
-        values: variables.$overflow,
+        values: (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
     )),
     overflow-x: create-utility("overflow-x", (
         attributes: (
@@ -612,7 +866,12 @@ $utilities: (
         classname: "overflow-x",
         variants: ("default", "responsive"),
         properties: (overflow-x),
-        values: variables.$overflow,
+        values: (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
     )),
     overflow-y: create-utility("overflow-y", (
         attributes: (
@@ -623,7 +882,12 @@ $utilities: (
         classname: "overflow-y",
         variants: ("default", "responsive"),
         properties: (overflow-y),
-        values: variables.$overflow,
+        values: (
+            "auto": auto,
+            "scroll": scroll,
+            "hidden": hidden,
+            "visible": visible,
+        ),
     )),
     position: create-utility("position", (
         attributes: (
@@ -634,7 +898,13 @@ $utilities: (
         classname: null,
         variants: ("default", "responsive"),
         properties: (position),
-        values: variables.$position,
+        values: (
+            "relative": relative,
+            "absolute": absolute,
+            "sticky": sticky,
+            "fixed": fixed,
+            "initial": initial,
+        ),
     )),
     right: create-utility("right", (
         attributes: (
@@ -645,7 +915,12 @@ $utilities: (
         classname: "right",
         variants: ("default", "responsive"),
         properties: (right),
-        values: variables.$inset,
+        values: (
+            "0": 0px,
+            "half": 50%,
+            "full": 100%,
+            "auto": auto,
+        ),
     )),
     top: create-utility("top", (
         attributes: (
@@ -656,7 +931,12 @@ $utilities: (
         classname: "top",
         variants: ("default", "responsive"),
         properties: (top),
-        values: variables.$inset,
+        values: (
+            "0": 0px,
+            "half": 50%,
+            "full": 100%,
+            "auto": auto,
+        ),
     )),
     z-index: create-utility("z-index", (
         attributes: (
@@ -667,7 +947,15 @@ $utilities: (
         classname: "z",
         variants: ("default", "responsive"),
         properties: (z-index),
-        values: variables.$z-index,
+        values: (
+            "auto": auto,
+            "0": 0,
+            "10": 10,
+            "20": 20,
+            "30": 30,
+            "40": 40,
+            "50": 50,
+        ),
     )),
 
     // Sizing utilities
@@ -680,7 +968,9 @@ $utilities: (
         classname: "h",
         variants: ("default", "responsive"),
         properties: (height),
-        values: variables.$height,
+        values: map.merge(variables.$spacing, (
+            "screen": 100vh,
+        )),
     )),
     max-height: create-utility("max-height", (
         attributes: (
@@ -691,7 +981,12 @@ $utilities: (
         classname: "max-h",
         variants: ("default", "responsive"),
         properties: (max-height),
-        values: variables.$max-height,
+        values: map.merge(variables.$spacing, (
+            "screen": 100vh,
+            "max": max-content,
+            "min": min-content,
+            "fit": fit-content,
+        )),
     )),
     max-width: create-utility("max-width", (
         attributes: (
@@ -702,7 +997,26 @@ $utilities: (
         classname: "max-w",
         variants: ("default", "responsive"),
         properties: (max-width),
-        values: variables.$max-width,
+        values: map.merge(variables.$spacing, (
+            "none": none,
+            "xs": 20rem,
+            "sm": 24rem,
+            "md": 28rem,
+            "lg": 32rem,
+            "xl": 36rem,
+            "2xl": 42rem,
+            "3xl": 48rem,
+            "4xl": 56rem,
+            "5xl": 64rem,
+            "6xl": 72rem,
+            "7xl": 80rem,
+            "8xl": 88rem,
+            "9xl": 96rem,
+            "screen": 100vw,
+            "max": max-content,
+            "min": min-content,
+            "fit": fit-content,
+        )),
     )),
     min-height: create-utility("min-height", (
         attributes: (
@@ -713,7 +1027,12 @@ $utilities: (
         classname: "min-h",
         variants: ("default", "responsive"),
         properties: (min-height),
-        values: variables.$min-height,
+        values: map.merge(variables.$spacing, (
+            "screen": 100vh,
+            "max": max-content,
+            "min": min-content,
+            "fit": fit-content,
+        )),
     )),
     min-width: create-utility("min-width", (
         attributes: (
@@ -724,7 +1043,12 @@ $utilities: (
         classname: "min-w",
         variants: ("default", "responsive"),
         properties: (min-width),
-        values: variables.$min-width,
+        values: map.merge(variables.$spacing, (
+            "screen": 100vw,
+            "max": max-content,
+            "min": min-content,
+            "fit": fit-content,
+        )),
     )),
     width: create-utility("width", (
         attributes: (
@@ -735,7 +1059,36 @@ $utilities: (
         classname: "w",
         variants: ("default", "responsive"),
         properties: (width),
-        values: variables.$width,
+        values: map.merge(variables.$spacing, (
+            "1/2": 50%,
+            "1/3": 33.33333%,
+            "2/3": 66.66667%,
+            "1/4": 25%,
+            "2/4": 50%,
+            "3/4": 75%,
+            "1/5": 20%,
+            "2/5": 40%,
+            "3/5": 60%,
+            "4/5": 80%,
+            "1/6": 16.66667%,
+            "2/6": 33.33333%,
+            "3/6": 50%,
+            "4/6": 66.66667%,
+            "5/6": 83.33333%,
+            "1/12": 8.33333%,
+            "2/12": 16.66667%,
+            "3/12": 25%,
+            "4/12": 33.33333%,
+            "5/12": 41.66667%,
+            "6/12": 50%,
+            "7/12": 58.33333%,
+            "8/12": 66.66667%,
+            "9/12": 75%,
+            "10/12": 83.33333%,
+            "11/12": 91.66667%,
+            "auto": auto,
+            "screen": 100vw,
+        )),
     )),
     size: create-utility("size", (
         attributes: (
@@ -759,7 +1112,9 @@ $utilities: (
         classname: "m",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-x: create-utility("margin-x", (
         attributes: (
@@ -770,7 +1125,9 @@ $utilities: (
         classname: "mx",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-left, margin-right),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-y: create-utility("margin-y", (
         attributes: (
@@ -781,7 +1138,9 @@ $utilities: (
         classname: "my",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-top, margin-bottom),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-bottom: create-utility("margin-bottom", (
         attributes: (
@@ -792,7 +1151,9 @@ $utilities: (
         classname: "mb",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-bottom),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-left: create-utility("mrgin-left", (
         attributes: (
@@ -803,7 +1164,9 @@ $utilities: (
         classname: "ml",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-left),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-right: create-utility("margin-right", (
         attributes: (
@@ -814,7 +1177,9 @@ $utilities: (
         classname: "mr",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-right),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     margin-top: create-utility("margin-top", (
         attributes: (
@@ -825,7 +1190,9 @@ $utilities: (
         classname: "mt",
         variants: ("default", "responsive", "first", "last"),
         properties: (margin-top),
-        values: variables.$margin,
+        values: map.merge(variables.$spacing, (
+            "auto": auto,
+        )),
     )),
     padding: create-utility("padding", (
         attributes: (
@@ -836,7 +1203,7 @@ $utilities: (
         classname: "p",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-x: create-utility("padding-x", (
         attributes: (
@@ -847,7 +1214,7 @@ $utilities: (
         classname: "px",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-left, padding-right),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-y: create-utility("padding-y", (
         attributes: (
@@ -858,7 +1225,7 @@ $utilities: (
         classname: "py",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-top, padding-bottom),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-bottom: create-utility("padding-bottom", (
         attributes: (
@@ -869,7 +1236,7 @@ $utilities: (
         classname: "pb",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-bottom),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-left: create-utility("padding-left", (
         attributes: (
@@ -880,7 +1247,7 @@ $utilities: (
         classname: "pl",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-left),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-right: create-utility("padding-right", (
         attributes: (
@@ -891,7 +1258,7 @@ $utilities: (
         classname: "pr",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-right),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
     padding-top: create-utility("padding-top", (
         attributes: (
@@ -902,7 +1269,7 @@ $utilities: (
         classname: "pt",
         variants: ("default", "responsive", "first", "last"),
         properties: (padding-top),
-        values: variables.$padding,
+        values: variables.$spacing,
     )),
 
     // Typography utilities
@@ -915,7 +1282,7 @@ $utilities: (
         classname: "font",
         variants: ("default"),
         properties: (font-family),
-        values: variables.$font-family,
+        values: variables.$font-families,
     )),
     font-size: create-utility("font-size", (
         attributes: (
@@ -926,7 +1293,7 @@ $utilities: (
         classname: "text",
         variants: ("default", "responsive"),
         properties: (font-size),
-        values: variables.$font-size,
+        values: variables.$font-sizes,
     )),
     font-style: create-utility("font-style", (
         attributes: (
@@ -937,7 +1304,10 @@ $utilities: (
         classname: null,
         variants: ("default"),
         properties: (font-style),
-        values: variables.$font-style,
+        values: (
+            "italic": italic,
+            "not-italic": normal,
+        ),
     )),
     font-weight: create-utility("font-weight", (
         attributes: (
@@ -948,7 +1318,7 @@ $utilities: (
         classname: "font",
         variants: ("default", "responsive", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (font-weight),
-        values: variables.$font-weight,
+        values: variables.$font-weights,
     )),
     letter-spacing: create-utility("letter-spacing", (
         attributes: (
@@ -959,7 +1329,7 @@ $utilities: (
         classname: "tracking",
         variants: ("default"),
         properties: (letter-spacing),
-        values: variables.$letter-spacing,
+        values: variables.$trackings,
     )),
     line-height: create-utility("line-height", (
         attributes: (
@@ -970,7 +1340,7 @@ $utilities: (
         classname: "leading",
         variants: ("default", "responsive"),
         properties: (line-height),
-        values: variables.$line-height,
+        values: variables.$leadings,
     )),
     list-style-position: create-utility("list-style-position", (
         attributes: (
@@ -981,7 +1351,10 @@ $utilities: (
         classname: "list",
         variants: ("default"),
         properties: (list-style-position),
-        values: variables.$list-style-position,
+        values: (
+            "inside": inside,
+            "outside": outside,
+        ),
     )),
     list-style-type: create-utility("list-style-type", (
         attributes: (
@@ -992,7 +1365,11 @@ $utilities: (
         classname: "list",
         variants: ("default"),
         properties: (list-style-type),
-        values: variables.$list-style-type,
+        values: (
+            "none": none,
+            "disc": disc,
+            "decimal": decimal,
+        ),
     )),
     text-align: create-utility("text-align", (
         attributes: (
@@ -1003,7 +1380,12 @@ $utilities: (
         classname: "text",
         variants: ("default", "responsive"),
         properties: (text-align),
-        values: variables.$text-align,
+        values: (
+            "justify": justify, 
+            "left": left, 
+            "center": center, 
+            "right": right,
+        ),
     )),
     text-color: create-utility("text-color", (
         attributes: (
@@ -1014,7 +1396,7 @@ $utilities: (
         classname: "text",
         variants: ("default", "responsive", "hover", "focus", "focus-within", "active", "disabled", "required", "checked", "group-hover", "group-focus", "group-focus-within"),
         properties: (color),
-        values: variables.$text-color,
+        values: variables.$colors,
     )),
     text-decoration: create-utility("text-decoration", (
         attributes: (
@@ -1025,7 +1407,11 @@ $utilities: (
         classname: null,
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-decoration),
-        values: variables.$text-decoration,
+        values: (
+            "strike": line-through,
+            "underline": underline,
+            "no-underline": none,
+        ),
     )),
     text-overflow: create-utility("text-overflow", (
         attributes: (
@@ -1036,7 +1422,10 @@ $utilities: (
         classname: "text",
         variants: ("default", "responsive"),
         properties: (text-overflow),
-        values: variables.$text-overflow,
+        values: (
+            "ellipsis": ellipsis,
+            "clip": clip,
+        ),
     )),
     text-transform: create-utility("text-transform", (
         attributes: (
@@ -1047,7 +1436,11 @@ $utilities: (
         classname: null,
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
         properties: (text-transform),
-        values: variables.$text-transform,
+        values: (
+            "capitalize": capitalize,
+            "uppercase": uppercase,
+            "lowercase": lowercase,
+        ),
     )),
     vertical-align: create-utility("vertical-align", (
         attributes: (
@@ -1058,7 +1451,14 @@ $utilities: (
         classname: "align",
         variants: ("default", "responsive"),
         properties: (vertical-align),
-        values: variables.$vertical-align,
+        values: (
+            "baseline": baseline,
+            "top": top,
+            "middle": middle,
+            "bottom": bottom,
+            "text-top": text-top,
+            "text-bottom": text-bottom,
+        ),
     )),
 
     // Filter
@@ -1071,7 +1471,15 @@ $utilities: (
         classname: "blur",
         variants: ("default", "responsive"),
         properties: (filter),
-        values: variables.$filter-blur,
+        values: (
+            "none": blur(0px),
+            "sm": blur(2px),
+            "md": blur(4px),
+            "lg": blur(8px),
+            "xl": blur(16px),
+            "2xl": blur(32px),
+            "3xl": blur(48px),
+        ),
     )),
     filter-sepia: create-utility("filter-sepia", (
         attributes: (
@@ -1082,7 +1490,10 @@ $utilities: (
         classname: "sepia",
         variants: ("default", "responsive"),
         properties: (filter),
-        values: variables.$filter-sepia,
+        values: (
+            "none": sepia(0),
+            "full": sepia(100%),
+        ),
     )),
     filter-invert: create-utility("filter-invert", (
         attributes: (
@@ -1093,7 +1504,10 @@ $utilities: (
         classname: "invert",
         variants: ("default", "responsive"),
         properties: (filter),
-        values: variables.$filter-invert,
+        values: (
+            "none": invert(0),
+            "full": invert(100%),
+        ),
     )),
     filter-backdrop-blur: create-utility("filter-backdrop-blur", (
         attributes: (
@@ -1104,7 +1518,15 @@ $utilities: (
         classname: "backdrop-blur",
         variants: ("default", "responsive"),
         properties: (backdrop-filter),
-        values: variables.$filter-backdrop-blur,
+        values: (
+            "none": blur(0px),
+            "sm": blur(2px),
+            "md": blur(4px),
+            "lg": blur(8px),
+            "xl": blur(16px),
+            "2xl": blur(32px),
+            "3xl": blur(48px),
+        ),
     )),
 
     // Transform
@@ -1117,7 +1539,15 @@ $utilities: (
         classname: "scale",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-scale,
+        values: (
+            "0": scale(0),
+            "25": scale(0.25),
+            "50": scale(0.5),
+            "75": scale(0.75),
+            "100": scale(1),
+            "125": scale(1.25),
+            "150": scale(1.5),
+        ),
     )),
     scale-x: create-utility("scale-x", (
         attributes: (
@@ -1128,7 +1558,15 @@ $utilities: (
         classname: "scale-x",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-scale,
+        values: (
+            "0": scaleX(0),
+            "25": scaleX(0.25),
+            "50": scaleX(0.5),
+            "75": scaleX(0.75),
+            "100": scaleX(1),
+            "125": scaleX(1.25),
+            "150": scaleX(1.5),
+        ),
     )),
     scale-y: create-utility("scale-y", (
         attributes: (
@@ -1139,7 +1577,15 @@ $utilities: (
         classname: "scale-y",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-scale,
+        values: (
+            "0": scaleY(0),
+            "25": scaleY(0.25),
+            "50": scaleY(0.5),
+            "75": scaleY(0.75),
+            "100": scaleY(1),
+            "125": scaleY(1.25),
+            "150": scaleY(1.5),
+        ),
     )),
     rotate: create-utility("rotate", (
         attributes: (
@@ -1150,7 +1596,12 @@ $utilities: (
         classname: "rotate",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-rotate,
+        values: (
+            "0": rotate(0),
+            "45": rotate(45deg),
+            "90": rotate(90deg),
+            "180": rotate(180deg),
+        ),
     )),
     translate-x: create-utility("translate-x", (
         attributes: (
@@ -1161,7 +1612,29 @@ $utilities: (
         classname: "translate-x",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-translate-x,
+        values: (
+            "0": translateX(0),
+            "px": translateX(1px),
+            "1": translateX(0.25rem),
+            "2": translateX(0.5rem),
+            "3": translateX(0.75rem),
+            "4": translateX(1rem),
+            "6": translateX(1.5rem),
+            "8": translateX(2rem),
+            "10": translateX(2.5rem),
+            "12": translateX(3rem),
+            "14": translateX(3.5rem),
+            "16": translateX(4rem),
+            "18": translateX(4.5rem),
+            "20": translateX(5rem),
+            "24": translateX(6rem),
+            "28": translateX(7rem),
+            "32": translateX(8rem),
+            "half": translateX(50%),
+            "full": translateX(100%),
+            "half-n": translateX(-50%),
+            "full-n": translateX(-100%),
+        ),
     )),
     translate-y: create-utility("translate-y", (
         attributes: (
@@ -1172,7 +1645,29 @@ $utilities: (
         classname: "translate-y",
         variants: ("default", "responsive"),
         properties: (transform),
-        values: variables.$transform-translate-y,
+        values: (
+            "0": translateY(0),
+            "px": translateY(1px),
+            "1": translateY(0.25rem),
+            "2": translateY(0.5rem),
+            "3": translateY(0.75rem),
+            "4": translateY(1rem),
+            "6": translateY(1.5rem),
+            "8": translateY(2rem),
+            "10": translateY(2.5rem),
+            "12": translateY(3rem),
+            "14": translateY(3.5rem),
+            "16": translateY(4rem),
+            "18": translateY(4.5rem),
+            "20": translateY(5rem),
+            "24": translateY(6rem),
+            "28": translateY(7rem),
+            "32": translateY(8rem),
+            "half": translateY(50%),
+            "full": translateY(100%),
+            "half-n": translateY(-50%),
+            "full-n": translateY(-100%),
+        ),
     )),
     transform-origin: create-utility("transform-origin", (
         attributes: (
@@ -1183,7 +1678,17 @@ $utilities: (
         classname: "origin",
         variants: ("default", "responsive"),
         properties: (transform-origin),
-        values: variables.$transform-origin,
+        values: (
+            "center": center,
+            "top": top,
+            "top-right": (top right),
+            "right": right,
+            "bottom-right": (bottom right),
+            "bottom": bottom,
+            "bottom-left": (bottom left),
+            "left": left,
+            "top-left": (top left),
+        ),
     )),
 );
 
