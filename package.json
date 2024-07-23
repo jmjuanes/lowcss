@@ -1,13 +1,13 @@
 {
     "name": "lowcss",
-    "version": "0.23.0",
+    "version": "0.23.1",
     "description": "A low-level functional CSS toolkit",
     "author": {
         "name": "Josemi Juanes",
         "email": "hello@josemi.xyz"
     },
     "license": "MIT",
-    "homepage": "https://www.josemi.xyz/lowcss",
+    "homepage": "https://low.josemi.xyz",
     "repository": "https://github.com/jmjuanes/lowcss",
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "main": "low.css",
