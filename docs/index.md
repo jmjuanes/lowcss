@@ -15,18 +15,30 @@ features:
 
 <div class="flex justify-between py-16 md:py-20 md:gap-12">
     <div class="w-full">
+        <div class="mb-4">
+            <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-neutral-900 group">
+                <div class="flex items-center">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#party-horn"></use></svg>
+                </div>
+                <div class="w-px h-4 bg-neutral-300"></div>
+                <div class="font-medium group-hover:underline text-sm">Introducing examples</div>
+                <div class="flex items-center">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#arrow-right"></use></svg>
+                </div>
+            </a>
+        </div>
         <div class="max-w-lg font-crimson text-6xl md:text-7xl leading-none mb-4 md:mb-6">
             <span class="font-medium tracking-tight text-neutral-950">Start building your next idea.</span>
         </div>
         <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
             <span class="text-neutral-700">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
-        <div class="flex">
-            <a href="/docs" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
-                <strong class="text-lg">Getting started</strong>
-                <div class="text-xl ml-2">
-                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#arrow-right"></use></svg>
-                </div>
+        <div class="flex flex-row gap-2">
+            <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-neutral-950 hover:bg-neutral-800 text-white no-underline cursor-pointer">
+                <span class="text-base font-medium">Get Started</span>
+            </a>
+            <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border border-neutral-200 rounded-lg bg-white hover:bg-neutral-50 text-neutral-950 no-underline cursor-pointer">
+                <span class="text-base font-medium">Download</span>
             </a>
         </div>
     </div>
