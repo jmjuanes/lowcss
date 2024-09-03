@@ -32,7 +32,9 @@ For example, to set the text color to red, use the following class:
 
 This will apply the specified style to the element, resulting in red-colored text.
 
-## Responsive Design
+## Media queries
+
+### Responsive Design
 
 LowCSS makes it easy to create responsive designs using the following utility syntax: 
 
@@ -61,6 +63,19 @@ You can apply different styles at different breakpoints:
 ```
 
 In ths example, the content text will be hidden at screens sizes lower than the medium breakpoint, and visible is screens sizes upper than the medium breakpoint.
+
+### Print Media
+
+> This feature was added in **v0.24.0**.
+
+Use the `print` modifier to apply the provided class only when the document is begin printed.
+
+```html
+<div class="hidden print:block">
+    This block is only displayed when the document is begin printed.
+</div>
+```
+
 
 ## State Modifiers
 
