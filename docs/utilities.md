@@ -27,11 +27,11 @@ prevPage: "markup"
                 <span class="font-bold">default</span>
             </div>
             {{/if}}
-            {{#if hasResponsiveVariant}}
+            {{#each media}}
             <div class="py-1 px-2 bg-gray-700 text-white text-xs rounded-lg">
-                <span class="font-bold">responsive</span>
+                <span>media: <span class="font-bold">{{.}}</span></span>
             </div>
-            {{/if}}
+            {{/each}}
             {{#each pseudos}}
             <div class="py-1 px-2 bg-gray-200 text-xs rounded-lg">
                 <span>pseudo: <span class="font-bold">{{.}}</span></span>
