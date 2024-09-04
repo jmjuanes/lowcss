@@ -30,8 +30,10 @@ const getUtilities = () => {
             url: config.attributes.url,
             variants: config.variants,
             hasDefaultVariant: config.variants.includes("default"),
-            hasResponsiveVariant: config.variants.includes("responsive"),
-            pseudos: config.variants.filter(v => v !== "default" && v !== "responsive"),
+            // hasResponsiveVariant: config.variants.includes("responsive"),
+            // hasPrintVariant: config.variants.includes("print"),
+            media: config.variants.filter(v => v === "responsive" || v === "print"),
+            pseudos: config.variants.filter(v => v !== "default" && v !== "responsive" && v !== "print"),
             values: Object.keys(config.values).map(key => ({
                 name: [config.classname || "", (key !== "DEFAULT" ? key : "")].filter(Boolean).join("-"),
                 values: config.properties.map(prop => {

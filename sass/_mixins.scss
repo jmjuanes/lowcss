@@ -114,6 +114,14 @@
                     }
                 }
             }
+            // Print state
+            @else if $variant == "print" {
+                @media print {
+                    .print#{variables.$separator}#{$selector} {
+                        @include rule($properties, $value);
+                    }
+                }
+            }
             // TODO: display no valid variant error
         }
     }
