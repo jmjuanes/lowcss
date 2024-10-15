@@ -7,7 +7,7 @@ nextPage: "installation"
 
 # Introduction
 
-**LowCSS** is a powerful **Utility CSS framework** built with SASS, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tainwindcss.com), LowCSS follows a similar structure and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
+**LowCSS** is a powerful **Utility CSS framework** built with SASS, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tailwindcss.com), LowCSS follows a similar structure and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
 
 ##  Intuitive Utility Classes
 
