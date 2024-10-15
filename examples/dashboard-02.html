@@ -75,7 +75,7 @@ kanban:
             </a>
             {{/if}}
             {{#each items}}
-            <a class="flex items-center justify-center text-neutral-800 hover:text-neutral-950 hover:bg-neutral-100 rounded-xl py-3 text-xl">
+            <a class="flex items-center justify-center text-neutral-800 hover:text-neutral-950 hover:bg-neutral-100 rounded-xl py-3 text-xl cursor-pointer">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{.}}"></use></svg>
             </a>
             {{/each}}
@@ -110,6 +110,11 @@ kanban:
             </div>
         </div>
     </div>
+    <!-- Description -->
+    <div class="w-full">
+        <div class="text-neutral-950 text-2xl font-bold">Website</div>
+        <div class="text-neutral-500 text-sm">This is the main project for the website of ABCD Corp.</div>
+    </div>
     <!-- Filters and views -->
      <div class="w-full flex items-center justify-between gap-4 select-none mt-3">
         <div class="flex items-center gap-1 p-1 bg-neutral-100 rounded-lg border border-neutral-200">
@@ -118,6 +123,12 @@ kanban:
             <div class="cursor-pointer hover:bg-white text-neutral-700 text-xs px-2 py-1 rounded-md">Calendar</div>
         </div>
         <div class="flex items-center gap-2">
+            <div class="relative">
+                <div class="absolute top-0 left-0 text-neutral-500 text-base px-2 py-2">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#search"></use></svg>
+                </div>
+                <input type="text" class="border-0 bg-white py-1 pr-2 pl-8 border border-neutral-200 rounded-lg bg-white text-sm" placeholder="Search for a task..." />
+            </div>
             <div class="flex items-center justify-center gap-1 bg-white hover:bg-neutral-100 text-900 rounded-lg px-3 py-1 border border-neutral-200 cursor-pointer">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#filter"></use></svg>
                 <div class="text-sm font-medium">Filter</div>
