@@ -32,11 +32,14 @@
         "prebuild:site": "rm -rf www && mkdir www",
         "build:site": "node ./scripts/site.js",
         "postbuild:site": "cp low.* www/ && cp colors.json www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp public/* www/",
+        "build:playground": "node ./scripts/playground.js build",
         "build": "yarn build:bundle && yarn build:css && yarn build:json && yarn build:colors",
         "bundle": "yarn build:bundle",
         "docs": "yarn run build:site",
+        "playground": "yarn serve:playground",
         "serve": "stattic --folder ./www --port 3000",
-        "site": "yarn build:site",
+        "serve:playground": "node ./scripts/playground.js serve",
+        "site": "yarn build:site && yarn build:playground",
         "pack": "zip lowcss.zip low.* colors.json"
     },
     "keywords": [
@@ -59,6 +62,7 @@
     "devDependencies": {
         "@josemi-icons/svg": "^0.6.0",
         "autoprefixer": "^10.4.19",
+        "codecake": "^0.4.2",
         "csso-cli": "^4.0.1",
         "front-matter": "^4.0.2",
         "highlight.js": "^11.10.0",
