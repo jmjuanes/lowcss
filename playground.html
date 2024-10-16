@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+    <meta name="title" content="{{site.title}}" />
+    <meta name="description" content="{{site.description}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+    <link rel="stylesheet" href="/low.css" />
+    <link rel="stylesheet" href="/codecake.css" />
+    <title>Playground - lowCSS</title>
+    <style>
+        .font-brand {
+            font-family: Poppins, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white m-0 p-0 font-inter text-neutral-800 leading-normal">
+    <div class="w-full flex flex-col flex-none h-screen">
+        <header class="w-full flex flex-none items-center justify-between px-4 py-4 border-b border-neutral-200">
+            <div class="flex items-center gap-2 select-none">
+                <a href="/" class="font-semibold font-brand text-2xl tracking-tighter text-neutral-900">
+                    <span>low<span class="text-neutral-800 pl-px">css</span>.</span>
+                </a>
+                <div class="font-medium text-lg leading-none">playground</div>
+            </div>
+            <div class="flex gap-1 items-center justify-center p-1 bg-neutral-100 rounded-lg text-neutral-700">
+                <div data-view="code,split,preview" class="flex items-center text-xl px-3 py-1 rounded-md cursor-pointer bg-white shadow-sm text-neutral-950">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#square-half"></use></svg>
+                </div>
+                <div data-view="preview" class="flex items-center text-xl px-3 py-1 rounded-md text-neutral-700 cursor-pointer">
+                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#square"></use></svg>
+                </div>
+            </div>
+        </header>
+        <main class="flex-auto flex min-h-0">
+            <div data-panel="code" class="w-full overflow-y-auto bg-neutral-50"></div>
+            <div data-panel="split" class="bg-neutral-200 w-px"></div>
+            <div data-panel="preview" class="w-full">Preview</div>
+        </main>
+    </div>
+    <script type="module">
+        import * as CodeCake from "./codecake.js";
+        const codePanel = document.querySelector(`[data-panel="code"]`);
+        const previewPanel = document.querySelector(`[data-panel="preview"]`);
+        const editor = CodeCake.create(codePanel, {
+            language: "html",
+            className: "codecake-light",
+            highlight: CodeCake.highlight,
+            lineNumbers: true,
+        });
+
+        // Register interactions to show/hide the code panel
+        const viewElements = Array.from(document.querySelectorAll(`[data-view]`));
+        viewElements.forEach(viewElement => {
+            viewElement.addEventListener("click", event => {
+                // 1. show/hide panels
+                const panelsToDisplay = viewElement.dataset.view.split(",");
+                ["code", "split", "preview"].forEach(view => {
+                    document.querySelector(`[data-panel="${view}"]`).style.display = panelsToDisplay.includes(view) ? "" : "none";
+                });
+                // 2. update styles of other view elements
+                viewElements.filter(el => el !== viewElement).forEach(el => {
+                    el.classList.remove("bg-white", "text-neutral-950", "shadow-sm");
+                    // el.classList.add("cursor-pointer");
+                });
+                // 3. Update styles of this element
+                viewElement.classList.add("bg-white", "text-neutral-950", "shadow-sm");
+                // viewElement.classList.remove("cursor-pointer");
+            });
+        });
+    </script>
+</body>
+ 
