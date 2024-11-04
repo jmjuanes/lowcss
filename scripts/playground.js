@@ -17,9 +17,9 @@ const MIME_TYPES = {
 
 // map vendor files with node_modules 
 const VENDOR_FILES = {
+    "/low.css": "low.css",
     "/codecake.js": "node_modules/codecake/codecake.js",
     "/codecake.css": "node_modules/codecake/codecake.css",
-    "/low.css": "low.css",
     "/sprite.svg": "node_modules/@josemi-icons/svg/sprite.svg",
     "/lz-string.min.js": "node_modules/lz-string/libs/lz-string.min.js",
 };
@@ -45,27 +45,50 @@ const sendFile = (response, filePath) => {
     response.end("Not found");
 };
 
-
-// server main function
-const serve = () => {
-    const server = http.createServer((request, response) => {
-        console.log(`${request.method} ${request.url}`);
-        const url = path.normalize(request.url);
-        // Check for index.html or '/'
-        if (url === "/" || url === "/index.html") {
-            return sendFile(response, path.join(process.cwd(), "playground.html"));
-        }
-        // check for a vendor file
-        else if (VENDOR_FILES[url]) {
-            return sendFile(response, path.join(process.cwd(), VENDOR_FILES[url]));
-        }
-        // send requested file
-        sendFile(response, path.join(process.cwd(), url));
-    });
-    // launch server
-    server.listen(PORT);
-    console.log(`Server running at http://127.0.0.1:${PORT}/`);
+// available commands
+const commands = {
+    build: () => {
+        // generate the files to copy
+        // note: skip the low.css file
+        const files = Object.entries(VENDOR_FILES)
+            .filter(entry => entry[1].startsWith("node_modules"))
+            .map(([target, source]) => {
+                return {
+                    from: path.join(process.cwd(), source),
+                    to: path.join(process.cwd(), "www", target),
+                };
+            });
+        // copy also the playground.html file
+        files.push({
+            from: path.join(process.cwd(), "playground.html"),
+            to: path.join(process.cwd(), "www", "playground.html"),
+        });
+        // copy all files
+        files.forEach(file => {
+            fs.copyFileSync(file.from, file.to);
+            console.log(`[playground:copy] ${file.from} --> ${file.to}`);
+        });
+    },
+    serve: () => {
+        const server = http.createServer((request, response) => {
+            console.log(`${request.method} ${request.url}`);
+            const url = path.normalize(request.url);
+            // Check for index.html or '/'
+            if (url === "/" || url === "/index.html") {
+                return sendFile(response, path.join(process.cwd(), "playground.html"));
+            }
+            // check for a vendor file
+            else if (VENDOR_FILES[url]) {
+                return sendFile(response, path.join(process.cwd(), VENDOR_FILES[url]));
+            }
+            // send requested file
+            sendFile(response, path.join(process.cwd(), url));
+        });
+        // launch server
+        server.listen(PORT);
+        console.log(`Server running at http://127.0.0.1:${PORT}/`);
+    },
 };
 
 // run serve or build
-serve();
+commands[process.argv[2]]();
