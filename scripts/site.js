@@ -103,6 +103,7 @@ const getData = () => {
                 {title: "Documentation", link: "/docs"},
                 {title: "Colors", link: "/colors"},
                 {title: "Examples", link: "/examples"},
+                {title: "Playground", link: "/playground"},
             ],
             data: {
                 utilities: utilities,
