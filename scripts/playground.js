@@ -28,37 +28,38 @@ const lookup = file => {
     return MIME_TYPES[path.extname(file)] || "text/plain";
 };
 
+// send file as a response
+const sendFile = (response, filePath) => {
+    const pathExists = fs.existsSync(filePath);
+    // 1. File exists: send file with the correct MIME type
+    if (pathExists) {
+        response.writeHead(200, {
+            "Content-Type": lookup(path.basename(filePath)),
+        });
+        fs.createReadStream(filePath).pipe(response);
+        return;
+    }
+    // 2. File does not exist: send a 404 message
+    response.writeHead(404);
+    response.end("Not found");
+};
+
+
 // server main function
 const serve = () => {
-    // send file as a response
-    const sendFile = (res, filePath) => {
-        const pathExists = fs.existsSync(filePath);
-        // 1. File exists: send file with the correct MIME type
-        if (pathExists) {
-            res.writeHead(200, {
-                "Content-Type": lookup(path.basename(filePath)),
-            });
-            fs.createReadStream(filePath).pipe(res);
-        }
-        // 2. File does not exist: send a 404 message
-        else {
-            res.writeHead(404);
-            res.end("Not found");
-        }
-    };
-    const server = http.createServer((req, res) => {
-        console.log(`${req.method} ${req.url}`);
-        const url = path.normalize(req.url);
+    const server = http.createServer((request, response) => {
+        console.log(`${request.method} ${request.url}`);
+        const url = path.normalize(request.url);
         // Check for index.html or '/'
         if (url === "/" || url === "/index.html") {
-            return sendFile(res, path.join(process.cwd(), "playground.html"));
+            return sendFile(response, path.join(process.cwd(), "playground.html"));
         }
         // check for a vendor file
         else if (VENDOR_FILES[url]) {
-            return sendFile(res, path.join(process.cwd(), VENDOR_FILES[url]));
+            return sendFile(response, path.join(process.cwd(), VENDOR_FILES[url]));
         }
         // send requested file
-        sendFile(res, path.join(process.cwd(), url));
+        sendFile(response, path.join(process.cwd(), url));
     });
     // launch server
     server.listen(PORT);

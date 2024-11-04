@@ -36,11 +36,16 @@
         <main class="flex-auto flex min-h-0">
             <div data-panel="code" class="w-full overflow-y-auto bg-neutral-50"></div>
             <div data-panel="split" class="bg-neutral-200 w-px"></div>
-            <div data-panel="preview" class="w-full">Preview</div>
+            <div data-panel="preview" class="w-full">
+                <iframe class="w-full h-full border-0" srcdoc=""></iframe>
+            </div>
         </main>
     </div>
     <script type="module">
         import * as CodeCake from "./codecake.js";
+        // internal method to generate the code of the iframe
+        const updatePreview = code => {
+        };
         const codePanel = document.querySelector(`[data-panel="code"]`);
         const previewPanel = document.querySelector(`[data-panel="preview"]`);
         const editor = CodeCake.create(codePanel, {
@@ -49,7 +54,26 @@
             highlight: CodeCake.highlight,
             lineNumbers: true,
         });
+        // listen for changes in the code
+        editor.onChange(code => {
+            const iframeCode = [
+                `<html lang="en">`,
+                `<head>`,
+                `    <meta charSet="utf-8" />`,
+                `    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />`,
+                `    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />`,
+                `    <link rel="stylesheet" href="/low.css" />`,
+                `</head>`,
+                `<body class="bg-white m-0 p-0">`,
+                `    ${code}`,
+                `</body>`,
+                `</html>`,
+            ];
+            return iframeCode.join("\n");
 
+
+            // previewPanel.innerHTML = code;
+        });
         // Register interactions to show/hide the code panel
         const viewElements = Array.from(document.querySelectorAll(`[data-view]`));
         viewElements.forEach(viewElement => {
