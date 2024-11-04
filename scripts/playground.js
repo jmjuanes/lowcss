@@ -21,6 +21,7 @@ const VENDOR_FILES = {
     "/codecake.css": "node_modules/codecake/codecake.css",
     "/low.css": "low.css",
     "/sprite.svg": "node_modules/@josemi-icons/svg/sprite.svg",
+    "/lz-string.min.js": "node_modules/lz-string/libs/lz-string.min.js",
 };
 
 // tiny method to get the MIME type using the extension
