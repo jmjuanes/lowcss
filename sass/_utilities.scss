@@ -1844,3 +1844,31 @@ $utilities: (
 @function get-utility($utility-name) {
     @return map.get($utilities, $utility-name);
 }
+
+// @description parse the utility string
+@function parse-utility($str) {
+    @each $utility-name,$utility-config in $utilities {
+        $classname: map.get($utility-config, "classname");
+        @each $key,$value in map.get($utility-config, "values") {
+            $cn: "";
+            @if $classname != null and $key != "DEFAULT" {
+                $cn: $classname + "-" + $key;
+            }
+            @else if $key == "DEFAULT" {
+                $cn: $classname;
+            }
+            @else if $classname == null {
+                $cn: $key;
+            }
+            @if $str == $cn {
+                @return (
+                    config: $utility-config,
+                    properties: map.get($utility-config, "properties"),
+                    value: $value,
+                );
+            }
+        }
+    }
+    // utility not found
+    @return null;
+}
