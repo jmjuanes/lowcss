@@ -5,6 +5,7 @@
 
 @use "functions";
 @use "variables";
+@use "utilities";
 
 // @description generate media screen above the specified breakpoint
 @mixin screen-above($breakpoint) {
@@ -126,3 +127,58 @@
         }
     }
 }
+
+// @description utility mixin to apply utilities
+@mixin apply($utilities-str) {
+    $utilities-list: functions.str-split($utilities-str, " ");
+    $sep: functions.str-replace(variables.$separator, "\\", ""); // parsed separator
+    @each $utility in $utilities-list {
+        // @if variables.$prefix != "" {
+        //     $utility-alias: functions.str-replace($utility-alias, variables.$prefix, "");
+        // }
+        // 1. check if the utility has a separator
+        $variant: null; // store the variant (pseudo, breakpoint, or print)
+        @if string.index($utility, $sep) != null {
+            $utility-items: functions.str-split($utility, $sep);
+            $variant: list.nth($utility-items, 1);
+            $utility: list.nth($utility-items, 2);
+        }
+        // 2. get the properties and values of the utility
+        $utility-parsed: utilities.parse-utility($utility);
+        @if $utility-parsed == null {
+            @error "Utility '#{$utility}' not found.";
+        }
+        $properties: map.get($utility-parsed, "properties");
+        $value: map.get($utility-parsed, "value");
+        // 3. apply the utility
+        // 3.1. check for default utility
+        @if $variant == null {
+            @include rule($properties, $value);
+        }
+        // 3.2. check for breakpoint
+        @else if map.has-key(variables.$breakpoints, $variant) {
+            @include screen-above($variant) {
+                @include rule($properties, $value);
+            }
+        }
+        // 3.3. check for pseudo
+        @else if map.has-key(variables.$pseudos, $variant) {
+            $pseudo: map.get(variables.$pseudos, $variant);
+            &#{$pseudo} {
+                @include rule($properties, $value);
+            }
+        }
+        // 3.4. check for print
+        @else if $variant == "print" {
+            @media print {
+                & {
+                    @include rule($properties, $value);
+                }
+            }
+        }
+        // 3.5. display an error message if the variant is not found
+        @else {
+            @error "Variant '#{$variant}' not found in utility '#{$utility}'";
+        }
+    }
+} 
