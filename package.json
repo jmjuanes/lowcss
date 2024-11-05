@@ -30,16 +30,15 @@
         "build:json": "sass --no-source-map sass/json.scss low.raw.json",
         "postbuild:json": "cat low.raw.json | tail -n 2 | head -n 1 | node ./scripts/json.js > low.json && rm low.raw.json",
         "prebuild:site": "rm -rf www && mkdir www",
-        "build:site": "node ./scripts/site.js",
+        "build:site": "node ./scripts/site.js && node ./scripts/playground.js build",
         "postbuild:site": "cp low.* www/ && cp colors.json www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp public/* www/",
-        "build:playground": "node ./scripts/playground.js build",
         "build": "yarn build:bundle && yarn build:css && yarn build:json && yarn build:colors",
         "bundle": "yarn build:bundle",
         "docs": "yarn run build:site",
         "playground": "yarn serve:playground",
         "serve": "stattic --folder ./www --port 3000",
         "serve:playground": "node ./scripts/playground.js serve",
-        "site": "yarn build:site && yarn build:playground",
+        "site": "yarn build:site",
         "pack": "zip lowcss.zip low.* colors.json"
     },
     "keywords": [
