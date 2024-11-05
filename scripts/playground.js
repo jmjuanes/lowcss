@@ -2,6 +2,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 const http = require("node:http");
 
+// resolve to the provided path
+const r = p => path.resolve(process.cwd(), p);
+
 // port can be provided in an environment variable, by default we will use 3000
 const PORT = process.env.PORT || 3000;
 
@@ -52,21 +55,19 @@ const commands = {
         // note: skip the low.css file
         const files = Object.entries(VENDOR_FILES)
             .filter(entry => entry[1].startsWith("node_modules"))
-            .map(([target, source]) => {
-                return {
-                    from: path.join(process.cwd(), source),
-                    to: path.join(process.cwd(), "www", target),
-                };
-            });
+            .map(([target, source]) => ({
+                from: source,
+                to: path.join("www", target),
+            }));
         // copy also the playground.html file
         files.push({
-            from: path.join(process.cwd(), "playground.html"),
-            to: path.join(process.cwd(), "www", "playground.html"),
+            from: "playground.html",
+            to: path.join("www", "playground.html"),
         });
         // copy all files
         files.forEach(file => {
-            fs.copyFileSync(file.from, file.to);
-            console.log(`[playground:copy] ${file.from} --> ${file.to}`);
+            fs.copyFileSync(r(file.from), r(file.to));
+            console.log(`[build:playground] copy ${file.from} --> ${file.to}`);
         });
     },
     serve: () => {
