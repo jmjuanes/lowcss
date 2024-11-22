@@ -1549,12 +1549,12 @@ $utilities: (
     text-decoration: create-utility("text-decoration", (
         attributes: (
             group: "typography",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
-            description: "Utilities for setting the text-decoration property of the element.",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line",
+            description: "Utilities for setting the text-decoration-line property of the element.",
         ),
         classname: null,
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: (text-decoration),
+        properties: (text-decoration-line),
         values: (
             "strike": line-through,
             "underline": underline,
