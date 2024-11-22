@@ -68,6 +68,22 @@ $utilities: (
             "1000": 1000ms,
         ),
     )),
+    transition-timing-function: create-utility("transition-timing-function", (
+        attributes: (
+            group: "animation",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function",
+            description: "Utilities for setting the transition-timing-function property of the element.",
+        ),
+        classname: "ease",
+        variants: ("default", "responsive"),
+        properties: (transition-timing-function),
+        values: (
+            "in": ease-in,
+            "out": ease-out,
+            "in-out": ease-in-out,
+            "linear": linear,
+        ),
+    )),
 
     // Background utilities
     background-clip: create-utility("background-clip", (
