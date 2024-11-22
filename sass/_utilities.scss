@@ -84,6 +84,26 @@ $utilities: (
             "linear": linear,
         ),
     )),
+    transition-delay: create-utility("transition-delay", (
+        attributes: (
+            group: "animation",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay",
+            description: "Utilities for setting the transition-delay property of the element.",
+        ),
+        classname: "delay",
+        variants: ("default", "responsive"),
+        properties: (transition-delay),
+        values: (
+            "0": 0s,
+            "100": 100ms,
+            "150": 150ms,
+            "200": 200ms,
+            "300": 300ms,
+            "500": 500ms,
+            "700": 700ms,
+            "1000": 1000ms,
+        ),
+    )),
 
     // Background utilities
     background-clip: create-utility("background-clip", (
