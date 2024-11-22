@@ -1549,16 +1549,80 @@ $utilities: (
     text-decoration: create-utility("text-decoration", (
         attributes: (
             group: "typography",
-            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration",
-            description: "Utilities for setting the text-decoration property of the element.",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line",
+            description: "Utilities for setting the text-decoration-line property of the element.",
         ),
         classname: null,
         variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
-        properties: (text-decoration),
+        properties: (text-decoration-line),
         values: (
             "strike": line-through,
             "underline": underline,
             "no-underline": none,
+        ),
+    )),
+    text-decoration-color: create-utility("text-decoration-color", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color",
+            description: "Utilities for setting the text-decoration-color property of the element.",
+        ),
+        classname: "decoration",
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-decoration-color),
+        values: variables.$colors,
+    )),
+    text-decoration-style: create-utility("text-decoration-style", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style",
+            description: "Utilities for setting the text-decoration-style property of the element.",
+        ),
+        classname: "decoration",
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-decoration-style),
+        values: (
+            "solid": solid,
+            "double": double,
+            "dotted": dotted,
+            "dashed": dashed,
+            "wavy": wavy,
+        ),
+    )),
+    text-decoration-thickness: create-utility("text-decoration-thickness", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness",
+            description: "Utilities for setting the text-decoration-thickness property of the element.",
+        ),
+        classname: "decoration",
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-decoration-thickness),
+        values: (
+            "auto": auto,
+            "0": 0,
+            "1": 1px,
+            "2": 2px,
+            "4": 4px,
+            "8": 8px,
+        ),
+    )),
+    text-underline-offset: create-utility("text-underline-offset", (
+        attributes: (
+            group: "typography",
+            url: "https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset",
+            description: "Utilities for setting the text-underline-offset property of the element.",
+        ),
+        classname: "underline-offset",
+        variants: ("default", "hover", "focus", "focus-within", "group-hover", "group-focus", "group-focus-within"),
+        properties: (text-underline-offset),
+        values: (
+            "auto": auto,
+            "0": 0,
+            "1": 1px,
+            "2": 2px,
+            "4": 4px,
+            "8": 8px,
         ),
     )),
     text-overflow: create-utility("text-overflow", (
