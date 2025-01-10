@@ -42,13 +42,19 @@
     --low-markup-pre-margin-top: 1.5em;
     --low-markup-pre-margin-bottom: 1.5em;
 
+    // blockquote variables
+    // --low-markup-blockquote-color: #{variables.$neutral-900};
+    --low-markup-blockquote-border-color: #{variables.$neutral-200};
+    --low-markup-blockquote-border-width: 0.25rem;
+    --low-markup-blockquote-margin-top: 1em;
+    --low-markup-blockquote-margin-bottom: 1em;
+
+
 
     --low-markup-body: #{variables.$neutral-800};
     --low-markup-lead: #{variables.$neutral-700};
     --low-markup-link: #{variables.$neutral-900};
     --low-markup-code: #{variables.$neutral-900};
-    --low-markup-quote-body: #{variables.$neutral-900};
-    --low-markup-quote-border: #{variables.$neutral-200};
     --low-markup-heading: #{variables.$neutral-900};
     --low-markup-rule: #{variables.$neutral-200};
     --low-markup-bullet: #{variables.$neutral-300};
@@ -118,13 +124,13 @@
     }
     // Blockquote
     & :where(blockquote) {
-        border-left-color: var(--low-markup-quote-border);
-        border-left-width: 0.25rem;
+        border-left-color: var(--low-markup-blockquote-border-color);
+        border-left-width: var(--low-markup-blockquote-border-width);
         color: var(--low-markup-quote-body);
         font-style: italic;
         font-weight: 500;
-        margin-bottom: 1.5em;
-        margin-top: 1.5em;
+        margin-bottom: var(--low-markup-blockquote-margin-bottom);
+        margin-top: var(--low-markup-blockquote-margin-top);
         padding-left: 1em;
     }
     // Headings
