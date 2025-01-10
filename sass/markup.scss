@@ -1,10 +1,51 @@
 @use "variables";
 
 :root {
+    // global variables
+    --low-markup-color: #{variables.$neutral-900};
+
+    // paragraph variables
+    --low-markup-paragraph-line-height: 1.75;
+    --low-markup-paragraph-margin-top: 0px;
+    --low-markup-paragraph-margin-bottom: 1em;
+
+    // lead paragraph variables
+    --low-markup-lead-color: #{variables.$neutral-700};
+    --low-markup-lead-font-size: 1.25rem;
+    --low-markup-lead-line-height: 1.75;
+
+    // bold text variables
+    // --low-markup-bold-color: #{variables.$neutral-900};
+    --low-markup-bold-font-weight: 600;
+
+    // inline code variables
+    --low-markup-code-bg: #{variables.$neutral-100};
+    --low-markup-code-color: #{variables.$neutral-900};
+    --low-markup-code-font-size: 0.875em;
+    --low-markup-code-font-family: #{variables.$font-mono};
+    --low-markup-code-font-weight: 600;
+    --low-markup-code-line-height: 1.25;
+    --low-markup-code-padding-y: 0.2rem;
+    --low-markup-code-padding-x: 0.3rem;
+    --low-markup-code-radius: 0.25rem;
+
+    // block code variables
+    --low-markup-pre-bg: #{variables.$neutral-950};
+    --low-markup-pre-color: #{variables.$neutral-50};
+    --low-markup-pre-font-size: 0.875em;
+    --low-markup-pre-font-family: #{variables.$font-mono};
+    --low-markup-pre-font-weight: 400;
+    --low-markup-pre-line-height: 1.75;
+    --low-markup-pre-padding-y: 1.25em;
+    --low-markup-pre-padding-x: 1.25em;
+    --low-markup-pre-radius: 0.375rem;
+    --low-markup-pre-margin-top: 1.5em;
+    --low-markup-pre-margin-bottom: 1.5em;
+
+
     --low-markup-body: #{variables.$neutral-800};
     --low-markup-lead: #{variables.$neutral-700};
     --low-markup-link: #{variables.$neutral-900};
-    --low-markup-bold: #{variables.$neutral-900};
     --low-markup-code: #{variables.$neutral-900};
     --low-markup-quote-body: #{variables.$neutral-900};
     --low-markup-quote-border: #{variables.$neutral-200};
@@ -18,28 +59,38 @@
     --low-markup-table-bg-default: variables.$white;
     --low-markup-table-bg: #{variables.$neutral-100};
 }
+
 .markup {
-    color: var(--low-markup-body);
-    line-height: 1.75;
+    color: var(--low-markup-color);
+    // line-height: 1.75;
     // Default paragraphs
     & :where(p) {
-        // margin-top: 1em;
-        margin-bottom: 1em;
+        line-height: var(--low-markup-paragraph-line-height);
+        margin-top: var(--low-markup-paragraph-margin-top);
+        margin-bottom: var(--low-markup-paragraph-margin-bottom);
     }
     // Lead paragraphs
     & :where(p[class~="lead"]) {
-        color: var(--low-markup-lead);
+        color: var(--low-markup-lead-color);
+        font-size: var(--low-markup-lead-font-size);
+        line-height: var(--low-markup-lead-line-height);
     }
     // Bold text
     & :where(b, strong) {
-        color: var(--low-markup-bold);
-        font-weight: 600;
+        // color: var(--low-markup-bold);
+        font-weight: var(--low-markup-bold-font-weight);
     }
     // inline code
     & :where(code) {
-        color: var(--low-markup-code);
-        font-size: 0.875em;
-        font-weight: 600;
+        background-color: var(--low-markup-code-bg);
+        color: var(--low-markup-code-color);
+        font-size: var(--low-markup-code-font-size);
+        font-family: var(--low-markup-code-font-family);
+        font-weight: var(--low-markup-code-font-weight);
+        line-height: var(--low-markup-code-line-height);
+        padding: var(--low-markup-code-padding-y) var(--low-markup-code-padding-x);
+        border-radius: var(--low-markup-code-radius);
+        position: relative;
     }
     // Block code
     & :where(pre) {

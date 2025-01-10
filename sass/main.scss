@@ -17,7 +17,6 @@
 @use "root";
 @use "reset";
 @use "starter";
-@use "markup";
 
 // 3. Generate utilities
 @each $utility-name,$utility-config in utilities.$utilities {
