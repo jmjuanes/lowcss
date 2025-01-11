@@ -74,18 +74,40 @@
     --low-markup-h4-margin-top: 1.75rem;
     --low-markup-h4-margin-bottom: 1rem;
 
+    // horizontal rule variables
+    --low-markup-hr-bg: #{variables.$neutral-200};
+    --low-markup-hr-height: 1px;
+    --low-markup-hr-margin-top: 3rem;
+    --low-markup-hr-margin-bottom: 3rem;
 
-    --low-markup-body: #{variables.$neutral-800};
-    --low-markup-lead: #{variables.$neutral-700};
-    --low-markup-link: #{variables.$neutral-900};
-    --low-markup-code: #{variables.$neutral-900};
-    --low-markup-heading: #{variables.$neutral-900};
-    --low-markup-rule: #{variables.$neutral-200};
-    --low-markup-bullet: #{variables.$neutral-300};
-    --low-markup-counter: #{variables.$neutral-500};
-    --low-markup-table-border: #{variables.$neutral-200};
-    --low-markup-table-bg-default: variables.$white;
-    --low-markup-table-bg: #{variables.$neutral-100};
+    // link variables
+    --low-markup-link-color: #{variables.$neutral-900};
+    --low-markup-link-font-weight: 500;
+    --low-markup-link-underline-offset: 4px;
+
+    // list variables
+    --low-markup-ul-margin-bottom: 1.25rem;
+    --low-markup-ul-margin-top: 1.25rem;
+    --low-markup-ul-padding-left: 1.625rem;
+    --low-markup-li-margin-bottom: 0.5rem;
+    --low-markup-li-margin-top: 0;
+
+    // table variables
+    --low-markup-table-margin-bottom: 1.5rem;
+    --low-markup-table-margin-top: 1.5rem;
+
+    --low-markup-thead-color: #{variables.$neutral-900};
+    --low-markup-thead-font-weight: 600;
+    --low-markup-thead-border-width: 1px;
+    --low-markup-thead-border-color: #{variables.$neutral-200};
+    --low-markup-thead-padding-y: 0.5rem;
+    --low-markup-thead-padding-x: 1rem;
+
+    --low-markup-tbody-bg: #{variables.$neutral-100};
+    --low-markup-tbody-border-width: 1px;
+    --low-markup-tbody-border-color: #{variables.$neutral-200};
+    --low-markup-tbody-padding-y: 0.5rem;
+    --low-markup-tbody-padding-x: 1rem;
 }
 
 .markup {
@@ -156,16 +178,6 @@
         padding-left: 1em;
     }
     // Headings
-    & :where(h1, h2, h3, h4) {
-        &:first-child {
-            margin-top: 0px;
-        }
-        // font-weight: 800;
-        // & strong {
-        //     color: inherit;
-        //     font-weight: 700;
-        // }
-    }
     & :where(h1) {
         font-size: var(--low-markup-h1-font-size);
         font-weight: var(--low-markup-h1-font-weight);
@@ -196,67 +208,64 @@
     }
     // Horizontal rule
     & :where(hr) {
-        border-color: var(--low-markup-rule);
-        border-top-width: 1px;
+        border-color: var(--low-markup-hr-bg);
+        border-top-width: var(--low-markup-hr-height);
         height: 0px;
-        margin-top: 3em;
-        margin-bottom: 3em;
+        margin-top: var(--low-markup-hr-margin-top);
+        margin-bottom: var(--low-markup-hr-margin-bottom);
     }
     // Links
     & :where(a) {
-        color: var(--low-markup-link);
-        font-weight: 500;
+        color: var(--low-markup-link-color);
+        font-weight: var(--low-markup-link-font-weight);
         text-decoration: underline;
+        text-underline-offset: var(--low-markup-link-underline-offset);
     }
     // List
     & :where(ul, ol) {
-        margin-bottom: 1.25em;
-        margin-top: 1.25em;
-        padding-left: 1.625em;
+        margin-bottom: var(--low-markup-ul-margin-bottom);
+        margin-top: var(--low-markup-ul-margin-top);
+        padding-left: var(--low-markup-ul-padding-left);
         & > li {
             padding-left: 0.25em;
         }
     }
     & :where(ul) {
         list-style-type: disc;
-        & > li::marker {
-            color: var(--low-markup-bullet);
-        }
     }
     & :where(ol) {
         list-style-type: decimal;
-        & > li::marker {
-            color: var(--low-markup-counter);
-        }
     }
     & :where(li) {
-        margin-bottom: 0.5em;
-        margin-top: 0.5em;
+        margin-bottom: var(--low-markup-li-margin-bottom);
+        margin-top: var(--low-markup-li-margin-top);
     }
     // Table
     & :where(table) {
-        // font-size: 0.875em;
-        // line-height: 1.75;
-        margin-bottom: 1.5em;
-        margin-top: 1.5em;
+        margin-bottom: var(--low-markup-table-margin-bottom);
+        margin-top: var(--low-markup-table-margin-top);
         table-layout: auto;
         text-align: left;
         width: 100%;
     }
     & :where(thead th) {
-        color: var(--low-markup-heading);
-        font-weight: 600;
+        color: var(--low-markup-thead-color);
+        font-weight: var(--low-markup-thead-font-weight);
         vertical-align: bottom;
     }
-    & :where(thead th, tbody td) {
-        border: 1px solid var(--low-markup-table-border);
-        padding: 0.6em 0.75em;
+    & :where(thead th) {
+        border: var(--low-markup-thead-border-width) solid var(--low-markup-thead-border-color);
+        padding: var(--low-markup-thead-padding-y) var(--low-markup-thead-padding-x);
     }
-    & :where(thead tr, tbody tr:nth-child(2n + 1)) {
-        background-color: var(--low-markup-table-bg-default);
+    & :where(tbody td) {
+        border: var(--low-markup-tbody-border-width) solid var(--low-markup-tbody-border-color);
+        padding: var(--low-markup-tbody-padding-y) var(--low-markup-tbody-padding-x);
     }
+    // & :where(thead tr, tbody tr:nth-child(2n + 1)) {
+    //     background-color: var(--low-markup-table-bg-default);
+    // }
     & :where(tbody tr:nth-child(2n)) {
-        background-color: var(--low-markup-table-bg);
+        background-color: var(--low-markup-tbody-bg);
     }
     & :where(tbody tr) {
         vertical-align: baseline;
