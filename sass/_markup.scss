@@ -5,14 +5,14 @@
     --low-markup-color: #{variables.$neutral-900};
 
     // paragraph variables
-    --low-markup-paragraph-line-height: 1.75;
+    --low-markup-paragraph-line-height: 1.75rem;
     --low-markup-paragraph-margin-top: 0px;
     --low-markup-paragraph-margin-bottom: 1rem;
 
     // lead paragraph variables
     --low-markup-lead-color: #{variables.$neutral-700};
     --low-markup-lead-font-size: 1.25rem;
-    --low-markup-lead-line-height: 1.75;
+    --low-markup-lead-line-height: 1.75rem;
 
     // bold text variables
     // --low-markup-bold-color: #{variables.$neutral-900};
@@ -24,7 +24,7 @@
     --low-markup-code-font-size: 0.875rem;
     --low-markup-code-font-family: #{variables.$font-mono};
     --low-markup-code-font-weight: 600;
-    --low-markup-code-line-height: 1.25;
+    --low-markup-code-line-height: 1.25rem;
     --low-markup-code-padding-y: 0.2rem;
     --low-markup-code-padding-x: 0.3rem;
     --low-markup-code-radius: 0.25rem;
@@ -35,7 +35,7 @@
     --low-markup-pre-font-size: 0.875rem;
     --low-markup-pre-font-family: #{variables.$font-mono};
     --low-markup-pre-font-weight: 400;
-    --low-markup-pre-line-height: 1.75;
+    --low-markup-pre-line-height: 1.75rem;
     --low-markup-pre-padding-y: 1.25rem;
     --low-markup-pre-padding-x: 1.25rem;
     --low-markup-pre-radius: 0.375rem;
@@ -45,22 +45,26 @@
     // blockquote variables
     // --low-markup-blockquote-color: #{variables.$neutral-900};
     --low-markup-blockquote-border-color: #{variables.$neutral-200};
-    --low-markup-blockquote-border-width: 0.25rem;
-    --low-markup-blockquote-margin-top: 1em;
-    --low-markup-blockquote-margin-bottom: 1em;
+    --low-markup-blockquote-border-width: 2px;
+    --low-markup-blockquote-margin-top: 1rem;
+    --low-markup-blockquote-margin-bottom: 1rem;
 
     // heading variables
     --low-markup-h1-font-size: 2.25rem;
     --low-markup-h1-font-weight: 800;
-    --low-markup-h1-line-height: 2.5;
+    --low-markup-h1-line-height: 2.5rem;
     --low-markup-h1-margin-bottom: 1rem;
     --low-markup-h1-margin-top: 2.5rem;
 
     --low-markup-h2-font-size: 1.875rem;
     --low-markup-h2-font-weight: 600;
-    --low-markup-h2-line-height: 2.25;
+    --low-markup-h2-line-height: 2.25rem;
     --low-markup-h2-margin-top: 2.5rem;
     --low-markup-h2-margin-bottom: 1rem;
+    --low-markup-h2-border-bottom-width: 1px;
+    --low-markup-h2-border-bottom-color: #{variables.$neutral-200};
+    --low-markup-h2-padding-bottom: 0.5rem;
+    --low-markup-h2-padding-top: 0px;
 
     --low-markup-h3-font-size: 1.5rem;
     --low-markup-h3-font-weight: 600;
@@ -70,7 +74,7 @@
 
     --low-markup-h4-font-size: 1.25rem;
     --low-markup-h4-font-weight: 600;
-    --low-markup-h4-line-height: 1.75;
+    --low-markup-h4-line-height: 1.75rem;
     --low-markup-h4-margin-top: 1.75rem;
     --low-markup-h4-margin-bottom: 1rem;
 
@@ -191,6 +195,11 @@
         line-height: var(--low-markup-h2-line-height);
         margin-bottom: var(--low-markup-h2-margin-bottom);
         margin-top: var(--low-markup-h2-margin-top);
+        border-bottom-color: var(--low-markup-h2-border-bottom-color);
+        border-bottom-width: var(--low-markup-h2-border-bottom-width);
+        border-bottom-style: solid;
+        padding-bottom: var(--low-markup-h2-padding-bottom);
+        padding-top: var(--low-markup-h2-padding-top);
     }
     & :where(h3) {
         font-size: var(--low-markup-h3-font-size);
