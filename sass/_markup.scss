@@ -3,6 +3,7 @@
 :root {
     // global variables
     --low-markup-color: #{variables.$neutral-900};
+    --low-markup-line-height: 1.75;
 
     // paragraph variables
     --low-markup-paragraph-line-height: 1.75rem;
@@ -116,7 +117,7 @@
 
 .markup {
     color: var(--low-markup-color);
-    // line-height: 1.75;
+    line-height: var(--low-markup-line-height);
     // Default paragraphs
     & :where(p) {
         line-height: var(--low-markup-paragraph-line-height);
