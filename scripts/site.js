@@ -64,6 +64,30 @@ const getUtilitiesMenu = utilities => {
     return menu;
 };
 
+// read partials
+const getPartials = baseFolder => {
+    const result = {data: {}, code: {}};
+    const readdir = (folderPaths, data) => {
+        const folder = path.join(baseFolder, ...folderPaths);
+        return fs.readdirSync(folder, "utf8").forEach(file => {
+            // 1. check if file is a directory
+            if (fs.statSync(path.join(folder, file)).isDirectory()) {
+                data[file] = {}; // initialize slot for data
+                return readdir([...folderPaths, file], data[file]);
+            }
+            // 2. read file content
+            if (path.extname(file) === ".html") {
+                const content = frontMatter(fs.readFileSync(path.join(folder, file), "utf8"));
+                const name = path.basename(file, ".html").replace(/-/g, "_");
+                data[name] = content.attributes; // save data
+                result.code[[...folderPaths, name].join(".")] = content.body; // save code
+            }
+        });
+    };
+    readdir([], result.data);
+    return result;
+};
+
 const getData = () => {
     // const colors = getColorNames();
     const utilities = getUtilities();
@@ -103,6 +127,7 @@ const getData = () => {
                 {title: "Documentation", link: "/docs"},
                 {title: "Colors", link: "/colors"},
                 {title: "Examples", link: "/examples"},
+                {title: "Themes", link: "/themes"},
                 {title: "Playground", link: "/playground"},
             ],
             data: {
@@ -137,7 +162,9 @@ const build = async () => {
     const examplesFolder = path.join(process.cwd(), "examples");
     const m = (await import("mikel")).default;
     const template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
+    const partials = getPartials(path.join(process.cwd(), "partials"));
     const data = getData();
+    data.partials = partials.data;
     // Initialize examples data
     data.site.data.examples = fs.readdirSync(examplesFolder, "utf8")
         .filter(file => path.extname(file) === ".html")
@@ -164,6 +191,7 @@ const build = async () => {
                 },
             },
             partials: {
+                ...partials.code,
                 content: page.content,
             },
             functions: {
@@ -180,6 +208,9 @@ const build = async () => {
                 },
                 highlight: code => {
                     return hljs.highlight(removeEmptyLines(code), {language: "html"}).value;
+                },
+                icon: name => {
+                    return `<svg width="1em" height="1em"><use xlink:href="/sprite.svg#${name}"></use></svg>`;
                 },
             },
         });
