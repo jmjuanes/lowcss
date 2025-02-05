@@ -1,6 +1,7 @@
 ---
 title: "Keyframes"
 layout: "docs"
+sidebar: "default"
 permalink: "/docs/keyframes.html"
 prevPage: "reset"
 nextPage: "helpers"

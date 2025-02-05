@@ -66,19 +66,8 @@
     {{#eq page.data.layout "docs"}}
     <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
         <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
-            <div class="h-full overflow-y-scroll scrollbar">
-                {{#each site.sidenav}}
-                <div class="mb-4 text-sm">
-                    <div class="text-neutral-950 font-bold mb-1">{{title}}</div>
-                    {{#each items}}
-                    <a href="{{link}}" class="block text-neutral-700 hover:underline py-1">
-                        <span>{{title}}</span>
-                        {{#if version}}<span class="text-2xs text-white bg-neutral-900 p-1 rounded-md font-medium ml-1">{{version}}{{/if}}
-                    </a>
-                    {{/each}}
-                </div>
-                {{/each}}
-            </div>
+            {{#eq page.data.sidebar "default"}}{{>sidebar sidebar=site.sidebar.default}}{{/eq}}
+            {{#eq page.data.sidebar "themes"}}{{>sidebar sidebar=site.sidebar.themes}}{{/eq}}
         </div>
         <div class="w-full max-w-3xl">
             <div class="markup pt-6 md:pt-8 pb-16">
