@@ -52,11 +52,12 @@ themes:
     <div class="max-w-2xl mt-0 mb-8 text-xl leading-relaxed">
         <span class="text-neutral-700">A collection of customizable utilities that you can use for theming your UI components.</span>
     </div>
-    <div class="hidden items-center gap-2">
-        <a href="/docs/installation" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+    <div class="flex items-center gap-2">
+        <a href="/themes/installation" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
             <span class="font-medium text-sm">Get Started</span>
         </a>
     </div>
+
 </div>
 <div class="w-full mb-8">
     <div class="w-full flex flex-wrap gap-8 select-none">
