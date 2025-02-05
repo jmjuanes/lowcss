@@ -1,6 +1,7 @@
 ---
 title: "Installation"
 layout: "docs"
+sidebar: "default"
 permalink: "/docs/installation.html"
 prevPage: "introduction"
 nextPage: "usage"

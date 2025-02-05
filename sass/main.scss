@@ -18,6 +18,7 @@
 @use "reset";
 @use "starter";
 @use "markup";
+@use "themes";
 
 // 3. Generate utilities
 @each $utility-name,$utility-config in utilities.$utilities {

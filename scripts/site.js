@@ -64,6 +64,30 @@ const getUtilitiesMenu = utilities => {
     return menu;
 };
 
+// read partials
+const getPartials = baseFolder => {
+    const result = {data: {}, code: {}};
+    const readdir = (folderPaths, data) => {
+        const folder = path.join(baseFolder, ...folderPaths);
+        return fs.readdirSync(folder, "utf8").forEach(file => {
+            // 1. check if file is a directory
+            if (fs.statSync(path.join(folder, file)).isDirectory()) {
+                data[file] = {}; // initialize slot for data
+                return readdir([...folderPaths, file], data[file]);
+            }
+            // 2. read file content
+            if (path.extname(file) === ".html") {
+                const content = frontMatter(fs.readFileSync(path.join(folder, file), "utf8"));
+                const name = path.basename(file, ".html").replace(/-/g, "_");
+                data[name] = content.attributes; // save data
+                result.code[[...folderPaths, name].join(".")] = content.body; // save code
+            }
+        });
+    };
+    readdir([], result.data);
+    return result;
+};
+
 const getData = () => {
     // const colors = getColorNames();
     const utilities = getUtilities();
@@ -73,35 +97,54 @@ const getData = () => {
             title: pkg.title,
             description: pkg.description,
             repository: pkg.repository,
-            sidenav: Object.values({
-                gettingStarted: {
-                    title: "Getting Started",
-                    items: [
-                        {title: "Introduction", link: "/docs/"},
-                        {title: "Installation", link: "/docs/installation"},
-                        {title: "Usage", link: "/docs/usage"},
-                    ],
-                },
-                globals: {
-                    title: "Globals",
-                    items: [
-                        {title: "Root CSS Variables", link: "/docs/root"},
-                    ],
-                },
-                base: {
-                    title: "Base Styles",
-                    items: [
-                        {title: "Reset", link: "/docs/reset"},
-                        {title: "Keyframes", link: "/docs/keyframes"},
-                        {title: "Helpers", link: "/docs/helpers"},
-                        {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
-                    ],
-                },
-                ...getUtilitiesMenu(utilities),
-            }),
+            sidebar: {
+                default: Object.values({
+                    gettingStarted: {
+                        title: "Getting Started",
+                        items: [
+                            {title: "Introduction", link: "/docs/"},
+                            {title: "Installation", link: "/docs/installation"},
+                            {title: "Usage", link: "/docs/usage"},
+                        ],
+                    },
+                    globals: {
+                        title: "Globals",
+                        items: [
+                            {title: "Root CSS Variables", link: "/docs/root"},
+                        ],
+                    },
+                    base: {
+                        title: "Base Styles",
+                        items: [
+                            {title: "Reset", link: "/docs/reset"},
+                            {title: "Keyframes", link: "/docs/keyframes"},
+                            {title: "Helpers", link: "/docs/helpers"},
+                            {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
+                        ],
+                    },
+                    ...getUtilitiesMenu(utilities),
+                }),
+                themes: Object.values({
+                    gettingStarted: {
+                        title: "Getting Started",
+                        items: [
+                            {title: "Introduction", link: "/themes/introduction"},
+                            {title: "Installation", link: "/themes/installation"},
+                        ],
+                    },
+                    usage: {
+                        title: "Using Themes",
+                        items: [
+                            {title: "Usage", link: "/themes/usage"},
+                            {title: "Customize", link: "/themes/customize"},
+                        ],
+                    },
+                }),
+            },
             navbar: [
                 {title: "Documentation", link: "/docs"},
                 {title: "Colors", link: "/colors"},
+                {title: "Themes", link: "/themes"},
                 {title: "Examples", link: "/examples"},
                 {title: "Playground", link: "/playground"},
             ],
@@ -137,7 +180,9 @@ const build = async () => {
     const examplesFolder = path.join(process.cwd(), "examples");
     const m = (await import("mikel")).default;
     const template = fs.readFileSync(path.join(process.cwd(), "index.html"), "utf8");
+    const partials = getPartials(path.join(process.cwd(), "partials"));
     const data = getData();
+    data.partials = partials.data;
     // Initialize examples data
     data.site.data.examples = fs.readdirSync(examplesFolder, "utf8")
         .filter(file => path.extname(file) === ".html")
@@ -158,28 +203,32 @@ const build = async () => {
     data.site.pages.forEach(page => {
         const content = m(template, {...data, page}, {
             helpers: {
-                withPage: (pageName, opt) => {
-                    const p = data.site.pages.find(p => p.name === pageName);
-                    return p ? opt.fn(p) : "";
+                withPage: ({args, fn}) => {
+                    const p = data.site.pages.find(p => p.name === args[0]);
+                    return p ? fn(p) : "";
                 },
             },
             partials: {
+                ...partials.code,
                 content: page.content,
             },
             functions: {
-                contrastColor: color => {
+                contrastColor: ({args}) => {
                     // https://www.w3.org/TR/AERT/#color-contrast
                     // Source: https://stackoverflow.com/a/72595895 
                     const lum = [0.299, 0.587, 0.114].reduce((result, value, index) => {
-                        return parseInt(color.substr(index * 2 + 1, 2), 16) * value + result;
+                        return parseInt(args[0].substr(index * 2 + 1, 2), 16) * value + result;
                     }, 0);
                     return lum < 128 ? "#fff" : "#000";
                 },
-                cleanUrl: pageUrl => {
-                    return path.join("/", path.dirname(pageUrl), path.basename(pageUrl, ".html"));
+                cleanUrl: ({args}) => {
+                    return path.join("/", path.dirname(args[0]), path.basename(args[0], ".html"));
                 },
-                highlight: code => {
-                    return hljs.highlight(removeEmptyLines(code), {language: "html"}).value;
+                highlight: ({args}) => {
+                    return hljs.highlight(removeEmptyLines(args[0]), {language: "html"}).value;
+                },
+                icon: ({args}) => {
+                    return `<svg width="1em" height="1em"><use xlink:href="/sprite.svg#${args[0]}"></use></svg>`;
                 },
             },
         });
