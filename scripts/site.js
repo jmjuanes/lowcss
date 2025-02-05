@@ -128,9 +128,10 @@ const getData = () => {
                     gettingStarted: {
                         title: "Getting Started",
                         items: [
-                            {title: "Introduction", link: "/themes/"},
+                            {title: "Introduction", link: "/themes/introduction"},
                             {title: "Installation", link: "/themes/installation"},
                             {title: "Usage", link: "/themes/usage"},
+                            {title: "Customize", link: "/themes/customize"},
                         ],
                     },
                 }),
