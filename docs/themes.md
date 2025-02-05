@@ -5,25 +5,44 @@ themes:
   primary:
     - value: "neutral-950"
       name: "Neutral"
+      default: "true"
     - value: "blue-500"
       name: "Blue"
+      default: "false"
     - value: "red-500"
       name: "Red"
+      default: "false"
     - value: "green-500"
       name: "Green"
+      default: "false"
     - value: "orange-500"
       name: "Orange"
+      default: "false"
+    - value: "violet-500"
+      name: "Violet"
+      default: "false"
+    - value: "teal-500"
+      name: "Teal"
+      default: "false"
   radius:
     - value: "radius-none"
       name: "0"
-    - value: "radius-sm"
-      name: "0.125"
-    - value: "radius-md"
-      name: "0.375"
+      default: "false"
+    - value: "radius-base"
+      name: "0.25"
+      default: "false"
     - value: "radius-lg"
       name: "0.5"
+      default: "true"
+    - value: "radius-xl"
+      name: "0.75"
+      default: "false"
     - value: "radius-2xl"
       name: "1"
+      default: "false"
+    - value: "radius-3xl"
+      name: "1.5"
+      default: "false"
 ---
 
 <div class="pt-16 pb-12 md:pt-20 md:pb-16">
@@ -38,12 +57,14 @@ themes:
             <span class="font-medium text-sm">Get Started</span>
         </a>
     </div>
-    <div class="w-full flex gap-8 select-none">
+</div>
+<div class="w-full mb-8">
+    <div class="w-full flex flex-wrap gap-8 select-none">
         <div class="flex flex-col gap-2">
             <div class="text-sm font-bold leading-none">Primary color</div>
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.primary}}
-                <div class="rounded-md cursor-pointer border-2 border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}">
+                <div class="rounded-md cursor-pointer border border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="w-5 h-5 bg-{{value}} rounded-full"></div>
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
@@ -52,9 +73,9 @@ themes:
         </div>
         <div class="flex flex-col gap-2">
             <div class="text-sm font-bold leading-none">Border radius</div>
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.radius}}
-                <div class="rounded-md cursor-pointer border-2 border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}">
+                <div class="rounded-md cursor-pointer border border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
             {{/each}}
@@ -62,7 +83,6 @@ themes:
         </div>
     </div>
 </div>
-
 <style data-low-role="themes:primary:style"></style>
 <style data-low-role="themes:radius:style"></style>
 <div class="" data-low-role="themes:cards">
@@ -83,15 +103,19 @@ themes:
 </div>
 
 <script type="text/javascript">
+    const addClass = (el, cn) => cn.split(" ").forEach(c => el.classList.add(c));
+    const removeClass = (el, cn) => cn.split(" ").forEach(c => el.classList.remove(c));
     ["primary", "radius"].forEach(type => {
         const elements = Array.from(document.querySelectorAll(`div[data-low-role="themes:${type}:value"]`));
         elements.forEach(el => {
             el.addEventListener("click", () => {
                 document.querySelector(`style[data-low-role="themes:${type}:style"]`).innerHTML = `:root{--low-${type}: var(--low-${el.dataset.lowValue});}`;
-                elements.forEach(otherElement => otherElement.classList.remove("border-neutral-950"));
-                el.classList.add("border-neutral-950");
+                elements.forEach(otherElement => removeClass(otherElement, "border-neutral-950 border-2"));
+                addClass(el, "border-neutral-950 border-2");
             });
+            if (el.dataset.lowDefault === "true") {
+                addClass(el, "border-neutral-950 border-2");
+            }
         });
-        elements[0].classList.add("border-neutral-950");
     });
 </script>
