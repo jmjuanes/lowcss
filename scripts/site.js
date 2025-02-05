@@ -97,32 +97,44 @@ const getData = () => {
             title: pkg.title,
             description: pkg.description,
             repository: pkg.repository,
-            sidenav: Object.values({
-                gettingStarted: {
-                    title: "Getting Started",
-                    items: [
-                        {title: "Introduction", link: "/docs/"},
-                        {title: "Installation", link: "/docs/installation"},
-                        {title: "Usage", link: "/docs/usage"},
-                    ],
-                },
-                globals: {
-                    title: "Globals",
-                    items: [
-                        {title: "Root CSS Variables", link: "/docs/root"},
-                    ],
-                },
-                base: {
-                    title: "Base Styles",
-                    items: [
-                        {title: "Reset", link: "/docs/reset"},
-                        {title: "Keyframes", link: "/docs/keyframes"},
-                        {title: "Helpers", link: "/docs/helpers"},
-                        {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
-                    ],
-                },
-                ...getUtilitiesMenu(utilities),
-            }),
+            sidebar: {
+                default: Object.values({
+                    gettingStarted: {
+                        title: "Getting Started",
+                        items: [
+                            {title: "Introduction", link: "/docs/"},
+                            {title: "Installation", link: "/docs/installation"},
+                            {title: "Usage", link: "/docs/usage"},
+                        ],
+                    },
+                    globals: {
+                        title: "Globals",
+                        items: [
+                            {title: "Root CSS Variables", link: "/docs/root"},
+                        ],
+                    },
+                    base: {
+                        title: "Base Styles",
+                        items: [
+                            {title: "Reset", link: "/docs/reset"},
+                            {title: "Keyframes", link: "/docs/keyframes"},
+                            {title: "Helpers", link: "/docs/helpers"},
+                            {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
+                        ],
+                    },
+                    ...getUtilitiesMenu(utilities),
+                }),
+                themes: Object.values({
+                    gettingStarted: {
+                        title: "Getting Started",
+                        items: [
+                            {title: "Introduction", link: "/themes/"},
+                            {title: "Installation", link: "/themes/installation"},
+                            {title: "Usage", link: "/themes/usage"},
+                        ],
+                    },
+                }),
+            },
             navbar: [
                 {title: "Documentation", link: "/docs"},
                 {title: "Colors", link: "/colors"},
@@ -195,22 +207,22 @@ const build = async () => {
                 content: page.content,
             },
             functions: {
-                contrastColor: color => {
+                contrastColor: ({args}) => {
                     // https://www.w3.org/TR/AERT/#color-contrast
                     // Source: https://stackoverflow.com/a/72595895 
                     const lum = [0.299, 0.587, 0.114].reduce((result, value, index) => {
-                        return parseInt(color.substr(index * 2 + 1, 2), 16) * value + result;
+                        return parseInt(args[0].substr(index * 2 + 1, 2), 16) * value + result;
                     }, 0);
                     return lum < 128 ? "#fff" : "#000";
                 },
-                cleanUrl: pageUrl => {
-                    return path.join("/", path.dirname(pageUrl), path.basename(pageUrl, ".html"));
+                cleanUrl: ({args}) => {
+                    return path.join("/", path.dirname(args[0]), path.basename(args[0], ".html"));
                 },
-                highlight: code => {
-                    return hljs.highlight(removeEmptyLines(code), {language: "html"}).value;
+                highlight: ({args}) => {
+                    return hljs.highlight(removeEmptyLines(args[0]), {language: "html"}).value;
                 },
-                icon: name => {
-                    return `<svg width="1em" height="1em"><use xlink:href="/sprite.svg#${name}"></use></svg>`;
+                icon: ({args}) => {
+                    return `<svg width="1em" height="1em"><use xlink:href="/sprite.svg#${args[0]}"></use></svg>`;
                 },
             },
         });
