@@ -130,6 +130,11 @@ const getData = () => {
                         items: [
                             {title: "Introduction", link: "/themes/introduction"},
                             {title: "Installation", link: "/themes/installation"},
+                        ],
+                    },
+                    usage: {
+                        title: "Using Themes",
+                        items: [
                             {title: "Usage", link: "/themes/usage"},
                             {title: "Customize", link: "/themes/customize"},
                         ],
@@ -198,9 +203,9 @@ const build = async () => {
     data.site.pages.forEach(page => {
         const content = m(template, {...data, page}, {
             helpers: {
-                withPage: (pageName, opt) => {
-                    const p = data.site.pages.find(p => p.name === pageName);
-                    return p ? opt.fn(p) : "";
+                withPage: ({args, fn}) => {
+                    const p = data.site.pages.find(p => p.name === args[0]);
+                    return p ? fn(p) : "";
                 },
             },
             partials: {

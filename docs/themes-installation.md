@@ -7,11 +7,9 @@ prevPage: "themes-introduction"
 nextPage: "themes-usage"
 ---
 
-# Installing
+# Installation
 
-There are **two ways** to include themeable utilities in your project:  
-
-## Using the Full Framework (`low.css`)  
+## Using the full framework
 
 The **themeable utilities are included by default** in the main CSS bundle of the **lowCSS** framework. Simply include `low.css` in your project:
 
@@ -22,12 +20,10 @@ The **themeable utilities are included by default** in the main CSS bundle of th
 You can now use themeable utilities like:
 
 ```html
-<button class="bg-primary text-primary-foreground">
-    Click Me
-</button>
+<button class="bg-primary text-primary-foreground">Click Me</button>
 ```
 
-## Using Themeable Utilities Only (`low.themes.css`)  
+## Using themeable utilities only
 
 If you **only want the themeable utilities** (without other framework utilities), you can include `low.themes.css` instead:
 

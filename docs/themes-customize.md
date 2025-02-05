@@ -3,14 +3,14 @@ title: "Customize themeable utilities"
 layout: "docs"
 sidebar: "themes"
 permalink: "/themes/customize.html"
-prevPage: "themes-customize"
+prevPage: "themes-usage"
 ---
 
 # Customize
 
 Themeable utilities rely on **CSS variables**, which you can override in your styles.
 
-## Customizing Theme Colors
+### Customizing Theme Colors
 
 Customize colors by redefining the corresponding CSS variables:
 
@@ -25,7 +25,7 @@ Customize colors by redefining the corresponding CSS variables:
 }
 ```
 
-## Customizing Border Radius
+### Customizing Border Radius
 
 Set your preferred border radius:
 
@@ -35,7 +35,7 @@ Set your preferred border radius:
 }
 ```
 
-## Customizing Shadows
+### Customizing Shadows
 
 Modify the default shadow:
 
@@ -45,7 +45,7 @@ Modify the default shadow:
 }
 ```
 
-## Theme Presets  
+### Theme Presets  
 
 For projects that require **multiple themes** (e.g., light/dark mode), you can override variables dynamically:
 

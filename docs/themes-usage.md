@@ -13,9 +13,7 @@ Themeable utilities allow you to apply **consistent, customizable styles** using
 
 Each utility is mapped to a CSS variable (prefixed with `--low-*`), making customization simple. You can **override these variables** to match your brand or design needs.
 
-## Available Themeable Utilities  
-
-### Color Utilities
+## Color Utilities
 
 Color utilities are used for **backgrounds, text, borders, and outlines** across UI components.
 
@@ -39,19 +37,10 @@ Color utilities are used for **backgrounds, text, borders, and outlines** across
 Example usage: 
 
 ```html
-<button class="bg-primary text-primary-foreground">
-    Submit
-</button>
+<button class="bg-primary text-primary-foreground">Submit</button>
 ```
 
-Each color utility is available in four variants:
-
-- `bg-*`: for background color.
-- `text-*`: for text color.
-- `border-*`: for border color.
-- `outline-*`: for outline color.
-
-### Border Radius Utilities
+## Border Radius Utilities
 
 Border radius utilities define **default rounded corners** for elements like buttons and inputs.
 
@@ -62,12 +51,10 @@ Border radius utilities define **default rounded corners** for elements like but
 Example usage:
 
 ```html
-<button class="bg-primary text-primary-foreground rounded">
-    Rounded Button
-</button>
+<button class="bg-primary text-primary-foreground rounded">Message</button>
 ```
 
-### Shadow Utilitie
+## Shadow Utilities
 
 Shadow utilities define **default box shadows**, commonly used for elements like cards.
 
@@ -78,7 +65,5 @@ Shadow utilities define **default box shadows**, commonly used for elements like
 Example usage:
 
 ```html
-<div class="bg-background shadow p-4">
-    This is a card with shadow.
-</div>
+<div class="bg-background shadow p-4">Card</div>
 ```
