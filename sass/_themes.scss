@@ -3,18 +3,6 @@
 @use "mixins";
 @use "utilities";
 
-// @description tiny mixin to extend utilities for theme variables
-@mixin extend-utilities($utilities-names, $values) {
-    @each $name in $utilities-names {
-        @include mixins.utility((
-            "classname": map.get(utilities.$utilities, $name, "classname"),
-            "properties": map.get(utilities.$utilities, $name, "properties"),
-            "variants": map.get(utilities.$utilities, $name, "variants"),
-            "values": $values,
-        ));
-    }
-};
-
 // theme variables
 $theme-colors: (
     "background": var(--low-background),
@@ -39,46 +27,90 @@ $theme-shadows: (
     "DEFAULT": var(--low-shadow),
 );
 
-// extend color utilities
-@include extend-utilities(("background-color", "border-color", "outline-color", "text-color", "text-decoration-color"), $theme-colors);
-@include extend-utilities(("border-radius", "border-top-left-radius", "border-top-right-radius", "border-bottom-left-radius", "border-bottom-right-radius"), $theme-radiuses);
-@include extend-utilities(("box-shadow"), $theme-shadows);
+// theme utilities
+$theme-utilities: (
+    "background-color": (
+        "values": $theme-colors,
+    ),
+    "border-color": (
+        "values": $theme-colors,
+    ),
+    "outline-color": (
+        "values": $theme-colors,
+    ),
+    "text-color": (
+        "values": $theme-colors,
+    ),
+    "text-decoration-color": (
+        "values": $theme-colors,
+    ),
+    "border-radius": (
+        "values": $theme-radiuses,
+    ),
+    "border-top-left-radius": (
+        "values": $theme-radiuses,
+    ),
+    "border-top-right-radius": (
+        "values": $theme-radiuses,
+    ),
+    "border-bottom-left-radius": (
+        "values": $theme-radiuses,
+    ),
+    "border-bottom-right-radius": (
+        "values": $theme-radiuses,
+    ),
+    "box-shadow": (
+        "values": $theme-shadows,
+    ),
+);
 
-// base theme
-:root {
-    // default background color for the <body> element
-    --low-background: var(--low-white);
-    --low-foreground: var(--low-neutral-950);
+// @description mixin to generate theme utilities
+@mixin themes() {
+    // 1. Generate theme utilities
+    @each $utility-name,$utility-config in $theme-utilities {
+        @include mixins.utility((
+            "classname": map.get(utilities.$utilities, $utility-name, "classname"),
+            "properties": map.get(utilities.$utilities, $utility-name, "properties"),
+            "variants": map.get(utilities.$utilities, $utility-name, "variants"),
+            "values": map.get($utility-config, "values"),
+        ));
+    }
+    // 2. base theme
+    :root {
+        // default background color for the <body> element
+        --low-background: var(--low-white);
+        --low-foreground: var(--low-neutral-950);
 
-    // color for muted elements (e.g. disabled inputs)
-    --low-muted: var(--low-neutral-100);
-    --low-muted-foreground: var(--low-neutral-500);
+        // color for muted elements (e.g. disabled inputs)
+        --low-muted: var(--low-neutral-100);
+        --low-muted-foreground: var(--low-neutral-500);
 
-    // primary color
-    --low-primary: var(--low-neutral-900);
-    --low-primary-foreground: var(--low-white);
+        // primary color
+        --low-primary: var(--low-neutral-900);
+        --low-primary-foreground: var(--low-white);
 
-    // secondary color
-    --low-secondary: var(--low-neutral-100);
-    --low-secondary-foreground: var(--low-neutral-900);
+        // secondary color
+        --low-secondary: var(--low-neutral-100);
+        --low-secondary-foreground: var(--low-neutral-900);
 
-    // destructive color
-    --low-destructive: var(--low-red-500);
-    --low-destructive-foreground: var(--low-white);
+        // destructive color
+        --low-destructive: var(--low-red-500);
+        --low-destructive-foreground: var(--low-white);
 
-    // accent color
-    --low-accent: var(--low-neutral-100);
-    --low-accent-foreground: var(--low-neutral-900);
+        // accent color
+        --low-accent: var(--low-neutral-100);
+        --low-accent-foreground: var(--low-neutral-900);
 
-    // default border color
-    --low-border: var(--low-neutral-200);
+        // default border color
+        --low-border: var(--low-neutral-200);
 
-    // color used for <input> or <select> elements
-    --low-input: var(--low-neutral-200);
+        // color used for <input> or <select> elements
+        --low-input: var(--low-neutral-200);
 
-    // default radius for elements with rounded corners
-    --low-radius: var(--low-radius-lg);
+        // default radius for elements with rounded corners
+        --low-radius: var(--low-radius-lg);
 
-    // default shadow
-    --low-shadow: var(--low-shadow-sm);
+        // default shadow
+        --low-shadow: var(--low-shadow-sm);
+    }
 }
