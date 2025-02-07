@@ -128,6 +128,13 @@
     }
 }
 
+// @description include utilities
+@mixin utilities() {
+    @each $utility-name,$utility-config in utilities.$utilities {
+        @include utility($utility-config);
+    }
+}
+
 // @description utility mixin to apply utilities
 @mixin apply($utilities-str) {
     $utilities-list: functions.str-split($utilities-str, " ");
