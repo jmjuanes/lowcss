@@ -22,6 +22,7 @@
         "./colors": "./colors.json"
     },
     "scripts": {
+        "build:css:new": "node ./scripts/build.js",
         "build:bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
         "build:dev": "sass sass/main.scss low.dev.css",
         "build:css": "sass --style compressed sass/main.scss low.css",
