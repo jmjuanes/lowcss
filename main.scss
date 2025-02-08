@@ -10,33 +10,36 @@
  */
 
 // 1. include modules
+@use "sass:list";
 @use "sass/_index.scss" as low;
 
 // 2. define list of enabled modules
 $enabled-modules: ();
 
 // 3. include enabled modules
-// 3.1. include root variables
-@if low.list-includes($enabled-modules, "root") {
-    @include low.root();
-}
-// 3.2. include reset styles
-@if low.list-includes($enabled-modules, "reset") {
-    @include low.reset();
-}
-// 3.3. include starter styles
-@if low.list-includes($enabled-modules, "starter") {
-    @include low.starter();
-}
-// 3.4. include markup styles
-@if low.list-includes($enabled-modules, "markup") {
-    @include low.markup();
-}
-// 3.5. include theme styles
-@if low.list-includes($enabled-modules, "themes") {
-    @include low.themes();
-}
-// 3.6. include utilities
-@if low.list-includes($enabled-modules, "utilities") {
-    @include low.utilities();
+@if list.length($enabled-modules) > 0 {
+    // 3.1. include root variables
+    @if low.list-includes($enabled-modules, "root") {
+        @include low.root();
+    }
+    // 3.2. include reset styles
+    @if low.list-includes($enabled-modules, "reset") {
+        @include low.reset();
+    }
+    // 3.3. include starter styles
+    @if low.list-includes($enabled-modules, "starter") {
+        @include low.starter();
+    }
+    // 3.4. include markup styles
+    @if low.list-includes($enabled-modules, "markup") {
+        @include low.markup();
+    }
+    // 3.5. include theme styles
+    @if low.list-includes($enabled-modules, "themes") {
+        @include low.themes();
+    }
+    // 3.6. include utilities
+    @if low.list-includes($enabled-modules, "utilities") {
+        @include low.utilities();
+    }
 }
