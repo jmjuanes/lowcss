@@ -68,20 +68,22 @@ const buildScss = code => {
     });
 };
 
-const build = async () => {
+const build = () => {
     const template = fs.readFileSync("main.scss", "utf8");
     console.log(`[build:css] generating ${outputModules.length} modules...`);
     // generate each module
-    for (let i = 0; i < outputModules.length; i++) {
-        const item = outputModules[i];
+    const allPromises = outputModules.map(item => {
         const enabledModulesStr = JSON.stringify(item.enabledModules);
         const code = template.replace("$enabled-modules: ();", `$enabled-modules: (${enabledModulesStr});`);
-        const result = await buildScss(code);
-        fs.writeFileSync(item.output, result.css);
-        console.log(`[build:css] saved '${item.output}'`);
-    }
-    // build finished
-    console.log(`[build:css] build finished`);
+        return buildScss(code).then(result => {
+            fs.writeFileSync(item.output, result.css);
+            console.log(`[build:css] saved '${item.output}'`);
+        });
+    });
+    // when all promises are finised
+    Promise.all(allPromises).then(() => {
+        console.log(`[build:css] build finished`);
+    });
 };
 
 // Build lowcss
