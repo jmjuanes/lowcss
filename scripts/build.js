@@ -1,31 +1,55 @@
 const fs = require("node:fs");
-const path = require("node:path");
 const sass = require("sass");
 const autoprefixer = require("autoprefixer");
 const postcss = require("postcss");
 const {minify} = require("csso");
 
 // output modules to compile
-const outputModules = {
+const outputModules = Object.values({
     "low.css": {
-        modules: ["root", "reset", "starter", "markup", "themes", "utilities"],
+        output: "low.css",
+        enabledModules: [
+            "root",
+            "reset",
+            "starter",
+            "markup",
+            "themes",
+            "utilities",
+        ],
     },
     "low.utilities.css": {
-        modules: ["utilities"],
+        output: "low.utilities.css",
+        enabledModules: [
+            "utilities",
+        ],
     },
     "low.themes.css": {
-        modules: ["themes"],
+        output: "low.themes.css",
+        enabledModules: [
+            "themes",
+        ],
     },
     "low.base.css": {
-        modules: ["root", "reset", "starter"],
+        output: "low.base.css",
+        enabledModules: [
+            "root",
+            "reset",
+            "starter",
+        ],
     },
     "low.markup.css": {
-        modules: ["markup"],
+        output: "low.markup.css",
+        enabledModules: [
+            "markup",
+        ],
     },
     "low.root.css": {
-        modules: ["root"],
+        output: "low.root.css",
+        enabledModules: [
+            "root",
+        ],
     },
-};
+});
 
 // @description build scss
 const buildScss = code => {
@@ -38,21 +62,26 @@ const buildScss = code => {
         result.warnings().forEach(warn => {
             console.warn(warn.toString());
         });
-        return minify(result.css);
+        return minify(result.css, {
+            sourceMap: false,
+        });
     });
 };
 
-const build = () => {
+const build = async () => {
     const template = fs.readFileSync("main.scss", "utf8");
-    const allPromises = Object.keys(outputModules).map(output => {
-        const code = template.replace("$enabled-modules: ();", `$enabled-modules: (${JSON.stringify(outputModules[output].modules)});`);
-        return buildScss(code).then(result => {
-            return fs.writeFileSync(output, result.css);
-        });
-    });
-    Promise.all(allPromises).then(() => {
-        console.log("Build complete");
-    });
+    console.log(`[build:css] generating ${outputModules.length} modules...`);
+    // generate each module
+    for (let i = 0; i < outputModules.length; i++) {
+        const item = outputModules[i];
+        const enabledModulesStr = JSON.stringify(item.enabledModules);
+        const code = template.replace("$enabled-modules: ();", `$enabled-modules: (${enabledModulesStr});`);
+        const result = await buildScss(code);
+        fs.writeFileSync(item.output, result.css);
+        console.log(`[build:css] saved '${item.output}'`);
+    }
+    // build finished
+    console.log(`[build:css] build finished`);
 };
 
 // Build lowcss
