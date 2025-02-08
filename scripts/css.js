@@ -13,13 +13,6 @@ const outputModules = Object.values({
             "reset",
             "starter",
             "markup",
-            "themes",
-            "utilities",
-        ],
-    },
-    "low.utilities.css": {
-        output: "low.utilities.css",
-        enabledModules: [
             "utilities",
         ],
     },
@@ -27,26 +20,6 @@ const outputModules = Object.values({
         output: "low.themes.css",
         enabledModules: [
             "themes",
-        ],
-    },
-    "low.base.css": {
-        output: "low.base.css",
-        enabledModules: [
-            "root",
-            "reset",
-            "starter",
-        ],
-    },
-    "low.markup.css": {
-        output: "low.markup.css",
-        enabledModules: [
-            "markup",
-        ],
-    },
-    "low.root.css": {
-        output: "low.root.css",
-        enabledModules: [
-            "root",
         ],
     },
 });

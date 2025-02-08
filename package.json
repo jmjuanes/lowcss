@@ -53,6 +53,7 @@
         "LICENSE",
         "low.scss",
         "low.css",
+        "low.themes.css",
         "low.json",
         "colors.json"
     ],
