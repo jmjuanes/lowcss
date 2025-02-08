@@ -16,13 +16,27 @@
 $enabled-modules: ();
 
 // 3. include enabled modules
-
-// 3.1. include theme styles
+// 3.1. include root variables
+@if low.list-includes($enabled-modules, "root") {
+    @include low.root();
+}
+// 3.2. include reset styles
+@if low.list-includes($enabled-modules, "reset") {
+    @include low.reset();
+}
+// 3.3. include starter styles
+@if low.list-includes($enabled-modules, "starter") {
+    @include low.starter();
+}
+// 3.4. include markup styles
+@if low.list-includes($enabled-modules, "markup") {
+    @include low.markup();
+}
+// 3.5. include theme styles
 @if low.list-includes($enabled-modules, "themes") {
     @include low.themes();
 }
-
-// 3.2. include utilities
+// 3.6. include utilities
 @if low.list-includes($enabled-modules, "utilities") {
     @include low.utilities();
 }
