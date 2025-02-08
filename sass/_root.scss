@@ -1,42 +1,44 @@
 @use "variables";
 
-:root {
-    // Colors variables
-    @each $color-name,$color-value in variables.$colors {
-        --low-#{$color-name}: #{$color-value};
-    }
-    // Fonts variables
-    @each $font-name,$font-value in variables.$font-families {
-        --low-font-#{$font-name}: #{$font-value};
-    }
-    // Font sizes
-    @each $font-size-name,$font-size-value in variables.$font-sizes {
-        --low-font-#{$font-size-name}: #{$font-size-value};
-    }
-    // Font weights
-    @each $font-weight-name,$font-weight-value in variables.$font-weights {
-        --low-font-#{$font-weight-name}: #{$font-weight-value};
-    }
-    // Line heights
-    @each $leading-name,$leading-value in variables.$leadings {
-        --low-leading-#{$leading-name}: #{$leading-value};
-    }
-    // Trackins
-    @each $tracking-name,$tracking-value in variables.$trackings {
-        --low-tracking-#{$tracking-name}: #{$tracking-value};
-    }
-    // Spacing variables
-    @each $spacing-name,$spacing-value in variables.$spacing {
-        --low-space-#{$spacing-name}: #{$spacing-value};
-    }
-    // Border radius variables
-    @each $radius-name,$radius-value in variables.$radiuses {
-        @if $radius-name != "DEFAULT" {
-            --low-radius-#{$radius-name}: #{$radius-value};
+@mixin root() {
+    :root {
+        // Colors variables
+        @each $color-name,$color-value in variables.$colors {
+            --low-#{$color-name}: #{$color-value};
         }
-    }
-    // Shadows variables
-    @each $shadow-name,$shadow-value in variables.$shadows {
-        --low-shadow-#{$shadow-name}: #{$shadow-value};
+        // Fonts variables
+        @each $font-name,$font-value in variables.$font-families {
+            --low-font-#{$font-name}: #{$font-value};
+        }
+        // Font sizes
+        @each $font-size-name,$font-size-value in variables.$font-sizes {
+            --low-font-#{$font-size-name}: #{$font-size-value};
+        }
+        // Font weights
+        @each $font-weight-name,$font-weight-value in variables.$font-weights {
+            --low-font-#{$font-weight-name}: #{$font-weight-value};
+        }
+        // Line heights
+        @each $leading-name,$leading-value in variables.$leadings {
+            --low-leading-#{$leading-name}: #{$leading-value};
+        }
+        // Trackins
+        @each $tracking-name,$tracking-value in variables.$trackings {
+            --low-tracking-#{$tracking-name}: #{$tracking-value};
+        }
+        // Spacing variables
+        @each $spacing-name,$spacing-value in variables.$spacing {
+            --low-space-#{$spacing-name}: #{$spacing-value};
+        }
+        // Border radius variables
+        @each $radius-name,$radius-value in variables.$radiuses {
+            @if $radius-name != "DEFAULT" {
+                --low-radius-#{$radius-name}: #{$radius-value};
+            }
+        }
+        // Shadows variables
+        @each $shadow-name,$shadow-value in variables.$shadows {
+            --low-shadow-#{$shadow-name}: #{$shadow-value};
+        }
     }
 }
