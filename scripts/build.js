@@ -8,13 +8,22 @@ const {minify} = require("csso");
 // output modules to compile
 const outputModules = {
     "low.css": {
-        modules: ["themes", "utilities"],
+        modules: ["root", "reset", "starter", "markup", "themes", "utilities"],
     },
     "low.utilities.css": {
         modules: ["utilities"],
     },
     "low.themes.css": {
         modules: ["themes"],
+    },
+    "low.base.css": {
+        modules: ["root", "reset", "starter"],
+    },
+    "low.markup.css": {
+        modules: ["markup"],
+    },
+    "low.root.css": {
+        modules: ["root"],
     },
 };
 
