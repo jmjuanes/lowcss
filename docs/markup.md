@@ -4,7 +4,7 @@ layout: "docs"
 sidebar: "default"
 permalink: "/docs/markup.html"
 prevPage: "helpers"
-nextPage: "utilities"
+nextPage: "extensions-themes"
 ---
 
 # Markup
