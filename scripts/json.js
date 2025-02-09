@@ -2,17 +2,14 @@ const fs = require("node:fs");
 const sass = require("sass");
 const pkg = require("../package.json");
 
-// global constants
-const endl = "\n";
-
-const printJson = content => {
-    return JSON.stringify(content, null, "    ");
+const jsonStr = data => {
+    return JSON.stringify(data, null, "    ");
 };
 
-const main = () => {
-    const output = "low.json";
+const main = args => {
+    const endl = "\n";
     const template = fs.readFileSync("main.scss", "utf8");
-    console.log(`[build:json] generating '${output}' ...`);
+    console.log(`[build:json] generating '${args[0]}' ...`);
     // change output mode to JSON
     const code = template.replace(`$output-mode: "css";`, `$output-mode: "json";`);
     const {css} = sass.compileString(code, {
@@ -35,8 +32,9 @@ const main = () => {
         });
     });
     // save json file
-    fs.writeFileSync(output, printJson(content) + endl, "utf8");
-    console.log(`[build:json] saved '${output}'`);
+    fs.writeFileSync(args[0], jsonStr(content) + endl, "utf8");
+    console.log(`[build:json] saved '${args[0]}'`);
 };
 
-main();
+// build json
+main(process.argv.slice(2));
