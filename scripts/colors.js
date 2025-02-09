@@ -1,10 +1,11 @@
 const fs = require("node:fs");
-const path = require("node:path");
 
-// Import low configuration
-const low = require("../low.json");
+const jsonStr = data => {
+    return JSON.stringify(data, null, "    ");
+};
 
-const run = args => {
+const main = args => {
+    const low = JSON.parse(fs.readFileSync("low.json", "utf8"));
     // const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
     const colors = {}; // Output colors object
     Object.keys(low.variables.colors).forEach(name => {
@@ -21,8 +22,9 @@ const run = args => {
         //     colors[name] = low.colors[name];
         // }
     });
-    const filePath = path.join(process.cwd(), args[1]);
-    fs.writeFileSync(filePath, JSON.stringify(colors, null, "    "), "utf8");
+    // save file
+    fs.writeFileSync(args[0], jsonStr(colors), "utf8");
+    console.log(`[build:colors] saved '${args[0]}'`);
 };
 
-run(process.argv.slice(2));
+main(process.argv.slice(2));
