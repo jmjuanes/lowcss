@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+    <link rel="stylesheet" href="/low.themes.css" />
     <link rel="stylesheet" href="/low.css" />
     <link rel="stylesheet" href="/highlight.css" />
     <title>{{page.data.title}} - lowCSS {{site.version}}</title>
@@ -59,15 +60,14 @@
     </div>
     <!-- Content -->
     {{#eq page.data.layout "default"}}
-    <div class="w-full max-w-7xl mx-auto px-6 mb-16">
+    <div class="w-full max-w-8xl mx-auto px-6 mb-16">
         {{> content}}
     </div>
     {{/eq}}
     {{#eq page.data.layout "docs"}}
-    <div class="flex w-full max-w-7xl mx-auto px-6 gap-4">
+    <div class="flex w-full max-w-8xl mx-auto px-6 gap-4">
         <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
-            {{#eq page.data.sidebar "default"}}{{>sidebar sidebar=site.sidebar.default}}{{/eq}}
-            {{#eq page.data.sidebar "themes"}}{{>sidebar sidebar=site.sidebar.themes}}{{/eq}}
+            {{>sidebar}}
         </div>
         <div class="w-full max-w-3xl">
             <div class="markup pt-6 md:pt-8 pb-16">
@@ -94,7 +94,7 @@
         </div>
     </div>
     {{/eq}}
-    <div class="w-full max-w-7xl mx-auto px-6 pt-16 pb-20 text-sm text-neutral-600">
+    <div class="w-full max-w-8xl mx-auto px-6 pt-16 pb-20 text-sm text-neutral-600">
         Designed by <a href="https://www.josemi.xyz" class="underline text-neutral-900 hover:text-neutral-950 font-medium">Josemi</a>. 
         Source code available on <a href="{{site.repository}}" class="underline text-neutral-900 hover:text-neutral-950 font-medium">GitHub</a>. 
     </div>

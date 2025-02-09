@@ -97,52 +97,40 @@ const getData = () => {
             title: pkg.title,
             description: pkg.description,
             repository: pkg.repository,
-            sidebar: {
-                default: Object.values({
-                    gettingStarted: {
-                        title: "Getting Started",
-                        items: [
-                            {title: "Introduction", link: "/docs/"},
-                            {title: "Installation", link: "/docs/installation"},
-                            {title: "Usage", link: "/docs/usage"},
-                        ],
-                    },
-                    globals: {
-                        title: "Globals",
-                        items: [
-                            {title: "Root CSS Variables", link: "/docs/root"},
-                        ],
-                    },
-                    base: {
-                        title: "Base Styles",
-                        items: [
-                            {title: "Reset", link: "/docs/reset"},
-                            {title: "Keyframes", link: "/docs/keyframes"},
-                            {title: "Helpers", link: "/docs/helpers"},
-                            {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
-                        ],
-                    },
-                    ...getUtilitiesMenu(utilities),
-                }),
-                themes: Object.values({
-                    gettingStarted: {
-                        title: "Getting Started",
-                        items: [
-                            {title: "Introduction", link: "/themes/introduction"},
-                            {title: "Installation", link: "/themes/installation"},
-                        ],
-                    },
-                    usage: {
-                        title: "Using Themes",
-                        items: [
-                            {title: "Usage", link: "/themes/usage"},
-                            {title: "Customize", link: "/themes/customize"},
-                        ],
-                    },
-                }),
-            },
+            sidebar: Object.values({
+                gettingStarted: {
+                    title: "Getting Started",
+                    items: [
+                        {title: "Introduction", link: "/docs/"},
+                        {title: "Installation", link: "/docs/installation"},
+                        {title: "Usage", link: "/docs/usage"},
+                    ],
+                },
+                globals: {
+                    title: "Globals",
+                    items: [
+                        {title: "Root CSS Variables", link: "/docs/root"},
+                    ],
+                },
+                base: {
+                    title: "Base Styles",
+                    items: [
+                        {title: "Reset", link: "/docs/reset"},
+                        {title: "Keyframes", link: "/docs/keyframes"},
+                        {title: "Helpers", link: "/docs/helpers"},
+                        {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
+                    ],
+                },
+                extensions: {
+                    title: "Extensions",
+                    items: [
+                        {title: "Themes", link: "/docs/themes"},
+                    ],
+                },
+                ...getUtilitiesMenu(utilities),
+            }),
             navbar: [
-                {title: "Documentation", link: "/docs"},
+                {title: "Docs", link: "/docs"},
                 {title: "Colors", link: "/colors"},
                 {title: "Themes", link: "/themes"},
                 {title: "Examples", link: "/examples"},
