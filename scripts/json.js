@@ -18,7 +18,8 @@ const main = args => {
         ],
     });
     // fix values and set version
-    const content = JSON.parse(css.split(endl).slice(1, -2).join(endl));
+    const lines = css.split(endl).filter(Boolean).slice(-2).slice(0, -1);
+    const content = JSON.parse(lines.join(endl));
     content.version = pkg.version;
     Object.keys(content.utilities).forEach(key => {
         const utility = content.utilities[key];
