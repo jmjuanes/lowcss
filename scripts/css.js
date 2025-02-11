@@ -13,12 +13,29 @@ const outputModules = Object.values({
             "reset",
             "starter",
             "markup",
+            "themes",
             "utilities",
         ],
     },
-    "low.themes.css": {
-        output: "low.themes.css",
+    "low.utilities.css": {
+        output: "low.utilities.css",
         enabledModules: [
+            "root",
+            "utilities",
+        ],
+    },
+    "low.base.css": {
+        output: "low.base.css",
+        enabledModules: [
+            "reset",
+            "starter",
+        ],
+    },
+    "low.extensions.css": {
+        output: "low.extensions.css",
+        enabledModules: [
+            "root",
+            "markup",
             "themes",
         ],
     },
