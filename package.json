@@ -19,7 +19,10 @@
         "./scss": "./low.scss",
         "./json": "./low.json",
         "./package.json": "./package.json",
-        "./colors": "./colors.json"
+        "./colors": "./colors.json",
+        "./utilities": "./low.utilities.css",
+        "./base": "./low.base.css",
+        "./extensions": "./low.extensions.css"
     },
     "scripts": {
         "build:bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
