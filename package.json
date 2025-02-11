@@ -52,7 +52,9 @@
         "LICENSE",
         "low.scss",
         "low.css",
-        "low.themes.css",
+        "low.utilities.css",
+        "low.base.css",
+        "low.extensions.css",
         "low.json",
         "colors.json"
     ],
