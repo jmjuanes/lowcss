@@ -110,6 +110,7 @@ const getData = () => {
                     title: "Globals",
                     items: [
                         {title: "Root CSS Variables", link: "/docs/root"},
+                        {title: "Theming", link: "/docs/theming"},
                     ],
                 },
                 base: {
@@ -121,18 +122,11 @@ const getData = () => {
                         {title: "Markup", link: "/docs/markup", version: "v0.22.0"},
                     ],
                 },
-                extensions: {
-                    title: "Extensions",
-                    items: [
-                        {title: "Themes", link: "/docs/themes"},
-                    ],
-                },
                 ...getUtilitiesMenu(utilities),
             }),
             navbar: [
                 {title: "Docs", link: "/docs"},
                 {title: "Colors", link: "/colors"},
-                {title: "Themes", link: "/themes"},
                 {title: "Examples", link: "/examples"},
                 {title: "Playground", link: "/playground"},
             ],

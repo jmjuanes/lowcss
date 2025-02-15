@@ -3,7 +3,7 @@ title: "Utilities"
 layout: "docs"
 sidebar: "default"
 permalink: "/docs/utilities.html"
-prevPage: "extensions-themes"
+prevPage: "markup"
 ---
 
 # Utilities
