@@ -18,25 +18,23 @@
         "./css": "./low.css",
         "./scss": "./low.scss",
         "./json": "./low.json",
-        "./package.json": "./package.json",
-        "./colors": "./colors.json"
+        "./package.json": "./package.json"
     },
     "scripts": {
         "build:bundle": "node ./scripts/bundle.js sass/_index.scss low.scss",
-        "build:css": "node ./scripts/css.js",
-        "build:colors": "node ./scripts/colors.js colors.json",
+        "build:css": "node ./scripts/css.js low.css",
         "build:json": "node ./scripts/json.js low.json",
         "prebuild:site": "rm -rf www && mkdir www",
         "build:site": "node ./scripts/site.js && node ./scripts/playground.js build",
-        "postbuild:site": "cp low.* www/ && cp colors.json www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp -R public/* www/",
-        "build": "yarn build:bundle && yarn build:css && yarn build:json && yarn build:colors",
+        "postbuild:site": "cp low.* www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp -R public/* www/",
+        "build": "yarn build:bundle && yarn build:css && yarn build:json",
         "bundle": "yarn build:bundle",
         "docs": "yarn run build:site",
         "playground": "yarn serve:playground",
         "serve": "stattic --folder ./www --port 3000",
         "serve:playground": "node ./scripts/playground.js serve",
         "site": "yarn build:site",
-        "pack": "zip lowcss.zip low.* colors.json"
+        "pack": "zip lowcss.zip low.*"
     },
     "keywords": [
         "css",
@@ -52,9 +50,7 @@
         "LICENSE",
         "low.scss",
         "low.css",
-        "low.themes.css",
-        "low.json",
-        "colors.json"
+        "low.json"
     ],
     "devDependencies": {
         "@josemi-icons/svg": "^0.6.0",
