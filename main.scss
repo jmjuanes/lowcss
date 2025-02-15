@@ -15,14 +15,7 @@
 
 // 2. internal variables
 $output-mode: "css"; // output mode: css or json
-$enabled-modules: (
-    "root",
-    "reset",
-    "starter",
-    "markup",
-    "themes",
-    "utilities",
-);
+$enabled-modules: (); // list of enabled modules
 
 // 3. generate css modde
 @if $output-mode == "css" or $output-mode == "CSS" {

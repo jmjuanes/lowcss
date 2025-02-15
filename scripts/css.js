@@ -4,29 +4,60 @@ const autoprefixer = require("autoprefixer");
 const postcss = require("postcss");
 const {minify} = require("csso");
 
-const main = args => {
-    console.log(`[build:css] generating '${args[0]}'...`);
-    const code = fs.readFileSync("main.scss", "utf8");
-    const {css} = sass.compileString(code, {
-        loadPaths: [
-            process.cwd(),
+// output modules to compile
+const outputModules = Object.values({
+    "low.css": {
+        output: "low.css",
+        enabledModules: [
+            "root",
+            "reset",
+            "starter",
+            "markup",
+            "themes",
+            "utilities",
         ],
-    });
-    return postcss([autoprefixer])
-        .process(css)
-        .then(result => {
-            // print all warnings (if any)
-            result.warnings().forEach(warn => {
-                console.warn(warn.toString());
-            });
-            return minify(result.css, {
-                sourceMap: false,
-            });
-        })
-        .then(result => {
-            fs.writeFileSync(args[0], result.css);
-            console.log(`[build:css] saved '${args[0]}'`);
+    },
+    "low.themes.css": {
+        output: "low.themes.css",
+        enabledModules: [
+            "themes",
+        ],
+    },
+});
+
+const main = args => {
+    console.log(`[build:css] generating '${args.join(", ")}'...`);
+    const template = fs.readFileSync("main.scss", "utf8");
+    // generate each module
+    const allPromises = args.map(moduleName => {
+        const item = outputModules[moduleName];
+        const enabledModulesStr = JSON.stringify(item.enabledModules);
+        const code = template.replace("$enabled-modules: ();", `$enabled-modules: (${enabledModulesStr});`);
+        const {css} = sass.compileString(code, {
+            loadPaths: [
+                process.cwd(),
+            ],
         });
+        return postcss([autoprefixer])
+            .process(css)
+            .then(result => {
+                // print all warnings (if any)
+                result.warnings().forEach(warn => {
+                    console.warn(warn.toString());
+                });
+                return minify(result.css, {
+                    sourceMap: false,
+                });
+            })
+            .then(result => {
+                fs.writeFileSync(item.output, result.css);
+                console.log(`[build:css] saved '${item.output}'`);
+            });
+    });
+    // when all promises are finised
+    Promise.all(allPromises).then(() => {
+        console.log(`[build:css] build finished`);
+    });
 };
 
 // Build css
