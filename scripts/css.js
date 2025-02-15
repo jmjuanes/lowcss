@@ -17,12 +17,6 @@ const outputModules = Object.values({
             "utilities",
         ],
     },
-    "low.themes.css": {
-        output: "low.themes.css",
-        enabledModules: [
-            "themes",
-        ],
-    },
 });
 
 const main = args => {
