@@ -36,9 +36,9 @@ $enabled-modules: (); // list of enabled modules
         @if low.list-includes($enabled-modules, "markup") {
             @include low.markup();
         }
-        // 3.5. include theme styles
-        @if low.list-includes($enabled-modules, "themes") {
-            @include low.themes();
+        // 3.5. include themimg styles
+        @if low.list-includes($enabled-modules, "theming") {
+            @include low.theming();
         }
         // 3.6. include utilities
         @if low.list-includes($enabled-modules, "utilities") {
