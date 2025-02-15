@@ -5,7 +5,7 @@ const postcss = require("postcss");
 const {minify} = require("csso");
 
 // output modules to compile
-const outputModules = Object.values({
+const outputModules = {
     "low.css": {
         output: "low.css",
         enabledModules: [
@@ -13,11 +13,11 @@ const outputModules = Object.values({
             "reset",
             "starter",
             "markup",
-            "themes",
+            "theming",
             "utilities",
         ],
     },
-});
+};
 
 const main = args => {
     console.log(`[build:css] generating '${args.join(", ")}'...`);
