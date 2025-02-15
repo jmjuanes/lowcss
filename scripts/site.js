@@ -127,6 +127,7 @@ const getData = () => {
             navbar: [
                 {title: "Docs", link: "/docs"},
                 {title: "Colors", link: "/colors"},
+                {title: "Themes", link: "/themes"},
                 {title: "Examples", link: "/examples"},
                 {title: "Playground", link: "/playground"},
             ],

@@ -53,7 +53,7 @@ themes:
         <span class="text-neutral-700">A collection of customizable utilities that you can use for theming your UI components.</span>
     </div>
     <div class="flex items-center gap-2">
-        <a href="/docs/themes" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+        <a href="/docs/theming" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
             <span class="font-medium text-sm">Get Started</span>
         </a>
     </div>

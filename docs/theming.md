@@ -1,14 +1,14 @@
 ---
-title: "Themeable Utilities"
+title: "Theming"
 layout: "docs"
-permalink: "/docs/themes.html"
+permalink: "/docs/theming.html"
 prevPage: "root"
 nextPage: "reset"
 ---
 
 # Theming
 
-LowwCSS ships with a collection of themeable utilities that brings the power of **CSS variables** to your utility-based styling, making it easier than ever to customize UI components dynamically. Instead of using fixed color values, these utilities leverage CSS variables, allowing you to **define themes, switch styles effortlessly, and create a consistent design system**.
+LowCSS ships with a collection of themeable utilities that brings the power of **CSS variables** to your utility-based styling, making it easier than ever to customize UI components dynamically. Instead of using fixed color values, these utilities leverage CSS variables, allowing you to **define themes, switch styles effortlessly, and create a consistent design system**.
 
 ### Apply theme-based styling
 
