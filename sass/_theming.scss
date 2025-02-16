@@ -3,8 +3,8 @@
 @use "mixins";
 @use "utilities";
 
-// theme variables
-$theme-colors: (
+// theming variables
+$theming-colors: (
     "background": var(--low-background),
     "foreground": var(--low-foreground),
     "muted": var(--low-muted),
@@ -20,54 +20,54 @@ $theme-colors: (
     "border": var(--low-border),
     "input": var(--low-input),
 );
-$theme-radiuses: (
+$theming-radiuses: (
     "DEFAULT": var(--low-radius),
 );
-$theme-shadows: (
+$theming-shadows: (
     "DEFAULT": var(--low-shadow),
 );
 
-// theme utilities
-$theme-utilities: (
+// theming utilities
+$theming-utilities: (
     "background-color": (
-        "values": $theme-colors,
+        "values": $theming-colors,
     ),
     "border-color": (
-        "values": $theme-colors,
+        "values": $theming-colors,
     ),
     "outline-color": (
-        "values": $theme-colors,
+        "values": $theming-colors,
     ),
     "text-color": (
-        "values": $theme-colors,
+        "values": $theming-colors,
     ),
     "text-decoration-color": (
-        "values": $theme-colors,
+        "values": $theming-colors,
     ),
     "border-radius": (
-        "values": $theme-radiuses,
+        "values": $theming-radiuses,
     ),
     "border-top-left-radius": (
-        "values": $theme-radiuses,
+        "values": $theming-radiuses,
     ),
     "border-top-right-radius": (
-        "values": $theme-radiuses,
+        "values": $theming-radiuses,
     ),
     "border-bottom-left-radius": (
-        "values": $theme-radiuses,
+        "values": $theming-radiuses,
     ),
     "border-bottom-right-radius": (
-        "values": $theme-radiuses,
+        "values": $theming-radiuses,
     ),
     "box-shadow": (
-        "values": $theme-shadows,
+        "values": $theming-shadows,
     ),
 );
 
-// @description mixin to generate theme utilities
-@mixin themes() {
-    // 1. Generate theme utilities
-    @each $utility-name,$utility-config in $theme-utilities {
+// @description mixin to generate theming utilities
+@mixin theming() {
+    // 1. Generate theming utilities
+    @each $utility-name,$utility-config in $theming-utilities {
         @include mixins.utility((
             "classname": map.get(utilities.$utilities, $utility-name, "classname"),
             "properties": map.get(utilities.$utilities, $utility-name, "properties"),

@@ -1,16 +1,14 @@
 ---
-title: "Themeable Utilities"
+title: "Theming"
 layout: "docs"
-permalink: "/docs/themes.html"
-prevPage: "markup"
-nextPage: "utilities"
+permalink: "/docs/theming.html"
+prevPage: "root"
+nextPage: "reset"
 ---
 
-# Themeable Utilities
+# Theming
 
-Themeable utilities bring the power of **CSS variables** to your utility-based styling, making it easier than ever to customize UI components dynamically. Instead of using fixed color values, these utilities leverage CSS variables, allowing you to **define themes, switch styles effortlessly, and create a consistent design system**.
-
-## Key Features
+LowCSS ships with a collection of themeable utilities that brings the power of **CSS variables** to your utility-based styling, making it easier than ever to customize UI components dynamically. Instead of using fixed color values, these utilities leverage CSS variables, allowing you to **define themes, switch styles effortlessly, and create a consistent design system**.
 
 ### Apply theme-based styling
 
@@ -36,14 +34,6 @@ Just like any other utility, themeable utilities work with hover states and pseu
 
 ```html
 <div class="hover:bg-accent">Hover me!</div>
-```
-
-## Installation
-
-To enable themeable utilities in your project, just include `low.themes.css` **before** importing lowCSS:
-
-```html
-<link rel="stylesheet" href="node_modules/lowcss/low.themes.css">
 ```
 
 ## Usage
@@ -107,7 +97,7 @@ Example usage:
 
 ## Customization
 
-Each utility is mapped to a CSS variable (prefixed with `--low-*`), making customization simple. You can **override these variables** to match your brand or design needs.
+Each theme utility is mapped to a CSS variable (prefixed with `--low-*`), making customization simple. You can **override these variables** to match your brand or design needs.
 
 - Customize utilities to set the background and text color of the `<body>`:
 

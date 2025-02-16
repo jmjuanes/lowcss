@@ -4,7 +4,7 @@ layout: "docs"
 sidebar: "default"
 permalink: "/docs/root.html"
 prevPage: "usage"
-nextPage: "reset"
+nextPage: "theming"
 ---
 
 # Root CSS Variables
