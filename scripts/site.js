@@ -5,7 +5,6 @@ const frontMatter = require("front-matter");
 const hljs = require("highlight.js/lib/common");
 const pkg = require("../package.json");
 const low = require("../low.json");
-const colors = require("../colors.json");
 
 const endl = "\n";
 
@@ -17,6 +16,22 @@ const capitalize = str => {
 // @private remove empty lines in code
 const removeEmptyLines = code => {
     return code.split(endl).filter(line => !!line.trim()).join(endl);
+};
+
+// @description get colors list
+const getColors = () => {
+    // const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+    const colors = {}; // Output colors object
+    Object.keys(low.variables.colors).forEach(name => {
+        if (name.indexOf("-") > -1) {
+            const [key, shade] = name.split("-");
+            if (typeof colors[key] === "undefined") {
+                colors[key] = {};
+            }
+            colors[key][shade] = low.variables.colors[name];
+        }
+    });
+    return colors;
 };
 
 // @description Generate utilities data
@@ -133,7 +148,7 @@ const getData = () => {
             ],
             data: {
                 utilities: utilities,
-                colors: colors,
+                colors: getColors(),
                 variables: low.variables,
                 examples: [],
             },
