@@ -25,6 +25,7 @@ jobs:
       - uses: softprops/action-gh-release@v1
         with:
           files: lowcss.zip
+          generate_release_notes: true
   
   publish:
     if: ${{ github.repository == 'jmjuanes/lowcss' }}
@@ -35,7 +36,6 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - uses: actions/download-artifact@v3
       - run: yarn install
       - run: yarn build
       - run: yarn publish --access public
