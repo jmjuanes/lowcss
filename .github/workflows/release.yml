@@ -25,6 +25,7 @@ jobs:
       - uses: softprops/action-gh-release@v1
         with:
           files: lowcss.zip
+          generate_release_notes: true
   
   publish:
     if: ${{ github.repository == 'jmjuanes/lowcss' }}
