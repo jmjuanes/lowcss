@@ -68,19 +68,6 @@ $cool-800: #313949 !default;
 $cool-900: #1F242E !default;
 $cool-950: #14181F !default;
 
-// @description quartz color palette
-$quartz-50:  #F5F4F6 !default;
-$quartz-100: #EAE9EC !default;
-$quartz-200: #D5D3D9 !default;
-$quartz-300: #C1BDC7 !default;
-$quartz-400: #ACA7B4 !default;
-$quartz-500: #9791A1 !default;
-$quartz-600: #787184 !default;
-$quartz-700: #5A5563 !default;
-$quartz-800: #3C3842 !default;
-$quartz-900: #1E1C21 !default;
-$quartz-950: #0F0E10 !default;
-
 // @description base gray colors
 $gray-50:  #F9FAFA !default;
 $gray-100: #F3F4F5 !default;
@@ -106,6 +93,19 @@ $neutral-700: #545454 !default;
 $neutral-800: #383838 !default;
 $neutral-900: #1A1A1A !default;
 $neutral-950: #0D0D0D !default;
+
+// @description quartz color palette
+$quartz-50:  #F5F4F6 !default;
+$quartz-100: #EAE9EC !default;
+$quartz-200: #D5D3D9 !default;
+$quartz-300: #C1BDC7 !default;
+$quartz-400: #ACA7B4 !default;
+$quartz-500: #9791A1 !default;
+$quartz-600: #787184 !default;
+$quartz-700: #5A5563 !default;
+$quartz-800: #3C3842 !default;
+$quartz-900: #1E1C21 !default;
+$quartz-950: #0F0E10 !default;
 
 // @description red colors
 $red-50:  #FCE9EB !default;
@@ -239,18 +239,6 @@ $colors: (
     "cool-900": $cool-900,
     "cool-950": $cool-950,
 
-    "quartz-50":  $quartz-50,
-    "quartz-100": $quartz-100,
-    "quartz-200": $quartz-200,
-    "quartz-300": $quartz-300,
-    "quartz-400": $quartz-400,
-    "quartz-500": $quartz-500,
-    "quartz-600": $quartz-600,
-    "quartz-700": $quartz-700,
-    "quartz-800": $quartz-800,
-    "quartz-900": $quartz-900,
-    "quartz-950": $quartz-950,
-
     "gray-50":  $gray-50,
     "gray-100": $gray-100,
     "gray-200": $gray-200,
@@ -274,6 +262,18 @@ $colors: (
     "neutral-800": $neutral-800,
     "neutral-900": $neutral-900,
     "neutral-950": $neutral-950,
+
+    "quartz-50":  $quartz-50,
+    "quartz-100": $quartz-100,
+    "quartz-200": $quartz-200,
+    "quartz-300": $quartz-300,
+    "quartz-400": $quartz-400,
+    "quartz-500": $quartz-500,
+    "quartz-600": $quartz-600,
+    "quartz-700": $quartz-700,
+    "quartz-800": $quartz-800,
+    "quartz-900": $quartz-900,
+    "quartz-950": $quartz-950,
 
     "red-50":  $red-50,
     "red-100": $red-100,
