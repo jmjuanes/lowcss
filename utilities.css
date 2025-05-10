@@ -8,13 +8,17 @@
 
 /* Set the background-clip property to control how the background is painted */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
-/* 
-@utility background-clip-* {
+@utility bg-* {
+    @theme static {
+        --background-clip-border: border-box;
+        --background-clip-padding: padding-box;
+        --background-clip-content: content-box;
+        --background-clip-text: text;
+    }
     @variant default {
-        background-clip: value(background-clip);
+        background-clip: value(--background-clip-*);
     }
 }
-*/
 
 /* Set the background color of an element */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
@@ -24,112 +28,59 @@
     }
 }
 
+/* Sets the background-repeat property to control how the background image is repeated */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
+@utility bg-* {
+    @theme static {
+        --background-repeat-repeat: repeat;
+        --background-repeat-no-repeat: no-repeat;
+    }
+    background-repeat: value(--background-repeat-*);
+}
+
+/* Sets the background-size property to control the size of the background image */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
+@utility bg-* {
+    @theme static {
+        --background-size-auto: auto;
+        --background-size-cover: cover;
+        --background-size-contain: contain;
+    }
+    background-size: value(--background-size-*);
+}
+
+/* Sets the border-radius property to control the rounding of corners */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+@utility rounded-* {
+    border-radius: value(--radius-*)
+}
+
+/* Sets the border-top-left-radius property to control the rounding of the top-left corner */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius */
+@utility rounded-tl-* {
+    border-top-left-radius: value(--radius-*);
+}
+
+
 /* Set the display property of an element */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/display */
 @utility * {
+    @theme static {
+        --display-hidden: none;
+        --display-block: block;
+        --display-inline: inline-block;
+        --display-flex: flex;
+        --display-inline-flex: inline-flex;
+        --display-grid: grid;
+        --display-inline-grid: inline-grid;
+        --display-table: table;
+    }
     @variant default,responsive,hover,focus {
-        display: value('none','block','inline-block','flex','inline-flex','grid','inline-grid','table','inline-table','list-item');
+        display: value(--display-*);
     }
 }
 
 /* 
-
-@utility animation {
-    metadata: {
-        description: "Applies a CSS animation to an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/animation";
-    }
-    classname: "animation";
-    variants: "default,responsive";
-    properties: animation;
-    values: {
-        none: none;
-        bounce: bounce 1s infinite;
-        fadein: fadein ease 1s;
-        fadeout: fadeout ease 1s;
-        ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-        pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        spin: spin 1s linear infinite;
-    }
-}
-
-@utility background-clip {
-    metadata: {
-        description: "Sets the background-clip property to control how the background is painted.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip";
-    }
-    classname: bg;
-    variants: default;
-    properties: background-clip;
-    values: {
-        border: border-box;
-        padding: padding-box;
-        content: content-box;
-        text: text;
-    }
-}
-
-@utility background-color {
-    metadata: {
-        description: "Sets the background color of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color";
-    }
-    classname: bg;
-    variants: default, hover, focus;
-    properties: background-color;
-    values: theme.colors;
-}
-
-@utility background-repeat {
-    metadata: {
-        description: "Sets the background-repeat property to control how the background image is repeated.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat";
-    }
-    classname: bg;
-    variants: default;
-    properties: background-repeat;
-    values: {
-        repeat: repeat;
-        no-repeat: no-repeat;
-    }
-}
-
-@utility background-size {
-    metadata: {
-        description: "Sets the background-size property to control the size of the background image.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/background-size";
-    }
-    classname: bg;
-    variants: default;
-    properties: background-size;
-    values: {
-        auto: auto;
-        cover: cover;
-        contain: contain;
-    }
-}
-
-@utility border-radius {
-    metadata: {
-        description: "Sets the border-radius property to control the rounding of corners.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius";
-    }
-    classname: rounded;
-    variants: default;
-    properties: border-radius;
-    values: theme.radiuses;
-}
-
-@utility border-top-left-radius {
-    metadata: {
-        description: "Sets the border-top-left-radius property to control the rounding of the top-left corner.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius";
-    }
-    classname: rounded-tl;
-    variants: default;
-    properties: border-top-left-radius;
-    values: theme.radiuses;
-}
 
 @utility border-top-right-radius {
     metadata: {
