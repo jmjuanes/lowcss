@@ -1,17 +1,3 @@
-// @description extract variables from a '@theme' rule
-// @param {object} rule - rule to parse - https://postcss.org/api/#rule
-const extractThemeVariables = (rule, entries = []) => {
-    rule.nodes.forEach(node => {
-        if (node.type === "decl" && node.prop.trim().startsWith("--")) {
-            entries.push([
-                node.prop.trim().replace(/^--/, ""),
-                node.value.trim(),
-            ]);
-        }
-    });
-    return Object.fromEntries(entries);
-};
-
 // @description utility method to find all declaration nodes that matches the provided
 // condition as a function
 const findDeclarationNodes = (nodes, condition, result = []) => {
@@ -33,7 +19,7 @@ const findDeclarationNodes = (nodes, condition, result = []) => {
 // @param {object} object - object to search
 // @return {array} keys - array of keys that match the pattern
 const getKeysMatchingPattern = (pattern, keys, results = []) => {
-    const [start, end] = pattern.split("*"); // split the pattern into start and end
+    const [start = "", end = ""] = pattern.split("*"); // split the pattern into start and end
     keys.forEach(key => {
         if (key.startsWith(start) && key.endsWith(end)) {
             results.push({
@@ -48,13 +34,12 @@ const getKeysMatchingPattern = (pattern, keys, results = []) => {
 // compile a css nodes
 const compile = (nodes, options, result = []) => {
     // 1. compile the declaration nodes
-    const declarations = nodes.map(node => {;
-        if (node.type === "decl") {
-            return `${node.prop}: ${options.formatValue(node.value)};`;
-        }
-        return "";
-    });
-    result.push(`.& { ${declarations.filter(Boolean).join("")} }`);
+    const declarations = nodes
+        .filter(node => node.type === "decl")
+        .map(node => `${node.prop}: ${options.formatValue(node.value)};`);
+    if (declarations.length > 0) {
+        result.push(`.& { ${declarations.join("")} }`);
+    }
     // 2. compile nested rules
     nodes.forEach(node => {
         // variant rule
@@ -67,12 +52,12 @@ const compile = (nodes, options, result = []) => {
                 // 2. check for responsive variant
                 else if (variant === "responsive") {
                     Object.entries(options.breakpoints || {}).forEach(([key, size]) => {
-                        result.push(`@media screen and (min-width: ${size}) { .${key}\\:& { ${rules} } }`);
+                        result.push(`@media screen and (min-width: ${size}) { ${rules.replaceAll("&", `${key}\\:&`)} }`);
                     });
                 }
                 // 3: other case, we have a basic pseudo variant (hover, focus, etc.)
                 else {
-                    result.push(`.${variant}\\:&:${variant} { ${rules} }`);
+                    result.push(rules.replaceAll("&", `${variant}\\:&:${variant}`));
                 }
             });
         }
@@ -86,50 +71,37 @@ const compile = (nodes, options, result = []) => {
 
 // @description compile utility
 const compileUtility = (rule, localVars = {}, globalVars = {}) => {
-    const isFunctionalUtility = rule.params.includes("*"); // example: @utility bg-*
     const utilityName = rule.params.trim();
-    const utilityVars = {...localVars}; // extend document variables
     const utilityContext = [];
-    // 1. we have to find all '@theme' rules to update the utility variables
-    rule.nodes.forEach(node => {
-        if (node.type === "atrule" && node.name === "theme") {
-            if (node.params.trim() !== "static") {
-                throw new Error(`@theme rules inside utilities must be static.`);
-            }
-            // extend utility variables
-            Object.assign(utilityVars, extractThemeVariables(node));
-        }
-    });
-    // 2. get the values that we have to iterate
-    if (isFunctionalUtility) {
-        const nodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
-        nodes.forEach(node => {
-            const pattern = node.value.match(/value\(--(.*?)\)/)[1];
-            const availableVars = [
-                [localVars, v => v],
-                [globalVars, v => `var(--${v})`],
-            ];
-            availableVars.forEach(({vars, format}) => {
-                getKeysMatchingPattern(pattern, Object.keys(vars)).forEach(entry => {
-                    return utilityContext.push({
-                        key: entry.match,
-                        value: format(vars[entry.key]),
-                        pattern: `value(--${pattern})`,
-                        replace: `value(--${pattern.replace("*", entry.match)})`,
-                    });
+    // 1. get the values that we have to iterate
+    const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
+    declarationNodes.forEach(node => {
+        const pattern = node.value.match(/value\(--(.*?)\)/)[1];
+        const availableVars = [
+            ["local", localVars, (k, v) => v],
+            ["global", globalVars, (k, v) => `var(--${k})`],
+        ];
+        availableVars.forEach(([type, vars, format]) => {
+            const items = getKeysMatchingPattern(pattern, Object.keys(vars));
+            items.forEach(entry => {
+                return utilityContext.push({
+                    type: type,
+                    key: entry.match,
+                    value: format(entry.key, vars[entry.key]),
+                    replace: `value(--${pattern})`,
                 });
             });
         });
-    }
-    else {
-        // we insert a single item to make sure that the utility is generated once
-        utilityContext.push({key: "", value: "", pattern: ""});
+    });
+    // 2. we insert a single item to make sure that the utility is generated once
+    if (utilityContext.length === 0) {
+        utilityContext.push({key: "", value: "", replace: ""});
     }
     // 3. get breakpoints from global variables
     const breakpointsKeys = getKeysMatchingPattern("breakpoint-*", Object.keys(globalVars));
-    const breakpoints = Object.fromEntries(breakpointsKeys).map(result => {
+    const breakpoints = Object.fromEntries(breakpointsKeys.map(result => {
         return [result.key, globalVars[result.key]];
-    });
+    }));
     // 4. generate utilities classes
     const classes = utilityContext.map(context => {
         const selector = utilityName.replace("*", context.key);
@@ -143,25 +115,35 @@ const compileUtility = (rule, localVars = {}, globalVars = {}) => {
 };
 
 // @description plugin to generate lowcss styles
-const lowCssPlugin = (options = {}) => {
-    return {
-        postcssPlugin: "lowcss",
-        prepare: () => {
-            const globalVars = {};
-            return {
-                Once: root => {
-                    root.walkAtRules("theme", rule => {
-                        Object.assign(globalVars, extractThemeVariables(rule));
+const lowCssPlugin = () => ({
+    postcssPlugin: "lowcss",
+    prepare: () => {
+        const globalVars = {};
+        return {
+            Once: root => {
+                const localVariables = {};
+                // 1. find all '@theme' rules and replace them with variables
+                root.walkAtRules("theme", rule => {
+                    const vars = Object.fromEntries(rule.nodes.map(node => {
+                        return [node.prop.trim().replace(/^--/, ""), node.value.trim()];
+                    }));
+                    if (rule.params === "static" || rule.params === "local") {
+                        Object.assign(localVariables, vars);
                         rule.remove();
-                    });
-                    root.walkAtRules("utility", rule => {
-                        rule.replaceWith(compileUtility(rule, {}, globalVars));
-                    });
-                },
-            };
-        },
-    };
-};
+                    }
+                    else {
+                        Object.assign(globalVars, vars);
+                        rule.replaceWith(`:root { ${Object.entries(vars).map(([k, v]) => `--${k}: ${v};`).join("")} }`);
+                    }
+                });
+                // 2. compile all '@utility' rules
+                root.walkAtRules("utility", rule => {
+                    rule.replaceWith(compileUtility(rule, localVariables, globalVars));
+                });
+            },
+        };
+    },
+});
 
 // mark the plugin as a postcss plugin
 lowCssPlugin.postcss = true;
