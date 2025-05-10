@@ -1,23 +1,45 @@
+@theme static {
+    --background-clip-border: border-box;
+    --background-clip-padding: padding-box;
+    --background-clip-content: content-box;
+    --background-clip-text: text;
+
+    --background-repeat-repeat: repeat;
+    --background-repeat-no-repeat: no-repeat;
+
+    --background-size-auto: auto;
+    --background-size-cover: cover;
+    --background-size-contain: contain;
+
+    --display-hidden: none;
+    --display-block: block;
+    --display-inline: inline-block;
+    --display-flex: flex;
+    --display-inline-flex: inline-flex;
+    --display-grid: grid;
+    --display-inline-grid: inline-grid;
+    --display-table: table;
+
+    --align-content-start: start;
+    --align-content-center: center;
+    --align-content-end: end;
+    --align-content-stretch: stretch;
+    --align-content-space-between: space-between;
+    --align-content-space-around: space-around;
+    --align-content-space-evenly: space-evenly;
+
+}
+
 /* Apply a CSS animation to an element */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
 @utility animation-* {
-    @variant default,responsive {
-        animation: value(--animate-*);
-    }
+    animation: value(--animate-*);
 }
 
 /* Set the background-clip property to control how the background is painted */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
 @utility bg-* {
-    @theme static {
-        --background-clip-border: border-box;
-        --background-clip-padding: padding-box;
-        --background-clip-content: content-box;
-        --background-clip-text: text;
-    }
-    @variant default {
-        background-clip: value(--background-clip-*);
-    }
+    background-clip: value(--background-clip-*);
 }
 
 /* Set the background color of an element */
@@ -31,21 +53,12 @@
 /* Sets the background-repeat property to control how the background image is repeated */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
 @utility bg-* {
-    @theme static {
-        --background-repeat-repeat: repeat;
-        --background-repeat-no-repeat: no-repeat;
-    }
     background-repeat: value(--background-repeat-*);
 }
 
 /* Sets the background-size property to control the size of the background image */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
 @utility bg-* {
-    @theme static {
-        --background-size-auto: auto;
-        --background-size-cover: cover;
-        --background-size-contain: contain;
-    }
     background-size: value(--background-size-*);
 }
 
@@ -61,229 +74,103 @@
     border-top-left-radius: value(--radius-*);
 }
 
+/* Sets the border-top-right-radius property to control the rounding of the top-right corner */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius */
+@utility rounded-tr-* {
+    border-top-right-radius: value(--radius-*);
+}
+
+/* Sets the border-bottom-left-radius property to control the rounding of the bottom-left corner */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius */
+@utility rounded-bl-* {
+    border-bottom-left-radius: value(--radius-*);
+}
+
+/* Sets the border-bottom-right-radius property to control the rounding of the bottom-right corner */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius */
+@utility rounded-br-* {
+    border-bottom-right-radius: value(--radius-*);
+}
+
+/* Sets the border color of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
+@utility border-* {
+    border-color: value(--color-*);
+}
+
+/* Sets the border width of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-width */
+@utility border-* {
+    border-width: value(--border-*);
+}
+
+/* Sets the border-top-width property to control the width of the top border */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width */
+@utility border-t-* {
+    border-top-width: value(--border-*);
+}
+
+/* Sets the border-right-width property to control the width of the right border */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width */
+@utility border-r-* {
+    border-right-width: value(--border-*);
+}
+
+/* Sets the border-bottom-width property to control the width of the bottom border */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width */
+@utility border-b-* {
+    border-bottom-width: value(--border-*);
+}
+
+/* Sets the border-left-width property to control the width of the left border */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width */
+@utility border-l-* {
+    border-left-width: value(--border-*);
+}
 
 /* Set the display property of an element */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/display */
 @utility * {
-    @theme static {
-        --display-hidden: none;
-        --display-block: block;
-        --display-inline: inline-block;
-        --display-flex: flex;
-        --display-inline-flex: inline-flex;
-        --display-grid: grid;
-        --display-inline-grid: inline-grid;
-        --display-table: table;
-    }
     @variant default,responsive,hover,focus {
         display: value(--display-*);
     }
 }
 
-/* 
-
-@utility border-top-right-radius {
-    metadata: {
-        description: "Sets the border-top-right-radius property to control the rounding of the top-right corner.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius";
-    }
-    classname: rounded-tr;
-    variants: default;
-    properties: border-top-right-radius;
-    values: theme.radiuses;
+/* Sets the outline color of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
+@utility outline-* {
+    outline-color: value(--color-*);
 }
 
-@utility border-bottom-left-radius {
-    metadata: {
-        description: "Sets the border-bottom-left-radius property to control the rounding of the bottom-left corner.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius";
-    }
-    classname: rounded-bl;
-    variants: default;
-    properties: border-bottom-left-radius;
-    values: theme.radiuses;
-}
-@utility border-bottom-right-radius {
-    metadata: {
-        description: "Sets the border-bottom-right-radius property to control the rounding of the bottom-right corner.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius";
-    }
-    classname: rounded-br;
-    variants: default;
-    properties: border-bottom-right-radius;
-    values: theme.radiuses;
+/* Sets the outline width of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width */
+@utility outline-* {
+    outline-width: value(--border-*);
 }
 
-@utility border-color {
-    metadata: {
-        description: "Sets the border color of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color";
-    }
-    classname: border;
-    variants: default;
-    properties: border-color;
-    values: theme.colors;
+/* Sets the outline offset of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset */
+@utility outline-offset-* {
+    outline-offset: value(--border-*);
 }
 
-@utility border-style {
-    metadata: {
-        description: "Sets the border style of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-style";
-    }
-    classname: border;
-    variants: default;
-    properties: border-style;
-    values: {
-        none: none;
-        solid: solid;
-        dotted: dotted;
-        dashed: dashed;
+/* Sets the box-shadow property to create a shadow effect around an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
+@utility shadow-* {
+    box-shadow: value(--shadow-*);
+}
+
+/* Sets the opacity of an element */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
+@utility opacity-* {
+    opacity: value(--opacity-*);
+}
+
+/* Sets the alignment of content within a flex or grid container */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
+@utility content-* {
+    @variant default,responsive {
+        align-content: value(--align-content-*);
     }
 }
 
-@utility border-width {
-    metadata: {
-        description: "Sets the border width of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-width";
-    }
-    classname: border;
-    variants: default;
-    properties: border-width;
-    values: theme.borders;
-}
-
-@utility border-top-width {
-    metadata: {
-        description: "Sets the border-top-width property to control the width of the top border.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width";
-    }
-    classname: border-t;
-    variants: default;
-    properties: border-top-width;
-    values: theme.borders;
-}
-
-@utility border-right-width {
-    metadata: {
-        description: "Sets the border-right-width property to control the width of the right border.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width";
-    }
-    classname: border-r;
-    variants: default;
-    properties: border-right-width;
-    values: theme.borders;
-}
-
-@utility border-bottom-width {
-    metadata: {
-        description: "Sets the border-bottom-width property to control the width of the bottom border.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width";
-    }
-    classname: border-b;
-    variants: default;
-    properties: border-bottom-width;
-    values: theme.borders;
-}
-
-@utility border-left-width {
-    metadata: {
-        description: "Sets the border-left-width property to control the width of the left border.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width";
-    }
-    classname: border-l;
-    variants: default;
-    properties: border-left-width;
-    values: theme.borders;
-}
-
-@utility outline-color {
-    metadata: {
-        description: "Sets the outline color of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color";
-    }
-    classname: outline;
-    variants: default;
-    properties: outline-color;
-    values: theme.colors;
-}
-
-@utility outline-style {
-    metadata: {
-        description: "Sets the outline style of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style";
-    }
-    classname: outline;
-    variants: default;
-    properties: outline-style;
-    values: {
-        none: none;
-        solid: solid;
-        dotted: dotted;
-        dashed: dashed;
-    }
-}
-
-@utility outline-width {
-    metadata: {
-        description: "Sets the outline width of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width";
-    }
-    classname: outline;
-    variants: default;
-    properties: outline-width;
-    values: theme.borders;
-}
-
-@utility outline-offset {
-    metadata: {
-        description: "Sets the outline offset of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset";
-    }
-    classname: outline;
-    variants: default;
-    properties: outline-offset;
-    values: theme.borders;
-}
-
-@utility box-shadow {
-    metadata: {
-        description: "Sets the box-shadow property to create a shadow effect around an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow";
-    }
-    classname: shadow;
-    variants: default;
-    properties: box-shadow;
-    values: theme.shadows;
-}
-
-@utility opacity {
-    metadata: {
-        description: "Sets the opacity of an element.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity";
-    }
-    classname: opacity;
-    variants: default, responsive;
-    properties: opacity;
-    values: theme.opacities;
-}
-
-@utility align-content {
-    metadata: {
-        description: "Sets the alignment of content within a flex or grid container.";
-        url: "https://developer.mozilla.org/en-US/docs/Web/CSS/align-content";
-    }
-    classname: content;
-    variants: default, responsive;
-    properties: align-content;
-    values: {
-        start: start;
-        center: center;
-        end: end;
-        stretch: stretch;
-        space-between: space-between;
-        space-around: space-around;
-        space-evenly: space-evenly;
-    }
-}
-
-*/
