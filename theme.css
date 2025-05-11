@@ -1,4 +1,4 @@
-@theme global {
+@theme {
     --breakpoint-sm: 640px;
     --breakpoint-md: 768px;
     --breakpoint-lg: 1024px;
@@ -196,12 +196,12 @@
     --tracking-wider: 0.05em;
     --tracking-widest: 0.1em;
 
-    --border-0: 0;
-    --border-1: 1px;
-    --border-2: 2px;
-    --border-4: 4px;
-    --border-6: 6px;
-    --border-8: 8px;
+    --border-width-0: 0;
+    --border-width-1: 1px;
+    --border-width-2: 2px;
+    --border-width-4: 4px;
+    --border-width-6: 6px;
+    --border-width-8: 8px;
 
     --radius-xs: 0.125rem;
     --radius-sm: 0.25rem;
@@ -230,6 +230,19 @@
     --opacity-80: 0.8;
     --opacity-90: 0.9;
     --opacity-100: 100;
+
+    --gap-0: 0;
+    --gap-px: 1px;
+    --gap-1: 0.25rem;
+    --gap-2: 0.5rem;
+    --gap-3: 0.75rem;
+    --gap-4: 1rem;
+    --gap-6: 1.5rem;
+    --gap-8: 2rem;
+    --gap-12: 3rem;
+    --gap-16: 4rem;
+    --gap-24: 6rem;
+    --gap-32: 8rem;
 
     --spacing-0: 0;
     --spacing-px: 1px;
@@ -266,6 +279,21 @@
     --spacing-half: 50%;
     --spacing-full: 100%;
     --spacing-auto: auto;
+
+    --container-xs: 20rem;
+    --container-sm: 24rem;
+    --container-md: 28rem;
+    --container-lg: 32rem;
+    --container-xl: 36rem;
+    --container-2xl: 42rem;
+    --container-3xl: 48rem;
+    --container-4xl: 56rem;
+    --container-5xl: 64rem;
+    --container-6xl: 72rem;
+    --container-7xl: 80rem;
+    --container-8xl: 88rem;
+    --container-9xl: 96rem;
+
 
     --animate-bounce: bounce 1s infinite;
     --animate-fadein: fadein ease 1s;
