@@ -101,12 +101,14 @@ const compileUtility = (rule, themeFields = {}, postcss) => {
     const utilityName = rule.params.trim();
     const utilityContext = [];
     // 1. get the values that we have to iterate
+    const themeKeys = new Set();
     const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
     declarationNodes.forEach(node => {
         const pattern = node.value.match(/value\((.*?)\)/)[1];
         getKeysMatchingPattern(pattern, Object.keys(themeFields)).forEach(entry => {
             const themeField = themeFields[entry.key];
-            if (themeField.type === "global" || themeField.type === "static") {
+            if (!themeKeys.has(entry.key) && (themeField.type === "global" || themeField.type === "static")) {
+                themeKeys.add(entry.key)
                 return utilityContext.push({
                     key: entry.match,
                     value: themeField.type === "global" ? `var(--${entry.key})` : themeField.value,
