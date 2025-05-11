@@ -31,66 +31,88 @@ const getKeysMatchingPattern = (pattern, keys, results = []) => {
     return results;
 };
 
+const replaceParentSelector = (rule, replacement) => {
+    if (rule.type === "rule" && rule.selector) {
+        rule.selector = rule.selector.replace("&", replacement);
+    }
+    rule.nodes.forEach(node => {
+        return replaceParentSelector(node, replacement);
+    });
+    return rule;
+};
+
 // compile a css nodes
-const compile = (nodes, options, result = []) => {
+const compileRule = (nodes, postcss, options = {}, result = []) => {
     // 1. compile the declaration nodes
-    const declarations = nodes
-        .filter(node => node.type === "decl")
-        .map(node => `${node.prop}: ${options.formatValue(node.value)};`);
+    const declarations = nodes.filter(node => {
+        return node.type === "decl";
+    });
     if (declarations.length > 0) {
-        result.push(`.& { ${declarations.join("")} }`);
+        const rule = new postcss.Rule({selector: ".&"});
+        declarations.forEach(declaration => {
+            rule.append({prop: declaration.prop, value: options.formatValue(declaration.value)});
+        });
+        result.push(rule);
     }
     // 2. compile nested rules
     nodes.forEach(node => {
         // variant rule
         if (node.type === "atrule" && node.name === "variant") {
-            const rules = compile(node.nodes, options).join("");
             node.params.split(",").forEach(variant => {
                 if (variant === "default") {
-                    result.push(rules);
+                    compileRule(node.nodes, postcss, options).forEach(rule => {
+                        return result.push(rule);
+                    });
                 }
                 // 2. check for responsive variant
                 else if (variant === "responsive") {
-                    Object.entries(options.breakpoints || {}).forEach(([key, size]) => {
-                        result.push(`@media screen and (min-width: ${size}) { ${rules.replaceAll("&", `${key}\\:&`)} }`);
+                    Object.keys(options.breakpoints || {}).forEach(key => {
+                        const mediaRule = new postcss.AtRule({
+                            name: "media",
+                            params: `screen and (min-width: ${options.breakpoints[key]})`,
+                        });
+                        compileRule(node.nodes, postcss, options).forEach(rule => {
+                            replaceParentSelector(rule, `${key}\\:&`);
+                            mediaRule.append(rule);
+                        });
+                        result.push(mediaRule);
                     });
                 }
                 // 3: other case, we have a basic pseudo variant (hover, focus, etc.)
                 else {
-                    result.push(rules.replaceAll("&", `${variant}\\:&:${variant}`));
+                    compileRule(node.nodes, postcss.options).forEach(rule => {
+                        result.push(replaceParentSelector(rule, `${variant}\\:&:${variant}`));
+                    });
                 }
             });
         }
         // nested rule
         else if (node.type === "rule" && node.selector) {
-            result.push(compile(node.nodes, options).join("").replaceAll("&", node.selector));
+            compileRule(node.nodes, postcss, options).forEach(rule => {
+                result.push(replaceParentSelector(rule, node.selector));
+            });
         }
     });
-    return result;        
+    return result;
 };
 
 // @description compile utility
-const compileUtility = (rule, localVars = {}, globalVars = {}) => {
+const compileUtility = (rule, themeFields = {}, postcss) => {
     const utilityName = rule.params.trim();
     const utilityContext = [];
     // 1. get the values that we have to iterate
     const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
     declarationNodes.forEach(node => {
-        const pattern = node.value.match(/value\(--(.*?)\)/)[1];
-        const availableVars = [
-            ["local", localVars, (k, v) => v],
-            ["global", globalVars, (k, v) => `var(--${k})`],
-        ];
-        availableVars.forEach(([type, vars, format]) => {
-            const items = getKeysMatchingPattern(pattern, Object.keys(vars));
-            items.forEach(entry => {
+        const pattern = node.value.match(/value\((.*?)\)/)[1];
+        getKeysMatchingPattern(pattern, Object.keys(themeFields)).forEach(entry => {
+            const themeField = themeFields[entry.key];
+            if (themeField.type === "global" || themeField.type === "static") {
                 return utilityContext.push({
-                    type: type,
                     key: entry.match,
-                    value: format(entry.key, vars[entry.key]),
+                    value: themeField.type === "global" ? `var(--${entry.key})` : themeField.value,
                     replace: `value(--${pattern})`,
                 });
-            });
+            }
         });
     });
     // 2. we insert a single item to make sure that the utility is generated once
@@ -98,52 +120,67 @@ const compileUtility = (rule, localVars = {}, globalVars = {}) => {
         utilityContext.push({key: "", value: "", replace: ""});
     }
     // 3. get breakpoints from global variables
-    const breakpointsKeys = getKeysMatchingPattern("breakpoint-*", Object.keys(globalVars));
+    const breakpointsKeys = getKeysMatchingPattern("breakpoint-*", Object.keys(themeFields));
     const breakpoints = Object.fromEntries(breakpointsKeys.map(result => {
-        return [result.key, globalVars[result.key]];
+        return [result.key, themeFields[result.key].value];
     }));
     // 4. generate utilities classes
-    const classes = utilityContext.map(context => {
+    return utilityContext.map(context => {
         const selector = utilityName.replace("*", context.key);
-        const styles = compile(rule.nodes, {
+        const utilityRules = compileRule(rule.nodes, postcss, {
             breakpoints: breakpoints,
             formatValue: v => v.replace(context.replace, context.value),
         });
-        return styles.join("\n").replaceAll("&", selector);
-    });
-    return classes.join("\n");
+        return utilityRules.map(utilityRule => {
+            return replaceParentSelector(utilityRule, selector);
+        });
+    }).flat();
 };
 
 // @description plugin to generate lowcss styles
-const lowCssPlugin = () => ({
-    postcssPlugin: "lowcss",
-    prepare: () => {
-        const globalVars = {};
-        return {
-            Once: root => {
-                const localVariables = {};
-                // 1. find all '@theme' rules and replace them with variables
-                root.walkAtRules("theme", rule => {
-                    const vars = Object.fromEntries(rule.nodes.map(node => {
-                        return [node.prop.trim().replace(/^--/, ""), node.value.trim()];
-                    }));
-                    if (rule.params === "static" || rule.params === "local") {
-                        Object.assign(localVariables, vars);
-                        rule.remove();
-                    }
-                    else {
-                        Object.assign(globalVars, vars);
-                        rule.replaceWith(`:root { ${Object.entries(vars).map(([k, v]) => `--${k}: ${v};`).join("")} }`);
+const lowCssPlugin = () => {
+    const globalThemeFields = {};
+    return {
+        postcssPlugin: "lowcss",
+        Once: (root, postcss) => {
+            const localThemeFields = {};
+            // 1. find all '@theme' rules and replace them with variables
+            root.walkAtRules("theme", rule => {
+                rule.walkDecls(declaration => {
+                    localThemeFields[declaration.prop.trim()] = {
+                        type: rule.params || "global",
+                        key: declaration.prop.trim(),
+                        value: declaration.value.trim(),
+                    };
+                });
+                rule.remove();
+            });
+            // 2. compile all '@utility' rules
+            root.walkAtRules("utility", rule => {
+                compileUtility(rule, {...globalThemeFields, ...localThemeFields}).forEach(utilityRule => {
+                    rule.after(utilityRule);
+                });
+                rule.remove();
+            });
+            // 3. generate css variables for the current file
+            if (Object.keys(localThemeFields).length > 0) {
+                const cssVariablesRule = new postcss.Rule({selector: ":root"});
+                Object.keys(localThemeFields).forEach(key => {
+                    if (localThemeFields[key].type === "global") {
+                        cssVariablesRule.append({
+                            prop: localThemeFields[key].key,
+                            value: localThemeFields[key].value,
+                        });
+                        globalThemeFields[key] = localThemeFields[key]; // save in the global theme fields
                     }
                 });
-                // 2. compile all '@utility' rules
-                root.walkAtRules("utility", rule => {
-                    rule.replaceWith(compileUtility(rule, localVariables, globalVars));
-                });
-            },
-        };
-    },
-});
+                if (cssVariablesRule.nodes.length > 0) {
+                    root.before(cssVariablesRule);
+                }
+            }
+        },
+    };
+};
 
 // mark the plugin as a postcss plugin
 lowCssPlugin.postcss = true;
