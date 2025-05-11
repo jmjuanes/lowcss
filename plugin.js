@@ -35,9 +35,11 @@ const replaceParentSelector = (rule, replacement) => {
     if (rule.type === "rule" && rule.selector) {
         rule.selector = rule.selector.replace("&", replacement);
     }
-    rule.nodes.forEach(node => {
-        return replaceParentSelector(node, replacement);
-    });
+    if (rule.nodes) {
+        rule.nodes.forEach(node => {
+            return replaceParentSelector(node, replacement);
+        });
+    }
     return rule;
 };
 
@@ -80,7 +82,7 @@ const compileRule = (nodes, postcss, options = {}, result = []) => {
                 }
                 // 3: other case, we have a basic pseudo variant (hover, focus, etc.)
                 else {
-                    compileRule(node.nodes, postcss.options).forEach(rule => {
+                    compileRule(node.nodes, postcss, options).forEach(rule => {
                         result.push(replaceParentSelector(rule, `${variant}\\:&:${variant}`));
                     });
                 }
@@ -111,8 +113,8 @@ const compileUtility = (rule, themeFields = {}, postcss) => {
                 themeKeys.add(entry.key)
                 return utilityContext.push({
                     key: entry.match,
-                    value: themeField.type === "global" ? `var(--${entry.key})` : themeField.value,
-                    replace: `value(--${pattern})`,
+                    value: themeField.type === "global" ? `var(${entry.key})` : themeField.value,
+                    replace: `value(${pattern})`,
                 });
             }
         });
@@ -159,7 +161,7 @@ const lowCssPlugin = () => {
             });
             // 2. compile all '@utility' rules
             root.walkAtRules("utility", rule => {
-                compileUtility(rule, {...globalThemeFields, ...localThemeFields}).forEach(utilityRule => {
+                compileUtility(rule, {...globalThemeFields, ...localThemeFields}, postcss).forEach(utilityRule => {
                     rule.after(utilityRule);
                 });
                 rule.remove();
@@ -177,7 +179,7 @@ const lowCssPlugin = () => {
                     }
                 });
                 if (cssVariablesRule.nodes.length > 0) {
-                    root.before(cssVariablesRule);
+                    root.first.before(cssVariablesRule);
                 }
             }
         },

@@ -230,7 +230,7 @@
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/gap */
 @utility gap-* {
-    @variant ddefault,responsive {
+    @variant default,responsive {
         gap: value(--gap-*);
     }
 }
