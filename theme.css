@@ -88,18 +88,6 @@
     --color-blue-900: hsl(210, 65%, 10%);
     --color-blue-950: hsl(210, 65%, 5%);
 
-    --color-indigo-50:  hsl(240, 80%, 96%);
-    --color-indigo-100: hsl(240, 75%, 91%);
-    --color-indigo-200: hsl(240, 70%, 80%);
-    --color-indigo-300: hsl(240, 65%, 70%);
-    --color-indigo-400: hsl(240, 60%, 60%);
-    --color-indigo-500: hsl(240, 55%, 50%);
-    --color-indigo-600: hsl(240, 55%, 40%);
-    --color-indigo-700: hsl(240, 55%, 30%);
-    --color-indigo-800: hsl(240, 55%, 20%);
-    --color-indigo-900: hsl(240, 55%, 10%);
-    --color-indigo-950: hsl(240, 55%, 5%);
-
     --color-violet-50:  hsl(270, 80%, 96%);
     --color-violet-100: hsl(270, 75%, 91%);
     --color-violet-200: hsl(270, 70%, 80%);
