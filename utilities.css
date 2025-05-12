@@ -15,8 +15,17 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
+@theme static {
+    --background-color-transparent: transparent;
+    --background-color-current: currentColor;
+}
 @utility bg-* {
-    @variant default,responsive,hover,focus {
+    @variant default,hover,focus {
+        background-color: value(--background-color-*);
+    }
+}
+@utility bg-* {
+    @variant default,hover,focus {
         background-color: value(--color-*);
     }
 }
@@ -66,6 +75,15 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
+@theme static {
+    --border-color-transparent: transparent;
+    --border-color-current: currentColor;
+}
+@utility border-* {
+    @variant default,hover,focus {
+        border-color: value(--border-color-*);
+    }
+}
 @utility border-* {
     border-color: value(--color-*);
 }
@@ -107,6 +125,15 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
+@theme static {
+    --outline-color-transparent: transparent;
+    --outline-color-current: currentColor;
+}
+@utility outline-* {
+    @variant default,hover,focus {
+        outline-color: value(--outline-color-*);
+    }
+}
 @utility outline-* {
     outline-color: value(--color-*);
 }
@@ -122,8 +149,14 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style */
+@theme static {
+    --outline-style-solid: solid;
+    --outline-style-dashed: dashed;
+    --outline-style-dotted: dotted;
+    --outline-style-none: none;
+}
 @utility outline-* {
-    outline-style: value(--border-style-*);
+    outline-style: value(--outline-style-*);
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
@@ -133,7 +166,9 @@
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
 @utility opacity-* {
-    opacity: value(--opacity-*);
+    @variant default,responsive,hover,focus {
+        opacity: value(--opacity-*);
+    }
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
@@ -319,7 +354,7 @@
 @theme static {
     --order-none: 0;
     --order-first: -999;
-    --order-last": 999;
+    --order-last: 999;
     --order-1: 1;
     --order-2: 2;
     --order-3: 3;
@@ -466,7 +501,7 @@
     --overflow-visible: visible;
 }
 @utility overflow-* {
-    overflow: value(--orverflow-*);
+    overflow: value(--overflow-*);
 }
 @utility overflow-x-* {
     overflow-x: value(--overflow-*);
@@ -499,11 +534,31 @@
     --display-grid: grid;
     --display-inline-grid: inline-grid;
     --display-table: table;
+    --display-inline-table: inline-table;
+    --display-table-row: table-row;
+    --display-table-cell: table-cell;
+    --display-table-column: table-column;
+    --display-table-group: table-group;
+    --display-table-header-group: table-header-group;
+    --display-table-footer-group: table-footer-group;
+    --display-table-column-group: table-column-group;
 }
 @utility * {
-    @variant default,responsive,hover,focus {
+    @variant default,responsive,hover,focus,group-hover,group-focus,group-focus-within {
         display: value(--display-*);
     }
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/float */
+@theme static {
+    --float-left: left;
+    --float-right: right;
+    --float-start: inline-start;
+    --float-end: inline-end;
+    --float-none: none;
+}
+@utility float-* {
+    float: value(--float-*);
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/height */
@@ -742,6 +797,15 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/color */
+@theme static {
+    --text-color-transparent: transparent;
+    --text-color-current: currentColor;
+}
+@utility text-* {
+    @variant default,hover,focus {
+        color: value(--text-color-*);
+    }
+}
 @utility text-* {
     @variant default,hover,focus {
         color: value(--color-*);
@@ -750,9 +814,9 @@
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
 @theme static {
-    --text-decoration-line-strike": line-through,
-    --text-decoration-line-underline": underline,
-    --text-decoration-line-no-underline": none,
+    --text-decoration-line-strike: line-through;
+    --text-decoration-line-underline: underline;
+    --text-decoration-line-no-underline: none;
 }
 @utility * {
     @variant default,hover,focus {
@@ -761,6 +825,15 @@
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color */
+@theme static {
+    --text-decoration-color-transparent: transparent;
+    --text-decoration-color-current: currentColor;
+}
+@utility decoration-* {
+    @variant default,hover,focus {
+        text-decoration-color: value(--text-decoration-color-*);
+    }
+}
 @utility decoration-* {
     @variant default,hover,focus {
         text-decoration-color: value(--color-*);
