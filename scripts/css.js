@@ -16,10 +16,9 @@ const main = () => {
             result.warnings().forEach(warn => {
                 console.warn(warn.toString());
             });
-            // return minify(result.css, {
-            //     sourceMap: false,
-            // });
-            return result;
+            return minify(result.css, {
+                sourceMap: false,
+            });
         })
         .then(result => {
             fs.writeFileSync("low.css", result.css);
