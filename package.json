@@ -11,14 +11,15 @@
     "repository": "https://github.com/jmjuanes/lowcss",
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "type": "module",
-    "main": "low.css",
+    "main": "plugin.js",
     "style": "low.css",
-    "sass": "low.scss",
     "exports": {
-        ".": "./low.css",
-        "./css": "./low.css",
-        "./scss": "./low.scss",
-        "./json": "./low.json",
+        ".": "./plugin.js",
+        "./plugin.js": "./plugin.js",
+        "./low.css": "./low.css",
+        "./index.css": "./index.css",
+        "./theme.css": "./theme.css",
+        "./utilities.css": "./utilities.css",
         "./package.json": "./package.json"
     },
     "scripts": {
@@ -27,11 +28,8 @@
         "build:site": "node ./scripts/site.js && node ./scripts/playground.js build",
         "postbuild:site": "cp low.* www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp -R public/* www/",
         "build": "yarn build:css",
-        "bundle": "yarn build:bundle",
         "docs": "yarn run build:site",
-        "playground": "yarn serve:playground",
-        "serve": "stattic --folder ./www --port 3000",
-        "serve:playground": "node ./scripts/playground.js serve",
+        "serve": "serve www --port 3000",
         "site": "yarn build:site",
         "pack": "zip lowcss.zip low.*"
     },
@@ -47,9 +45,12 @@
     "files": [
         "README.md",
         "LICENSE",
-        "low.scss",
         "low.css",
-        "low.json"
+        "index.css",
+        "theme.css",
+        "utilities.css",
+        "plugin.js",
+        "package.json"
     ],
     "devDependencies": {
         "@josemi-icons/svg": "^0.7.0",
