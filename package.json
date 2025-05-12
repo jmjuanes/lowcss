@@ -65,9 +65,6 @@
         "postcss-import": "^16.1.0",
         "serve": "^14.2.4"
     },
-    "peerDependencies": {
-        "sass": ">=1.23.0"
-    },
     "browserslist": [
         "last 10 Chrome versions",
         "last 4 Firefox versions",
