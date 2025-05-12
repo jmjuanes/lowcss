@@ -1,58 +1,30 @@
-const fs = require("node:fs");
-const sass = require("sass");
-const autoprefixer = require("autoprefixer");
-const postcss = require("postcss");
-const {minify} = require("csso");
+import * as fs from "node:fs";
+import * as path from "node:path";
+import postcss from "postcss";
+import postcssImport from "postcss-import";
+import autoprefixer from "autoprefixer";
+import {minify} from "csso";
+import lowPlugin from "../plugin.js";
 
-// output modules to compile
-const outputModules = {
-    "low.css": {
-        output: "low.css",
-        enabledModules: [
-            "root",
-            "reset",
-            "starter",
-            "markup",
-            "theming",
-            "utilities",
-        ],
-    },
-};
-
-const main = args => {
-    console.log(`[build:css] generating '${args.join(", ")}'...`);
-    const template = fs.readFileSync("main.scss", "utf8");
-    // generate each module
-    const allPromises = args.map(moduleName => {
-        const item = outputModules[moduleName];
-        const enabledModulesStr = JSON.stringify(item.enabledModules);
-        const code = template.replace("$enabled-modules: ();", `$enabled-modules: (${enabledModulesStr});`);
-        const {css} = sass.compileString(code, {
-            loadPaths: [
-                process.cwd(),
-            ],
-        });
-        return postcss([autoprefixer])
-            .process(css)
-            .then(result => {
-                // print all warnings (if any)
-                result.warnings().forEach(warn => {
-                    console.warn(warn.toString());
-                });
-                return minify(result.css, {
-                    sourceMap: false,
-                });
-            })
-            .then(result => {
-                fs.writeFileSync(item.output, result.css);
-                console.log(`[build:css] saved '${item.output}'`);
+const main = () => {
+    console.log(`[build:css] generating 'low.css'...`);
+    const input = fs.readFileSync("index.css", "utf8");
+    return postcss([autoprefixer, postcssImport, lowPlugin])
+        .process(input)
+        .then(result => {
+            // print all warnings (if any)
+            result.warnings().forEach(warn => {
+                console.warn(warn.toString());
             });
-    });
-    // when all promises are finised
-    Promise.all(allPromises).then(() => {
-        console.log(`[build:css] build finished`);
-    });
+            return minify(result.css, {
+                sourceMap: false,
+            });
+        })
+        .then(result => {
+            fs.writeFileSync("low.css", result.css);
+            console.log(`[build:css] build finished`);
+        });
 };
 
-// Build css
-main(process.argv.slice(2));
+// build css
+main();
