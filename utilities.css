@@ -1,9 +1,15 @@
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
+/* @title animation */
+/* @description Utilities to animate your elements using CSS animations. */
+/* @category animation */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
 @utility animation-* {
     animation: value(--animate-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
+/* @title background-clip */
+/* @description Utilities to set the background-clip property of the element. */
+/* @category background */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
 @theme static {
     --background-clip-border: border-box;
     --background-clip-padding: padding-box;
@@ -14,7 +20,10 @@
     background-clip: value(--background-clip-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
+/* @title background-color */
+/* @description Utilities to set the background-color property of the element. */
+/* @category background */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
 @theme static {
     --background-color-transparent: transparent;
     --background-color-current: currentColor;
@@ -30,7 +39,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
+/* @title background-repeat */
+/* @description Utilities to set the background-repeat property of the element. */
+/* @category background */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
 @theme static {
     --background-repeat-repeat: repeat;
     --background-repeat-no-repeat: no-repeat;
@@ -39,7 +51,10 @@
     background-repeat: value(--background-repeat-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
+/* @title background-size */
+/* @description Utilities to set the background-size property of the element. */
+/* @category background */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
 @theme static {
     --background-size-auto: auto;
     --background-size-cover: cover;
@@ -49,32 +64,50 @@
     background-size: value(--background-size-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+/* @title border-radius */
+/* @description Utilities to set the border-radius property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
 @utility rounded-* {
     border-radius: value(--radius-*)
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius */
+/* @title border-top-left-radius */
+/* @description Utilities to set the border-top-left-radius property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius */
 @utility rounded-tl-* {
     border-top-left-radius: value(--radius-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius */
+/* @title border-top-right-radius */
+/* @description Utilities to set the border-top-right-radius property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius */
 @utility rounded-tr-* {
     border-top-right-radius: value(--radius-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius */
+/* @title border-bottom-left-radius */
+/* @description Utilities to set the border-bottom-left-radius property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius */
 @utility rounded-bl-* {
     border-bottom-left-radius: value(--radius-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius */
+/* @title border-bottom-right-radius */
+/* @description Utilities to set the border-bottom-right-radius property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius */
 @utility rounded-br-* {
     border-bottom-right-radius: value(--radius-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
+/* @title border-color */
+/* @description Utilities to set the border-color property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
 @theme static {
     --border-color-transparent: transparent;
     --border-color-current: currentColor;
@@ -85,35 +118,55 @@
     }
 }
 @utility border-* {
-    border-color: value(--color-*);
+    @variant default,hover,focus {
+        border-color: value(--color-*);
+    }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-width */
+/* @title border-width */
+/* @description Utilities to set the border-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-width */
 @utility border-* {
     border-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width */
+/* @title border-top-width */
+/* @description Utilities to set the border-top-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width */
 @utility border-t-* {
     border-top-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width */
+/* @title border-right-width */
+/* @description Utilities to set the border-right-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width */
 @utility border-r-* {
     border-right-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width */
+/* @title border-bottom-width */
+/* @description Utilities to set the border-bottom-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width */
 @utility border-b-* {
     border-bottom-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width */
+/* @title border-left-width */
+/* @description Utilities to set the border-left-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width */
 @utility border-l-* {
     border-left-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/border-style */
+/* @title border-style */
+/* @description Utilities to set the border-style property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-style */
 @theme static {
     --border-style-solid: solid;
     --border-style-dashed: dashed;
@@ -124,7 +177,10 @@
     border-style: value(--border-style-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
+/* @title outline-color */
+/* @description Utilities to set the outline-color property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
 @theme static {
     --outline-color-transparent: transparent;
     --outline-color-current: currentColor;
@@ -135,20 +191,31 @@
     }
 }
 @utility outline-* {
-    outline-color: value(--color-*);
+    @variant default,hover,focus {
+        outline-color: value(--color-*);
+    }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width */
+/* @title outline-width */
+/* @description Utilities to set the outline-width property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width */
 @utility outline-* {
     outline-width: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset */
+/* @title outline-offset */
+/* @description Utilities to set the outline-offset property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset */
 @utility outline-offset-* {
     outline-offset: value(--border-width-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style */
+/* @title outline-style */
+/* @description Utilities to set the outline-style property of the element. */
+/* @category border */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style */
 @theme static {
     --outline-style-solid: solid;
     --outline-style-dashed: dashed;
@@ -159,19 +226,28 @@
     outline-style: value(--outline-style-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
+/* @title shadow */
+/* @description Utilities to set the box-shadow property of the element. */
+/* @category effects */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
 @utility shadow-* {
     box-shadow: value(--shadow-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
+/* @title opacity */
+/* @description Utilities to set the opacity property of the element. */
+/* @category effects */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
 @utility opacity-* {
     @variant default,responsive,hover,focus {
         opacity: value(--opacity-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
+/* @title align-content */
+/* @description Utilities to set the align-content property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
 @theme static {
     --align-content-start: start;
     --align-content-center: center;
@@ -187,7 +263,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */
+/* @title align-items */
+/* @description Utilities to set the align-items property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */
 @theme static {
     --align-items-start: flex-start;
     --align-items-end: flex-end;
@@ -201,7 +280,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/align-self */
+/* @title align-self */
+/* @description Utilities to set the align-self property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-self */
 @theme static {
     --align-self-auto: auto;
     --align-self-start: flex-start;
@@ -216,7 +298,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
+/* @title flex-direction */
+/* @description Utilities to set the flex-direction property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
 @theme static {
     --flex-direction-row: row;
     --flex-direction-col: column;
@@ -229,7 +314,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow */
+/* @title flex-grow */
+/* @description Utilities to set the flex-grow property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow */
 @theme static {
     --flex-grow-0: 0;
     --flex-grow-1: 1;
@@ -240,7 +328,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink */
+/* @title flex-shrink */
+/* @description Utilities to set the flex-shrink property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink */
 @theme static {
     --flex-shrink-0: 0;
     --flex-shrink-1: 1;
@@ -251,7 +342,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap */
+/* @title flex-wrap */
+/* @description Utilities to set the flex-wrap property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap */
 @theme static {
     --flex-wrap-wrap: wrap;
     --flex-wrap-wrap-reverse: wrap-reverse;
@@ -263,14 +357,20 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/gap */
+/* @title gap */
+/* @description Utilities to set the gap property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/gap */
 @utility gap-* {
     @variant default,responsive {
         gap: value(--gap-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns */
+/* @title grid-template-columns */
+/* @description Utilities to set the grid-template-columns property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns */
 @theme static {
     --grid-columns-1: repeat(1, minmax(0, 1fr));
     --grid-columns-2: repeat(2, minmax(0, 1fr));
@@ -292,7 +392,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
+/* @title grid-template-rows */
+/* @description Utilities to set the grid-template-rows property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
 @theme static {
     --grid-rows-1: repeat(1, minmax(0, 1fr));
     --grid-rows-2: repeat(2, minmax(0, 1fr));
@@ -308,35 +411,58 @@
     }
 }
 
-/* Utilities for setting the grid-column property of the element */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
+/* @title grid-column */
+/* @description Utilities to set the size and the position of elements in grid columns. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
 @theme static {
-    --grid-span-1: span 1 / span 1;
-    --grid-span-2: span 2 / span 2;
-    --grid-span-3: span 3 / span 3;
-    --grid-span-4: span 4 / span 4;
-    --grid-span-5: span 5 / span 5;
-    --grid-span-6: span 6 / span 6;
-    --grid-span-7: span 7 / span 7;
-    --grid-span-8: span 8 / span 8;
-    --grid-span-9: span 9 / span 9;
-    --grid-span-10: span 10 / span 10;
-    --grid-span-11: span 11 / span 11;
-    --grid-span-12: span 12 / span 12;
+    --grid-column-span-1: span 1 / span 1;
+    --grid-column-span-2: span 2 / span 2;
+    --grid-column-span-3: span 3 / span 3;
+    --grid-column-span-4: span 4 / span 4;
+    --grid-column-span-5: span 5 / span 5;
+    --grid-column-span-6: span 6 / span 6;
+    --grid-column-span-7: span 7 / span 7;
+    --grid-column-span-8: span 8 / span 8;
+    --grid-column-span-9: span 9 / span 9;
+    --grid-column-span-10: span 10 / span 10;
+    --grid-column-span-11: span 11 / span 11;
+    --grid-column-span-12: span 12 / span 12;
 }
 @utility col-span-* {
     @variant default,responsive {
-        grid-column: value(--grid-span-*);
-    }
-}
-@utility row-span-* {
-    @variant default,responsive {
-        grid-row: value(--grid-span-*);
+        grid-column: value(--grid-column-span-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
+/* @title grid-row */
+/* @description Utilities to set the size and the position of elements in grid rows. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
+@theme static {
+    --grid-row-span-1: span 1 / span 1;
+    --grid-row-span-2: span 2 / span 2;
+    --grid-row-span-3: span 3 / span 3;
+    --grid-row-span-4: span 4 / span 4;
+    --grid-row-span-5: span 5 / span 5;
+    --grid-row-span-6: span 6 / span 6;
+    --grid-row-span-7: span 7 / span 7;
+    --grid-row-span-8: span 8 / span 8;
+    --grid-row-span-9: span 9 / span 9;
+    --grid-row-span-10: span 10 / span 10;
+    --grid-row-span-11: span 11 / span 11;
+    --grid-row-span-12: span 12 / span 12;
+}
+@utility row-span-* {
+    @variant default,responsive {
+        grid-row: value(--grid-row-span-*);
+    }
+}
+
+/* @title justify-content */
+/* @description Utilities to set the justify-content property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
 @theme static {
     --justify-content-start: flex-start;
     --justify-content-end: flex-end;
@@ -350,7 +476,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/order */
+/* @title order */
+/* @description Utilities to set the order property of the element. */
+/* @category flexbox */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/order */
 @theme static {
     --order-none: 0;
     --order-first: -999;
@@ -374,7 +503,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/cursor */
+/* @title cursor */
+/* @description Utilities to set the cursor property of the element. */
+/* @category interactivity */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/cursor */
 @theme static {
     --cursor-auto: auto;
     --cursor-default: default;
@@ -417,7 +549,10 @@
     cursor: value(--cursor-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */
+/* @title user-select */
+/* @description Utilities to set the user-select property of the element. */
+/* @category interactivity */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */
 @theme static {
     --select-none: none;
     --select-text: text;
@@ -428,7 +563,10 @@
     user-select: value(--select-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events */
+/* @title pointer-events */
+/* @description Utilities to set the pointer-events property of the element. */
+/* @category interactivity */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events */
 @theme static {
     --pointer-auto: auto;
     --pointer-none: none;
@@ -437,7 +575,10 @@
     pointer-events: value(--pointer-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action */
+/* @title touch-action */
+/* @description Utilities to set the touch-action property of the element. */
+/* @category interactivity */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action */
 @theme static {
     --touch-auto: auto;
     --touch-none: none;
@@ -454,29 +595,48 @@
     touch-action: value(--touch-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/bottom */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/left */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/right */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/top */
 @theme static {
     --inset-0: 0px;
     --inset-half: 50%;
     --inset-full: 100%;
     --inset-auto: auto;
 }
+/* @title bottom */
+/* @description Utilities to set the bottom property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/bottom */
 @utility bottom-* {
     bottom: value(--inset-*);
 }
+
+/* @title left */
+/* @description Utilities to set the left property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/left */
 @utility left-* {
     left: value(--inset-*);
 }
+
+/* @title right */
+/* @description Utilities to set the right property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/right */
 @utility right-* {
     right: value(--inset-*);
 }
+
+/* @title top */
+/* @description Utilities to set the top property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/top */
 @utility top-* {
     top: value(--inset-*);
 }
 
+/* @title position */
+/* @description Utilities to set the position property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/position */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/position */
 @theme static {
     --position-relative: relative;
@@ -491,26 +651,41 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/overflow */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x */
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y */
 @theme static {
     --overflow-auto: auto;
     --overflow-scroll: scroll;
     --overflow-hidden: hidden;
     --overflow-visible: visible;
 }
+
+/* @title overflow */
+/* @description Utilities to set the overflow property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/overflow */
 @utility overflow-* {
     overflow: value(--overflow-*);
 }
+
+/* @title overflow-x */
+/* @description Utilities to set the overflow-x property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x */
 @utility overflow-x-* {
     overflow-x: value(--overflow-*);
 }
+
+/* @title overflow-y */
+/* @description Utilities to set the overflow-y property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y */
 @utility overflow-y-* {
     overflow-y: value(--overflow-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/z-index */
+/* @title z-index */
+/* @description Utilities to set the z-index property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/z-index */
 @theme static {
     --zindex-auto: auto;
     --zindex-0: 0;
@@ -524,7 +699,10 @@
     z-index: value(--zindex-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/display */
+/* @title display */
+/* @description Utilities to set the display property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/display */
 @theme static {
     --display-hidden: none;
     --display-block: block;
@@ -549,7 +727,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/float */
+/* @title float */
+/* @description Utilities to set the float property of the element. */
+/* @category layout */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/float */
 @theme static {
     --float-left: left;
     --float-right: right;
@@ -561,7 +742,10 @@
     float: value(--float-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/height */
+/* @title height */
+/* @description Utilities to set the height property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/height */
 @utility h-* {
     @variant default,responsive {
         height: value(--spacing-*);
@@ -573,7 +757,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/max-height */
+/* @title max-height */
+/* @description Utilities to set the max-height property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/max-height */
 @utility max-h-* {
     @variant default,responsive {
         max-height: value(--spacing-*);
@@ -585,7 +772,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/min-height */
+/* @title min-height */
+/* @description Utilities to set the min-height property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/min-height */
 @utility min-h-* {
     @variant default,responsive {
         min-height: value(--spacing-*);
@@ -597,7 +787,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/width */
+/* @title width */
+/* @description Utilities to set the width property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/width */
 @utility w-* {
     @variant default,responsive {
         width: value(--spacing-*);
@@ -609,7 +802,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/max-width */
+/* @title max-width */
+/* @description Utilities to set the max-width property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/max-width */
 @utility max-w-* {
     @variant default,responsive {
         max-width: value(--spacing-*);
@@ -621,19 +817,30 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/min-width */
+/* @title min-width */
+/* @description Utilities to set the min-width property of the element. */
+/* @category sizing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/min-width */
 @utility min-w-* {
     @variant default,responsive {
         min-width: value(--spacing-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
+/* @title margin */
+/* @description Utilities to set the margin property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
 @utility m-* {
     @variant default,responsive,first,last {
         margin: value(--spacing-*);
     }
 }
+
+/* @title margin-x */
+/* @description Utilities to set the margin-left and margin-right properties of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
 @utility mx-* {
     @variant default,responsive {
         margin-left: value(--spacing-*);
@@ -646,6 +853,11 @@
         margin-right: auto;
     }
 }
+
+/* @title margin-y */
+/* @description Utilities to set the margin-top and margin-bottom properties of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
 @utility my-* {
     @variant default,responsive {
         margin-top: value(--spacing-*);
@@ -653,14 +865,20 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom */
+/* @title margin-bottom */
+/* @description Utilities to set the margin-bottom property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom */
 @utility mb-* {
     @variant default,responsive,first,last {
         margin-bottom: value(--spacing-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left */
+/* @title margin-left */
+/* @description Utilities to set the margin-left property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left */
 @utility ml-* {
     @variant default,responsive {
         margin-left: value(--spacing-*);
@@ -672,7 +890,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right */
+/* @title margin-right */
+/* @description Utilities to set the margin-right property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right */
 @utility mr-* {
     @variant default,responsive {
         margin-right: value(--spacing-*);
@@ -684,63 +905,108 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top */
+/* @title margin-top */
+/* @description Utilities to set the margin-top property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top */
 @utility mt-* {
     @variant default,responsive {
         margin-top: value(--spacing-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
+/* @title padding */
+/* @description Utilities to set the padding property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
 @utility p-* {
     @variant default,responsive,first,last {
         padding: value(--spacing-*);
     }
 }
+
+/* @title padding-x */
+/* @description Utilities to set the padding-left and padding-right properties of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
 @utility px-* {
     @variant default,responsive {
         padding-left: value(--spacing-*);
         padding-right: value(--spacing-*);
     }
 }
+
+/* @title padding-y */
+/* @description Utilities to set the padding-top and padding-bottom properties of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
 @utility py-* {
     @variant default,responsive {
         padding-top: value(--spacing-*);
         padding-bottom: value(--spacing-*);
     }    
 }
+
+/* @title padding-bottom */
+/* @description Utilities to set the padding-bottom property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom */
 @utility pb-* {
     @variant default,responsive,first,last {
         padding-bottom: value(--spacing-*);
     }
 }
+
+/* @title padding-left */
+/* @description Utilities to set the padding-left property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left */
 @utility pl-* {
     @variant default,responsive {
         padding-left: value(--spacing-*);
     }
 }
+
+/* @title padding-right */
+/* @description Utilities to set the padding-right property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right */
 @utility pr-* {
     @variant default,responsive {
         padding-right: value(--spacing-*);
     }
 }
+
+/* @title padding-top */
+/* @description Utilities to set the padding-top property of the element. */
+/* @category spacing */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top */
 @utility pt-* {
     @variant default,responsive {
         padding-top: value(--spacing-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
+/* @title font-family */
+/* @description Utilities to set the font-family property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-family */
 @utility font-* {
     font-family: value(--font-family-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/font-size */
+/* @title font-size */
+/* @description Utilities to set the font-size property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-size */
 @utility text-* {
     font-size: value(--font-size-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/font-style */
+/* @title font-style */
+/* @description Utilities to set the font-style property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-style */
 @theme static {
     --font-style-italic: italic;
     --font-style-not-italic: normal;
@@ -749,24 +1015,36 @@
     font-style: value(--font-style-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
+/* @title font-weight */
+/* @description Utilities to set the font-weight property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
 @utility font-* {
     @variant default,responsive,hover,focus {
         font-weight: value(--font-weight-*);
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing */
+/* @title letter-spacing */
+/* @description Utilities to set the letter-spacing property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing */
 @utility tracking-* {
     letter-spacing: value(--tracking-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
+/* @title line-height */
+/* @description Utilities to set the line-height property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/line-height */
 @utility leading-* {
     line-height: value(--leading-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */
+/* @title list-style-position */
+/* @description Utilities to set the list-style-position property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position */
 @theme static {
     --list-position-inside: inside;
     --list-position-outside: outside;
@@ -775,7 +1053,10 @@
     list-style-position: value(--list-position-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type */
+/* @title list-style-type */
+/* @description Utilities to set the list-style-type property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type */
 @theme static {
     --list-type-none: none;
     --list-type-disc: disc;
@@ -785,7 +1066,10 @@
     list-style-type: value(--list-type-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-align */
+/* @title text-align */
+/* @description Utilities to set the text-align property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-align */
 @theme static {
     --text-align-justify: justify;
     --text-align-left: left;
@@ -796,7 +1080,10 @@
     text-align: value(--text-align-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/color */
+/* @title text-color */
+/* @description Utilities to set the text color of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/color */
 @theme static {
     --text-color-transparent: transparent;
     --text-color-current: currentColor;
@@ -812,7 +1099,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
+/* @title text-decoration-line */
+/* @description Utilities to set the text-decoration-line property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
 @theme static {
     --text-decoration-line-strike: line-through;
     --text-decoration-line-underline: underline;
@@ -824,7 +1114,10 @@
     }    
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color */
+/* @title text-decoration-color */
+/* @description Utilities to set the text-decoration-color property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color */
 @theme static {
     --text-decoration-color-transparent: transparent;
     --text-decoration-color-current: currentColor;
@@ -840,7 +1133,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style */
+/* @title text-decoration-style */
+/* @description Utilities to set the text-decoration-style property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style */
 @theme static {
     --text-decoration-style-solid: solid;
     --text-decoration-style-double: double;
@@ -854,7 +1150,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness */
+/* @title text-decoration-thickness */
+/* @description Utilities to set the text-decoration-thickness property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness */
 @theme static {
     --text-decoration-thickness-auto: auto;
     --text-decoration-thickness-0: 0;
@@ -869,7 +1168,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset */
+/* @title text-underline-offset */
+/* @description Utilities to set the text-underline-offset property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset */
 @theme static {
     --text-underline-offset-auto: auto;
     --text-underline-offset-0: 0;
@@ -884,7 +1186,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow */
+/* @title text-overflow */
+/* @description Utilities to set the text-overflow property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow */
 @theme static {
     --text-overflow-ellipsis: ellipsis;
     --text-overflow-clip: clip;
@@ -893,7 +1198,10 @@
     text-overflow: value(--text-overflow-*);
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform */
+/* @title text-transform */
+/* @description Utilities to set the text-transform property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform */
 @theme static {
     --text-transform-capitalize: capitalize;
     --text-transform-uppercase: uppercase;
@@ -905,7 +1213,10 @@
     }
 }
 
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align */
+/* @title vertical-align */
+/* @description Utilities to set the vertical-align property of the element. */
+/* @category typography */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align */
 @theme static {
     --vertical-align-baseline: baseline;
     --vertical-align-top: top;
