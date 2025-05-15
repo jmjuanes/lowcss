@@ -205,7 +205,7 @@ const lowCssPlugin = () => {
                 else if (rule.type === "atrule" && rule.name === "utility") {
                     const themeFields = {...globalThemeFields, ...localThemeFields};
                     compileFunctionalUtility(rule, themeFields, postcss).forEach(utilityRule => {
-                        rule.after(utilityRule);
+                        rule.before(utilityRule);
                     });
                     rule.remove();
                 }
