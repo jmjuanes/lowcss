@@ -24,12 +24,13 @@
     },
     "scripts": {
         "build:css": "node ./scripts/css.js low.css",
+        "build:docs": "node ./scripts/docs.js",
         "prebuild:site": "rm -rf www && mkdir www",
         "build:site": "node ./scripts/site.js && node ./scripts/playground.js build",
         "postbuild:site": "cp low.* www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp -R public/* www/",
         "build:json": "node ./scripts/json.js",
         "build": "yarn build:css && yarn build:json",
-        "docs": "yarn run build:site",
+        "docs": "yarn run build:docs",
         "serve": "serve www --port 3000",
         "site": "yarn build:site",
         "pack": "zip lowcss.zip low.*"
@@ -59,11 +60,10 @@
         "autoprefixer": "^10.4.21",
         "codecake": "^0.5.0",
         "csso": "^5.0.5",
-        "front-matter": "^4.0.2",
         "highlight.js": "^11.11.1",
         "lz-string": "^1.5.0",
-        "marked": "^13.0.1",
-        "mikel": "^0.17.1",
+        "mikel": "^0.20.2",
+        "mikel-press": "^0.20.2",
         "postcss": "^8.5.3",
         "postcss-import": "^16.1.0",
         "serve": "^14.2.4"
