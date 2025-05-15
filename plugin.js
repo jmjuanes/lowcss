@@ -1,3 +1,10 @@
+// @description converts a simple glob pattern into a regex
+// @example globToRegex("bg-*") => /^bg-(.*?)$/
+const globToRegex = (glob = "") => {
+    const escaped = glob.replace(/[-[\]{}()+?.,\\^$|#\s]/g, "\\$&");
+    return new RegExp(`^${escaped.replace(/\*/g, "(.*?)")}$`);
+};
+
 // @description utility method to find all declaration nodes that matches the provided
 // condition as a function
 const findDeclarationNodes = (nodes, condition, result = []) => {
@@ -12,22 +19,6 @@ const findDeclarationNodes = (nodes, condition, result = []) => {
         }
     }
     return result;
-};
-
-// @description get keys that match a pattern
-// @param {string} pattern - pattern to match
-// @param {object} object - object to search
-// @return {array} keys - array of keys that match the pattern
-const getKeysMatchingPattern = (pattern = "", keys = []) => {
-    const [start = "", end = ""] = pattern.split("*"); // split the pattern into start and end
-    return keys.map(key => {
-        if (key.startsWith(start) && key.endsWith(end)) {
-            return {
-                key: key,
-                match: key.replace(start, "").replace(end, ""),
-            };
-        }
-    }).filter(Boolean);
 };
 
 // @description replace the parent selector with the provided replacement in the rule and its children
@@ -64,7 +55,7 @@ const getPseudoSelector = (variant = "", selector = "&") => {
 
 // @description parse the utility params
 // @param {string} params - params to parse
-export const parseUtilityParams = (params = "") => {
+const parseUtilityParams = (params = "") => {
     let name = params.trim(), variants = ["default"];
     const match = name.match(/(.*?):variant\((.*?)\)/);
     if (match && !!match[1] && !!match[2]) {
@@ -80,7 +71,7 @@ export const parseUtilityParams = (params = "") => {
 // @param {object} options.formatValue - function to format the value of the declaration
 // @param {object} options.postcss - postcss instance to use
 // @return {array} result - array of postcss rules
-export const compile = (nodes = [], options = {}, result = []) => {
+const compile = (nodes = [], options = {}, result = []) => {
     // 1. compile the declaration nodes
     const declarationNodes = nodes.filter(node => node.type === "decl");
     if (declarationNodes.length > 0) {
@@ -111,14 +102,17 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
     const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
     declarationNodes.forEach(node => {
         const pattern = node.value.match(/value\((.*?)\)/)[1];
-        getKeysMatchingPattern(pattern, Object.keys(themeFields)).forEach(entry => {
-            const themeField = themeFields[entry.key];
-            if (!context.has(entry.key) && (themeField.type === "global" || themeField.type === "static")) {
-                context.set(entry.key, {
-                    key: entry.match,
-                    value: themeField.type === "global" ? `var(${entry.key})` : themeField.value,
-                    replace: `value(${pattern})`,
-                });
+        const patternRegex = globToRegex(pattern);
+        Object.keys(themeFields).forEach(key => {
+            if (patternRegex.test(key)) {
+                const field = themeFields[key];
+                if (!context.has(key) && (field.type === "global" || field.type === "static")) {
+                    context.set(key, {
+                        key: key.match(patternRegex)[1],
+                        value: field.type === "global" ? `var(${key})` : field.value,
+                        replace: `value(${pattern})`,
+                    });
+                }
             }
         });
     });
@@ -127,10 +121,12 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
         context.set("default", {key: "", value: "", replace: ""});
     }
     // 3. get breakpoints from global variables
-    const breakpointsKeys = getKeysMatchingPattern("--breakpoint-*", Object.keys(themeFields));
-    const breakpoints = Object.fromEntries(breakpointsKeys.map(result => {
-        return [result.match, themeFields[result.key].value];
-    }));
+    const breakpoints = {}, breakpointRegex = globToRegex("--breakpoint-*");
+    Object.keys(themeFields).forEach(key => {
+        if (breakpointRegex.test(key)) {
+            breakpoints[key.match(breakpointRegex)[1]] = themeFields[key].value;
+        }
+    });
     // 4. generate utilities classes
     return variants.map(variant => {
         return Array.from(context.values()).map(ctx => {
