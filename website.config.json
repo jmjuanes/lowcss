@@ -1,0 +1,11 @@
+{
+    "url": "https://low.josemi.xyz",
+    "navbar": {
+        "links": [
+            {"text": "Docs", "link": "/docs"},
+            {"text": "Utilities", "link": "/docs/utilities"},
+            {"text": "Colors", "link": "/colors"},
+            {"text": "Examples", "link": "/examples"}
+        ]
+    }
+}
