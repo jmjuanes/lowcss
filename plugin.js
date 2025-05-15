@@ -46,33 +46,46 @@ const replaceParentSelector = (rule, replacement) => {
     return rule;
 };
 
-// @description get the selector for the specified variant
+// @description get the selector for the specified pseudo variant
 // @param {string} variant - variant to get the selector for
 // @return {string} selector - selector to replace
-const getVariantSelector = (variant = "") => {
+const getPseudoSelector = (variant = "", selector = "&") => {
     // 1. check if the variant is a group variant
     if (variant.startsWith("group-")) {
-        return `group:${variant.replace("group-", "")} .${variant}\\:&`;
+        return `.group:${variant.replace("group-", "")} .${variant}\\:${selector}`;
     }
     // 2. check if the variant is a peer variant
     else if (variant.startsWith("peer-")) {
-        return `peer:${variant.replace("peer-", "")}~.${variant}\\:&`;
+        return `.peer:${variant.replace("peer-", "")}~.${variant}\\:${selector}`;
     }
     // 3. otherwise, return it as a simple variant (hover, focus, etc.)
-    return `${variant}\\:&:${variant}`;
+    return `.${variant}\\:${selector}:${variant}`;
+};
+
+// @description parse the utility params
+// @param {string} params - params to parse
+export const parseUtilityParams = (params = "") => {
+    const match = params.trim().match(/(.*?):variant\((.*?)\)/);
+    if (match && !!match[1] && !!match[2]) {
+        return [
+            match[1].trim(),
+            match[2].split(",").map(variant => variant.trim()),
+        ];
+    }
+    // make sure that we have a default variant
+    return [params.trim(), ["default"]];
 };
 
 // @description compile the nodes into a postcss rule
 // @param {array} nodes - array of nodes to compile
-// @param {object} options.breakpoints - list of breakpoints to use in @variant rules
 // @param {object} options.formatValue - function to format the value of the declaration
 // @param {object} options.postcss - postcss instance to use
 // @return {array} result - array of postcss rules
-const compile = (nodes = [], options = {}, result = []) => {
+export const compile = (nodes = [], options = {}, result = []) => {
     // 1. compile the declaration nodes
     const declarationNodes = nodes.filter(node => node.type === "decl");
     if (declarationNodes.length > 0) {
-        const newRule = new options.postcss.Rule({selector: ".&"});
+        const newRule = new options.postcss.Rule({selector: "&"});
         declarationNodes.forEach(declaration => {
             return newRule.append({
                 prop: declaration.prop.trim(),
@@ -82,36 +95,6 @@ const compile = (nodes = [], options = {}, result = []) => {
         result.push(newRule);
     }
     // 2. compile nested rules
-    const variantNodes = nodes.filter(node => node.type === "atrule" && node.name === "variant");
-    variantNodes.forEach(node => {
-        node.params.split(",").forEach(variant => {
-            if (variant === "default") {
-                compile(node.nodes, options).forEach(rule => {
-                    return result.push(rule);
-                });
-            }
-            // 2. check for responsive variant
-            else if (variant === "responsive") {
-                Object.keys(options.breakpoints || {}).forEach(key => {
-                    const mediaRule = new options.postcss.AtRule({
-                        name: "media",
-                        params: `screen and (min-width: ${options.breakpoints[key]})`,
-                    });
-                    compile(node.nodes, options).forEach(rule => {
-                        mediaRule.append(replaceParentSelector(rule, `${key}\\:&`));
-                    });
-                    result.push(mediaRule);
-                });
-            }
-            // 3: other case, we have a pseudo variant (hover, focus, etc.)
-            else if (variant) {
-                compile(node.nodes, options).forEach(rule => {
-                    result.push(replaceParentSelector(rule, getVariantSelector(variant)));
-                });
-            }
-        });
-    });
-    // 3. compile nested rules
     const nestedRules = nodes.filter(node => node.type === "rule" && node.selector);
     nestedRules.forEach(node => {
         compile(node.nodes, options).forEach(rule => {
@@ -123,6 +106,7 @@ const compile = (nodes = [], options = {}, result = []) => {
 
 // @description compile utility
 const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
+    const [utilityName, variants] = parseUtilityParams(rule.params);
     // 1. get the values that we have to iterate
     const context = new Map();
     const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
@@ -149,22 +133,42 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
         return [result.match, themeFields[result.key].value];
     }));
     // 4. generate utilities classes
-    return Array.from(context.values()).map(ctx => {
-        const utilityRules = compile(rule.nodes, {
-            breakpoints: breakpoints,
-            postcss: postcss,
-            formatValue: value => {
-                return value.replaceAll(ctx.replace, ctx.value).replace(/value\((.*?)\)/g, (match, p1) => {
-                    if (themeFields[p1]) {
-                        return themeFields[p1].type === "global" ? `var(${p1})` : themeFields[p1].value;
-                    }
-                    return match;
-                });
-            },
-        });
-        return utilityRules.map(utilityRule => {
-            return replaceParentSelector(utilityRule, rule.params.replace("*", ctx.key));
-        });
+    return variants.map(variant => {
+        return Array.from(context.values()).map(ctx => {
+            const selector = utilityName.replace("*", ctx.key);
+            const compileOptions = {
+                postcss: postcss,
+                formatValue: value => {
+                    return value.replaceAll(ctx.replace, ctx.value).replace(/value\((.*?)\)/g, (match, p1) => {
+                        if (themeFields[p1]) {
+                            return themeFields[p1].type === "global" ? `var(${p1})` : themeFields[p1].value;
+                        }
+                        return match;
+                    });
+                },
+            };
+            return compile(rule.nodes, compileOptions).map(utilityRule => {
+                // 1. default variant
+                if (variant === "default") {
+                    return replaceParentSelector(utilityRule, "." + selector);
+                }
+                // 2. responsive variant
+                else if (variant === "responsive") {
+                    return Object.keys(breakpoints).map(key => {
+                        const mediaRule = new postcss.AtRule({
+                            name: "media",
+                            params: `screen and (min-width: ${breakpoints[key]})`,
+                        });
+                        mediaRule.append(replaceParentSelector(utilityRule.clone(), `.${key}\\:${selector}`));
+                        return mediaRule;
+                    });
+                }
+                // 3: pseudo variant (hover, focus, etc.)
+                else if (variant) {
+                    return replaceParentSelector(utilityRule, getPseudoSelector(variant, selector));
+                }
+            }).flat();
+        }).flat();
     }).flat();
 };
 
