@@ -47,13 +47,13 @@ themes:
 
 <div class="pt-16 pb-12 md:pt-20 md:pb-16">
     <div class="max-w-3xl font-crimson text-6xl md:text-7xl leading-none mb-4">
-        <span class="font-medium tracking-tight text-neutral-950">Themeable Utilities.</span>
+        <span class="font-medium tracking-tight text-gray-950">Themeable Utilities.</span>
     </div>
     <div class="max-w-2xl mt-0 mb-8 text-xl leading-relaxed">
-        <span class="text-neutral-700">A collection of customizable utilities that you can use for theming your UI components.</span>
+        <span class="text-gray-700">A collection of customizable utilities that you can use for theming your UI components.</span>
     </div>
     <div class="flex items-center gap-2">
-        <a href="/docs/theming" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+        <a href="/docs/theming" class="flex items-center px-4 py-3 rounded-lg bg-gray-900 hover:bg-gray-950 text-white no-underline cursor-pointer">
             <span class="font-medium text-sm">Get Started</span>
         </a>
     </div>
@@ -65,7 +65,7 @@ themes:
             <div class="text-sm font-bold leading-none">Primary color</div>
             <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.primary}}
-                <div class="rounded-md cursor-pointer border border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}" data-low-default="{{default}}">
+                <div class="rounded-md cursor-pointer border-1 border-border-1 px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="w-5 h-5 bg-{{value}} rounded-full"></div>
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
@@ -73,10 +73,10 @@ themes:
             </div>
         </div>
         <div class="flex flex-col gap-2">
-            <div class="text-sm font-bold leading-none">Border radius</div>
+            <div class="text-sm font-bold leading-none">border-1 radius</div>
             <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.radius}}
-                <div class="rounded-md cursor-pointer border border-border px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}" data-low-default="{{default}}">
+                <div class="rounded-md cursor-pointer border-1 border-border-1 px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
             {{/each}}
@@ -111,11 +111,11 @@ themes:
         elements.forEach(el => {
             el.addEventListener("click", () => {
                 document.querySelector(`style[data-low-role="themes:${type}:style"]`).innerHTML = `:root{--low-${type}: var(--low-${el.dataset.lowValue});}`;
-                elements.forEach(otherElement => removeClass(otherElement, "border-neutral-950 border-2"));
-                addClass(el, "border-neutral-950 border-2");
+                elements.forEach(otherElement => removeClass(otherElement, "border-gray-950 border-2"));
+                addClass(el, "border-gray-950 border-2");
             });
             if (el.dataset.lowDefault === "true") {
-                addClass(el, "border-neutral-950 border-2");
+                addClass(el, "border-gray-950 border-2");
             }
         });
     });

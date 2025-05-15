@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
+    <meta name="title" content="{{site.title}}" />
+    <meta name="description" content="{{site.description}}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+    <link rel="stylesheet" href="/low.css" />
+    <link rel="stylesheet" href="/vendor/highlight.css" />
+    <title>{{page.attributes.title}} - lowCSS {{site.version}}</title>
+    <style>
+        .font-crimson {
+            font-family: 'Crimson Pro', serif;
+        }
+    </style>
+</head>
+<body class="bg-white m-0 p-0 font-sans text-gray-900 leading-normal">
+    {{>header.html}}
+    <main class="w-full max-w-7xl mx-auto px-6 mb-16">
+        {{!@content}}
+    </main>
+    {{#eq page.data.layout "docs"}}
+    <div class="flex w-full max-w-8xl mx-auto px-6 gap-4">
+        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
+            {{>sidebar}}
+        </div>
+        <div class="w-full max-w-3xl">
+            <div class="markup pt-6 md:pt-8 pb-16">
+                {{> content}}
+            </div>
+            <div class="grid items-center md:grid-cols-2 gap-4">
+                <div class="w-full">
+                    {{#withPage page.data.prevPage}}
+                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col border-1  border-gray-200 hover:border-gray-900 rounded-lg p-3">
+                        <div class="text-gray-600 text-xs">Previous Page</div>
+                        <div class="font-medium text-gray-950">{{data.title}}</div>
+                    </a>
+                    {{/withPage}}
+                </div>
+                <div class="w-full">
+                    {{#withPage page.data.nextPage}}
+                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col items-end border-1  border-gray-200 hover:border-gray-900 rounded-lg p-3">
+                        <div class="text-gray-600 text-xs">Next Page</div>
+                        <div class="font-medium text-gray-950">{{data.title}}</div>
+                    </a>
+                    {{/withPage}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/eq}}
+    {{>footer.html}}
+</body>
+</html>

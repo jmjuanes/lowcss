@@ -1,24 +1,32 @@
 ---
-title: "A low-level CSS utility framework"
-layout: "default"
-features: 
-  - title: "Lightning-fast development"
-    description: "Prototype and develop at an accelerated pace, focusing on the functionality and design."
-    icon: "bolt"
-  - title: "Keep your CSS organized"
-    description: "Utility classes are easy to understand and maintain, and reduces the risk of CSS bloat and specificity issues."
-    icon: "grid"
-  - title: "Responsive design made easy"
-    description: "Effortlessly create layouts that adapt to different screen sizes and devices."
-    icon: "mobile"
+{
+    "title": "A low-level CSS utility framework",
+    "features": [
+        {
+            "title": "Lightning-fast development",
+            "description": "Prototype and develop at an accelerated pace, focusing on the functionality and design.",
+            "icon": "bolt"
+        },
+        {
+            "title": "Keep your CSS organized",
+            "description": "Utility classes are easy to understand and maintain, and reduces the risk of CSS bloat and specificity issues.",
+            "icon": "grid"
+        },
+        {
+            "title": "Responsive design made easy",
+            "description": "Effortlessly create layouts that adapt to different screen sizes and devices.",
+            "icon": "mobile"
+        }
+    ]
+}
 ---
-
+{{>>layout.html}}
 <div class="flex justify-between py-16 md:py-20 md:gap-12">
     <div class="w-full">
-        <div class="mb-4">
+        <div class="hidden mb-4">
             <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
                 <div class="flex items-center">
-                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#party-horn"></use></svg>
+                    {{=icon icon="party-horn"}}
                 </div>
                 <div class="w-px h-4 bg-gray-300"></div>
                 <div class="font-medium group-hover:underline text-sm">Introducing examples</div>
@@ -27,11 +35,11 @@ features:
                 </div>
             </a>
         </div>
-        <div class="max-w-lg font-crimson text-6xl md:text-7xl leading-none mb-4 md:mb-6">
+        <div class="max-w-xl font-crimson text-7xl md:text-9xl leading-none mb-4 md:mb-6">
             <span class="font-medium tracking-tight text-gray-950">Start building your next idea.</span>
         </div>
         <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
-            <span class="text-gray-700">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
+            <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex flex-row gap-2">
             <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
@@ -61,14 +69,12 @@ features:
         </div>
     </div>
 </div>
-<div class="w-full grid gap-8 md:grid-cols-3 grid-cols-1">
-    {{#each page.data.features}}
-    <div class="bg-gray-100 rounded-lg p-8">
-        <div class="mb-4 text-4xl text-gray-800">
-            <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{icon}}"></use></svg>
-        </div>
-        <div class="font-bold text-lg mb-2 text-gray-800">{{title}}</div>
-        <div class="text-sm">{{description}}</div>
+<div class="w-full grid gap-12 grid-cols-1 md:grid-cols-3 py-10 md:py-16">
+    {{#each page.attributes.features}}
+    <div class="p-0">
+        <div class="font-bold text-2xl mb-2">{{title}}</div>
+        <div class="text-base">{{description}}</div>
     </div>
     {{/each}}
 </div>
+{{/layout.html}}

@@ -15,7 +15,7 @@ prevPage: "markup"
         <h2 class="mb-3">{{name}}</h2>
         <div class="mb-2">{{description}}</div>
         <div class="mb-4 flex items-center gap-2">
-            <a href="{{url}}" target="_blank" class="flex items-center gap-1 no-underline hover:underline text-neutral-700 cursor-pointer">
+            <a href="{{url}}" target="_blank" class="flex items-center gap-1 no-underline hover:underline text-gray-700 cursor-pointer">
                 <div class="flex items-center text-base">
                     <svg width="1em" height="1em"><use xlink:href="/sprite.svg#external-link"></use></svg>
                 </div>
@@ -42,7 +42,7 @@ prevPage: "markup"
         <div class="max-h-96 overflow-auto text-gray-500">
             <table class="w-full mt-0 mb-0">
                 {{#each values}}
-                <tr class="border border-gray-200 text-xs">
+                <tr class="border-1 border-gray-200 text-xs">
                     <td class="p-4 font-mono bg-gray-100 text-blue-600">
                         <span>{{name}}</span>
                     </td>

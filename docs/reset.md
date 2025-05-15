@@ -102,7 +102,7 @@ dl {
 
 ## Tables
 
-It resets the default border styles for tables.
+It resets the default border-1 styles for tables.
 
 ```css
 table {

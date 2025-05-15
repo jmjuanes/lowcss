@@ -31,7 +31,7 @@ The colors variables are generated from values in `low.$colors`:
             <td><code>--low-{{@key}}</code></td>
             <td><code>{{@value}}</code></td>
             <td>
-                <div class="bg-{{@key}} border border-neutral-200 rounded-lg h-4 w-16 mx-auto"></div>
+                <div class="bg-{{@key}} border-1 border-gray-200 rounded-lg h-4 w-16 mx-auto"></div>
             </td>
         </tr>
         {{/each}}

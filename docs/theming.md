@@ -38,7 +38,7 @@ Just like any other utility, themeable utilities work with hover states and pseu
 
 ## Usage
 
-Themeable utilities allow you to apply **consistent, customizable styles** using CSS variables. These utilities cover **colors, border radius, and shadows**, ensuring a flexible and scalable design system.
+Themeable utilities allow you to apply **consistent, customizable styles** using CSS variables. These utilities cover **colors, border-1 radius, and shadows**, ensuring a flexible and scalable design system.
 
 ### Color Utilities
 
@@ -58,7 +58,7 @@ Color utilities are used for **backgrounds, text, borders, and outlines** across
 | `destructive-foreground`  | Text color for destructive actions |
 | `accent`                  | Hover/selection backgrounds (e.g., dropdowns) |
 | `accent-foreground`       | Text color for elements with an accent background |
-| `border`                  | Default border color |
+| `border`                  | Default border-1 color |
 | `input`                   | Background for `<input>` and `<select>` elements |
 
 Example usage: 
@@ -67,13 +67,13 @@ Example usage:
 <button class="bg-primary text-primary-foreground">Submit</button>
 ```
 
-### Border Radius Utilities
+### border-1 Radius Utilities
 
-Border radius utilities define **default rounded corners** for elements like buttons and inputs.
+border-1 radius utilities define **default rounded corners** for elements like buttons and inputs.
 
 | Utility Name | Common Usage Example |
 |-------------|----------------------|
-| `rounded`   | `<button>` and `<input>` border radius. |
+| `rounded`   | `<button>` and `<input>` border-1 radius. |
 
 Example usage:
 
@@ -153,7 +153,7 @@ Each theme utility is mapped to a CSS variable (prefixed with `--low-*`), making
 }
 ```
 
-- To customize the default border color:
+- To customize the default border-1 color:
 
 ```css
 :root {
@@ -169,7 +169,7 @@ Each theme utility is mapped to a CSS variable (prefixed with `--low-*`), making
 }
 ```
 
-- To customize the default border radius:
+- To customize the default border-1 radius:
 
 ```css
 :root {

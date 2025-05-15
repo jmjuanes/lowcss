@@ -34,57 +34,57 @@ prices:
 ---
 
 <div class="w-full h-16 px-6 flex items-center gap-4">
-    <a href="#" class="block text-neutral-950 font-bold text-lg">Fake Corp.</a>
+    <a href="#" class="block text-gray-950 font-bold text-lg">Fake Corp.</a>
     <div class="hidden md:flex items-center gap-3">
-        <a href="#" class="block font-medium text-sm text-neutral-800 hover:text-neutral-950 hover:underline cursor-pointer">Features</a>
-        <a href="#" class="block font-medium text-sm text-neutral-800 hover:text-neutral-950 hover:underline cursor-pointer">Products</a>
-        <a href="#" class="block font-medium text-sm text-neutral-800 hover:text-neutral-950 hover:underline cursor-pointer">Pricing</a>
-        <a href="#" class="block font-medium text-sm text-neutral-800 hover:text-neutral-950 hover:underline cursor-pointer">Contact</a>
+        <a href="#" class="block font-medium text-sm text-gray-800 hover:text-gray-950 hover:underline cursor-pointer">Features</a>
+        <a href="#" class="block font-medium text-sm text-gray-800 hover:text-gray-950 hover:underline cursor-pointer">Products</a>
+        <a href="#" class="block font-medium text-sm text-gray-800 hover:text-gray-950 hover:underline cursor-pointer">Pricing</a>
+        <a href="#" class="block font-medium text-sm text-gray-800 hover:text-gray-950 hover:underline cursor-pointer">Contact</a>
     </div>
     <div class="flex items-center ml-auto">
-        <a href="#" class="bg-neutral-950 text-white hover:bg-neutral-800 cursor-pointer rounded-full text-sm font-bold px-3 py-2">
+        <a href="#" class="bg-gray-950 text-white hover:bg-gray-800 cursor-pointer rounded-full text-sm font-bold px-3 py-2">
             <span>Get started for free</span>
         </a>
     </div>
 </div>
 <div class="w-full py-20 px-6">
     <div class="flex flex-col items-center mb-10">
-        <div class="text-5xl text-neutral-950 font-bold text-center">Pricing plans</div>
-        <div class="text-neutral-600 font-medium text-center">Try our Basic plan for 14 days. Cancel any time.</div>
+        <div class="text-5xl text-gray-950 font-bold text-center">Pricing plans</div>
+        <div class="text-gray-600 font-medium text-center">Try our Basic plan for 14 days. Cancel any time.</div>
     </div>
     <div class="flex items-center justify-center mb-8">
-        <div class="p-1 bg-neutral-100 rounded-lg flex items-center gap-1 text-sm">
+        <div class="p-1 bg-gray-100 rounded-lg flex items-center gap-1 text-sm">
             <div class="font-medium cursor-pointer bg-white shadow-sm rounded-md px-2 py-1">Pay montly</div>
             <div class="font-medium cursor-pointer bg-transparent rounded-md px-2 py-1">Pay yearly</div>
         </div>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
     {{#each prices}}
-        <div class="bg-white border border-neutral-200 shadow-sm rounded-lg w-full">
+        <div class="bg-white border-1 border-gray-200 shadow-sm rounded-lg w-full">
             <div class="p-6">
-                <div class="text-neutral-950 font-bold mb-2">{{title}}</div>
+                <div class="text-gray-950 font-bold mb-2">{{title}}</div>
                 <div class="w-full flex items-end gap-2 mb-4">
-                    <div class="text-5xl text-neutral-950 font-bold leading-none">${{price}}</div>
-                    <div class="text-neutral-700 font-medium text-xs">
+                    <div class="text-5xl text-gray-950 font-bold leading-none">${{price}}</div>
+                    <div class="text-gray-700 font-medium text-xs">
                         <div>Per user.</div>
                         <div>Per month.</div>
                     </div>
                 </div>
-                <div class="text-neutral-700 text-sm mb-6">{{description}}</div>
-                <a href="" class="px-3 py-2 block w-full bg-neutral-950 hover:bg-neutral-800 text-white font-bold rounded-md text-sm text-center">
+                <div class="text-gray-700 text-sm mb-6">{{description}}</div>
+                <a href="" class="px-3 py-2 block w-full bg-gray-950 hover:bg-gray-800 text-white font-bold rounded-md text-sm text-center">
                     <span>Get Started</span>
                 </a>
             </div>
-            <div class="w-full h-px bg-neutral-200"></div>
+            <div class="w-full h-px bg-gray-200"></div>
             <div class="p-6">
                 <div class="font-medium text-sm mb-2">Features</div>
                 <div class="flex flex-col gap-1">
                 {{#each features}}
                     <div class="flex items-center gap-2">
-                        <div class="flex items-center text-neutral-950 text-sm">
+                        <div class="flex items-center text-gray-950 text-sm">
                             <svg width="1em" height="1em"><use xlink:href="/sprite.svg#check"></use></svg>
                         </div>
-                        <div class="grow text-sm">{{.}}</div>
+                        <div class="grow-1 text-sm">{{.}}</div>
                     </div>
                 {{/each}}
                 </div>

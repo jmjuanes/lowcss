@@ -7,16 +7,16 @@ layout: "default"
 <div class="flex justify-between pt-16 pb-12 md:pt-20 md:pb-16">
     <div class="w-full">
         <div class="max-w-3xl font-crimson text-6xl md:text-7xl leading-none mb-4">
-            <span class="font-medium tracking-tight text-neutral-950">A palette for every project.</span>
+            <span class="font-medium tracking-tight text-gray-950">A palette for every project.</span>
         </div>
         <div class="max-w-lg mt-0 mb-8 text-xl leading-relaxed">
-            <span class="text-neutral-700">Easily apply and customize colors to create stunning, cohesive visuals across your project.</span>
+            <span class="text-gray-700">Easily apply and customize colors to create stunning, cohesive visuals across your project.</span>
         </div>
         <div class="flex items-center gap-2">
-            <a href="/docs/root" class="flex items-center px-4 py-3 rounded-lg bg-neutral-900 hover:bg-neutral-950 text-white no-underline cursor-pointer">
+            <a href="/docs/root" class="flex items-center px-4 py-3 rounded-lg bg-gray-900 hover:bg-gray-950 text-white no-underline cursor-pointer">
                 <span class="font-medium text-sm">Documentation</span>
             </a>
-            <a href="/colors.json" target="_blank" class="flex items-center px-4 py-3 rounded-lg bg-white hover:bg-neutral-100 text-neutral-950 border border-neutral-200 no-underline cursor-pointer">
+            <a href="/colors.json" target="_blank" class="flex items-center px-4 py-3 rounded-lg bg-white hover:bg-gray-100 text-gray-950 border-1 border-gray-200 no-underline cursor-pointer">
                 <span class="font-medium text-sm">Download JSON</span>
             </a>
         </div>
@@ -27,7 +27,7 @@ layout: "default"
     <div class="mb-6 md:mb-8">
         <div class="text-xl font-medium mb-4 capitalize">
             <div class="mb-1">{{@key}}</div>
-            <div class="h-px w-full max-w-40 bg-neutral-200"></div>
+            <div class="h-px w-full max-w-40 bg-gray-200"></div>
         </div>
         <div class="w-full grid grid-cols-3 md:grid-cols-11 gap-2">
             {{#each @value}}

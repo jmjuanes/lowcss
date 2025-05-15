@@ -13,7 +13,7 @@ members:
     email: "bob.brown@email.com"
     avatar: "/avatars/02.jpeg"
 ---
-<div class="border rounded p-6 bg-white shadow border-border">
+<div class="border-1 rounded p-6 bg-white shadow border-border">
     <div class="font-bold text-2xl leading-none mb-6">Team</div>
     <div class="flex flex-col gap-4 mb-6">
     {{#each partials.cards.team.members}}
@@ -25,7 +25,7 @@ members:
                     <div class="text-sm text-muted-foreground">{{email}}</div>
                 </div>
             </div>
-            <div class="flex items-center justify-center border border-border bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 w-8 shrink-0 rounded-full text-lg cursor-pointer">
+            <div class="flex items-center justify-center border-1 border-border-1 bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 w-8 shrink-0 rounded-full text-lg cursor-pointer">
                 {{=icon "envelope"}}
             </div>
         </div>
@@ -35,7 +35,7 @@ members:
         <button class="bg-primary text-primary-foreground px-3 py-2 rounded border-0 cursor-pointer font-medium">
             <span>Add Member</span>
         </button>
-        <button class="bg-background hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded border border-border cursor-pointer font-medium">
+        <button class="bg-background hover:bg-accent hover:text-accent-foreground px-3 py-2 rounded border-1 border-border-1 cursor-pointer font-medium">
             <span>Cancel</span>
         </button>
     </div>

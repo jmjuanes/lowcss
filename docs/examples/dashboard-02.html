@@ -7,7 +7,7 @@ navbar:
     items: ["tool"]
 kanban:
   - title: "To Do"
-    color: "bg-neutral-500"
+    color: "bg-gray-500"
     tasks:
       - title: "Redesign About"
         description: "We have to redesign the About page, and include the new team members."
@@ -64,18 +64,18 @@ kanban:
         comments_count: 2
 ---
 
-<div class="w-full flex flex-col gap-4 bg-neutral-50 relative py-4 pl-20 pr-4">
+<div class="w-full flex flex-col gap-4 bg-gray-50 relative py-4 pl-20 pr-4">
     <!-- Sidebar -->
-    <div class="bg-white w-16 absolute top-0 bottom-0 left-0 z-10 border-r border-neutral-200 flex flex-col justify-between">
+    <div class="bg-white w-16 absolute top-0 bottom-0 left-0 z-10 border-r-1 border-gray-200 flex flex-col justify-between">
         {{#each navbar}}
         <div class="flex flex-col gap-1 px-2 py-4">
             {{#if logo}}
-            <a class="flex items-center justify-center text-white bg-neutral-950 rounded-full py-3 text-2xl mb-4">
+            <a class="flex items-center justify-center text-white bg-gray-950 rounded-full py-3 text-2xl mb-4">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{logo}}"></use></svg>
             </a>
             {{/if}}
             {{#each items}}
-            <a class="flex items-center justify-center text-neutral-800 hover:text-neutral-950 hover:bg-neutral-100 rounded-xl py-3 text-xl cursor-pointer">
+            <a class="flex items-center justify-center text-gray-800 hover:text-gray-950 hover:bg-gray-100 rounded-xl py-3 text-xl cursor-pointer">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{.}}"></use></svg>
             </a>
             {{/each}}
@@ -85,55 +85,55 @@ kanban:
     <!-- Header -->
     <div class="w-full flex items-center justify-between mb-6">
         <div class="flex items-center gap-2">
-            <div class="text-neutral-700 hover:text-neutral-900 cursor-pointer hover:underline">Projects</div>
-            <div class="text-neutral-500">
+            <div class="text-gray-700 hover:text-gray-900 cursor-pointer hover:underline">Projects</div>
+            <div class="text-gray-500">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#chevron-right"></use></svg>
             </div>
-            <div class="text-neutral-700 hover:text-neutral-900 cursor-pointer hover:underline">ABCD Corp.</div>
-            <div class="text-neutral-500">
+            <div class="text-gray-700 hover:text-gray-900 cursor-pointer hover:underline">ABCD Corp.</div>
+            <div class="text-gray-500">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#chevron-right"></use></svg>
             </div>
-            <div class="text-neutral-950">Website</div>
+            <div class="text-gray-950">Website</div>
         </div>
         <div class="relative group">
-            <button class="flex items-center justify-center rounded-full border border-neutral-200 h-8 w-8 cursor-pointer text-neutral-900 text-lg bg-white">
+            <button class="flex items-center justify-center rounded-full border-1 border-gray-200 h-8 w-8 cursor-pointer text-gray-900 text-lg bg-white">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#user"></use></svg>
             </button>
             <div class="absolute hidden group-focus-within:block top-full right-0 mt-1">
-                <div class="border border-neutral-200 p-1 rounded-lg bg-white text-sm shadow-sm w-40 select-none">
-                    <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Profile</a>
-                    <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Settings</a>
-                    <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Contact Support</a>
-                    <div class="w-full h-px bg-neutral-200 my-1"></div>
-                    <a class="flex items-center hover:bg-neutral-100 px-2 py-1 rounded-md font-medium cursor-pointer">Logout</a>
+                <div class="border-1 border-gray-200 p-1 rounded-lg bg-white text-sm shadow-sm w-40 select-none">
+                    <a class="flex items-center hover:bg-gray-100 px-2 py-1 rounded-md font-medium cursor-pointer">Profile</a>
+                    <a class="flex items-center hover:bg-gray-100 px-2 py-1 rounded-md font-medium cursor-pointer">Settings</a>
+                    <a class="flex items-center hover:bg-gray-100 px-2 py-1 rounded-md font-medium cursor-pointer">Contact Support</a>
+                    <div class="w-full h-px bg-gray-200 my-1"></div>
+                    <a class="flex items-center hover:bg-gray-100 px-2 py-1 rounded-md font-medium cursor-pointer">Logout</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Description -->
     <div class="w-full">
-        <div class="text-neutral-950 text-2xl font-bold">Website</div>
-        <div class="text-neutral-500 text-sm">This is the main project for the website of ABCD Corp.</div>
+        <div class="text-gray-950 text-2xl font-bold">Website</div>
+        <div class="text-gray-500 text-sm">This is the main project for the website of ABCD Corp.</div>
     </div>
     <!-- Filters and views -->
      <div class="w-full flex items-center justify-between gap-4 select-none mt-3">
-        <div class="flex items-center gap-1 p-1 bg-neutral-100 rounded-lg border border-neutral-200">
-            <div class="bg-white text-neutral-900 font-medium text-xs px-2 py-1 rounded-md shadow-sm">Kanban</div>
-            <div class="cursor-pointer hover:bg-white text-neutral-700 text-xs px-2 py-1 rounded-md">List</div>
-            <div class="cursor-pointer hover:bg-white text-neutral-700 text-xs px-2 py-1 rounded-md">Calendar</div>
+        <div class="flex items-center gap-1 p-1 bg-gray-100 rounded-lg border-1 border-gray-200">
+            <div class="bg-white text-gray-900 font-medium text-xs px-2 py-1 rounded-md shadow-sm">Kanban</div>
+            <div class="cursor-pointer hover:bg-white text-gray-700 text-xs px-2 py-1 rounded-md">List</div>
+            <div class="cursor-pointer hover:bg-white text-gray-700 text-xs px-2 py-1 rounded-md">Calendar</div>
         </div>
         <div class="flex items-center gap-2">
             <div class="relative">
-                <div class="absolute top-0 left-0 text-neutral-500 text-base px-2 py-2">
+                <div class="absolute top-0 left-0 text-gray-500 text-base px-2 py-2">
                     <svg width="1em" height="1em"><use xlink:href="/sprite.svg#search"></use></svg>
                 </div>
-                <input type="text" class="border-0 bg-white py-1 pr-2 pl-8 border border-neutral-200 rounded-lg bg-white text-sm" placeholder="Search for a task..." />
+                <input type="text" class="border-0 bg-white py-1 pr-2 pl-8 border-1 border-gray-200 rounded-lg bg-white text-sm" placeholder="Search for a task..." />
             </div>
-            <div class="flex items-center justify-center gap-1 bg-white hover:bg-neutral-100 text-900 rounded-lg px-3 py-1 border border-neutral-200 cursor-pointer">
+            <div class="flex items-center justify-center gap-1 bg-white hover:bg-gray-100 text-900 rounded-lg px-3 py-1 border-1 border-gray-200 cursor-pointer">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#filter"></use></svg>
                 <div class="text-sm font-medium">Filter</div>
             </div>
-            <div class="flex items-center justify-center gap-1 bg-white hover:bg-neutral-100 text-900 rounded-lg px-3 py-1 border border-neutral-200 cursor-pointer">
+            <div class="flex items-center justify-center gap-1 bg-white hover:bg-gray-100 text-900 rounded-lg px-3 py-1 border-1 border-gray-200 cursor-pointer">
                 <svg width="1em" height="1em"><use xlink:href="/sprite.svg#download"></use></svg>
                 <div class="text-sm font-medium">Export</div>
             </div>
@@ -145,27 +145,27 @@ kanban:
         <div class="w-full flex flex-col gap-2">
             <div class="flex items-center gap-2">
                 <div class="flex {{color}} rounded-full w-3 h-3"></div>
-                <div class="text-neutral-700 font-bold">{{title}}</div>
+                <div class="text-gray-700 font-bold">{{title}}</div>
             </div>
-            <div class="cursor-pointer w-full bg-white hover:bg-neutral-100 rounded-lg border border-neutral-200 flex items-center gap-1 justify-center py-2 px-2">
+            <div class="cursor-pointer w-full bg-white hover:bg-gray-100 rounded-lg border-1 border-gray-200 flex items-center gap-1 justify-center py-2 px-2">
                 <div class="text-base">
                     <svg width="1em" height="1em"><use xlink:href="/sprite.svg#plus"></use></svg>
                 </div>
                 <div class="text-sm font-medium">Add task</div>
             </div>
             {{#each tasks}}
-            <div class="w-full bg-white rounded-lg border border-neutral-200 p-4">
-                <div class="text-neutral-900 font-medium mb-1">{{title}}</div>
-                <div class="text-neutral-500 text-xs">{{description}}</div>
+            <div class="w-full bg-white rounded-lg border-1 border-gray-200 p-4">
+                <div class="text-gray-900 font-medium mb-1">{{title}}</div>
+                <div class="text-gray-500 text-xs">{{description}}</div>
                 <div class="flex items-center gap-1 mt-4">
                     <div class="flex items-center gap-1">
                         {{#each tags}}
-                        <div class="text-2xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded-full">
+                        <div class="text-2xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
                             <span>{{.}}</span>
                         </div>
                         {{/each}}
                     </div>
-                    <div class="ml-auto flex items-center gap-1 text-neutral-500">
+                    <div class="ml-auto flex items-center gap-1 text-gray-500">
                         <div class="text-sm">
                             <svg width="1em" height="1em"><use xlink:href="/sprite.svg#message-dots"></use></svg>
                         </div>
