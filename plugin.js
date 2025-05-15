@@ -65,15 +65,14 @@ const getPseudoSelector = (variant = "", selector = "&") => {
 // @description parse the utility params
 // @param {string} params - params to parse
 export const parseUtilityParams = (params = "") => {
-    const match = params.trim().match(/(.*?):variant\((.*?)\)/);
+    let name = params.trim(), variants = ["default"];
+    const match = name.match(/(.*?):variant\((.*?)\)/);
     if (match && !!match[1] && !!match[2]) {
-        return [
-            match[1].trim(),
-            match[2].split(",").map(variant => variant.trim()),
-        ];
+        name = match[1].trim();
+        variants = match[2].split(",").map(v => v.trim()).filter(Boolean);
     }
-    // make sure that we have a default variant
-    return [params.trim(), ["default"]];
+    // return the touple [utilityName, utilityVariants]
+    return [name, variants];
 };
 
 // @description compile the nodes into a postcss rule
