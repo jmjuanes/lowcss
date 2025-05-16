@@ -128,7 +128,7 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
         }
     });
     // 4. generate utilities classes
-    return variants.map(variant => {
+    const utilityRules = variants.map(variant => {
         return Array.from(context.values()).map(ctx => {
             const selector = utilityName.replace("*", ctx.key);
             const compileOptions = {
@@ -165,10 +165,18 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
             }).flat();
         }).flat();
     }).flat();
+    // return generated utility
+    return {
+        name: utilityName,
+        variants: variants,
+        values: Array.from(context.values()),
+        declarations: rule.nodes.filter(node => node.type === "decl"),
+        rules: utilityRules,
+    };
 };
 
 // @description plugin to generate lowcss styles
-const lowCssPlugin = () => {
+const lowCssPlugin = (options = {}) => {
     const globalThemeFields = {};
     return {
         postcssPlugin: "lowcss",
@@ -180,17 +188,22 @@ const lowCssPlugin = () => {
                     const rootRule = new postcss.Rule({selector: ":root"});
                     (rule.nodes || []).forEach(declaration => {
                         if (declaration.type === "decl") {
-                            localThemeFields[declaration.prop] = {
+                            const name = declaration.prop.trim();
+                            localThemeFields[name] = {
                                 type: rule.params || "global",
                                 key: declaration.prop.trim(),
                                 value: declaration.value.trim(),
                             };
                             // insert the css variable in the root rule?
-                            if (localThemeFields[declaration.prop].type === "global") {
+                            if (localThemeFields[name].type === "global") {
                                 rootRule.append({
                                     prop: declaration.prop.trim(),
                                     value: declaration.value.trim(),
                                 });
+                            }
+                            // execute the onThemeVariable listener
+                            if (typeof options?.onThemeVariable === "function") {
+                                options.onThemeVariable(name, localThemeFields[name]);
                             }
                         }
                     });
@@ -203,10 +216,21 @@ const lowCssPlugin = () => {
                 // 2. check if the rule is an utility rule to generate the utility classes
                 else if (rule.type === "atrule" && rule.name === "utility") {
                     const themeFields = {...globalThemeFields, ...localThemeFields};
-                    compileFunctionalUtility(rule, themeFields, postcss).forEach(utilityRule => {
+                    const utility = compileFunctionalUtility(rule, themeFields, postcss);
+                    utility.rules.forEach(utilityRule => {
                         rule.before(utilityRule);
                     });
+                    // execute the onUtility listener
+                    if (typeof options?.onUtility === "function") {
+                        options.onUtility(utility, rule);
+                    }
                     rule.remove();
+                }
+                // 3. check for comment rule
+                else if (rule.type === "comment" && !!rule.text) {
+                    if (typeof options?.onComment === "function") {
+                        options.onComment(rule.text.trim());
+                    }
                 }
             });
             // 3. merge the local theme fields with the global theme fields
