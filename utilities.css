@@ -28,15 +28,11 @@
     --background-color-transparent: transparent;
     --background-color-current: currentColor;
 }
-@utility bg-* {
-    @variant default,hover,focus {
-        background-color: value(--background-color-*);
-    }
+@utility bg-*:variant(default,hover,focus) {
+    background-color: value(--background-color-*);
 }
-@utility bg-* {
-    @variant default,hover,focus {
-        background-color: value(--color-*);
-    }
+@utility bg-*:variant(default,hover,focus) {
+    background-color: value(--color-*);
 }
 
 /* @title background-repeat */
@@ -112,15 +108,11 @@
     --border-color-transparent: transparent;
     --border-color-current: currentColor;
 }
-@utility border-* {
-    @variant default,hover,focus {
-        border-color: value(--border-color-*);
-    }
+@utility border-*:variant(default,hover,focus) {
+    border-color: value(--border-color-*);
 }
-@utility border-* {
-    @variant default,hover,focus {
-        border-color: value(--color-*);
-    }
+@utility border-*:variant(default,hover,focus) {
+    border-color: value(--color-*);
 }
 
 /* @title border-width */
@@ -185,15 +177,11 @@
     --outline-color-transparent: transparent;
     --outline-color-current: currentColor;
 }
-@utility outline-* {
-    @variant default,hover,focus {
-        outline-color: value(--outline-color-*);
-    }
+@utility outline-*:variant(default,hover,focus) {
+    outline-color: value(--outline-color-*);
 }
-@utility outline-* {
-    @variant default,hover,focus {
-        outline-color: value(--color-*);
-    }
+@utility outline-*:variant(default,hover,focus) {
+    outline-color: value(--color-*);
 }
 
 /* @title outline-width */
@@ -238,10 +226,8 @@
 /* @description Utilities to set the opacity property of the element. */
 /* @category effects */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
-@utility opacity-* {
-    @variant default,responsive,hover,focus {
-        opacity: value(--opacity-*);
-    }
+@utility opacity-*:variant(default,responsive,hover,focus) {
+    opacity: value(--opacity-*);
 }
 
 /* @title align-content */
@@ -257,10 +243,8 @@
     --align-content-space-around: space-around;
     --align-content-space-evenly: space-evenly;
 }
-@utility content-* {
-    @variant default,responsive {
-        align-content: value(--align-content-*);
-    }
+@utility content-*:variant(default,responsive) {
+    align-content: value(--align-content-*);
 }
 
 /* @title align-items */
@@ -274,10 +258,8 @@
     --align-items-stretch: stretch;
     --align-items-baseline: baseline;
 }
-@utility items-* {
-    @variant default,responsive {
-        align-items: value(--align-items-*);
-    }
+@utility items-*:variant(default,responsive) {
+    align-items: value(--align-items-*);
 }
 
 /* @title align-self */
@@ -292,10 +274,8 @@
     --align-self-stretch: stretch;
     --align-self-baseline: baseline;
 }
-@utility self-* {
-    @variant default,responsive {
-        align-self: value(--align-self-*);
-    }
+@utility self-*:variant(default,responsive) {
+    align-self: value(--align-self-*);
 }
 
 /* @title flex-direction */
@@ -308,10 +288,8 @@
     --flex-direction-row-reverse: row-reverse;
     --flex-direction-col-reverse: column-reverse;
 }
-@utility flex-* {
-    @variant default,responsive {
-        flex-direction: value(--flex-direction-*);
-    }
+@utility flex-*:variant(default,responsive) {
+    flex-direction: value(--flex-direction-*);
 }
 
 /* @title flex-grow */
@@ -322,10 +300,8 @@
     --flex-grow-0: 0;
     --flex-grow-1: 1;
 }
-@utility grow-* {
-    @variant default,responsive {
-        flex-grow: value(--flex-grow-*);
-    }
+@utility grow-*:variant(default,responsive) {
+    flex-grow: value(--flex-grow-*);
 }
 
 /* @title flex-shrink */
@@ -336,10 +312,8 @@
     --flex-shrink-0: 0;
     --flex-shrink-1: 1;
 }
-@utility shrink-* {
-    @variant default,responsive {
-        flex-shrink: value(--flex-shrink-*);
-    }
+@utility shrink-*:variant(default,responsive) {
+    flex-shrink: value(--flex-shrink-*);
 }
 
 /* @title flex-wrap */
@@ -351,20 +325,16 @@
     --flex-wrap-wrap-reverse: wrap-reverse;
     --flex-wrap-nowrap: nowrap;
 }
-@utility flex-* {
-    @variant default,responsive {
-        flex-wrap: value(--flex-wrap-*);
-    }
+@utility flex-*:variant(default,responsive) {
+    flex-wrap: value(--flex-wrap-*);
 }
 
 /* @title gap */
 /* @description Utilities to set the gap property of the element. */
 /* @category flexbox */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/gap */
-@utility gap-* {
-    @variant default,responsive {
-        gap: value(--gap-*);
-    }
+@utility gap-*:variant(default,responsive) {
+    gap: value(--gap-*);
 }
 
 /* @title grid-template-columns */
@@ -386,10 +356,8 @@
     --grid-columns-12: repeat(12, minmax(0, 1fr));
     --grid-columns-none: none;
 }
-@utility grid-cols-* {
-    @variant default,responsive {
-        grid-template-columns: value(--grid-columns-*);
-    }
+@utility grid-cols-*:variant(default,responsive) {
+    grid-template-columns: value(--grid-columns-*);
 }
 
 /* @title grid-template-rows */
@@ -405,10 +373,8 @@
     --grid-rows-6: repeat(6, minmax(0, 1fr));
     --grid-rows-none: none;
 }
-@utility grid-rows-* {
-    @variant default,responsive {
-        grid-template-rows: value(--grid-rows-*);
-    }
+@utility grid-rows-*:variant(default,responsive) {
+    grid-template-rows: value(--grid-rows-*);
 }
 
 /* @title grid-column */
@@ -429,10 +395,8 @@
     --grid-column-span-11: span 11 / span 11;
     --grid-column-span-12: span 12 / span 12;
 }
-@utility col-span-* {
-    @variant default,responsive {
-        grid-column: value(--grid-column-span-*);
-    }
+@utility col-span-*:variant(default,responsive) {
+    grid-column: value(--grid-column-span-*);
 }
 
 /* @title grid-row */
@@ -453,10 +417,8 @@
     --grid-row-span-11: span 11 / span 11;
     --grid-row-span-12: span 12 / span 12;
 }
-@utility row-span-* {
-    @variant default,responsive {
-        grid-row: value(--grid-row-span-*);
-    }
+@utility row-span-*:variant(default,responsive) {
+    grid-row: value(--grid-row-span-*);
 }
 
 /* @title justify-content */
@@ -470,10 +432,8 @@
     --justify-content-between: space-between;
     --justify-content-around: space-around;
 }
-@utility justify-* {
-    @variant default,responsive {
-        justify-content: value(--justify-content-*);
-    }
+@utility justify-*:variant(default,responsive) {
+    justify-content: value(--justify-content-*);
 }
 
 /* @title order */
@@ -497,10 +457,8 @@
     --order-11: 11;
     --order-12: 12;
 }
-@utility order-* {
-    @variant default,responsive {
-        order: value(--order-*);
-    }
+@utility order-*:variant(default,responsive) {
+    order: value(--order-*);
 }
 
 /* @title cursor */
@@ -645,10 +603,8 @@
     --position-fixed: fixed;
     --position-initial: initial;
 }
-@utility * {
-    @variant default,responsive {
-        position: value(--position-*);
-    }
+@utility *:variant(default,responsive) {
+    position: value(--position-*);
 }
 
 @theme static {
@@ -721,10 +677,8 @@
     --display-table-footer-group: table-footer-group;
     --display-table-column-group: table-column-group;
 }
-@utility * {
-    @variant default,responsive,hover,focus,group-hover,group-focus,group-focus-within {
-        display: value(--display-*);
-    }
+@utility *:variant(default,responsive,hover,focus,group-hover,group-focus,group-focus-within) {
+    display: value(--display-*);
 }
 
 /* @title float */
@@ -746,245 +700,189 @@
 /* @description Utilities to set the height property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/height */
-@utility h-* {
-    @variant default,responsive {
-        height: value(--spacing-*);
-    }
+@utility h-*:variant(default,responsive) {
+    height: value(--spacing-*);
 }
-@utility h-screen {
-    @variant default,responsive {
-        height: 100vh;
-    }
+@utility h-screen:variant(default,responsive) {
+    height: 100vh;
 }
 
 /* @title max-height */
 /* @description Utilities to set the max-height property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/max-height */
-@utility max-h-* {
-    @variant default,responsive {
-        max-height: value(--spacing-*);
-    }
+@utility max-h-*:variant(default,responsive) {
+    max-height: value(--spacing-*);
 }
-@utility max-h-screen {
-    @variant default,responsive {
-        max-height: 100vh;
-    }
+@utility max-h-screen:variant(default,responsive) {
+    max-height: 100vh;
 }
 
 /* @title min-height */
 /* @description Utilities to set the min-height property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/min-height */
-@utility min-h-* {
-    @variant default,responsive {
-        min-height: value(--spacing-*);
-    }
+@utility min-h-*:variant(default,responsive) {
+    min-height: value(--spacing-*);
 }
-@utility min-h-screen {
-    @variant default,responsive {
-        min-height: 100vh;
-    }
+@utility min-h-screen:variant(default,responsive) {
+    min-height: 100vh;
 }
 
 /* @title width */
 /* @description Utilities to set the width property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/width */
-@utility w-* {
-    @variant default,responsive {
-        width: value(--spacing-*);
-    }
+@utility w-*:variant(default,responsive) {
+    width: value(--spacing-*);
 }
-@utility w-auto {
-    @variant default,responsive {
-        width: auto;
-    }
+@utility w-auto:variant(default,responsive) {
+    width: auto;
 }
 
 /* @title max-width */
 /* @description Utilities to set the max-width property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/max-width */
-@utility max-w-* {
-    @variant default,responsive {
-        max-width: value(--spacing-*);
-    }
+@utility max-w-*:variant(default,responsive) {
+    max-width: value(--spacing-*);
 }
-@utility max-w-* {
-    @variant default,responsive {
-        max-width: value(--container-*);
-    }
+@utility max-w-*:variant(default,responsive) {
+    max-width: value(--container-*);
 }
 
 /* @title min-width */
 /* @description Utilities to set the min-width property of the element. */
 /* @category sizing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/min-width */
-@utility min-w-* {
-    @variant default,responsive {
-        min-width: value(--spacing-*);
-    }
+@utility min-w-*:variant(default,responsive) {
+    min-width: value(--spacing-*);
 }
 
 /* @title margin */
 /* @description Utilities to set the margin property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
-@utility m-* {
-    @variant default,responsive,first,last {
-        margin: value(--spacing-*);
-    }
+@utility m-*:variant(default,responsive,first,last) {
+    margin: value(--spacing-*);
 }
 
 /* @title margin-x */
 /* @description Utilities to set the margin-left and margin-right properties of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
-@utility mx-* {
-    @variant default,responsive {
-        margin-left: value(--spacing-*);
-        margin-right: value(--spacing-*);
-    }
+@utility mx-*:variant(default,responsive) {
+    margin-left: value(--spacing-*);
+    margin-right: value(--spacing-*);
 }
-@utility mx-auto {
-    @variant default,responsive {
-        margin-left: auto;
-        margin-right: auto;
-    }
+@utility mx-auto:variant(default,responsive) {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* @title margin-y */
 /* @description Utilities to set the margin-top and margin-bottom properties of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
-@utility my-* {
-    @variant default,responsive {
-        margin-top: value(--spacing-*);
-        margin-bottom: value(--spacing-*);
-    }
+@utility my-*:variant(default,responsive) {
+    margin-top: value(--spacing-*);
+    margin-bottom: value(--spacing-*);
 }
 
 /* @title margin-bottom */
 /* @description Utilities to set the margin-bottom property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom */
-@utility mb-* {
-    @variant default,responsive,first,last {
-        margin-bottom: value(--spacing-*);
-    }
+@utility mb-*:variant(default,responsive,first,last) {
+    margin-bottom: value(--spacing-*);
 }
 
 /* @title margin-left */
 /* @description Utilities to set the margin-left property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left */
-@utility ml-* {
-    @variant default,responsive {
-        margin-left: value(--spacing-*);
-    }
+@utility ml-*:variant(default,responsive) {
+    margin-left: value(--spacing-*);
 }
-@utility ml-auto {
-    @variant default,responsive {
-        margin-left: auto;
-    }
+@utility ml-auto:variant(default,responsive) {
+    margin-left: auto;
 }
 
 /* @title margin-right */
 /* @description Utilities to set the margin-right property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right */
-@utility mr-* {
-    @variant default,responsive {
-        margin-right: value(--spacing-*);
-    }
+@utility mr-*:variant(default,responsive) {
+    margin-right: value(--spacing-*);
 }
-@utility mr-auto {
-    @variant default,responsive {
-        margin-right: auto;
-    }
+@utility mr-auto:variant(default,responsive) {
+    margin-right: auto;
 }
 
 /* @title margin-top */
 /* @description Utilities to set the margin-top property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top */
-@utility mt-* {
-    @variant default,responsive {
-        margin-top: value(--spacing-*);
-    }
+@utility mt-*:variant(default,responsive,first,last) {
+    margin-top: value(--spacing-*);
 }
 
 /* @title padding */
 /* @description Utilities to set the padding property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
-@utility p-* {
-    @variant default,responsive,first,last {
-        padding: value(--spacing-*);
-    }
+@utility p-*:variant(default,responsive,first,last) {
+    padding: value(--spacing-*);
 }
 
 /* @title padding-x */
 /* @description Utilities to set the padding-left and padding-right properties of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
-@utility px-* {
-    @variant default,responsive {
-        padding-left: value(--spacing-*);
-        padding-right: value(--spacing-*);
-    }
+@utility px-*:variant(default,responsive) {
+    padding-left: value(--spacing-*);
+    padding-right: value(--spacing-*);
 }
 
 /* @title padding-y */
 /* @description Utilities to set the padding-top and padding-bottom properties of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
-@utility py-* {
-    @variant default,responsive {
-        padding-top: value(--spacing-*);
-        padding-bottom: value(--spacing-*);
-    }    
+@utility py-*:variant(default,responsive) {
+    padding-top: value(--spacing-*);
+    padding-bottom: value(--spacing-*);
 }
 
 /* @title padding-bottom */
 /* @description Utilities to set the padding-bottom property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom */
-@utility pb-* {
-    @variant default,responsive,first,last {
-        padding-bottom: value(--spacing-*);
-    }
+@utility pb-*:variant(default,responsive,first,last) {
+    padding-bottom: value(--spacing-*);
 }
 
 /* @title padding-left */
 /* @description Utilities to set the padding-left property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left */
-@utility pl-* {
-    @variant default,responsive {
-        padding-left: value(--spacing-*);
-    }
+@utility pl-*:variant(default,responsive) {
+    padding-left: value(--spacing-*);
 }
 
 /* @title padding-right */
 /* @description Utilities to set the padding-right property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right */
-@utility pr-* {
-    @variant default,responsive {
-        padding-right: value(--spacing-*);
-    }
+@utility pr-*:variant(default,responsive) {
+    padding-right: value(--spacing-*);
 }
 
 /* @title padding-top */
 /* @description Utilities to set the padding-top property of the element. */
 /* @category spacing */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top */
-@utility pt-* {
-    @variant default,responsive {
-        padding-top: value(--spacing-*);
-    }
+@utility pt-*:variant(default,responsive,first,last) {
+    padding-top: value(--spacing-*);
 }
 
 /* @title font-family */
@@ -1019,10 +917,8 @@
 /* @description Utilities to set the font-weight property of the element. */
 /* @category typography */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
-@utility font-* {
-    @variant default,responsive,hover,focus {
-        font-weight: value(--font-weight-*);
-    }
+@utility font-*:variant(default,responsive,hover,focus) {
+    font-weight: value(--font-weight-*);
 }
 
 /* @title letter-spacing */
@@ -1088,15 +984,11 @@
     --text-color-transparent: transparent;
     --text-color-current: currentColor;
 }
-@utility text-* {
-    @variant default,hover,focus {
-        color: value(--text-color-*);
-    }
+@utility text-*:variant(default,hover,focus) {
+    color: value(--text-color-*);
 }
-@utility text-* {
-    @variant default,hover,focus {
-        color: value(--color-*);
-    }
+@utility text-*:variant(default,hover,focus) {
+    color: value(--color-*);
 }
 
 /* @title text-decoration-line */
@@ -1108,10 +1000,8 @@
     --text-decoration-line-underline: underline;
     --text-decoration-line-no-underline: none;
 }
-@utility * {
-    @variant default,hover,focus {
-        text-decoration-line: value(--text-decoration-line-*);
-    }    
+@utility *:variant(default,hover,focus) {
+    text-decoration-line: value(--text-decoration-line-*);
 }
 
 /* @title text-decoration-color */
@@ -1122,15 +1012,11 @@
     --text-decoration-color-transparent: transparent;
     --text-decoration-color-current: currentColor;
 }
-@utility decoration-* {
-    @variant default,hover,focus {
-        text-decoration-color: value(--text-decoration-color-*);
-    }
+@utility decoration-*:variant(default,hover,focus) {
+    text-decoration-color: value(--text-decoration-color-*);
 }
-@utility decoration-* {
-    @variant default,hover,focus {
-        text-decoration-color: value(--color-*);
-    }
+@utility decoration-*:variant(default,hover,focus) {
+    text-decoration-color: value(--color-*);
 }
 
 /* @title text-decoration-style */
@@ -1144,10 +1030,8 @@
     --text-decoration-style-dashed: dashed;
     --text-decoration-style-wavy: wavy;
 }
-@utility decoration-* {
-    @variant default,hover,focus {
-        text-decoration-style: value(--text-decoration-style-*);
-    }
+@utility decoration-*:variant(default,hover,focus) {
+    text-decoration-style: value(--text-decoration-style-*);
 }
 
 /* @title text-decoration-thickness */
@@ -1162,10 +1046,8 @@
     --text-decoration-thickness-4: 4px;
     --text-decoration-thickness-8: 8px;
 }
-@utility decoration-* {
-    @variant default,hover,focus {
-        text-decoration-thickness: value(--text-decoration-thickness-*);
-    }
+@utility decoration-*:variant(default,hover,focus) {
+    text-decoration-thickness: value(--text-decoration-thickness-*);
 }
 
 /* @title text-underline-offset */
@@ -1180,10 +1062,8 @@
     --text-underline-offset-4: 4px;
     --text-underline-offset-8: 8px;
 }
-@utility underline-offset-* {
-    @variant default,hover,focus {
-        text-underline-offset: value(--text-underline-offset-*);
-    }
+@utility underline-offset-*:variant(default,hover,focus) {
+    text-underline-offset: value(--text-underline-offset-*);
 }
 
 /* @title text-overflow */
@@ -1207,10 +1087,8 @@
     --text-transform-uppercase: uppercase;
     --text-transform-lowercase: lowercase;
 }
-@utility * {
-    @variant default,hover,focus {
-        text-transform: value(--text-transform-*);
-    }
+@utility *:variant(default,hover,focus) {
+    text-transform: value(--text-transform-*);
 }
 
 /* @title vertical-align */

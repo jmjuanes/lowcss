@@ -4,19 +4,19 @@ import pkg from "../package.json" with {type: "json"};
 
 // map theme variables with their categories
 const themeKeys = {
-    "color": "--color-",
-    "fontFamily": "--font-family-",
-    "fontSize": "--font-size-",
-    "fontWeight": "--font-weight-",
-    "lineHeight": "--leading-",
+    "colors": "--color-",
+    "fonts": "--font-family-",
+    "fontSizes": "--font-size-",
+    "fontWeights": "--font-weight-",
+    "lineHeights": "--leading-",
     "letterSpacing": "--tracking-",
-    "borderRadius": "--radius-",
-    "borderWidth": "--border-width-",
-    "shadow": "--shadow-",
+    "radius": "--radius-",
+    "borders": "--border-width-",
+    "shadows": "--shadow-",
     "spacing": "--spacing-",
     "gap": "--gap-",
-    "opacity": "--opacity-",
-    "animation": "--animation-",
+    "opacities": "--opacity-",
+    "animations": "--animation-",
 };
 
 const getThemeVariables = (value, theme) => {
@@ -88,14 +88,19 @@ const main = () => {
                 }
             }
             // 2.4. check if the line starts with an '@variant' rule
-            else if (line.startsWith("@variant")) {
-                if (!currentUtility.variants) {
-                    currentUtility.variants = line.replace("@variant", "").replace("{", "").trim().split(",").map(item => item.trim());
-                }
-            }
+            // else if (line.startsWith("@variant")) {
+            //     if (!currentUtility.variants) {
+            //         currentUtility.variants = line.replace("@variant", "").replace("{", "").trim().split(",").map(item => item.trim());
+            //     }
+            // }
             // 2.5. utility name pattern
             else if (line.startsWith("@utility")) {
-                utilityNamePattern = line.replace("@utility", "").replace("{", "").trim();
+                // TODO
+                // const [name, variants] = parseUtilityParams(line.replace("@utility", "").replace("{", "").trim());
+                utilityNamePattern = name;
+                if (!currentUtility.variants) {
+                    currentUtility.variants = variants;
+                }
             }
             // 2.6. other value, generate utilities
             else {
