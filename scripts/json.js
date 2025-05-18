@@ -73,20 +73,20 @@ const main = () => {
     return postcss([postcssImport, plugin])
         .process(input)
         .then(() => {
-            const breakointsKeys = state.theme.filter(key => {
-                return key.startsWith("--breakpoint-");
+            const breakointsKeys = state.theme.filter(item => {
+                return item.key.startsWith("--breakpoint-");
             });
             const data = {
                 version: pkg.version,
                 breakoints: Object.fromEntries(breakointsKeys.map(item => {
-                    return [item.replace("--breakpoint-", ""), theme[item]];
+                    return [item.key.replace("--breakpoint-", ""), item.value];
                 })),
                 theme: Object.fromEntries(Object.keys(themeKeys).map(key => {
                     const field = themeKeys[key];
                     const variables = state.theme
-                        .filter(item => item.startsWith(field))
+                        .filter(item => item.key.startsWith(field))
                         .map(item => {
-                            return [item.replace(field, ""), theme[item]];
+                            return [item.key.replace(field, ""), item.value];
                         });
                     return [key, Object.fromEntries(variables)];
                 })),
