@@ -203,7 +203,7 @@ const lowCssPlugin = (options = {}) => {
                             }
                             // execute the onThemeVariable listener
                             if (typeof options?.onThemeVariable === "function") {
-                                options.onThemeVariable(name, localThemeFields[name]);
+                                options.onThemeVariable(localThemeFields[name], name);
                             }
                         }
                     });
