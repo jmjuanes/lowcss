@@ -1,0 +1,167 @@
+{{>>section.html}}
+
+{{>prose-heading.html level="h1" id="style" text="Style Guide"}}
+
+{{>>prose-paragraph.html}}
+This is a quick introduction to some of the most common styles and utilities available in LowCSS. For a complete list of all available utilities, please refer to the [Utilities](/utilities) section.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Typography"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.fontSizes}}.text-{{@key}} { font-size: {{@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div>
+        {{#each site.low.theme.fontSizes limit=12}}
+        <p class="text-{{@key}}">This has <b>{{@key}}</b> text.</p>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Typefaces"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.fonts}}.font-{{@key}} { font-family: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-2">
+        {{#each site.low.theme.fonts}}
+        <div class="">
+            <div class="font-bold">Font {{@key}}</div>
+            <div class="font-{{@key}} text-lg">Lorem ipsum dolor sit amet, consetetur sadipscing elitr...</div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Weights"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.fontWeights}}.font-{{@key}} { font-weight: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-2">
+        {{#each site.low.theme.fontWeights}}
+        <div class="font-{{@key}}">Text in {{@key}}</div>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Line heights"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.lineHeights}}.leading-{{@key}} { line-height: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-4">
+        {{#each site.low.theme.lineHeights}}
+        <div class="max-w-sm">
+            <div class="font-bold mb-2">Leading {{@key}}</div>
+            <div class="leading-{{@key}}">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Colors"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.colors}}.bg-{{@key}} { background-color: {{!@value}}; }
+{{/each}}
+{{#each site.low.theme.colors}}.text-{{@key}} { color: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-2">
+        {{#each site.low.theme.colors}}
+        <div class="bg-{{@key}} text-gray-900 p-2">Color {{@key}}</div>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Border Width"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.borders}}.border-{{@key}} { border-width: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-2">
+        {{#each site.low.theme.borders}}
+        <div class="border-t-{{@key}} border-gray-900 p-2">Border {{@key}}</div>
+        {{/each}}
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Border Radius"}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each site.low.theme.radius}}.rounded-{{@key}} { border-radius: {{!@value}}; }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="">
+        <div class="flex flex-wrap gap-4">
+            {{#each site.low.theme.radius}}
+            <div class="flex items-center justify-center rounded-{{@key}} border-2 border-gray-950 w-20 h-20">
+                <span>{{@key}}</span>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+{{>prose-heading.html level="h2" text="Border Style"}}
+
+{{#withUtility "border-style"}}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="flex items-center">
+{{>>prose-code.html language="css"}}
+{{#each values}}.{{selector}} { {{#each nodes}}{{prop}}: {{value}};{{/each}} }
+{{/each}}
+{{/prose-code.html}}
+    </div>
+    <div class="flex flex-col gap-2">
+        {{#each values}}
+        <div class="{{selector}} border-2 border-gray-900 p-2">{{selector}}</div>
+        {{/each}}
+    </div>
+</div>
+{{/withUtility}}
+
+
+{{>prose-heading.html level="h2" text="Spacing"}}
+
+<div class="w-full">
+    {{#each site.low.theme.spacing}}
+    {{#ne @key "auto"}}
+    <div class="flex gap-4 mb-1">
+        <div class="w-{{@key}} h-8 bg-gray-950"></div>
+        <div class="">{{@key}} ({{@value}})</div>
+    </div>
+    {{/ne}}
+    {{/each}}
+</div>
+
+{{/section.html}}

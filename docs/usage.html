@@ -1,15 +1,17 @@
 ---
-title: "Usage"
-layout: "docs"
-sidebar: "default"
-permalink: "/docs/usage.html"
-prevPage: "installation"
-nextPage: "root"
+{
+    "title": "Usage",
+    "permalink": "/docs/usage.html"
+}
 ---
+{{>>layout-docs.html}}
 
-# Usage
+{{>prose-heading.html level="h1" text="Usage"}}
 
-LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
+{{>>prose-paragraph.html}}
+LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). 
+This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
+{{/prose-paragraph.html}}
 
 ## Basic Usage
 
@@ -156,3 +158,5 @@ This is a list of all `peer-*` modifiers available:
 | `peer-focus` | Applied when the sibling element is focussed. |
 | `peer-checked` | Applied when the sibling element is checked. |
 | `peer-active` | Applied when the sibling element has an <b>active</b> state. |
+
+{{/layout-docs.html}}

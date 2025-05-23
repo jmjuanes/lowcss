@@ -1,0 +1,71 @@
+---
+{
+    "title": "Utilities",
+    "permalink": "/utilities.html"
+}
+---
+{{>>layout.html}}
+
+{{>prose-heading.html level="h1" text="Utilities"}}
+
+<div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-8">
+    {{#each site.low.utilitiesCategories}}
+    <div class="mb-6">
+        <div class="text-lg font-bold mb-2 capitalize">{{name}}</div>
+        {{#each utilities}}
+        <a href="#{{.}}" class="mb-1 block font-medium hover:underline">{{.}}</a>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>
+
+{{#each site.low.utilities}}
+<div class="mb-16">
+    <a name="{{name}}" class=""></a>
+    {{>prose-heading.html level="h2" text=name}}
+    <div class="mb-2">{{description}}</div>
+    {{#if url}}
+    <div class="mb-4 flex items-center gap-2">
+        <a href="{{url}}" target="_blank" class="flex items-center gap-1 no-underline hover:underline text-gray-700 cursor-pointer">
+            <div class="flex items-center text-base">
+                {{=icon icon="external-link"}}
+            </div>
+            <div class="text-sm">MDN Reference</div>
+        </a>
+    </div>
+    {{/if}}
+    <div class="mb-4 flex gap-2 flex-wrap">
+        {{#each variants}}
+        <div class="py-1 px-2 bg-gray-900 text-white text-xs rounded-lg">
+            <span class="font-bold">{{.}}</span>
+        </div>
+        {{/each}}
+    </div>
+    <div class="max-h-96 overflow-auto text-gray-500">
+        <table class="w-full mt-0 mb-0 text-sm">
+            <thead>
+                <tr class="border-b-2 border-gray-200">
+                    <td class="p-3 font-bold text-sm">Class</td>
+                    <td class="p-3 font-bold text-sm">Properties</td>
+                </tr>
+            </thead>
+            {{#each values}}
+            <tr class="border-b-1 border-gray-200 text-xs">
+                <td class="p-3 font-mono font-bold text-blue-500">
+                    <span>{{selector}}</span>
+                </td>
+                <td class="p-3 font-mono text-blue-600">
+                    {{#each nodes}}
+                    <div class="mb-1">
+                        <span class="text-pink-600">{{prop}}</span>: {{value}};
+                    </div>
+                    {{/each}}
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
+{{/each}}
+
+{{/layout.html}}

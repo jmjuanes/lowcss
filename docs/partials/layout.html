@@ -4,53 +4,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
     <meta name="title" content="{{site.title}}" />
     <meta name="description" content="{{site.description}}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@500&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" />
     <link rel="stylesheet" href="/low.css" />
     <link rel="stylesheet" href="/vendor/highlight.css" />
     <title>{{page.attributes.title}} - lowCSS {{site.version}}</title>
-    <style>
-        .font-crimson {
-            font-family: 'Crimson Pro', serif;
-        }
-    </style>
 </head>
 <body class="bg-white m-0 p-0 font-sans text-gray-900 leading-normal">
-    {{>header.html}}
-    <main class="w-full max-w-7xl mx-auto px-6 mb-16">
+    <header class="w-full max-w-7xl py-6 md:py-10 px-6 mx-auto md:flex items-center justify-between gap-6 border-b-1 border-gray-200">
+        <a href="/" class="flex items-baseline shrink-0 gap-2 text-gray-950 no-underline">
+            <div class="font-bold text-2xl tracking-tighter">lowcss.</div>
+            <div class="flex items-center font-semibold text-sm">
+                <span>v.{{site.version}}</span>
+            </div>
+        </a>
+        <div class="flex items-center gap-4 mt-2 md:mt-0">
+            {{#each site.navbar.links}}
+            <a href="{{link}}" class="text-sm font-semibold hover:underline">
+                <span>{{text}}</span>
+            </a>
+            {{/each}}
+            {{#if site.repository}}
+            <a href="{{site.repository}}" class="text-sm font-semibold hover:underline">
+                <span>GitHub</span>
+            </a>
+            {{/if}}
+        </div>
+    </header>
+    <main class="w-full max-w-7xl mx-auto px-6 py-10">
         {{!@content}}
     </main>
-    {{#eq page.data.layout "docs"}}
-    <div class="flex w-full max-w-8xl mx-auto px-6 gap-4">
-        <div class="sticky w-72 shrink-0 h-screen hidden md:block py-8 pr-8 top-0">
-            {{>sidebar}}
+    <footer class="w-full max-w-7xl mx-auto px-6 pt-16 pb-20">
+        {{#if site.footer.links}}
+        <div class="flex items-baseline gap-4 mb-6">
+            {{#each site.footer.links}}
+            <a href="{{link}}" class="font-semibold hover:underline">
+                <span>{{text}}</span>
+            </a>
+            {{/each}}
         </div>
-        <div class="w-full max-w-3xl">
-            <div class="markup pt-6 md:pt-8 pb-16">
-                {{> content}}
-            </div>
-            <div class="grid items-center md:grid-cols-2 gap-4">
-                <div class="w-full">
-                    {{#withPage page.data.prevPage}}
-                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col border-1  border-gray-200 hover:border-gray-900 rounded-lg p-3">
-                        <div class="text-gray-600 text-xs">Previous Page</div>
-                        <div class="font-medium text-gray-950">{{data.title}}</div>
-                    </a>
-                    {{/withPage}}
-                </div>
-                <div class="w-full">
-                    {{#withPage page.data.nextPage}}
-                    <a href="{{=cleanUrl data.permalink}}" class="flex flex-col items-end border-1  border-gray-200 hover:border-gray-900 rounded-lg p-3">
-                        <div class="text-gray-600 text-xs">Next Page</div>
-                        <div class="font-medium text-gray-950">{{data.title}}</div>
-                    </a>
-                    {{/withPage}}
-                </div>
+        {{/if}}
+        <div class="flex items-baseline gap-3 text-sm">
+            <div class="text-sm font-bold text-gray-900 text-base">lowcss</div>
+            <div class="">v{{site.version}}</div>
+            {{#if site.repository}}
+            <a href="{{site.repository}}" class="font-semibold hover:underline">
+                <span>GitHub</span>
+            </a>
+            {{/if}}
+            <div style="flex:auto;"></div>
+            <div class="">
+                Designed by <a href="https://www.josemi.xyz" class="hover:underline text-gray-950 font-bold">Josemi</a>. 
             </div>
         </div>
-    </div>
-    {{/eq}}
-    {{>footer.html}}
+    </footer>
 </body>
 </html>

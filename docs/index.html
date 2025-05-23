@@ -21,7 +21,7 @@
 }
 ---
 {{>>layout.html}}
-<div class="flex justify-between py-16 md:py-20 md:gap-12">
+<section class="flex justify-between py-16 md:py-20 md:gap-12">
     <div class="w-full">
         <div class="hidden mb-4">
             <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
@@ -31,18 +31,18 @@
                 <div class="w-px h-4 bg-gray-300"></div>
                 <div class="font-medium group-hover:underline text-sm">Introducing examples</div>
                 <div class="flex items-center">
-                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#arrow-right"></use></svg>
+                    {{=icon icon="arrow-right"}}
                 </div>
             </a>
         </div>
-        <div class="max-w-xl font-crimson text-7xl md:text-9xl leading-none mb-4 md:mb-6">
-            <span class="font-medium tracking-tight text-gray-950">Start building your next idea.</span>
+        <div class="max-w-xl text-7xl md:text-9xl leading-none mb-4 md:mb-6">
+            <span class="font-extrabold tracking-tight text-gray-950">Start building your next idea.</span>
         </div>
         <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
             <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex flex-row gap-2">
-            <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
+            <a href="#getting-started" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
                 <span class="text-base font-medium">Get Started</span>
             </a>
             <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
@@ -68,13 +68,20 @@
             <span>Read more in the <a href="/docs/installation" class="text-gray-900 font-medium underline">Installation</a> section.</span>
         </div>
     </div>
-</div>
-<div class="w-full grid gap-12 grid-cols-1 md:grid-cols-3 py-10 md:py-16">
-    {{#each page.attributes.features}}
-    <div class="p-0">
-        <div class="font-bold text-2xl mb-2">{{title}}</div>
-        <div class="text-base">{{description}}</div>
+</section>
+{{>>section.html}}
+    {{>prose-heading.html level="h1" text="Features"}}
+    <div class="w-full grid gap-12 grid-cols-1 md:grid-cols-3">
+        {{#each page.attributes.features}}
+        <div class="p-0">
+            <div class="font-extrabold text-2xl mb-2">{{title}}</div>
+            <div class="text-base leading-relaxed">{{description}}</div>
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>
+{{/section.html}}
+{{>section-getting-started.html}}
+{{>section-usage.html}}
+{{>section-style.html}}
+
 {{/layout.html}}

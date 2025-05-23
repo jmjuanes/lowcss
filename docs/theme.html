@@ -1,0 +1,229 @@
+---
+{
+    "title": "Theming",
+    "permalink": "/theme.html"
+}
+---
+{{>>layout.html}}
+
+{{>prose-heading.html level="h1" text="Theming"}}
+
+{{>prose-heading.html level="h2" text="Colors"}}
+
+<table class="mb-10">
+    {{#each site.low.theme.colors}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="rounded-lg w-20 h-8 bg-{{@key}}"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--color-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Family"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.fonts}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-lg font-{{@key}}">Lorem ipsum dolor sit amet...</div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--font-family-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Size"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.fontSizes}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-{{@key}}">Text in {{@key}}</div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--font-size-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Weight"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.fontWeights}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="font-{{@key}}">Text in {{@key}}</div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--font-weight-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Line Height"}}
+<table class="w-full mb-10">
+    {{#each site.low.theme.lineHeights}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="max-w-sm leading-{{@key}}">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat...
+            </div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--leading-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Letter Spacing"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.letterSpacing}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-lg tracking-{{@key}}">Text with letter spacing {{@key}}</div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--tracking-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Border Radius"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.radius}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="rounded-{{@key}} border-2 border-gray-950 w-20 h-20"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--radius-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Border Width"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.borders}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="border-{{@key}} border-gray-900 w-20 h-8"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--border-width-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Shadows"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.shadows}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="shadow-{{@key}} w-28 h-10 bg-white border-1 border-gray-200"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--shadow-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Spacing"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.spacing}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="w-{{@key}} h-8 bg-gray-900"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--spacing-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Opacities"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.opacities}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="bg-gray-900 opacity-{{@key}} w-20 h-8"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--opacity-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Animations"}}
+
+<table class="w-full mb-10">
+    {{#each site.low.theme.animations}}
+    <tr class="">
+        <td class="p-6 border-b-1 border-gray-200">
+            <div class="animation-{{@key}} w-12 h-10 rounded-xl bg-gray-900"></div>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">--animate-{{@key}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <code class="">{{!@value}}</code>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+
+{{/layout.html}}
