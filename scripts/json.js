@@ -19,7 +19,7 @@ const themeKeys = {
     "spacing": "--spacing-",
     "gap": "--gap-",
     "opacities": "--opacity-",
-    "animations": "--animation-",
+    "animations": "--animate-",
 };
 
 const main = () => {
@@ -73,12 +73,12 @@ const main = () => {
     return postcss([postcssImport, plugin])
         .process(input)
         .then(() => {
-            const breakointsKeys = state.theme.filter(item => {
+            const breakpointsKeys = state.theme.filter(item => {
                 return item.key.startsWith("--breakpoint-");
             });
             const data = {
                 version: pkg.version,
-                breakoints: Object.fromEntries(breakointsKeys.map(item => {
+                breakpoints: Object.fromEntries(breakpointsKeys.map(item => {
                     return [item.key.replace("--breakpoint-", ""), item.value];
                 })),
                 theme: Object.fromEntries(Object.keys(themeKeys).map(key => {
