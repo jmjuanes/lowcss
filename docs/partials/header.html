@@ -1,0 +1,20 @@
+<header class="w-full md:py-10 px-6 mx-auto md:flex items-center justify-between gap-6 border-b-1 border-gray-200">
+    <a href="/" class="flex items-baseline shrink-0 gap-2 text-gray-950 no-underline">
+        <div class="font-bold text-2xl tracking-tighter">lowcss.</div>
+        <div class="flex items-center font-semibold text-sm">
+            <span>v.{{site.version}}</span>
+        </div>
+    </a>
+    <div class="flex items-center gap-4 mt-2 md:mt-0">
+        {{#each site.navbar.links}}
+        <a href="{{link}}" class="text-sm font-semibold hover:underline">
+            <span>{{text}}</span>
+        </a>
+        {{/each}}
+        {{#if site.repository}}
+        <a href="{{site.repository}}" class="text-sm font-semibold hover:underline">
+            <span>GitHub</span>
+        </a>
+        {{/if}}
+    </div>
+</header>

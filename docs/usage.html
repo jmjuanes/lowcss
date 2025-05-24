@@ -1,54 +1,74 @@
 ---
 {
     "title": "Usage",
-    "permalink": "/docs/usage.html"
+    "permalink": "/usage.html"
 }
 ---
-{{>>layout-docs.html}}
-
-{{>prose-heading.html level="h1" text="Usage"}}
+{{>>layout-sidebar.html}}
 
 {{>>prose-paragraph.html}}
 LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). 
 This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
 {{/prose-paragraph.html}}
 
-## Basic Usage
+{{>prose-heading.html level="h2" text="Basic Usage"}}
 
+{{>>prose-paragraph.html}}
 The basic naming pattern for our utility classes is as follows:
+{{/prose-paragraph.html}}
 
-```
-[{prefix}]{property}-{value}
-```
+{{>>prose-code.html language="text"}}
+{property}-{value}
+{{/prose-code.html}}
 
-Let's break down each component of the naming pattern:
+<ul class="list-inside mb-6">
+    <li class="mb-2 leading-relaxed">
+        {{#inlineMarkdown}}`{property}`: specifies the CSS property that the utility class modifies. Examples of properties include `bg` for background, `text` for text-related styles, `p` for padding, `m` for margin, and so on. This component is not always present and depends on the utility class.{{/inlineMarkdown}}
+    </li>
+    <li class="mb-2 leading-relaxed">
+        {{#inlineMarkdown}}`{value}`: indicates the specific value or variation for the CSS property.{{/inlineMarkdown}}
+    </li>
+</ul>
 
-- `{prefix}` (optional): you can configure LowCSS for adding a custom prefix to all utilities.
-- `{property}`: specifies the CSS property that the utility class modifies. Examples of properties include `bg` for background, `text` for text-related styles, `p` for padding, `m` for margin, and so on. This component is not always present and depends on the utility class.
-- `{value}`: indicates the specific value or variation for the CSS property. 
+<div class="flex items-center justify-center mb-2 border-1 border-gray-200 p-8 rounded-lg">
+    <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Button</button>
+</div>
 
-For example, to set the text color to red, use the following class:
+{{>>prose-code.html language="html"}}
+<button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 [..]">Button</button>
+{{/prose-code.html}}
 
-```html
-<p class="text-red-500">Hello, world!</p>
-```
+{{>prose-heading.html level="h2" text="Media queries"}}
 
-This will apply the specified style to the element, resulting in red-colored text.
+{{>>prose-paragraph.html}}
+Media queries are a powerful tool for creating responsive designs. LowCSS provides a simple and consistent way to apply styles based on different media conditions.
+{{/prose-paragraph.html}}
 
-## Media queries
+{{>prose-heading.html level="h3" text="Responsive Design"}}
 
-### Responsive Design
-
+{{>>prose-paragraph.html}}
 LowCSS makes it easy to create responsive designs using the following utility syntax: 
 
-```
-{breakpoint}:[{prefix}]{property}-{value}
-```
+{{/prose-paragraph.html}}
 
-- `{prefix}`, `{property}`, and `{value}` follow the same structure as mentioned above.
-- `{breakpoint}`: represents a specific breakpoint where the utility class should apply. 
+{{>>prose-code.html language="text"}}
+{breakpoint}:{property}-{value}
+{{/prose-code.html}}
 
+<ul class="list-inside mb-6">
+    <li class="mb-2 leading-relaxed">
+        {{#inlineMarkdown}}`{property}`, and `{value}` follow the same structure as mentioned above.{{/inlineMarkdown}}
+    </li>
+    <li class="mb-2 leading-relaxed">
+        {{#inlineMarkdown}}`{breakpoint}`: represents a specific breakpoint where the utility class should apply.{{/inlineMarkdown}}
+    </li>
+</ul>
+
+{{>>prose-paragraph.html}}
 The following breakpoints are defined by default in LowCSS:
+{{/prose-paragraph.html}}
+
+{{#markdown}}
 
 | Breakpoint | Name | Minimum width | Rule |
 |------------|------|---------------|------|
@@ -57,100 +77,120 @@ The following breakpoints are defined by default in LowCSS:
 | Large | `lg` | `1024px` | `@media (min-width: 1024px) { ... }` |
 | Extra Large | `xl` | `1280px` | `@media (min-width: 1280px) { ... }` |
 
-You can apply different styles at different breakpoints:
+{{/markdown}}
 
-```html
+{{>>prose-paragraph.html}}
+You can apply different styles at different breakpoints:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
 <div class="hidden md:block [...]">
     Content
 </div>
-```
+{{/prose-code.html}}
 
-In ths example, the content text will be hidden at screens sizes lower than the medium breakpoint, and visible is screens sizes upper than the medium breakpoint.
+{{>prose-heading.html level="h3" text="Print Media"}}
 
-### Print Media
-
-> This feature was added in **v0.24.0**.
-
+{{>>prose-paragraph.html}}
 Use the `print` modifier to apply the provided class only when the document is begin printed.
+{{/prose-paragraph.html}}
 
-```html
+{{>>prose-code.html language="html"}}
 <div class="hidden print:block">
     This block is only displayed when the document is begin printed.
 </div>
-```
+{{/prose-code.html}}
 
 
-## State Modifiers
+{{>prose-heading.html level="h2" text="State modifiers"}}
 
+{{>>prose-paragraph.html}}
 LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
+{{/prose-paragraph.html}}
 
-```
-{modifier}:[{prefix}]{property}-{value}
-```
+{{>>prose-code.html language="text"}}
+{modifier}:{property}-{value}
+{{/prose-code.html}}
 
-### Pseudo modifiers
+{{>prose-heading.html level="h3" text="Pseudo modifiers"}}
 
+{{>>prose-paragraph.html}}
 Pseudo modifiers allows you to conditionally apply an utility class based on the pseudo state, such as `hover` or `focus`.
+{{/prose-paragraph.html}}
 
-```html
-<div class="bg-blue-500 hover:bg-blue-800 [...]">
-    Hover me
+<div class="flex items-center justify-center mb-2 border-1 border-gray-200 p-8 rounded-lg">
+    <button class="bg-blue-500 hover:bg-blue-800 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Hover me</button>
 </div>
-```
 
+{{>>prose-code.html language="html"}}
+<button class="bg-blue-500 hover:bg-blue-800 [...]">Hover me</button>
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
 This is the list of available pseudo modifiers:
+{{/prose-paragraph.html}}
+
+{{#markdown}}
 
 | Modifier | Description |
 |----------|-------------|
 | `hover` | Applied when the user hovers the element. |
 | `focus` | Applied to the element when it has focus. |
 | `focus-within` | Applied to the element when it or one of its descendants has focus. |
-| `active` | Applied to the element when it is being pressed. |
-| `visited` | Applied to the element when it has already visited. |
 | `checked` | Applied to the element when it is checked (only for radio or checkbox). |
 | `disabled` | Applied to the element when it is disabled. |
-| `required` | Applied to the element when it is required. |
 | `first` | Applied to the element when it is the first child. |
 | `last` | Applied to the element when it is the last child. |
 | `odd` | Applied to the whose numeric position in a series of siblings is odd. |
 | `even` | Applied to the whose numeric position in a series of siblings is even. |
 
-### Style based on a parent state
+{{/markdown}}
 
+{{>prose-heading.html level="h3" text="Style based on a parent state"}}
+
+{{>>prose-paragraph.html}}
 You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use one of the `group-*` modifiers to style the target element.
+{{/prose-paragraph.html}}
 
-```html
+{{>>prose-code.html language="html"}}
 <div class="group [...]">
     <!-- button content -->
     <div class="hidden group-hover:block [...]">
         <!-- dropdown items -->
     </div>
 </div>
-```
+{{/prose-code.html}}
 
+{{>>prose-paragraph.html}}
 This is a list of all `group-*` modifiers available:
+{{/prose-paragraph.html}}
 
+{{#markdown}}
 | Modifier | Description |
 |----------|-------------|
 | `group-hover` | Applied when the parent element is hovered. |
 | `group-focus` | Applied when the parent element is focussed. |
 | `group-focus-within` | Applied when the parent element or one of its descendants are focussed. |
 
-### Style based on a sibling state
+{{/markdown}}
 
-> This feature was added in **v0.13.0**.
+<!--
+{{>prose-heading.html level="h3" text="Style based on a sibling state"}}
 
+{{>>prose-paragraph.html}}
 You can conditionally style an element based on the state of a sibling element. Add a `peer` class to the sibling element, and use any of the `peer-*` modifiers to style the target element.
+{{/prose-paragraph.html}}
 
-```html
+{{>>prose-code.html language="html"}}
 <input type="checkbox" class="peer [...]" >
-<!-- This message will be only visible when checkbox is checked -->
 <label class="hidden peer-checked:block [...]">
     You checked it!
 </label>
-```
+{{/prose-code.html}}
 
+{{>>prose-paragraph.html}}
 This is a list of all `peer-*` modifiers available:
+{{/prose-paragraph.html}}
 
 | Modifier | Description |
 |----------|-------------|
@@ -158,5 +198,6 @@ This is a list of all `peer-*` modifiers available:
 | `peer-focus` | Applied when the sibling element is focussed. |
 | `peer-checked` | Applied when the sibling element is checked. |
 | `peer-active` | Applied when the sibling element has an <b>active</b> state. |
+-->
 
-{{/layout-docs.html}}
+{{/layout-sidebar.html}}

@@ -7,10 +7,17 @@
             {"text": "Examples", "link": "/examples"}
         ]
     },
+    "sidebar": {
+        "links": [
+            {"text": "Getting Started", "link": "/getting-started"},
+            {"text": "Usage", "link": "/usage"},
+            {"text": "Theme", "link": "/theme"}
+        ]
+    },
     "footer": {
         "links": [
-            {"text": "Getting Started", "link": "/#getting-started"},
-            {"text": "Usage", "link": "/#usage"},
+            {"text": "Getting Started", "link": "/getting-started"},
+            {"text": "Usage", "link": "/usage"},
             {"text": "Theme", "link": "/theme"},
             {"text": "Utilities", "link": "/utilities"},
             {"text": "Examples", "link": "/examples"},

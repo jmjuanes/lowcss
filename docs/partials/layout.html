@@ -10,52 +10,6 @@
     <title>{{page.attributes.title}} - lowCSS {{site.version}}</title>
 </head>
 <body class="bg-white m-0 p-0 font-sans text-gray-900 leading-normal">
-    <header class="w-full max-w-7xl py-6 md:py-10 px-6 mx-auto md:flex items-center justify-between gap-6 border-b-1 border-gray-200">
-        <a href="/" class="flex items-baseline shrink-0 gap-2 text-gray-950 no-underline">
-            <div class="font-bold text-2xl tracking-tighter">lowcss.</div>
-            <div class="flex items-center font-semibold text-sm">
-                <span>v.{{site.version}}</span>
-            </div>
-        </a>
-        <div class="flex items-center gap-4 mt-2 md:mt-0">
-            {{#each site.navbar.links}}
-            <a href="{{link}}" class="text-sm font-semibold hover:underline">
-                <span>{{text}}</span>
-            </a>
-            {{/each}}
-            {{#if site.repository}}
-            <a href="{{site.repository}}" class="text-sm font-semibold hover:underline">
-                <span>GitHub</span>
-            </a>
-            {{/if}}
-        </div>
-    </header>
-    <main class="w-full max-w-7xl mx-auto px-6 py-10">
-        {{!@content}}
-    </main>
-    <footer class="w-full max-w-7xl mx-auto px-6 pt-16 pb-20">
-        {{#if site.footer.links}}
-        <div class="flex items-baseline gap-4 mb-6">
-            {{#each site.footer.links}}
-            <a href="{{link}}" class="font-semibold hover:underline">
-                <span>{{text}}</span>
-            </a>
-            {{/each}}
-        </div>
-        {{/if}}
-        <div class="flex items-baseline gap-3 text-sm">
-            <div class="text-sm font-bold text-gray-900 text-base">lowcss</div>
-            <div class="">v{{site.version}}</div>
-            {{#if site.repository}}
-            <a href="{{site.repository}}" class="font-semibold hover:underline">
-                <span>GitHub</span>
-            </a>
-            {{/if}}
-            <div style="flex:auto;"></div>
-            <div class="">
-                Designed by <a href="https://www.josemi.xyz" class="hover:underline text-gray-950 font-bold">Josemi</a>. 
-            </div>
-        </div>
-    </footer>
+    {{!@content}}
 </body>
 </html>

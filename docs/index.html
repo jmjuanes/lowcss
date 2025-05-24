@@ -20,7 +20,7 @@
     ]
 }
 ---
-{{>>layout.html}}
+{{>>layout-default.html}}
 <section class="flex justify-between py-16 md:py-20 md:gap-12">
     <div class="w-full">
         <div class="hidden mb-4">
@@ -42,7 +42,7 @@
             <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex flex-row gap-2">
-            <a href="#getting-started" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
+            <a href="/getting-started" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
                 <span class="text-base font-medium">Get Started</span>
             </a>
             <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="mt-4 text-gray-800 text-sm">
-            <span>Read more in the <a href="/docs/installation" class="text-gray-900 font-medium underline">Installation</a> section.</span>
+            <span>Read more in the <a href="/getting-started" class="text-gray-900 font-medium underline">Getting Started</a> section.</span>
         </div>
     </div>
 </section>
@@ -80,8 +80,4 @@
         {{/each}}
     </div>
 {{/section.html}}
-{{>section-getting-started.html}}
-{{>section-usage.html}}
-{{>section-style.html}}
-
-{{/layout.html}}
+{{/layout-default.html}}

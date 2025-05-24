@@ -1,0 +1,24 @@
+<footer class="w-full pt-16 pb-20">
+    {{#if site.footer.links}}
+    <div class="flex items-baseline gap-4 mb-6">
+        {{#each site.footer.links}}
+        <a href="{{link}}" class="font-semibold hover:underline">
+            <span>{{text}}</span>
+        </a>
+        {{/each}}
+    </div>
+    {{/if}}
+    <div class="flex items-baseline gap-3 text-sm">
+        <div class="text-sm font-bold text-gray-900 text-base">lowcss</div>
+        <div class="">v{{site.version}}</div>
+        {{#if site.repository}}
+        <a href="{{site.repository}}" class="font-semibold hover:underline">
+            <span>GitHub</span>
+        </a>
+        {{/if}}
+        <div style="flex:auto;"></div>
+        <div class="">
+            Designed by <a href="https://www.josemi.xyz" class="hover:underline text-gray-950 font-bold">Josemi</a>. 
+        </div>
+    </div>
+</footer>
