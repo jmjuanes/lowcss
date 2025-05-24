@@ -1,8 +1,10 @@
 {
+    "title": "lowcss",
+    "description": "A minimal CSS framework for modern web development.",
     "url": "https://low.josemi.xyz",
     "navbar": {
         "links": [
-            {"text": "Theme", "link": "/theme"},
+            {"text": "Docs", "link": "/getting-started"},
             {"text": "Utilities", "link": "/utilities"},
             {"text": "Examples", "link": "/examples"}
         ]
@@ -12,16 +14,6 @@
             {"text": "Getting Started", "link": "/getting-started"},
             {"text": "Usage", "link": "/usage"},
             {"text": "Theme", "link": "/theme"}
-        ]
-    },
-    "footer": {
-        "links": [
-            {"text": "Getting Started", "link": "/getting-started"},
-            {"text": "Usage", "link": "/usage"},
-            {"text": "Theme", "link": "/theme"},
-            {"text": "Utilities", "link": "/utilities"},
-            {"text": "Examples", "link": "/examples"},
-            {"text": "Playground", "link": "/playground"}
         ]
     }
 }

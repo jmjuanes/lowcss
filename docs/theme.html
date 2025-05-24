@@ -1,26 +1,24 @@
 ---
 {
-    "title": "Theming",
+    "title": "Default Theme",
     "permalink": "/theme.html"
 }
 ---
-{{>>layout.html}}
-
-{{>prose-heading.html level="h1" text="Theming"}}
+{{>>layout-sidebar.html}}
 
 {{>prose-heading.html level="h2" text="Colors"}}
 
-<table class="mb-10">
+<table class="w-full mb-10">
     {{#each site.low.theme.colors}}
     <tr class="">
         <td class="p-3 border-b-1 border-gray-200">
-            <div class="rounded-lg w-20 h-8 bg-{{@key}}"></div>
-        </td>
-        <td class="p-3 border-b-1 border-gray-200">
-            <code class="">--color-{{@key}}</code>
+            {{#inlineMarkdown}}`--color-{{@key}}`{{/inlineMarkdown}}
         </td>
         <td class="p-3 border-b-1 border-gray-200">
             <code class="">{{!@value}}</code>
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="rounded-lg w-20 h-8 bg-{{@key}}"></div>
         </td>
     </tr>
     {{/each}}
@@ -226,4 +224,4 @@
 </table>
 
 
-{{/layout.html}}
+{{/layout-sidebar.html}}

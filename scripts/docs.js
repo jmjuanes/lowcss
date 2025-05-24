@@ -24,16 +24,6 @@ const MarkdownPlugin = () => ({
     },
 });
 
-const getCategories = () => {
-    return Array.from(new Set(low.utilities.map(u => u.category))).map(category => {
-        const utilities = low.utilities.filter(u => u.category === category);
-        return {
-            name: category,
-            utilities: utilities.map(u => u.name),
-        };
-    });
-};
-
 press({
     source: path.join(process.cwd(), "docs"),
     destination: path.join(process.cwd(), "www"),
@@ -43,7 +33,6 @@ press({
         breakpoints: low.breakpoints,
         theme: low.theme,
         utilities: low.utilities,
-        utilitiesCategories: getCategories(),
     },
     ...websiteConfig,
     mikelOptions: {
@@ -62,7 +51,7 @@ press({
                 return `<svg width="1em" height="1em"><use xlink:href="/vendor/icons.svg#${args.opt.icon}"></use></svg>`;
             },
             highlight: params => {
-                return hljs.highlight(params.opt.code.trim(), {language: params.opt.language}).value;
+                return hljs.highlight((params?.opt?.code || "").trim(), {language: params.opt.language || "html"}).value;
             },
         },
     },

@@ -1,23 +1,27 @@
 {{>>layout.html}}
 <main class="md:ml-60">
     <div class="hidden md:block fixed top-0 bottom-0 left-0 w-60 overflow-y-auto p-6">
-        <div class="mb-4">
+        <div class="mb-6">
             {{#each site.sidebar.links}}
-            <a href="/{{link}}" class="text-sm font-semibold hover:underline">
+            <a href="{{link}}" class="block mb-3 text-sm font-semibold hover:underline">
                 <span>{{text}}</span>
             </a>
             {{/each}}
         </div>
         {{#each site.low.utilities}}
-        <div class="mb-2">
-            <a href="/utilities#{{name}}" class="text-sm font-semibold hover:underline">
-                <span>{{name}}</span>
-            </a>
-        </div>
+        <a href="/utilities#{{name}}" class="block mb-3 text-sm font-semibold hover:underline">
+            <span>{{name}}</span>
+        </a>
         {{/each}}
     </div>
     <div class="max-w-3xl mx-auto px-6 py-12">
+        <div class="mb-1">
+            <a href="/" class="text-gray-950 font-medium hover:underline">{{site.title}}</a>
+            <span class="text-xs">v{{site.version}}</span>
+        </div>
+        {{>prose-heading.html level="h1" text=page.attributes.title}}
         {{!@content}}
+        {{>footer.html}}
     </div>
 </main>
 {{/layout.html}}
