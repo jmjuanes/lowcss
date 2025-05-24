@@ -4,24 +4,25 @@
     "features": [
         {
             "title": "Lightning-fast development",
-            "description": "Prototype and develop at an accelerated pace, focusing on the functionality and design.",
-            "icon": "bolt"
+            "description": "Prototype and develop at an accelerated pace, focusing on the functionality and design of your application without getting bogged down by complex CSS."
         },
         {
             "title": "Keep your CSS organized",
-            "description": "Utility classes are easy to understand and maintain, and reduces the risk of CSS bloat and specificity issues.",
-            "icon": "grid"
+            "description": "Utility classes are easy to understand and maintain, and reduces the risk of CSS bloat and specificity issues that can arise with traditional CSS approaches."
         },
         {
-            "title": "Responsive design made easy",
-            "description": "Effortlessly create layouts that adapt to different screen sizes and devices.",
-            "icon": "mobile"
+            "title": "No dependencies",
+            "description": "Built with simplicity in mind, LowCSS has no external dependencies, making it lightweight and easy to integrate into any project."
+        },
+        {
+            "title": "Responsive design",
+            "description": "Effortlessly create layouts that adapt to different screen sizes and devices, ensuring a seamless user experience across all platforms."
         }
     ]
 }
 ---
 {{>>layout-default.html}}
-<section class="flex justify-between py-16 md:py-20 md:gap-12">
+<section class="flex justify-between py-16 md:gap-12">
     <div class="w-full">
         <div class="hidden mb-4">
             <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
@@ -42,7 +43,7 @@
             <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex flex-row gap-2">
-            <a href="/getting-started" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
+            <a href="/installation" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
                 <span class="text-base font-medium">Get Started</span>
             </a>
             <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
@@ -65,19 +66,19 @@
             </div>
         </div>
         <div class="mt-4 text-gray-800 text-sm">
-            <span>Read more in the <a href="/getting-started" class="text-gray-900 font-medium underline">Getting Started</a> section.</span>
+            <span>Read more in the <a href="/installation" class="text-gray-900 font-medium underline">Installation</a> section.</span>
         </div>
     </div>
 </section>
 {{>>section.html}}
-    {{>prose-heading.html level="h1" text="Features"}}
-    <div class="w-full grid gap-12 grid-cols-1 md:grid-cols-3">
-        {{#each page.attributes.features}}
-        <div class="p-0">
-            <div class="font-extrabold text-2xl mb-2">{{title}}</div>
-            <div class="text-base leading-relaxed">{{description}}</div>
-        </div>
-        {{/each}}
+{{>prose-heading.html level="h1" text="Features"}}
+<div class="w-full grid gap-12 grid-cols-1 sm:grid-cols-2">
+    {{#each page.attributes.features}}
+    <div class="p-0">
+        <div class="font-extrabold text-2xl mb-2">{{title}}</div>
+        <div class="text-base leading-relaxed">{{description}}</div>
     </div>
+    {{/each}}
+</div>
 {{/section.html}}
 {{/layout-default.html}}

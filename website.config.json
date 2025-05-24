@@ -4,14 +4,14 @@
     "url": "https://low.josemi.xyz",
     "navbar": {
         "links": [
-            {"text": "Docs", "link": "/getting-started"},
+            {"text": "Docs", "link": "/installation"},
             {"text": "Utilities", "link": "/utilities"},
             {"text": "Examples", "link": "/examples"}
         ]
     },
     "sidebar": {
         "links": [
-            {"text": "Getting Started", "link": "/getting-started"},
+            {"text": "Installation", "link": "/installation"},
             {"text": "Usage", "link": "/usage"},
             {"text": "Theme", "link": "/theme"}
         ]
