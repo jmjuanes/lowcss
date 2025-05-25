@@ -1,0 +1,20 @@
+---
+{
+    "chart_values": [32, 36, 14, 28, 8, 20]
+}
+---
+<div class="border-1 rounded-md p-6 bg-white shadow border-border">
+    <div class="flex flex-col gap-1 mb-8">
+        <div class="text-sm text-gray-200-foreground">Spent this month</div>
+        <div class="font-bold text-3xl leading-none">$1234.56</div>
+    </div>
+    <div class="flex flex-col gap-2">
+        <div class="flex items-stretch justify-between h-40">
+        {{#each @partial.chart_values}}
+            <div class="rounded-md bg-gray-200 w-8 h-full overflow-hidden flex items-end">
+                <div class="bg-gray-950 w-full h-{{.}} rounded"></div>
+            </div>
+        {{/each}}
+        </div>
+    </div>
+</div>
