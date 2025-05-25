@@ -1,10 +1,29 @@
+import * as fs from "node:fs";
 import * as path from "node:path";
+import mikel from "mikel";
 import press from "mikel-press";
 import markdown from "mikel-markdown";
 import hljs from "highlight.js";
 import pkg from "../package.json" with {type: "json"};
 import websiteConfig from "../website.config.json" with {type: "json"};
 import low from "../low.json" with {type: "json"};
+
+// @description get examples
+const getExamples = () => {
+    const examplesPath = path.join(process.cwd(), "docs", "examples");
+    const examples = fs.readdirSync(examplesPath).filter(file => {
+        return file.endsWith(".html");
+    });
+    return examples.map(file => {
+        const content = fs.readFileSync(path.join(examplesPath, file), "utf-8");
+        const {body, attributes} = press.utils.frontmatter(content);
+        return {
+            name: path.basename(file, ".html"),
+            content: mikel(body, attributes),
+            attributes: attributes,
+        };
+    });
+};
 
 const MarkdownPlugin = () => ({
     name: "MarkdownPlugin",
@@ -34,6 +53,7 @@ press({
         theme: low.theme,
         utilities: low.utilities,
     },
+    examples: getExamples(),
     ...websiteConfig,
     mikelOptions: {
         helpers: {
