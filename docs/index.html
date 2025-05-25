@@ -70,7 +70,52 @@
         </div>
     </div>
 </section>
-{{>>section.html}}
+{{>prose-heading.html level="h1" text="About LowCSS"}}
+
+{{>>prose-paragraph.html}}
+**LowCSS** is a powerful **Utility CSS framework**, designed to streamline your CSS development process and enable you to create beautiful, 
+responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tailwindcss.com), LowCSS follows a similar structure 
+and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h1" text="Intuitive Utility Classes"}}
+
+{{>>prose-paragraph.html}}
+Use utility classes to apply styles directly to HTML elements, avoiding repetitive CSS coding. 
+Prototype and iterate at lightning speed using a wide range of pre-designed utility classes that cover virtually every styling need.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<button class="px-3 py-2 bg-gray-800 text-white">
+    Click me!
+</button>
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Responsiveness made easy"}}
+
+{{>>prose-paragraph.html}}
+Craft responsive layouts effortlessly using responsive utility classes that adapt styles based on breakpoints.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<div class="w-full text-center md:text-left">
+    Centerd text in mobile devices.<br>
+    Left aligned in desktop an tablet.
+</div>
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Pseudo-Class modifiers"}}
+
+{{>>prose-paragraph.html}}
+Apply styles to elements in specific states like hover, focus, and active.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<button class="bg-gray-800 hover:bg-gray-900 focus:outline-blue-200 text-white px-3 py-2">
+    Hover me!
+</button>
+{{/prose-code.html}}
+
 {{>prose-heading.html level="h1" text="Features"}}
 <div class="w-full grid gap-12 grid-cols-1 sm:grid-cols-2">
     {{#each page.attributes.features}}
@@ -80,5 +125,4 @@
     </div>
     {{/each}}
 </div>
-{{/section.html}}
 {{/layout-default.html}}

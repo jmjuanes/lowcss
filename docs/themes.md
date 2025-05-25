@@ -65,7 +65,7 @@ themes:
             <div class="text-sm font-bold leading-none">Primary color</div>
             <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.primary}}
-                <div class="rounded-md cursor-pointer border-1 border-border-1 px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}" data-low-default="{{default}}">
+                <div class="rounded-md cursor-pointer border-1 border-gray-200 px-2 py-1 flex items-center gap-2" data-low-role="themes:primary:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="w-5 h-5 bg-{{value}} rounded-full"></div>
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
@@ -76,7 +76,7 @@ themes:
             <div class="text-sm font-bold leading-none">border-1 radius</div>
             <div class="flex flex-wrap gap-2">
             {{#each page.data.themes.radius}}
-                <div class="rounded-md cursor-pointer border-1 border-border-1 px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}" data-low-default="{{default}}">
+                <div class="rounded-md cursor-pointer border-1 border-gray-200 px-2 py-1 flex items-center gap-2" data-low-role="themes:radius:value" data-low-value="{{value}}" data-low-default="{{default}}">
                     <div class="text-xs font-medium">{{name}}</div>
                 </div>
             {{/each}}
