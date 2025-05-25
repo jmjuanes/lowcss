@@ -1,5 +1,5 @@
 // @description map pseudo-variants to pseudo selector
-const pseudosMap = {
+const pseudos = {
     "active": "active",
     "focus": "focus",
     "focus-within": "focus-within",
@@ -63,7 +63,7 @@ const replaceParentSelector = (rule, replacement) => {
 // @param {string} variant - variant to get the selector for
 // @return {string} selector - selector to replace
 const getPseudoSelector = (variant = "", selector = "&") => {
-    const variantSelector = pseudosMap[variant] || variant;
+    const variantSelector = pseudos[variant] || variant;
     // 1. check if the variant is a group variant
     if (variant.startsWith("group-")) {
         return `.group:${variantSelector.replace("group-", "")} .${variant}\\:${selector}`;
