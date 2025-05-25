@@ -1,3 +1,25 @@
+// @description map pseudo-variants to pseudo selector
+const pseudosMap = {
+    "active": "active",
+    "focus": "focus",
+    "focus-within": "focus-within",
+    "hover": "hover",
+    "visited": "visited",
+    "checked": "checked",
+    "disabled": "disabled",
+    "required": "required",
+    "first": "first-child",
+    "last": "last-child",
+    "odd": "nth-child(odd)",
+    "even": "nth-child(even)",
+    "group-hover": "hover",
+    "group-focus": "focus",
+    "group-focus-within": "focus-within",
+    "peer-hover": "hover",
+    "peer-focus": "focus",
+    "peer-focus-within": "focus-within",
+};
+
 // @description converts a simple glob pattern into a regex
 // @example globToRegex("bg-*") => /^bg-(.*?)$/
 const globToRegex = (glob = "") => {
@@ -41,16 +63,17 @@ const replaceParentSelector = (rule, replacement) => {
 // @param {string} variant - variant to get the selector for
 // @return {string} selector - selector to replace
 const getPseudoSelector = (variant = "", selector = "&") => {
+    const variantSelector = pseudosMap[variant] || variant;
     // 1. check if the variant is a group variant
     if (variant.startsWith("group-")) {
-        return `.group:${variant.replace("group-", "")} .${variant}\\:${selector}`;
+        return `.group:${variantSelector.replace("group-", "")} .${variant}\\:${selector}`;
     }
     // 2. check if the variant is a peer variant
     else if (variant.startsWith("peer-")) {
-        return `.peer:${variant.replace("peer-", "")}~.${variant}\\:${selector}`;
+        return `.peer:${variantSelector.replace("peer-", "")}~.${variant}\\:${selector}`;
     }
     // 3. otherwise, return it as a simple variant (hover, focus, etc.)
-    return `.${variant}\\:${selector}:${variant}`;
+    return `.${variant}\\:${selector}:${variantSelector}`;
 };
 
 // @description parse the utility params
