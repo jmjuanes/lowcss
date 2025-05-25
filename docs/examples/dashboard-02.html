@@ -1,69 +1,110 @@
 ---
-title: "Dashboard-02"
-navbar:
-  - logo: "kanban"
-    items: ["home", "layout", "folder", "users"]
-  - logo: ""
-    items: ["tool"]
-kanban:
-  - title: "To Do"
-    color: "bg-gray-500"
-    tasks:
-      - title: "Redesign About"
-        description: "We have to redesign the About page, and include the new team members."
-        tags: ["design", "marketing"]
-        comments_count: 3
-      - title: "Refactor main components"
-        tags: ["design"]
-        description: "We have to refactor the main components of the website to match new version 2.4."
-        comments_count: 5
-  - title: "In Progress"
-    color: "bg-blue-500"
-    tasks:
-      - title: "Create new landing page"
-        tags: ["design", "marketing"]
-        description: "We have to create a new landing page for the new product."
-        comments_count: 2
-      - title: "Update pricing page"
-        tags: ["design"]
-        description: "We have to update the pricing page with the new prices."
-        comments_count: 1
-      - title: "Move FAQ"
-        tags: ["design"]
-        description: "Client has decied to move the FAQ section to the About page."
-        comments_count: 5
-      - title: "Branding"
-        tags: ["design", "marketing"]
-        description: "Update the branding with the new colors."
-        comments_count: 12
-  - title: "Review"
-    color: "bg-yellow-500"
-    tasks:
-      - title: "Update footer"
-        tags: ["design", "marketing"]
-        description: "We have to update the footer with the new social media links."
-        comments_count: 3
-      - title: "Update header"
-        tags: ["design"]
-        description: "We have to update the header with the new logo."
-        comments_count: 2
-      - title: "Home Page bug fixes"
-        tags: ["bug"]
-        description: "We found some bugs in the home page. List attached on ticket."
-        comments_count: 10
-  - title: "Done"
-    color: "bg-green-500"
-    tasks:
-      - title: "Update blog"
-        tags: ["design", "marketing"]
-        description: "We have to update the blog with the new articles."
-        comments_count: 4
-      - title: "Update contact page"
-        tags: ["design"]
-        description: "We have to update the contact page with the new contact information."
-        comments_count: 2
+{
+    "title": "Dashboard-02",
+    "navbar": [
+        {
+            "logo": "kanban",
+            "items": ["home", "layout", "folder", "users"]
+        },
+        {
+            "logo": "",
+            "items": ["tool"]
+        }
+    ],
+    "kanban": [
+        {
+            "title": "To Do",
+            "color": "bg-gray-500",
+            "tasks": [
+                {
+                    "title": "Redesign About",
+                    "description": "We have to redesign the About page, and include the new team members.",
+                    "tags": ["design", "marketing"],
+                    "comments_count": 3
+                },
+                {
+                    "title": "Refactor main components",
+                    "tags": ["design"],
+                    "description": "We have to refactor the main components of the website to match new version 2.4.",
+                    "comments_count": 5
+                }
+            ]
+        },
+        {
+            "title": "In Progress",
+            "color": "bg-blue-500",
+            "tasks": [
+                {
+                    "title": "Create new landing page",
+                    "tags": ["design", "marketing"],
+                    "description": "We have to create a new landing page for the new product.",
+                    "comments_count": 2
+                },
+                {
+                    "title": "Update pricing page",
+                    "tags": ["design"],
+                    "description": "We have to update the pricing page with the new prices.",
+                    "comments_count": 1
+                },
+                {
+                    "title": "Move FAQ",
+                    "tags": ["design"],
+                    "description": "Client has decied to move the FAQ section to the About page.",
+                    "comments_count": 5
+                },
+                {
+                    "title": "Branding",
+                    "tags": ["design", "marketing"],
+                    "description": "Update the branding with the new colors.",
+                    "comments_count": 12
+                }
+            ]
+        },
+        {
+            "title": "Review",
+            "color": "bg-yellow-500",
+            "tasks": [
+                {
+                    "title": "Update footer",
+                    "tags": ["design", "marketing"],
+                    "description": "We have to update the footer with the new social media links.",
+                    "comments_count": 3
+                },
+                {
+                    "title": "Update header",
+                    "tags": ["design"],
+                    "description": "We have to update the header with the new logo.",
+                    "comments_count": 2
+                },
+                {
+                    "title": "Home Page bug fixes",
+                    "tags": ["bug"],
+                    "description": 'We found some bugs in the home page. List attached on ticket.',
+                    "comments_count": 10
+                }
+            ]
+        },
+        {
+            "title": "Done",
+            "color": "bg-green-500",
+            "tasks": [
+                {
+                    "title": "Update blog",
+                    "tags": ["design", "marketing"],
+                    "description": "We have to update the blog with the new articles.",
+                    "comments_count": 4
+                },
+                {
+                    "title": "Update contact page",
+                    "tags": ["design"],
+                    "description": "We have to update the contact page with the new contact information.",
+                    "comments_count": 2
+                }
+            ]
+        }
+    ]
+}
 ---
-
 <div class="w-full flex flex-col gap-4 bg-gray-50 relative py-4 pl-20 pr-4">
     <!-- Sidebar -->
     <div class="bg-white w-16 absolute top-0 bottom-0 left-0 z-10 border-r-1 border-gray-200 flex flex-col justify-between">

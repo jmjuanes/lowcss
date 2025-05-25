@@ -21,8 +21,30 @@
             <a href="/" class="text-gray-950 font-medium hover:underline">{{site.title}}</a>
             <span class="text-xs">v{{site.version}}</span>
         </div>
-        {{>prose-heading.html level="h1" text=page.attributes.title}}
+        {{>prose-heading.html level="h1" rule=true text=page.attributes.title}}
         {{!@content}}
+        <div class="grid items-center grid-cols-2 gap-4 py-6">
+            <div class="w-full">
+                {{#withPage page.attributes.prevPage}}
+                <a href="{{url}}" class="flex flex-nowrap items-center gap-2 text-gray-950">
+                    <div class="flex items-center text-xl">
+                        {{=icon icon="chevron-left"}}
+                    </div>
+                    <div class="font-medium">{{attributes.title}}</div>
+                </a>
+                {{/withPage}}
+            </div>
+            <div class="w-full">
+                {{#withPage page.attributes.nextPage}}
+                <a href="{{url}}" class="flex flex-nowrap justify-end items-center gap-2 text-gray-950">
+                    <div class="font-medium">{{attributes.title}}</div>
+                    <div class="flex items-center text-xl">
+                        {{=icon icon="chevron-right"}}
+                    </div>
+                </a>
+                {{/withPage}}
+            </div>
+        </div>
         {{>footer.html}}
     </div>
 </main>

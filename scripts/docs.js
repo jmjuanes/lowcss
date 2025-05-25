@@ -38,7 +38,7 @@ press({
     mikelOptions: {
         helpers: {
             withPage: params => {
-                const p = params?.data?.site?.pages?.find(p => p.name === params.args[0]);
+                const p = params?.data?.site?.pages?.find(p => p.path === params.args[0]);
                 return p ? params.fn(p) : "";
             },
             withUtility: params => {

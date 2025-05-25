@@ -6,7 +6,8 @@
         "links": [
             {"text": "Docs", "link": "/installation"},
             {"text": "Utilities", "link": "/utilities"},
-            {"text": "Examples", "link": "/examples"}
+            {"text": "Examples", "link": "/examples"},
+            {"text": "Playground", "link": "/playground"}
         ]
     },
     "sidebar": {
@@ -14,6 +15,11 @@
             {"text": "Installation", "link": "/installation"},
             {"text": "Usage", "link": "/usage"},
             {"text": "Theme", "link": "/theme"}
+        ]
+    },
+    "footer": {
+        "links": [
+            {"text": "Docs", "link": "/installation"}
         ]
     }
 }

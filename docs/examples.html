@@ -3,30 +3,25 @@
     "title": "Examples"
 }
 ---
-{{>>layout-base.html}}
-<div class="flex justify-between pt-16 pb-12 md:pt-20 md:pb-16">
+{{>>layout-default.html}}
+<div class="flex justify-between py-10">
     <div class="w-full">
-        <div class="max-w-3xl font-crimson text-6xl md:text-7xl leading-none mb-4">
-            <span class="font-medium tracking-tight text-gray-950">Explore our examples.</span>
+        <div class="max-w-3xl text-5xl leading-none mb-4">
+            <span class="font-extrabold tracking-tight text-gray-950">Explore our examples.</span>
         </div>
-        <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
-            <span class="text-gray-700">Some examples of common UI interfaces built using our utilities. Use them as a base for building your own.</span>
-        </div>
-        <div class="flex items-center gap-2">
-            <a href="/docs/installation" class="flex items-center px-4 py-3 rounded-lg bg-gray-900 hover:bg-gray-950 text-white no-underline cursor-pointer">
-                <span class="font-medium text-sm">Get Started</span>
-            </a>
+        <div class="max-w-xl mt-0 mb-8 text-lg leading-relaxed">
+            <span class="text-gray-800">Some examples of common UI interfaces built using our utilities. Use them as a base for building your own.</span>
         </div>
     </div>
 </div>
 
 <div class="">
-{{#each site.data.examples}}
+{{#each site.examples}}
     <a name="{{name}}" class=""></a>
     <div data-role="example" data-example-name="{{name}}" class="mb-16">
         <div class="flex items-center mb-3">
             <div class="text-lg font-medium">
-                <a href="#{{name}}" class="hover:underline">{{data.title}}</a>
+                <a href="#{{name}}" class="hover:underline">{{attributes.title}}</a>
             </div>
             <div class="ml-auto">
                 <div data-role="example:tabs" class="p-1 bg-gray-100 rounded-lg text-sm flex gap-1 font-medium">
@@ -57,4 +52,4 @@
         });
     });
 </script>
-{{/layout-base.html}}
+{{/layout-default.html}}
