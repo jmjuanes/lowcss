@@ -24,15 +24,15 @@
     },
     "scripts": {
         "build:css": "node ./scripts/css.js low.css",
-        "build:docs": "node ./scripts/docs.js",
-        "prebuild:site": "rm -rf www && mkdir www",
-        "build:site": "node ./scripts/site.js && node ./scripts/playground.js build",
-        "postbuild:site": "cp low.* www/ && cp node_modules/@josemi-icons/svg/sprite.svg www/ && cp node_modules/highlight.js/styles/nord.css www/highlight.css && cp -R public/* www/",
         "build:json": "node ./scripts/json.js",
         "build": "yarn build:css && yarn build:json",
+        "build:site": "yarn build:docs",
+        "build:docs": "node ./scripts/docs.js",
+        "postbuild:docs": "cp -R docs/public/* www/",
+        "prebuild:docs": "rm -rf www && mkdir www",
         "docs": "yarn run build:docs",
         "serve": "serve -p 8080 www",
-        "site": "yarn build:site",
+        "site": "yarn build:docs",
         "pack": "zip lowcss.zip low.*"
     },
     "keywords": [
