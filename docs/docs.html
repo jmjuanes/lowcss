@@ -1,19 +1,75 @@
 ---
 {
-    "title": "Usage",
-    "permalink": "/usage.html",
-    "prevPage": "/installation.html",
-    "nextPage": "/theme.html"
+    "title": "Documentation",
+    "description": "This documentation provides installation instructions and basic usage guidelines.",
+    "permalink": "/docs.html",
+    "sidebar": [
+        {"text": "Installation", "category": true},
+        {"text": "Using a Package Manager", "link": "#install-package-manager"},
+        {"text": "Using a hosted version", "link": "#install-cdn"},
+        {"text": "Usage", "category": true},
+        {"text": "Basic Usage", "link": "#usage-basic"},
+        {"text": "Media queries", "link": "#usage-media-queries"},
+        {"text": "State modifiers", "link": "#usage-state-modifiers"},
+        {"text": "Base Styles", "category": true},
+        {"text": "Reset", "link": "#reset"}
+    ]
 }
 ---
 {{>>layout-sidebar.html}}
+
+{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+
+{{>prose-heading.html level="h2" text="Using a Package Manager" id="install-package-manager"}}
+
+{{>>prose-paragraph.html}}
+To get started with LowCSS, you can install the package using either **yarn** or **npm**. Follow the instructions below based on your preferred package manager:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash"}}
+## Installation using yarn
+$ yarn add lowcss
+
+## Installation usin npm
+$ npm install lowcss
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+LowCSS provides precompiled CSS files. To include them in your project, copy the file `low.css` to your project's assets or CSS directory.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash"}}
+$ cp ./node_modules/lowcss/low.css ./assets/
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<link rel="stylesheet" href="assets/low.css">
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Using a hosted version" id="install-cdn"}}
+
+{{>>prose-paragraph.html}}
+You can also use the hosted version of LowCSS from a Content Delivery Network (CDN). Simply include the following `<link>` tag in the `<head>` section of your HTML file:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<link rel="stylesheet" href="https://unpkg.com/lowcss/low.css">
+{{/prose-code.html}}
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Usage" id="usage"}}
 
 {{>>prose-paragraph.html}}
 LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). 
 This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Basic Usage"}}
+{{>prose-heading.html level="h2" text="Basic Usage" id="usage-basic"}}
 
 {{>>prose-paragraph.html}}
 The basic naming pattern for our utility classes is as follows:
@@ -40,7 +96,7 @@ The basic naming pattern for our utility classes is as follows:
 <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 [..]">Button</button>
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Media queries"}}
+{{>prose-heading.html level="h2" text="Media queries" id="usage-media-queries"}}
 
 {{>>prose-paragraph.html}}
 Media queries are a powerful tool for creating responsive designs. LowCSS provides a simple and consistent way to apply styles based on different media conditions.
@@ -103,8 +159,7 @@ Use the `print` modifier to apply the provided class only when the document is b
 </div>
 {{/prose-code.html}}
 
-
-{{>prose-heading.html level="h2" text="State modifiers"}}
+{{>prose-heading.html level="h2" text="State modifiers" id="usage-state-modifiers"}}
 
 {{>>prose-paragraph.html}}
 LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
@@ -201,5 +256,160 @@ This is a list of all `peer-*` modifiers available:
 | `peer-checked` | Applied when the sibling element is checked. |
 | `peer-active` | Applied when the sibling element has an <b>active</b> state. |
 -->
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Base Styles" id="base-styles"}}
+
+{{>prose-heading.html level="h2" text="Reset" id="reset"}}
+
+{{>>prose-paragraph.html}}
+**Reset CSS** is a collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements. 
+It helps normalize the default styles applied by different browsers, ensuring a more consistent and predictable rendering of web pages across various devices and browsers.
+{{/prose-paragraph.html}}
+
+{{>>prose-paragraph.html}}
+For a complete list of changes and styles, please refer to the [source stylesheet](https://github.com/jmjuanes/lowcss/blob/main/reset.css).
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h3" text="Box-sizing"}}
+
+{{>>prose-paragraph.html}}
+It changes the `box-sizing` property of all elements to `border-box`. This ensures that the width and height of elements are calculated including padding and border, providing a more intuitive box model.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Borders are removed in all elements"}}
+
+{{>>prose-paragraph.html}}
+It resets the `border-width` to `0` and initializes the `border-syle` to `solid` in all elements.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+*,
+*:before,
+*:after {
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Margins"}}
+
+{{>>prose-paragraph.html}}
+It resets the default margin of some elements (including headings and paragraphs) to `0`. This eliminates any inconsistencies in default spacing applied by different browsers.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+    margin: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Headings"}}
+
+{{>>prose-paragraph.html}}
+It normalizes the font-related properties such as `font-family` and `font-weight` in heading elements to provide a consistent typography baseline.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Text elements"}}
+
+{{>>prose-paragraph.html}}
+Sets the default styles for anchor links elements to remove underline and inherit color:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Lists"}}
+
+{{>>prose-paragraph.html}}
+It removes the default styles for unordered and ordered lists (`ul` and `ol`) to eliminate any browser-specific list styles.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+ul,
+ol,
+dl {
+    margin: 0;
+    padding: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Tables"}}
+
+{{>>prose-paragraph.html}}
+It resets the default border-1 styles for tables.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Form elements"}}
+
+{{>>prose-paragraph.html}}
+It resets the default typography, padding, and margin properties common form elements:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+button,
+input,
+select,
+textarea {
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+It also prevents resizing textareas horizontally by default:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+textarea {
+    resize: vertical;
+}
+{{/prose-code.html}}
 
 {{/layout-sidebar.html}}
