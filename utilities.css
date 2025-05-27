@@ -1,3 +1,11 @@
+/* @name animation */
+/* @description Utilities to animate your elements using CSS animations. */
+/* @category animation */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
+@utility animation-* {
+    animation: value(--animate-*);
+}
+
 /* @name background-clip */
 /* @description Utilities to set the background-clip property of the element. */
 /* @category background */
@@ -220,14 +228,6 @@
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
 @utility opacity-*:variant(default,responsive,hover,focus) {
     opacity: value(--opacity-*);
-}
-
-/* @name animation */
-/* @description Utilities to animate your elements using CSS animations. */
-/* @category effects */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
-@utility animation-* {
-    animation: value(--animate-*);
 }
 
 /* @name align-content */
