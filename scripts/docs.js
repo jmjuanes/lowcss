@@ -43,6 +43,25 @@ const MarkdownPlugin = () => ({
     },
 });
 
+// @description plugin to inject utilities in sidebar
+const UtilitiesSidebarPlugin = () => ({
+    name: "UtilitiesSidebarPlugin",
+    transform: (context, node) => {
+        if (node.label === press.LABEL_PAGE && node.attributes?.sidebar === "@utilities") {
+            const categories = new Set();
+            const sidebarItems = [];
+            low.utilities.forEach(u => {
+                if (u.category && !categories.has(u.category)) {
+                    categories.add(u.category);
+                    sidebarItems.push({text: u.category, link: `#${u.category}`, category: true});
+                }
+                sidebarItems.push({text: u.name, link: `#${u.name}`});
+            });
+            node.attributes.sidebar = sidebarItems;
+        }
+    },
+});
+
 press({
     source: path.join(process.cwd(), "docs"),
     destination: path.join(process.cwd(), "www"),
@@ -94,6 +113,7 @@ press({
         }),
         MarkdownPlugin(),
         press.FrontmatterPlugin(),
+        UtilitiesSidebarPlugin(),
         press.ContentPagePlugin(),
     ],
 });
