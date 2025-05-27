@@ -1,19 +1,11 @@
 ---
 {
-    "title": "Examples"
+    "title": "Examples",
+    "description": "Some examples of common UI interfaces built using our utilities. Use them as a base for building your own."
 }
 ---
 {{>>layout-default.html}}
-<div class="flex justify-between py-10">
-    <div class="w-full">
-        <div class="max-w-3xl text-5xl leading-none mb-4">
-            <span class="font-extrabold tracking-tight text-gray-950">Explore our examples.</span>
-        </div>
-        <div class="max-w-xl mt-0 mb-8 text-lg leading-relaxed">
-            <span class="text-gray-800">Some examples of common UI interfaces built using our utilities. Use them as a base for building your own.</span>
-        </div>
-    </div>
-</div>
+{{>section.html title="Explore our examples" description=page.attributes.description}}
 
 <div class="">
 {{#each site.examples}}

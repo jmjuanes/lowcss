@@ -1,18 +1,34 @@
 ---
 {
     "title": "Default Theme",
+    "description": "This page provides an overview of the default theme variables used in LowCSS, including colors, fonts, sizes, and more.",
     "permalink": "/theme.html",
-    "prevPage": "/usage.html",
-    "nextPage": "/utilities.html"
+    "sidebar": [
+        {"text": "Colors", "category": true},
+        {"text": "Fill Colors", "link": "#fill-colors"},
+        {"text": "Typography", "category": true},
+        {"text": "Font Family", "link": "#font-family"},
+        {"text": "Font Size", "link": "#font-size"},
+        {"text": "Font Weight", "link": "#font-weight"},
+        {"text": "Line Height", "link": "#line-height"},
+        {"text": "Letter Spacing", "link": "#letter-spacing"},
+        {"text": "Borders", "category": true},
+        {"text": "Border Radius", "link": "#border-radius"},
+        {"text": "Border Width", "link": "#border-width"},
+        {"text": "Sizing", "category": "true"},
+        {"text": "Spacing", "link": "#spacing"},
+        {"text": "Effects", "category": true},
+        {"text": "Shadows", "link": "#shadows"},
+        {"text": "Opacities", "link": "#opacities"},
+        {"text": "Animations", "link": "#animations"}
+    ]
 }
 ---
 {{>>layout-sidebar.html}}
 
-{{>>prose-paragraph.html}}
-The following CSS variables are available, derived from the default configuration of LowCSS in the file [theme.css]({{site.repository}}/blob/main/theme.css). They are defined as CSS variables, which allows you to easily reference them in your stylesheets.
-{{/prose-paragraph.html}}
+{{>prose-heading.html level="h1" text="Colors"}}
 
-{{>prose-heading.html level="h2" text="Colors"}}
+{{>prose-heading.html level="h2" text="Fill Colors" id="fill-colors"}}
 
 {{>>prose-paragraph.html}}
 The following colors are used for generating **text**, **background**, and **border** utilities.
@@ -41,7 +57,11 @@ The following colors are used for generating **text**, **background**, and **bor
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Font Family"}}
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Typography"}}
+
+{{>prose-heading.html level="h2" text="Font Family" id="font-family"}}
 
 {{>>prose-paragraph.html}}
 The following font families are used for generating **font-family** utilities.
@@ -70,7 +90,7 @@ The following font families are used for generating **font-family** utilities.
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Font Size"}}
+{{>prose-heading.html level="h2" text="Font Size" id="font-size"}}
 
 {{>>prose-paragraph.html}}
 The following font sizes are used for generating **font-size** utilities. The values are defined in `rem` units, which are relative to the root font size.
@@ -99,7 +119,7 @@ The following font sizes are used for generating **font-size** utilities. The va
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Font Weight"}}
+{{>prose-heading.html level="h2" text="Font Weight" id="font-weight"}}
 
 {{>>prose-paragraph.html}}
 The following font weights are used for generating **font-weight** utilities. These values are typically used to control the thickness of the text.
@@ -128,7 +148,7 @@ The following font weights are used for generating **font-weight** utilities. Th
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Line Height"}}
+{{>prose-heading.html level="h2" text="Line Height" id="line-height"}}
 
 {{>>prose-paragraph.html}}
 The following line heights are used for generating **line-height** utilities. These values help control the vertical spacing between lines of text.
@@ -160,7 +180,7 @@ The following line heights are used for generating **line-height** utilities. Th
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Letter Spacing"}}
+{{>prose-heading.html level="h2" text="Letter Spacing" id="letter-spacing"}}
 
 {{>>prose-paragraph.html}}
 The following letter spacing values are used for generating **letter-spacing** utilities. These values control the space between characters in text.
@@ -189,7 +209,11 @@ The following letter spacing values are used for generating **letter-spacing** u
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Border Radius"}}
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Borders"}}
+
+{{>prose-heading.html level="h2" text="Border Radius" id="border-radius"}}
 
 {{>>prose-paragraph.html}}
 The following border radius values are used for generating **border-radius** utilities. These values help create rounded corners on elements.
@@ -218,7 +242,7 @@ The following border radius values are used for generating **border-radius** uti
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Border Width"}}
+{{>prose-heading.html level="h2" text="Border Width" id="border-width"}}
 
 {{>>prose-paragraph.html}}
 The following border width values are used for generating **border-width** utilities. These values control the thickness of borders on elements.
@@ -247,36 +271,11 @@ The following border width values are used for generating **border-width** utili
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Shadows"}}
+{{>prose-separator.html}}
 
-{{>>prose-paragraph.html}}
-The following shadow values are used for generating **box-shadow** utilities. These values help create depth and emphasis on elements.
-{{/prose-paragraph.html}}
+{{>prose-heading.html level="h1" text="Sizing"}}
 
-<table class="w-full mb-10">
-    <thead>
-        <tr class="text-sm font-bold">
-            <td class="p-3 border-b-2 border-gray-200">Variable</td>
-            <td class="p-3 border-b-2 border-gray-200">Value</td>
-            <td class="p-3 border-b-2 border-gray-200">Preview</td>
-        </tr>
-    </thead>
-    {{#each site.low.theme.shadows}}
-    <tr class="">
-        <td class="p-3 border-b-1 border-gray-200">
-            {{#inlineMarkdown}}`--shadow-{{@key}}`{{/inlineMarkdown}}
-        </td>
-        <td class="p-3 border-b-1 border-gray-200">
-            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
-        </td>
-        <td class="p-3 border-b-1 border-gray-200">
-            <div class="shadow-{{@key}} w-28 h-10 bg-white border-1 border-gray-200 rounded-md"></div>
-        </td>
-    </tr>
-    {{/each}}
-</table>
-
-{{>prose-heading.html level="h2" text="Spacing"}}
+{{>prose-heading.html level="h2" text="Spacing" id="spacing"}}
 
 {{>>prose-paragraph.html}}
 The following spacing values are used for generating **margin**, **padding**, **width**, and **height** utilities. These values help control the space around and within elements.
@@ -305,7 +304,40 @@ The following spacing values are used for generating **margin**, **padding**, **
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Opacities"}}
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Effects"}}
+
+{{>prose-heading.html level="h2" text="Shadows" id="shadows"}}
+
+{{>>prose-paragraph.html}}
+The following shadow values are used for generating **box-shadow** utilities. These values help create depth and emphasis on elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.shadows}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--shadow-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="shadow-{{@key}} w-28 h-10 bg-white border-1 border-gray-200 rounded-md"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Opacities" id="opacities"}}
 
 {{>>prose-paragraph.html}}
 The following opacity values are used for generating **opacity** utilities. These values help control the transparency of elements.
@@ -334,7 +366,7 @@ The following opacity values are used for generating **opacity** utilities. Thes
     {{/each}}
 </table>
 
-{{>prose-heading.html level="h2" text="Animations"}}
+{{>prose-heading.html level="h2" text="Animations" id="animations"}}
 
 {{>>prose-paragraph.html}}
 The following animation values are used for generating **animation** utilities. These values help create dynamic effects on elements.

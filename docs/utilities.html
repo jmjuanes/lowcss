@@ -1,15 +1,16 @@
 ---
 {
     "title": "Utilities",
+    "description": "Reference of all utility classes provided by default in LowCSS.",
     "permalink": "/utilities.html",
-    "prevPage": "/theme.html"
+    "sidebar": "@utilities"
 }
 ---
 {{>>layout-sidebar.html}}
+
 {{#each site.low.utilities}}
-<div class="mb-16">
-    <a name="{{name}}" class=""></a>
-    {{>prose-heading.html level="h2" text=name}}
+<div class="mb-0">
+    {{>prose-heading.html level="h2" text=name id=name}}
     <div class="mb-2">{{description}}</div>
     {{#if url}}
     <div class="mb-4 flex items-center gap-2">
@@ -37,13 +38,13 @@
         </thead>
         {{#each values}}
         <tr class="border-b-1 border-gray-200 text-xs">
-            <td class="p-3 font-mono font-bold text-blue-500">
-                <span>{{selector}}</span>
+            <td class="p-3 font-mono font-bold">
+                {{#inlineMarkdown}}`{{selector}}`{{/inlineMarkdown}}
             </td>
-            <td class="p-3 font-mono text-blue-600">
+            <td class="p-3 font-mono">
                 {{#each nodes}}
-                <div class="mb-1">
-                    <span class="text-pink-600">{{prop}}</span>: {{value}};
+                <div class="mb-1 leading-relaxed">
+                    {{#inlineMarkdown}}`{{prop}}: {{value}}`{{/inlineMarkdown}}
                 </div>
                 {{/each}}
             </td>
@@ -51,5 +52,6 @@
         {{/each}}
     </table>
 </div>
+{{>prose-separator.html}}
 {{/each}}
 {{/layout-sidebar.html}}

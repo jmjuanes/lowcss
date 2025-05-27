@@ -26,12 +26,13 @@
     <div data-panel="preview" class="w-full">
         <iframe class="w-full h-full border-0" srcdoc=""></iframe>
     </div>
-    <div class="absolute bottom-0 left-half translate-x-half-n max-w-xl">
+    <div class="absolute bottom-0 left-half max-w-xl" style="transform:translateX(-50%);">
         <div data-alert="share:done" class="flex rounded-lg bg-white shadow-sm border-1 border-gray-200 w-full p-4 mb-4" style="display:none;">
             <div class="text-sm">The Playground URL has been copied to your clipboard.</div>
         </div>
     </div>
 </div>
+<script type="text/javascript" src="/vendor/lz-string.min.js"></script>
 <script type="module">
     import * as CodeCake from "/vendor/codecake.js";
     // method to get the default code of the editor

@@ -22,7 +22,7 @@
 }
 ---
 {{>>layout-default.html}}
-<section class="flex justify-between py-16 md:gap-12">
+<section class="flex justify-between my-20 md:gap-12">
     <div class="w-full">
         <div class="hidden mb-4">
             <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
@@ -43,7 +43,7 @@
             <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
         </div>
         <div class="flex flex-row gap-2">
-            <a href="/installation" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
+            <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
                 <span class="text-base font-medium">Get Started</span>
             </a>
             <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
@@ -66,18 +66,42 @@
             </div>
         </div>
         <div class="mt-4 text-gray-800 text-sm">
-            <span>Read more in the <a href="/installation" class="text-gray-900 font-medium underline">Installation</a> section.</span>
+            <span>Read more in the <a href="/docs" class="text-gray-900 font-medium underline">Installation</a> section.</span>
         </div>
     </div>
 </section>
-{{>prose-heading.html level="h1" text="About LowCSS"}}
 
-{{>>prose-paragraph.html}}
-**LowCSS** is a powerful **Utility CSS framework**, designed to streamline your CSS development process and enable you to create beautiful, 
-responsive web interfaces with ease. Inspired by the popular [Tailwind CSS](https://tailwindcss.com), LowCSS follows a similar structure 
-and syntax, making it familiar and intuitive for developers already familiar with Tailwind CSS.
-{{/prose-paragraph.html}}
+{{>prose-separator.html}}
 
+<section class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-16">
+    <div class="flex flex-col gap-4">
+        {{>card-chat.html}}
+        {{>card-post.html}}
+    </div>
+    <div class="flex flex-col gap-4">
+        {{>card-sign-up.html}}
+        {{>card-profile.html}}
+    </div>
+    <div class="flex flex-col gap-4">
+        {{>card-team.html}}
+        {{>card-money-track.html}}
+    </div>
+</section>
+
+{{>prose-separator.html}}
+
+<section class="w-full my-10">
+    <div class="w-full grid gap-12 grid-cols-1 sm:grid-cols-2">
+        {{#each page.attributes.features}}
+        <div class="p-0">
+            <div class="font-extrabold text-2xl mb-2">{{title}}</div>
+            <div class="text-base leading-relaxed">{{description}}</div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+<!--
 {{>prose-heading.html level="h2" text="Intuitive Utility Classes"}}
 
 {{>>prose-paragraph.html}}
@@ -115,14 +139,6 @@ Apply styles to elements in specific states like hover, focus, and active.
     Hover me!
 </button>
 {{/prose-code.html}}
+-->
 
-{{>prose-heading.html level="h1" text="Features"}}
-<div class="w-full grid gap-12 grid-cols-1 sm:grid-cols-2">
-    {{#each page.attributes.features}}
-    <div class="p-0">
-        <div class="font-extrabold text-2xl mb-2">{{title}}</div>
-        <div class="text-base leading-relaxed">{{description}}</div>
-    </div>
-    {{/each}}
-</div>
 {{/layout-default.html}}
