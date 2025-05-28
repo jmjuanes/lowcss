@@ -22,52 +22,32 @@
 }
 ---
 {{>>layout-default.html}}
-<section class="flex justify-between my-20 md:gap-12">
-    <div class="w-full">
-        <div class="hidden mb-4">
-            <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
-                <div class="flex items-center">
-                    {{=icon icon="party-horn"}}
-                </div>
-                <div class="w-px h-4 bg-gray-300"></div>
-                <div class="font-medium group-hover:underline text-sm">Introducing examples</div>
-                <div class="flex items-center">
-                    {{=icon icon="arrow-right"}}
-                </div>
-            </a>
-        </div>
-        <div class="max-w-xl text-7xl md:text-9xl leading-none mb-4 md:mb-6">
-            <span class="font-extrabold tracking-tight text-gray-950">Start building your next idea.</span>
-        </div>
-        <div class="max-w-xl mt-0 mb-8 text-xl leading-relaxed">
-            <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
-        </div>
-        <div class="flex flex-row gap-2">
-            <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
-                <span class="text-base font-medium">Get Started</span>
-            </a>
-            <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
-                <span class="text-base font-medium">Download</span>
-            </a>
-        </div>
+<section class="my-12">
+    <div class="hidden mb-4">
+        <a href="/examples" class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-900 group">
+            <div class="flex items-center">
+                {{=icon icon="party-horn"}}
+            </div>
+            <div class="w-px h-4 bg-gray-300"></div>
+            <div class="font-medium group-hover:underline text-sm">Introducing examples</div>
+            <div class="flex items-center">
+                {{=icon icon="arrow-right"}}
+            </div>
+        </a>
     </div>
-    <div class="hidden md:flex flex-col items-center justify-center w-full max-w-md">
-        <div class="rounded-xl bg-gray-900 text-white w-full"> 
-            <div class="flex items-center gap-2 p-4 border-b-1 border-gray-600">
-                <div class="w-4 h-4 rounded-full bg-gray-100"></div>
-                <div class="w-4 h-4 rounded-full bg-gray-100"></div>
-                <div class="w-4 h-4 rounded-full bg-gray-100"></div>
-            </div>
-            <div class="px-4 py-6 font-mono">
-                <div class="opacity-40 select-none">## Install using Yarn</div>
-                <div class="mb-4">$ yarn add lowcss</div>
-                <div class="opacity-40 select-none">## Or Install using Npm</div>
-                <div class="">$ npm install --save lowcss</div>
-            </div>
-        </div>
-        <div class="mt-4 text-gray-800 text-sm">
-            <span>Read more in the <a href="/docs" class="text-gray-900 font-medium underline">Installation</a> section.</span>
-        </div>
+    <div class="text-7xl md:text-9xl leading-none mb-4 md:mb-6">
+        <span class="font-extrabold tracking-tight text-gray-950">Start building your next idea.</span>
+    </div>
+    <div class="max-w-3xl mt-0 mb-8 text-xl leading-relaxed">
+        <span class="">A low-level CSS utility framework for building elegant and responsive user interfaces. No dependencies. No configuration. Just import it and go!</span>
+    </div>
+    <div class="flex flex-row gap-2">
+        <a href="/docs" class="flex items-center px-4 py-2 rounded-lg bg-gray-950 hover:bg-gray-800 text-white no-underline cursor-pointer">
+            <span class="text-base font-medium">Get Started</span>
+        </a>
+        <a href="{{site.repository}}/releases/latest" class="flex items-center px-4 py-2 border-1 border-gray-200 rounded-lg bg-white hover:bg-gray-50 text-gray-950 no-underline cursor-pointer">
+            <span class="text-base font-medium">Download</span>
+        </a>
     </div>
 </section>
 
