@@ -8,6 +8,11 @@ import pkg from "../package.json" with {type: "json"};
 import websiteConfig from "../website.config.json" with {type: "json"};
 import low from "../low.json" with {type: "json"};
 
+// @description render the provided icon
+const renderIcon = icon => {
+    return `<svg width="1em" height="1em"><use xlink:href="/vendor/icons.svg#${icon}"></use></svg>`;
+};
+
 // @description get examples
 const getExamples = () => {
     const examplesPath = path.join(process.cwd(), "docs", "examples");
@@ -19,7 +24,11 @@ const getExamples = () => {
         const {body, attributes} = press.utils.frontmatter(content);
         return {
             name: path.basename(file, ".html"),
-            content: mikel(body, attributes),
+            content: mikel(body, attributes, {
+                functions: {
+                    icon: params => renderIcon(params.opt.icon),
+                },
+            }),
             attributes: attributes,
         };
     });
@@ -86,9 +95,7 @@ press({
             },
         },
         functions: {
-            icon: args => {
-                return `<svg width="1em" height="1em"><use xlink:href="/vendor/icons.svg#${args.opt.icon}"></use></svg>`;
-            },
+            icon: params => renderIcon(params.opt.icon),
             highlight: params => {
                 return hljs.highlight((params?.opt?.code || "").trim(), {language: params.opt.language || "html"}).value;
             },

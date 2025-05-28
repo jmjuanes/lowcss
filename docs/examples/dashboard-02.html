@@ -112,12 +112,12 @@
         <div class="flex flex-col gap-1 px-2 py-4">
             {{#if logo}}
             <a class="flex items-center justify-center text-white bg-gray-950 rounded-full py-3 text-2xl mb-4">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{logo}}"></use></svg>
+                {{=icon icon=logo}}
             </a>
             {{/if}}
             {{#each items}}
             <a class="flex items-center justify-center text-gray-800 hover:text-gray-950 hover:bg-gray-100 rounded-xl py-3 text-xl cursor-pointer">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#{{.}}"></use></svg>
+                {{=icon icon=.}}
             </a>
             {{/each}}
         </div>
@@ -128,17 +128,17 @@
         <div class="flex items-center gap-2">
             <div class="text-gray-700 hover:text-gray-900 cursor-pointer hover:underline">Projects</div>
             <div class="text-gray-500">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#chevron-right"></use></svg>
+                {{=icon icon="chevron-right"}}
             </div>
             <div class="text-gray-700 hover:text-gray-900 cursor-pointer hover:underline">ABCD Corp.</div>
             <div class="text-gray-500">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#chevron-right"></use></svg>
+                {{=icon icon="chevron-right"}}
             </div>
             <div class="text-gray-950">Website</div>
         </div>
         <div class="relative group">
             <button class="flex items-center justify-center rounded-full border-1 border-gray-200 h-8 w-8 cursor-pointer text-gray-900 text-lg bg-white">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#user"></use></svg>
+                {{=icon icon="user"}}
             </button>
             <div class="absolute hidden group-focus-within:block top-full right-0 mt-1">
                 <div class="border-1 border-gray-200 p-1 rounded-lg bg-white text-sm shadow-sm w-40 select-none">
@@ -166,16 +166,16 @@
         <div class="flex items-center gap-2">
             <div class="relative">
                 <div class="absolute top-0 left-0 text-gray-500 text-base px-2 py-2">
-                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#search"></use></svg>
+                    {{=icon icon="search"}}
                 </div>
                 <input type="text" class="border-0 bg-white py-1 pr-2 pl-8 border-1 border-gray-200 rounded-lg bg-white text-sm" placeholder="Search for a task..." />
             </div>
             <div class="flex items-center justify-center gap-1 bg-white hover:bg-gray-100 text-900 rounded-lg px-3 py-1 border-1 border-gray-200 cursor-pointer">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#filter"></use></svg>
+                {{=icon icon="filter"}}
                 <div class="text-sm font-medium">Filter</div>
             </div>
             <div class="flex items-center justify-center gap-1 bg-white hover:bg-gray-100 text-900 rounded-lg px-3 py-1 border-1 border-gray-200 cursor-pointer">
-                <svg width="1em" height="1em"><use xlink:href="/sprite.svg#download"></use></svg>
+                {{=icon icon="download"}}
                 <div class="text-sm font-medium">Export</div>
             </div>
         </div>
@@ -190,7 +190,7 @@
             </div>
             <div class="cursor-pointer w-full bg-white hover:bg-gray-100 rounded-lg border-1 border-gray-200 flex items-center gap-1 justify-center py-2 px-2">
                 <div class="text-base">
-                    <svg width="1em" height="1em"><use xlink:href="/sprite.svg#plus"></use></svg>
+                    {{=icon icon="plus"}}
                 </div>
                 <div class="text-sm font-medium">Add task</div>
             </div>
@@ -208,7 +208,7 @@
                     </div>
                     <div class="ml-auto flex items-center gap-1 text-gray-500">
                         <div class="text-sm">
-                            <svg width="1em" height="1em"><use xlink:href="/sprite.svg#message-dots"></use></svg>
+                            {{=icon icon="message-dots"}}
                         </div>
                         <div class="text-xs">{{comments_count}}</div>
                     </div>
