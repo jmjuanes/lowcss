@@ -7,6 +7,14 @@
 {{>>layout-default.html}}
 {{>section.html title="Explore our examples" description=page.attributes.description}}
 
+<div class="flex flex-wrap gap-2 mb-8">
+    {{#each site.examples}}
+    <a href="#{{name}}" class="flex items-center px-4 py-1 rounded-full hover:bg-gray-100 text-gray-950 border-1 border-gray-200">
+        <span class="text-sm font-medium">{{attributes.title}}</span>
+    </a>
+    {{/each}}
+</div>
+
 <div class="">
 {{#each site.examples}}
     <a name="{{name}}" class=""></a>
