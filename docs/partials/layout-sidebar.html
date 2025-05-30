@@ -4,25 +4,59 @@
     <main class="py-4">
         {{>section.html title=page.attributes.title description=page.attributes.description}}
         <div class="w-full flex flex-row flex-nowrap md:gap-12">
-            <div class="w-full min-w-0">
+            <main class="w-full max-w-4xl min-w-0 mr-auto">
                 {{!@content}}
-            </div>
-            <div class="w-60 shrink-0 hidden md:block text-sm">
-                <div class="sticky top-0 h-screen overflow-y-auto overflow-x-hidden">
-                    <div class="pt-0 pb-12">
-                        {{#each page.attributes.sidebar}}
-                        {{#if category}}
-                        <div class="first:mt-0 mt-8 mb-2 pl-2 text-sm font-bold uppercase text-gray-600">{{text}}</div>
-                        {{/if}}
-                        {{#unless category}}
-                        <a href="{{link}}" class="block text-sm hover:bg-gray-100 px-2 py-2 rounded-md font-medium hover:font-bold">
+                <div class="grid items-center grid-cols-2 gap-4 py-6">
+                    <div class="w-full">
+                        {{#withPage page.attributes.prevPage}}
+                        <a href="{{url}}" class="flex flex-nowrap items-center gap-2 text-gray-950">
+                            <div class="flex items-center text-xl">
+                                {{=icon icon="chevron-left"}}
+                            </div>
+                            <div class="font-medium">{{attributes.title}}</div>
+                        </a>
+                        {{/withPage}}
+                    </div>
+                    <div class="w-full">
+                        {{#withPage page.attributes.nextPage}}
+                        <a href="{{url}}" class="flex flex-nowrap justify-end items-center gap-2 text-gray-950">
+                            <div class="font-medium">{{attributes.title}}</div>
+                            <div class="flex items-center text-xl">
+                                {{=icon icon="chevron-right"}}
+                            </div>
+                        </a>
+                        {{/withPage}}
+                    </div>
+                </div>
+            </main>
+            {{#if page.attributes.tableOfContents}}
+            <div class="hidden lg:block w-64 shrink-0">
+                <div class="sticky top-0 h-screen overflow-y-auto overflow-x-hidden py-6">
+                    <div class="text-sm">
+                        <div class="text-gray-950 font-medium mb-3">On This Page</div>
+                        {{#each page.attributes.tableOfContents}}
+                        {{#if link}}
+                        <a href="{{link}}" class="block text-sm mb-2 font-medium text-gray-600 hover:text-gray-950">
                             <span>{{text}}</span>
                         </a>
-                        {{/unless}}
+                        {{/if}}
+                        {{#if category}}
+                        <div class="text-sm mb-2 font-medium text-gray-500 capitalize">{{category}}</div>
+                        {{/if}}
+                        {{#if items}}
+                        <div class="pl-3 mb-3">
+                            {{#each items}}
+                            <a href="{{link}}" class="block text-sm mb-2 font-medium text-gray-600 hover:text-gray-950">
+                                <span>{{text}}</span>
+                            </a>
+                            {{/each}}
+                        </div>
+                        {{/if}}
                         {{/each}}
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </main>
     {{>footer.html}}
