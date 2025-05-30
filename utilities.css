@@ -1,546 +1,736 @@
 /* animation utilities */
-@utility animation {
+@utility {
     --variants: 'default';
-    --meta-category: 'animation';
     --meta-name: 'animation';
+    --meta-category: 'animation';
     --meta-description: 'Utilities to animate your elements using predefined CSS animations.';
-    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation';
-    &-* {
+    animation-* {
         animation: value(--animate-*);
     }
 }
 
 /* background-clip utilities */
-@utility bg {
+@utility {
     --variants: 'default,hover,focus';
-    --meta-cateogry: 'background';
     --meta-name: 'background-clip';
+    --meta-cateogry: 'background';
     --meta-description: 'Utilities to set the background-clip property of the element. It defines the area within which the background is painted.';
-    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip';
-    &-border {
+    bg-border {
         background-clip: border-box;
     }
-    &-padding {
+    bg-padding {
         background-clip: padding-box;
     }
-    &-content {
+    bg-content {
         background-clip: content-box;
     }
-    &-text {
+    bg-text {
         background-clip: text;
     }
 }
 
 /* background-color utilities */
-@utility bg {
+@utility {
     --variants: 'default,hover,focus';
+    --name-name: 'background-color';
     --meta-category: 'background';
-    --meta-name: 'background-color';
     --meta-description: 'Utilities to set the background-color property of the element, which defines the background color of an element.';
-    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-color';
-    &-* {
-        background-color: value(--color-*);
-    }
-    &-transparent {
+    bg-transparent {
         background-color: transparent;
     }
-    &-current {
+    bg-current {
         background-color: currentColor;
+    }
+    bg-* {
+        background-color: value(--color-*);
     }
 }
 
 /* background-repeat utilities */
-@utility bg-* {
+@utility {
     --variants: 'default';
-    --meta-category: 'background';
     --meta-name: 'background-repeat';
+    --meta-category: 'background';
     --meta-description: 'Utilities to set the background-repeat property of the element, which defines how background images are repeated.';
-    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat';
-    &-repeat {
+    bg-repeat {
         background-repeat: repeat;
     }
-    &-no-repeat {
+    bg-no-repeat {
         background-repeat: no-repeat;
     }
 }
 
-/* @name background-size */
-/* @description Utilities to set the background-size property of the element. */
-/* @category background */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-size */
-@theme static {
-    --background-size-auto: auto;
-    --background-size-cover: cover;
-    --background-size-contain: contain;
-}
-@utility bg-* {
-    background-size: value(--background-size-*);
-}
-
-/* @name border-radius */
-/* @description Utilities to set the border-radius property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
-@utility rounded-* {
-    border-radius: value(--radius-*)
+/* background-size */
+@utility  {
+    --variants: 'default';
+    --meta-name: 'background-size';
+    --meta-category: 'background';
+    --meta-description: 'Utilities to set the background-size property of the element.';
+    bg-auto {
+        background-size: auto;
+    }
+    bg-cover {
+        background-size: cover;
+    }
+    bg-contain {
+        background-size: contain;
+    }
 }
 
-/* @name border-top-left-radius */
-/* @description Utilities to set the border-top-left-radius property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-left-radius */
-@utility rounded-tl-* {
-    border-top-left-radius: value(--radius-*);
-}
-
-/* @name border-top-right-radius */
-/* @description Utilities to set the border-top-right-radius property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-right-radius */
-@utility rounded-tr-* {
-    border-top-right-radius: value(--radius-*);
-}
-
-/* @name border-bottom-left-radius */
-/* @description Utilities to set the border-bottom-left-radius property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-left-radius */
-@utility rounded-bl-* {
-    border-bottom-left-radius: value(--radius-*);
-}
-
-/* @name border-bottom-right-radius */
-/* @description Utilities to set the border-bottom-right-radius property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-right-radius */
-@utility rounded-br-* {
-    border-bottom-right-radius: value(--radius-*);
+/* border-radius utilities */
+@utility {
+    --variants: 'default';
+    --meta-name: 'border-radius';
+    --meta-category: 'border';
+    --meta-description: 'Utilities to set the border-radius property of the element.';
+    rounded-* {
+        border-radius: value(--radius-*)
+    }
+    rounded-tl-* {
+        border-top-left-radius: value(--radius-*);
+    }
+    rounded-tr-* {
+        border-top-right-radius: value(--radius-*);
+    }
+    rounded-bl-* {
+        border-bottom-left-radius: value(--radius-*);
+    }
+    rounded-br-* {
+        border-bottom-right-radius: value(--radius-*);
+    }
 }
 
 /* @name border-color */
-/* @description Utilities to set the border-color property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
-@theme static {
-    --border-color-transparent: transparent;
-    --border-color-current: currentColor;
-}
-@utility border-*:variant(default,hover,focus) {
-    border-color: value(--border-color-*);
-}
-@utility border-*:variant(default,hover,focus) {
-    border-color: value(--color-*);
+/* @description Utilities to set the border-color property of the element. */
+@utility {
+    --variants: 'default,hover,focus';
+    border-transparent {
+        border-color: transparent;
+    }
+    border-current: {
+        border-color: currentColor;
+    }
+    border-* {
+        border-color: value(--color-*);
+    }
 }
 
 /* @name border-width */
+/* @category border */
 /* @description Utilities to set the border-width property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-width */
-@utility border-* {
-    border-width: value(--border-width-*);
-}
-
-/* @name border-top-width */
-/* @description Utilities to set the border-top-width property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width */
-@utility border-t-* {
-    border-top-width: value(--border-width-*);
-}
-
-/* @name border-right-width */
-/* @description Utilities to set the border-right-width property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width */
-@utility border-r-* {
-    border-right-width: value(--border-width-*);
-}
-
-/* @name border-bottom-width */
-/* @description Utilities to set the border-bottom-width property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width */
-@utility border-b-* {
-    border-bottom-width: value(--border-width-*);
-}
-
-/* @name border-left-width */
-/* @description Utilities to set the border-left-width property of the element. */
-/* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width */
-@utility border-l-* {
-    border-left-width: value(--border-width-*);
+@utility {
+    --variants: 'default';
+    border-* {
+        border-width: value(--border-width-*);
+    }
+    border-t-* {
+        border-top-width: value(--border-width-*);
+    }
+    border-r-* {
+        border-right-width: value(--border-width-*);
+    }
+    border-b-* {
+        border-bottom-width: value(--border-width-*);
+    }
+    border-l-* {
+        border-left-width: value(--border-width-*);
+    }
 }
 
 /* @name border-style */
-/* @description Utilities to set the border-style property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-style */
-@theme static {
-    --border-style-solid: solid;
-    --border-style-dashed: dashed;
-    --border-style-dotted: dotted;
-    --border-style-none: none;
-}
-@utility border-* {
-    border-style: value(--border-style-*);
+/* @description Utilities to set the border-style property of the element. */
+@utility {
+    --variants: 'default';
+    border-solid {
+        border-style: solid;
+    }
+    border-dashed {
+        border-style: dashed;
+    }
+    border-dotted {
+        border-style: dotted;
+    }
+    border-none: {
+        border-style: none;
+    }
 }
 
 /* @name outline-color */
-/* @description Utilities to set the outline-color property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
-@theme static {
-    --outline-color-transparent: transparent;
-    --outline-color-current: currentColor;
-}
-@utility outline-*:variant(default,hover,focus) {
-    outline-color: value(--outline-color-*);
-}
-@utility outline-*:variant(default,hover,focus) {
-    outline-color: value(--color-*);
+/* @description Utilities to set the outline-color property of the element. */
+@utility {
+    --variants: 'default,hover,focus';
+    outline-transparent {
+        outline-color: transparent;
+    }
+    outline-current {
+        outline-color: currentColor;
+    }
+    outline-* {
+        outline-color: value(--color-*);
+    }
 }
 
 /* @name outline-width */
-/* @description Utilities to set the outline-width property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width */
-@utility outline-* {
-    outline-width: value(--border-width-*);
+/* @description Utilities to set the outline-width property of the element. */
+@utility {
+    --variants: 'default';
+    outline-* {
+        outline-width: value(--border-width-*);
+    }
 }
 
 /* @name outline-offset */
-/* @description Utilities to set the outline-offset property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-offset */
-@utility outline-offset-* {
-    outline-offset: value(--border-width-*);
+/* @description Utilities to set the outline-offset property of the element. */
+@utility {
+    --variants: 'default';
+    outline-offset-* {
+        outline-offset: value(--border-width-*);
+    }
 }
 
 /* @name outline-style */
-/* @description Utilities to set the outline-style property of the element. */
 /* @category border */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style */
-@theme static {
-    --outline-style-solid: solid;
-    --outline-style-dashed: dashed;
-    --outline-style-dotted: dotted;
-    --outline-style-none: none;
-}
-@utility outline-* {
-    outline-style: value(--outline-style-*);
+/* @description Utilities to set the outline-style property of the element. */
+@utility {
+    --variants: 'default';
+    outline-solid {
+        outline-style: solid;
+    }
+    outline-dashed {
+        outline-style: dashed;
+    }
+    outline-dotted {
+        outline-style: dotted;
+    }
+    outline-none {
+        outline-style: none;
+    }
 }
 
 /* @name shadow */
-/* @description Utilities to set the box-shadow property of the element. */
 /* @category effects */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
-@utility shadow-* {
-    box-shadow: value(--shadow-*);
+/* @description Utilities to set the box-shadow property of the element. */
+@utility {
+    --variants: 'default';
+    shadow-* {
+        box-shadow: value(--shadow-*);
+    }
 }
 
 /* @name opacity */
-/* @description Utilities to set the opacity property of the element. */
 /* @category effects */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
-@utility opacity-*:variant(default,responsive,hover,focus) {
-    opacity: value(--opacity-*);
+/* @description Utilities to set the opacity property of the element. */
+@utility {
+    --variants: 'default,responsive,hover,focus';
+    opacity-* {
+        opacity: value(--opacity-*);
+    }
 }
 
 /* @name align-content */
-/* @description Utilities to set the align-content property of the element. */
 /* @category flexbox */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-content */
-@theme static {
-    --align-content-start: start;
-    --align-content-center: center;
-    --align-content-end: end;
-    --align-content-stretch: stretch;
-    --align-content-space-between: space-between;
-    --align-content-space-around: space-around;
-    --align-content-space-evenly: space-evenly;
-}
-@utility content-*:variant(default,responsive) {
-    align-content: value(--align-content-*);
+/* @description Utilities to set the align-content property of the element. */
+@utility {
+    --variants: 'default,responsive';
+    content-start {
+        align-content: start;
+    }
+    content-center {
+        align-content: center;
+    }
+    content-end {
+        align-content: end;
+    }
+    content-stretch {
+        align-content: stretch;
+    }
+    content-between {
+        align-content: space-between;
+    }
+    content-around {
+        align-content: space-around;
+    }
+    content-evenly {
+        align-content: space-evenly;
+    }
 }
 
 /* @name align-items */
-/* @description Utilities to set the align-items property of the element. */
 /* @category flexbox */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-items */
-@theme static {
-    --align-items-start: flex-start;
-    --align-items-end: flex-end;
-    --align-items-center: center;
-    --align-items-stretch: stretch;
-    --align-items-baseline: baseline;
-}
-@utility items-*:variant(default,responsive) {
-    align-items: value(--align-items-*);
+/* @description Utilities to set the align-items property of the element. */
+@utility {
+    --variants: 'default,responsive';
+    items-start {
+        align-items: flex-start;
+    }
+    items-center {
+        align-items: center;
+    }
+    items-end {
+        align-items: flex-end;
+    }
+    items-stretch {
+        align-items: stretch;
+    }
+    items-baseline {
+        align-items: baseline;
+    }
 }
 
 /* @name align-self */
-/* @description Utilities to set the align-self property of the element. */
 /* @category flexbox */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/align-self */
-@theme static {
-    --align-self-auto: auto;
-    --align-self-start: flex-start;
-    --align-self-end: flex-end;
-    --align-self-center: center;
-    --align-self-stretch: stretch;
-    --align-self-baseline: baseline;
-}
-@utility self-*:variant(default,responsive) {
-    align-self: value(--align-self-*);
+/* @description Utilities to set the align-self property of the element. */
+@utility {
+    --variants: 'default,responsive';
+    self-auto {
+        align-self: auto;
+    }
+    self-start {
+        align-self: flex-start;
+    }
+    self-end {
+        align-self: flex-end;
+    }
+    self-center {
+        align-self: center;
+    }
+    self-stretch {
+        align-self: stretch;
+    }
+    self-baseline {
+        align-self: baseline;
+    }
 }
 
 /* @name flex-direction */
-/* @description Utilities to set the flex-direction property of the element. */
 /* @category flexbox */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
-@theme static {
-    --flex-direction-row: row;
-    --flex-direction-col: column;
-    --flex-direction-row-reverse: row-reverse;
-    --flex-direction-col-reverse: column-reverse;
-}
-@utility flex-*:variant(default,responsive) {
-    flex-direction: value(--flex-direction-*);
+/* @description Utilities to set the flex-direction property of the element. */
+@utility {
+    --variants: 'default,responsive';
+    flex-row {
+        flex-direction: row;
+    }
+    flex-col {
+        flex-direction: column;
+    }
+    flex-row-reverse {
+        flex-direction: row-reverse;
+    }
+    flex-col-reverse {
+        flex-direction: column-reverse;
+    }
 }
 
 /* @name flex-grow */
-/* @description Utilities to set the flex-grow property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the flex-grow property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow */
-@theme static {
-    --flex-grow-0: 0;
-    --flex-grow-1: 1;
-}
-@utility grow-*:variant(default,responsive) {
-    flex-grow: value(--flex-grow-*);
+@utility {
+    --variants: 'default,responsive';
+    grow-0 {
+        flex-grow: 0;
+    }
+    grow-1 {
+        flex-grow: 1;
+    }
 }
 
 /* @name flex-shrink */
-/* @description Utilities to set the flex-shrink property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the flex-shrink property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink */
-@theme static {
-    --flex-shrink-0: 0;
-    --flex-shrink-1: 1;
-}
-@utility shrink-*:variant(default,responsive) {
-    flex-shrink: value(--flex-shrink-*);
+@utility {
+    --variants: 'default,responsive';
+    shrink-0 {
+        flex-shrink: 0;
+    }
+    shrink-1 {
+        flex-shrink: 1;
+    }
 }
 
 /* @name flex-wrap */
-/* @description Utilities to set the flex-wrap property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the flex-wrap property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap */
-@theme static {
-    --flex-wrap-wrap: wrap;
-    --flex-wrap-wrap-reverse: wrap-reverse;
-    --flex-wrap-nowrap: nowrap;
-}
-@utility flex-*:variant(default,responsive) {
-    flex-wrap: value(--flex-wrap-*);
+@utility {
+    --variants: 'default,responsive';
+    flex-wrap {
+        flex-wrap: wrap;
+    }
+    flex-wrap-reverse {
+        flex-wrap: wrap-reverse;
+    }
+    flex-nowrap {
+        flex-wrap: nowrap;
+    }
 }
 
 /* @name gap */
-/* @description Utilities to set the gap property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the gap property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/gap */
-@utility gap-*:variant(default,responsive) {
-    gap: value(--gap-*);
+@utility {
+    --variants: 'default,responsive';
+    gap-* {
+        gap: value(--gap-*);
+    }
 }
 
 /* @name grid-template-columns */
-/* @description Utilities to set the grid-template-columns property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the grid-template-columns property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns */
-@theme static {
-    --grid-columns-1: repeat(1, minmax(0, 1fr));
-    --grid-columns-2: repeat(2, minmax(0, 1fr));
-    --grid-columns-3: repeat(3, minmax(0, 1fr));
-    --grid-columns-4: repeat(4, minmax(0, 1fr));
-    --grid-columns-5: repeat(5, minmax(0, 1fr));
-    --grid-columns-6: repeat(6, minmax(0, 1fr));
-    --grid-columns-7: repeat(7, minmax(0, 1fr));
-    --grid-columns-8: repeat(8, minmax(0, 1fr));
-    --grid-columns-9: repeat(9, minmax(0, 1fr));
-    --grid-columns-10: repeat(10, minmax(0, 1fr));
-    --grid-columns-11: repeat(11, minmax(0, 1fr));
-    --grid-columns-12: repeat(12, minmax(0, 1fr));
-    --grid-columns-none: none;
-}
-@utility grid-cols-*:variant(default,responsive) {
-    grid-template-columns: value(--grid-columns-*);
+@utility {
+    --variants: 'default,responsive';
+    grid-cols-1 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+    grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    grid-cols-5 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    grid-cols-6 {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    grid-cols-7 {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+    grid-cols-8 {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+    grid-cols-9 {
+        grid-template-columns: repeat(9, minmax(0, 1fr));
+    }
+    grid-cols-10 {
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+    }
+    grid-cols-11 {
+        grid-template-columns: repeat(11, minmax(0, 1fr));
+    }
+    grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    grid-cols-none {
+        grid-template-columns: none;
+    }
 }
 
 /* @name grid-template-rows */
-/* @description Utilities to set the grid-template-rows property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the grid-template-rows property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows */
-@theme static {
-    --grid-rows-1: repeat(1, minmax(0, 1fr));
-    --grid-rows-2: repeat(2, minmax(0, 1fr));
-    --grid-rows-3: repeat(3, minmax(0, 1fr));
-    --grid-rows-4: repeat(4, minmax(0, 1fr));
-    --grid-rows-5: repeat(5, minmax(0, 1fr));
-    --grid-rows-6: repeat(6, minmax(0, 1fr));
-    --grid-rows-none: none;
-}
-@utility grid-rows-*:variant(default,responsive) {
-    grid-template-rows: value(--grid-rows-*);
+@utility {
+    --variants: 'default,responsive';
+    grid-rows-1 {
+        grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+    grid-rows-2 {
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+    grid-rows-3 {
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+    grid-rows-4 {
+        grid-template-rows: repeat(4, minmax(0, 1fr));
+    }
+    grid-rows-5 {
+        grid-template-rows: repeat(5, minmax(0, 1fr));
+    }
+    grid-rows-6 {
+        grid-template-rows: repeat(6, minmax(0, 1fr));
+    }
+    grid-rows-none {
+        grid-template-rows: none;
+    }
 }
 
 /* @name grid-column */
-/* @description Utilities to set the size and the position of elements in grid columns. */
 /* @category flexbox */
+/* @description Utilities to set the size and the position of elements in grid columns. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
-@theme static {
-    --grid-column-span-1: span 1 / span 1;
-    --grid-column-span-2: span 2 / span 2;
-    --grid-column-span-3: span 3 / span 3;
-    --grid-column-span-4: span 4 / span 4;
-    --grid-column-span-5: span 5 / span 5;
-    --grid-column-span-6: span 6 / span 6;
-    --grid-column-span-7: span 7 / span 7;
-    --grid-column-span-8: span 8 / span 8;
-    --grid-column-span-9: span 9 / span 9;
-    --grid-column-span-10: span 10 / span 10;
-    --grid-column-span-11: span 11 / span 11;
-    --grid-column-span-12: span 12 / span 12;
-}
-@utility col-span-*:variant(default,responsive) {
-    grid-column: value(--grid-column-span-*);
+@utility {
+    --variants: 'default,responsive';
+    col-span-1 {
+        grid-column: span 1 / span 1;
+    }
+    col-span-2 {
+        grid-column: span 2 / span 2;
+    }
+    col-span-3 {
+        grid-column: span 3 / span 3;
+    }
+    col-span-4 {
+        grid-column: span 4 / span 4;
+    }
+    col-span-5 {
+        grid-column: span 5 / span 5;
+    }
+    col-span-6 {
+        grid-column: span 6 / span 6;
+    }
+    col-span-7 {
+        grid-column: span 7 / span 7;
+    }
+    col-span-8 {
+        grid-column: span 8 / span 8;
+    }
+    col-span-9 {
+        grid-column: span 9 / span 9;
+    }
+    col-span-10 {
+        grid-column: span 10 / span 10;
+    }
+    col-span-11 {
+        grid-column: span 11 / span 11;
+    }
+    col-span-12 {
+        grid-column: span 12 / span 12;
+    }
 }
 
 /* @name grid-row */
-/* @description Utilities to set the size and the position of elements in grid rows. */
 /* @category flexbox */
+/* @description Utilities to set the size and the position of elements in grid rows. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row */
-@theme static {
-    --grid-row-span-1: span 1 / span 1;
-    --grid-row-span-2: span 2 / span 2;
-    --grid-row-span-3: span 3 / span 3;
-    --grid-row-span-4: span 4 / span 4;
-    --grid-row-span-5: span 5 / span 5;
-    --grid-row-span-6: span 6 / span 6;
-    --grid-row-span-7: span 7 / span 7;
-    --grid-row-span-8: span 8 / span 8;
-    --grid-row-span-9: span 9 / span 9;
-    --grid-row-span-10: span 10 / span 10;
-    --grid-row-span-11: span 11 / span 11;
-    --grid-row-span-12: span 12 / span 12;
-}
-@utility row-span-*:variant(default,responsive) {
-    grid-row: value(--grid-row-span-*);
+@utility {
+    --variants: 'default,responsive';
+    row-span-1 {
+        grid-row: span 1 / span 1;
+    }
+    row-span-2 {
+        grid-row: span 2 / span 2;
+    }
+    row-span-3 {
+        grid-row: span 3 / span 3;
+    }
+    row-span-4 {
+        grid-row: span 4 / span 4;
+    }
+    row-span-5 {
+        grid-row: span 5 / span 5;
+    }
+    row-span-6 {
+        grid-row: span 6 / span 6;
+    }
+    row-span-7 {
+        grid-row: span 7 / span 7;
+    }
+    row-span-8 {
+        grid-row: span 8 / span 8;
+    }
+    row-span-9 {
+        grid-row: span 9 / span 9;
+    }
+    row-span-10 {
+        grid-row: span 10 / span 10;
+    }
+    row-span-11 {
+        grid-row: span 11 / span 11;
+    }
+    row-span-12 {
+        grid-row: span 12 / span 12;
+    }
 }
 
 /* @name justify-content */
-/* @description Utilities to set the justify-content property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the justify-content property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
-@theme static {
-    --justify-content-start: flex-start;
-    --justify-content-end: flex-end;
-    --justify-content-center: center;
-    --justify-content-between: space-between;
-    --justify-content-around: space-around;
-}
-@utility justify-*:variant(default,responsive) {
-    justify-content: value(--justify-content-*);
+@utility {
+    --variants: 'default,responsive';
+    justify-start {
+        justify-content: flex-start;
+    }
+    justify-end {
+        justify-content: flex-end;
+    }
+    justify-center {
+        justify-content: center;
+    }
+    justify-between {
+        justify-content: space-between;
+    }
+    justify-around {
+        justify-content: space-around;
+    }
 }
 
 /* @name order */
-/* @description Utilities to set the order property of the element. */
 /* @category flexbox */
+/* @description Utilities to set the order property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/order */
-@theme static {
-    --order-none: 0;
-    --order-first: -999;
-    --order-last: 999;
-    --order-1: 1;
-    --order-2: 2;
-    --order-3: 3;
-    --order-4: 4;
-    --order-5: 5;
-    --order-6: 6;
-    --order-7: 7;
-    --order-8: 8;
-    --order-9: 9;
-    --order-10: 10;
-    --order-11: 11;
-    --order-12: 12;
-}
-@utility order-*:variant(default,responsive) {
-    order: value(--order-*);
+@utility {
+    --variants: 'default,responsive';
+    order-none {
+        order: 0;
+    }
+    order-first {
+        order: -999;
+    }
+    order-last {
+        order: 999;
+    }
+    order-* {
+        order: value(--order-*);
+    }
 }
 
 /* @name cursor */
-/* @description Utilities to set the cursor property of the element. */
 /* @category interactivity */
+/* @description Utilities to set the cursor property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/cursor */
-@theme static {
-    --cursor-auto: auto;
-    --cursor-default: default;
-    --cursor-hand: pointer;
-    --cursor-pointer: pointer;
-    --cursor-move: move;
-    --cursor-none: none;
-    --cursor-zoom-in: zoom-in;
-    --cursor-zoom-out: zoom-out;
-    --cursor-not-allowed: not-allowed;
-    --cursor-wait: wait;
-    --cursor-text: text;
-    --cursor-help: help;
-    --cursor-context-menu: context-menu;
-    --cursor-progress: progress;
-    --cursor-cell: cell;
-    --cursor-crosshair: crosshair;
-    --cursor-vertical-text: vertical-text;
-    --cursor-alias: alias;
-    --cursor-copy: copy;
-    --cursor-no-drop: no-drop;
-    --cursor-grab: grab;
-    --cursor-grabbing: grabbing;
-    --cursor-all-scroll: all-scroll;
-    --cursor-col-resize: col-resize;
-    --cursor-row-resize: row-resize;
-    --cursor-n-resize: n-resize;
-    --cursor-e-resize: e-resize;
-    --cursor-s-resize: s-resize;
-    --cursor-w-resize: w-resize;
-    --cursor-ne-resize: ne-resize;
-    --cursor-nw-resize: nw-resize;
-    --cursor-se-resize: se-resize;
-    --cursor-sw-resize: sw-resize;
-    --cursor-ew-resize: ew-resize;
-    --cursor-ns-resize: ns-resize;
-    --cursor-nesw-resize: nesw-resize;
-}
-@utility cursor-* {
-    cursor: value(--cursor-*);
+@utility {
+    --variants: 'default';
+    cursor-auto {
+        cursor: auto;
+    }
+    cursor-default {
+        cursor: default;
+    }
+    cursor-hand {
+        cursor: pointer;
+    }
+    cursor-pointer {
+        cursor: pointer;
+    }
+    cursor-move {
+        cursor: move;
+    }
+    cursor-none {
+        cursor: none;
+    }
+    cursor-zoom-in {
+        cursor: zoom-in;
+    }
+    cursor-zoom-out {
+        cursor: zoom-out;
+    }
+    cursor-not-allowed {
+        cursor: not-allowed;
+    }
+    cursor-wait {
+        cursor: wait;
+    }
+    cursor-text {
+        cursor: text;
+    }
+    cursor-help {
+        cursor: help;
+    }
+    cursor-context-menu {
+        cursor: context-menu;
+    }
+    cursor-progress {
+        cursor: progress;
+    }
+    cursor-cell {
+        cursor: cell;
+    }
+    cursor-crosshair {
+        cursor: crosshair;
+    }
+    cursor-vertical-text {
+        cursor: vertical-text;
+    }
+    cursor-alias {
+        cursor: alias;
+    }
+    cursor-copy {
+        cursor: copy;
+    }
+    cursor-no-drop {
+        cursor: no-drop;
+    }
+    cursor-grab {
+        cursor: grab;
+    }
+    cursor-grabbing {
+        cursor: grabbing;
+    }
+    cursor-all-scroll {
+        cursor: all-scroll;
+    }
+    cursor-col-resize {
+        cursor: col-resize;
+    }
+    cursor-row-resize {
+        cursor: row-resize;
+    }
+    cursor-n-resize {
+        cursor: n-resize;
+    }
+    cursor-e-resize {
+        cursor: e-resize;
+    }
+    cursor-s-resize {
+        cursor: s-resize;
+    }
+    cursor-w-resize {
+        cursor: w-resize;
+    }
+    cursor-ne-resize {
+        cursor: ne-resize;
+    }
+    cursor-nw-resize {
+        cursor: nw-resize;
+    }
+    cursor-se-resize {
+        cursor: se-resize;
+    }
+    cursor-sw-resize {
+        cursor: sw-resize;
+    }
+    cursor-ew-resize {
+        cursor: ew-resize;
+    }
+    cursor-ns-resize {
+        cursor: ns-resize;
+    }
+    cursor-nesw-resize {
+        cursor: nesw-resize;
+    }
 }
 
 /* @name user-select */
-/* @description Utilities to set the user-select property of the element. */
 /* @category interactivity */
+/* @description Utilities to set the user-select property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/user-select */
-@theme static {
-    --select-none: none;
-    --select-text: text;
-    --select-all: all;
-    --select-auto: auto;
-}
-@utility select-* {
-    user-select: value(--select-*);
+@utility {
+    --variants: 'default';
+    select-none {
+        user-select: none;
+    }
+    select-none {
+        user-select: none;
+    }
+    select-text {
+        user-select: text;
+    }
+    select-all {
+        user-select: all;
+    }
+    select-auto {
+        user-select: auto;
+    }
 }
 
 /* @name pointer-events */
-/* @description Utilities to set the pointer-events property of the element. */
 /* @category interactivity */
+/* @description Utilities to set the pointer-events property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events */
 @theme static {
     --pointer-auto: auto;
