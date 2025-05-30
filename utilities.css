@@ -1,50 +1,67 @@
-/* @name animation */
-/* @description Utilities to animate your elements using CSS animations. */
-/* @category animation */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
-@utility animation-* {
-    animation: value(--animate-*);
+/* animation utilities */
+@utility animation {
+    --variants: 'default';
+    --meta-category: 'animation';
+    --meta-name: 'animation';
+    --meta-description: 'Utilities to animate your elements using predefined CSS animations.';
+    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/animation';
+    &-* {
+        animation: value(--animate-*);
+    }
 }
 
-/* @name background-clip */
-/* @description Utilities to set the background-clip property of the element. */
-/* @category background */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
-@theme static {
-    --background-clip-border: border-box;
-    --background-clip-padding: padding-box;
-    --background-clip-content: content-box;
-    --background-clip-text: text;
+/* background-clip utilities */
+@utility bg {
+    --variants: 'default,hover,focus';
+    --meta-cateogry: 'background';
+    --meta-name: 'background-clip';
+    --meta-description: 'Utilities to set the background-clip property of the element. It defines the area within which the background is painted.';
+    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip';
+    &-border {
+        background-clip: border-box;
+    }
+    &-padding {
+        background-clip: padding-box;
+    }
+    &-content {
+        background-clip: content-box;
+    }
+    &-text {
+        background-clip: text;
+    }
 }
+
+/* background-color utilities */
+@utility bg {
+    --variants: 'default,hover,focus';
+    --meta-category: 'background';
+    --meta-name: 'background-color';
+    --meta-description: 'Utilities to set the background-color property of the element, which defines the background color of an element.';
+    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-color';
+    &-* {
+        background-color: value(--color-*);
+    }
+    &-transparent {
+        background-color: transparent;
+    }
+    &-current {
+        background-color: currentColor;
+    }
+}
+
+/* background-repeat utilities */
 @utility bg-* {
-    background-clip: value(--background-clip-*);
-}
-
-/* @name background-color */
-/* @description Utilities to set the background-color property of the element. */
-/* @category background */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
-@theme static {
-    --background-color-transparent: transparent;
-    --background-color-current: currentColor;
-}
-@utility bg-*:variant(default,hover,focus) {
-    background-color: value(--background-color-*);
-}
-@utility bg-*:variant(default,hover,focus) {
-    background-color: value(--color-*);
-}
-
-/* @name background-repeat */
-/* @description Utilities to set the background-repeat property of the element. */
-/* @category background */
-/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat */
-@theme static {
-    --background-repeat-repeat: repeat;
-    --background-repeat-no-repeat: no-repeat;
-}
-@utility bg-* {
-    background-repeat: value(--background-repeat-*);
+    --variants: 'default';
+    --meta-category: 'background';
+    --meta-name: 'background-repeat';
+    --meta-description: 'Utilities to set the background-repeat property of the element, which defines how background images are repeated.';
+    --meta-url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat';
+    &-repeat {
+        background-repeat: repeat;
+    }
+    &-no-repeat {
+        background-repeat: no-repeat;
+    }
 }
 
 /* @name background-size */
