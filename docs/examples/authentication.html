@@ -1,0 +1,41 @@
+---
+{
+    "title": "Authentication"
+}
+---
+<div class="relative grid md:grid-cols-2 justify-center h-screen" style="max-height:600px;">
+    <div class="bg-white w-full h-full flex items-center justify-center">
+        <div class="w-full max-w-md p-8">
+            <div class="mb-4">
+                <div class="font-medium text-xl text-gray-950 mb-0">Create an account</div>
+                <div class="text-sm text-gray-700">Use your email and a password to create a new account.</div>
+            </div>
+            <div class="mb-4 flex flex-col gap-2">
+                <div class="flex flex-col gap-1">
+                    <label class="block font-medium text-sm">Your email</label>
+                    <input type="email" class="w-full border-1 border-gray-200 px-3 py-2 text-sm rounded-md outline-neutral-950" placeholder="you@email.com" />
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label class="block font-medium text-sm">Your password</label>
+                    <input type="password" class="w-full border-1 border-gray-200 px-3 py-2 text-sm rounded-md outline-neutral-950" placeholder="******" />
+                    <div class="text-2xs text-gray-600">
+                        Your password must contain at least 8 characters. 
+                        Use a combination of uppercase letters, lowercase letters, numbers, and symbols.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <button class="px-3 py-2 font-bold bg-gray-950 hover:bg-gray-800 text-white cursor-pointer rounded-md w-full shadow-sm">
+                    Create Account
+                </button>
+            </div>
+            <div class="text-center text-xs">
+                <span class="text-gray-800">Already have an account?</span>
+                <a href="#" class="text-gray-950 hover:underline font-bold">Log in</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-gray-950 w-full h-full hidden md:flex flex-col text-white p-10">
+        <div class="text-xl font-medium">Minimal Corp.</div>        
+    </div>
+</div>

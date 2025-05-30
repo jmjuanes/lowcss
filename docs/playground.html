@@ -1,0 +1,132 @@
+---
+{
+    "title": "Playground"
+}
+---
+{{>>layout.html}}
+<link rel="stylesheet" href="/vendor/codecake.css" />
+<div class="relative w-full grid grid-cols-2 h-screen min-h-0">
+    <div class="flex flex-col min-h-0 w-full border-r-1 border-gray-200">
+        <header class="w-full flex flex-none items-center justify-between px-4 py-4 border-b-1 border-gray-200">
+            <div class="flex items-baseline gap-2 select-none">
+                <a href="/" class="font-semibold text-2xl tracking-tighter text-gray-950">
+                    <span class="font-bold">lowcss</span>
+                </a>
+                <div class="font-medium text-lg text-gray-700">playground</div>
+            </div>
+            <div class="flex gap-2 items-center">
+                <div data-action="share" class="flex items-center gap-2 cursor-pointer rounded-lg bg-gray-900 hover:bg-gray-950 text-white px-3 py-2">
+                    {{=icon icon="share"}}
+                    <span class="text-sm font-bold">Share</span>
+                </div>
+            </div>
+        </header>
+        <div data-panel="code" class="w-full overflow-y-auto bg-gray-50 h-full min-h-0"></div>
+    </div>
+    <div data-panel="preview" class="w-full">
+        <iframe class="w-full h-full border-0" srcdoc=""></iframe>
+    </div>
+    <div class="absolute bottom-0 left-half max-w-xl" style="transform:translateX(-50%);">
+        <div data-alert="share:done" class="flex rounded-lg bg-white shadow-sm border-1 border-gray-200 w-full p-4 mb-4" style="display:none;">
+            <div class="text-sm">The Playground URL has been copied to your clipboard.</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/vendor/lz-string.min.js"></script>
+<script type="module">
+    import * as CodeCake from "/vendor/codecake.js";
+    // method to get the default code of the editor
+    const getInitialCode = () => {
+        const urlParams = new URLSearchParams(window.location.hash.substr(1));
+        const compressedCode = urlParams.get("code");
+        if (compressedCode) {
+            return LZString.decompressFromEncodedURIComponent(compressedCode);
+        }
+        // generate the example code
+        const exampleCode = [
+            `<div class="flex items-center justify-center w-full min-h-screen p-4 text-gray-700 font-inter leading-normal">`,
+            `    <div class="p-8 w-full max-w-lg rounded-xl border-1 border-gray-200 bg-white text-sm shadow-lg">`,
+            `        <h1 class="text-xl text-gray-950 font-bold mb-3">`,
+            `            Welcome to the Playground!`,
+            `        </h1>`,
+            `        <p class="leading-relaxed">`,
+            `            Use this tool to experiment with utilities, create custom styles, and see immediate results. `,
+            `            No setup required!`,
+            `        </p>`,
+            `        <h3 class="text-base text-gray-950 font-bold mb-2 mt-4">`,
+            `            Instant Feedback`,
+            `        </h3>`,
+            `        <p class="leading-relaxed">`,
+            `            Make changes and see the results in real-time. Experiment with different `,
+            `            utility classes and visualize the effects of each change without needing to refresh.`,
+            `        </p>`,
+            `        <h3 class="text-base text-gray-950 font-bold mb-2 mt-4">`,
+            `            Experiment Freely`,
+            `        </h3>`,
+            `        <p class="leading-relaxed">`,
+            `            Test out new ideas and combinations without affecting your production code. `,
+            `            The Playground is a safe environment for trying things out, from complex `,
+            `            layouts to subtle styling tweaks.`,
+            `        </p>`,
+            `        <h3 class="text-base text-gray-950 font-bold mb-2 mt-4">`,
+            `            Fast Prototyping`,
+            `        </h3>`,
+            `        <p class="leading-relaxed">`,
+            `            Get a head start on your design by prototyping layouts and components in the `,
+            `            Playground. Once you are happy with the result, you can copy the HTML directly `,
+            `            into your project.`,
+            `        </p>`,
+            `    </div>`,
+            `</div>`,
+            ``,
+            ``,
+        ];
+        return exampleCode.join("\n");
+    };
+    // helper method to display a message
+    const displayMessage = (messageId, delay = 5000) => {
+        const alertElement = document.querySelector(`[data-alert="${messageId}"]`);
+        alertElement.style.display = "";
+        setTimeout(() => {
+            alertElement.style.display = "none";
+        }, delay);
+    };
+    const codePanel = document.querySelector(`[data-panel="code"]`);
+    const previewPanel = document.querySelector(`[data-panel="preview"]`);
+    const editor = CodeCake.create(codePanel, {
+        code: getInitialCode(),
+        language: "html",
+        className: "codecake-light h-full",
+        highlight: CodeCake.highlight,
+        lineNumbers: true,
+        lineWrap: true,
+    });
+    // listen for changes in the code
+    editor.onChange(code => {
+        const iframeCode = [
+            `<html lang="en">`,
+            `<head>`,
+            `    <meta charSet="utf-8" />`,
+            `    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />`,
+            `    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />`,
+            `    <link rel="stylesheet" href="/low.css" />`,
+            `</head>`,
+            `<body class="bg-white m-0 p-0 font-sans">`,
+            `    ${code}`,
+            `</body>`,
+            `</html>`,
+        ];
+        previewPanel.querySelector("iframe").srcdoc = iframeCode.join("\n");
+    });
+    // Register action events
+    document.querySelector(`[data-action="share"]`).addEventListener("click", event => {
+        const code = editor.getCode();
+        const compressedCode = LZString.compressToEncodedURIComponent(code);
+        const url = `${location.origin}${location.pathname}#code=${compressedCode}`;
+        navigator.clipboard.writeText(url).then(() => {
+            displayMessage("share:done");
+        });
+    });
+</script>
+{{/layout.html}}
+ 

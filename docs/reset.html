@@ -1,0 +1,169 @@
+---
+{
+    "title": "Reset",
+    "description": "A collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements.",
+    "permalink": "/reset.html",
+    "tableOfContents": [
+        {"text": "Box-sizing", "link": "#box-sizing"},
+        {"text": "Borders are removed", "link": "#borders-are-removed"},
+        {"text": "Margins", "link": "#margins"},
+        {"text": "Headings", "link": "#headings"},
+        {"text": "Text elements", "link": "#text-elements"},
+        {"text": "Lists", "link": "#lists"},
+        {"text": "Tables", "link": "#tables"},
+        {"text": "Form elements", "link": "#form-elements"}
+    ]
+}
+---
+{{>>layout-sidebar.html}}
+
+{{>>prose-paragraph.html}}
+**Reset CSS** is a collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements. 
+It helps normalize the default styles applied by different browsers, ensuring a more consistent and predictable rendering of web pages across various devices and browsers.
+{{/prose-paragraph.html}}
+
+{{>>prose-paragraph.html}}
+For a complete list of changes and styles, please refer to the source [reset.css]({{site.repository}}/blob/main/reset.css) stylesheet.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Box-sizing" id="box-sizing"}}
+
+{{>>prose-paragraph.html}}
+It changes the `box-sizing` property of all elements to `border-box`. This ensures that the width and height of elements are calculated including padding and border, providing a more intuitive box model.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Borders are removed in all elements" id="borders-are-removed"}}
+
+{{>>prose-paragraph.html}}
+It resets the `border-width` to `0` and initializes the `border-syle` to `solid` in all elements.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+*,
+*:before,
+*:after {
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Margins" id="margins"}}
+
+{{>>prose-paragraph.html}}
+It resets the default margin of some elements (including headings and paragraphs) to `0`. This eliminates any inconsistencies in default spacing applied by different browsers.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+    margin: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Headings" id="headings"}}
+
+{{>>prose-paragraph.html}}
+It normalizes the font-related properties such as `font-family` and `font-weight` in heading elements to provide a consistent typography baseline.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Text elements" id="text-elements"}}
+
+{{>>prose-paragraph.html}}
+Sets the default styles for anchor links elements to remove underline and inherit color:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Lists" id="lists"}}
+
+{{>>prose-paragraph.html}}
+It removes the default styles for unordered and ordered lists (`ul` and `ol`) to eliminate any browser-specific list styles.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+ul,
+ol,
+dl {
+    margin: 0;
+    padding: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Tables" id="tables"}}
+
+{{>>prose-paragraph.html}}
+It resets the default border-1 styles for tables.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Form elements" id="form-elements"}}
+
+{{>>prose-paragraph.html}}
+It resets the default typography, padding, and margin properties common form elements:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+button,
+input,
+select,
+textarea {
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+It also prevents resizing textareas horizontally by default:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+textarea {
+    resize: vertical;
+}
+{{/prose-code.html}}
+
+{{/layout-sidebar.html}}

@@ -1,0 +1,19 @@
+<footer class="w-full pt-16 pb-12 md:flex items-center justify-between">
+    <div class="flex items-baseline gap-3 text-sm">
+        <div class="text-sm font-bold text-gray-900 text-base">{{site.title}}</div>
+        <div class="">v{{site.version}}</div>
+        {{#each site.footer.links}}
+        <a href="{{link}}" class="font-semibold hover:underline">
+            <span>{{text}}</span>
+        </a>
+        {{/each}}
+        {{#if site.repository}}
+        <a href="{{site.repository}}" class="font-semibold hover:underline">
+            <span>GitHub</span>
+        </a>
+        {{/if}}
+    </div>
+    <div class="text-sm">
+        Made by <a href="https://www.josemi.xyz" class="hover:underline text-gray-950 font-bold">Josemi</a>. 
+    </div>
+</footer>

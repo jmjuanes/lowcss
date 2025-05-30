@@ -1,0 +1,472 @@
+---
+{
+    "title": "Theme",
+    "description": "Overview of LowCSS default theme variables, that includes colors, fonts, sizes, and more.",
+    "permalink": "/theme.html",
+    "variables": [
+        {"name": "--breakpoint-*", "description": "Breakpoints for responsive design like `sm`, `md`, `lg`, and `xl`."},
+        {"name": "--color-*", "description": "Color utilities like `bg-blue-500`, `text-gray-950`, and `border-grey-200`."},
+        {"name": "--font-family-*", "description": "Font family utilities like `font-sans`."},
+        {"name": "--font-size-*", "description": "Font size utilities like `text-lg`."},
+        {"name": "--font-weight-*", "description": "Font weight utilities like `font-bold`."},
+        {"name": "--leading-*", "description": "Line height utilities like `leading-tight`."},
+        {"name": "--tracking-*", "description": "Letter spacing utilities like `tracking-normal`."},
+        {"name": "--radius-*", "description": "Border radius utilities like `rounded-md`."},
+        {"name": "--border-width-*", "description": "Border width utilities like `border-2`."},
+        {"name": "--spacing-*", "description": "Spacing utilities like `m-0`, `p-2`, `w-64`, and `h-px`."},
+        {"name": "--gap-*", "description": "Gap utilities like `gap-4`."},
+        {"name": "--container-*", "description": "Used to generate `max-w-lg` utilities."},
+        {"name": "--shadow-*", "description": "Box shadow utilities like `shadow-sm`."},
+        {"name": "--opacity-*", "description": "Opacity utilities like `opacity-50`."},
+        {"name": "--animate-*", "description": "Animation utilities like `animate-pulse`."}
+    ],
+    "tableOfContents": [
+        {"text": "Introduction", "link": "#introduction"},
+        {"text": "Variables Namespaces", "link": "#variables-namespaces"},
+        {
+            "text": "Default Theme",
+            "link": "#default-theme",
+            "items": [
+                {"text": "Colors", "link": "#colors"},
+                {"text": "Font Family", "link": "#font-family"},
+                {"text": "Font Size", "link": "#font-size"},
+                {"text": "Font Weight", "link": "#font-weight"},
+                {"text": "Line Height", "link": "#line-height"},
+                {"text": "Letter Spacing", "link": "#letter-spacing"},
+                {"text": "Border Radius", "link": "#border-radius"},
+                {"text": "Border Width", "link": "#border-width"},
+                {"text": "Spacing", "link": "#spacing"},
+                {"text": "Shadows", "link": "#shadows"},
+                {"text": "Opacities", "link": "#opacities"},
+                {"text": "Animations", "link": "#animations"}
+            ]
+        }
+    ]
+}
+---
+{{>>layout-sidebar.html}}
+
+{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+
+{{>>prose-paragraph.html}}
+LowCSS provides a default theme that includes a set of CSS variables. LowCSS uses a `@theme` directive to define these variables, which can be used to customize the appearance of your application.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+@theme {
+    --color-primary: #1d4ed8;
+    --color-secondary: #f59e0b;
+}
+@import "lowcss/utilities.css";
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+These variables are used to generate the utility classes, so based on the previous example, you can use the following classes:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<div class="bg-primary text-secondary p-4">
+    This div has a primary background and secondary text color.
+</div>
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+You can also use the `@theme` directive to define your own custom CSS variables, which can be used in your application. 
+This allows you to create a consistent design system that can be easily maintained and updated.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+.button {
+    background-color: var(--color-primary);
+    /* ... */
+}
+{{/prose-code.html}}
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Variables Namespaces" id="variables-namespaces"}}
+
+{{>>prose-paragraph.html}}
+Theme variables in LowCSS are organized into namespaces, which helps to map the variables to their respective utility classes.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Namespace</td>
+            <td class="p-3 border-b-2 border-gray-200">Description</td>
+        </tr>
+    </thead>
+    {{#each page.attributes.variables}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!name}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}{{!description}}{{/inlineMarkdown}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Default Theme" id="default-theme"}}
+
+{{>>prose-paragraph.html}}
+For a complete list of the default theme variables, you can refer to the source [theme.css]({{site.repository}}/blob/main/theme.css) stylesheet. 
+This file contains all the variables used in LowCSS, allowing you to customize your theme as needed.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Colors" id="colors"}}
+
+{{>>prose-paragraph.html}}
+The following colors are used for generating **text**, **background**, and **border** utilities.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.colors}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--color-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="rounded-lg w-20 h-8 bg-{{@key}}"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Family" id="font-family"}}
+
+{{>>prose-paragraph.html}}
+The following font families are used for generating **font-family** utilities.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.fonts}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
+            {{#inlineMarkdown}}`--font-family-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-lg font-{{@key}}">Lorem ipsum dolor sit amet...</div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Size" id="font-size"}}
+
+{{>>prose-paragraph.html}}
+The following font sizes are used for generating **font-size** utilities. The values are defined in `rem` units, which are relative to the root font size.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.fontSizes}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--font-size-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-{{@key}}">Text in {{@key}}</div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Font Weight" id="font-weight"}}
+
+{{>>prose-paragraph.html}}
+The following font weights are used for generating **font-weight** utilities. These values are typically used to control the thickness of the text.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.fontWeights}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--font-weight-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="font-{{@key}}">Text in {{@key}}</div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Line Height" id="line-height"}}
+
+{{>>prose-paragraph.html}}
+The following line heights are used for generating **line-height** utilities. These values help control the vertical spacing between lines of text.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.lineHeights}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--leading-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="max-w-sm leading-{{@key}}">
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
+                tempor invidunt ut labore et dolore magna aliquyam erat...
+            </div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Letter Spacing" id="letter-spacing"}}
+
+{{>>prose-paragraph.html}}
+The following letter spacing values are used for generating **letter-spacing** utilities. These values control the space between characters in text.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.letterSpacing}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--tracking-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="text-lg tracking-{{@key}}">Text with letter spacing {{@key}}</div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Border Radius" id="border-radius"}}
+
+{{>>prose-paragraph.html}}
+The following border radius values are used for generating **border-radius** utilities. These values help create rounded corners on elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.radius}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--radius-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="rounded-{{@key}} border-2 border-gray-950 w-20 h-20"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Border Width" id="border-width"}}
+
+{{>>prose-paragraph.html}}
+The following border width values are used for generating **border-width** utilities. These values control the thickness of borders on elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.borders}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--border-width-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="border-{{@key}} border-gray-900 w-20 h-8"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Spacing" id="spacing"}}
+
+{{>>prose-paragraph.html}}
+The following spacing values are used for generating **margin**, **padding**, **width**, and **height** utilities. These values help control the space around and within elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.spacing}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--spacing-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="w-{{@key}} h-8 bg-gray-900"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Shadows" id="shadows"}}
+
+{{>>prose-paragraph.html}}
+The following shadow values are used for generating **box-shadow** utilities. These values help create depth and emphasis on elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.shadows}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
+            {{#inlineMarkdown}}`--shadow-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="shadow-{{@key}} w-28 h-10 bg-white border-1 border-gray-200 rounded-md"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Opacities" id="opacities"}}
+
+{{>>prose-paragraph.html}}
+The following opacity values are used for generating **opacity** utilities. These values help control the transparency of elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.opacities}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--opacity-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            <div class="bg-gray-900 opacity-{{@key}} w-20 h-8 rounded-md"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-heading.html level="h2" text="Animations" id="animations"}}
+
+{{>>prose-paragraph.html}}
+The following animation values are used for generating **animation** utilities. These values help create dynamic effects on elements.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Variable</td>
+            <td class="p-3 border-b-2 border-gray-200">Value</td>
+            <td class="p-3 border-b-2 border-gray-200">Preview</td>
+        </tr>
+    </thead>
+    {{#each site.low.theme.animations}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`--animate-{{@key}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-6 border-b-1 border-gray-200">
+            <div class="animation-{{@key}} w-12 h-10 rounded-xl bg-gray-900"></div>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{/layout-sidebar.html}}

@@ -1,0 +1,57 @@
+---
+{
+    "messages": [
+        {
+            "message": "Hey! You coming to the game tonight? ⚽🎉",
+            "align": "start",
+            "classname": "bg-gray-100"
+        },
+        {
+            "message": "Yeah, sounds good!",
+            "align": "end",
+            "classname": "bg-gray-950 text-white"
+        },
+        {
+            "message": "Let's meet at 6:30, the match starts at 7.",
+            "align": "end",
+            "classname": "bg-gray-950 text-white"
+        },
+        {
+            "message": "Ok! Want me to bring snacks?",
+            "align": "start",
+            "classname": "bg-gray-100"
+        },
+        {
+            "message": "Yes please! Chips or something easy.",
+            "align": "end",
+            "classname": "bg-gray-950 text-white"
+        }
+    ]
+}
+---
+<div class="border-1 rounded-xl p-6 bg-white shadow-sm border-gray-200">
+    <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center">
+            <div class="flex w-10 h-10 shrink-0 overflow-hidden rounded-full">
+                <img width="100%" height="100%" src="/avatars/02.jpeg">
+            </div>
+            <div class="ml-3">
+                <div class="font-medium leading-none">Billy Davis</div>
+                <div class="text-sm text-gray-200-foreground">billydavis@domain.tld</div>
+            </div>
+        </div>
+    </div>
+    <div class="flex flex-col gap-4 mb-6">
+    {{#each @partial.messages}}
+        <div class="flex justify-{{align}}">
+            <div class="px-3 py-2 {{classname}} text-sm rounded-md  max-w-64">{{message}}</div>
+        </div>
+    {{/each}}
+    </div>
+    <div class="flex gap-2">
+        <input type="text" class="w-full px-3 py-2 text-sm border-1 border-gray-200 rounded-md focus:outline-none" placeholder="Type a message...">
+        <button class="bg-gray-950 text-white px-3 py-2 rounded-md border-0 cursor-pointer font-medium">
+            <span>Send</span>
+        </button>
+    </div>
+</div>

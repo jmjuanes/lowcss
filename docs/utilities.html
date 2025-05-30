@@ -1,0 +1,53 @@
+---
+{
+    "title": "Utilities Reference",
+    "description": "Reference of all utility classes provided by default in LowCSS.",
+    "permalink": "/utilities.html",
+    "tableOfContents": "@utilities"
+}
+---
+{{>>layout-sidebar.html}}
+
+{{#each site.low.utilities}}
+<div class="mb-16">
+    <a name="{{name}}"></a>
+    <h2 class="leading-tight text-2xl font-extrabold text-gray-950 mb-3">
+        <span>{{name}}</span>
+    </h2>
+    {{#if description}}
+    <div class="mb-4 text-base leading-relaxed">
+        {{#inlineMarkdown}}{{!description}}{{/inlineMarkdown}}
+    </div>
+    {{/if}}
+    <div class="mb-4 flex gap-2 flex-wrap">
+        {{#each variants}}
+        <div class="py-1 px-2 bg-gray-900 text-white text-xs rounded-lg">
+            <span class="font-bold">{{.}}</span>
+        </div>
+        {{/each}}
+    </div>
+    <table class="w-full mt-0 mb-0 text-sm">
+        <thead>
+            <tr class="border-b-2 border-gray-200">
+                <td class="p-3 font-bold text-sm">Class</td>
+                <td class="p-3 font-bold text-sm">Properties</td>
+            </tr>
+        </thead>
+        {{#each values}}
+        <tr class="border-b-1 border-gray-200 text-xs">
+            <td class="p-3 font-mono font-bold">
+                {{#inlineMarkdown}}`{{selector}}`{{/inlineMarkdown}}
+            </td>
+            <td class="p-3 font-mono">
+                {{#each nodes}}
+                <div class="mb-1 leading-relaxed">
+                    {{#inlineMarkdown}}`{{prop}}: {{value}}`{{/inlineMarkdown}}
+                </div>
+                {{/each}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+{{/each}}
+{{/layout-sidebar.html}}
