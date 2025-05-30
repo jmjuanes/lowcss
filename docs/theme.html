@@ -1,34 +1,124 @@
 ---
 {
-    "title": "Default Theme",
-    "description": "This page provides an overview of the default theme variables used in LowCSS, including colors, fonts, sizes, and more.",
+    "title": "Theme",
+    "description": "Overview of LowCSS default theme variables, that includes colors, fonts, sizes, and more.",
     "permalink": "/theme.html",
-    "sidebar": [
-        {"text": "Colors", "category": true},
-        {"text": "Fill Colors", "link": "#fill-colors"},
-        {"text": "Typography", "category": true},
-        {"text": "Font Family", "link": "#font-family"},
-        {"text": "Font Size", "link": "#font-size"},
-        {"text": "Font Weight", "link": "#font-weight"},
-        {"text": "Line Height", "link": "#line-height"},
-        {"text": "Letter Spacing", "link": "#letter-spacing"},
-        {"text": "Borders", "category": true},
-        {"text": "Border Radius", "link": "#border-radius"},
-        {"text": "Border Width", "link": "#border-width"},
-        {"text": "Sizing", "category": "true"},
-        {"text": "Spacing", "link": "#spacing"},
-        {"text": "Effects", "category": true},
-        {"text": "Shadows", "link": "#shadows"},
-        {"text": "Opacities", "link": "#opacities"},
-        {"text": "Animations", "link": "#animations"}
+    "variables": [
+        {"name": "--breakpoint-*", "description": "Breakpoints for responsive design like `sm`, `md`, `lg`, and `xl`."},
+        {"name": "--color-*", "description": "Color utilities like `bg-blue-500`, `text-gray-950`, and `border-grey-200`."},
+        {"name": "--font-family-*", "description": "Font family utilities like `font-sans`."},
+        {"name": "--font-size-*", "description": "Font size utilities like `text-lg`."},
+        {"name": "--font-weight-*", "description": "Font weight utilities like `font-bold`."},
+        {"name": "--leading-*", "description": "Line height utilities like `leading-tight`."},
+        {"name": "--tracking-*", "description": "Letter spacing utilities like `tracking-normal`."},
+        {"name": "--radius-*", "description": "Border radius utilities like `rounded-md`."},
+        {"name": "--border-width-*", "description": "Border width utilities like `border-2`."},
+        {"name": "--spacing-*", "description": "Spacing utilities like `m-0`, `p-2`, `w-64`, and `h-px`."},
+        {"name": "--gap-*", "description": "Gap utilities like `gap-4`."},
+        {"name": "--container-*", "description": "Used to generate `max-w-lg` utilities."},
+        {"name": "--shadow-*", "description": "Box shadow utilities like `shadow-sm`."},
+        {"name": "--opacity-*", "description": "Opacity utilities like `opacity-50`."},
+        {"name": "--animate-*", "description": "Animation utilities like `animate-pulse`."}
+    ],
+    "tableOfContents": [
+        {"text": "Introduction", "link": "#introduction"},
+        {"text": "Variables Namespaces", "link": "#variables-namespaces"},
+        {
+            "text": "Default Theme",
+            "link": "#default-theme",
+            "items": [
+                {"text": "Colors", "link": "#colors"},
+                {"text": "Font Family", "link": "#font-family"},
+                {"text": "Font Size", "link": "#font-size"},
+                {"text": "Font Weight", "link": "#font-weight"},
+                {"text": "Line Height", "link": "#line-height"},
+                {"text": "Letter Spacing", "link": "#letter-spacing"},
+                {"text": "Border Radius", "link": "#border-radius"},
+                {"text": "Border Width", "link": "#border-width"},
+                {"text": "Spacing", "link": "#spacing"},
+                {"text": "Shadows", "link": "#shadows"},
+                {"text": "Opacities", "link": "#opacities"},
+                {"text": "Animations", "link": "#animations"}
+            ]
+        }
     ]
 }
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Colors"}}
+{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
 
-{{>prose-heading.html level="h2" text="Fill Colors" id="fill-colors"}}
+{{>>prose-paragraph.html}}
+LowCSS provides a default theme that includes a set of CSS variables. LowCSS uses a `@theme` directive to define these variables, which can be used to customize the appearance of your application.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+@theme {
+    --color-primary: #1d4ed8;
+    --color-secondary: #f59e0b;
+}
+@import "lowcss/utilities.css";
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+These variables are used to generate the utility classes, so based on the previous example, you can use the following classes:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html"}}
+<div class="bg-primary text-secondary p-4">
+    This div has a primary background and secondary text color.
+</div>
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+You can also use the `@theme` directive to define your own custom CSS variables, which can be used in your application. 
+This allows you to create a consistent design system that can be easily maintained and updated.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css"}}
+.button {
+    background-color: var(--color-primary);
+    /* ... */
+}
+{{/prose-code.html}}
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Variables Namespaces" id="variables-namespaces"}}
+
+{{>>prose-paragraph.html}}
+Theme variables in LowCSS are organized into namespaces, which helps to map the variables to their respective utility classes.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Namespace</td>
+            <td class="p-3 border-b-2 border-gray-200">Description</td>
+        </tr>
+    </thead>
+    {{#each page.attributes.variables}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}`{{!name}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}{{!description}}{{/inlineMarkdown}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{>prose-separator.html}}
+
+{{>prose-heading.html level="h1" text="Default Theme" id="default-theme"}}
+
+{{>>prose-paragraph.html}}
+For a complete list of the default theme variables, you can refer to the source [theme.css]({{site.repository}}/blob/main/theme.css) stylesheet. 
+This file contains all the variables used in LowCSS, allowing you to customize your theme as needed.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Colors" id="colors"}}
 
 {{>>prose-paragraph.html}}
 The following colors are used for generating **text**, **background**, and **border** utilities.
@@ -57,10 +147,6 @@ The following colors are used for generating **text**, **background**, and **bor
     {{/each}}
 </table>
 
-{{>prose-separator.html}}
-
-{{>prose-heading.html level="h1" text="Typography"}}
-
 {{>prose-heading.html level="h2" text="Font Family" id="font-family"}}
 
 {{>>prose-paragraph.html}}
@@ -77,10 +163,10 @@ The following font families are used for generating **font-family** utilities.
     </thead>
     {{#each site.low.theme.fonts}}
     <tr class="">
-        <td class="p-3 border-b-1 border-gray-200">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
             {{#inlineMarkdown}}`--font-family-{{@key}}`{{/inlineMarkdown}}
         </td>
-        <td class="p-3 border-b-1 border-gray-200">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
             {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
         </td>
         <td class="p-3 border-b-1 border-gray-200">
@@ -209,10 +295,6 @@ The following letter spacing values are used for generating **letter-spacing** u
     {{/each}}
 </table>
 
-{{>prose-separator.html}}
-
-{{>prose-heading.html level="h1" text="Borders"}}
-
 {{>prose-heading.html level="h2" text="Border Radius" id="border-radius"}}
 
 {{>>prose-paragraph.html}}
@@ -271,10 +353,6 @@ The following border width values are used for generating **border-width** utili
     {{/each}}
 </table>
 
-{{>prose-separator.html}}
-
-{{>prose-heading.html level="h1" text="Sizing"}}
-
 {{>prose-heading.html level="h2" text="Spacing" id="spacing"}}
 
 {{>>prose-paragraph.html}}
@@ -304,10 +382,6 @@ The following spacing values are used for generating **margin**, **padding**, **
     {{/each}}
 </table>
 
-{{>prose-separator.html}}
-
-{{>prose-heading.html level="h1" text="Effects"}}
-
 {{>prose-heading.html level="h2" text="Shadows" id="shadows"}}
 
 {{>>prose-paragraph.html}}
@@ -324,10 +398,10 @@ The following shadow values are used for generating **box-shadow** utilities. Th
     </thead>
     {{#each site.low.theme.shadows}}
     <tr class="">
-        <td class="p-3 border-b-1 border-gray-200">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
             {{#inlineMarkdown}}`--shadow-{{@key}}`{{/inlineMarkdown}}
         </td>
-        <td class="p-3 border-b-1 border-gray-200">
+        <td class="p-3 border-b-1 border-gray-200 leading-loose">
             {{#inlineMarkdown}}`{{!@value}}`{{/inlineMarkdown}}
         </td>
         <td class="p-3 border-b-1 border-gray-200">
