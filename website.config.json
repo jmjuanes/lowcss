@@ -4,16 +4,16 @@
     "url": "https://low.josemi.xyz",
     "navbar": {
         "links": [
-            {"text": "Docs", "link": "/docs"},
-            {"text": "Theme", "link": "/theme"},
-            {"text": "Utilities", "link": "/utilities"},
-            {"text": "Examples", "link": "/examples"}
+            {"text": "Docs", "link": "/docs.html"},
+            {"text": "Theme", "link": "/theme.html"},
+            {"text": "Utilities", "link": "/utilities.html"},
+            {"text": "Examples", "link": "/examples.html"}
         ]
     },
     "footer": {
         "links": [
-            {"text": "Docs", "link": "/docs"},
-            {"text": "Playground", "link": "/playground"}
+            {"text": "Docs", "link": "/docs.html"},
+            {"text": "Playground", "link": "/playground.html"}
         ]
     }
 }
