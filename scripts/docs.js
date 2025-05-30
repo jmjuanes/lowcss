@@ -40,7 +40,7 @@ const MarkdownPlugin = () => ({
         context.template.use(markdown({
             classNames: {
                 link: "font-medium underline",
-                code: "bg-gray-100 rounded-md py-1 px-2 text-sm font-mono font-medium",
+                code: "bg-gray-100 rounded-md py-1 px-2 text-xs font-mono font-medium",
                 table: "w-full mb-6",
                 tableColumn: "p-3 border-b-1 border-gray-200",
                 tableHead: "font-bold",
@@ -52,21 +52,25 @@ const MarkdownPlugin = () => ({
     },
 });
 
-// @description plugin to inject utilities in sidebar
-const UtilitiesSidebarPlugin = () => ({
+// @description plugin to inject utilities in the table of contents
+const UtilitiesTableOfContentsPlugin = () => ({
     name: "UtilitiesSidebarPlugin",
     transform: (context, node) => {
-        if (node.label === press.LABEL_PAGE && node.attributes?.sidebar === "@utilities") {
-            const categories = new Set();
-            const sidebarItems = [];
+        if (node.label === press.LABEL_PAGE && node.attributes?.tableOfContents === "@utilities") {
+            const categories = new Map();
             low.utilities.forEach(u => {
                 if (u.category && !categories.has(u.category)) {
-                    categories.add(u.category);
-                    sidebarItems.push({text: u.category, link: `#${u.category}`, category: true});
+                    categories.set(u.category, {
+                        category: u.category,
+                        items: [],
+                    });
                 }
-                sidebarItems.push({text: u.name, link: `#${u.name}`});
+                categories.get(u.category).items.push({
+                    text: u.name,
+                    link: `#${u.name}`,
+                });
             });
-            node.attributes.sidebar = sidebarItems;
+            node.attributes.tableOfContents = Array.from(categories.values());
         }
     },
 });
@@ -120,7 +124,7 @@ press({
         }),
         MarkdownPlugin(),
         press.FrontmatterPlugin(),
-        UtilitiesSidebarPlugin(),
+        UtilitiesTableOfContentsPlugin(),
         press.ContentPagePlugin(),
     ],
 });
