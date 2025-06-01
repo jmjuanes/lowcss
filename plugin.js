@@ -45,7 +45,7 @@ export const getPseudoSelector = (variant = "", selector = "&") => {
 };
 
 const compile = (selector, properties, options) => {
-    const rule = new options.postcss.Rule({selector: "." + selector});
+    const rule = new options.postcss.Rule({selector: selector});
     properties.forEach(property => {
         rule.append({
             prop: property.prop,
@@ -65,7 +65,7 @@ const getContextForUtilityRule = (rule, theme) => {
                 const patternRegex = globToRegex(pattern);
                 theme.forEach(item => {
                     if (patternRegex.test(item.key) && !context.has(item.key)) {
-                        context.set(key, {
+                        context.set(item.key, {
                             key: item.key.match(patternRegex)[1],
                             value: `var(${item.key})`,
                             replace: `value(${pattern})`,
@@ -76,7 +76,7 @@ const getContextForUtilityRule = (rule, theme) => {
         });
     }
     // 2. insert a single item to make sure that the utility is generated once
-    if (context.size === 0) {
+    else {
         context.set("default", {key: "", value: "", replace: ""});
     }
     // 3. return the context as a simple array
@@ -214,8 +214,8 @@ const lowCssPlugin = (options = {}, theme = new Map()) => ({
                 parseTheme(rule).forEach(item => {
                     theme.set(item.key, item);
                     rootRule.append({
-                        prop: declaration.prop.trim(),
-                        value: declaration.value.trim(),
+                        prop: item.key,
+                        value: item.value,
                     });
                 });
                 // add the root rule to the root
