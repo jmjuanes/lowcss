@@ -1,8 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import postcss from "postcss";
-import postcssImport from "postcss-import";
-import lowPlugin from "../plugin.js";
+import {parseTheme, parseUtility} from "../plugin.js";
 import pkg from "../package.json" with {type: "json"};
 
 // map theme variables with their categories
@@ -18,84 +17,86 @@ const themeKeys = {
     "shadows": "--shadow-",
     "spacing": "--spacing-",
     "gap": "--gap-",
+    "container": "--container-",
     "opacities": "--opacity-",
     "animations": "--animate-",
+    "zIndex": "--z-index-",
 };
 
+const themeJsonPlugin = (options = {}) => ({
+    postcssPlugin: "low-theme-json",
+    Once: root => {
+        [...(root.nodes || [])].forEach(rule => {
+            if (rule.type === "atrule" && rule.name === "theme") {
+                return parseTheme(rule).forEach(item => {
+                    options.theme.push(item);
+                });
+            }
+        });
+    },
+});
+
+const utilitiesJsonPlugin = (options = {}) => ({
+    postcssPlugin: "low-utilities-json",
+    Once: root => {
+        const current = {
+            utility: null,
+        };
+        [...(root.nodes || [])].forEach(rule => {
+            if (rule.type === "comment" && !!rule.text.trim()) {
+                if (!current.utility) {
+                    current.utility = {};
+                    options.utilities.push(current.utility);
+                }
+                // parse comment to stract key-value
+                const match = rule.text.trim().match(/^@(\w+) (.*)$/);
+                if (match) {
+                    current.utility[match[1]] = match[2].trim();
+                }
+            }
+            if (rule.type === "atrule" && rule.name === "utility") {
+                Object.assign(current.utility, parseUtility(rule));
+                current.utility = null; // reset current utility
+            }
+        });
+    },
+});
+
 const main = () => {
-    const input = fs.readFileSync("index.css", "utf8");
+    const themeInput = fs.readFileSync("theme.css", "utf8");
+    const utilitiesInput = fs.readFileSync("utilities.css", "utf8");
     const state = {
         theme: [],
         utilities: [],
-        currentUtility: null,
     };
-    const plugin = lowPlugin({
-        onThemeVariable: themeVariable => {
-            if (themeVariable.type === "global") {
-                state.theme.push(themeVariable);
-            }
-        },
-        onComment: comment => {
-            if (!state.currentUtility || state.currentUtility?.values?.length > 0) {
-                state.currentUtility = {
-                    values: [],
-                };
-                state.utilities.push(state.currentUtility);
-            }
-            // parse comment to stract key-value
-            const match = comment.trim().match(/^@(\w+) (.*)$/);
-            if (match) {
-                state.currentUtility[match[1]] = match[2].trim();
-            }
-        },
-        onUtility: utility => {
-            state.currentUtility.variants = utility.variants || ["default"];
-            const currentValues = new Set(state.currentUtility.values.map(item => {
-                return item.selector;
-            }));
-            utility.values.forEach(item => {
-                const selector = utility.name.replace("*", item.key);
-                if (!currentValues.has(selector)) {
-                    state.currentUtility.values.push({
-                        selector: selector,
-                        nodes: utility.declarations.map(node => {
-                            return {
-                                prop: node.prop,
-                                value: node.value.replace(item.replace, item.value),
-                            };
-                        }),
-                    });
-                }
-                currentValues.add(selector);
-            });
-        },
-    });
-    return postcss([postcssImport, plugin])
-        .process(input)
-        .then(() => {
-            const breakpointsKeys = state.theme.filter(item => {
-                return item.key.startsWith("--breakpoint-");
-            });
-            const data = {
-                version: pkg.version,
-                breakpoints: Object.fromEntries(breakpointsKeys.map(item => {
-                    return [item.key.replace("--breakpoint-", ""), item.value];
-                })),
-                theme: Object.fromEntries(Object.keys(themeKeys).map(key => {
-                    const field = themeKeys[key];
-                    const variables = state.theme
-                        .filter(item => item.key.startsWith(field))
-                        .map(item => {
-                            return [item.key.replace(field, ""), item.value];
-                        });
-                    return [key, Object.fromEntries(variables)];
-                })),
-                utilities: state.utilities,
-            };
-            const outputPath = path.resolve(process.cwd(), "./low.json");
-            console.log(`Saving ${data.utilities.length} utilities to ${outputPath}`);
-            fs.writeFileSync(outputPath, JSON.stringify(data, null, "    "), "utf-8");
+    const postCssPromises = [
+        postcss([themeJsonPlugin(state)]).process(themeInput),
+        postcss([utilitiesJsonPlugin(state)]).process(utilitiesInput),
+    ];
+    return Promise.all(postCssPromises).then(() => {
+        const breakpointsKeys = state.theme.filter(item => {
+            return item.key.startsWith("--breakpoint-");
         });
+        const data = {
+            version: pkg.version,
+            breakpoints: Object.fromEntries(breakpointsKeys.map(item => {
+                return [item.key.replace("--breakpoint-", ""), item.value];
+            })),
+            theme: Object.fromEntries(Object.keys(themeKeys).map(key => {
+                const field = themeKeys[key];
+                const variables = state.theme
+                    .filter(item => item.key.startsWith(field))
+                    .map(item => {
+                        return [item.key.replace(field, ""), item.value];
+                    });
+                return [key, Object.fromEntries(variables)];
+            })),
+            utilities: state.utilities,
+        };
+        const outputPath = path.resolve(process.cwd(), "./low.json");
+        console.log(`Saving ${data.utilities.length} utilities to ${outputPath}`);
+        fs.writeFileSync(outputPath, JSON.stringify(data, null, "    "), "utf-8");
+    });
 };
 
 // build json
