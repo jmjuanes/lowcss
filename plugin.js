@@ -198,73 +198,67 @@ const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
     };
 };
 
-// @description plugin to generate lowcss styles
-const lowCssPlugin = (options = {}) => {
-    const globalThemeFields = {};
+// @description parse theme rule
+// @param {object} rule - theme rule
+export const parseThemeRule = (rule, theme = []) => {
+    (rule.nodes || []).forEach(declaration => {
+        if (declaration.type === "decl") {
+            theme.push({
+                type: "global",
+                key: declaration.prop.trim(),
+                value: declaration.value.trim(),
+            });
+        }
+    });
+    return theme;
+};
+
+// @description parse utility rule
+export const parseUtilityRule = rule => {
+    const utilityRules = [];
     return {
-        postcssPlugin: "lowcss",
-        Once: (root, postcss) => {
-            const localThemeFields = {};
-            [...(root.nodes || [])].forEach(rule => {
-                // 1. check if the rule is a theme rule to extract the variables
-                if (rule.type === "atrule" && rule.name === "theme") {
-                    const rootRule = new postcss.Rule({selector: ":root"});
-                    (rule.nodes || []).forEach(declaration => {
-                        if (declaration.type === "decl") {
-                            const name = declaration.prop.trim();
-                            localThemeFields[name] = {
-                                type: rule.params || "global",
-                                key: declaration.prop.trim(),
-                                value: declaration.value.trim(),
-                            };
-                            // insert the css variable in the root rule?
-                            if (localThemeFields[name].type === "global") {
-                                rootRule.append({
-                                    prop: declaration.prop.trim(),
-                                    value: declaration.value.trim(),
-                                });
-                            }
-                            // execute the onThemeVariable listener
-                            if (typeof options?.onThemeVariable === "function") {
-                                options.onThemeVariable(localThemeFields[name], name);
-                            }
-                        }
-                    });
-                    // add the root rule to the root
-                    if (rootRule.nodes.length > 0) {
-                        root.first.before(rootRule);
-                    }
-                    rule.remove();
-                }
-                // 2. check if the rule is an utility rule to generate the utility classes
-                else if (rule.type === "atrule" && rule.name === "utility") {
-                    const themeFields = {...globalThemeFields, ...localThemeFields};
-                    const utility = compileFunctionalUtility(rule, themeFields, postcss);
-                    utility.rules.forEach(utilityRule => {
-                        rule.before(utilityRule);
-                    });
-                    // execute the onUtility listener
-                    if (typeof options?.onUtility === "function") {
-                        options.onUtility(utility, rule);
-                    }
-                    rule.remove();
-                }
-                // 3. check for comment rule
-                else if (rule.type === "comment" && !!rule.text) {
-                    if (typeof options?.onComment === "function") {
-                        options.onComment(rule.text.trim());
-                    }
-                }
-            });
-            // 3. merge the local theme fields with the global theme fields
-            Object.keys(localThemeFields).forEach(key => {
-                if (localThemeFields[key].type === "global") {
-                    globalThemeFields[key] = localThemeFields[key]; // save in the global theme fields
-                }
-            });
-        },
+        name: (rule.params || "").trim(),
+        variants: ["default"],
+        rules: utilityRules,
     };
 };
+
+// @description plugin to generate lowcss styles
+const lowCssPlugin = (options = {}, theme = new Map()) => ({
+    postcssPlugin: "lowcss",
+    Once: (root, postcss) => {
+        [...(root.nodes || [])].forEach(rule => {
+            // 1. check if the rule is a theme rule to extract the variables
+            if (rule.type === "atrule" && rule.name === "theme") {
+                const rootRule = new postcss.Rule({selector: ":root"});
+                parseThemeRule(rule).forEach(item => {
+                    theme.set(item.key, item);
+                    rootRule.append({
+                        prop: declaration.prop.trim(),
+                        value: declaration.value.trim(),
+                    });
+                });
+                // add the root rule to the root
+                if (rootRule.nodes.length > 0) {
+                    root.first.before(rootRule);
+                }
+                rule.remove();
+            }
+            // 2. check if the rule is an utility rule to generate the utility classes
+            else if (rule.type === "atrule" && rule.name === "utility") {
+                const utility = compileFunctionalUtility(rule, themeFields, postcss);
+                utility.rules.forEach(utilityRule => {
+                    rule.before(utilityRule);
+                });
+                // execute the onUtility listener
+                if (typeof options?.onUtility === "function") {
+                    options.onUtility(utility, rule);
+                }
+                rule.remove();
+            }
+        });
+    },
+});
 
 // mark the plugin as a postcss plugin
 lowCssPlugin.postcss = true;
