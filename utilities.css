@@ -105,7 +105,7 @@
         border-transparent {
             border-color: transparent;
         }
-        border-current: {
+        border-current {
             border-color: currentColor;
         }
         border-* {
@@ -150,7 +150,7 @@
     border-dotted {
         border-style: dotted;
     }
-    border-none: {
+    border-none {
         border-style: none;
     }
 }
@@ -767,7 +767,7 @@
     touch-auto {
         touch-action: auto;
     }
-    touch-none: {
+    touch-none {
         touch-action: none;
     }
     touch-pan-x {
@@ -1128,7 +1128,7 @@
             margin-top: value(--spacing-*);
             margin-bottom: value(--spacing-*);
         }
-        mt-*: {
+        mt-* {
             margin-top: value(--spacing-*);
         }
         mb-* {
