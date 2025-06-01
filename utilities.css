@@ -3,7 +3,6 @@
 /* @category animation */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
 @utility animation {
-    --variants: 'default';
     animation-* {
         animation: value(--animate-*);
     }
@@ -14,7 +13,6 @@
 /* @cateogry background */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
 @utility background-clip {
-    --variants: 'default,hover,focus';
     bg-border {
         background-clip: border-box;
     }
@@ -34,15 +32,16 @@
 /* @category background */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
 @utility background-color {
-    --variants: 'default,hover,focus';
-    bg-transparent {
-        background-color: transparent;
-    }
-    bg-current {
-        background-color: currentColor;
-    }
-    bg-* {
-        background-color: value(--color-*);
+    @variant default,group-hover,hover,focus,odd,even {
+        bg-transparent {
+            background-color: transparent;
+        }
+        bg-current {
+            background-color: currentColor;
+        }
+        bg-* {
+            background-color: value(--color-*);
+        }
     }
 }
 
