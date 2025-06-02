@@ -1426,3 +1426,12 @@
         filter: blur(value(--blur-*));
     }
 }
+
+/* @description utilities to set the filter (brightness) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility brightness {
+    brightness-* {
+        filter: brightness(value(--brightness-*));
+    }
+}
