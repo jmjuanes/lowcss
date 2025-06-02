@@ -36,25 +36,24 @@ const themeJsonPlugin = (options = {}) => ({
     },
 });
 
-const utilitiesJsonPlugin = (options = {}) => ({
+const utilitiesJsonPlugin = (options = {}, current = {}) => ({
     postcssPlugin: "low-utilities-json",
     Once: root => {
-        const current = {
-            utility: null,
-        };
         [...(root.nodes || [])].forEach(rule => {
+            // 0. initialize the current utility if not set
+            if (!current.utility) {
+                current.utility = {};
+                options.utilities.push(current.utility);
+            }
+            // 1. check for comment rules to extract utility metadata
             if (rule.type === "comment" && !!rule.text.trim()) {
-                if (!current.utility) {
-                    current.utility = {};
-                    options.utilities.push(current.utility);
-                }
-                // parse comment to stract key-value
                 const match = rule.text.trim().match(/^@(\w+) (.*)$/);
                 if (match) {
                     current.utility[match[1]] = match[2].trim();
                 }
             }
-            if (rule.type === "atrule" && rule.name === "utility") {
+            // 2. check for utility rule
+            else if (rule.type === "atrule" && rule.name === "utility") {
                 Object.assign(current.utility, parseUtility(rule));
                 current.utility = null; // reset current utility
             }
