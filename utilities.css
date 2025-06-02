@@ -1435,3 +1435,12 @@
         filter: brightness(value(--brightness-*));
     }
 }
+
+/* @description utilities to set the filter (contrast) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility contrast {
+    contrast-* {
+        filter: contrast(value(--contrast-*));
+    }
+}
