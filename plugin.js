@@ -27,42 +27,14 @@ const globToRegex = (glob = "") => {
     return new RegExp(`^${escaped.replace(/\*/g, "(.*?)")}$`);
 };
 
-// @description utility method to find all declaration nodes that matches the provided
-// condition as a function
-const findDeclarationNodes = (nodes, condition, result = []) => {
-    for (let i = 0; i < nodes.length; i++) {
-        // 1. check if the condition is satisfied in declaration nodes
-        if (nodes[i].type === "decl" && condition(nodes[i])) {
-            result.push(nodes[i]);
-        }
-        // 2. check if the condition is satisfied in nested rules
-        else if (nodes[i].type === "rule" || nodes[i].type === "atrule") {
-            findDeclarationNodes(nodes[i].nodes, condition, result);
-        }
-    }
-    return result;
-};
-
-// @description replace the parent selector with the provided replacement in the rule and its children
-// @param {object} rule - rule to replace the parent selector in
-// @param {string} replacement - replacement string
-// @return {object} rule - rule with the parent selector replaced
-const replaceParentSelector = (rule, replacement) => {
-    if (rule.type === "rule" && rule.selector) {
-        rule.selector = rule.selector.replaceAll("&", replacement);
-    }
-    if (rule.nodes) {
-        rule.nodes.forEach(node => {
-            return replaceParentSelector(node, replacement);
-        });
-    }
-    return rule;
-};
-
-// @description get the selector for the specified pseudo variant
+// @description get the selector for the specified variant
 // @param {string} variant - variant to get the selector for
 // @return {string} selector - selector to replace
-const getPseudoSelector = (variant = "", selector = "&") => {
+export const getSelector = (variant = "", selector = "&") => {
+    // 0. default variant or variant not defined
+    if (variant === "default" || !variant) {
+        return `.${selector}`;
+    }
     const variantSelector = pseudos[variant] || variant;
     // 1. check if the variant is a group variant
     if (variant.startsWith("group-")) {
@@ -76,195 +48,211 @@ const getPseudoSelector = (variant = "", selector = "&") => {
     return `.${variant}\\:${selector}:${variantSelector}`;
 };
 
-// @description parse the utility params
-// @param {string} params - params to parse
-const parseUtilityParams = (params = "") => {
-    let name = params.trim(), variants = ["default"];
-    const match = name.match(/(.*?):variant\((.*?)\)/);
-    if (match && !!match[1] && !!match[2]) {
-        name = match[1].trim();
-        variants = match[2].split(",").map(v => v.trim()).filter(Boolean);
-    }
-    // return the touple [utilityName, utilityVariants]
-    return [name, variants];
-};
-
-// @description compile the nodes into a postcss rule
-// @param {array} nodes - array of nodes to compile
-// @param {object} options.formatValue - function to format the value of the declaration
-// @param {object} options.postcss - postcss instance to use
-// @return {array} result - array of postcss rules
-const compile = (nodes = [], options = {}, result = []) => {
-    // 1. compile the declaration nodes
-    const declarationNodes = nodes.filter(node => node.type === "decl");
-    if (declarationNodes.length > 0) {
-        const newRule = new options.postcss.Rule({selector: "&"});
-        declarationNodes.forEach(declaration => {
-            return newRule.append({
-                prop: declaration.prop.trim(),
-                value: typeof options?.formatValue === "function" ? options.formatValue(declaration.value) : declaration.value,
+// @description get the rules associated with a utility node
+// @param {Array} nodes - nodes to parse
+// @return {Array} rules - parsed utility rules
+const getUtilityRules = (nodes, rules = []) => {
+    nodes.forEach(node => {
+        // 1. @variant node --> parse the variants and recursively get the utility rules
+        if (node.type === "atrule" && node.name === "variant") {
+            const variants = (node.params || "default").trim()
+                .split(",")
+                .map(variant => variant.trim())
+                .filter(variant => !!variant);
+            getUtilityRules(node.nodes).forEach(rule => {
+                return rules.push({
+                    ...rule,
+                    variants: Array.from(new Set([...rule.variants, ...variants])),
+                });
             });
-        });
-        result.push(newRule);
-    }
-    // 2. compile nested rules
-    const nestedRules = nodes.filter(node => node.type === "rule" && node.selector);
-    nestedRules.forEach(node => {
-        compile(node.nodes, options).forEach(rule => {
-            result.push(replaceParentSelector(rule, node.selector));
-        });
-    });
-    return result;
-};
-
-// @description compile utility
-const compileFunctionalUtility = (rule, themeFields = {}, postcss) => {
-    const [utilityName, variants] = parseUtilityParams(rule.params);
-    // 1. get the values that we have to iterate
-    const context = new Map();
-    const declarationNodes = findDeclarationNodes(rule.nodes, node => node.value.includes("value(--"));
-    declarationNodes.forEach(node => {
-        const pattern = node.value.match(/value\((.*?)\)/)[1];
-        const patternRegex = globToRegex(pattern);
-        Object.keys(themeFields).forEach(key => {
-            if (patternRegex.test(key)) {
-                const field = themeFields[key];
-                if (!context.has(key) && (field.type === "global" || field.type === "static")) {
-                    context.set(key, {
-                        key: key.match(patternRegex)[1],
-                        value: field.type === "global" ? `var(${key})` : field.value,
-                        replace: `value(${pattern})`,
-                    });
-                }
+        }
+        // 2. basic utility rule node --> parse the selector and properties
+        else if (node.type === "rule" && !!node.selector && node.nodes.length > 0) {
+            // 2.1. get declarations defined on this rule
+            const declarations = node.nodes.filter(item => item.type === "decl");
+            if (declarations.length > 0) {
+                rules.push({
+                    selector: node.selector.trim(),
+                    variants: ["default"],
+                    properties: declarations.map(item => ({
+                        prop: item.prop.trim(),
+                        value: item.value.trim(),
+                    })),
+                });
             }
-        });
-    });
-    // 2. insert a single item to make sure that the utility is generated once
-    if (context.size === 0) {
-        context.set("default", {key: "", value: "", replace: ""});
-    }
-    // 3. get breakpoints from global variables
-    const breakpoints = {}, breakpointRegex = globToRegex("--breakpoint-*");
-    Object.keys(themeFields).forEach(key => {
-        if (breakpointRegex.test(key)) {
-            breakpoints[key.match(breakpointRegex)[1]] = themeFields[key].value;
+            // 2.2. nested rules? convert them into a flat list of rules
+            const nestedRules = node.nodes.filter(item => item.type === "rule" || item.type === "atrule");
+            getUtilityRules(nestedRules).forEach(nestedRule => {
+                rules.push({
+                    ...nestedRule,
+                    selector: nestedRule.selector.replace(/&/g, node.selector.trim()),
+                });
+            });
         }
     });
-    // 4. generate utilities classes
-    const utilityRules = variants.map(variant => {
-        return Array.from(context.values()).map(ctx => {
-            const selector = utilityName.replace("*", ctx.key);
-            const compileOptions = {
-                postcss: postcss,
-                formatValue: value => {
-                    return value.replaceAll(ctx.replace, ctx.value).replace(/value\((.*?)\)/g, (match, p1) => {
-                        if (themeFields[p1]) {
-                            return themeFields[p1].type === "global" ? `var(${p1})` : themeFields[p1].value;
-                        }
-                        return match;
-                    });
-                },
-            };
-            return compile(rule.nodes, compileOptions).map(utilityRule => {
-                // 1. default variant
-                if (variant === "default") {
-                    return replaceParentSelector(utilityRule, "." + selector);
-                }
-                // 2. responsive variant
-                else if (variant === "responsive") {
+    return rules;
+};
+
+// @description compile a utility rule into postcss rules
+// @param {string} selector - selector to compile
+// @param {Array} properties - properties to compile
+// @param {object} ctx - context for the utility rule
+// @param {Array} theme - theme object to use for compilation
+// @param {object} postcss - postcss instance to use for compilation
+const compile = (selector, properties, ctx, theme, postcss) => {
+    const rule = new postcss.Rule({selector: selector});
+    properties.forEach(property => {
+        rule.append({
+            prop: property.prop,
+            value: property.value.replaceAll(ctx.replace, ctx.value).replace(/value\((.*?)\)/g, (match, p1) => {
+                const themeItem = theme.find(themeItem => themeItem.key === p1);
+                return themeItem ? `var(${p1})` : match;
+            }),
+        });
+    });
+    return rule;
+};
+
+// @description get the context for a utility rule
+// @param {object} rule - utility rule to get the context for
+// @param {Array} theme - theme object to use for context
+const getUtilityContext = (rule, theme) => {
+    const context = new Map();
+    // 1. if the rule selector includes an '*', we have a dynamic utility rule
+    if (rule.selector.includes("*")) {
+        rule.properties.forEach(property => {
+            if (property.value.includes("value(--")) {
+                const pattern = property.value.match(/value\((.*?)\)/)[1];
+                const patternRegex = globToRegex(pattern);
+                theme.forEach(item => {
+                    if (patternRegex.test(item.key) && !context.has(item.key)) {
+                        context.set(item.key, {
+                            key: item.key.match(patternRegex)[1],
+                            value: `var(${item.key})`,
+                            replace: `value(${pattern})`,
+                        });
+                    }
+                });
+            }
+        });
+    }
+    // 2. insert a single item to make sure that the utility is generated once
+    else {
+        context.set("default", {key: "", value: "", replace: ""});
+    }
+    // 3. return the context as a simple array
+    return Array.from(context.values());
+};
+
+// @description get breakpoints in provided theme object
+const getBreakpoints = (theme, breakpoints = {}) => {
+    const breakpointRegex = globToRegex("--breakpoint-*");
+    theme.forEach(item => {
+        const match = item.key.match(breakpointRegex);
+        if (match) {
+            breakpoints[match[1]] = item.value;
+        }
+    });
+    return breakpoints;
+};
+
+// @description compile utility into postcss rules
+// @param {object} utility - utility object to compile
+// @param {object} theme - theme object to use for compilation
+// @param {object} postcss - postcss instance to use for compilation
+export const compileUtility = (utility, theme = {}, postcss) => {
+    const breakpoints = getBreakpoints(theme);
+    return utility.rules.map(rule => {
+        return rule.variants.map(variant => {
+            return getUtilityContext(rule, theme).map(ctx => {
+                const selector = rule.selector.replace("*", ctx.key);
+                // responsive variant
+                if (variant === "responsive") {
                     return Object.keys(breakpoints).map(key => {
                         const mediaRule = new postcss.AtRule({
                             name: "media",
                             params: `screen and (min-width: ${breakpoints[key]})`,
                         });
-                        mediaRule.append(replaceParentSelector(utilityRule.clone(), `.${key}\\:${selector}`));
+                        mediaRule.append(compile(`.${key}\\:${selector}`, rule.properties, ctx, theme, postcss));
                         return mediaRule;
                     });
                 }
-                // 3: pseudo variant (hover, focus, etc.)
-                else if (variant) {
-                    return replaceParentSelector(utilityRule, getPseudoSelector(variant, selector));
-                }
+                // pseudo variant or default variant
+                return compile(getSelector(variant, selector), rule.properties, ctx, theme, postcss);
             }).flat();
         }).flat();
     }).flat();
-    // return generated utility
+};
+
+// @description parse theme rule
+// @param {object} rule - theme rule
+// @return {Array} theme - parsed theme variables
+export const parseTheme = (rule, theme = []) => {
+    (rule.nodes || []).forEach(declaration => {
+        if (declaration.type === "decl" && declaration.prop.startsWith("--")) {
+            theme.push({
+                type: "global",
+                key: declaration.prop.trim(),
+                value: declaration.value.trim(),
+            });
+        }
+    });
+    return theme;
+};
+
+// @description parse utility rule
+// @param {object} rule - utility rule
+// @return {object} parsed utility rule
+export const parseUtility = rule => {
+    const utilityVariants = new Set(["default"]);
+    const utiltyRules = getUtilityRules(rule.nodes);
+    // fill utility variants set with variants defined in rules
+    utiltyRules.forEach(utilityRule => {
+        utilityRule.variants.forEach(variant => {
+            utilityVariants.add(variant);
+        });
+    });
+    // return the parsed utility rule
     return {
-        name: utilityName,
-        variants: variants,
-        values: Array.from(context.values()),
-        declarations: rule.nodes.filter(node => node.type === "decl"),
-        rules: utilityRules,
+        name: (rule.params || "").trim(),
+        variants: Array.from(utilityVariants),
+        rules: utiltyRules,
     };
 };
 
 // @description plugin to generate lowcss styles
-const lowCssPlugin = (options = {}) => {
-    const globalThemeFields = {};
-    return {
-        postcssPlugin: "lowcss",
-        Once: (root, postcss) => {
-            const localThemeFields = {};
-            [...(root.nodes || [])].forEach(rule => {
-                // 1. check if the rule is a theme rule to extract the variables
-                if (rule.type === "atrule" && rule.name === "theme") {
-                    const rootRule = new postcss.Rule({selector: ":root"});
-                    (rule.nodes || []).forEach(declaration => {
-                        if (declaration.type === "decl") {
-                            const name = declaration.prop.trim();
-                            localThemeFields[name] = {
-                                type: rule.params || "global",
-                                key: declaration.prop.trim(),
-                                value: declaration.value.trim(),
-                            };
-                            // insert the css variable in the root rule?
-                            if (localThemeFields[name].type === "global") {
-                                rootRule.append({
-                                    prop: declaration.prop.trim(),
-                                    value: declaration.value.trim(),
-                                });
-                            }
-                            // execute the onThemeVariable listener
-                            if (typeof options?.onThemeVariable === "function") {
-                                options.onThemeVariable(localThemeFields[name], name);
-                            }
-                        }
+const lowCssPlugin = (options = {}, theme = new Map()) => ({
+    postcssPlugin: "lowcss",
+    Once: (root, postcss) => {
+        [...(root.nodes || [])].forEach(rule => {
+            // 1. check if the rule is a theme rule to extract the variables
+            if (rule.type === "atrule" && rule.name === "theme") {
+                const rootRule = new postcss.Rule({selector: ":root"});
+                parseTheme(rule).forEach(item => {
+                    theme.set(item.key, item);
+                    rootRule.append({
+                        prop: item.key,
+                        value: item.value,
                     });
-                    // add the root rule to the root
-                    if (rootRule.nodes.length > 0) {
-                        root.first.before(rootRule);
-                    }
-                    rule.remove();
+                });
+                // add the root rule to the root
+                if (rootRule.nodes.length > 0) {
+                    root.first.before(rootRule);
                 }
-                // 2. check if the rule is an utility rule to generate the utility classes
-                else if (rule.type === "atrule" && rule.name === "utility") {
-                    const themeFields = {...globalThemeFields, ...localThemeFields};
-                    const utility = compileFunctionalUtility(rule, themeFields, postcss);
-                    utility.rules.forEach(utilityRule => {
-                        rule.before(utilityRule);
-                    });
-                    // execute the onUtility listener
-                    if (typeof options?.onUtility === "function") {
-                        options.onUtility(utility, rule);
-                    }
-                    rule.remove();
-                }
-                // 3. check for comment rule
-                else if (rule.type === "comment" && !!rule.text) {
-                    if (typeof options?.onComment === "function") {
-                        options.onComment(rule.text.trim());
-                    }
-                }
-            });
-            // 3. merge the local theme fields with the global theme fields
-            Object.keys(localThemeFields).forEach(key => {
-                if (localThemeFields[key].type === "global") {
-                    globalThemeFields[key] = localThemeFields[key]; // save in the global theme fields
-                }
-            });
-        },
-    };
-};
+                rule.remove();
+            }
+            // 2. check if the rule is an utility rule to generate the utility classes
+            else if (rule.type === "atrule" && rule.name === "utility") {
+                const utility = parseUtility(rule);
+                const utilityRules = compileUtility(utility, Array.from(theme.values()), postcss);
+                utilityRules.forEach(utilityRule => {
+                    rule.before(utilityRule);
+                });
+                rule.remove();
+            }
+        });
+    },
+});
 
 // mark the plugin as a postcss plugin
 lowCssPlugin.postcss = true;

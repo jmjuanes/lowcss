@@ -257,6 +257,13 @@
     --container-8xl: 88rem;
     --container-9xl: 96rem;
 
+    --z-index-0: 0;
+    --z-index-10: 10;
+    --z-index-20: 20;
+    --z-index-30: 30;
+    --z-index-40: 40;
+    --z-index-50: 50;
+
     --animate-bounce: bounce 1s infinite;
     --animate-fadein: fadein ease 1s;
     --animate-fadeout: fadeout ease 1s;
