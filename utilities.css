@@ -1444,3 +1444,12 @@
         filter: contrast(value(--contrast-*));
     }
 }
+
+/* @description utilities to set the filter (saturation) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility saturate {
+    saturate-* {
+        filter: saturate(value(--saturate-*));
+    }
+}
