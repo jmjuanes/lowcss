@@ -1417,3 +1417,12 @@
         vertical-align: text-bottom;
     }
 }
+
+/* @description utilities to set the filter (blur) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility blur {
+    blur-* {
+        filter: blur(value(--blur-*));
+    }
+}
