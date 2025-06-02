@@ -8,7 +8,7 @@
 }
 
 /* @description Utilities to set the background-clip property of the element. It defines the area within which the background is painted. */
-/* @cateogry background */
+/* @category background */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip */
 @utility background-clip {
     bg-border {
