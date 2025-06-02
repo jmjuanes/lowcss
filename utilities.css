@@ -29,7 +29,7 @@
 /* @category background */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
 @utility background-color {
-    @variant default,group-hover,hover,focus,odd,even {
+    @variant default,group-hover,group-focus,hover,focus,focus-within,odd,even {
         bg-transparent {
             background-color: transparent;
         }
@@ -94,7 +94,7 @@
 /* @category border */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/border-color */
 @utility border-color {
-    @variant default,hover,focus {
+    @variant default,hover,focus,focus-within {
         border-transparent {
             border-color: transparent;
         }
@@ -150,7 +150,7 @@
 /* @description Utilities to set the outline-color property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/outline-color */
 @utility outline-color {
-    @variant default,hover,focus {
+    @variant default,hover,focus,focus-within {
         outline-transparent {
             outline-color: transparent;
         }
@@ -203,8 +203,10 @@
 /* @description Utilities to set the box-shadow property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow */
 @utility shadow {
-    shadow-* {
-        box-shadow: value(--shadow-*);
+    @variant default,hover,focus {
+        shadow-* {
+            box-shadow: value(--shadow-*);
+        }
     }
 }
 
@@ -212,7 +214,7 @@
 /* @description Utilities to set the opacity property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/opacity */
 @utility opacity {
-    @variant default,responsive,hover,focus {
+    @variant default,responsive,group-hover,group-focus,hover,focus,focus-within {
         opacity-* {
             opacity: value(--opacity-*);
         }
@@ -905,7 +907,7 @@
 /* @description Utilities to set the display property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/display */
 @utility display {
-    @variant default,responsive,hover,focus,group-hover,group-focus,group-focus-within {
+    @variant default,responsive,hover,focus,focus-within,group-hover,group-focus,group-focus-within {
         hidden {
             display: none;
         }
@@ -1063,7 +1065,7 @@
 /* @description Utilities to set the margin property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/margin */
 @utility margin {
-    @variant default,responsive,first,last {
+    @variant default,responsive {
         m-* {
             margin: value(--spacing-*);
         }
@@ -1079,12 +1081,6 @@
             margin-top: value(--spacing-*);
             margin-bottom: value(--spacing-*);
         }
-        mt-* {
-            margin-top: value(--spacing-*);
-        }
-        mb-* {
-            margin-bottom: value(--spacing-*);
-        }
         ml-* {
             margin-left: value(--spacing-*);
         }
@@ -1098,13 +1094,21 @@
             margin-right: auto;
         }
     }
+    @variant default,responsive,first,last {
+        mt-* {
+            margin-top: value(--spacing-*);
+        }
+        mb-* {
+            margin-bottom: value(--spacing-*);
+        }
+    }
 }
 
 /* @category spacing */
 /* @description Utilities to set the padding property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/padding */
 @utility padding {
-    @variant default,responsive,first,last {
+    @variant default,responsive {
         p-* {
             padding: value(--spacing-*);
         }
@@ -1116,17 +1120,19 @@
             padding-top: value(--spacing-*);
             padding-bottom: value(--spacing-*);
         }
-        pb-* {
-            padding-bottom: value(--spacing-*);
-        }
-        pt-* {
-            padding-top: value(--spacing-*);
-        }
         pl-* {
             padding-left: value(--spacing-*);
         }
         pr-* {
             padding-right: value(--spacing-*);
+        }
+    }
+    @variant default,responsive,first,last {
+        pt-* {
+            padding-top: value(--spacing-*);
+        }
+        pb-* {
+            padding-bottom: value(--spacing-*);
         }
     }
 }
@@ -1165,7 +1171,7 @@
 /* @description Utilities to set the font-weight property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
 @utility font-weight {
-    @variant default,responsive,hover,focus {
+    @variant default,responsive,hover,focus,focus-within {
         font-* {
             font-weight: value(--font-weight-*);
         }
@@ -1239,7 +1245,7 @@
 /* @description Utilities to set the text color of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/color */
 @utility text-color {
-    @variant default,hover,focus {
+    @variant default,hover,focus,focus-within {
         text-transparent {
             color: transparent;
         }
@@ -1256,7 +1262,7 @@
 /* @description Utilities to set the text-decoration-line property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
 @utility text-decoration-line {
-    @variant default,hover,focus {
+    @variant default,hover {
         strike {
             text-decoration-line: line-through;
         }
@@ -1273,7 +1279,7 @@
 /* @description Utilities to set the text-decoration-color property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color */
 @utility text-decoration-color {
-    @variant default,hover,focus {
+    @variant default,hover {
         decoration-transparent {
             text-decoration-color: transparent;
         }
@@ -1290,7 +1296,7 @@
 /* @description Utilities to set the text-decoration-style property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style */
 @utility text-decoration-style {
-    @variant default,hover,focus {
+    @variant default,hover {
         decoration-solid {
             text-decoration-style: solid;
         }
@@ -1313,7 +1319,7 @@
 /* @description Utilities to set the text-decoration-thickness property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness */
 @utility text-decoration-thickness {
-    @variant default,hover,focus {
+    @variant default,hover {
         decoration-auto {
             text-decoration-thickness: auto;
         }
@@ -1339,7 +1345,7 @@
 /* @description Utilities to set the text-underline-offset property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset */
 @utility text-underline-offset {
-    @variant default,hover,focus {
+    @variant default,hover {
         underline-offset-auto {
             text-underline-offset: auto;
         }
@@ -1365,13 +1371,11 @@
 /* @category typography */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow */
 @utility text-overflow {
-    @variant default,hover,focus {
-        text-ellipsis {
-            text-overflow: ellipsis;
-        }
-        text-clip {
-            text-overflow: clip;
-        }
+    text-ellipsis {
+        text-overflow: ellipsis;
+    }
+    text-clip {
+        text-overflow: clip;
     }
 }
 
@@ -1379,16 +1383,14 @@
 /* @category typography */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform */
 @utility text-transform {
-    @variant default,hover,focus {
-        capitalize {
-            text-transform: capitalize;
-        }
-        uppercase {
-            text-transform: uppercase;
-        }
-        lowercase {
-            text-transform: lowercase;
-        }
+    capitalize {
+        text-transform: capitalize;
+    }
+    uppercase {
+        text-transform: uppercase;
+    }
+    lowercase {
+        text-transform: lowercase;
     }
 }
 
@@ -1413,5 +1415,41 @@
     }
     align-text-bottom {
         vertical-align: text-bottom;
+    }
+}
+
+/* @description utilities to set the filter (blur) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility blur {
+    blur-* {
+        filter: blur(value(--blur-*));
+    }
+}
+
+/* @description utilities to set the filter (brightness) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility brightness {
+    brightness-* {
+        filter: brightness(value(--brightness-*));
+    }
+}
+
+/* @description utilities to set the filter (contrast) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility contrast {
+    contrast-* {
+        filter: contrast(value(--contrast-*));
+    }
+}
+
+/* @description utilities to set the filter (saturation) property of the element. */
+/* @category filters */
+/* @url https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
+@utility saturate {
+    saturate-* {
+        filter: saturate(value(--saturate-*));
     }
 }
