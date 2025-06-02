@@ -270,6 +270,32 @@
     --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     --animate-spin: spin 1s linear infinite;
+
+    --blur-0: 0;
+    --blur-sm: 4px;
+    --blur-md: 8px;
+    --blur-lg: 12px;
+    --blur-xl: 16px;
+    --blur-2xl: 24px;
+    --blur-3xl: 40px;
+    
+    --brightness-0: 0;
+    --brightness-50: 0.5;
+    --brightness-100: 1;
+    --brightness-150: 1.5;
+    --brightness-200: 2;
+
+    --contrast-0: 0;
+    --contrast-50: 0.5;
+    --contrast-100: 1;
+    --contrast-150: 1.5;
+    --contrast-200: 2;
+
+    --saturate-0: 0;
+    --saturate-50: 0.5;
+    --saturate-100: 1;
+    --saturate-150: 1.5;
+    --saturate-200: 2;
 }
 
 @keyframes bounce {
