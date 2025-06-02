@@ -97,6 +97,18 @@ press({
                 const u = low.utilities.find(u => u.name === params.args[0]);
                 return u ? params.fn(u) : "";
             },
+            withResponsiveVariants: params => {
+                return (params.args[0] || [])
+                    .filter(v => v === "responsive" || v === "print")
+                    .map(v => params.fn(v))
+                    .join("");
+            },
+            withPseudoVariants: params => {
+                return (params.args[0] || [])
+                    .filter(v => !["default", "responsive", "print"].includes(v))
+                    .map(v => params.fn(v))
+                    .join("");
+            },
         },
         functions: {
             icon: params => renderIcon(params.opt.icon),

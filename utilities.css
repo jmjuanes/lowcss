@@ -907,7 +907,7 @@
 /* @description Utilities to set the display property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/display */
 @utility display {
-    @variant default,responsive,hover,focus,focus-within,group-hover,group-focus,group-focus-within {
+    @variant default,responsive,print,hover,focus,focus-within,group-hover,group-focus,group-focus-within {
         hidden {
             display: none;
         }

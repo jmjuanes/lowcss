@@ -177,6 +177,15 @@ export const compileUtility = (utility, theme = {}, postcss) => {
                         return mediaRule;
                     });
                 }
+                // print variant
+                if (variant === "print") {
+                    const printRule = new postcss.AtRule({
+                        name: "media",
+                        params: "print",
+                    });
+                    printRule.append(compile(`.print\\:${selector}`, rule.properties, ctx, theme, postcss));
+                    return printRule;
+                }
                 // pseudo variant or default variant
                 return compile(getSelector(variant, selector), rule.properties, ctx, theme, postcss);
             }).flat();

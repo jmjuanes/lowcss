@@ -20,11 +20,19 @@
     </div>
     {{/if}}
     <div class="mb-4 flex gap-2 flex-wrap">
-        {{#each variants}}
         <div class="py-1 px-2 bg-gray-900 text-white text-xs rounded-lg">
-            <span class="font-bold">{{.}}</span>
+            <span class="font-bold">default</span>
         </div>
-        {{/each}}
+        {{#withResponsiveVariants variants}}
+        <div class="py-1 px-2 bg-gray-700 text-white text-xs rounded-lg">
+            <span>media: <span class="font-bold">{{.}}</span></span>
+        </div>
+        {{/withResponsiveVariants}}
+        {{#withPseudoVariants variants}}
+        <div class="py-1 px-2 bg-gray-200 text-xs rounded-lg">
+            <span>pseudo: <span class="font-bold">{{.}}</span></span>
+        </div>
+        {{/withPseudoVariants}}
     </div>
     <table class="w-full mt-0 mb-0 text-sm">
         <thead>
