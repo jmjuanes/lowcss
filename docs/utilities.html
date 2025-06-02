@@ -33,13 +33,13 @@
                 <td class="p-3 font-bold text-sm">Properties</td>
             </tr>
         </thead>
-        {{#each values}}
+        {{#each rules}}
         <tr class="border-b-1 border-gray-200 text-xs">
             <td class="p-3 font-mono font-bold">
                 {{#inlineMarkdown}}`{{selector}}`{{/inlineMarkdown}}
             </td>
             <td class="p-3 font-mono">
-                {{#each nodes}}
+                {{#each properties}}
                 <div class="mb-1 leading-relaxed">
                     {{#inlineMarkdown}}`{{prop}}: {{value}}`{{/inlineMarkdown}}
                 </div>
