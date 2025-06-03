@@ -32,8 +32,7 @@
         "prebuild:docs": "rm -rf www && mkdir www",
         "docs": "yarn run build:docs",
         "serve": "serve -p 8080 www",
-        "site": "yarn build:docs",
-        "pack": "zip lowcss.zip low.*"
+        "site": "yarn build:docs"
     },
     "keywords": [
         "css",
@@ -48,7 +47,6 @@
         "README.md",
         "LICENSE",
         "low.css",
-        "low.json",
         "index.css",
         "theme.css",
         "utilities.css",
@@ -62,9 +60,9 @@
         "csso": "^5.0.5",
         "highlight.js": "^11.11.1",
         "lz-string": "^1.5.0",
-        "mikel": "^0.20.2",
-        "mikel-markdown": "0.20.2",
-        "mikel-press": "^0.20.2",
+        "mikel": "^0.21.0",
+        "mikel-markdown": "0.21.0",
+        "mikel-press": "^0.21.0",
         "postcss": "^8.5.3",
         "postcss-import": "^16.1.0",
         "serve": "^14.2.4"
