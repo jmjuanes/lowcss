@@ -1,0 +1,42 @@
+---
+{
+    "title": "Colors",
+    "description": "The default color palette of LowCSS, providing a range of colors for styling your web projects.",
+    "permalink": "/colors.html",
+    "category": "basics",
+    "tableOfContents": [
+        {"text": "Introduction", "link": "#introduction"},
+        {"text": "Usage", "link": "#usage"},
+        {"text": "Color Palette", "link": "#color-palette"}
+    ]
+}
+---
+{{>>layout-sidebar.html}}
+
+{{>prose-heading.html level="h2" text="Introduction" id="introduction"}}
+
+{{>>prose-paragraph.html}}
+LowCSS provides a default color palette that includes a range of colors for use in your web projects. 
+This palette is designed to be versatile and easy to use, allowing you to create visually appealing designs with minimal effort.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Color Palette" id="color-palette"}}
+
+
+{{>>prose-paragraph.html}}
+{{/prose-paragraph.html}}
+
+<div class="">
+    {{>prose-heading.html level="h3" text=name}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {{#each shades}}
+        <div class="">
+            <div class="h-20 rounded-lg mb-1" style="background-color: {{value}};"></div>
+            <div class="font-medium text-sm">{{key}}</div>
+            <div class="text-gray-500 text-xs">{{value}}</div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{/layout-sidebar.html}}

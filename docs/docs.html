@@ -1,268 +1,48 @@
 ---
 {
-    "title": "Getting Started",
-    "description": "This documentation provides installation instructions and basic usage guidelines.",
+    "title": "Documentation",
+    "description": "A comprehensive guide to LowCSS, including installation, usage, default theme, and utilities cheatsheet.",
     "permalink": "/docs.html",
-    "tableOfContents": [
+    "sections": [
         {
-            "text": "Installation",
-            "link": "#installation",
-            "items": [
-                {"text": "Using a Package Manager", "link": "#using-a-package-manager"},
-                {"text": "Using a Hosted Version", "link": "#using-a-hosted-version"}
-            ]
+            "title": "Basics",
+            "description": "Learn the fundamentals of LowCSS, including installation and basic usage.",
+            "pages": ["/getting-started.html", "/reset.html", "/colors.html", "/theme.html", "/utilities.html"]
         },
         {
-            "text": "Usage",
-            "link": "#usage",
-            "items": [
-                {"text": "Basic Usage", "link": "#basic-usage"},
-                {"text": "Media queries", "link": "#media-queries"},
-                {"text": "State modifiers", "link": "#state-modifiers"}
-            ]
+            "title": "Addons",
+            "description": "Explore additional features and modules that enhance LowCSS functionality.",
+            "pages": ["/addons/forms.html"]
         }
     ]
 }
 ---
-{{>>layout-sidebar.html}}
+{{>>layout-default.html}}
 
-{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+{{>section.html title=page.attributes.title description=page.attributes.description}}
 
-{{>prose-heading.html level="h2" text="Using a Package Manager" id="using-a-package-manager"}}
-
-{{>>prose-paragraph.html}}
-To get started with LowCSS, you can install the package using either **yarn** or **npm**. Follow the instructions below based on your preferred package manager:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="bash"}}
-## Installation using yarn
-$ yarn add lowcss
-
-## Installation usin npm
-$ npm install lowcss
-{{/prose-code.html}}
-
-{{>>prose-paragraph.html}}
-LowCSS provides precompiled CSS files. To include them in your project, copy the file `low.css` to your project's assets or CSS directory.
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="bash"}}
-$ cp ./node_modules/lowcss/low.css ./assets/
-{{/prose-code.html}}
-
-{{>>prose-paragraph.html}}
-Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<link rel="stylesheet" href="assets/low.css">
-{{/prose-code.html}}
-
-{{>prose-heading.html level="h2" text="Using a Hosted Version" id="using-a-hosted-version"}}
-
-{{>>prose-paragraph.html}}
-You can also use the hosted version of LowCSS from a Content Delivery Network (CDN). Simply include the following `<link>` tag in the `<head>` section of your HTML file:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<link rel="stylesheet" href="https://unpkg.com/lowcss/low.css">
-{{/prose-code.html}}
-
-{{>prose-separator.html}}
-
-{{>prose-heading.html level="h1" text="Usage" id="usage"}}
-
-{{>>prose-paragraph.html}}
-LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). 
-This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
-{{/prose-paragraph.html}}
-
-{{>prose-heading.html level="h2" text="Basic Usage" id="basic-usage"}}
-
-{{>>prose-paragraph.html}}
-The basic naming pattern for our utility classes is as follows:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="text"}}
-{property}-{value}
-{{/prose-code.html}}
-
-<ul class="list-inside mb-6">
-    <li class="mb-2 leading-relaxed">
-        {{#inlineMarkdown}}`{property}`: specifies the CSS property that the utility class modifies. Examples of properties include `bg` for background, `text` for text-related styles, `p` for padding, `m` for margin, and so on. This component is not always present and depends on the utility class.{{/inlineMarkdown}}
-    </li>
-    <li class="mb-2 leading-relaxed">
-        {{#inlineMarkdown}}`{value}`: indicates the specific value or variation for the CSS property.{{/inlineMarkdown}}
-    </li>
-</ul>
-
-<div class="flex items-center justify-center mb-2 border-1 border-gray-200 p-8 rounded-lg">
-    <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Button</button>
-</div>
-
-{{>>prose-code.html language="html"}}
-<button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 [..]">Button</button>
-{{/prose-code.html}}
-
-{{>prose-heading.html level="h2" text="Media queries" id="media-queries"}}
-
-{{>>prose-paragraph.html}}
-Media queries are a powerful tool for creating responsive designs. LowCSS provides a simple and consistent way to apply styles based on different media conditions.
-{{/prose-paragraph.html}}
-
-{{>prose-heading.html level="h3" text="Responsive Design"}}
-
-{{>>prose-paragraph.html}}
-LowCSS makes it easy to create responsive designs using the following utility syntax: 
-
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="text"}}
-{breakpoint}:{property}-{value}
-{{/prose-code.html}}
-
-<ul class="list-inside mb-6">
-    <li class="mb-2 leading-relaxed">
-        {{#inlineMarkdown}}`{property}`, and `{value}` follow the same structure as mentioned above.{{/inlineMarkdown}}
-    </li>
-    <li class="mb-2 leading-relaxed">
-        {{#inlineMarkdown}}`{breakpoint}`: represents a specific breakpoint where the utility class should apply.{{/inlineMarkdown}}
-    </li>
-</ul>
-
-{{>>prose-paragraph.html}}
-The following breakpoints are defined by default in LowCSS:
-{{/prose-paragraph.html}}
-
-{{#markdown}}
-
-| Breakpoint | Name | Minimum width | Rule |
-|------------|------|---------------|------|
-| Small | `sm` | `640px` | `@media (min-width: 640px) { ... }` |
-| Medium | `md` | `768px` | `@media (min-width: 768px) { ... }` |
-| Large | `lg` | `1024px` | `@media (min-width: 1024px) { ... }` |
-| Extra Large | `xl` | `1280px` | `@media (min-width: 1280px) { ... }` |
-
-{{/markdown}}
-
-{{>>prose-paragraph.html}}
-You can apply different styles at different breakpoints:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<div class="hidden md:block [...]">
-    Content
-</div>
-{{/prose-code.html}}
-
-{{>prose-heading.html level="h3" text="Print Media"}}
-
-{{>>prose-paragraph.html}}
-Use the `print` modifier to apply the provided class only when the document is begin printed.
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<div class="hidden print:block">
-    This block is only displayed when the document is begin printed.
-</div>
-{{/prose-code.html}}
-
-{{>prose-heading.html level="h2" text="State modifiers" id="state-modifiers"}}
-
-{{>>prose-paragraph.html}}
-LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="text"}}
-{modifier}:{property}-{value}
-{{/prose-code.html}}
-
-{{>prose-heading.html level="h3" text="Pseudo modifiers"}}
-
-{{>>prose-paragraph.html}}
-Pseudo modifiers allows you to conditionally apply an utility class based on the pseudo state, such as `hover` or `focus`.
-{{/prose-paragraph.html}}
-
-<div class="flex items-center justify-center mb-2 border-1 border-gray-200 p-8 rounded-lg">
-    <button class="bg-blue-500 hover:bg-blue-800 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Hover me</button>
-</div>
-
-{{>>prose-code.html language="html"}}
-<button class="bg-blue-500 hover:bg-blue-800 [...]">Hover me</button>
-{{/prose-code.html}}
-
-{{>>prose-paragraph.html}}
-This is the list of available pseudo modifiers:
-{{/prose-paragraph.html}}
-
-{{#markdown}}
-
-| Modifier | Description |
-|----------|-------------|
-| `hover` | Applied when the user hovers the element. |
-| `focus` | Applied to the element when it has focus. |
-| `focus-within` | Applied to the element when it or one of its descendants has focus. |
-| `checked` | Applied to the element when it is checked (only for radio or checkbox). |
-| `disabled` | Applied to the element when it is disabled. |
-| `first` | Applied to the element when it is the first child. |
-| `last` | Applied to the element when it is the last child. |
-| `odd` | Applied to the whose numeric position in a series of siblings is odd. |
-| `even` | Applied to the whose numeric position in a series of siblings is even. |
-
-{{/markdown}}
-
-{{>prose-heading.html level="h3" text="Style based on a parent state"}}
-
-{{>>prose-paragraph.html}}
-You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use one of the `group-*` modifiers to style the target element.
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<div class="group [...]">
-    <!-- button content -->
-    <div class="hidden group-hover:block [...]">
-        <!-- dropdown items -->
+<div class="">
+    {{#each page.attributes.sections}}
+    <div class="mb-20">
+        <h1 class="leading-tight text-4xl font-extrabold text-gray-950 mb-2">{{title}}</h1>
+        <div class="leading-relaxed max-w-md mb-12">{{description}}</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {{#each pages}}
+            {{#find @root.site.pages .}}
+            <a href="{{url}}" class="block group mb-4">
+                <h2 class="leading-tight text-2xl font-extrabold text-gray-950 mb-3 group-hover:underline">
+                    {{attributes.title}}
+                </h2>
+                <div class="leading-relaxed">
+                    {{attributes.description}}
+                </div>
+            </a>
+            {{/find}}
+            {{/each}}
+        </div>
     </div>
+    {{/each}}
 </div>
-{{/prose-code.html}}
 
-{{>>prose-paragraph.html}}
-This is a list of all `group-*` modifiers available:
-{{/prose-paragraph.html}}
 
-{{#markdown}}
-| Modifier | Description |
-|----------|-------------|
-| `group-hover` | Applied when the parent element is hovered. |
-| `group-focus` | Applied when the parent element is focussed. |
-| `group-focus-within` | Applied when the parent element or one of its descendants are focussed. |
-
-{{/markdown}}
-
-<!--
-{{>prose-heading.html level="h3" text="Style based on a sibling state"}}
-
-{{>>prose-paragraph.html}}
-You can conditionally style an element based on the state of a sibling element. Add a `peer` class to the sibling element, and use any of the `peer-*` modifiers to style the target element.
-{{/prose-paragraph.html}}
-
-{{>>prose-code.html language="html"}}
-<input type="checkbox" class="peer [...]" >
-<label class="hidden peer-checked:block [...]">
-    You checked it!
-</label>
-{{/prose-code.html}}
-
-{{>>prose-paragraph.html}}
-This is a list of all `peer-*` modifiers available:
-{{/prose-paragraph.html}}
-
-| Modifier | Description |
-|----------|-------------|
-| `peer-hover` | Applied when the sibling element is hovered. |
-| `peer-focus` | Applied when the sibling element is focussed. |
-| `peer-checked` | Applied when the sibling element is checked. |
-| `peer-active` | Applied when the sibling element has an <b>active</b> state. |
--->
-
-{{/layout-sidebar.html}}
+{{/layout-default.html}}
