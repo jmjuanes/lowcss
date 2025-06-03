@@ -84,11 +84,16 @@ press({
         breakpoints: low.breakpoints,
         theme: low.theme,
         utilities: low.utilities,
+        addons: low.addons,
     },
     examples: getExamples(),
     ...websiteConfig,
     mikelOptions: {
         helpers: {
+            find: params => {
+                const item = params?.args?.[0].find(i => i.path === params.args[1]);
+                return item ? params.fn(item) : "";
+            },
             withPage: params => {
                 const p = params?.data?.site?.pages?.find(p => p.path === params.args[0]);
                 return p ? params.fn(p) : "";
