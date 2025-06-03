@@ -29,7 +29,7 @@
 /* @category background */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/background-color */
 @utility background-color {
-    @variant default,group-hover,group-focus,hover,focus,focus-within,odd,even {
+    @variant default,hover,focus,focus-within,odd,even,group-hover {
         bg-transparent {
             background-color: transparent;
         }
@@ -1171,7 +1171,7 @@
 /* @description Utilities to set the font-weight property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight */
 @utility font-weight {
-    @variant default,responsive,hover,focus,focus-within {
+    @variant default,hover,group-hover {
         font-* {
             font-weight: value(--font-weight-*);
         }
@@ -1245,7 +1245,7 @@
 /* @description Utilities to set the text color of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/color */
 @utility text-color {
-    @variant default,hover,focus,focus-within {
+    @variant default,hover,focus,focus-within,group-hover {
         text-transparent {
             color: transparent;
         }
@@ -1262,7 +1262,7 @@
 /* @description Utilities to set the text-decoration-line property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line */
 @utility text-decoration-line {
-    @variant default,hover {
+    @variant default,hover,group-hover {
         strike {
             text-decoration-line: line-through;
         }
@@ -1279,7 +1279,7 @@
 /* @description Utilities to set the text-decoration-color property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-color */
 @utility text-decoration-color {
-    @variant default,hover {
+    @variant default,hover,group-hover {
         decoration-transparent {
             text-decoration-color: transparent;
         }
@@ -1296,7 +1296,7 @@
 /* @description Utilities to set the text-decoration-style property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style */
 @utility text-decoration-style {
-    @variant default,hover {
+    @variant default,hover,group-hover {
         decoration-solid {
             text-decoration-style: solid;
         }
@@ -1319,7 +1319,7 @@
 /* @description Utilities to set the text-decoration-thickness property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness */
 @utility text-decoration-thickness {
-    @variant default,hover {
+    @variant default,hover,group-hover {
         decoration-auto {
             text-decoration-thickness: auto;
         }
@@ -1345,7 +1345,7 @@
 /* @description Utilities to set the text-underline-offset property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-offset */
 @utility text-underline-offset {
-    @variant default,hover {
+    @variant default,hover,group-hover {
         underline-offset-auto {
             text-underline-offset: auto;
         }
