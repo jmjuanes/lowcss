@@ -1,0 +1,98 @@
+/* reset styles in common form elements */
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="tel"],
+[type="time"],
+[type="week"],
+select,
+textarea {
+    appearance: none;
+    background-color: #fff;
+    border-color: currentColor;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+}
+
+/* reset placeholder style in input and textare elements */
+input::placeholder,
+textarea::placeholder {
+    color: currentColor;
+    opacity: 0.5;
+}
+
+/* reset checkbox and radio inputs */
+[type="checkbox"],
+[type="radio"] {
+    appearance: none;
+    background-origin: border-box;
+    border-color: currentColor;
+    border-style: solid;
+    border-width: 1px;
+    display: inline-block;
+    height: 1rem;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    vertical-align: middle;
+    width: 1rem;
+}
+[type="radio"] {
+    border-radius: 999px;
+}
+
+/* reset checked and indeterminate states in checkbox and radio inputs */
+[type="checkbox"]:checked,
+[type="checkbox"]:indeterminate,
+[type="radio"]:checked {
+    background-color: currentColor;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border-color: transparent;
+}
+[type="checkbox"]:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' stroke='%23fff' d='M4,8l3,3l5,-6'/%3e%3c/svg%3e");
+}
+[type="checkbox"]:indeterminate {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' stroke='%23fff' d='M4,8h8'/%3e%3c/svg%3e");
+}
+[type="radio"]:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3ccircle cx='8' cy='8' r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+/* reset range input element */
+[type="range"] {
+    border-radius: 1rem;
+    display: block;
+    margin: 0;
+    min-width: 0;
+    outline: none;
+}
+[type="range"]:-webkit-slider-thumb,
+[type="range"]:-moz-range-thumb {
+    background-color: currentColor;
+    border: none;
+    border-radius: 999px;
+    height: 1rem;
+    width: 1rem;
+}
+
+/* display a custom caret icon in select element */
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' stroke='%236c757d' d='M6,8l4,4l4,-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 16px 12px;
+    padding-right: 2.5rem;
+}

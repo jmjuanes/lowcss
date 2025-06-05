@@ -64,18 +64,6 @@
     --color-green-900: hsl(140, 55%, 10%);
     --color-green-950: hsl(140, 55%, 5%);
 
-    --color-teal-50:  hsl(170, 80%, 96%);
-    --color-teal-100: hsl(170, 75%, 91%);
-    --color-teal-200: hsl(170, 70%, 80%);
-    --color-teal-300: hsl(170, 65%, 70%);
-    --color-teal-400: hsl(170, 60%, 60%);
-    --color-teal-500: hsl(170, 55%, 50%);
-    --color-teal-600: hsl(170, 55%, 40%);
-    --color-teal-700: hsl(170, 55%, 30%);
-    --color-teal-800: hsl(170, 55%, 20%);
-    --color-teal-900: hsl(170, 55%, 10%);
-    --color-teal-950: hsl(170, 55%, 5%);
-
     --color-blue-50:  hsl(210, 90%, 96%);
     --color-blue-100: hsl(210, 85%, 91%);
     --color-blue-200: hsl(210, 80%, 80%);

@@ -3,6 +3,7 @@
     "title": "Theme",
     "description": "Overview of LowCSS default theme variables, that includes colors, fonts, sizes, and more.",
     "permalink": "/theme.html",
+    "categories": ["basics"],
     "variables": [
         {"name": "--animate-*", "description": "Animation utilities like `animate-pulse`."},
         {"name": "--blur-*", "description": "Blur utilities like `blur-sm`."},
@@ -58,7 +59,7 @@
 LowCSS provides a default theme that includes a set of CSS variables. LowCSS uses a `@theme` directive to define these variables, which can be used to customize the appearance of your application.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="main.css" icon="file-code"}}
 @theme {
     --color-primary: #1d4ed8;
     --color-secondary: #f59e0b;
@@ -70,7 +71,7 @@ LowCSS provides a default theme that includes a set of CSS variables. LowCSS use
 These variables are used to generate the utility classes, so based on the previous example, you can use the following classes:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <div class="bg-primary text-secondary p-4">
     This div has a primary background and secondary text color.
 </div>
@@ -81,7 +82,7 @@ You can also use the `@theme` directive to define your own custom CSS variables,
 This allows you to create a consistent design system that can be easily maintained and updated.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="components.css" icon="file-code"}}
 .button {
     background-color: var(--color-primary);
     /* ... */

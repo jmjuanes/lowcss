@@ -1,0 +1,450 @@
+---
+{
+    "title": "Prose",
+    "description": "CSS for styling your markdown content, including typography, images, and code blocks.",
+    "permalink": "/addons/prose.html",
+    "categories": ["addons"],
+    "tableOfContents": [
+        {"text": "Introduction", "link": "#introduction"},
+        {"text": "Installation", "link": "#installation"},
+        {
+            "text": "Elements",
+            "link": "#elements",
+            "items": [
+                {"text": "Headings", "link": "#headings"},
+                {"text": "Paragraphs", "link": "#paragraphs"},
+                {"text": "Lists", "link": "#lists"},
+                {"text": "Links", "link": "#links"},
+                {"text": "Blockquotes", "link": "#blockquotes"},
+                {"text": "Tables", "link": "#tables"},
+                {"text": "Inline Code", "link": "#inline-code"}
+            ]
+        },
+        {
+            "text": "Customization",
+            "link": "#customization",
+            "items": [
+                {"text": "How to Customize", "link": "#how-to-customize"},
+                {"text": "Available Variables", "link": "#available-variables"}
+            ]
+        }
+    ]
+}
+---
+{{>>layout-sidebar.html}}
+
+{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+
+{{>>prose-paragraph.html}}
+LowCSS Prose is a set of CSS styles designed to enhance the appearance of markdown content. It provides a clean and readable typography system, making your text content visually appealing and easy to read.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <h1>The Universe of Typography</h1>
+    <p>
+        Typography is the art and technique of arranging type to make written language legible, 
+        readable, and appealing when displayed. The arrangement of type involves selecting typefaces, 
+        point sizes, line lengths, line-spacing, and letter-spacing.
+    </p>
+    <h2>The Fundamentals</h2>
+    <p>
+        Good typography relies on the <strong>visual contrast</strong> between different typefaces 
+        and sizes to create a <em>clear hierarchy</em> of information. It enhances the readability of 
+        your content and guides readers through the text.
+    </p>
+    <h3>Type Classification</h3>
+    <p>
+        Typography has evolved significantly over centuries. Modern type classifications include:
+    </p>
+    <ul>
+        <li>Serif fonts with small decorative flourishes</li>
+        <li>Sans-serif fonts with clean, minimal design</li>
+        <li>Monospace fonts where each character occupies the same width</li>
+        <li>Display fonts designed for headlines and decorative purposes</li>
+    </ul>
+    <h4>Selecting the Right Font</h4>
+    <p>When choosing a font, consider these factors:</p>
+    <ol>
+        <li>Readability at various sizes</li>
+        <li>Character and personality</li>
+        <li>Available weights and styles</li>
+        <li>Language support requirements</li>
+    </ol>
+    <blockquote>
+        <p>Typography is what language looks like. Good typography establishes a visual tone that influences how readers interpret content.</p>
+        <em>— Ellen Lupton, Graphic Designer</em>
+    </blockquote>
+    <p>
+        Learn more about typography in <a href="#">The Elements of Typographic Style</a> by Robert Bringhurst.
+    </p>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+
+{{>>prose-paragraph.html}}
+Install the LowCSS Prose by including the CSS file in your project. You can either download it from the [LowCSS repository]({{site.repository}}/blob/main/packages/lowcss-prose/index.css) or use a package manager like **npm** or **yarn**:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
+## Install using npm
+$ npm install lowcss-prose
+
+## Install using yarn
+$ yarn add lowcss-prose
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+After installation, import the CSS file into your project:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
+<link rel="stylesheet" href="node_modules/lowcss-prose/index.css">
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h1" text="Elements" id="elements"}}
+
+{{>prose-heading.html level="h2" text="Headings" id="headings"}}
+
+{{>>prose-paragraph.html}}
+The Prose module includes style for `<h1>`, `<h2>`, `<h3>`, and `<h4>` headings. 
+    It provides a consistent look across all heading levels, ensuring they are visually distinct and easy to read.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <h1>The Universe of Typography</h1>
+    <h2>The Fundamentals</h2>
+    <h3>Type Classification</h3>
+    <h4>Selecting the Right Font</h4>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Paragraphs" id="paragraphs"}}
+
+{{>>prose-paragraph.html}}
+The Prose module styles paragraphs with a clean and readable font. It ensures proper line height and spacing for 
+optimal readability, making your text content visually appealing.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <p>
+        Typography is the art and technique of arranging type to make written language legible,
+        readable, and appealing when displayed. The arrangement of type involves selecting typefaces,
+        point sizes, line lengths, line-spacing, and letter-spacing.
+    </p>
+    <p>
+        Good typography relies on the <strong>visual contrast</strong> between different typefaces
+        and sizes to create a <em>clear hierarchy</em> of information. It enhances the readability of
+        your content and guides readers through the text.
+    </p>
+</div> 
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Lists" id="lists"}}
+
+{{>>prose-paragraph.html}}
+The Prose module styles both ordered and unordered lists, providing consistent spacing and bullet styles.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <h3>Unordered List</h3>
+    <ul>
+        <li>Serif fonts with small decorative flourishes</li>
+        <li>Sans-serif fonts with clean, minimal design</li>
+        <li>Monospace fonts where each character occupies the same width</li>
+        <li>Display fonts designed for headlines and decorative purposes</li>
+    </ul>
+    <h3>Ordered List</h3>
+    <ol>
+        <li>Readability at various sizes</li>
+        <li>Character and personality</li>
+        <li>Available weights and styles</li>
+        <li>Language support requirements</li>
+    </ol>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Links" id="links"}}
+
+{{>>prose-paragraph.html}}
+Links are styled to be visually distinct and easy to identify. They have a consistent color and underline style, 
+ensuring they stand out from regular text. Hovering over links changes their color for better interactivity.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <p>
+        Learn more about typography in <a href="#">The Elements of Typographic Style</a> by Robert Bringhurst.
+    </p>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Blockquotes" id="blockquotes"}}
+
+{{>>prose-paragraph.html}}
+Blockquotes are styled to provide a clear visual distinction from regular text. They include a left border and 
+proper spacing, making them stand out while maintaining readability.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <blockquote>
+        <p>Typography is what language looks like. Good typography establishes a visual tone that influences how readers interpret content.</p>
+        <em>— Ellen Lupton, Graphic Designer</em>
+    </blockquote>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Tables" id="tables"}}
+
+{{>>prose-paragraph.html}}
+Tables are styled to be clean and readable, with proper borders and spacing.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <table>
+        <thead>
+            <tr>
+                <th>Breakpoint</th>
+                <th>Name</th>
+                <th>Minimum width</th>
+                <th>Rule</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>sm</td>
+                <td>Small</td>
+                <td>640px</td>
+                <td>@media (min-width: 640px)</td>
+            </tr>
+            <tr>
+                <td>md</td>
+                <td>Medium</td>
+                <td>768px</td>
+                <td>@media (min-width: 768px)</td>
+            </tr>
+            <tr>
+                <td>lg</td>
+                <td>Large</td>
+                <td>1024px</td>
+                <td>@media (min-width: 1024px)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h2" text="Inline Code" id="inline-code"}}
+
+{{>>prose-paragraph.html}}
+Inline code is styled to be visually distinct from regular text, using a monospaced font and a background color for emphasis.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="prose">
+    <p>
+        Use the <code>.prose</code> class to apply prose styles to your markdown content.
+    </p>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h1" text="Customization" id="customization"}}
+
+{{>>prose-paragraph.html}}
+LowCSS Prose is fully customizable through CSS variables. You can modify the appearance of all prose elements by overriding these variables in your own CSS.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="How to Customize" id="how-to-customize"}}
+
+{{>>prose-paragraph.html}}
+To customize the prose styles, add your own CSS that overrides the default variables. You can do this globally or scope it to specific containers:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+/* Global customization */
+:root {
+  --prose-color: #334155;
+  --prose-link-color: #2563eb;
+}
+
+/* Scoped customization */
+.dark-theme .prose {
+  --prose-color: #f8fafc;
+  --prose-link-color: #60a5fa;
+  --prose-code-bg: #1e293b;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Available Variables" id="available-variables"}}
+
+{{>>prose-paragraph.html}}
+Below are the main categories of variables you can customize:
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h3" text="General Typography" id="general-typography"}}
+
+{{>>prose-paragraph.html}}
+These variables control the overall typography of prose content:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-color: var(--color-gray-900);      /* Main text color */
+  --prose-line-height: 1.75;                 /* Base line height */
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Paragraphs" id="paragraphs-variables"}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-paragraph-line-height: 1.75rem;
+  --prose-paragraph-margin-top: 0px;
+  --prose-paragraph-margin-bottom: 1rem;
+  
+  /* Lead paragraph (larger intro paragraph) */
+  --prose-lead-color: var(--color-gray-700);
+  --prose-lead-font-size: 1.25rem;
+  --prose-lead-line-height: 1.75rem;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Headings" id="headings-variables"}}
+
+{{>>prose-paragraph.html}}
+Each heading level (h1-h4) has its own set of variables for fine-grained control:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  /* h1 styling */
+  --prose-h1-font-size: 2.25rem;
+  --prose-h1-font-weight: 700;
+  --prose-h1-line-height: 2.5rem;
+  --prose-h1-margin-bottom: 1.5rem;
+  --prose-h1-margin-top: 2.5rem;
+  
+  /* h2 styling (with bottom border) */
+  --prose-h2-font-size: 1.5rem;
+  --prose-h2-font-weight: 600;
+  --prose-h2-line-height: 2rem;
+  --prose-h2-margin-top: 3rem;
+  --prose-h2-margin-bottom: 1.5rem;
+  --prose-h2-border-bottom-width: 1px;
+  --prose-h2-border-bottom-color: var(--color-gray-200);
+  --prose-h2-padding-bottom: 0.5rem;
+  
+  /* h3 styling */
+  --prose-h3-font-size: 1.25rem;
+  --prose-h3-font-weight: 600;
+  --prose-h3-line-height: 1.75rem;
+  --prose-h3-margin-top: 2rem;
+  --prose-h3-margin-bottom: 1.5rem;
+  
+  /* h4 styling */
+  --prose-h4-font-size: 1.125rem;
+  --prose-h4-font-weight: 600;
+  --prose-h4-line-height: 1.75rem;
+  --prose-h4-margin-top: 2rem;
+  --prose-h4-margin-bottom: 1.5rem;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Code Blocks" id="code-variables"}}
+
+{{>>prose-paragraph.html}}
+Customize both inline code and code blocks:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  /* Inline code */
+  --prose-code-bg: var(--color-gray-100);
+  --prose-code-color: var(--color-gray-900);
+  --prose-code-font-size: 0.875rem;
+  --prose-code-font-family: var(--font-family-mono);
+  --prose-code-font-weight: 600;
+  --prose-code-line-height: 1.25rem;
+  --prose-code-padding-y: 0.2rem;
+  --prose-code-padding-x: 0.3rem;
+  --prose-code-radius: 0.25rem;
+  
+  /* Code blocks */
+  --prose-pre-bg: var(--color-gray-950);
+  --prose-pre-color: var(--color-gray-50);
+  --prose-pre-font-size: 0.875rem;
+  --prose-pre-font-family: var(--font-family-mono);
+  --prose-pre-font-weight: 400;
+  --prose-pre-line-height: 1.75rem;
+  --prose-pre-padding-y: 1.25rem;
+  --prose-pre-padding-x: 1.25rem;
+  --prose-pre-radius: 0.375rem;
+  --prose-pre-margin-top: 1.5rem;
+  --prose-pre-margin-bottom: 1.5rem;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Lists" id="lists-variables"}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-ul-margin-bottom: 1.25rem;
+  --prose-ul-margin-top: 1.25rem;
+  --prose-ul-padding-left: 1.625rem;
+  --prose-li-margin-bottom: 0.5rem;
+  --prose-li-margin-top: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Links" id="links-variables"}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-link-color: var(--color-gray-900);
+  --prose-link-font-weight: 500;
+  --prose-link-underline-offset: 4px;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Blockquotes" id="blockquotes-variables"}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-blockquote-border-color: var(--color-gray-200);
+  --prose-blockquote-border-width: 2px;
+  --prose-blockquote-margin-top: 1rem;
+  --prose-blockquote-margin-bottom: 1rem;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Tables" id="tables-variables"}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+:root {
+  --prose-table-margin-bottom: 1.5rem;
+  --prose-table-margin-top: 1.5rem;
+  
+  /* Table headers */
+  --prose-thead-color: var(--color-gray-900);
+  --prose-thead-font-weight: 600;
+  --prose-thead-border-width: 1px;
+  --prose-thead-border-color: var(--color-gray-200);
+  --prose-thead-padding-y: 0.5rem;
+  --prose-thead-padding-x: 1rem;
+  
+  /* Table body */
+  --prose-tbody-bg: var(--color-gray-100);
+  --prose-tbody-border-width: 1px;
+  --prose-tbody-border-color: var(--color-gray-200);
+  --prose-tbody-padding-y: 0.5rem;
+  --prose-tbody-padding-x: 1rem;
+}
+{{/prose-code.html}}
+
+{{/layout-sidebar.html}}

@@ -21,10 +21,9 @@ jobs:
           node-version: '20.x'
       - run: yarn install
       - run: yarn run build
-      - run: yarn run pack
       - uses: softprops/action-gh-release@v1
         with:
-          files: lowcss.zip
+          files: low.css
           generate_release_notes: true
   
   publish:
@@ -39,5 +38,22 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-packages:
+    if: ${{ github.repository == 'jmjuanes/lowcss' }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: [lowcss-forms, lowcss-prose]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn release
+      - run: cd packages/${{ matrix.package }} && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

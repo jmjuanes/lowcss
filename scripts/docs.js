@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import mikel from "mikel";
+import evaluate from "mikel-eval";
 import press from "mikel-press";
 import markdown from "mikel-markdown";
 import hljs from "highlight.js";
@@ -34,24 +35,6 @@ const getExamples = () => {
     });
 };
 
-const MarkdownPlugin = () => ({
-    name: "MarkdownPlugin",
-    beforeTransform: context => {
-        context.template.use(markdown({
-            classNames: {
-                link: "font-medium underline",
-                code: "bg-gray-100 rounded-md py-1 px-2 text-xs font-mono font-medium",
-                table: "w-full mb-6",
-                tableColumn: "p-3 border-b-1 border-gray-200",
-                tableHead: "font-bold",
-            },
-        }));
-    },
-    transform: () => {
-        return null;
-    },
-});
-
 // @description plugin to inject utilities in the table of contents
 const UtilitiesTableOfContentsPlugin = () => ({
     name: "UtilitiesSidebarPlugin",
@@ -84,11 +67,16 @@ press({
         breakpoints: low.breakpoints,
         theme: low.theme,
         utilities: low.utilities,
+        addons: low.addons,
     },
     examples: getExamples(),
     ...websiteConfig,
     mikelOptions: {
         helpers: {
+            find: params => {
+                const item = params?.args?.[0].find(i => i.path === params.args[1]);
+                return item ? params.fn(item) : "";
+            },
             withPage: params => {
                 const p = params?.data?.site?.pages?.find(p => p.path === params.args[0]);
                 return p ? params.fn(p) : "";
@@ -122,6 +110,8 @@ press({
         press.CopyAssetsPlugin({
             patterns: [
                 {from: "low.css"},
+                {from: "packages/lowcss-forms/index.css", to: "low-forms.css"},
+                {from: "packages/lowcss-prose/index.css", to: "low-prose.css"},
             ],
         }),
         press.CopyAssetsPlugin({
@@ -134,7 +124,16 @@ press({
                 {from: "node_modules/lz-string/libs/lz-string.min.js"},
             ],
         }),
-        MarkdownPlugin(),
+        press.UsePlugin(evaluate()),
+        press.UsePlugin(markdown({
+            classNames: {
+                link: "font-medium underline",
+                code: "bg-gray-100 rounded-md py-1 px-2 text-xs font-mono font-medium",
+                table: "w-full mb-6",
+                tableColumn: "p-3 border-b-1 border-gray-200",
+                tableHead: "font-bold",
+            },
+        })),
         press.FrontmatterPlugin(),
         UtilitiesTableOfContentsPlugin(),
         press.ContentPagePlugin(),

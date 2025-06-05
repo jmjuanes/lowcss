@@ -1,0 +1,279 @@
+:root {
+    --prose-color: var(--color-gray-900);
+    --prose-line-height: 1.75;
+
+    --prose-paragraph-line-height: 1.75rem;
+    --prose-paragraph-margin-top: 0px;
+    --prose-paragraph-margin-bottom: 1rem;
+
+    --prose-lead-color: var(--color-gray-700);
+    --prose-lead-font-size: 1.25rem;
+    --prose-lead-line-height: 1.75rem;
+
+    --prose-bold-font-weight: 600;
+
+    --prose-code-bg: var(--color-gray-100);
+    --prose-code-color: var(--color-gray-900);
+    --prose-code-font-size: 0.875rem;
+    --prose-code-font-family: var(--font-family-mono);
+    --prose-code-font-weight: 600;
+    --prose-code-line-height: 1.25rem;
+    --prose-code-padding-y: 0.2rem;
+    --prose-code-padding-x: 0.3rem;
+    --prose-code-radius: 0.25rem;
+
+    --prose-pre-bg: var(--color-gray-950);
+    --prose-pre-color: var(--color-gray-50);
+    --prose-pre-font-size: 0.875rem;
+    --prose-pre-font-family: var(--font-family-mono);
+    --prose-pre-font-weight: 400;
+    --prose-pre-line-height: 1.75rem;
+    --prose-pre-padding-y: 1.25rem;
+    --prose-pre-padding-x: 1.25rem;
+    --prose-pre-radius: 0.375rem;
+    --prose-pre-margin-top: 1.5rem;
+    --prose-pre-margin-bottom: 1.5rem;
+
+    --prose-blockquote-border-color: var(--color-gray-200);
+    --prose-blockquote-border-width: 2px;
+    --prose-blockquote-margin-top: 1rem;
+    --prose-blockquote-margin-bottom: 1rem;
+
+    --prose-h1-font-size: 2.25rem;
+    --prose-h1-font-weight: 700;
+    --prose-h1-line-height: 2.5rem;
+    --prose-h1-margin-bottom: 1.5rem;
+    --prose-h1-margin-top: 2.5rem;
+
+    --prose-h2-font-size: 1.5rem;
+    --prose-h2-font-weight: 600;
+    --prose-h2-line-height: 2rem;
+    --prose-h2-margin-top: 3rem;
+    --prose-h2-margin-bottom: 1.5rem;
+    --prose-h2-border-bottom-width: 1px;
+    --prose-h2-border-bottom-color: var(--color-gray-200);
+    --prose-h2-padding-bottom: 0.5rem;
+    --prose-h2-padding-top: 0px;
+
+    --prose-h3-font-size: 1.25rem;
+    --prose-h3-font-weight: 600;
+    --prose-h3-line-height: 1.75rem;
+    --prose-h3-margin-top: 2rem;
+    --prose-h3-margin-bottom: 1.5rem;
+
+    --prose-h4-font-size: 1.125rem;
+    --prose-h4-font-weight: 600;
+    --prose-h4-line-height: 1.75rem;
+    --prose-h4-margin-top: 2rem;
+    --prose-h4-margin-bottom: 1.5rem;
+
+    --prose-hr-bg: var(--color-gray-200);
+    --prose-hr-height: 1px;
+    --prose-hr-margin-top: 3rem;
+    --prose-hr-margin-bottom: 3rem;
+
+    --prose-link-color: var(--color-gray-900);
+    --prose-link-font-weight: 500;
+    --prose-link-underline-offset: 4px;
+
+    --prose-ul-margin-bottom: 1.25rem;
+    --prose-ul-margin-top: 1.25rem;
+    --prose-ul-padding-left: 1.625rem;
+    --prose-li-margin-bottom: 0.5rem;
+    --prose-li-margin-top: 0;
+
+    --prose-table-margin-bottom: 1.5rem;
+    --prose-table-margin-top: 1.5rem;
+
+    --prose-thead-color: var(--color-gray-900);
+    --prose-thead-font-weight: 600;
+    --prose-thead-border-width: 1px;
+    --prose-thead-border-color: var(--color-gray-200);
+    --prose-thead-padding-y: 0.5rem;
+    --prose-thead-padding-x: 1rem;
+
+    --prose-tbody-bg: var(--color-gray-100);
+    --prose-tbody-border-width: 1px;
+    --prose-tbody-border-color: var(--color-gray-200);
+    --prose-tbody-padding-y: 0.5rem;
+    --prose-tbody-padding-x: 1rem;
+}
+
+.prose {
+    color: var(--prose-color);
+    line-height: var(--prose-line-height);
+}
+
+/* paragraphs */
+.prose :where(p) {
+    line-height: var(--prose-paragraph-line-height);
+    margin-top: var(--prose-paragraph-margin-top);
+    margin-bottom: var(--prose-paragraph-margin-bottom);
+}
+.prose :where(p[class~="lead"]) {
+    color: var(--prose-lead-color);
+    font-size: var(--prose-lead-font-size);
+    line-height: var(--prose-lead-line-height);
+}
+
+/* bold */
+.prose :where(b, strong) {
+    font-weight: var(--prose-bold-font-weight);
+}
+
+/* inline code */
+.prose :where(code) {
+    background-color: var(--prose-code-bg);
+    color: var(--prose-code-color);
+    font-size: var(--prose-code-font-size);
+    font-family: var(--prose-code-font-family);
+    font-weight: var(--prose-code-font-weight);
+    line-height: var(--prose-code-line-height);
+    padding: var(--prose-code-padding-y) var(--prose-code-padding-x);
+    border-radius: var(--prose-code-radius);
+    position: relative;
+}
+/*  block code */
+.prose :where(pre) {
+    background-color: var(--prose-pre-bg);
+    border-radius: var(--prose-pre-radius);
+    color: var(--prose-pre-color);
+    font-size: var(--prose-pre-font-size);
+    font-weight: var(--prose-pre-font-weight);
+    line-height: var(--prose-pre-line-height);
+    margin-top: var(--prose-pre-margin-top);
+    margin-bottom: var(--prose-pre-margin-bottom);
+    overflow-x: auto;
+    padding: var(--prose-pre-padding-y) var(--prose-pre-padding-x);
+}
+.prose :where(pre > code) {
+    background-color: transparent;
+    color: inherit;
+    border-width: 0;
+    border-radius: 0;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;
+}
+
+/* blockquote */
+.prose :where(blockquote) {
+    border-left-color: var(--prose-blockquote-border-color);
+    border-left-width: var(--prose-blockquote-border-width);
+    color: var(--prose-quote-body);
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: var(--prose-blockquote-margin-bottom);
+    margin-top: var(--prose-blockquote-margin-top);
+    padding-left: 1em;
+}
+
+/* headings */
+.prose :where(h1) {
+    font-size: var(--prose-h1-font-size);
+    font-weight: var(--prose-h1-font-weight);
+    line-height: var(--prose-h1-line-height);
+    margin-bottom: var(--prose-h1-margin-bottom);
+    margin-top: var(--prose-h1-margin-top);
+}
+.prose :where(h2) {
+    font-size: var(--prose-h2-font-size);
+    font-weight: var(--prose-h2-font-weight);
+    line-height: var(--prose-h2-line-height);
+    margin-bottom: var(--prose-h2-margin-bottom);
+    margin-top: var(--prose-h2-margin-top);
+    border-bottom-color: var(--prose-h2-border-bottom-color);
+    border-bottom-width: var(--prose-h2-border-bottom-width);
+    border-bottom-style: solid;
+    padding-bottom: var(--prose-h2-padding-bottom);
+    padding-top: var(--prose-h2-padding-top);
+}
+.prose :where(h3) {
+    font-size: var(--prose-h3-font-size);
+    font-weight: var(--prose-h3-font-weight);
+    line-height: var(--prose-h3-line-height);
+    margin-bottom: var(--prose-h3-margin-bottom);
+    margin-top: var(--prose-h3-margin-top);
+}
+.prose :where(h4) {
+    font-size: var(--prose-h4-font-size);
+    font-weight: var(--prose-h4-font-weight);
+    line-height: var(--prose-h4-line-height);
+    margin-bottom: var(--prose-h4-margin-bottom);
+    margin-top: var(--prose-h4-margin-top);
+}
+
+/* horizontal rule */
+.prose :where(hr) {
+    border-color: var(--prose-hr-bg);
+    border-top-width: var(--prose-hr-height);
+    height: 0px;
+    margin-top: var(--prose-hr-margin-top);
+    margin-bottom: var(--prose-hr-margin-bottom);
+}
+
+/* links */
+.prose :where(a) {
+    color: var(--prose-link-color);
+    font-weight: var(--prose-link-font-weight);
+    text-decoration: underline;
+    text-underline-offset: var(--prose-link-underline-offset);
+}
+
+/* list */
+.prose :where(ul, ol) {
+    margin-bottom: var(--prose-ul-margin-bottom);
+    margin-top: var(--prose-ul-margin-top);
+    padding-left: var(--prose-ul-padding-left);
+}
+.prose :where(ul, ol) > li {
+    padding-left: 0.25em;
+}
+.prose :where(ul) {
+    list-style-type: disc;
+}
+.prose :where(ol) {
+    list-style-type: decimal;
+}
+.prose :where(li) {
+    margin-bottom: var(--prose-li-margin-bottom);
+    margin-top: var(--prose-li-margin-top);
+}
+
+/* tables */
+.prose :where(table) {
+    margin-bottom: var(--prose-table-margin-bottom);
+    margin-top: var(--prose-table-margin-top);
+    table-layout: auto;
+    text-align: left;
+    width: 100%;
+}
+.prose :where(thead th) {
+    color: var(--prose-thead-color);
+    font-weight: var(--prose-thead-font-weight);
+    vertical-align: bottom;
+}
+.prose :where(thead th) {
+    border: var(--prose-thead-border-width) solid var(--prose-thead-border-color);
+    padding: var(--prose-thead-padding-y) var(--prose-thead-padding-x);
+}
+.prose :where(tbody td) {
+    border: var(--prose-tbody-border-width) solid var(--prose-tbody-border-color);
+    padding: var(--prose-tbody-padding-y) var(--prose-tbody-padding-x);
+}
+.prose :where(tbody tr:nth-child(2n)) {
+    background-color: var(--prose-tbody-bg);
+}
+.prose :where(tbody tr) {
+    vertical-align: baseline;
+}
+
+/* first or last childs */
+.prose > *:first-child {
+    margin-top: 0 !important;
+}
+.prose > *:last-child {
+    margin-bottom: 0 !important;
+}

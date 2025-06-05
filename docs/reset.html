@@ -3,24 +3,36 @@
     "title": "Reset",
     "description": "A collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements.",
     "permalink": "/reset.html",
+    "categories": ["basics"],
     "tableOfContents": [
-        {"text": "Box-sizing", "link": "#box-sizing"},
-        {"text": "Borders are removed", "link": "#borders-are-removed"},
-        {"text": "Margins", "link": "#margins"},
-        {"text": "Headings", "link": "#headings"},
-        {"text": "Text elements", "link": "#text-elements"},
-        {"text": "Lists", "link": "#lists"},
-        {"text": "Tables", "link": "#tables"},
-        {"text": "Form elements", "link": "#form-elements"}
+        {"text": "Introduction", "link": "#introduction"},
+        {
+            "text": "Resets",
+            "link": "#resets",
+            "items": [
+                {"text": "Box-sizing", "link": "#box-sizing"},
+                {"text": "Borders are removed", "link": "#borders-are-removed"},
+                {"text": "Margins", "link": "#margins"},
+                {"text": "Headings", "link": "#headings"},
+                {"text": "Text elements", "link": "#text-elements"},
+                {"text": "Lists", "link": "#lists"},
+                {"text": "Tables", "link": "#tables"},
+                {"text": "Form elements", "link": "#form-elements"}
+            ]
+        }
     ]
 }
 ---
 {{>>layout-sidebar.html}}
 
+{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+
 {{>>prose-paragraph.html}}
 **Reset CSS** is a collection of styles that aims to provide a consistent and cross-browser baseline for styling HTML elements. 
 It helps normalize the default styles applied by different browsers, ensuring a more consistent and predictable rendering of web pages across various devices and browsers.
 {{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h1" text="Resets" id="resets"}}
 
 {{>>prose-paragraph.html}}
 For a complete list of changes and styles, please refer to the source [reset.css]({{site.repository}}/blob/main/reset.css) stylesheet.
@@ -32,7 +44,7 @@ For a complete list of changes and styles, please refer to the source [reset.css
 It changes the `box-sizing` property of all elements to `border-box`. This ensures that the width and height of elements are calculated including padding and border, providing a more intuitive box model.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 *,
 *:before,
 *:after {
@@ -46,7 +58,7 @@ It changes the `box-sizing` property of all elements to `border-box`. This ensur
 It resets the `border-width` to `0` and initializes the `border-syle` to `solid` in all elements.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 *,
 *:before,
 *:after {
@@ -62,7 +74,7 @@ It resets the `border-width` to `0` and initializes the `border-syle` to `solid`
 It resets the default margin of some elements (including headings and paragraphs) to `0`. This eliminates any inconsistencies in default spacing applied by different browsers.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 blockquote,
 h1,
 h2,
@@ -83,7 +95,7 @@ pre {
 It normalizes the font-related properties such as `font-family` and `font-weight` in heading elements to provide a consistent typography baseline.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 h1,
 h2,
 h3,
@@ -101,7 +113,7 @@ h6 {
 Sets the default styles for anchor links elements to remove underline and inherit color:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 a {
     color: inherit;
     text-decoration: inherit;
@@ -114,7 +126,7 @@ a {
 It removes the default styles for unordered and ordered lists (`ul` and `ol`) to eliminate any browser-specific list styles.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 ul,
 ol,
 dl {
@@ -129,7 +141,7 @@ dl {
 It resets the default border-1 styles for tables.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -142,7 +154,7 @@ table {
 It resets the default typography, padding, and margin properties common form elements:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 button,
 input,
 select,
@@ -160,7 +172,7 @@ textarea {
 It also prevents resizing textareas horizontally by default:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="css"}}
+{{>>prose-code.html language="css" label="reset.css" icon="file-code"}}
 textarea {
     resize: vertical;
 }

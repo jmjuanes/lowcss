@@ -1,10 +1,17 @@
-<div class="w-full py-10">
-    <div class="max-w-3xl text-5xl leading-none mb-4">
+<div class="w-full py-14">
+    <div class="max-w-3xl text-5xl leading-none mb-0">
         <span class="font-extrabold tracking-tight text-gray-950">{{title}}</span>
     </div>
     {{#if description}}
-    <div class="max-w-2xl mt-0 mb-8 text-lg leading-relaxed">
+    <div class="max-w-2xl mt-4 text-lg leading-relaxed">
         <span class="text-gray-800">{{description}}</span>
+    </div>
+    {{/if}}
+    {{#if tags}}
+    <div class="mt-4 flex flex-wrap gap-2">
+        {{#each tags}}
+        <div class="rounded-full px-3 py-1 bg-gray-100 text-xs capitalize">{{.}}</div>
+        {{/each}}
     </div>
     {{/if}}
 </div>
