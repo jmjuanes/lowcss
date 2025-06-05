@@ -27,69 +27,48 @@ body {
 }
 
 /* Reset margins in some elements */
-blockquote,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-hr,
-p,
-pre {
+:where(blockquote, h1, h2, h3, h4, h5, h6, hr, p, pre) {
     margin: 0;
 }
 
 /* Normalize typography in headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
     font-size: inherit;
     font-weight: inherit;
 }
 
 /* Reset margins on lists */
-ul,
-ol,
-dl {
+:where(ul, ol, dl) {
     margin: 0;
     padding: 0;
 }
 
 /* Fix bold weight (in firefox) */
-strong,
-b {
+:where(strong, b) {
     font-weight: bold;
 }
 
 /* Reset links */
-a {
+:where(a) {
     color: inherit;
     text-decoration: inherit;
 }
 
 /* Make images and videos responsive by default */
-img,
-video {
+:where(img, video) {
     display: block;
     height: auto;
     max-width: 100%;
 }
 
 /* Reset table border */
-table {
+:where(table) {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
 /* Reset form elements */
-button,
-input,
-select,
-textarea {
+:where(button, input, select, textarea) {
     color: inherit;
     font-family: inherit;
     font-weight: inherit;
@@ -99,6 +78,6 @@ textarea {
 }
 
 /* Prevent resizing textareas horizontally */
-textarea {
+:where(textarea) {
     resize: vertical;
 }
