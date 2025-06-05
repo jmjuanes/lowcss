@@ -3,7 +3,7 @@
     "title": "Getting Started",
     "description": "A guide to help you quickly set up and start using LowCSS in your projects.",
     "permalink": "/getting-started.html",
-    "category": "basics",
+    "categories": ["basics"],
     "tableOfContents": [
         {
             "text": "Installation",
@@ -35,7 +35,7 @@
 To get started with LowCSS, you can install the package using either **yarn** or **npm**. Follow the instructions below based on your preferred package manager:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="bash"}}
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
 ## Installation using yarn
 $ yarn add lowcss
 
@@ -47,7 +47,7 @@ $ npm install lowcss
 LowCSS provides precompiled CSS files. To include them in your project, copy the file `low.css` to your project's assets or CSS directory.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="bash"}}
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
 $ cp ./node_modules/lowcss/low.css ./assets/
 {{/prose-code.html}}
 
@@ -55,7 +55,7 @@ $ cp ./node_modules/lowcss/low.css ./assets/
 Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` section:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <link rel="stylesheet" href="assets/low.css">
 {{/prose-code.html}}
 
@@ -65,7 +65,7 @@ Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` s
 You can also use the hosted version of LowCSS from a Content Delivery Network (CDN). Simply include the following `<link>` tag in the `<head>` section of your HTML file:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <link rel="stylesheet" href="https://unpkg.com/lowcss/low.css">
 {{/prose-code.html}}
 
@@ -101,7 +101,7 @@ The basic naming pattern for our utility classes is as follows:
     <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Button</button>
 </div>
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 [..]">Button</button>
 {{/prose-code.html}}
 
@@ -150,7 +150,7 @@ The following breakpoints are defined by default in LowCSS:
 You can apply different styles at different breakpoints:
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <div class="hidden md:block [...]">
     Content
 </div>
@@ -162,7 +162,7 @@ You can apply different styles at different breakpoints:
 Use the `print` modifier to apply the provided class only when the document is begin printed.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <div class="hidden print:block">
     This block is only displayed when the document is begin printed.
 </div>
@@ -188,7 +188,7 @@ Pseudo modifiers allows you to conditionally apply an utility class based on the
     <button class="bg-blue-500 hover:bg-blue-800 text-white text-base rounded-lg px-4 py-2 border-0 cursor-pointer">Hover me</button>
 </div>
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <button class="bg-blue-500 hover:bg-blue-800 [...]">Hover me</button>
 {{/prose-code.html}}
 
@@ -218,7 +218,7 @@ This is the list of available pseudo modifiers:
 You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use one of the `group-*` modifiers to style the target element.
 {{/prose-paragraph.html}}
 
-{{>>prose-code.html language="html"}}
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
 <div class="group [...]">
     <!-- button content -->
     <div class="hidden group-hover:block [...]">

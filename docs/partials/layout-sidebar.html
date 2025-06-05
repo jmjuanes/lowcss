@@ -2,7 +2,11 @@
 <div class="w-full max-w-7xl mx-auto px-6">
     {{>header.html}}
     <main class="py-4">
-        {{>section.html title=page.attributes.title description=page.attributes.description}}
+        {{>section.html
+            title=page.attributes.title
+            description=page.attributes.description
+            tags=page.attributes.categories
+        }}
         <div class="w-full flex flex-row flex-nowrap md:gap-12">
             <main class="w-full max-w-4xl min-w-0 mr-auto">
                 {{!@content}}

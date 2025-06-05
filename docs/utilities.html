@@ -3,7 +3,7 @@
     "title": "Utilities Reference",
     "description": "Reference of all utility classes provided by default in LowCSS.",
     "permalink": "/utilities.html",
-    "category": "basics",
+    "categories": ["basics"],
     "tableOfContents": "@utilities"
 }
 ---
@@ -50,7 +50,7 @@
             <td class="p-3 font-mono">
                 {{#each properties}}
                 <div class="mb-1 leading-relaxed">
-                    {{#inlineMarkdown}}`{{prop}}: {{value}}`{{/inlineMarkdown}}
+                    {{#inlineMarkdown}}`{{prop}}: {{=eval "replace(value, 'value(', 'var(')"}}`{{/inlineMarkdown}}
                 </div>
                 {{/each}}
             </td>

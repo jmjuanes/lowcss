@@ -12,7 +12,7 @@
         {
             "title": "Addons",
             "description": "Explore additional features and modules that enhance LowCSS functionality.",
-            "pages": ["/addons/forms.html"]
+            "pages": ["/addons/forms.html", "/addons/prose.html"]
         }
     ]
 }
@@ -24,8 +24,7 @@
 <div class="">
     {{#each page.attributes.sections}}
     <div class="mb-20">
-        <h1 class="leading-tight text-4xl font-extrabold text-gray-950 mb-2">{{title}}</h1>
-        <div class="leading-relaxed max-w-md mb-12">{{description}}</div>
+        <h1 class="leading-tight text-4xl font-extrabold text-gray-950 mb-10">{{title}}</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {{#each pages}}
             {{#find @root.site.pages .}}
