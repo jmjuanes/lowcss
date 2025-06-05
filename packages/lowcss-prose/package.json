@@ -1,0 +1,31 @@
+{
+    "name": "lowcss-prose",
+    "version": "0.0.0",
+    "description": "A customizable CSS module for styling markdown content with clean typography and consistent element styling.",
+    "author": {
+        "name": "Josemi Juanes",
+        "email": "hello@josemi.xyz"
+    },
+    "license": "MIT",
+    "homepage": "https://low.josemi.xyz",
+    "repository": "https://github.com/jmjuanes/lowcss",
+    "bugs": "https://github.com/jmjuanes/lowcss/issues",
+    "type": "module",
+    "main": "index.css",
+    "style": "index.css",
+    "exports": {
+        ".": "./index.css",
+        "./index.css": "./index.css",
+        "./package.json": "./package.json"
+    },
+    "keywords": [
+        "markdown",
+        "css",
+        "prose"
+    ],
+    "files": [
+        "README.md",
+        "index.css",
+        "package.json"
+    ]
+}
