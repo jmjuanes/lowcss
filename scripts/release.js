@@ -10,8 +10,8 @@ const writeJson = (file, data) => {
     return fs.writeFileSync(file, JSON.stringify(data, null, "    "), "utf8");
 };
 
-// Fix the version in each package.json of the addons folder
-const packagesDir = path.join(process.cwd(), "addons");
+// Fix the version in each package.json of the packages folder
+const packagesDir = path.join(process.cwd(), "packages");
 fs.readdirSync(packagesDir).forEach(dir => {
     const packageFile = path.join(packagesDir, dir, "package.json");
     writeJson(packageFile, {
