@@ -1,0 +1,367 @@
+---
+{
+    "title": "Customize",
+    "description": "Learn how to customize LowCSS with custom theme variables and utilities.",
+    "permalink": "/customize.html",
+    "categories": ["advanced usage"],
+    "variants": [
+        {"name": "default", "description": "Default variant selector.", "selector": ""},
+        {"name": "hover", "description": "Applied when the element is hovered.", "selector": ":hover"},
+        {"name": "focus", "description": "Applied when the element is focused.", "selector": ":focus"},
+        {"name": "focus-within", "description": "Applied when the element or any of its children are focused.", "selector": ":focus-within"},
+        {"name": "active", "description": "Applied when the element is active (e.g., being clicked).", "selector": ":active"},
+        {"name": "visited", "description": "Applied to links that have been visited.", "selector": ":visited"},
+        {"name": "checked", "description": "Applied to checked form elements (e.g., checkboxes, radio buttons).", "selector": ":checked"},
+        {"name": "disabled", "description": "Applied to disabled form elements.", "selector": ":disabled"},
+        {"name": "first", "description": "Applied to the first child of a parent element.", "selector": ":first-child"},
+        {"name": "last", "description": "Applied to the last child of a parent element.", "selector": ":last-child"},
+        {"name": "odd", "description": "Applied to odd children of a parent element.", "selector": ":nth-child(odd)"},
+        {"name": "even", "description": "Applied to even children of a parent element.", "selector": ":nth-child(even)"},
+        {"name": "group-hover", "description": "Applied when a parent with the `.group` class is hovered.", "selector": ".group:hover > .child"},
+        {"name": "group-focus", "description": "Applied when a parent with the `.group` class is focused.", "selector": ".group:focus > .child"},
+        {"name": "group-focus-within", "description": "Applied when a parent with the `.group` class or any of its children are focused.", "selector": ".group:focus-within > .child"},
+        {"name": "responsive", "description": "Generates responsive utility classes based on defined breakpoints.", "selector": "@media (min-width: SIZE) { ... }"},
+        {"name": "print", "description": "Applied only for print media.", "selector": "@media print { ... }"}
+    ],
+    "tableOfContents": [
+        {"text": "Introduction", "link": "#introduction"},
+        {
+            "text": "Build Process",
+            "link": "#build-process",
+            "items": [
+                {"text": "Option 1: Using postcss.config.js", "link": "#option-1-using-postcss-config-js"},
+                {"text": "Option 2: Using PostCSS CLI", "link": "#option-2-using-postcss-cli"}
+            ]
+        },
+        {
+            "text": "Theme Customization",
+            "link": "#theme-customization",
+            "items": [
+                {"text": "Basic Theme Usage", "link": "#basic-theme-usage"},
+                {"text": "Breakpoints", "link": "#breakpoints"}
+            ]
+        },
+        {
+            "text": "Creating Custom Utilities",
+            "link": "#creating-custom-utilities",
+            "items": [
+                {"text": "Static Utilities", "link": "#static-utilities"},
+                {"text": "Dynamic Utilities", "link": "#dynamic-utilities"}
+            ]
+        },
+        {
+            "text": "Working with Variants",
+            "link": "#working-with-variants",
+            "items": [
+                {"text": "Basic Variants", "link": "#basic-variants"},
+                {"text": "Available Variants", "link": "#available-variants"}
+            ]
+        }
+    ]
+}
+---
+{{>>layout-sidebar.html}}
+
+{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+
+{{>>prose-paragraph.html}}
+LowCSS is a utility-first CSS framework that uses a PostCSS plugin to generate utility classes. This guide will help you customize LowCSS to fit your project's needs.
+{{/prose-paragraph.html}}
+
+
+{{>prose-heading.html level="h1" text="Build Process" id="build-process"}}
+
+{{>>prose-paragraph.html}}
+**PostCSS is required** to process the custom `@utility` and `@theme` rules, as these are not standard CSS syntax and won't work without the LowCSS plugin.
+{{/prose-paragraph.html}}
+
+{{>>prose-paragraph.html}}
+Before you start customizing LowCSS, ensure you have the necessary PostCSS setup in place.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
+$ npm install postcss postcss-cli postcss-import lowcss
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+You can use either a `postcss.config.js` file or run PostCSS directly from the command line. Both methods will allow you to compile your LowCSS stylesheets.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Option 1: Using postcss.config.js" id="option-1-using-postcss-config-js"}}
+
+{{>>prose-paragraph.html}}
+You can create a `postcss.config.js` file in your project root to define your PostCSS plugins, including the LowCSS plugin.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="javascript" label="postcss.config.js" icon="file-code"}}
+module.exports = {
+    plugins: [
+        require("postcss-import"),
+        require("lowcss"),
+        // ... add any other PostCSS plugins you need
+    ],
+};
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+Then, create an `index.css` file where you will import your theme and utility definitions.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+@import "theme.css"; /* Your theme definitions */
+@import "utilities.css"; /* Your utility definitions */
+/* Import other utility files as needed */
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+Finally, you can run PostCSS using the CLI to process your stylesheets. Make sure you have the necessary PostCSS plugins installed, such as `postcss-import`.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
+$ npx postcss index.css -o low.css
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This command will process your `index.css` file, applying the LowCSS plugin and any other PostCSS plugins you have configured, and output the compiled CSS to `low.css`.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Option 2: Using PostCSS CLI" id="option-2-using-postcss-cli"}}
+
+{{>>prose-paragraph.html}}
+You can run PostCSS directly from the command line without a config file:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
+$ npx postcss index.css --use postcss-import --use lowcss --no-map -o low.css
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This command processes `index.css`, applying the `postcss-import` and `lowcss` plugins, and outputs the result to `low.css`. The `--no-map` option disables source maps, which is useful for production builds.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h1" text="Theme Customization" id="theme-customization"}}
+
+{{>>prose-paragraph.html}}
+LowCSS uses the `@theme` rule to define CSS variables that can be used throughout your stylesheets and to generate utility classes. This allows you to create a consistent design system for your project.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Basic Theme Usage" id="basic-theme-usage"}}
+
+{{>>prose-paragraph.html}}
+You can define your theme variables using the `@theme` rule. This is where you set your colors, fonts, spacing, and other design tokens.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="theme.css" icon="file-code"}}
+@theme {
+    /* Your custom colors */
+    --color-primary: #3b82f6;
+    --color-secondary: #10b981;
+
+    /* Your custom font family */
+    --font-family-base: "Inter", sans-serif;
+    
+    /* Your custom spacing */
+    --spacing-0: 0;
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-4: 1rem;
+    --spacing-8: 2rem;
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+These variables will be used to generate utility classes, but you can also use them directly in your stylesheets as needed. For example, you can use `var(--color-primary)` to apply the primary color to an element.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="styles.css" icon="file-code"}}
+.button {
+    background-color: var(--color-primary);
+    color: white;
+    font-family: var(--font-family-base);
+    padding: var(--spacing-2) var(--spacing-4);
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+Refer to the [theme namespaces](/theme.html#variables-namespaces) page to see how variables map to utility classes.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Breakpoints" id="breakpoints"}}
+
+{{>>prose-paragraph.html}}
+You can define responsive breakpoints in your theme to create responsive utility classes.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="theme.css" icon="file-code"}}
+@theme {
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+These breakpoints can be used to create responsive utility classes that apply styles at different screen sizes.
+{{/prose-paragraph.html}}
+
+
+{{>prose-heading.html level="h1" text="Creating Custom Utilities" id="creating-custom-utilities"}}
+
+{{>>prose-paragraph.html}}
+LowCSS uses the `@utility` rule to define utility classes. Utility classes are single-purpose CSS classes that can be applied to elements to control their styling without writing custom CSS.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Static Utilities" id="static-utilities"}}
+
+{{>>prose-paragraph.html}}
+You can create custom utility classes using the `@utility` rule.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="utilities.css" icon="file-code"}}
+@utility {
+    opacity-50 {
+        opacity: 0.5;
+    }
+    opacity-75 {
+        opacity: 0.75;
+    }
+    opacity-100 {
+        opacity: 1;
+    }
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This will generate utility classes like `.opacity-50`, `.opacity-75`, and `.opacity-100` that you can apply to elements in your HTML.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Dynamic Utilities" id="dynamic-utilities"}}
+
+{{>>prose-paragraph.html}}
+You can create dynamic utilities using the `*` wildcard and `value()` function. This allows you to generate utility classes for all available values in your theme.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="utilities.css" icon="file-code"}}
+@utility {
+    p-* {
+        padding: value(--spacing-*);
+    }
+    px-* {
+        padding-left: value(--spacing-*);
+        padding-right: value(--spacing-*);
+    }
+    py-* {
+        padding-top: value(--spacing-*);
+        padding-bottom: value(--spacing-*);
+    }
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This will generate utility classes for all available spacing values: `p-1` to apply a padding of `0.25rem`, `p-2` for `0.5rem`, `px-4` for `1rem` on left and right, etc.
+{{/prose-paragraph.html}}
+
+{{>>prose-paragraph.html}}
+You can also combine static and dynamic utilities in the same `@utility` block.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="utilities.css" icon="file-code"}}
+@utility {
+    m-* {
+        margin: value(--spacing-*);
+    }
+    ml-* {
+        margin-left: value(--spacing-*);
+    }
+    mr-* {
+        margin-right: value(--spacing-*);
+    }
+    ml-auto {
+        margin-left: auto;
+    }
+    mr-auto {
+        margin-right: auto;
+    }
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h1" text="Working with Variants" id="working-with-variants"}}
+
+{{>>prose-paragraph.html}}
+Variants allow you to generate utility classes that only apply under certain conditions, like hover states or at specific breakpoints. 
+This is useful for creating responsive designs and interactive elements without writing custom CSS.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Basic Variants" id="basic-variants"}}
+
+{{>>prose-paragraph.html}}
+Use the `@variant` rule inside a utility to define variants. This allows you to create utility classes that apply styles under specific conditions, such as hover or focus states.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="utilities.css" icon="file-code"}}
+@utility {
+    @variant default,hover,focus {
+        bg-red-500 {
+            background-color: var(--color-red-500);
+        }
+        bg-blue-500 {
+            background-color: var(--color-blue-500);
+        }
+    }
+}
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This will generate utility classes for the background colors with variants: `.bg-red-500` for the default state, `.hover\:bg-red-500:hover` for the hover state, and `.focus\:bg-red-500:focus` for the focus state.
+{{/prose-paragraph.html}}
+
+{{>>prose-paragraph.html}}
+You can also combine multiple `@variant` rules to create more complex utilities that apply under different conditions.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="utilities.css" icon="file-code"}}
+@utility {
+    @variant default,hover {
+        text-blue-500 {
+            color: var(--color-blue-500);
+        }
+    }
+    @variant focus {
+        text-red-500 {
+            color: var(--color-red-500);
+        }
+    }
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Available Variants" id="available-variants"}}
+
+{{>>prose-paragraph.html}}
+LowCSS supports a variety of variants that can be used to generate utility classes for different states and conditions. These variants allow you to create responsive and interactive designs without writing custom CSS.
+{{/prose-paragraph.html}}
+
+<table class="w-full mb-10">
+    <thead>
+        <tr class="text-sm font-bold">
+            <td class="p-3 border-b-2 border-gray-200">Namespace</td>
+            <td class="p-3 border-b-2 border-gray-200">Description</td>
+            <td class="p-3 border-b-2 border-gray-200">Selector</td>
+        </tr>
+    </thead>
+    {{#each page.attributes.variants}}
+    <tr class="">
+        <td class="p-3 border-b-1 border-gray-200 leading-relaxed">
+            {{#inlineMarkdown}}`{{!name}}`{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200">
+            {{#inlineMarkdown}}{{!description}}{{/inlineMarkdown}}
+        </td>
+        <td class="p-3 border-b-1 border-gray-200 leading-relaxed">
+            {{#inlineMarkdown}}`{{!selector}}`{{/inlineMarkdown}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+{{/layout-sidebar.html}}
