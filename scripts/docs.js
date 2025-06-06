@@ -120,7 +120,7 @@ press({
                 {from: "node_modules/@josemi-icons/svg/sprite.svg", to: "icons.svg"},
                 {from: "node_modules/codecake/codecake.js"},
                 {from: "node_modules/codecake/codecake.css"},
-                {from: "node_modules/highlight.js/styles/nord.css", to: "highlight.css"},
+                {from: "node_modules/highlight.js/styles/atom-one-light.css", to: "highlight.css"},
                 {from: "node_modules/lz-string/libs/lz-string.min.js"},
             ],
         }),

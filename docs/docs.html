@@ -10,6 +10,11 @@
             "pages": ["/getting-started.html", "/reset.html", "/theme.html", "/utilities.html"]
         },
         {
+            "title": "Advanced Usage",
+            "description": "Dive deeper into LowCSS with advanced features and customization options.",
+            "pages": ["/customize.html"]
+        },
+        {
             "title": "Addons",
             "description": "Explore additional features and modules that enhance LowCSS functionality.",
             "pages": ["/addons/forms.html", "/addons/prose.html"]
@@ -28,7 +33,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {{#each pages}}
             {{#find @root.site.pages .}}
-            <a href="{{url}}" class="block group mb-4">
+            <a href="{{url}}" class="block group bg-gray-100 rounded-lg p-6 mb-4">
                 <h2 class="leading-tight text-2xl font-extrabold text-gray-950 mb-3 group-hover:underline">
                     {{attributes.title}}
                 </h2>
