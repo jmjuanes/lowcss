@@ -85,7 +85,7 @@ const getUtilityRules = (nodes, rules = [], nestedVariant = false) => {
             }
             // 2.2. nested rules? convert them into a flat list of rules
             const nestedRules = node.nodes.filter(item => item.type === "rule" || item.type === "atrule");
-            getUtilityRules(nestedRules, nestedVariant).forEach(nestedRule => {
+            getUtilityRules(nestedRules, [], nestedVariant).forEach(nestedRule => {
                 rules.push({
                     ...nestedRule,
                     selector: nestedRule.selector.replace(/&/g, node.selector.trim()),
