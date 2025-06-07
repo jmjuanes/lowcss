@@ -62,7 +62,7 @@ const getUtilityRules = (nodes, rules = []) => {
             getUtilityRules(node.nodes).forEach(rule => {
                 return rules.push({
                     ...rule,
-                    variants: Array.from(new Set([...rule.variants, ...variants])),
+                    variants: Array.from(new Set(variants)),
                 });
             });
         }
