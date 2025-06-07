@@ -51,18 +51,21 @@ export const getSelector = (variant = "", selector = "&") => {
 // @description get the rules associated with a utility node
 // @param {Array} nodes - nodes to parse
 // @return {Array} rules - parsed utility rules
-const getUtilityRules = (nodes, rules = []) => {
+const getUtilityRules = (nodes, rules = [], nestedVariant = false) => {
     nodes.forEach(node => {
         // 1. @variant node --> parse the variants and recursively get the utility rules
         if (node.type === "atrule" && node.name === "variant") {
+            if (nestedVariant) {
+                throw new Error("Nested '@variant' rules are not supported.");
+            }
             const variants = (node.params || "default").trim()
                 .split(",")
                 .map(variant => variant.trim())
                 .filter(variant => !!variant);
-            getUtilityRules(node.nodes).forEach(rule => {
+            getUtilityRules(node.nodes, [], true).forEach(rule => {
                 return rules.push({
                     ...rule,
-                    variants: Array.from(new Set([...rule.variants, ...variants])),
+                    variants: Array.from(new Set(variants)),
                 });
             });
         }
@@ -82,7 +85,7 @@ const getUtilityRules = (nodes, rules = []) => {
             }
             // 2.2. nested rules? convert them into a flat list of rules
             const nestedRules = node.nodes.filter(item => item.type === "rule" || item.type === "atrule");
-            getUtilityRules(nestedRules).forEach(nestedRule => {
+            getUtilityRules(nestedRules, [], nestedVariant).forEach(nestedRule => {
                 rules.push({
                     ...nestedRule,
                     selector: nestedRule.selector.replace(/&/g, node.selector.trim()),
