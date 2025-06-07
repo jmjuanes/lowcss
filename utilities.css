@@ -1150,8 +1150,10 @@
 /* @description Utilities to set the font-size property of the element. */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/font-size */
 @utility font-size {
-    text-* {
-        font-size: value(--font-size-*);
+    @variant default,responsive {
+        text-* {
+            font-size: value(--font-size-*);
+        }
     }
 }
 
