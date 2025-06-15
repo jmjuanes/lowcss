@@ -20,6 +20,31 @@ const pseudos = {
     "peer-focus-within": "focus-within",
 };
 
+// @description default variant order
+const variantOrder = [
+    "default",
+    "responsive",
+    "print",
+    "first",
+    "last",
+    "odd",
+    "even",
+    "visited",
+    "required",
+    "group-hover",
+    "group-focus",
+    "group-focus-within",
+    "peer-hover",
+    "peer-focus",
+    "peer-focus-within",
+    "hover",
+    "focus",
+    "focus-within",
+    "checked",
+    "active",
+    "disabled",
+];
+
 // @description converts a simple glob pattern into a regex
 // @example globToRegex("bg-*") => /^bg-(.*?)$/
 const globToRegex = (glob = "") => {
@@ -163,10 +188,17 @@ const getBreakpoints = (theme, breakpoints = {}) => {
 // @param {object} utility - utility object to compile
 // @param {object} theme - theme object to use for compilation
 // @param {object} postcss - postcss instance to use for compilation
-export const compileUtility = (utility, theme = {}, postcss) => {
+export const compileUtility = (utility, theme = {}, postcss, options = {}) => {
     const breakpoints = getBreakpoints(theme);
-    return utility.rules.map(rule => {
-        return rule.variants.map(variant => {
+    const variants = (options.variantOrder || variantOrder).filter(variant => {
+        return utility.variants.includes(variant);
+    });
+    return variants.map(variant => {
+        const utilityVariants = new Set(utility.variants);
+        return utility.rules.map(rule => {
+            if (!utilityVariants.has(variant)) {
+                return [];
+            }
             return getUtilityContext(rule, theme).map(ctx => {
                 const selector = rule.selector.replace("*", ctx.key);
                 // responsive variant
@@ -216,7 +248,7 @@ export const parseTheme = (rule, theme = []) => {
 // @param {object} rule - utility rule
 // @return {object} parsed utility rule
 export const parseUtility = rule => {
-    const utilityVariants = new Set(["default"]);
+    const utilityVariants = new Set([]);
     const utiltyRules = getUtilityRules(rule.nodes);
     // fill utility variants set with variants defined in rules
     utiltyRules.forEach(utilityRule => {
@@ -256,8 +288,8 @@ const lowCssPlugin = (options = {}, theme = new Map()) => ({
             // 2. check if the rule is an utility rule to generate the utility classes
             else if (rule.type === "atrule" && rule.name === "utility") {
                 const utility = parseUtility(rule);
-                const utilityRules = compileUtility(utility, Array.from(theme.values()), postcss);
-                utilityRules.forEach(utilityRule => {
+                const themeValues = Array.from(theme.values());
+                compileUtility(utility, themeValues, postcss, options).forEach(utilityRule => {
                     rule.before(utilityRule);
                 });
                 rule.remove();
