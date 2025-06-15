@@ -188,12 +188,15 @@ const getBreakpoints = (theme, breakpoints = {}) => {
 // @param {object} utility - utility object to compile
 // @param {object} theme - theme object to use for compilation
 // @param {object} postcss - postcss instance to use for compilation
-export const compileUtility = (utility, theme = {}, postcss) => {
+export const compileUtility = (utility, theme = {}, postcss, options = {}) => {
     const breakpoints = getBreakpoints(theme);
-    const variants = variantOrder.filter(variant => utility.variants.includes(variant));
+    const variants = (options.variantOrder || variantOrder).filter(variant => {
+        return utility.variants.includes(variant);
+    });
     return variants.map(variant => {
+        const utilityVariants = new Set(utility.variants);
         return utility.rules.map(rule => {
-            if (!rule.variants.includes(variant)) {
+            if (!utilityVariants.has(variant)) {
                 return [];
             }
             return getUtilityContext(rule, theme).map(ctx => {
@@ -285,8 +288,8 @@ const lowCssPlugin = (options = {}, theme = new Map()) => ({
             // 2. check if the rule is an utility rule to generate the utility classes
             else if (rule.type === "atrule" && rule.name === "utility") {
                 const utility = parseUtility(rule);
-                const utilityRules = compileUtility(utility, Array.from(theme.values()), postcss);
-                utilityRules.forEach(utilityRule => {
+                const themeValues = Array.from(theme.values());
+                compileUtility(utility, themeValues, postcss, options).forEach(utilityRule => {
                     rule.before(utilityRule);
                 });
                 rule.remove();
