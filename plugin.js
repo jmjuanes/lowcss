@@ -20,6 +20,31 @@ const pseudos = {
     "peer-focus-within": "focus-within",
 };
 
+// @description default variant order
+const variantOrder = [
+    "default",
+    "responsive",
+    "print",
+    "first",
+    "last",
+    "odd",
+    "even",
+    "visited",
+    "required",
+    "group-hover",
+    "group-focus",
+    "group-focus-within",
+    "peer-hover",
+    "peer-focus",
+    "peer-focus-within",
+    "hover",
+    "focus",
+    "focus-within",
+    "checked",
+    "active",
+    "disabled",
+];
+
 // @description converts a simple glob pattern into a regex
 // @example globToRegex("bg-*") => /^bg-(.*?)$/
 const globToRegex = (glob = "") => {
@@ -165,8 +190,12 @@ const getBreakpoints = (theme, breakpoints = {}) => {
 // @param {object} postcss - postcss instance to use for compilation
 export const compileUtility = (utility, theme = {}, postcss) => {
     const breakpoints = getBreakpoints(theme);
-    return utility.rules.map(rule => {
-        return rule.variants.map(variant => {
+    const variants = variantOrder.filter(variant => utility.variants.includes(variant));
+    return variants.map(variant => {
+        return utility.rules.map(rule => {
+            if (!rule.variants.includes(variant)) {
+                return [];
+            }
             return getUtilityContext(rule, theme).map(ctx => {
                 const selector = rule.selector.replace("*", ctx.key);
                 // responsive variant
@@ -216,7 +245,7 @@ export const parseTheme = (rule, theme = []) => {
 // @param {object} rule - utility rule
 // @return {object} parsed utility rule
 export const parseUtility = rule => {
-    const utilityVariants = new Set(["default"]);
+    const utilityVariants = new Set([]);
     const utiltyRules = getUtilityRules(rule.nodes);
     // fill utility variants set with variants defined in rules
     utiltyRules.forEach(utilityRule => {
