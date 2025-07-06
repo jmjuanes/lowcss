@@ -2,7 +2,7 @@
 /* @category animation */
 /* @url https://developer.mozilla.org/en-US/docs/Web/CSS/animation */
 @utility animation {
-    animation-* {
+    animate-* {
         animation: value(--animate-*);
     }
 }
