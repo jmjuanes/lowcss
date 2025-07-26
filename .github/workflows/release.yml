@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: [lowcss-forms, lowcss-prose]
+        package: [lowcss-forms, lowcss-helpers, lowcss-prose]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
