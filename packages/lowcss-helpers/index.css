@@ -1,0 +1,89 @@
+:root {
+    --helpers-vr-opacity: 0.25;
+    --helpers-vr-width: 1px;
+}
+
+/* clearfix */
+.clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+/* fix elements to top or bottom */
+.fixed-top,
+.fixed-bottom {
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1100;
+}
+.fixed-top {
+    top: 0;
+}
+.fixed-bottom {
+    bottom: 0;
+}
+
+/* sticky elements to top or bottom */
+.sticky-top,
+.sticky-bottom {
+    position: sticky;
+    z-index: 1050;
+}
+.sticky-top {
+    top: 0;
+}
+.sticky-bottom {
+    bottom: 0;
+}
+
+/* truncate text */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* horizontal stack */
+.hstack {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+}
+
+/* vertical stack */
+.vstack {
+    align-self: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+
+/* vertical rule */
+.vr {
+    align-self: stretch;
+    background-color: currentcolor;
+    display: inline-block;
+    min-height: 1em;
+    opacity: var(--helpers-vr-opacity);
+    width: var(--helpers-vr-width);
+}
+
+/* additional fonts */
+.font-inter {
+    font-family: Inter, sans-serif;
+}
+.font-lato {
+    font-family: Lato, sans-serif;
+}
+.font-poppins {
+    font-family: Poppins, sans-serif;
+}
+.font-crimson {
+    font-family: 'Crimson Pro', serif;
+}
+.font-nunito {
+    font-family: Nunito, sans-serif;
+}
