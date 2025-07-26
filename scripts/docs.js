@@ -112,6 +112,7 @@ press({
                 {from: "low.css"},
                 {from: "packages/lowcss-forms/index.css", to: "low-forms.css"},
                 {from: "packages/lowcss-prose/index.css", to: "low-prose.css"},
+                {from: "packages/lowcss-helpers/index.css", to: "low-helpers.css"},
             ],
         }),
         press.CopyAssetsPlugin({
