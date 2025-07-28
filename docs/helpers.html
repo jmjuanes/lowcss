@@ -1,16 +1,373 @@
 ---
 {
     "title": "Helpers",
-    "description": "",
+    "description": "A collection of essential CSS helpers for layout and design.",
     "permalink": "/addons/helpers.html",
     "categories": ["addons"],
     "tableOfContents": [
-        {"text": "Introduction", "link": "#introduction"}
+        {"text": "Introduction", "link": "#introduction"},
+        {"text": "Installation", "link": "#installation"},
+        {"text": "Usage", "link": "#usage"},
+        {
+            "text": "Helper Classes",
+            "link": "#helper-classes",
+            "items": [
+                {"text": "Layout Helpers", "link": "#layout-helpers"},
+                {"text": "Positioning", "link": "#positioning"},
+                {"text": "Text Utilities", "link": "#text-utilities"},
+                {"text": "Typography Extensions", "link": "#typography-extensions"}
+            ]
+        },
+        {
+            "text": "Examples",
+            "link": "#examples",
+            "items": [
+                {"text": "Navigation Bar", "link": "#navigation-bar"},
+                {"text": "Card Layout", "link": "#card-layout"},
+                {"text": "Sidebar Layout", "link": "#sidebar-layout"}
+            ]
+        }
     ]
 }
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+{{>prose-heading.html level="h2" text="Introduction" id="introduction"}}
+
+{{>>prose-paragraph.html}}
+LowCSS Helpers is a collection of essential CSS helpers designed to streamline layout and design tasks. These helpers provide utility classes for common styling needs, making it easier to create consistent designs without writing repetitive CSS.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Installation" id="installation"}}
+
+{{>>prose-paragraph.html}}
+Install the LowCSS Helpers by including the CSS file in your project. You can either download it from the [LowCSS repository]({{site.repository}}/blob/main/packages/lowcss-helpers/index.css) or use a package manager like **npm** or **yarn**:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="bash" label="Terminal" icon="terminal"}}
+## Install using npm
+$ npm install lowcss-helpers
+
+## Install using yarn
+$ yarn add lowcss-helpers
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+After installation, import the CSS file into your project:
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
+<link rel="stylesheet" href="node_modules/lowcss-helpers/index.css">
+{{/prose-code.html}}
+
+{{>>prose-paragraph.html}}
+This will make all helper utility classes available for use in your HTML, providing layout and design utilities that complement LowCSS or work standalone.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h2" text="Usage" id="usage"}}
+
+{{>>prose-paragraph.html}}
+To use the LowCSS Helpers, simply apply the utility classes directly to your HTML elements. These helpers are designed to solve common layout and design challenges with minimal CSS. You can combine them with LowCSS utility classes for enhanced styling.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="html" label="example.html" icon="file-code"}}
+<div class="hstack">
+    <span>Home</span>
+    <span class="vr"></span>
+    <span>About</span>
+    <span class="vr"></span>
+    <span>Contact</span>
+</div>
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Helper Classes" id="helper-classes"}}
+
+{{>>prose-paragraph.html}}
+This section provides detailed explanations of each helper class available in lowcss-helpers and how to use them effectively.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h3" text="Layout Helpers" id="layout-helpers"}}
+
+{{>>prose-paragraph.html}}
+Layout helpers provide flexbox-based utilities for creating common layout patterns with minimal markup.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h4" text="Horizontal Stack"}}
+
+{{>>prose-paragraph.html}}
+Use `hstack` to create an horizontal flex container with centered items and stretched alignment. Perfect for creating navigation bars, button groups, or any horizontal layout.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.hstack {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+}
+{{/prose-code.html}}
+
+{{>>preview.html}}
+<div class="hstack gap-3 p-4 bg-gray-100 rounded">
+    <button class="px-3 py-2 bg-blue-500 text-white rounded">Button 1</button>
+    <button class="px-3 py-2 bg-gray-500 text-white rounded">Button 2</button>
+    <button class="px-3 py-2 bg-green-500 text-white rounded">Button 3</button>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h4" text="Vertical Stack"}}
+
+{{>>prose-paragraph.html}}
+Use `vstack` to create a vertical flex container with full stretch and flexible growth. Ideal for sidebar layouts, card content, or any vertical arrangement of elements.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.vstack {
+    align-self: stretch;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+{{/prose-code.html}}
+
+{{>>preview.html}}
+<div class="vstack gap-3 p-4 bg-gray-100 rounded h-48">
+    <div class="p-3 bg-blue-500 text-white rounded">Header</div>
+    <div class="p-3 bg-gray-500 text-white rounded flex-1">Content (grows to fill space)</div>
+    <div class="p-3 bg-green-500 text-white rounded">Footer</div>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h4" text="Vertical Rule"}}
+
+{{>>prose-paragraph.html}}
+Use `vr` to create a vertical divider that stretches to fit its container height. Uses `currentColor` for automatic theming and customizable opacity and width via CSS variables.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.vr {
+    align-self: stretch;
+    background-color: currentcolor;
+    display: inline-block;
+    min-height: 1em;
+    opacity: var(--helpers-vr-opacity);
+    width: var(--helpers-vr-width);
+}
+{{/prose-code.html}}
+
+{{>>preview.html}}
+<div class="hstack gap-3 p-4">
+    <span class="text-blue-600">Home</span>
+    <span class="vr"></span>
+    <span class="text-blue-600">About</span>
+    <span class="vr"></span>
+    <span class="text-blue-600">Contact</span>
+    <span class="vr"></span>
+    <span class="text-gray-400">Disabled</span>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h3" text="Positioning" id="positioning"}}
+
+{{>>prose-paragraph.html}}
+Positioning helpers provide convenient classes for fixed and sticky positioning with proper z-index values.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h4" text="Fixed Positioning"}}
+
+{{>>prose-paragraph.html}}
+The `.fixed-top` and `.fixed-bottom` classes position elements fixed to the viewport with full width and appropriate z-index.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.fixed-top,
+.fixed-bottom {
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1100;
+}
+.fixed-top {
+    top: 0;
+}
+.fixed-bottom {
+    bottom: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h4" text="Sticky Positioning"}}
+
+{{>>prose-paragraph.html}}
+The `.sticky-top` and `.sticky-bottom` classes create sticky elements that stick to the top or bottom when scrolling.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.sticky-top,
+.sticky-bottom {
+    position: sticky;
+    z-index: 1050;
+}
+.sticky-top {
+    top: 0;
+}
+.sticky-bottom {
+    bottom: 0;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Text Utilities" id="text-utilities"}}
+
+{{>>prose-paragraph.html}}
+Text utilities provide common text handling and layout clearing functionality.
+{{/prose-paragraph.html}}
+
+{{>prose-heading.html level="h4" text="Text Truncation"}}
+
+{{>>prose-paragraph.html}}
+Use the class `truncate` to truncate overflowing text with an ellipsis, perfect for single-line text that needs to fit within a container.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+{{/prose-code.html}}
+
+{{>>preview.html}}
+<div class="p-4 bg-gray-100 rounded">
+    <div class="truncate" style="width: 250px; border: 1px solid #ccc; padding: 8px;">
+        This is a very long text that will be truncated with ellipsis when it exceeds the container width
+    </div>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h4" text="Clearfix"}}
+
+{{>>prose-paragraph.html}}
+The class `clearfix` clears floated elements using the after pseudo-element, ensuring parent containers properly contain their floated children.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.clearfix::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h3" text="Typography Extensions" id="typography-extensions"}}
+
+{{>>prose-paragraph.html}}
+Typography extensions provide additional font family options commonly used in modern web design.
+{{/prose-paragraph.html}}
+
+{{>>prose-code.html language="css" label="index.css" icon="file-code"}}
+.font-inter {
+    font-family: Inter, sans-serif;
+}
+.font-lato {
+    font-family: Lato, sans-serif;
+}
+.font-poppins {
+    font-family: Poppins, sans-serif;
+}
+.font-crimson {
+    font-family: 'Crimson Pro', serif;
+}
+.font-nunito {
+    font-family: Nunito, sans-serif;
+}
+{{/prose-code.html}}
+
+{{>>prose-code.html language="html" label="index.html" icon="file-code"}}
+<div class="vstack gap-3 p-4">
+    <div class="font-inter text-lg">Inter Font - A typeface carefully crafted for user interfaces</div>
+    <div class="font-lato text-lg">Lato Font - A humanist sans-serif typeface family</div>
+    <div class="font-poppins text-lg">Poppins Font - A geometric sans-serif typeface</div>
+    <div class="font-crimson text-lg">Crimson Pro Font - A serif font family inspired by classical proportion</div>
+    <div class="font-nunito text-lg">Nunito Font - A well balanced sans serif typeface superfamily</div>
+</div>
+{{/prose-code.html}}
+
+{{>prose-heading.html level="h2" text="Examples" id="examples"}}
+
+{{>prose-heading.html level="h3" text="Navigation Bar" id="navigation-bar"}}
+
+{{>>prose-paragraph.html}}
+Create a responsive navigation bar using hstack and vertical rules.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<nav class="hstack bg-white p-3 shadow-sm">
+    <a href="#" class="font-bold text-blue-600">MyApp</a>
+    <span class="vr mx-3"></span>
+    <div class="hstack gap-4">
+        <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+        <span class="vr"></span>
+        <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
+        <span class="vr"></span>
+        <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
+    </div>
+    <div class="ml-auto">
+        <button class="px-4 py-2 bg-blue-500 text-white rounded">Sign In</button>
+    </div>
+</nav>
+{{/preview.html}}
+
+{{>prose-heading.html level="h3" text="Card Layout" id="card-layout"}}
+
+{{>>prose-paragraph.html}}
+Build a card component using vstack for content organization and text truncation for overflow handling.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="vstack p-6">
+        <h3 class="font-inter font-bold text-xl mb-2">Product Title</h3>
+        <p class="text-gray-600 truncate mb-4">This is a very long product description that will be truncated to fit the card layout nicely</p>
+        <div class="hstack mt-auto">
+            <span class="font-bold text-2xl text-green-600">$99.99</span>
+            <div class="ml-auto hstack gap-2">
+                <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">Details</button>
+                <span class="vr"></span>
+                <button class="px-3 py-1 bg-blue-500 text-white rounded text-sm">Buy Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/preview.html}}
+
+{{>prose-heading.html level="h3" text="Sidebar Layout" id="sidebar-layout"}}
+
+{{>>prose-paragraph.html}}
+Create a sidebar layout using sticky positioning and vertical stacks for content organization.
+{{/prose-paragraph.html}}
+
+{{>>preview.html}}
+<div class="flex h-64 bg-gray-100 rounded overflow-hidden">
+    <nav class="w-64 bg-white sticky-top shrink-0">
+        <div class="vstack p-4 gap-2">
+            <h4 class="font-inter font-bold mb-2">Navigation</h4>
+            <a href="#" class="p-2 text-gray-700 hover:bg-gray-100 rounded">Dashboard</a>
+            <a href="#" class="p-2 text-gray-700 hover:bg-gray-100 rounded">Projects</a>
+            <a href="#" class="p-2 text-gray-700 hover:bg-gray-100 rounded">Settings</a>
+            <a href="#" class="p-2 text-gray-700 hover:bg-gray-100 rounded">Profile</a>
+        </div>
+    </nav>
+    <main class="flex-1 p-6">
+        <div class="vstack gap-4">
+            <h2 class="font-poppins text-2xl font-bold">Main Content</h2>
+            <p>This is the main content area that scrolls independently from the sticky sidebar.</p>
+            <div class="hstack gap-3">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded">Action</button>
+                <span class="vr"></span>
+                <button class="px-4 py-2 bg-gray-500 text-white rounded">Cancel</button>
+            </div>
+        </div>
+    </main>
+</div>
+{{/preview.html}}
 
 {{/layout-sidebar.html}}
