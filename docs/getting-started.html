@@ -27,9 +27,9 @@
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+{{>prose-heading.html level="h2" text="Installation" id="installation"}}
 
-{{>prose-heading.html level="h2" text="Using a Package Manager" id="using-a-package-manager"}}
+{{>prose-heading.html level="h3" text="Using a Package Manager" id="using-a-package-manager"}}
 
 {{>>prose-paragraph.html}}
 To get started with LowCSS, you can install the package using either **yarn** or **npm**. Follow the instructions below based on your preferred package manager:
@@ -59,7 +59,7 @@ Then, link the CSS file in your HTML file using a `<link>` tag in the `<head>` s
 <link rel="stylesheet" href="assets/low.css">
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Using a Hosted Version" id="using-a-hosted-version"}}
+{{>prose-heading.html level="h3" text="Using a Hosted Version" id="using-a-hosted-version"}}
 
 {{>>prose-paragraph.html}}
 You can also use the hosted version of LowCSS from a Content Delivery Network (CDN). Simply include the following `<link>` tag in the `<head>` section of your HTML file:
@@ -71,14 +71,14 @@ You can also use the hosted version of LowCSS from a Content Delivery Network (C
 
 {{>prose-separator.html}}
 
-{{>prose-heading.html level="h1" text="Usage" id="usage"}}
+{{>prose-heading.html level="h2" text="Usage" id="usage"}}
 
 {{>>prose-paragraph.html}}
 LowCSS adopts a familiar and intuitive utility class naming convention, inspired by [Tailwind CSS](https://www.tailwindcss.com). 
 This syntax allows you to apply a wide range of styles to your HTML elements by adding class attributes directly in your markup.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Basic Usage" id="basic-usage"}}
+{{>prose-heading.html level="h3" text="Basic Usage" id="basic-usage"}}
 
 {{>>prose-paragraph.html}}
 The basic naming pattern for our utility classes is as follows:
@@ -105,13 +105,13 @@ The basic naming pattern for our utility classes is as follows:
 <button class="bg-blue-500 text-white text-base rounded-lg px-4 py-2 [..]">Button</button>
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Media queries" id="media-queries"}}
+{{>prose-heading.html level="h3" text="Media queries" id="media-queries"}}
 
 {{>>prose-paragraph.html}}
 Media queries are a powerful tool for creating responsive designs. LowCSS provides a simple and consistent way to apply styles based on different media conditions.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h3" text="Responsive Design"}}
+{{>prose-heading.html level="h4" text="Responsive Design"}}
 
 {{>>prose-paragraph.html}}
 LowCSS makes it easy to create responsive designs using the following utility syntax: 
@@ -156,7 +156,7 @@ You can apply different styles at different breakpoints:
 </div>
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Print Media"}}
+{{>prose-heading.html level="h4" text="Print Media"}}
 
 {{>>prose-paragraph.html}}
 Use the `print` modifier to apply the provided class only when the document is begin printed.
@@ -168,7 +168,7 @@ Use the `print` modifier to apply the provided class only when the document is b
 </div>
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="State modifiers" id="state-modifiers"}}
+{{>prose-heading.html level="h3" text="State modifiers" id="state-modifiers"}}
 
 {{>>prose-paragraph.html}}
 LowCSS includes a range of utility classes for working with state modifiers, allowing you to easily style elements in specific states. We use the following syntax:
@@ -178,7 +178,7 @@ LowCSS includes a range of utility classes for working with state modifiers, all
 {modifier}:{property}-{value}
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Pseudo modifiers"}}
+{{>prose-heading.html level="h4" text="Pseudo modifiers"}}
 
 {{>>prose-paragraph.html}}
 Pseudo modifiers allows you to conditionally apply an utility class based on the pseudo state, such as `hover` or `focus`.
@@ -212,7 +212,7 @@ This is the list of available pseudo modifiers:
 
 {{/markdown}}
 
-{{>prose-heading.html level="h3" text="Style based on a parent state"}}
+{{>prose-heading.html level="h4" text="Style based on a parent state"}}
 
 {{>>prose-paragraph.html}}
 You can conditionally style an element based on the state of a parent element. Add a `group` class to the parent element and use one of the `group-*` modifiers to style the target element.
@@ -241,7 +241,7 @@ This is a list of all `group-*` modifiers available:
 {{/markdown}}
 
 <!--
-{{>prose-heading.html level="h3" text="Style based on a sibling state"}}
+{{>prose-heading.html level="h4" text="Style based on a sibling state"}}
 
 {{>>prose-paragraph.html}}
 You can conditionally style an element based on the state of a sibling element. Add a `peer` class to the sibling element, and use any of the `peer-*` modifiers to style the target element.

@@ -33,13 +33,13 @@
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+{{>prose-heading.html level="h2" text="Introduction" id="introduction"}}
 
 {{>>prose-paragraph.html}}
 The LowCSS Forms reset is a collection of styles that normalizes and styles form elements consistently across different browsers. It aims to provide a solid foundation for building forms with a cohesive look and feel, ensuring that all form elements behave predictably and are visually appealing.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+{{>prose-heading.html level="h2" text="Installation" id="installation"}}
 
 {{>>prose-paragraph.html}}
 Install the LowCSS Forms reset by including the CSS file in your project. You can either download it from the [LowCSS repository]({{site.repository}}/blob/main/packages/lowcss-forms/index.css) or use a package manager like **npm** or **yarn**:
@@ -65,7 +65,7 @@ After installation, import the CSS file into your project:
 This will apply the LowCSS Forms reset styles to all form elements in your project, ensuring a consistent and modern appearance.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h1" text="Usage" id="usage"}}
+{{>prose-heading.html level="h2" text="Usage" id="usage"}}
 
 {{>>prose-paragraph.html}}
 To use the LowCSS Forms reset, simply include the CSS file in your HTML document as shown in the installation section. The reset styles will automatically apply to all form elements, providing a consistent baseline for styling. You can then use LowCSS utility classes to further customize the appearance of your forms.
@@ -75,13 +75,13 @@ To use the LowCSS Forms reset, simply include the CSS file in your HTML document
 <input type="text" class="border-1 border-gray-200 rounded-md focus:border-blue-500 w-full">
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h1" text="Reset Elements" id="reset-elements"}}
+{{>prose-heading.html level="h2" text="Reset Elements" id="reset-elements"}}
 
 {{>>prose-paragraph.html}}
 This section provides detailed explanations of how each CSS block in lowcss-forms resets and normalizes form elements.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Text Inputs" id="text-inputs"}}
+{{>prose-heading.html level="h3" text="Text Inputs" id="text-inputs"}}
 
 {{>>prose-paragraph.html}}
 Text inputs are normalized to provide consistent styling across browsers. The reset removes the default browser appearance using `appearance: none`, which helps eliminate inconsistencies. A standard font size of 1rem with a comfortable line-height of 1.5 ensures readability across all text inputs. The uniform padding (0.5rem vertical, 0.75rem horizontal) creates consistent dimensions that work well with LowCSS utility classes for further customization.
@@ -109,7 +109,7 @@ textarea {
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Placeholder Styling" id="placeholder-styling"}}
+{{>prose-heading.html level="h3" text="Placeholder Styling" id="placeholder-styling"}}
 
 {{>>prose-paragraph.html}}
 Placeholders are styled to maintain consistency with your design system. The reset uses the current text color for placeholders via `currentColor` and sets their opacity to 50%, creating a subtle, recognizable appearance. This approach ensures placeholders have a consistent look across different browsers while still being visually distinct from actual input text.
@@ -123,7 +123,7 @@ textarea::placeholder {
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Checkboxes and Radio Buttons" id="checkboxes-radio-buttons"}}
+{{>prose-heading.html level="h3" text="Checkboxes and Radio Buttons" id="checkboxes-radio-buttons"}}
 
 {{>>prose-paragraph.html}}
 Checkboxes and radio buttons are completely redesigned to provide a clean slate for styling. The reset removes default browser styling and establishes consistent dimensions (1rem × 1rem) for both elements. They're properly aligned with text using `vertical-align: middle` and prevent text selection with `user-select: none`. Radio buttons are made perfectly round with a large border-radius, distinguishing them from checkboxes while maintaining stylistic harmony.
@@ -147,7 +147,7 @@ Checkboxes and radio buttons are completely redesigned to provide a clean slate 
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Checked States" id="checked-states"}}
+{{>prose-heading.html level="h3" text="Checked States" id="checked-states"}}
 
 {{>>prose-paragraph.html}}
 When checkboxes and radio buttons are checked or indeterminate, this CSS creates a consistent visual indicator. The reset uses `currentColor` for the background, inheriting from the text color property and making it easy to customize with LowCSS color utilities. The CSS centers the background image for the indicator and makes borders transparent when elements are checked, preparing the element for custom SVG indicators that follow.
@@ -181,7 +181,7 @@ It also adds specific SVG backgrounds for different states: a checkmark icon for
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Range Inputs" id="range-inputs"}}
+{{>prose-heading.html level="h3" text="Range Inputs" id="range-inputs"}}
 
 {{>>prose-paragraph.html}}
 Range inputs (sliders) are normalized to provide a consistent appearance across browsers. The reset removes default browser styling and creates a smooth, rounded track with `border-radius: 1rem`. The slider thumb is styled with consistent dimensions (1rem × 1rem) and uses `currentColor`, making it automatically match your design system's colors. The CSS handles vendor-specific selectors for cross-browser compatibility, ensuring consistent appearance in all modern browsers.
@@ -206,7 +206,7 @@ Range inputs (sliders) are normalized to provide a consistent appearance across 
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Select Elements" id="select-elements"}}
+{{>prose-heading.html level="h3" text="Select Elements" id="select-elements"}}
 
 {{>>prose-paragraph.html}}
 Select elements are restyled to maintain visual harmony with other form elements. The reset adds a custom dropdown caret icon via SVG background, positioned consistently on the right side of the element. The CSS applies appropriate padding to prevent text from overlapping with the caret icon. This approach maintains the native select behavior while providing a consistent visual appearance that integrates well with other form elements in your LowCSS design system.
@@ -222,9 +222,9 @@ select {
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h1" text="Examples" id="examples"}}
+{{>prose-heading.html level="h2" text="Examples" id="examples"}}
 
-{{>prose-heading.html level="h2" text="Unstyled Elements" id="unstyled-elements"}}
+{{>prose-heading.html level="h3" text="Unstyled Elements" id="unstyled-elements"}}
 
 {{>>prose-paragraph.html}}
 The following examples demonstrate how the LowCSS Forms reset styles apply to various form elements.
@@ -268,7 +268,7 @@ The following examples demonstrate how the LowCSS Forms reset styles apply to va
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Styled Elements" id="styled-elements"}}
+{{>prose-heading.html level="h3" text="Styled Elements" id="styled-elements"}}
 
 {{>>prose-paragraph.html}}
 The following examples demonstrate how to style form elements using LowCSS utility classes after applying the reset styles.
