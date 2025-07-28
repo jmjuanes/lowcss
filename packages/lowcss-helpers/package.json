@@ -1,7 +1,7 @@
 {
     "name": "lowcss-helpers",
     "version": "0.0.0",
-    "description": "",
+    "description": "A collection of essential CSS helpers to complement LowCSS.",
     "author": {
         "name": "Josemi Juanes",
         "email": "hello@josemi.xyz"
