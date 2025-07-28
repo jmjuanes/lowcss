@@ -33,7 +33,7 @@
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+{{>prose-heading.html level="h2" text="Introduction" id="introduction"}}
 
 {{>>prose-paragraph.html}}
 LowCSS Prose is a set of CSS styles designed to enhance the appearance of markdown content. It provides a clean and readable typography system, making your text content visually appealing and easy to read.
@@ -81,7 +81,7 @@ LowCSS Prose is a set of CSS styles designed to enhance the appearance of markdo
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h1" text="Installation" id="installation"}}
+{{>prose-heading.html level="h2" text="Installation" id="installation"}}
 
 {{>>prose-paragraph.html}}
 Install the LowCSS Prose by including the CSS file in your project. You can either download it from the [LowCSS repository]({{site.repository}}/blob/main/packages/lowcss-prose/index.css) or use a package manager like **npm** or **yarn**:
@@ -103,9 +103,9 @@ After installation, import the CSS file into your project:
 <link rel="stylesheet" href="node_modules/lowcss-prose/index.css">
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h1" text="Elements" id="elements"}}
+{{>prose-heading.html level="h2" text="Elements" id="elements"}}
 
-{{>prose-heading.html level="h2" text="Headings" id="headings"}}
+{{>prose-heading.html level="h3" text="Headings" id="headings"}}
 
 {{>>prose-paragraph.html}}
 The Prose module includes style for `<h1>`, `<h2>`, `<h3>`, and `<h4>` headings. 
@@ -121,7 +121,7 @@ The Prose module includes style for `<h1>`, `<h2>`, `<h3>`, and `<h4>` headings.
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Paragraphs" id="paragraphs"}}
+{{>prose-heading.html level="h3" text="Paragraphs" id="paragraphs"}}
 
 {{>>prose-paragraph.html}}
 The Prose module styles paragraphs with a clean and readable font. It ensures proper line height and spacing for 
@@ -143,7 +143,7 @@ optimal readability, making your text content visually appealing.
 </div> 
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Lists" id="lists"}}
+{{>prose-heading.html level="h3" text="Lists" id="lists"}}
 
 {{>>prose-paragraph.html}}
 The Prose module styles both ordered and unordered lists, providing consistent spacing and bullet styles.
@@ -168,7 +168,7 @@ The Prose module styles both ordered and unordered lists, providing consistent s
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Links" id="links"}}
+{{>prose-heading.html level="h3" text="Links" id="links"}}
 
 {{>>prose-paragraph.html}}
 Links are styled to be visually distinct and easy to identify. They have a consistent color and underline style, 
@@ -183,7 +183,7 @@ ensuring they stand out from regular text. Hovering over links changes their col
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Blockquotes" id="blockquotes"}}
+{{>prose-heading.html level="h3" text="Blockquotes" id="blockquotes"}}
 
 {{>>prose-paragraph.html}}
 Blockquotes are styled to provide a clear visual distinction from regular text. They include a left border and 
@@ -199,7 +199,7 @@ proper spacing, making them stand out while maintaining readability.
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Tables" id="tables"}}
+{{>prose-heading.html level="h3" text="Tables" id="tables"}}
 
 {{>>prose-paragraph.html}}
 Tables are styled to be clean and readable, with proper borders and spacing.
@@ -240,7 +240,7 @@ Tables are styled to be clean and readable, with proper borders and spacing.
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h2" text="Inline Code" id="inline-code"}}
+{{>prose-heading.html level="h3" text="Inline Code" id="inline-code"}}
 
 {{>>prose-paragraph.html}}
 Inline code is styled to be visually distinct from regular text, using a monospaced font and a background color for emphasis.
@@ -254,13 +254,13 @@ Inline code is styled to be visually distinct from regular text, using a monospa
 </div>
 {{/preview.html}}
 
-{{>prose-heading.html level="h1" text="Customization" id="customization"}}
+{{>prose-heading.html level="h2" text="Customization" id="customization"}}
 
 {{>>prose-paragraph.html}}
 LowCSS Prose is fully customizable through CSS variables. You can modify the appearance of all prose elements by overriding these variables in your own CSS.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="How to Customize" id="how-to-customize"}}
+{{>prose-heading.html level="h3" text="How to Customize" id="how-to-customize"}}
 
 {{>>prose-paragraph.html}}
 To customize the prose styles, add your own CSS that overrides the default variables. You can do this globally or scope it to specific containers:
@@ -281,13 +281,13 @@ To customize the prose styles, add your own CSS that overrides the default varia
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Available Variables" id="available-variables"}}
+{{>prose-heading.html level="h3" text="Available Variables" id="available-variables"}}
 
 {{>>prose-paragraph.html}}
 Below are the main categories of variables you can customize:
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h3" text="General Typography" id="general-typography"}}
+{{>prose-heading.html level="h4" text="General Typography" id="general-typography"}}
 
 {{>>prose-paragraph.html}}
 These variables control the overall typography of prose content:
@@ -300,7 +300,7 @@ These variables control the overall typography of prose content:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Paragraphs" id="paragraphs-variables"}}
+{{>prose-heading.html level="h4" text="Paragraphs" id="paragraphs-variables"}}
 
 {{>>prose-code.html language="css" label="index.css" icon="file-code"}}
 :root {
@@ -315,7 +315,7 @@ These variables control the overall typography of prose content:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Headings" id="headings-variables"}}
+{{>prose-heading.html level="h4" text="Headings" id="headings-variables"}}
 
 {{>>prose-paragraph.html}}
 Each heading level (h1-h4) has its own set of variables for fine-grained control:
@@ -356,7 +356,7 @@ Each heading level (h1-h4) has its own set of variables for fine-grained control
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Code Blocks" id="code-variables"}}
+{{>prose-heading.html level="h4" text="Code Blocks" id="code-variables"}}
 
 {{>>prose-paragraph.html}}
 Customize both inline code and code blocks:
@@ -390,7 +390,7 @@ Customize both inline code and code blocks:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Lists" id="lists-variables"}}
+{{>prose-heading.html level="h4" text="Lists" id="lists-variables"}}
 
 {{>>prose-code.html language="css" label="index.css" icon="file-code"}}
 :root {
@@ -402,7 +402,7 @@ Customize both inline code and code blocks:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Links" id="links-variables"}}
+{{>prose-heading.html level="h4" text="Links" id="links-variables"}}
 
 {{>>prose-code.html language="css" label="index.css" icon="file-code"}}
 :root {
@@ -412,7 +412,7 @@ Customize both inline code and code blocks:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Blockquotes" id="blockquotes-variables"}}
+{{>prose-heading.html level="h4" text="Blockquotes" id="blockquotes-variables"}}
 
 {{>>prose-code.html language="css" label="index.css" icon="file-code"}}
 :root {
@@ -423,7 +423,7 @@ Customize both inline code and code blocks:
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h3" text="Tables" id="tables-variables"}}
+{{>prose-heading.html level="h4" text="Tables" id="tables-variables"}}
 
 {{>>prose-code.html language="css" label="index.css" icon="file-code"}}
 :root {

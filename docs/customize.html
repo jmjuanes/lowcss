@@ -62,14 +62,14 @@
 ---
 {{>>layout-sidebar.html}}
 
-{{>prose-heading.html level="h1" text="Introduction" id="introduction"}}
+{{>prose-heading.html level="h2" text="Introduction" id="introduction"}}
 
 {{>>prose-paragraph.html}}
 LowCSS is a utility-first CSS framework that uses a PostCSS plugin to generate utility classes. This guide will help you customize LowCSS to fit your project's needs.
 {{/prose-paragraph.html}}
 
 
-{{>prose-heading.html level="h1" text="Build Process" id="build-process"}}
+{{>prose-heading.html level="h2" text="Build Process" id="build-process"}}
 
 {{>>prose-paragraph.html}}
 **PostCSS is required** to process the custom `@utility` and `@theme` rules, as these are not standard CSS syntax and won't work without the LowCSS plugin.
@@ -87,7 +87,7 @@ $ npm install postcss postcss-cli postcss-import lowcss
 You can use either a `postcss.config.js` file or run PostCSS directly from the command line. Both methods will allow you to compile your LowCSS stylesheets.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Option 1: Using postcss.config.js" id="option-1-using-postcss-config-js"}}
+{{>prose-heading.html level="h3" text="Option 1: Using postcss.config.js" id="option-1-using-postcss-config-js"}}
 
 {{>>prose-paragraph.html}}
 You can create a `postcss.config.js` file in your project root to define your PostCSS plugins, including the LowCSS plugin.
@@ -125,7 +125,7 @@ $ npx postcss index.css -o low.css
 This command will process your `index.css` file, applying the LowCSS plugin and any other PostCSS plugins you have configured, and output the compiled CSS to `low.css`.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Option 2: Using PostCSS CLI" id="option-2-using-postcss-cli"}}
+{{>prose-heading.html level="h3" text="Option 2: Using PostCSS CLI" id="option-2-using-postcss-cli"}}
 
 {{>>prose-paragraph.html}}
 You can run PostCSS directly from the command line without a config file:
@@ -139,13 +139,13 @@ $ npx postcss index.css --use postcss-import --use lowcss --no-map -o low.css
 This command processes `index.css`, applying the `postcss-import` and `lowcss` plugins, and outputs the result to `low.css`. The `--no-map` option disables source maps, which is useful for production builds.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h1" text="Theme Customization" id="theme-customization"}}
+{{>prose-heading.html level="h2" text="Theme Customization" id="theme-customization"}}
 
 {{>>prose-paragraph.html}}
 LowCSS uses the `@theme` rule to define CSS variables that can be used throughout your stylesheets and to generate utility classes. This allows you to create a consistent design system for your project.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Basic Theme Usage" id="basic-theme-usage"}}
+{{>prose-heading.html level="h3" text="Basic Theme Usage" id="basic-theme-usage"}}
 
 {{>>prose-paragraph.html}}
 You can define your theme variables using the `@theme` rule. This is where you set your colors, fonts, spacing, and other design tokens.
@@ -186,7 +186,7 @@ These variables will be used to generate utility classes, but you can also use t
 Refer to the [theme namespaces](/theme.html#variables-namespaces) page to see how variables map to utility classes.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Breakpoints" id="breakpoints"}}
+{{>prose-heading.html level="h3" text="Breakpoints" id="breakpoints"}}
 
 {{>>prose-paragraph.html}}
 You can define responsive breakpoints in your theme to create responsive utility classes.
@@ -206,13 +206,13 @@ These breakpoints can be used to create responsive utility classes that apply st
 {{/prose-paragraph.html}}
 
 
-{{>prose-heading.html level="h1" text="Creating Custom Utilities" id="creating-custom-utilities"}}
+{{>prose-heading.html level="h2" text="Creating Custom Utilities" id="creating-custom-utilities"}}
 
 {{>>prose-paragraph.html}}
 LowCSS uses the `@utility` rule to define utility classes. Utility classes are single-purpose CSS classes that can be applied to elements to control their styling without writing custom CSS.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Static Utilities" id="static-utilities"}}
+{{>prose-heading.html level="h3" text="Static Utilities" id="static-utilities"}}
 
 {{>>prose-paragraph.html}}
 You can create custom utility classes using the `@utility` rule.
@@ -236,7 +236,7 @@ You can create custom utility classes using the `@utility` rule.
 This will generate utility classes like `.opacity-50`, `.opacity-75`, and `.opacity-100` that you can apply to elements in your HTML.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Dynamic Utilities" id="dynamic-utilities"}}
+{{>prose-heading.html level="h3" text="Dynamic Utilities" id="dynamic-utilities"}}
 
 {{>>prose-paragraph.html}}
 You can create dynamic utilities using the `*` wildcard and `value()` function. This allows you to generate utility classes for all available values in your theme.
@@ -286,14 +286,14 @@ You can also combine static and dynamic utilities in the same `@utility` block.
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h1" text="Working with Variants" id="working-with-variants"}}
+{{>prose-heading.html level="h2" text="Working with Variants" id="working-with-variants"}}
 
 {{>>prose-paragraph.html}}
 Variants allow you to generate utility classes that only apply under certain conditions, like hover states or at specific breakpoints. 
 This is useful for creating responsive designs and interactive elements without writing custom CSS.
 {{/prose-paragraph.html}}
 
-{{>prose-heading.html level="h2" text="Basic Variants" id="basic-variants"}}
+{{>prose-heading.html level="h3" text="Basic Variants" id="basic-variants"}}
 
 {{>>prose-paragraph.html}}
 Use the `@variant` rule inside a utility to define variants. This allows you to create utility classes that apply styles under specific conditions, such as hover or focus states.
@@ -335,7 +335,7 @@ You can also combine multiple `@variant` rules to create more complex utilities 
 }
 {{/prose-code.html}}
 
-{{>prose-heading.html level="h2" text="Available Variants" id="available-variants"}}
+{{>prose-heading.html level="h3" text="Available Variants" id="available-variants"}}
 
 {{>>prose-paragraph.html}}
 LowCSS supports a variety of variants that can be used to generate utility classes for different states and conditions. These variants allow you to create responsive and interactive designs without writing custom CSS.
