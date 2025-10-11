@@ -1,5 +1,8 @@
 # lowcss-colors
 
+[![NPM Version](https://badgen.net/npm/v/lowcss-colors?labelColor=1d2734&color=21bf81)](https://npm.im/lowcss-colors)
+[![MIT License](https://badgen.net/github/license/jmjuanes/lowcss?labelColor=1d2734&color=21bf81)](https://github.com//jmjuanes/lowcss)
+
 A modular color extension for LowCSS, offering curated color palettes as functional shades from `50` to `950`. Designed for clarity, flexibility, and emotional resonance.
 
 ## What is this?
