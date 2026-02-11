@@ -50,6 +50,7 @@
         "low.css",
         "index.css",
         "theme.css",
+        "reset.css",
         "utilities.css",
         "plugin.js",
         "package.json"
