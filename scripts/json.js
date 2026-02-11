@@ -1,8 +1,8 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
+import fs from "node:fs";
+import path from "node:path";
 import postcss from "postcss";
-import {parseTheme, parseUtility} from "../plugin.js";
-import pkg from "../package.json" with {type: "json"};
+import { parseTheme, parseUtility } from "../plugin.js";
+import pkg from "../package.json" with { type: "json" };
 
 // map theme variables with their categories
 const themeKeys = {
@@ -28,8 +28,12 @@ const themeJsonPlugin = (options = {}) => ({
     Once: root => {
         [...(root.nodes || [])].forEach(rule => {
             if (rule.type === "atrule" && rule.name === "theme") {
-                return parseTheme(rule).forEach(item => {
-                    options.theme.push(item);
+                const themeMap = new Map();
+                parseTheme(rule, themeMap);
+                Array.from(themeMap.values()).forEach(item => {
+                    if (item.type === "global") {
+                        options.theme.push(item);
+                    }
                 });
             }
         });
