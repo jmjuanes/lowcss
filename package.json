@@ -17,8 +17,10 @@
         ".": "./plugin.js",
         "./plugin.js": "./plugin.js",
         "./low.css": "./low.css",
+        "./low.json": "./low.json",
         "./index.css": "./index.css",
         "./theme.css": "./theme.css",
+        "./reset.css": "./reset.css",
         "./utilities.css": "./utilities.css",
         "./package.json": "./package.json"
     },
