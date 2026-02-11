@@ -230,18 +230,28 @@ export const compileUtility = (utility, theme = {}, postcss, options = {}) => {
 
 // @description parse theme rule
 // @param {object} rule - theme rule
-// @return {Array} theme - parsed theme variables
-export const parseTheme = (rule, theme = []) => {
-    (rule.nodes || []).forEach(declaration => {
-        if (declaration.type === "decl" && declaration.prop.startsWith("--")) {
-            theme.push({
+// @param {Map} themeMap - map to store theme variables
+export const parseTheme = (rule, themeMap) => {
+    (rule.nodes || []).forEach(node => {
+        // 1. check if it's a clear directive
+        if (node.type === "atrule" && node.name === "clear") {
+            const pattern = (node.params || "").trim();
+            const patternRegex = globToRegex(pattern);
+            for (const key of themeMap.keys()) {
+                if (patternRegex.test(key)) {
+                    themeMap.delete(key);
+                }
+            }
+        }
+        // 2. check if it's a theme variable declaration
+        else if (node.type === "decl" && node.prop.startsWith("--")) {
+            themeMap.set(node.prop.trim(), {
                 type: "global",
-                key: declaration.prop.trim(),
-                value: declaration.value.trim(),
+                key: node.prop.trim(),
+                value: node.value.trim(),
             });
         }
     });
-    return theme;
 };
 
 // @description parse utility rule
@@ -265,35 +275,51 @@ export const parseUtility = rule => {
 };
 
 // @description plugin to generate lowcss styles
-const lowCssPlugin = (options = {}, theme = new Map()) => ({
+const lowCssPlugin = (options = {}) => ({
     postcssPlugin: "lowcss",
     Once: (root, postcss) => {
-        [...(root.nodes || [])].forEach(rule => {
-            // 1. check if the rule is a theme rule to extract the variables
+        const theme = new Map();
+        const themeRules = [];
+        const utilityRules = [];
+
+        // 1. collect all theme and utility rules
+        root.nodes.forEach(rule => {
             if (rule.type === "atrule" && rule.name === "theme") {
-                const rootRule = new postcss.Rule({selector: ":root"});
-                parseTheme(rule).forEach(item => {
-                    theme.set(item.key, item);
-                    rootRule.append({
-                        prop: item.key,
-                        value: item.value,
-                    });
-                });
-                // add the root rule to the root
-                if (rootRule.nodes.length > 0) {
-                    root.first.before(rootRule);
-                }
-                rule.remove();
+                themeRules.push(rule);
+            } else if (rule.type === "atrule" && rule.name === "utility") {
+                utilityRules.push(rule);
             }
-            // 2. check if the rule is an utility rule to generate the utility classes
-            else if (rule.type === "atrule" && rule.name === "utility") {
-                const utility = parseUtility(rule);
-                const themeValues = Array.from(theme.values());
-                compileUtility(utility, themeValues, postcss, options).forEach(utilityRule => {
-                    rule.before(utilityRule);
+        });
+
+        // 2. process all theme rules to populate the theme map
+        themeRules.forEach(rule => {
+            parseTheme(rule, theme);
+            rule.remove();
+        });
+
+        // 3. generate the :root rule from the final theme state
+        if (theme.size > 0) {
+            const rootRule = new postcss.Rule({selector: ":root"});
+            Array.from(theme.keys()).forEach(key => {
+                rootRule.append({
+                    prop: key,
+                    value: theme.get(key).value,
                 });
-                rule.remove();
+            });
+            // add the root rule at the beginning of the document if not empty
+            if (rootRule.nodes.length > 0) {
+                root.first.before(rootRule);
             }
+        }
+
+        // 4. process all utility rules using the final theme state
+        const themeValues = Array.from(theme.values());
+        utilityRules.forEach(rule => {
+            const utility = parseUtility(rule);
+            compileUtility(utility, themeValues, postcss, options).forEach(utilityRule => {
+                rule.before(utilityRule);
+            });
+            rule.remove();
         });
     },
 });
