@@ -12,10 +12,12 @@
     "bugs": "https://github.com/jmjuanes/lowcss/issues",
     "type": "module",
     "main": "plugin.js",
+    "types": "./plugin.d.ts",
     "style": "low.css",
     "exports": {
         ".": "./plugin.js",
         "./plugin.js": "./plugin.js",
+        "./plugin.d.ts": "./plugin.d.ts",
         "./low.css": "./low.css",
         "./low.json": "./low.json",
         "./index.css": "./index.css",
