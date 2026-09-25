@@ -1,0 +1,667 @@
+[
+    {
+        "name": "background-color",
+        "className": "bg-{key}",
+        "theme": "color",
+        "values": {
+            "transparent": "transparent",
+            "current": "currentColor"
+        },
+        "properties": [
+            "background-color"
+        ],
+        "variants": [
+            "hover",
+            "focus"
+        ]
+    },
+    {
+        "name": "text-color",
+        "className": "text-{key}",
+        "theme": "color",
+        "values": {
+            "transparent": "transparent",
+            "current": "currentColor",
+            "inherit": "inherit"
+        },
+        "properties": [
+            "color"
+        ],
+        "variants": [
+            "hover",
+            "focus"
+        ]
+    },
+    {
+        "name": "border-color",
+        "className": "border-{key}",
+        "theme": "color",
+        "values": {
+            "transparent": "transparent",
+            "current": "currentColor"
+        },
+        "properties": [
+            "border-color"
+        ],
+        "variants": [
+            "hover",
+            "focus"
+        ]
+    },
+    {
+        "name": "border-width",
+        "className": "border-{key}",
+        "theme": "border-width",
+        "properties": [
+            "border-width"
+        ],
+        "variants": []
+    },
+    {
+        "name": "border-style",
+        "className": "border-{key}",
+        "values": {
+            "solid": "solid",
+            "dashed": "dashed",
+            "dotted": "dotted",
+            "none": "none"
+        },
+        "properties": [
+            "border-style"
+        ],
+        "variants": []
+    },
+    {
+        "name": "border-radius",
+        "className": "rounded-{key}",
+        "theme": "radius",
+        "properties": [
+            "border-radius"
+        ],
+        "variants": []
+    },
+    {
+        "name": "margin",
+        "className": "m-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-x",
+        "className": "mx-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-left",
+            "margin-right"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-y",
+        "className": "my-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-top",
+            "margin-bottom"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-top",
+        "className": "mt-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-top"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-right",
+        "className": "mr-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-right"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-bottom",
+        "className": "mb-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-bottom"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "margin-left",
+        "className": "ml-{key}",
+        "theme": "spacing",
+        "properties": [
+            "margin-left"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding",
+        "className": "p-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-x",
+        "className": "px-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-left",
+            "padding-right"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-y",
+        "className": "py-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-top",
+            "padding-bottom"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-top",
+        "className": "pt-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-top"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-right",
+        "className": "pr-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-right"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-bottom",
+        "className": "pb-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-bottom"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "padding-left",
+        "className": "pl-{key}",
+        "theme": "spacing",
+        "properties": [
+            "padding-left"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "gap",
+        "className": "gap-{key}",
+        "theme": "gap",
+        "properties": [
+            "gap"
+        ],
+        "variants": []
+    },
+    {
+        "name": "display",
+        "className": "{key}",
+        "values": {
+            "hidden": "none",
+            "block": "block",
+            "inline-block": "inline-block",
+            "inline": "inline",
+            "flex": "flex",
+            "inline-flex": "inline-flex",
+            "grid": "grid"
+        },
+        "properties": [
+            "display"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "position",
+        "className": "{key}",
+        "values": {
+            "static": "static",
+            "relative": "relative",
+            "absolute": "absolute",
+            "fixed": "fixed",
+            "sticky": "sticky"
+        },
+        "properties": [
+            "position"
+        ],
+        "variants": []
+    },
+    {
+        "name": "top",
+        "className": "top-{key}",
+        "theme": "spacing",
+        "properties": [
+            "top"
+        ],
+        "variants": []
+    },
+    {
+        "name": "right",
+        "className": "right-{key}",
+        "theme": "spacing",
+        "properties": [
+            "right"
+        ],
+        "variants": []
+    },
+    {
+        "name": "bottom",
+        "className": "bottom-{key}",
+        "theme": "spacing",
+        "properties": [
+            "bottom"
+        ],
+        "variants": []
+    },
+    {
+        "name": "left",
+        "className": "left-{key}",
+        "theme": "spacing",
+        "properties": [
+            "left"
+        ],
+        "variants": []
+    },
+    {
+        "name": "overflow",
+        "className": "overflow-{key}",
+        "values": {
+            "hidden": "hidden",
+            "scroll": "scroll",
+            "auto": "auto",
+            "visible": "visible"
+        },
+        "properties": [
+            "overflow"
+        ],
+        "variants": []
+    },
+    {
+        "name": "flex-direction",
+        "className": "flex-{key}",
+        "values": {
+            "row": "row",
+            "column": "column",
+            "row-reverse": "row-reverse",
+            "column-reverse": "column-reverse"
+        },
+        "properties": [
+            "flex-direction"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "flex-wrap",
+        "className": "flex-{key}",
+        "values": {
+            "wrap": "wrap",
+            "nowrap": "nowrap",
+            "wrap-reverse": "wrap-reverse"
+        },
+        "properties": [
+            "flex-wrap"
+        ],
+        "variants": []
+    },
+    {
+        "name": "align-items",
+        "className": "items-{key}",
+        "values": {
+            "start": "flex-start",
+            "end": "flex-end",
+            "center": "center",
+            "baseline": "baseline",
+            "stretch": "stretch"
+        },
+        "properties": [
+            "align-items"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "justify-content",
+        "className": "justify-{key}",
+        "values": {
+            "start": "flex-start",
+            "end": "flex-end",
+            "center": "center",
+            "between": "space-between",
+            "around": "space-around",
+            "evenly": "space-evenly"
+        },
+        "properties": [
+            "justify-content"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "font-size",
+        "className": "text-{key}",
+        "theme": "font-size",
+        "properties": [
+            "font-size"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "font-weight",
+        "className": "font-{key}",
+        "theme": "font-weight",
+        "properties": [
+            "font-weight"
+        ],
+        "variants": []
+    },
+    {
+        "name": "line-height",
+        "className": "leading-{key}",
+        "theme": "leading",
+        "properties": [
+            "line-height"
+        ],
+        "variants": []
+    },
+    {
+        "name": "text-align",
+        "className": "text-{key}",
+        "values": {
+            "left": "left",
+            "center": "center",
+            "right": "right",
+            "justify": "justify"
+        },
+        "properties": [
+            "text-align"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "opacity",
+        "className": "opacity-{key}",
+        "theme": "opacity",
+        "properties": [
+            "opacity"
+        ],
+        "variants": []
+    },
+    {
+        "name": "width",
+        "className": "w-{key}",
+        "theme": "spacing",
+        "properties": [
+            "width"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "height",
+        "className": "h-{key}",
+        "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
+        "properties": [
+            "height"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "min-width",
+        "className": "min-w-{key}",
+        "theme": "spacing",
+        "properties": [
+            "min-width"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "max-width",
+        "className": "max-w-{key}",
+        "themes": [
+            "spacing",
+            "container"
+        ],
+        "properties": [
+            "max-width"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "min-height",
+        "className": "min-h-{key}",
+        "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
+        "properties": [
+            "min-height"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "max-height",
+        "className": "max-h-{key}",
+        "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
+        "properties": [
+            "max-height"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "animation",
+        "className": "animate-{key}",
+        "theme": "animate",
+        "properties": [
+            "animation"
+        ],
+        "variants": []
+    },
+    {
+        "name": "box-shadow",
+        "className": "shadow-{key}",
+        "theme": "shadow",
+        "properties": [
+            "box-shadow"
+        ],
+        "variants": [
+            "hover",
+            "focus"
+        ]
+    },
+    {
+        "name": "grid-template-columns",
+        "className": "grid-cols-{key}",
+        "values": {
+            "1": "repeat(1, minmax(0, 1fr))",
+            "2": "repeat(2, minmax(0, 1fr))",
+            "3": "repeat(3, minmax(0, 1fr))",
+            "4": "repeat(4, minmax(0, 1fr))",
+            "6": "repeat(6, minmax(0, 1fr))",
+            "12": "repeat(12, minmax(0, 1fr))",
+            "none": "none"
+        },
+        "properties": [
+            "grid-template-columns"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "grid-template-rows",
+        "className": "grid-rows-{key}",
+        "values": {
+            "1": "repeat(1, minmax(0, 1fr))",
+            "2": "repeat(2, minmax(0, 1fr))",
+            "3": "repeat(3, minmax(0, 1fr))",
+            "4": "repeat(4, minmax(0, 1fr))",
+            "none": "none"
+        },
+        "properties": [
+            "grid-template-rows"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "grid-column",
+        "className": "col-span-{key}",
+        "values": {
+            "1": "span 1 / span 1",
+            "2": "span 2 / span 2",
+            "3": "span 3 / span 3",
+            "4": "span 4 / span 4",
+            "6": "span 6 / span 6",
+            "12": "span 12 / span 12",
+            "full": "1 / -1"
+        },
+        "properties": [
+            "grid-column"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "grid-row",
+        "className": "row-span-{key}",
+        "values": {
+            "1": "span 1 / span 1",
+            "2": "span 2 / span 2",
+            "3": "span 3 / span 3",
+            "4": "span 4 / span 4",
+            "full": "1 / -1"
+        },
+        "properties": [
+            "grid-row"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "cursor",
+        "className": "cursor-{key}",
+        "values": {
+            "auto": "auto",
+            "default": "default",
+            "pointer": "pointer",
+            "not-allowed": "not-allowed",
+            "wait": "wait",
+            "text": "text",
+            "move": "move",
+            "grab": "grab"
+        },
+        "properties": [
+            "cursor"
+        ],
+        "variants": []
+    },
+    {
+        "name": "pointer-events",
+        "className": "pointer-events-{key}",
+        "values": {
+            "auto": "auto",
+            "none": "none"
+        },
+        "properties": [
+            "pointer-events"
+        ],
+        "variants": []
+    },
+    {
+        "name": "touch-action",
+        "className": "touch-{key}",
+        "values": {
+            "auto": "auto",
+            "none": "none",
+            "pan-x": "pan-x",
+            "pan-y": "pan-y"
+        },
+        "properties": [
+            "touch-action"
+        ],
+        "variants": []
+    }
+]

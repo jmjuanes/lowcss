@@ -7,8 +7,8 @@
 
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
-import theme from "../theme.json" with { type: "json" };
-import utilities from "../utilities.json" with { type: "json" };
+import theme from "../config/theme.json" with { type: "json" };
+import utilities from "../config/utilities.json" with { type: "json" };
 
 const ROOT = process.cwd(); // path.join(__dirname, "..");
 
