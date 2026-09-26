@@ -7,10 +7,9 @@
 
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { resolveEntries, resolveClassName, getPseudoSelector, escapeSelector } from "./lib.js";
 import theme from "../config/theme.json" with { type: "json" };
 import utilities from "../config/utilities.json" with { type: "json" };
-
-const ROOT = process.cwd(); // path.join(__dirname, "..");
 
 // -----------------------------------------------------------------------
 // 1. theme.css — just dump every group/key pair as a CSS custom property.
@@ -31,53 +30,6 @@ const buildTheme = () => {
 // 2. utilities.css — one rule per (utility x entry x variant).
 // -----------------------------------------------------------------------
 
-// same pseudo-class mapping used before, kept only because it's cheap to
-// keep and some utilities still want hover/focus/etc. Add more here only
-// when a utility actually asks for them via its "variants" list.
-const pseudos = {
-    "hover": "hover",
-    "focus": "focus",
-    "focus-within": "focus-within",
-    "active": "active",
-    "visited": "visited",
-    "checked": "checked",
-    "disabled": "disabled",
-    "first": "first-child",
-    "last": "last-child",
-    "odd": "nth-child(odd)",
-    "even": "nth-child(even)",
-};
-
-// escapes ":" in class selectors, e.g. ".hover:bg-red-500" -> ".hover\:bg-red-500"
-const escapeSelector = selector => selector.replace(/:/g, "\\:");
-
-// resolves the list of {key, value} entries for a single utility definition.
-const resolveEntries = utility => {
-    const entries = [];
-    // "theme": "spacing"  -> single group
-    // "themes": ["spacing", "container"] -> merge several groups (e.g. max-width
-    // resolves both from the spacing scale and from named container sizes)
-    const themeGroups = utility.themes || (utility.theme ? [utility.theme] : []);
-    for (const themeName of themeGroups) {
-        const group = theme[themeName];
-        if (!group) {
-            throw new Error(`Unknown theme group "${themeName}" referenced by utility "${utility.name}"`);
-        }
-        for (const key of Object.keys(group)) {
-            entries.push({
-                key: key === "DEFAULT" ? "" : key,
-                value: `var(--${themeName}${key === "DEFAULT" ? "" : "-" + key})`,
-            });
-        }
-    }
-    if (utility.values) {
-        for (const key of Object.keys(utility.values)) {
-            entries.push({ key, value: utility.values[key] });
-        }
-    }
-    return entries;
-};
-
 // builds the base (no-variant) selector + declaration block for one entry.
 const buildRule = (selector, properties, value) => {
     const decls = properties.map(prop => `    ${prop}: ${value};`).join("\n");
@@ -86,12 +38,12 @@ const buildRule = (selector, properties, value) => {
 
 const buildUtility = utility => {
     const variants = ["default", ...(utility.variants || [])];
-    const entries = resolveEntries(utility);
+    const entries = resolveEntries(theme, utility);
     const blocks = [];
 
     for (const variant of variants) {
         for (const entry of entries) {
-            const className = utility.className.replace("{key}", entry.key).replace(/-$/, "");
+            const className = resolveClassName(utility, entry.key);
 
             // default: plain class, no pseudo/media wrapping
             if (variant === "default") {
@@ -112,21 +64,21 @@ const buildUtility = utility => {
             // group-*/peer-* variants need a relational selector instead of a plain pseudo-class
             if (variant.startsWith("group-")) {
                 const state = variant.replace("group-", "");
-                const pseudo = pseudos[state] || state;
+                const pseudo = getPseudoSelector(state);
                 const selector = `.group:${pseudo} .${escapeSelector(`${variant}:${className}`)}`;
                 blocks.push(`${selector} {\n${utility.properties.map(p => `    ${p}: ${entry.value};`).join("\n")}\n}`);
                 continue;
             }
             if (variant.startsWith("peer-")) {
                 const state = variant.replace("peer-", "");
-                const pseudo = pseudos[state] || state;
+                const pseudo = getPseudoSelector(state);
                 const selector = `.peer:${pseudo} ~ .${escapeSelector(`${variant}:${className}`)}`;
                 blocks.push(`${selector} {\n${utility.properties.map(p => `    ${p}: ${entry.value};`).join("\n")}\n}`);
                 continue;
             }
 
             // plain pseudo-class variant (hover, focus, first, odd...)
-            const pseudo = pseudos[variant];
+            const pseudo = getPseudoSelector(variant);
             if (!pseudo) {
                 throw new Error(`Unknown variant "${variant}" used by utility "${utility.name}"`);
             }
@@ -150,7 +102,7 @@ const buildUtilities = () => {
 // -----------------------------------------------------------------------
 // 3. write output
 // -----------------------------------------------------------------------
-writeFileSync(join(ROOT, "theme.css"), buildTheme());
-writeFileSync(join(ROOT, "utilities.css"), buildUtilities());
+writeFileSync(join(process.cwd(), "theme.css"), buildTheme());
+writeFileSync(join(process.cwd(), "utilities.css"), buildUtilities());
 
 console.log("✓ built theme.css and utilities.css");
