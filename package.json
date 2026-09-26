@@ -23,10 +23,10 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "build": "node ./scripts/concat.js",
+        "build": "yarn run build:css && yarn run build:min && yarn run:docs",
         "build:css": "node ./scripts/build.js",
-        "build:docs": "node ./scripts/docs.js",
-        "release": "node ./scripts/release.js"
+        "build:min": "node ./scripts/concat.js",
+        "build:docs": "node ./scripts/docs.js"
     },
     "keywords": [
         "css",
