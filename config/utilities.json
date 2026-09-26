@@ -1,6 +1,9 @@
 [
     {
         "name": "background-color",
+        "category": "background",
+        "description": "Utilities to set the background-color property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/background-color",
         "className": "bg-{key}",
         "theme": "color",
         "values": {
@@ -17,6 +20,9 @@
     },
     {
         "name": "text-color",
+        "category": "typography",
+        "description": "Utilities to set the text color of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/color",
         "className": "text-{key}",
         "theme": "color",
         "values": {
@@ -34,6 +40,9 @@
     },
     {
         "name": "border-color",
+        "category": "border",
+        "description": "Utilities to set the border-color property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-color",
         "className": "border-{key}",
         "theme": "color",
         "values": {
@@ -50,6 +59,9 @@
     },
     {
         "name": "border-width",
+        "category": "border",
+        "description": "Utilities to set the border-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-width",
         "className": "border-{key}",
         "theme": "border-width",
         "properties": [
@@ -59,6 +71,9 @@
     },
     {
         "name": "border-style",
+        "category": "border",
+        "description": "Utilities to set the border-style property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-style",
         "className": "border-{key}",
         "values": {
             "solid": "solid",
@@ -73,6 +88,9 @@
     },
     {
         "name": "border-radius",
+        "category": "border",
+        "description": "Utilities to set the border-radius property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius",
         "className": "rounded-{key}",
         "theme": "radius",
         "properties": [
@@ -82,6 +100,9 @@
     },
     {
         "name": "margin",
+        "category": "spacing",
+        "description": "Utilities to set the margin property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
         "className": "m-{key}",
         "theme": "spacing",
         "properties": [
@@ -93,6 +114,9 @@
     },
     {
         "name": "margin-x",
+        "category": "spacing",
+        "description": "Utilities to set the margin-left and margin-right properties of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
         "className": "mx-{key}",
         "theme": "spacing",
         "properties": [
@@ -105,6 +129,9 @@
     },
     {
         "name": "margin-y",
+        "category": "spacing",
+        "description": "Utilities to set the margin-top and margin-bottom properties of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin",
         "className": "my-{key}",
         "theme": "spacing",
         "properties": [
@@ -117,6 +144,9 @@
     },
     {
         "name": "margin-top",
+        "category": "spacing",
+        "description": "Utilities to set the margin-top property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-top",
         "className": "mt-{key}",
         "theme": "spacing",
         "properties": [
@@ -128,6 +158,9 @@
     },
     {
         "name": "margin-right",
+        "category": "spacing",
+        "description": "Utilities to set the margin-right property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-right",
         "className": "mr-{key}",
         "theme": "spacing",
         "properties": [
@@ -139,6 +172,9 @@
     },
     {
         "name": "margin-bottom",
+        "category": "spacing",
+        "description": "Utilities to set the margin-bottom property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-bottom",
         "className": "mb-{key}",
         "theme": "spacing",
         "properties": [
@@ -150,6 +186,9 @@
     },
     {
         "name": "margin-left",
+        "category": "spacing",
+        "description": "Utilities to set the margin-left property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/margin-left",
         "className": "ml-{key}",
         "theme": "spacing",
         "properties": [
@@ -161,6 +200,9 @@
     },
     {
         "name": "padding",
+        "category": "spacing",
+        "description": "Utilities to set the padding property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
         "className": "p-{key}",
         "theme": "spacing",
         "properties": [
@@ -172,6 +214,9 @@
     },
     {
         "name": "padding-x",
+        "category": "spacing",
+        "description": "Utilities to set the padding-left and padding-right properties of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
         "className": "px-{key}",
         "theme": "spacing",
         "properties": [
@@ -184,6 +229,9 @@
     },
     {
         "name": "padding-y",
+        "category": "spacing",
+        "description": "Utilities to set the padding-top and padding-bottom properties of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding",
         "className": "py-{key}",
         "theme": "spacing",
         "properties": [
@@ -196,6 +244,9 @@
     },
     {
         "name": "padding-top",
+        "category": "spacing",
+        "description": "Utilities to set the padding-top property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-top",
         "className": "pt-{key}",
         "theme": "spacing",
         "properties": [
@@ -207,6 +258,9 @@
     },
     {
         "name": "padding-right",
+        "category": "spacing",
+        "description": "Utilities to set the padding-right property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-right",
         "className": "pr-{key}",
         "theme": "spacing",
         "properties": [
@@ -218,6 +272,9 @@
     },
     {
         "name": "padding-bottom",
+        "category": "spacing",
+        "description": "Utilities to set the padding-bottom property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-bottom",
         "className": "pb-{key}",
         "theme": "spacing",
         "properties": [
@@ -229,6 +286,9 @@
     },
     {
         "name": "padding-left",
+        "category": "spacing",
+        "description": "Utilities to set the padding-left property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/padding-left",
         "className": "pl-{key}",
         "theme": "spacing",
         "properties": [
@@ -240,6 +300,9 @@
     },
     {
         "name": "gap",
+        "category": "flexbox",
+        "description": "Utilities to set the gap property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
         "className": "gap-{key}",
         "theme": "gap",
         "properties": [
@@ -249,6 +312,9 @@
     },
     {
         "name": "display",
+        "category": "layout",
+        "description": "Utilities to set the display property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/display",
         "className": "{key}",
         "values": {
             "hidden": "none",
@@ -268,6 +334,9 @@
     },
     {
         "name": "position",
+        "category": "layout",
+        "description": "Utilities to set the position property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/position",
         "className": "{key}",
         "values": {
             "static": "static",
@@ -283,6 +352,9 @@
     },
     {
         "name": "top",
+        "category": "layout",
+        "description": "Utilities to set the top property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/top",
         "className": "top-{key}",
         "theme": "spacing",
         "properties": [
@@ -292,6 +364,9 @@
     },
     {
         "name": "right",
+        "category": "layout",
+        "description": "Utilities to set the right property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/right",
         "className": "right-{key}",
         "theme": "spacing",
         "properties": [
@@ -301,6 +376,9 @@
     },
     {
         "name": "bottom",
+        "category": "layout",
+        "description": "Utilities to set the bottom property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/bottom",
         "className": "bottom-{key}",
         "theme": "spacing",
         "properties": [
@@ -310,6 +388,9 @@
     },
     {
         "name": "left",
+        "category": "layout",
+        "description": "Utilities to set the left property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/left",
         "className": "left-{key}",
         "theme": "spacing",
         "properties": [
@@ -319,6 +400,9 @@
     },
     {
         "name": "overflow",
+        "category": "layout",
+        "description": "Utilities to set the overflow property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow",
         "className": "overflow-{key}",
         "values": {
             "hidden": "hidden",
@@ -333,6 +417,9 @@
     },
     {
         "name": "flex-direction",
+        "category": "flexbox",
+        "description": "Utilities to set the flex-direction property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction",
         "className": "flex-{key}",
         "values": {
             "row": "row",
@@ -349,6 +436,9 @@
     },
     {
         "name": "flex-wrap",
+        "category": "flexbox",
+        "description": "Utilities to set the flex-wrap property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap",
         "className": "flex-{key}",
         "values": {
             "wrap": "wrap",
@@ -362,6 +452,9 @@
     },
     {
         "name": "align-items",
+        "category": "flexbox",
+        "description": "Utilities to set the align-items property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/align-items",
         "className": "items-{key}",
         "values": {
             "start": "flex-start",
@@ -379,6 +472,9 @@
     },
     {
         "name": "justify-content",
+        "category": "flexbox",
+        "description": "Utilities to set the justify-content property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content",
         "className": "justify-{key}",
         "values": {
             "start": "flex-start",
@@ -397,6 +493,9 @@
     },
     {
         "name": "font-size",
+        "category": "typography",
+        "description": "Utilities to set the font-size property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size",
         "className": "text-{key}",
         "theme": "font-size",
         "properties": [
@@ -408,6 +507,9 @@
     },
     {
         "name": "font-weight",
+        "category": "typography",
+        "description": "Utilities to set the font-weight property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
         "className": "font-{key}",
         "theme": "font-weight",
         "properties": [
@@ -417,6 +519,9 @@
     },
     {
         "name": "line-height",
+        "category": "typography",
+        "description": "Utilities to set the line-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
         "className": "leading-{key}",
         "theme": "leading",
         "properties": [
@@ -426,6 +531,9 @@
     },
     {
         "name": "text-align",
+        "category": "typography",
+        "description": "Utilities to set the text-align property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-align",
         "className": "text-{key}",
         "values": {
             "left": "left",
@@ -442,6 +550,9 @@
     },
     {
         "name": "opacity",
+        "category": "effects",
+        "description": "Utilities to set the opacity property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/opacity",
         "className": "opacity-{key}",
         "theme": "opacity",
         "properties": [
@@ -451,6 +562,9 @@
     },
     {
         "name": "width",
+        "category": "sizing",
+        "description": "Utilities to set the width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
         "className": "w-{key}",
         "theme": "spacing",
         "properties": [
@@ -462,6 +576,9 @@
     },
     {
         "name": "height",
+        "category": "sizing",
+        "description": "Utilities to set the height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/height",
         "className": "h-{key}",
         "theme": "spacing",
         "values": {
@@ -476,6 +593,9 @@
     },
     {
         "name": "min-width",
+        "category": "sizing",
+        "description": "Utilities to set the min-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
         "className": "min-w-{key}",
         "theme": "spacing",
         "properties": [
@@ -487,6 +607,9 @@
     },
     {
         "name": "max-width",
+        "category": "sizing",
+        "description": "Utilities to set the max-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max-width",
         "className": "max-w-{key}",
         "themes": [
             "spacing",
@@ -501,6 +624,9 @@
     },
     {
         "name": "min-height",
+        "category": "sizing",
+        "description": "Utilities to set the min-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-height",
         "className": "min-h-{key}",
         "theme": "spacing",
         "values": {
@@ -515,6 +641,9 @@
     },
     {
         "name": "max-height",
+        "category": "sizing",
+        "description": "Utilities to set the max-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
         "className": "max-h-{key}",
         "theme": "spacing",
         "values": {
@@ -529,6 +658,9 @@
     },
     {
         "name": "animation",
+        "category": "animation",
+        "description": "Utilities to animate elements using predefined CSS animations.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
         "className": "animate-{key}",
         "theme": "animate",
         "properties": [
@@ -538,6 +670,9 @@
     },
     {
         "name": "box-shadow",
+        "category": "effects",
+        "description": "Utilities to set the box-shadow property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow",
         "className": "shadow-{key}",
         "theme": "shadow",
         "properties": [
@@ -550,6 +685,9 @@
     },
     {
         "name": "grid-template-columns",
+        "category": "flexbox",
+        "description": "Utilities to set the grid-template-columns property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns",
         "className": "grid-cols-{key}",
         "values": {
             "1": "repeat(1, minmax(0, 1fr))",
@@ -569,6 +707,9 @@
     },
     {
         "name": "grid-template-rows",
+        "category": "flexbox",
+        "description": "Utilities to set the grid-template-rows property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows",
         "className": "grid-rows-{key}",
         "values": {
             "1": "repeat(1, minmax(0, 1fr))",
@@ -586,6 +727,9 @@
     },
     {
         "name": "grid-column",
+        "category": "flexbox",
+        "description": "Utilities to set the size and position of an element in grid columns.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column",
         "className": "col-span-{key}",
         "values": {
             "1": "span 1 / span 1",
@@ -605,6 +749,9 @@
     },
     {
         "name": "grid-row",
+        "category": "flexbox",
+        "description": "Utilities to set the size and position of an element in grid rows.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row",
         "className": "row-span-{key}",
         "values": {
             "1": "span 1 / span 1",
@@ -622,6 +769,9 @@
     },
     {
         "name": "cursor",
+        "category": "interactivity",
+        "description": "Utilities to set the cursor property of the element. Reduced to the most commonly used values.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/cursor",
         "className": "cursor-{key}",
         "values": {
             "auto": "auto",
@@ -640,6 +790,9 @@
     },
     {
         "name": "pointer-events",
+        "category": "interactivity",
+        "description": "Utilities to set the pointer-events property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events",
         "className": "pointer-events-{key}",
         "values": {
             "auto": "auto",
@@ -652,6 +805,9 @@
     },
     {
         "name": "touch-action",
+        "category": "interactivity",
+        "description": "Utilities to set the touch-action property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action",
         "className": "touch-{key}",
         "values": {
             "auto": "auto",
