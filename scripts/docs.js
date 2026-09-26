@@ -1,142 +1,103 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
-import mikel from "mikel";
-import evaluate from "mikel-eval";
-import press from "mikel-press";
-import markdown from "mikel-markdown";
-import hljs from "highlight.js";
-import pkg from "../package.json" with {type: "json"};
-import websiteConfig from "../website.config.json" with {type: "json"};
-import low from "../low.json" with {type: "json"};
+//
+// Generates docs/utilities.md and docs/theme.md directly from theme.json +
+// utilities.json — the same files build.js reads. Uses the same
+// resolveEntries() from lib.js that build.js uses to generate the actual
+// CSS, so the documented class tables can never drift from what's really
+// shipped in dist/low.css.
+//
 
-// @description render the provided icon
-const renderIcon = icon => {
-    return `<svg width="1em" height="1em"><use xlink:href="/vendor/icons.svg#${icon}"></use></svg>`;
-};
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
+import { resolveEntries, resolveClassName } from "./lib.js";
+import theme from "../config/theme.json" with { type: "json" };
+import utilities from "../config/utilities.json" with { type: "json" };
 
-// @description get examples
-const getExamples = () => {
-    const examplesPath = path.join(process.cwd(), "docs", "examples");
-    const examples = fs.readdirSync(examplesPath).filter(file => {
-        return file.endsWith(".html");
-    });
-    return examples.map(file => {
-        const content = fs.readFileSync(path.join(examplesPath, file), "utf-8");
-        const {body, attributes} = press.utils.frontmatter(content);
-        return {
-            name: path.basename(file, ".html"),
-            content: mikel(body, attributes, {
-                functions: {
-                    icon: params => renderIcon(params.opt.icon),
-                },
-            }),
-            attributes: attributes,
-        };
-    });
-};
-
-// @description plugin to inject utilities in the table of contents
-const UtilitiesTableOfContentsPlugin = () => ({
-    name: "UtilitiesSidebarPlugin",
-    transform: (context, node) => {
-        if (node.label === press.LABEL_PAGE && node.attributes?.tableOfContents === "@utilities") {
-            const categories = new Map();
-            low.utilities.forEach(u => {
-                if (u.category && !categories.has(u.category)) {
-                    categories.set(u.category, {
-                        category: u.category,
-                        items: [],
-                    });
-                }
-                categories.get(u.category).items.push({
-                    text: u.name,
-                    link: `#${u.name}`,
-                });
-            });
-            node.attributes.tableOfContents = Array.from(categories.values());
+// -----------------------------------------------------------------------
+// UTILITIES.md
+// -----------------------------------------------------------------------
+const buildUtilitiesDoc = () => {
+    const byCategory = new Map();
+    for (const u of utilities) {
+        const cat = u.category || "uncategorized";
+        if (!byCategory.has(cat)) {
+            byCategory.set(cat, []);
         }
-    },
-});
+        byCategory.get(cat).push(u);
+    }
 
-press({
-    source: path.join(process.cwd(), "docs"),
-    destination: path.join(process.cwd(), "www"),
-    version: pkg.version,
-    repository: pkg.repository,
-    low: {
-        breakpoints: low.breakpoints,
-        theme: low.theme,
-        utilities: low.utilities,
-        addons: low.addons,
-    },
-    examples: getExamples(),
-    ...websiteConfig,
-    mikelOptions: {
-        helpers: {
-            find: params => {
-                const item = params?.args?.[0].find(i => i.path === params.args[1]);
-                return item ? params.fn(item) : "";
-            },
-            withPage: params => {
-                const p = params?.data?.site?.pages?.find(p => p.path === params.args[0]);
-                return p ? params.fn(p) : "";
-            },
-            withUtility: params => {
-                const u = low.utilities.find(u => u.name === params.args[0]);
-                return u ? params.fn(u) : "";
-            },
-            withResponsiveVariants: params => {
-                return (params.args[0] || [])
-                    .filter(v => v === "responsive" || v === "print")
-                    .map(v => params.fn(v))
-                    .join("");
-            },
-            withPseudoVariants: params => {
-                return (params.args[0] || [])
-                    .filter(v => !["default", "responsive", "print"].includes(v))
-                    .map(v => params.fn(v))
-                    .join("");
-            },
-        },
-        functions: {
-            icon: params => renderIcon(params.opt.icon),
-            highlight: params => {
-                return hljs.highlight((params?.opt?.code || "").trim(), {language: params.opt.language || "html"}).value;
-            },
-        },
-    },
-    plugins: [
-        press.PartialsPlugin(),
-        press.CopyAssetsPlugin({
-            patterns: [
-                {from: "low.css"},
-                {from: "packages/lowcss-forms/index.css", to: "low-forms.css"},
-                {from: "packages/lowcss-prose/index.css", to: "low-prose.css"},
-                {from: "packages/lowcss-helpers/index.css", to: "low-helpers.css"},
-            ],
-        }),
-        press.CopyAssetsPlugin({
-            basePath: "vendor",
-            patterns: [
-                {from: "node_modules/@josemi-icons/svg/sprite.svg", to: "icons.svg"},
-                {from: "node_modules/codecake/codecake.js"},
-                {from: "node_modules/codecake/codecake.css"},
-                {from: "node_modules/highlight.js/styles/atom-one-light.css", to: "highlight.css"},
-                {from: "node_modules/lz-string/libs/lz-string.min.js"},
-            ],
-        }),
-        press.UsePlugin(evaluate()),
-        press.UsePlugin(markdown({
-            classNames: {
-                link: "font-medium underline",
-                code: "bg-gray-100 rounded-md py-1 px-2 text-xs font-mono font-medium",
-                table: "w-full mb-6",
-                tableColumn: "p-3 border-b-1 border-gray-200",
-                tableHead: "font-bold",
-            },
-        })),
-        press.FrontmatterPlugin(),
-        UtilitiesTableOfContentsPlugin(),
-        press.ContentPagePlugin(),
-    ],
-});
+    const lines = [
+        "# Utilities reference",
+        "",
+    ];
+
+    for (const [category, items] of byCategory) {
+        lines.push(`## ${category}`, "");
+        for (const u of items) {
+            lines.push(`### ${u.name}`, "");
+            if (u.description) {
+                lines.push(u.description, "");
+            }
+            lines.push(`- **CSS properties:** \`${u.properties.join("`, `")}\``);
+            if (u.variants && u.variants.length) {
+                lines.push(`- **Variants:** \`${u.variants.join("`, `")}\` (in addition to the base class)`);
+            }
+            if (u.url) {
+                lines.push(`- **MDN:** ${u.url}`);
+            }
+            lines.push("");
+
+            // full table of every class this utility actually generates —
+            // built the exact same way build.js builds the real CSS, so this
+            // table can't list a class that doesn't exist, or miss one that does.
+            const entries = resolveEntries(theme, u);
+            if (entries.length) {
+                lines.push("| Class | CSS |", "| --- | --- |");
+                for (const entry of entries) {
+                    const className = resolveClassName(u, entry.key);
+                    const decls = u.properties.map(p => `${p}: ${entry.value}`).join("; ");
+                    lines.push(`| \`.${className}\` | \`${decls};\` |`);
+                }
+                lines.push("");
+            }
+        }
+    }
+
+    return lines.join("\n");
+};
+
+// -----------------------------------------------------------------------
+// THEME.md
+// -----------------------------------------------------------------------
+const buildThemeDoc = () => {
+    const lines = [
+        "# Theme reference",
+        "",
+        "Every value below is emitted as a CSS custom property in `theme.css`, so any of them can be overridden at runtime without a rebuild:",
+        "",
+        "```css",
+        ":root {",
+        "    --color-accent: #3b82f6; /* example override */",
+        "}",
+        "```",
+        "",
+    ];
+
+    for (const group of Object.keys(theme)) {
+        lines.push(`## ${group}`, "", "| Variable | Value |", "| --- | --- |");
+        for (const key of Object.keys(theme[group])) {
+            const varName = key === "DEFAULT" ? `--${group}` : `--${group}-${key}`;
+            lines.push(`| \`${varName}\` | \`${theme[group][key]}\` |`);
+        }
+        lines.push("");
+    }
+
+    return lines.join("\n");
+};
+
+// -----------------------------------------------------------------------
+// write output
+// -----------------------------------------------------------------------
+writeFileSync(join(process.cwd(), "docs/utilities.md"), buildUtilitiesDoc());
+writeFileSync(join(process.cwd(), "docs/theme.md"), buildThemeDoc());
+
+console.log("✓ built docs/utilities.md and docs/theme.md");
