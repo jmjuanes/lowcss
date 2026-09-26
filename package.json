@@ -23,7 +23,7 @@
         "./package.json": "./package.json"
     },
     "scripts": {
-        "build": "yarn run build:css && yarn run build:min && yarn run:docs",
+        "build": "yarn run build:css && yarn run build:min && yarn run build:docs",
         "build:css": "node ./scripts/build.js",
         "build:min": "node ./scripts/concat.js",
         "build:docs": "node ./scripts/docs.js"
@@ -46,8 +46,7 @@
         "theme.css",
         "reset.css",
         "utilities.css",
-        "docs/theme.md",
-        "docs/utilities.md",
+        "docs",
         "package.json"
     ],
     "devDependencies": {
