@@ -1,0 +1,314 @@
+# Theme reference
+
+Every value below is emitted as a CSS custom property in `theme.css`, so any of them can be overridden at runtime without a rebuild:
+
+```css
+:root {
+    --color-accent: #3b82f6; /* example override */
+}
+```
+
+## breakpoint
+
+| Variable | Value |
+| --- | --- |
+| `--breakpoint-sm` | `640px` |
+| `--breakpoint-md` | `768px` |
+| `--breakpoint-lg` | `1024px` |
+| `--breakpoint-xl` | `1280px` |
+
+## color
+
+| Variable | Value |
+| --- | --- |
+| `--color-gray-50` | `hsl(0, 0%, 98%)` |
+| `--color-gray-100` | `hsl(0, 0%, 96%)` |
+| `--color-gray-200` | `hsl(0, 0%, 90%)` |
+| `--color-gray-300` | `hsl(0, 0%, 79%)` |
+| `--color-gray-400` | `hsl(0, 0%, 67%)` |
+| `--color-gray-500` | `hsl(0, 0%, 56%)` |
+| `--color-gray-600` | `hsl(0, 0%, 45%)` |
+| `--color-gray-700` | `hsl(0, 0%, 33%)` |
+| `--color-gray-800` | `hsl(0, 0%, 22%)` |
+| `--color-gray-900` | `hsl(0, 0%, 10%)` |
+| `--color-gray-950` | `hsl(0, 0%, 5%)` |
+| `--color-red-50` | `hsl(355, 90%, 96%)` |
+| `--color-red-100` | `hsl(355, 80%, 91%)` |
+| `--color-red-200` | `hsl(355, 70%, 80%)` |
+| `--color-red-300` | `hsl(355, 65%, 70%)` |
+| `--color-red-400` | `hsl(355, 60%, 60%)` |
+| `--color-red-500` | `hsl(355, 55%, 50%)` |
+| `--color-red-600` | `hsl(355, 55%, 40%)` |
+| `--color-red-700` | `hsl(355, 55%, 30%)` |
+| `--color-red-800` | `hsl(355, 55%, 20%)` |
+| `--color-red-900` | `hsl(355, 55%, 10%)` |
+| `--color-red-950` | `hsl(355, 55%, 5%)` |
+| `--color-orange-50` | `hsl(30, 95%, 96%)` |
+| `--color-orange-100` | `hsl(30, 90%, 91%)` |
+| `--color-orange-200` | `hsl(30, 85%, 80%)` |
+| `--color-orange-300` | `hsl(30, 80%, 70%)` |
+| `--color-orange-400` | `hsl(30, 75%, 60%)` |
+| `--color-orange-500` | `hsl(30, 70%, 50%)` |
+| `--color-orange-600` | `hsl(30, 70%, 40%)` |
+| `--color-orange-700` | `hsl(30, 70%, 30%)` |
+| `--color-orange-800` | `hsl(30, 70%, 20%)` |
+| `--color-orange-900` | `hsl(30, 70%, 10%)` |
+| `--color-orange-950` | `hsl(30, 70%, 5%)` |
+| `--color-yellow-50` | `hsl(50, 95%, 96%)` |
+| `--color-yellow-100` | `hsl(50, 90%, 91%)` |
+| `--color-yellow-200` | `hsl(50, 85%, 80%)` |
+| `--color-yellow-300` | `hsl(50, 80%, 70%)` |
+| `--color-yellow-400` | `hsl(50, 75%, 60%)` |
+| `--color-yellow-500` | `hsl(50, 70%, 50%)` |
+| `--color-yellow-600` | `hsl(50, 70%, 40%)` |
+| `--color-yellow-700` | `hsl(50, 70%, 30%)` |
+| `--color-yellow-800` | `hsl(50, 70%, 20%)` |
+| `--color-yellow-900` | `hsl(50, 70%, 10%)` |
+| `--color-yellow-950` | `hsl(50, 70%, 5%)` |
+| `--color-green-50` | `hsl(140, 80%, 96%)` |
+| `--color-green-100` | `hsl(140, 75%, 91%)` |
+| `--color-green-200` | `hsl(140, 70%, 80%)` |
+| `--color-green-300` | `hsl(140, 65%, 70%)` |
+| `--color-green-400` | `hsl(140, 60%, 60%)` |
+| `--color-green-500` | `hsl(140, 55%, 50%)` |
+| `--color-green-600` | `hsl(140, 55%, 40%)` |
+| `--color-green-700` | `hsl(140, 55%, 30%)` |
+| `--color-green-800` | `hsl(140, 55%, 20%)` |
+| `--color-green-900` | `hsl(140, 55%, 10%)` |
+| `--color-green-950` | `hsl(140, 55%, 5%)` |
+| `--color-blue-50` | `hsl(210, 90%, 96%)` |
+| `--color-blue-100` | `hsl(210, 85%, 91%)` |
+| `--color-blue-200` | `hsl(210, 80%, 80%)` |
+| `--color-blue-300` | `hsl(210, 75%, 70%)` |
+| `--color-blue-400` | `hsl(210, 70%, 60%)` |
+| `--color-blue-500` | `hsl(210, 65%, 50%)` |
+| `--color-blue-600` | `hsl(210, 65%, 40%)` |
+| `--color-blue-700` | `hsl(210, 65%, 30%)` |
+| `--color-blue-800` | `hsl(210, 65%, 20%)` |
+| `--color-blue-900` | `hsl(210, 65%, 10%)` |
+| `--color-blue-950` | `hsl(210, 65%, 5%)` |
+| `--color-violet-50` | `hsl(270, 80%, 96%)` |
+| `--color-violet-100` | `hsl(270, 75%, 91%)` |
+| `--color-violet-200` | `hsl(270, 70%, 80%)` |
+| `--color-violet-300` | `hsl(270, 65%, 70%)` |
+| `--color-violet-400` | `hsl(270, 60%, 60%)` |
+| `--color-violet-500` | `hsl(270, 55%, 50%)` |
+| `--color-violet-600` | `hsl(270, 55%, 40%)` |
+| `--color-violet-700` | `hsl(270, 55%, 30%)` |
+| `--color-violet-800` | `hsl(270, 55%, 20%)` |
+| `--color-violet-900` | `hsl(270, 55%, 10%)` |
+| `--color-violet-950` | `hsl(270, 55%, 5%)` |
+| `--color-white` | `hsl(0, 0%, 100%)` |
+| `--color-black` | `hsl(0, 0%, 0%)` |
+
+## font-family
+
+| Variable | Value |
+| --- | --- |
+| `--font-family-sans` | `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif` |
+| `--font-family-serif` | `"Merriweather", Georgia, Cambria, "Times New Roman", Times, serif` |
+| `--font-family-mono` | `"SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace` |
+
+## font-size
+
+| Variable | Value |
+| --- | --- |
+| `--font-size-3xs` | `0.5rem` |
+| `--font-size-2xs` | `0.625rem` |
+| `--font-size-xs` | `0.75rem` |
+| `--font-size-sm` | `0.875rem` |
+| `--font-size-base` | `1rem` |
+| `--font-size-lg` | `1.125rem` |
+| `--font-size-xl` | `1.25rem` |
+| `--font-size-2xl` | `1.5rem` |
+| `--font-size-3xl` | `1.875rem` |
+| `--font-size-4xl` | `2.25rem` |
+| `--font-size-5xl` | `3rem` |
+| `--font-size-6xl` | `3.75rem` |
+| `--font-size-7xl` | `4.5rem` |
+| `--font-size-8xl` | `6rem` |
+| `--font-size-9xl` | `8rem` |
+
+## font-weight
+
+| Variable | Value |
+| --- | --- |
+| `--font-weight-thin` | `100` |
+| `--font-weight-extralight` | `200` |
+| `--font-weight-light` | `300` |
+| `--font-weight-normal` | `400` |
+| `--font-weight-medium` | `500` |
+| `--font-weight-semibold` | `600` |
+| `--font-weight-bold` | `700` |
+| `--font-weight-extrabold` | `800` |
+| `--font-weight-black` | `900` |
+
+## leading
+
+| Variable | Value |
+| --- | --- |
+| `--leading-none` | `1` |
+| `--leading-tight` | `1.25` |
+| `--leading-snug` | `1.375` |
+| `--leading-normal` | `1.5` |
+| `--leading-relaxed` | `1.625` |
+| `--leading-loose` | `2` |
+
+## tracking
+
+| Variable | Value |
+| --- | --- |
+| `--tracking-tighter` | `-0.05em` |
+| `--tracking-tight` | `-0.025em` |
+| `--tracking-normal` | `0` |
+| `--tracking-wide` | `0.025em` |
+| `--tracking-wider` | `0.05em` |
+| `--tracking-widest` | `0.1em` |
+
+## border-width
+
+| Variable | Value |
+| --- | --- |
+| `--border-width-0` | `0` |
+| `--border-width-1` | `1px` |
+| `--border-width-2` | `2px` |
+| `--border-width-4` | `4px` |
+| `--border-width-6` | `6px` |
+| `--border-width-8` | `8px` |
+
+## radius
+
+| Variable | Value |
+| --- | --- |
+| `--radius-xs` | `0.125rem` |
+| `--radius-sm` | `0.25rem` |
+| `--radius-md` | `0.375rem` |
+| `--radius-lg` | `0.5rem` |
+| `--radius-xl` | `0.75rem` |
+| `--radius-2xl` | `1rem` |
+| `--radius-3xl` | `1.5rem` |
+| `--radius-4xl` | `2rem` |
+| `--radius-full` | `9999px` |
+| `--radius-none` | `0` |
+
+## shadow
+
+| Variable | Value |
+| --- | --- |
+| `--shadow-sm` | `0 0.25rem 1rem -0.125rem rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.02)` |
+| `--shadow-md` | `0 0.5rem 1rem -0.25rem rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.02)` |
+| `--shadow-lg` | `0rem 1rem 1rem -0.5rem rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.02)` |
+| `--shadow-none` | `none` |
+
+## opacity
+
+| Variable | Value |
+| --- | --- |
+| `--opacity-0` | `0` |
+| `--opacity-10` | `0.1` |
+| `--opacity-20` | `0.2` |
+| `--opacity-30` | `0.3` |
+| `--opacity-40` | `0.4` |
+| `--opacity-50` | `0.5` |
+| `--opacity-60` | `0.6` |
+| `--opacity-70` | `0.7` |
+| `--opacity-80` | `0.8` |
+| `--opacity-90` | `0.9` |
+| `--opacity-100` | `100` |
+
+## gap
+
+| Variable | Value |
+| --- | --- |
+| `--gap-0` | `0` |
+| `--gap-1` | `0.25rem` |
+| `--gap-2` | `0.5rem` |
+| `--gap-3` | `0.75rem` |
+| `--gap-4` | `1rem` |
+| `--gap-6` | `1.5rem` |
+| `--gap-8` | `2rem` |
+| `--gap-12` | `3rem` |
+| `--gap-16` | `4rem` |
+| `--gap-24` | `6rem` |
+| `--gap-32` | `8rem` |
+| `--gap-px` | `1px` |
+
+## spacing
+
+| Variable | Value |
+| --- | --- |
+| `--spacing-0` | `0` |
+| `--spacing-1` | `0.25rem` |
+| `--spacing-2` | `0.5rem` |
+| `--spacing-3` | `0.75rem` |
+| `--spacing-4` | `1rem` |
+| `--spacing-5` | `1.25rem` |
+| `--spacing-6` | `1.5rem` |
+| `--spacing-7` | `1.75rem` |
+| `--spacing-8` | `2rem` |
+| `--spacing-9` | `2.25rem` |
+| `--spacing-10` | `2.5rem` |
+| `--spacing-11` | `2.75rem` |
+| `--spacing-12` | `3rem` |
+| `--spacing-14` | `3.5rem` |
+| `--spacing-16` | `4rem` |
+| `--spacing-20` | `5rem` |
+| `--spacing-24` | `6rem` |
+| `--spacing-28` | `7rem` |
+| `--spacing-32` | `8rem` |
+| `--spacing-36` | `9rem` |
+| `--spacing-40` | `10rem` |
+| `--spacing-44` | `11rem` |
+| `--spacing-48` | `12rem` |
+| `--spacing-52` | `13rem` |
+| `--spacing-56` | `14rem` |
+| `--spacing-60` | `15rem` |
+| `--spacing-64` | `16rem` |
+| `--spacing-72` | `18rem` |
+| `--spacing-80` | `20rem` |
+| `--spacing-88` | `22rem` |
+| `--spacing-96` | `24rem` |
+| `--spacing-px` | `1px` |
+| `--spacing-half` | `50%` |
+| `--spacing-full` | `100%` |
+| `--spacing-auto` | `auto` |
+
+## container
+
+| Variable | Value |
+| --- | --- |
+| `--container-xs` | `20rem` |
+| `--container-sm` | `24rem` |
+| `--container-md` | `28rem` |
+| `--container-lg` | `32rem` |
+| `--container-xl` | `36rem` |
+| `--container-2xl` | `42rem` |
+| `--container-3xl` | `48rem` |
+| `--container-4xl` | `56rem` |
+| `--container-5xl` | `64rem` |
+| `--container-6xl` | `72rem` |
+| `--container-7xl` | `80rem` |
+| `--container-8xl` | `88rem` |
+| `--container-9xl` | `96rem` |
+
+## z-index
+
+| Variable | Value |
+| --- | --- |
+| `--z-index-0` | `0` |
+| `--z-index-10` | `10` |
+| `--z-index-20` | `20` |
+| `--z-index-30` | `30` |
+| `--z-index-40` | `40` |
+| `--z-index-50` | `50` |
+
+## animate
+
+| Variable | Value |
+| --- | --- |
+| `--animate-bounce` | `bounce 1s infinite` |
+| `--animate-fadein` | `fadein ease 1s` |
+| `--animate-fadeout` | `fadeout ease 1s` |
+| `--animate-ping` | `ping 1s cubic-bezier(0, 0, 0.2, 1) infinite` |
+| `--animate-pulse` | `pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` |
+| `--animate-spin` | `spin 1s linear infinite` |
