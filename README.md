@@ -8,7 +8,7 @@ A low-level functional CSS toolkit.
 
 ## About LowCSS
 
-**LowCSS** is a powerful CSS utility framework, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. 
+**LowCSS** is a tiny and minimal CSS utility framework, designed to streamline your CSS development process and enable you to create beautiful, responsive web interfaces with ease. 
 
 ## Features
 
@@ -56,15 +56,7 @@ Using LowCSS is simple. Add the utility classes directly to your HTML elements t
 </div>
 ``` 
 
-Refer to the [Utility Classes Documentation](https://low.josemi.xyz/utilities.html) for a complete list of available utility classes and their usage.
-
-## Documentation
-
-Access the LowCSS documentation at [low.josemi.xyz](https://low.josemi.xyz/docs.html).
-
-## Examples
-
-This section showcases various use cases and implementations of the utility classes to inspire and guide your development process. Explore our examples at [low.josemi.xyz/examples](https://low.josemi.xyz/examples.html).
+Refer to the [Utility Classes Documentation](./docs/utilities.md) for a complete list of available utility classes and their usage.
 
 ## Acknowledgements
 
