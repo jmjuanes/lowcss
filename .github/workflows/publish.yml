@@ -2,12 +2,9 @@ name: Publish
 on:
   push:
     tags: ['*']
-
-## Set permissions to the github token
 ## https://github.com/softprops/action-gh-release#permissions 
 permissions:
   contents: write
-
 jobs:
   publish:
     if: ${{ github.repository == 'jmjuanes/lowcss' }}
@@ -20,5 +17,6 @@ jobs:
         with:
           node-version: latest
           registry-url: 'https://registry.npmjs.org'
+      - run: yarn install
       - run: yarn run build
-      - run: npm publish
+      - run: yarn publish
