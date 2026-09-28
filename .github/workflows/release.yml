@@ -1,59 +1,22 @@
 name: Generate a release of LowCSS
-
-## This workflow is limited only when a new tag is created
 on:
   push:
     tags: ["*"]
-
-## Set permissions to the github token
-## https://github.com/softprops/action-gh-release#permissions 
 permissions:
   contents: write
-
 jobs:
   release:
     if: ${{ github.repository == 'jmjuanes/lowcss' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: '20.x'
+          node-version: latest
       - run: yarn install
       - run: yarn run build
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         with:
           files: low.css
           generate_release_notes: true
   
-  publish:
-    if: ${{ github.repository == 'jmjuanes/lowcss' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: yarn install
-      - run: yarn build
-      - run: yarn publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  publish-packages:
-    if: ${{ github.repository == 'jmjuanes/lowcss' }}
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package: [lowcss-forms, lowcss-helpers, lowcss-prose]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: yarn release
-      - run: cd packages/${{ matrix.package }} && npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
