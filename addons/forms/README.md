@@ -12,7 +12,7 @@ A simple CSS reset for form elements that makes them easy to style with LowCSS u
 
 ## Usage
 
-Import the reset in your project by linking the CSS file directly in your HTML:
+Import the addon in your project by linking the CSS file directly in your HTML:
 
 ```html
 <link rel="stylesheet" href="node_modules/lowcss/addons/forms/index.css">
