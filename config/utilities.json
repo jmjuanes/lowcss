@@ -657,18 +657,6 @@
         ]
     },
     {
-        "name": "animation",
-        "category": "animation",
-        "description": "Utilities to animate elements using predefined CSS animations.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
-        "className": "animate-{key}",
-        "theme": "animate",
-        "properties": [
-            "animation"
-        ],
-        "variants": []
-    },
-    {
         "name": "box-shadow",
         "category": "effects",
         "description": "Utilities to set the box-shadow property of the element.",
