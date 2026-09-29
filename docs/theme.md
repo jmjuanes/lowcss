@@ -301,14 +301,3 @@ Every value below is emitted as a CSS custom property in `theme.css`, so any of 
 | `--z-index-30` | `30` |
 | `--z-index-40` | `40` |
 | `--z-index-50` | `50` |
-
-## animate
-
-| Variable | Value |
-| --- | --- |
-| `--animate-bounce` | `bounce 1s infinite` |
-| `--animate-fadein` | `fadein ease 1s` |
-| `--animate-fadeout` | `fadeout ease 1s` |
-| `--animate-ping` | `ping 1s cubic-bezier(0, 0, 0.2, 1) infinite` |
-| `--animate-pulse` | `pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite` |
-| `--animate-spin` | `spin 1s linear infinite` |

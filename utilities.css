@@ -21021,26 +21021,6 @@
 }
 }
 
-/* animation */
-.animate-bounce {
-    animation: var(--animate-bounce);
-}
-.animate-fadein {
-    animation: var(--animate-fadein);
-}
-.animate-fadeout {
-    animation: var(--animate-fadeout);
-}
-.animate-ping {
-    animation: var(--animate-ping);
-}
-.animate-pulse {
-    animation: var(--animate-pulse);
-}
-.animate-spin {
-    animation: var(--animate-spin);
-}
-
 /* box-shadow */
 .shadow-sm {
     box-shadow: var(--shadow-sm);
