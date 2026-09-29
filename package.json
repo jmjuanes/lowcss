@@ -42,11 +42,11 @@
         "LICENSE",
         "low.css",
         "index.css",
-        "animation.css",
         "theme.css",
         "reset.css",
         "utilities.css",
         "docs",
+        "addons",
         "package.json"
     ],
     "devDependencies": {
