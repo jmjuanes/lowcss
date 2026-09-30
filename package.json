@@ -1,6 +1,6 @@
 {
     "name": "lowcss",
-    "version": "0.34.1",
+    "version": "0.35.0",
     "description": "A low-level functional CSS toolkit",
     "author": {
         "name": "Josemi Juanes",
@@ -15,10 +15,8 @@
     "exports": {
         ".": "./low.css",
         "./low.css": "./low.css",
-        "./index.css": "./index.css",
-        "./theme.css": "./theme.css",
-        "./animation.css": "./animation.css",
         "./reset.css": "./reset.css",
+        "./theme.css": "./theme.css",
         "./utilities.css": "./utilities.css",
         "./package.json": "./package.json"
     },
