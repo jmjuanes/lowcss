@@ -103,7 +103,12 @@
         "properties": [
             "opacity"
         ],
-        "variants": []
+        "variants": [
+            "responsive",
+            "hover",
+            "focus",
+            "focus-within"
+        ]
     },
     {
         "name": "flex-direction",
