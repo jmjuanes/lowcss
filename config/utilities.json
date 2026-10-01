@@ -744,6 +744,134 @@
         ]
     },
     {
+        "name": "font-family",
+        "category": "typography",
+        "description": "Utilities to set the font-family property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-family",
+        "className": "font-{key}",
+        "theme": "font-family",
+        "properties": [
+            "font-family"
+        ],
+        "variants": []
+    },
+    {
+        "name": "font-size",
+        "category": "typography",
+        "description": "Utilities to set the font-size property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size",
+        "className": "text-{key}",
+        "theme": "font-size",
+        "properties": [
+            "font-size"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "font-style",
+        "category": "typography",
+        "description": "Utilities to set the style of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-style",
+        "className": "{key}",
+        "value": {
+            "italic": "italic",
+            "not-italic": "normal"
+        },
+        "properties": [
+            "font-style"
+        ],
+        "variants": []
+    },
+    {
+        "name": "font-weight",
+        "category": "typography",
+        "description": "Utilities to set the font-weight property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
+        "className": "font-{key}",
+        "theme": "font-weight",
+        "properties": [
+            "font-weight"
+        ],
+        "variants": [
+            "hover",
+            "group-hover"
+        ]
+    },
+    {
+        "name": "letter-spacing",
+        "category": "typography",
+        "description": "Utilities to set the letter-spacing property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing",
+        "className": "tracking-{key}",
+        "theme": "tracking",
+        "properties": [
+            "letter-spacing"
+        ],
+        "variants": []
+    },
+    {
+        "name": "line-height",
+        "category": "typography",
+        "description": "Utilities to set the line-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
+        "className": "leading-{key}",
+        "theme": "leading",
+        "properties": [
+            "line-height"
+        ],
+        "variants": []
+    },
+    {
+        "name": "list-style-position",
+        "category": "typography",
+        "description": "Utilities to control the position of bullets in lists.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position",
+        "className": "list-{key}",
+        "values": {
+            "inside": "inside",
+            "outside": "outside"
+        },
+        "properties": [
+            "list-style-position"
+        ],
+        "variants": []
+    },
+    {
+        "name": "list-style-type",
+        "category": "typography",
+        "description": "Utilities to control the style of the marker in lists.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type",
+        "className": "list-{key}",
+        "values": {
+            "disc": "disc",
+            "decimal": "decimal",
+            "none": "none"
+        },
+        "properties": [
+            "list-style-type"
+        ],
+        "variants": []
+    },
+    {
+        "name": "text-align",
+        "category": "typography",
+        "description": "Utilities to set the text-align property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-align",
+        "className": "text-{key}",
+        "values": {
+            "left": "left",
+            "center": "center",
+            "right": "right",
+            "justify": "justify"
+        },
+        "properties": [
+            "text-align"
+        ],
+        "variants": []
+    },
+    {
         "name": "text-color",
         "category": "typography",
         "description": "Utilities to set the text color of the element.",
@@ -764,60 +892,103 @@
         ]
     },
     {
-        "name": "font-size",
+        "name": "text-decoration-line",
         "category": "typography",
-        "description": "Utilities to set the font-size property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-size",
-        "className": "text-{key}",
-        "theme": "font-size",
-        "properties": [
-            "font-size"
-        ],
-        "variants": [
-            "responsive"
-        ]
-    },
-    {
-        "name": "font-weight",
-        "category": "typography",
-        "description": "Utilities to set the font-weight property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight",
-        "className": "font-{key}",
-        "theme": "font-weight",
-        "properties": [
-            "font-weight"
-        ],
-        "variants": []
-    },
-    {
-        "name": "line-height",
-        "category": "typography",
-        "description": "Utilities to set the line-height property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/line-height",
-        "className": "leading-{key}",
-        "theme": "leading",
-        "properties": [
-            "line-height"
-        ],
-        "variants": []
-    },
-    {
-        "name": "text-align",
-        "category": "typography",
-        "description": "Utilities to set the text-align property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-align",
-        "className": "text-{key}",
+        "description": "Utilities to set the text decoration of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line",
+        "className": "{key}",
         "values": {
-            "left": "left",
-            "center": "center",
-            "right": "right",
-            "justify": "justify"
+            "underline": "underline",
+            "overline": "overline",
+            "line-through": "line-through",
+            "no-underline": "none"
         },
         "properties": [
-            "text-align"
+            "text-decoration-line"
         ],
         "variants": [
-            "responsive"
+            "hover"
         ]
+    },
+    {
+        "name": "text-overflow",
+        "category": "typography",
+        "description": "Utilities to set the text overflow of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow",
+        "className": "text-{key}",
+        "values": {
+            "ellipsis": "ellipsis",
+            "clip": "clip"
+        },
+        "properties": [
+            "text-overflow"
+        ],
+        "variants": []
+    },
+    {
+        "name": "text-transform",
+        "category": "typography",
+        "description": "Utilities to control the capitalization of the text.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform",
+        "className": "{key}",
+        "values": {
+            "uppercase": "uppercase",
+            "lowercase": "lowercase",
+            "capitalize": "capitalize",
+            "normal-case": "none"
+        },
+        "properties": [
+            "text-transform"
+        ],
+        "variants": []
+    },
+    {
+        "name": "vertical-align",
+        "category": "typography",
+        "description": "Utilities to control the vertical alignment of inline elements.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align",
+        "className": "align-{key}",
+        "values": {
+            "baseline": "baseline",
+            "top": "top",
+            "middle": "middle",
+            "bottom": "bottom"
+        },
+        "properties": [
+            "vertical-align"
+        ],
+        "variants": []
+    },
+    {
+        "name": "white-space",
+        "category": "typography",
+        "description": "Utilities to control the white-space property of an element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/white-space",
+        "className": "whitespace-{key}",
+        "values": {
+            "normal": "normal",
+            "nowrap": "nowrap",
+            "pre": "pre"
+        },
+        "properties": [
+            "white-space"
+        ],
+        "variants": []
+    },
+    {
+        "name": "word-break",
+        "category": "typography",
+        "description": "Utilities to control how words breaks in an element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/word-break",
+        "className": "break-{key}",
+        "values": {
+            "normal": "normal",
+            "all": "break-all",
+            "keep": "keep-all"
+        },
+        "properties": [
+            "word-break"
+        ],
+        "variants": []
     }
 ]
