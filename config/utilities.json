@@ -278,9 +278,24 @@
         ]
     },
     {
+        "name": "appearance",
+        "category": "interactivity",
+        "description": "Utilities to control the native appearance of an element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/appearance",
+        "className": "appearance-{key}",
+        "values": {
+            "none": "none",
+            "auto": "auto"
+        },
+        "properties": [
+            "appearance"
+        ],
+        "variants": []
+    },
+    {
         "name": "cursor",
         "category": "interactivity",
-        "description": "Utilities to set the cursor property of the element. Reduced to the most commonly used values.",
+        "description": "Utilities to set the cursor property of the element.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/cursor",
         "className": "cursor-{key}",
         "values": {
@@ -327,6 +342,23 @@
         },
         "properties": [
             "touch-action"
+        ],
+        "variants": []
+    },
+    {
+        "name": "user-select",
+        "category": "interactivity",
+        "description": "Utilities to control if user can select text of an element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/user-select",
+        "className": "select-{key}",
+        "values": {
+            "none": "none",
+            "text": "text",
+            "all": "all",
+            "auto": "auto"
+        },
+        "properties": [
+            "user-select"
         ],
         "variants": []
     },
