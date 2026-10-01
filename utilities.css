@@ -2700,6 +2700,146 @@
 }
 }
 
+/* align-content */
+.content-start {
+    align-content: flex-start;
+}
+.content-end {
+    align-content: flex-end;
+}
+.content-center {
+    align-content: center;
+}
+.content-between {
+    align-content: space-between;
+}
+.content-around {
+    align-content: space-around;
+}
+.content-evenly {
+    align-content: space-evenly;
+}
+@media screen and (min-width: 640px) {
+.sm\:content-start {
+    align-content: flex-start;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-start {
+    align-content: flex-start;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-start {
+    align-content: flex-start;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-start {
+    align-content: flex-start;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:content-end {
+    align-content: flex-end;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-end {
+    align-content: flex-end;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-end {
+    align-content: flex-end;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-end {
+    align-content: flex-end;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:content-center {
+    align-content: center;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-center {
+    align-content: center;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-center {
+    align-content: center;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-center {
+    align-content: center;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:content-between {
+    align-content: space-between;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-between {
+    align-content: space-between;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-between {
+    align-content: space-between;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-between {
+    align-content: space-between;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:content-around {
+    align-content: space-around;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-around {
+    align-content: space-around;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-around {
+    align-content: space-around;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-around {
+    align-content: space-around;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:content-evenly {
+    align-content: space-evenly;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:content-evenly {
+    align-content: space-evenly;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:content-evenly {
+    align-content: space-evenly;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:content-evenly {
+    align-content: space-evenly;
+}
+}
+
 /* align-items */
 .items-start {
     align-items: flex-start;
@@ -2954,6 +3094,100 @@
 @media screen and (min-width: 1280px) {
 .xl\:justify-evenly {
     justify-content: space-evenly;
+}
+}
+
+/* justify-items */
+.justify-items-start {
+    justify-items: flex-start;
+}
+.justify-items-end {
+    justify-items: flex-end;
+}
+.justify-items-center {
+    justify-items: center;
+}
+.justify-items-stretch {
+    justify-items: stretch;
+}
+@media screen and (min-width: 640px) {
+.sm\:justify-items-start {
+    justify-items: flex-start;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:justify-items-start {
+    justify-items: flex-start;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:justify-items-start {
+    justify-items: flex-start;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:justify-items-start {
+    justify-items: flex-start;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:justify-items-end {
+    justify-items: flex-end;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:justify-items-end {
+    justify-items: flex-end;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:justify-items-end {
+    justify-items: flex-end;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:justify-items-end {
+    justify-items: flex-end;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:justify-items-center {
+    justify-items: center;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:justify-items-center {
+    justify-items: center;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:justify-items-center {
+    justify-items: center;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:justify-items-center {
+    justify-items: center;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:justify-items-stretch {
+    justify-items: stretch;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:justify-items-stretch {
+    justify-items: stretch;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:justify-items-stretch {
+    justify-items: stretch;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:justify-items-stretch {
+    justify-items: stretch;
 }
 }
 
