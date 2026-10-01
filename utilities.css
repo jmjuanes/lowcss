@@ -2630,7 +2630,75 @@
 }
 
 /* order */
-
+.order-none {
+    order: 0;
+}
+.order-first {
+    order: -9999;
+}
+.order-last {
+    order: 99999;
+}
+@media screen and (min-width: 640px) {
+.sm\:order-none {
+    order: 0;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:order-none {
+    order: 0;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:order-none {
+    order: 0;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:order-none {
+    order: 0;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:order-first {
+    order: -9999;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:order-first {
+    order: -9999;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:order-first {
+    order: -9999;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:order-first {
+    order: -9999;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:order-last {
+    order: 99999;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:order-last {
+    order: 99999;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:order-last {
+    order: 99999;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:order-last {
+    order: 99999;
+}
+}
 
 /* align-items */
 .items-start {
