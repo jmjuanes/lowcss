@@ -241,6 +241,27 @@
         ]
     },
     {
+        "name": "align-content",
+        "category": "flexbox",
+        "description": "Utilities to set the align-content property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/align-content",
+        "className": "content-{key}",
+        "values": {
+            "start": "flex-start",
+            "end": "flex-end",
+            "center": "center",
+            "between": "space-between",
+            "around": "space-around",
+            "evenly": "space-evenly"
+        },
+        "properties": [
+            "align-content"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
         "name": "align-items",
         "category": "flexbox",
         "description": "Utilities to set the align-items property of the element.",
@@ -276,6 +297,25 @@
         },
         "properties": [
             "justify-content"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "justify-items",
+        "category": "flexbox",
+        "description": "Utilities to set the justify-items property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items",
+        "className": "justify-items-{key}",
+        "values": {
+            "start": "flex-start",
+            "end": "flex-end",
+            "center": "center",
+            "stretch": "stretch"
+        },
+        "properties": [
+            "justify-items"
         ],
         "variants": [
             "responsive"
