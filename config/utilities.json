@@ -79,6 +79,35 @@
         "variants": []
     },
     {
+        "name": "outline-width",
+        "category": "border",
+        "description": "Utilities to set the outline-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width",
+        "className": "outline-{key}",
+        "theme": "border-width",
+        "properties": [
+            "outline-width"
+        ],
+        "variants": []
+    },
+    {
+        "name": "outline-style",
+        "category": "border",
+        "description": "Utilities to set the outline-style property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style",
+        "className": "outline-{key}",
+        "values": {
+            "solid": "solid",
+            "dashed": "dashed",
+            "dotted": "dotted",
+            "none": "none"
+        },
+        "properties": [
+            "outline-style"
+        ],
+        "variants": []
+    },
+    {
         "name": "box-shadow",
         "category": "effects",
         "description": "Utilities to set the box-shadow property of the element.",
