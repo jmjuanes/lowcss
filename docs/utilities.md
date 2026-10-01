@@ -105,188 +105,6 @@ Utilities to set the background-color property of the element.
 | `.bg-transparent` | `background-color: transparent;` |
 | `.bg-current` | `background-color: currentColor;` |
 
-## typography
-
-### text-color
-
-Utilities to set the text color of the element.
-
-- **CSS properties:** `color`
-- **Variants:** `hover`, `focus` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/color
-
-| Class | CSS |
-| --- | --- |
-| `.text-gray-50` | `color: var(--color-gray-50);` |
-| `.text-gray-100` | `color: var(--color-gray-100);` |
-| `.text-gray-200` | `color: var(--color-gray-200);` |
-| `.text-gray-300` | `color: var(--color-gray-300);` |
-| `.text-gray-400` | `color: var(--color-gray-400);` |
-| `.text-gray-500` | `color: var(--color-gray-500);` |
-| `.text-gray-600` | `color: var(--color-gray-600);` |
-| `.text-gray-700` | `color: var(--color-gray-700);` |
-| `.text-gray-800` | `color: var(--color-gray-800);` |
-| `.text-gray-900` | `color: var(--color-gray-900);` |
-| `.text-gray-950` | `color: var(--color-gray-950);` |
-| `.text-slate-50` | `color: var(--color-slate-50);` |
-| `.text-slate-100` | `color: var(--color-slate-100);` |
-| `.text-slate-200` | `color: var(--color-slate-200);` |
-| `.text-slate-300` | `color: var(--color-slate-300);` |
-| `.text-slate-400` | `color: var(--color-slate-400);` |
-| `.text-slate-500` | `color: var(--color-slate-500);` |
-| `.text-slate-600` | `color: var(--color-slate-600);` |
-| `.text-slate-700` | `color: var(--color-slate-700);` |
-| `.text-slate-800` | `color: var(--color-slate-800);` |
-| `.text-slate-900` | `color: var(--color-slate-900);` |
-| `.text-slate-950` | `color: var(--color-slate-950);` |
-| `.text-stone-50` | `color: var(--color-stone-50);` |
-| `.text-stone-100` | `color: var(--color-stone-100);` |
-| `.text-stone-200` | `color: var(--color-stone-200);` |
-| `.text-stone-300` | `color: var(--color-stone-300);` |
-| `.text-stone-400` | `color: var(--color-stone-400);` |
-| `.text-stone-500` | `color: var(--color-stone-500);` |
-| `.text-stone-600` | `color: var(--color-stone-600);` |
-| `.text-stone-700` | `color: var(--color-stone-700);` |
-| `.text-stone-800` | `color: var(--color-stone-800);` |
-| `.text-stone-900` | `color: var(--color-stone-900);` |
-| `.text-stone-950` | `color: var(--color-stone-950);` |
-| `.text-red-50` | `color: var(--color-red-50);` |
-| `.text-red-100` | `color: var(--color-red-100);` |
-| `.text-red-200` | `color: var(--color-red-200);` |
-| `.text-red-300` | `color: var(--color-red-300);` |
-| `.text-red-400` | `color: var(--color-red-400);` |
-| `.text-red-500` | `color: var(--color-red-500);` |
-| `.text-red-600` | `color: var(--color-red-600);` |
-| `.text-red-700` | `color: var(--color-red-700);` |
-| `.text-red-800` | `color: var(--color-red-800);` |
-| `.text-red-900` | `color: var(--color-red-900);` |
-| `.text-red-950` | `color: var(--color-red-950);` |
-| `.text-yellow-50` | `color: var(--color-yellow-50);` |
-| `.text-yellow-100` | `color: var(--color-yellow-100);` |
-| `.text-yellow-200` | `color: var(--color-yellow-200);` |
-| `.text-yellow-300` | `color: var(--color-yellow-300);` |
-| `.text-yellow-400` | `color: var(--color-yellow-400);` |
-| `.text-yellow-500` | `color: var(--color-yellow-500);` |
-| `.text-yellow-600` | `color: var(--color-yellow-600);` |
-| `.text-yellow-700` | `color: var(--color-yellow-700);` |
-| `.text-yellow-800` | `color: var(--color-yellow-800);` |
-| `.text-yellow-900` | `color: var(--color-yellow-900);` |
-| `.text-yellow-950` | `color: var(--color-yellow-950);` |
-| `.text-green-50` | `color: var(--color-green-50);` |
-| `.text-green-100` | `color: var(--color-green-100);` |
-| `.text-green-200` | `color: var(--color-green-200);` |
-| `.text-green-300` | `color: var(--color-green-300);` |
-| `.text-green-400` | `color: var(--color-green-400);` |
-| `.text-green-500` | `color: var(--color-green-500);` |
-| `.text-green-600` | `color: var(--color-green-600);` |
-| `.text-green-700` | `color: var(--color-green-700);` |
-| `.text-green-800` | `color: var(--color-green-800);` |
-| `.text-green-900` | `color: var(--color-green-900);` |
-| `.text-green-950` | `color: var(--color-green-950);` |
-| `.text-blue-50` | `color: var(--color-blue-50);` |
-| `.text-blue-100` | `color: var(--color-blue-100);` |
-| `.text-blue-200` | `color: var(--color-blue-200);` |
-| `.text-blue-300` | `color: var(--color-blue-300);` |
-| `.text-blue-400` | `color: var(--color-blue-400);` |
-| `.text-blue-500` | `color: var(--color-blue-500);` |
-| `.text-blue-600` | `color: var(--color-blue-600);` |
-| `.text-blue-700` | `color: var(--color-blue-700);` |
-| `.text-blue-800` | `color: var(--color-blue-800);` |
-| `.text-blue-900` | `color: var(--color-blue-900);` |
-| `.text-blue-950` | `color: var(--color-blue-950);` |
-| `.text-violet-50` | `color: var(--color-violet-50);` |
-| `.text-violet-100` | `color: var(--color-violet-100);` |
-| `.text-violet-200` | `color: var(--color-violet-200);` |
-| `.text-violet-300` | `color: var(--color-violet-300);` |
-| `.text-violet-400` | `color: var(--color-violet-400);` |
-| `.text-violet-500` | `color: var(--color-violet-500);` |
-| `.text-violet-600` | `color: var(--color-violet-600);` |
-| `.text-violet-700` | `color: var(--color-violet-700);` |
-| `.text-violet-800` | `color: var(--color-violet-800);` |
-| `.text-violet-900` | `color: var(--color-violet-900);` |
-| `.text-violet-950` | `color: var(--color-violet-950);` |
-| `.text-white` | `color: var(--color-white);` |
-| `.text-black` | `color: var(--color-black);` |
-| `.text-transparent` | `color: transparent;` |
-| `.text-current` | `color: currentColor;` |
-| `.text-inherit` | `color: inherit;` |
-
-### font-size
-
-Utilities to set the font-size property of the element.
-
-- **CSS properties:** `font-size`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
-
-| Class | CSS |
-| --- | --- |
-| `.text-3xs` | `font-size: var(--font-size-3xs);` |
-| `.text-2xs` | `font-size: var(--font-size-2xs);` |
-| `.text-xs` | `font-size: var(--font-size-xs);` |
-| `.text-sm` | `font-size: var(--font-size-sm);` |
-| `.text-base` | `font-size: var(--font-size-base);` |
-| `.text-lg` | `font-size: var(--font-size-lg);` |
-| `.text-xl` | `font-size: var(--font-size-xl);` |
-| `.text-2xl` | `font-size: var(--font-size-2xl);` |
-| `.text-3xl` | `font-size: var(--font-size-3xl);` |
-| `.text-4xl` | `font-size: var(--font-size-4xl);` |
-| `.text-5xl` | `font-size: var(--font-size-5xl);` |
-| `.text-6xl` | `font-size: var(--font-size-6xl);` |
-| `.text-7xl` | `font-size: var(--font-size-7xl);` |
-| `.text-8xl` | `font-size: var(--font-size-8xl);` |
-| `.text-9xl` | `font-size: var(--font-size-9xl);` |
-
-### font-weight
-
-Utilities to set the font-weight property of the element.
-
-- **CSS properties:** `font-weight`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
-
-| Class | CSS |
-| --- | --- |
-| `.font-thin` | `font-weight: var(--font-weight-thin);` |
-| `.font-extralight` | `font-weight: var(--font-weight-extralight);` |
-| `.font-light` | `font-weight: var(--font-weight-light);` |
-| `.font-normal` | `font-weight: var(--font-weight-normal);` |
-| `.font-medium` | `font-weight: var(--font-weight-medium);` |
-| `.font-semibold` | `font-weight: var(--font-weight-semibold);` |
-| `.font-bold` | `font-weight: var(--font-weight-bold);` |
-| `.font-extrabold` | `font-weight: var(--font-weight-extrabold);` |
-| `.font-black` | `font-weight: var(--font-weight-black);` |
-
-### line-height
-
-Utilities to set the line-height property of the element.
-
-- **CSS properties:** `line-height`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
-
-| Class | CSS |
-| --- | --- |
-| `.leading-none` | `line-height: var(--leading-none);` |
-| `.leading-tight` | `line-height: var(--leading-tight);` |
-| `.leading-snug` | `line-height: var(--leading-snug);` |
-| `.leading-normal` | `line-height: var(--leading-normal);` |
-| `.leading-relaxed` | `line-height: var(--leading-relaxed);` |
-| `.leading-loose` | `line-height: var(--leading-loose);` |
-
-### text-align
-
-Utilities to set the text-align property of the element.
-
-- **CSS properties:** `text-align`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/text-align
-
-| Class | CSS |
-| --- | --- |
-| `.text-left` | `text-align: left;` |
-| `.text-center` | `text-align: center;` |
-| `.text-right` | `text-align: right;` |
-| `.text-justify` | `text-align: justify;` |
-
 ## border
 
 ### border-color
@@ -441,6 +259,711 @@ Utilities to set the border-radius property of the element.
 | `.rounded-4xl` | `border-radius: var(--radius-4xl);` |
 | `.rounded-full` | `border-radius: var(--radius-full);` |
 | `.rounded-none` | `border-radius: var(--radius-none);` |
+
+## effects
+
+### box-shadow
+
+Utilities to set the box-shadow property of the element.
+
+- **CSS properties:** `box-shadow`
+- **Variants:** `hover`, `focus` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+
+| Class | CSS |
+| --- | --- |
+| `.shadow-sm` | `box-shadow: var(--shadow-sm);` |
+| `.shadow-md` | `box-shadow: var(--shadow-md);` |
+| `.shadow-lg` | `box-shadow: var(--shadow-lg);` |
+| `.shadow-none` | `box-shadow: var(--shadow-none);` |
+
+### opacity
+
+Utilities to set the opacity property of the element.
+
+- **CSS properties:** `opacity`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/opacity
+
+| Class | CSS |
+| --- | --- |
+| `.opacity-0` | `opacity: var(--opacity-0);` |
+| `.opacity-10` | `opacity: var(--opacity-10);` |
+| `.opacity-20` | `opacity: var(--opacity-20);` |
+| `.opacity-30` | `opacity: var(--opacity-30);` |
+| `.opacity-40` | `opacity: var(--opacity-40);` |
+| `.opacity-50` | `opacity: var(--opacity-50);` |
+| `.opacity-60` | `opacity: var(--opacity-60);` |
+| `.opacity-70` | `opacity: var(--opacity-70);` |
+| `.opacity-80` | `opacity: var(--opacity-80);` |
+| `.opacity-90` | `opacity: var(--opacity-90);` |
+| `.opacity-100` | `opacity: var(--opacity-100);` |
+
+## flexbox
+
+### flex-direction
+
+Utilities to set the flex-direction property of the element.
+
+- **CSS properties:** `flex-direction`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+
+| Class | CSS |
+| --- | --- |
+| `.flex-row` | `flex-direction: row;` |
+| `.flex-col` | `flex-direction: column;` |
+| `.flex-row-reverse` | `flex-direction: row-reverse;` |
+| `.flex-col-reverse` | `flex-direction: column-reverse;` |
+
+### flex-grow
+
+Utilities to control how flex items grow.
+
+- **CSS properties:** `flex-grow`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow
+
+| Class | CSS |
+| --- | --- |
+| `.grow-0` | `flex-grow: 0;` |
+| `.grow-1` | `flex-grow: 1;` |
+
+### flex-shrink
+
+Utilities to control how flex items shrink.
+
+- **CSS properties:** `flex-shrink`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink
+
+| Class | CSS |
+| --- | --- |
+| `.shrink-0` | `flex-shrink: 0;` |
+| `.shrink-1` | `flex-shrink: 1;` |
+
+### flex-wrap
+
+Utilities to set the flex-wrap property of the element.
+
+- **CSS properties:** `flex-wrap`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+
+| Class | CSS |
+| --- | --- |
+| `.flex-wrap` | `flex-wrap: wrap;` |
+| `.flex-nowrap` | `flex-wrap: nowrap;` |
+| `.flex-wrap-reverse` | `flex-wrap: wrap-reverse;` |
+
+### gap
+
+Utilities to set the gap property of the element.
+
+- **CSS properties:** `gap`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+
+| Class | CSS |
+| --- | --- |
+| `.gap-0` | `gap: var(--gap-0);` |
+| `.gap-1` | `gap: var(--gap-1);` |
+| `.gap-2` | `gap: var(--gap-2);` |
+| `.gap-3` | `gap: var(--gap-3);` |
+| `.gap-4` | `gap: var(--gap-4);` |
+| `.gap-6` | `gap: var(--gap-6);` |
+| `.gap-8` | `gap: var(--gap-8);` |
+| `.gap-12` | `gap: var(--gap-12);` |
+| `.gap-16` | `gap: var(--gap-16);` |
+| `.gap-24` | `gap: var(--gap-24);` |
+| `.gap-32` | `gap: var(--gap-32);` |
+| `.gap-px` | `gap: var(--gap-px);` |
+
+### order
+
+Utilities to set the order of flex and grid items.
+
+- **CSS properties:** `order`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/order
+
+### align-items
+
+Utilities to set the align-items property of the element.
+
+- **CSS properties:** `align-items`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
+
+| Class | CSS |
+| --- | --- |
+| `.items-start` | `align-items: flex-start;` |
+| `.items-end` | `align-items: flex-end;` |
+| `.items-center` | `align-items: center;` |
+| `.items-baseline` | `align-items: baseline;` |
+| `.items-stretch` | `align-items: stretch;` |
+
+### justify-content
+
+Utilities to set the justify-content property of the element.
+
+- **CSS properties:** `justify-content`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
+
+| Class | CSS |
+| --- | --- |
+| `.justify-start` | `justify-content: flex-start;` |
+| `.justify-end` | `justify-content: flex-end;` |
+| `.justify-center` | `justify-content: center;` |
+| `.justify-between` | `justify-content: space-between;` |
+| `.justify-around` | `justify-content: space-around;` |
+| `.justify-evenly` | `justify-content: space-evenly;` |
+
+### grid-template-columns
+
+Utilities to set the grid-template-columns property of the element.
+
+- **CSS properties:** `grid-template-columns`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
+
+| Class | CSS |
+| --- | --- |
+| `.grid-cols-1` | `grid-template-columns: repeat(1, minmax(0, 1fr));` |
+| `.grid-cols-2` | `grid-template-columns: repeat(2, minmax(0, 1fr));` |
+| `.grid-cols-3` | `grid-template-columns: repeat(3, minmax(0, 1fr));` |
+| `.grid-cols-4` | `grid-template-columns: repeat(4, minmax(0, 1fr));` |
+| `.grid-cols-6` | `grid-template-columns: repeat(6, minmax(0, 1fr));` |
+| `.grid-cols-12` | `grid-template-columns: repeat(12, minmax(0, 1fr));` |
+| `.grid-cols-none` | `grid-template-columns: none;` |
+
+### grid-template-rows
+
+Utilities to set the grid-template-rows property of the element.
+
+- **CSS properties:** `grid-template-rows`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows
+
+| Class | CSS |
+| --- | --- |
+| `.grid-rows-1` | `grid-template-rows: repeat(1, minmax(0, 1fr));` |
+| `.grid-rows-2` | `grid-template-rows: repeat(2, minmax(0, 1fr));` |
+| `.grid-rows-3` | `grid-template-rows: repeat(3, minmax(0, 1fr));` |
+| `.grid-rows-4` | `grid-template-rows: repeat(4, minmax(0, 1fr));` |
+| `.grid-rows-none` | `grid-template-rows: none;` |
+
+### grid-column
+
+Utilities to set the size and position of an element in grid columns.
+
+- **CSS properties:** `grid-column`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
+
+| Class | CSS |
+| --- | --- |
+| `.col-span-1` | `grid-column: span 1 / span 1;` |
+| `.col-span-2` | `grid-column: span 2 / span 2;` |
+| `.col-span-3` | `grid-column: span 3 / span 3;` |
+| `.col-span-4` | `grid-column: span 4 / span 4;` |
+| `.col-span-6` | `grid-column: span 6 / span 6;` |
+| `.col-span-12` | `grid-column: span 12 / span 12;` |
+| `.col-span-full` | `grid-column: 1 / -1;` |
+
+### grid-row
+
+Utilities to set the size and position of an element in grid rows.
+
+- **CSS properties:** `grid-row`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
+
+| Class | CSS |
+| --- | --- |
+| `.row-span-1` | `grid-row: span 1 / span 1;` |
+| `.row-span-2` | `grid-row: span 2 / span 2;` |
+| `.row-span-3` | `grid-row: span 3 / span 3;` |
+| `.row-span-4` | `grid-row: span 4 / span 4;` |
+| `.row-span-full` | `grid-row: 1 / -1;` |
+
+## interactivity
+
+### appearance
+
+Utilities to control the native appearance of an element.
+
+- **CSS properties:** `appearance`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
+
+| Class | CSS |
+| --- | --- |
+| `.appearance-none` | `appearance: none;` |
+| `.appearance-auto` | `appearance: auto;` |
+
+### cursor
+
+Utilities to set the cursor property of the element.
+
+- **CSS properties:** `cursor`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+
+| Class | CSS |
+| --- | --- |
+| `.cursor-auto` | `cursor: auto;` |
+| `.cursor-default` | `cursor: default;` |
+| `.cursor-pointer` | `cursor: pointer;` |
+| `.cursor-not-allowed` | `cursor: not-allowed;` |
+| `.cursor-wait` | `cursor: wait;` |
+| `.cursor-text` | `cursor: text;` |
+| `.cursor-move` | `cursor: move;` |
+| `.cursor-grab` | `cursor: grab;` |
+
+### pointer-events
+
+Utilities to set the pointer-events property of the element.
+
+- **CSS properties:** `pointer-events`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+
+| Class | CSS |
+| --- | --- |
+| `.pointer-events-auto` | `pointer-events: auto;` |
+| `.pointer-events-none` | `pointer-events: none;` |
+
+### touch-action
+
+Utilities to set the touch-action property of the element.
+
+- **CSS properties:** `touch-action`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
+
+| Class | CSS |
+| --- | --- |
+| `.touch-auto` | `touch-action: auto;` |
+| `.touch-none` | `touch-action: none;` |
+| `.touch-pan-x` | `touch-action: pan-x;` |
+| `.touch-pan-y` | `touch-action: pan-y;` |
+
+### user-select
+
+Utilities to control if user can select text of an element.
+
+- **CSS properties:** `user-select`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
+
+| Class | CSS |
+| --- | --- |
+| `.select-none` | `user-select: none;` |
+| `.select-text` | `user-select: text;` |
+| `.select-all` | `user-select: all;` |
+| `.select-auto` | `user-select: auto;` |
+
+## layout
+
+### display
+
+Utilities to set the display property of the element.
+
+- **CSS properties:** `display`
+- **Variants:** `responsive`, `hover`, `focus`, `focus-within` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/display
+
+| Class | CSS |
+| --- | --- |
+| `.hidden` | `display: none;` |
+| `.block` | `display: block;` |
+| `.inline-block` | `display: inline-block;` |
+| `.inline` | `display: inline;` |
+| `.flex` | `display: flex;` |
+| `.inline-flex` | `display: inline-flex;` |
+| `.grid` | `display: grid;` |
+
+### position
+
+Utilities to set the position property of the element.
+
+- **CSS properties:** `position`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/position
+
+| Class | CSS |
+| --- | --- |
+| `.static` | `position: static;` |
+| `.relative` | `position: relative;` |
+| `.absolute` | `position: absolute;` |
+| `.fixed` | `position: fixed;` |
+| `.sticky` | `position: sticky;` |
+
+### top
+
+Utilities to set the top property of the element.
+
+- **CSS properties:** `top`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/top
+
+| Class | CSS |
+| --- | --- |
+| `.top-0` | `top: 0;` |
+| `.top-full` | `top: 100%;` |
+
+### right
+
+Utilities to set the right property of the element.
+
+- **CSS properties:** `right`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/right
+
+| Class | CSS |
+| --- | --- |
+| `.right-0` | `right: 0;` |
+| `.right-full` | `right: 100%;` |
+
+### bottom
+
+Utilities to set the bottom property of the element.
+
+- **CSS properties:** `bottom`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
+
+| Class | CSS |
+| --- | --- |
+| `.bottom-0` | `bottom: 0;` |
+| `.bottom-full` | `bottom: 100%;` |
+
+### left
+
+Utilities to set the left property of the element.
+
+- **CSS properties:** `left`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/left
+
+| Class | CSS |
+| --- | --- |
+| `.left-0` | `left: 0;` |
+| `.left-full` | `left: 100%;` |
+
+### overflow
+
+Utilities to set the overflow property of the element.
+
+- **CSS properties:** `overflow`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+
+| Class | CSS |
+| --- | --- |
+| `.overflow-hidden` | `overflow: hidden;` |
+| `.overflow-scroll` | `overflow: scroll;` |
+| `.overflow-auto` | `overflow: auto;` |
+| `.overflow-visible` | `overflow: visible;` |
+
+### z-index
+
+Utilities to set the stack order of an element.
+
+- **CSS properties:** `z-index`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/z-index
+
+| Class | CSS |
+| --- | --- |
+| `.z-0` | `z-index: var(--z-index-0);` |
+| `.z-10` | `z-index: var(--z-index-10);` |
+| `.z-20` | `z-index: var(--z-index-20);` |
+| `.z-30` | `z-index: var(--z-index-30);` |
+| `.z-40` | `z-index: var(--z-index-40);` |
+| `.z-50` | `z-index: var(--z-index-50);` |
+
+## sizing
+
+### width
+
+Utilities to set the width property of the element.
+
+- **CSS properties:** `width`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/width
+
+| Class | CSS |
+| --- | --- |
+| `.w-0` | `width: var(--spacing-0);` |
+| `.w-1` | `width: var(--spacing-1);` |
+| `.w-2` | `width: var(--spacing-2);` |
+| `.w-3` | `width: var(--spacing-3);` |
+| `.w-4` | `width: var(--spacing-4);` |
+| `.w-5` | `width: var(--spacing-5);` |
+| `.w-6` | `width: var(--spacing-6);` |
+| `.w-7` | `width: var(--spacing-7);` |
+| `.w-8` | `width: var(--spacing-8);` |
+| `.w-9` | `width: var(--spacing-9);` |
+| `.w-10` | `width: var(--spacing-10);` |
+| `.w-11` | `width: var(--spacing-11);` |
+| `.w-12` | `width: var(--spacing-12);` |
+| `.w-14` | `width: var(--spacing-14);` |
+| `.w-16` | `width: var(--spacing-16);` |
+| `.w-20` | `width: var(--spacing-20);` |
+| `.w-24` | `width: var(--spacing-24);` |
+| `.w-28` | `width: var(--spacing-28);` |
+| `.w-32` | `width: var(--spacing-32);` |
+| `.w-36` | `width: var(--spacing-36);` |
+| `.w-40` | `width: var(--spacing-40);` |
+| `.w-44` | `width: var(--spacing-44);` |
+| `.w-48` | `width: var(--spacing-48);` |
+| `.w-52` | `width: var(--spacing-52);` |
+| `.w-56` | `width: var(--spacing-56);` |
+| `.w-60` | `width: var(--spacing-60);` |
+| `.w-64` | `width: var(--spacing-64);` |
+| `.w-72` | `width: var(--spacing-72);` |
+| `.w-80` | `width: var(--spacing-80);` |
+| `.w-88` | `width: var(--spacing-88);` |
+| `.w-96` | `width: var(--spacing-96);` |
+| `.w-px` | `width: var(--spacing-px);` |
+| `.w-half` | `width: var(--spacing-half);` |
+| `.w-full` | `width: var(--spacing-full);` |
+| `.w-auto` | `width: var(--spacing-auto);` |
+
+### min-width
+
+Utilities to set the min-width property of the element.
+
+- **CSS properties:** `min-width`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
+
+| Class | CSS |
+| --- | --- |
+| `.min-w-0` | `min-width: var(--spacing-0);` |
+| `.min-w-1` | `min-width: var(--spacing-1);` |
+| `.min-w-2` | `min-width: var(--spacing-2);` |
+| `.min-w-3` | `min-width: var(--spacing-3);` |
+| `.min-w-4` | `min-width: var(--spacing-4);` |
+| `.min-w-5` | `min-width: var(--spacing-5);` |
+| `.min-w-6` | `min-width: var(--spacing-6);` |
+| `.min-w-7` | `min-width: var(--spacing-7);` |
+| `.min-w-8` | `min-width: var(--spacing-8);` |
+| `.min-w-9` | `min-width: var(--spacing-9);` |
+| `.min-w-10` | `min-width: var(--spacing-10);` |
+| `.min-w-11` | `min-width: var(--spacing-11);` |
+| `.min-w-12` | `min-width: var(--spacing-12);` |
+| `.min-w-14` | `min-width: var(--spacing-14);` |
+| `.min-w-16` | `min-width: var(--spacing-16);` |
+| `.min-w-20` | `min-width: var(--spacing-20);` |
+| `.min-w-24` | `min-width: var(--spacing-24);` |
+| `.min-w-28` | `min-width: var(--spacing-28);` |
+| `.min-w-32` | `min-width: var(--spacing-32);` |
+| `.min-w-36` | `min-width: var(--spacing-36);` |
+| `.min-w-40` | `min-width: var(--spacing-40);` |
+| `.min-w-44` | `min-width: var(--spacing-44);` |
+| `.min-w-48` | `min-width: var(--spacing-48);` |
+| `.min-w-52` | `min-width: var(--spacing-52);` |
+| `.min-w-56` | `min-width: var(--spacing-56);` |
+| `.min-w-60` | `min-width: var(--spacing-60);` |
+| `.min-w-64` | `min-width: var(--spacing-64);` |
+| `.min-w-72` | `min-width: var(--spacing-72);` |
+| `.min-w-80` | `min-width: var(--spacing-80);` |
+| `.min-w-88` | `min-width: var(--spacing-88);` |
+| `.min-w-96` | `min-width: var(--spacing-96);` |
+| `.min-w-px` | `min-width: var(--spacing-px);` |
+| `.min-w-half` | `min-width: var(--spacing-half);` |
+| `.min-w-full` | `min-width: var(--spacing-full);` |
+| `.min-w-auto` | `min-width: var(--spacing-auto);` |
+
+### max-width
+
+Utilities to set the max-width property of the element.
+
+- **CSS properties:** `max-width`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
+
+| Class | CSS |
+| --- | --- |
+| `.max-w-0` | `max-width: var(--spacing-0);` |
+| `.max-w-1` | `max-width: var(--spacing-1);` |
+| `.max-w-2` | `max-width: var(--spacing-2);` |
+| `.max-w-3` | `max-width: var(--spacing-3);` |
+| `.max-w-4` | `max-width: var(--spacing-4);` |
+| `.max-w-5` | `max-width: var(--spacing-5);` |
+| `.max-w-6` | `max-width: var(--spacing-6);` |
+| `.max-w-7` | `max-width: var(--spacing-7);` |
+| `.max-w-8` | `max-width: var(--spacing-8);` |
+| `.max-w-9` | `max-width: var(--spacing-9);` |
+| `.max-w-10` | `max-width: var(--spacing-10);` |
+| `.max-w-11` | `max-width: var(--spacing-11);` |
+| `.max-w-12` | `max-width: var(--spacing-12);` |
+| `.max-w-14` | `max-width: var(--spacing-14);` |
+| `.max-w-16` | `max-width: var(--spacing-16);` |
+| `.max-w-20` | `max-width: var(--spacing-20);` |
+| `.max-w-24` | `max-width: var(--spacing-24);` |
+| `.max-w-28` | `max-width: var(--spacing-28);` |
+| `.max-w-32` | `max-width: var(--spacing-32);` |
+| `.max-w-36` | `max-width: var(--spacing-36);` |
+| `.max-w-40` | `max-width: var(--spacing-40);` |
+| `.max-w-44` | `max-width: var(--spacing-44);` |
+| `.max-w-48` | `max-width: var(--spacing-48);` |
+| `.max-w-52` | `max-width: var(--spacing-52);` |
+| `.max-w-56` | `max-width: var(--spacing-56);` |
+| `.max-w-60` | `max-width: var(--spacing-60);` |
+| `.max-w-64` | `max-width: var(--spacing-64);` |
+| `.max-w-72` | `max-width: var(--spacing-72);` |
+| `.max-w-80` | `max-width: var(--spacing-80);` |
+| `.max-w-88` | `max-width: var(--spacing-88);` |
+| `.max-w-96` | `max-width: var(--spacing-96);` |
+| `.max-w-px` | `max-width: var(--spacing-px);` |
+| `.max-w-half` | `max-width: var(--spacing-half);` |
+| `.max-w-full` | `max-width: var(--spacing-full);` |
+| `.max-w-auto` | `max-width: var(--spacing-auto);` |
+| `.max-w-xs` | `max-width: var(--container-xs);` |
+| `.max-w-sm` | `max-width: var(--container-sm);` |
+| `.max-w-md` | `max-width: var(--container-md);` |
+| `.max-w-lg` | `max-width: var(--container-lg);` |
+| `.max-w-xl` | `max-width: var(--container-xl);` |
+| `.max-w-2xl` | `max-width: var(--container-2xl);` |
+| `.max-w-3xl` | `max-width: var(--container-3xl);` |
+| `.max-w-4xl` | `max-width: var(--container-4xl);` |
+| `.max-w-5xl` | `max-width: var(--container-5xl);` |
+| `.max-w-6xl` | `max-width: var(--container-6xl);` |
+| `.max-w-7xl` | `max-width: var(--container-7xl);` |
+| `.max-w-8xl` | `max-width: var(--container-8xl);` |
+| `.max-w-9xl` | `max-width: var(--container-9xl);` |
+
+### height
+
+Utilities to set the height property of the element.
+
+- **CSS properties:** `height`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/height
+
+| Class | CSS |
+| --- | --- |
+| `.h-0` | `height: var(--spacing-0);` |
+| `.h-1` | `height: var(--spacing-1);` |
+| `.h-2` | `height: var(--spacing-2);` |
+| `.h-3` | `height: var(--spacing-3);` |
+| `.h-4` | `height: var(--spacing-4);` |
+| `.h-5` | `height: var(--spacing-5);` |
+| `.h-6` | `height: var(--spacing-6);` |
+| `.h-7` | `height: var(--spacing-7);` |
+| `.h-8` | `height: var(--spacing-8);` |
+| `.h-9` | `height: var(--spacing-9);` |
+| `.h-10` | `height: var(--spacing-10);` |
+| `.h-11` | `height: var(--spacing-11);` |
+| `.h-12` | `height: var(--spacing-12);` |
+| `.h-14` | `height: var(--spacing-14);` |
+| `.h-16` | `height: var(--spacing-16);` |
+| `.h-20` | `height: var(--spacing-20);` |
+| `.h-24` | `height: var(--spacing-24);` |
+| `.h-28` | `height: var(--spacing-28);` |
+| `.h-32` | `height: var(--spacing-32);` |
+| `.h-36` | `height: var(--spacing-36);` |
+| `.h-40` | `height: var(--spacing-40);` |
+| `.h-44` | `height: var(--spacing-44);` |
+| `.h-48` | `height: var(--spacing-48);` |
+| `.h-52` | `height: var(--spacing-52);` |
+| `.h-56` | `height: var(--spacing-56);` |
+| `.h-60` | `height: var(--spacing-60);` |
+| `.h-64` | `height: var(--spacing-64);` |
+| `.h-72` | `height: var(--spacing-72);` |
+| `.h-80` | `height: var(--spacing-80);` |
+| `.h-88` | `height: var(--spacing-88);` |
+| `.h-96` | `height: var(--spacing-96);` |
+| `.h-px` | `height: var(--spacing-px);` |
+| `.h-half` | `height: var(--spacing-half);` |
+| `.h-full` | `height: var(--spacing-full);` |
+| `.h-auto` | `height: var(--spacing-auto);` |
+| `.h-screen` | `height: 100vh;` |
+
+### min-height
+
+Utilities to set the min-height property of the element.
+
+- **CSS properties:** `min-height`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+
+| Class | CSS |
+| --- | --- |
+| `.min-h-0` | `min-height: var(--spacing-0);` |
+| `.min-h-1` | `min-height: var(--spacing-1);` |
+| `.min-h-2` | `min-height: var(--spacing-2);` |
+| `.min-h-3` | `min-height: var(--spacing-3);` |
+| `.min-h-4` | `min-height: var(--spacing-4);` |
+| `.min-h-5` | `min-height: var(--spacing-5);` |
+| `.min-h-6` | `min-height: var(--spacing-6);` |
+| `.min-h-7` | `min-height: var(--spacing-7);` |
+| `.min-h-8` | `min-height: var(--spacing-8);` |
+| `.min-h-9` | `min-height: var(--spacing-9);` |
+| `.min-h-10` | `min-height: var(--spacing-10);` |
+| `.min-h-11` | `min-height: var(--spacing-11);` |
+| `.min-h-12` | `min-height: var(--spacing-12);` |
+| `.min-h-14` | `min-height: var(--spacing-14);` |
+| `.min-h-16` | `min-height: var(--spacing-16);` |
+| `.min-h-20` | `min-height: var(--spacing-20);` |
+| `.min-h-24` | `min-height: var(--spacing-24);` |
+| `.min-h-28` | `min-height: var(--spacing-28);` |
+| `.min-h-32` | `min-height: var(--spacing-32);` |
+| `.min-h-36` | `min-height: var(--spacing-36);` |
+| `.min-h-40` | `min-height: var(--spacing-40);` |
+| `.min-h-44` | `min-height: var(--spacing-44);` |
+| `.min-h-48` | `min-height: var(--spacing-48);` |
+| `.min-h-52` | `min-height: var(--spacing-52);` |
+| `.min-h-56` | `min-height: var(--spacing-56);` |
+| `.min-h-60` | `min-height: var(--spacing-60);` |
+| `.min-h-64` | `min-height: var(--spacing-64);` |
+| `.min-h-72` | `min-height: var(--spacing-72);` |
+| `.min-h-80` | `min-height: var(--spacing-80);` |
+| `.min-h-88` | `min-height: var(--spacing-88);` |
+| `.min-h-96` | `min-height: var(--spacing-96);` |
+| `.min-h-px` | `min-height: var(--spacing-px);` |
+| `.min-h-half` | `min-height: var(--spacing-half);` |
+| `.min-h-full` | `min-height: var(--spacing-full);` |
+| `.min-h-auto` | `min-height: var(--spacing-auto);` |
+| `.min-h-screen` | `min-height: 100vh;` |
+
+### max-height
+
+Utilities to set the max-height property of the element.
+
+- **CSS properties:** `max-height`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
+
+| Class | CSS |
+| --- | --- |
+| `.max-h-0` | `max-height: var(--spacing-0);` |
+| `.max-h-1` | `max-height: var(--spacing-1);` |
+| `.max-h-2` | `max-height: var(--spacing-2);` |
+| `.max-h-3` | `max-height: var(--spacing-3);` |
+| `.max-h-4` | `max-height: var(--spacing-4);` |
+| `.max-h-5` | `max-height: var(--spacing-5);` |
+| `.max-h-6` | `max-height: var(--spacing-6);` |
+| `.max-h-7` | `max-height: var(--spacing-7);` |
+| `.max-h-8` | `max-height: var(--spacing-8);` |
+| `.max-h-9` | `max-height: var(--spacing-9);` |
+| `.max-h-10` | `max-height: var(--spacing-10);` |
+| `.max-h-11` | `max-height: var(--spacing-11);` |
+| `.max-h-12` | `max-height: var(--spacing-12);` |
+| `.max-h-14` | `max-height: var(--spacing-14);` |
+| `.max-h-16` | `max-height: var(--spacing-16);` |
+| `.max-h-20` | `max-height: var(--spacing-20);` |
+| `.max-h-24` | `max-height: var(--spacing-24);` |
+| `.max-h-28` | `max-height: var(--spacing-28);` |
+| `.max-h-32` | `max-height: var(--spacing-32);` |
+| `.max-h-36` | `max-height: var(--spacing-36);` |
+| `.max-h-40` | `max-height: var(--spacing-40);` |
+| `.max-h-44` | `max-height: var(--spacing-44);` |
+| `.max-h-48` | `max-height: var(--spacing-48);` |
+| `.max-h-52` | `max-height: var(--spacing-52);` |
+| `.max-h-56` | `max-height: var(--spacing-56);` |
+| `.max-h-60` | `max-height: var(--spacing-60);` |
+| `.max-h-64` | `max-height: var(--spacing-64);` |
+| `.max-h-72` | `max-height: var(--spacing-72);` |
+| `.max-h-80` | `max-height: var(--spacing-80);` |
+| `.max-h-88` | `max-height: var(--spacing-88);` |
+| `.max-h-96` | `max-height: var(--spacing-96);` |
+| `.max-h-px` | `max-height: var(--spacing-px);` |
+| `.max-h-half` | `max-height: var(--spacing-half);` |
+| `.max-h-full` | `max-height: var(--spacing-full);` |
+| `.max-h-auto` | `max-height: var(--spacing-auto);` |
+| `.max-h-screen` | `max-height: 100vh;` |
 
 ## spacing
 
@@ -1088,762 +1611,326 @@ Utilities to set the padding-left property of the element.
 | `.pl-full` | `padding-left: var(--spacing-full);` |
 | `.pl-auto` | `padding-left: var(--spacing-auto);` |
 
-## flexbox
+## typography
 
-### gap
+### font-family
 
-Utilities to set the gap property of the element.
+Utilities to set the font-family property of the element.
 
-- **CSS properties:** `gap`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/gap
+- **CSS properties:** `font-family`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
 
 | Class | CSS |
 | --- | --- |
-| `.gap-0` | `gap: var(--gap-0);` |
-| `.gap-1` | `gap: var(--gap-1);` |
-| `.gap-2` | `gap: var(--gap-2);` |
-| `.gap-3` | `gap: var(--gap-3);` |
-| `.gap-4` | `gap: var(--gap-4);` |
-| `.gap-6` | `gap: var(--gap-6);` |
-| `.gap-8` | `gap: var(--gap-8);` |
-| `.gap-12` | `gap: var(--gap-12);` |
-| `.gap-16` | `gap: var(--gap-16);` |
-| `.gap-24` | `gap: var(--gap-24);` |
-| `.gap-32` | `gap: var(--gap-32);` |
-| `.gap-px` | `gap: var(--gap-px);` |
+| `.font-sans` | `font-family: var(--font-family-sans);` |
+| `.font-serif` | `font-family: var(--font-family-serif);` |
+| `.font-mono` | `font-family: var(--font-family-mono);` |
 
-### flex-direction
+### font-size
 
-Utilities to set the flex-direction property of the element.
+Utilities to set the font-size property of the element.
 
-- **CSS properties:** `flex-direction`
+- **CSS properties:** `font-size`
 - **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
 
 | Class | CSS |
 | --- | --- |
-| `.flex-row` | `flex-direction: row;` |
-| `.flex-column` | `flex-direction: column;` |
-| `.flex-row-reverse` | `flex-direction: row-reverse;` |
-| `.flex-column-reverse` | `flex-direction: column-reverse;` |
+| `.text-3xs` | `font-size: var(--font-size-3xs);` |
+| `.text-2xs` | `font-size: var(--font-size-2xs);` |
+| `.text-xs` | `font-size: var(--font-size-xs);` |
+| `.text-sm` | `font-size: var(--font-size-sm);` |
+| `.text-base` | `font-size: var(--font-size-base);` |
+| `.text-lg` | `font-size: var(--font-size-lg);` |
+| `.text-xl` | `font-size: var(--font-size-xl);` |
+| `.text-2xl` | `font-size: var(--font-size-2xl);` |
+| `.text-3xl` | `font-size: var(--font-size-3xl);` |
+| `.text-4xl` | `font-size: var(--font-size-4xl);` |
+| `.text-5xl` | `font-size: var(--font-size-5xl);` |
+| `.text-6xl` | `font-size: var(--font-size-6xl);` |
+| `.text-7xl` | `font-size: var(--font-size-7xl);` |
+| `.text-8xl` | `font-size: var(--font-size-8xl);` |
+| `.text-9xl` | `font-size: var(--font-size-9xl);` |
 
-### flex-wrap
+### font-style
 
-Utilities to set the flex-wrap property of the element.
+Utilities to set the style of the element.
 
-- **CSS properties:** `flex-wrap`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
+- **CSS properties:** `font-style`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-style
 
-| Class | CSS |
-| --- | --- |
-| `.flex-wrap` | `flex-wrap: wrap;` |
-| `.flex-nowrap` | `flex-wrap: nowrap;` |
-| `.flex-wrap-reverse` | `flex-wrap: wrap-reverse;` |
+### font-weight
 
-### align-items
+Utilities to set the font-weight property of the element.
 
-Utilities to set the align-items property of the element.
-
-- **CSS properties:** `align-items`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
-
-| Class | CSS |
-| --- | --- |
-| `.items-start` | `align-items: flex-start;` |
-| `.items-end` | `align-items: flex-end;` |
-| `.items-center` | `align-items: center;` |
-| `.items-baseline` | `align-items: baseline;` |
-| `.items-stretch` | `align-items: stretch;` |
-
-### justify-content
-
-Utilities to set the justify-content property of the element.
-
-- **CSS properties:** `justify-content`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
+- **CSS properties:** `font-weight`
+- **Variants:** `hover`, `group-hover` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
 
 | Class | CSS |
 | --- | --- |
-| `.justify-start` | `justify-content: flex-start;` |
-| `.justify-end` | `justify-content: flex-end;` |
-| `.justify-center` | `justify-content: center;` |
-| `.justify-between` | `justify-content: space-between;` |
-| `.justify-around` | `justify-content: space-around;` |
-| `.justify-evenly` | `justify-content: space-evenly;` |
+| `.font-thin` | `font-weight: var(--font-weight-thin);` |
+| `.font-extralight` | `font-weight: var(--font-weight-extralight);` |
+| `.font-light` | `font-weight: var(--font-weight-light);` |
+| `.font-normal` | `font-weight: var(--font-weight-normal);` |
+| `.font-medium` | `font-weight: var(--font-weight-medium);` |
+| `.font-semibold` | `font-weight: var(--font-weight-semibold);` |
+| `.font-bold` | `font-weight: var(--font-weight-bold);` |
+| `.font-extrabold` | `font-weight: var(--font-weight-extrabold);` |
+| `.font-black` | `font-weight: var(--font-weight-black);` |
 
-### grid-template-columns
+### letter-spacing
 
-Utilities to set the grid-template-columns property of the element.
+Utilities to set the letter-spacing property of the element.
 
-- **CSS properties:** `grid-template-columns`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
-
-| Class | CSS |
-| --- | --- |
-| `.grid-cols-1` | `grid-template-columns: repeat(1, minmax(0, 1fr));` |
-| `.grid-cols-2` | `grid-template-columns: repeat(2, minmax(0, 1fr));` |
-| `.grid-cols-3` | `grid-template-columns: repeat(3, minmax(0, 1fr));` |
-| `.grid-cols-4` | `grid-template-columns: repeat(4, minmax(0, 1fr));` |
-| `.grid-cols-6` | `grid-template-columns: repeat(6, minmax(0, 1fr));` |
-| `.grid-cols-12` | `grid-template-columns: repeat(12, minmax(0, 1fr));` |
-| `.grid-cols-none` | `grid-template-columns: none;` |
-
-### grid-template-rows
-
-Utilities to set the grid-template-rows property of the element.
-
-- **CSS properties:** `grid-template-rows`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-rows
+- **CSS properties:** `letter-spacing`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing
 
 | Class | CSS |
 | --- | --- |
-| `.grid-rows-1` | `grid-template-rows: repeat(1, minmax(0, 1fr));` |
-| `.grid-rows-2` | `grid-template-rows: repeat(2, minmax(0, 1fr));` |
-| `.grid-rows-3` | `grid-template-rows: repeat(3, minmax(0, 1fr));` |
-| `.grid-rows-4` | `grid-template-rows: repeat(4, minmax(0, 1fr));` |
-| `.grid-rows-none` | `grid-template-rows: none;` |
+| `.tracking-tighter` | `letter-spacing: var(--tracking-tighter);` |
+| `.tracking-tight` | `letter-spacing: var(--tracking-tight);` |
+| `.tracking-normal` | `letter-spacing: var(--tracking-normal);` |
+| `.tracking-wide` | `letter-spacing: var(--tracking-wide);` |
+| `.tracking-wider` | `letter-spacing: var(--tracking-wider);` |
+| `.tracking-widest` | `letter-spacing: var(--tracking-widest);` |
 
-### grid-column
+### line-height
 
-Utilities to set the size and position of an element in grid columns.
+Utilities to set the line-height property of the element.
 
-- **CSS properties:** `grid-column`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
-
-| Class | CSS |
-| --- | --- |
-| `.col-span-1` | `grid-column: span 1 / span 1;` |
-| `.col-span-2` | `grid-column: span 2 / span 2;` |
-| `.col-span-3` | `grid-column: span 3 / span 3;` |
-| `.col-span-4` | `grid-column: span 4 / span 4;` |
-| `.col-span-6` | `grid-column: span 6 / span 6;` |
-| `.col-span-12` | `grid-column: span 12 / span 12;` |
-| `.col-span-full` | `grid-column: 1 / -1;` |
-
-### grid-row
-
-Utilities to set the size and position of an element in grid rows.
-
-- **CSS properties:** `grid-row`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/grid-row
+- **CSS properties:** `line-height`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
 
 | Class | CSS |
 | --- | --- |
-| `.row-span-1` | `grid-row: span 1 / span 1;` |
-| `.row-span-2` | `grid-row: span 2 / span 2;` |
-| `.row-span-3` | `grid-row: span 3 / span 3;` |
-| `.row-span-4` | `grid-row: span 4 / span 4;` |
-| `.row-span-full` | `grid-row: 1 / -1;` |
+| `.leading-none` | `line-height: var(--leading-none);` |
+| `.leading-tight` | `line-height: var(--leading-tight);` |
+| `.leading-snug` | `line-height: var(--leading-snug);` |
+| `.leading-normal` | `line-height: var(--leading-normal);` |
+| `.leading-relaxed` | `line-height: var(--leading-relaxed);` |
+| `.leading-loose` | `line-height: var(--leading-loose);` |
 
-## layout
+### list-style-position
 
-### display
+Utilities to control the position of bullets in lists.
 
-Utilities to set the display property of the element.
-
-- **CSS properties:** `display`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/display
+- **CSS properties:** `list-style-position`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position
 
 | Class | CSS |
 | --- | --- |
-| `.hidden` | `display: none;` |
-| `.block` | `display: block;` |
-| `.inline-block` | `display: inline-block;` |
-| `.inline` | `display: inline;` |
-| `.flex` | `display: flex;` |
-| `.inline-flex` | `display: inline-flex;` |
-| `.grid` | `display: grid;` |
+| `.list-inside` | `list-style-position: inside;` |
+| `.list-outside` | `list-style-position: outside;` |
 
-### position
+### list-style-type
 
-Utilities to set the position property of the element.
+Utilities to control the style of the marker in lists.
 
-- **CSS properties:** `position`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/position
+- **CSS properties:** `list-style-type`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type
 
 | Class | CSS |
 | --- | --- |
-| `.static` | `position: static;` |
-| `.relative` | `position: relative;` |
-| `.absolute` | `position: absolute;` |
-| `.fixed` | `position: fixed;` |
-| `.sticky` | `position: sticky;` |
+| `.list-disc` | `list-style-type: disc;` |
+| `.list-decimal` | `list-style-type: decimal;` |
+| `.list-none` | `list-style-type: none;` |
 
-### top
+### text-align
 
-Utilities to set the top property of the element.
+Utilities to set the text-align property of the element.
 
-- **CSS properties:** `top`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/top
+- **CSS properties:** `text-align`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/text-align
 
 | Class | CSS |
 | --- | --- |
-| `.top-0` | `top: var(--spacing-0);` |
-| `.top-1` | `top: var(--spacing-1);` |
-| `.top-2` | `top: var(--spacing-2);` |
-| `.top-3` | `top: var(--spacing-3);` |
-| `.top-4` | `top: var(--spacing-4);` |
-| `.top-5` | `top: var(--spacing-5);` |
-| `.top-6` | `top: var(--spacing-6);` |
-| `.top-7` | `top: var(--spacing-7);` |
-| `.top-8` | `top: var(--spacing-8);` |
-| `.top-9` | `top: var(--spacing-9);` |
-| `.top-10` | `top: var(--spacing-10);` |
-| `.top-11` | `top: var(--spacing-11);` |
-| `.top-12` | `top: var(--spacing-12);` |
-| `.top-14` | `top: var(--spacing-14);` |
-| `.top-16` | `top: var(--spacing-16);` |
-| `.top-20` | `top: var(--spacing-20);` |
-| `.top-24` | `top: var(--spacing-24);` |
-| `.top-28` | `top: var(--spacing-28);` |
-| `.top-32` | `top: var(--spacing-32);` |
-| `.top-36` | `top: var(--spacing-36);` |
-| `.top-40` | `top: var(--spacing-40);` |
-| `.top-44` | `top: var(--spacing-44);` |
-| `.top-48` | `top: var(--spacing-48);` |
-| `.top-52` | `top: var(--spacing-52);` |
-| `.top-56` | `top: var(--spacing-56);` |
-| `.top-60` | `top: var(--spacing-60);` |
-| `.top-64` | `top: var(--spacing-64);` |
-| `.top-72` | `top: var(--spacing-72);` |
-| `.top-80` | `top: var(--spacing-80);` |
-| `.top-88` | `top: var(--spacing-88);` |
-| `.top-96` | `top: var(--spacing-96);` |
-| `.top-px` | `top: var(--spacing-px);` |
-| `.top-half` | `top: var(--spacing-half);` |
-| `.top-full` | `top: var(--spacing-full);` |
-| `.top-auto` | `top: var(--spacing-auto);` |
+| `.text-left` | `text-align: left;` |
+| `.text-center` | `text-align: center;` |
+| `.text-right` | `text-align: right;` |
+| `.text-justify` | `text-align: justify;` |
 
-### right
+### text-color
 
-Utilities to set the right property of the element.
+Utilities to set the text color of the element.
 
-- **CSS properties:** `right`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/right
-
-| Class | CSS |
-| --- | --- |
-| `.right-0` | `right: var(--spacing-0);` |
-| `.right-1` | `right: var(--spacing-1);` |
-| `.right-2` | `right: var(--spacing-2);` |
-| `.right-3` | `right: var(--spacing-3);` |
-| `.right-4` | `right: var(--spacing-4);` |
-| `.right-5` | `right: var(--spacing-5);` |
-| `.right-6` | `right: var(--spacing-6);` |
-| `.right-7` | `right: var(--spacing-7);` |
-| `.right-8` | `right: var(--spacing-8);` |
-| `.right-9` | `right: var(--spacing-9);` |
-| `.right-10` | `right: var(--spacing-10);` |
-| `.right-11` | `right: var(--spacing-11);` |
-| `.right-12` | `right: var(--spacing-12);` |
-| `.right-14` | `right: var(--spacing-14);` |
-| `.right-16` | `right: var(--spacing-16);` |
-| `.right-20` | `right: var(--spacing-20);` |
-| `.right-24` | `right: var(--spacing-24);` |
-| `.right-28` | `right: var(--spacing-28);` |
-| `.right-32` | `right: var(--spacing-32);` |
-| `.right-36` | `right: var(--spacing-36);` |
-| `.right-40` | `right: var(--spacing-40);` |
-| `.right-44` | `right: var(--spacing-44);` |
-| `.right-48` | `right: var(--spacing-48);` |
-| `.right-52` | `right: var(--spacing-52);` |
-| `.right-56` | `right: var(--spacing-56);` |
-| `.right-60` | `right: var(--spacing-60);` |
-| `.right-64` | `right: var(--spacing-64);` |
-| `.right-72` | `right: var(--spacing-72);` |
-| `.right-80` | `right: var(--spacing-80);` |
-| `.right-88` | `right: var(--spacing-88);` |
-| `.right-96` | `right: var(--spacing-96);` |
-| `.right-px` | `right: var(--spacing-px);` |
-| `.right-half` | `right: var(--spacing-half);` |
-| `.right-full` | `right: var(--spacing-full);` |
-| `.right-auto` | `right: var(--spacing-auto);` |
-
-### bottom
-
-Utilities to set the bottom property of the element.
-
-- **CSS properties:** `bottom`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/bottom
-
-| Class | CSS |
-| --- | --- |
-| `.bottom-0` | `bottom: var(--spacing-0);` |
-| `.bottom-1` | `bottom: var(--spacing-1);` |
-| `.bottom-2` | `bottom: var(--spacing-2);` |
-| `.bottom-3` | `bottom: var(--spacing-3);` |
-| `.bottom-4` | `bottom: var(--spacing-4);` |
-| `.bottom-5` | `bottom: var(--spacing-5);` |
-| `.bottom-6` | `bottom: var(--spacing-6);` |
-| `.bottom-7` | `bottom: var(--spacing-7);` |
-| `.bottom-8` | `bottom: var(--spacing-8);` |
-| `.bottom-9` | `bottom: var(--spacing-9);` |
-| `.bottom-10` | `bottom: var(--spacing-10);` |
-| `.bottom-11` | `bottom: var(--spacing-11);` |
-| `.bottom-12` | `bottom: var(--spacing-12);` |
-| `.bottom-14` | `bottom: var(--spacing-14);` |
-| `.bottom-16` | `bottom: var(--spacing-16);` |
-| `.bottom-20` | `bottom: var(--spacing-20);` |
-| `.bottom-24` | `bottom: var(--spacing-24);` |
-| `.bottom-28` | `bottom: var(--spacing-28);` |
-| `.bottom-32` | `bottom: var(--spacing-32);` |
-| `.bottom-36` | `bottom: var(--spacing-36);` |
-| `.bottom-40` | `bottom: var(--spacing-40);` |
-| `.bottom-44` | `bottom: var(--spacing-44);` |
-| `.bottom-48` | `bottom: var(--spacing-48);` |
-| `.bottom-52` | `bottom: var(--spacing-52);` |
-| `.bottom-56` | `bottom: var(--spacing-56);` |
-| `.bottom-60` | `bottom: var(--spacing-60);` |
-| `.bottom-64` | `bottom: var(--spacing-64);` |
-| `.bottom-72` | `bottom: var(--spacing-72);` |
-| `.bottom-80` | `bottom: var(--spacing-80);` |
-| `.bottom-88` | `bottom: var(--spacing-88);` |
-| `.bottom-96` | `bottom: var(--spacing-96);` |
-| `.bottom-px` | `bottom: var(--spacing-px);` |
-| `.bottom-half` | `bottom: var(--spacing-half);` |
-| `.bottom-full` | `bottom: var(--spacing-full);` |
-| `.bottom-auto` | `bottom: var(--spacing-auto);` |
-
-### left
-
-Utilities to set the left property of the element.
-
-- **CSS properties:** `left`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/left
-
-| Class | CSS |
-| --- | --- |
-| `.left-0` | `left: var(--spacing-0);` |
-| `.left-1` | `left: var(--spacing-1);` |
-| `.left-2` | `left: var(--spacing-2);` |
-| `.left-3` | `left: var(--spacing-3);` |
-| `.left-4` | `left: var(--spacing-4);` |
-| `.left-5` | `left: var(--spacing-5);` |
-| `.left-6` | `left: var(--spacing-6);` |
-| `.left-7` | `left: var(--spacing-7);` |
-| `.left-8` | `left: var(--spacing-8);` |
-| `.left-9` | `left: var(--spacing-9);` |
-| `.left-10` | `left: var(--spacing-10);` |
-| `.left-11` | `left: var(--spacing-11);` |
-| `.left-12` | `left: var(--spacing-12);` |
-| `.left-14` | `left: var(--spacing-14);` |
-| `.left-16` | `left: var(--spacing-16);` |
-| `.left-20` | `left: var(--spacing-20);` |
-| `.left-24` | `left: var(--spacing-24);` |
-| `.left-28` | `left: var(--spacing-28);` |
-| `.left-32` | `left: var(--spacing-32);` |
-| `.left-36` | `left: var(--spacing-36);` |
-| `.left-40` | `left: var(--spacing-40);` |
-| `.left-44` | `left: var(--spacing-44);` |
-| `.left-48` | `left: var(--spacing-48);` |
-| `.left-52` | `left: var(--spacing-52);` |
-| `.left-56` | `left: var(--spacing-56);` |
-| `.left-60` | `left: var(--spacing-60);` |
-| `.left-64` | `left: var(--spacing-64);` |
-| `.left-72` | `left: var(--spacing-72);` |
-| `.left-80` | `left: var(--spacing-80);` |
-| `.left-88` | `left: var(--spacing-88);` |
-| `.left-96` | `left: var(--spacing-96);` |
-| `.left-px` | `left: var(--spacing-px);` |
-| `.left-half` | `left: var(--spacing-half);` |
-| `.left-full` | `left: var(--spacing-full);` |
-| `.left-auto` | `left: var(--spacing-auto);` |
-
-### overflow
-
-Utilities to set the overflow property of the element.
-
-- **CSS properties:** `overflow`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
-
-| Class | CSS |
-| --- | --- |
-| `.overflow-hidden` | `overflow: hidden;` |
-| `.overflow-scroll` | `overflow: scroll;` |
-| `.overflow-auto` | `overflow: auto;` |
-| `.overflow-visible` | `overflow: visible;` |
-
-## effects
-
-### opacity
-
-Utilities to set the opacity property of the element.
-
-- **CSS properties:** `opacity`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/opacity
-
-| Class | CSS |
-| --- | --- |
-| `.opacity-0` | `opacity: var(--opacity-0);` |
-| `.opacity-10` | `opacity: var(--opacity-10);` |
-| `.opacity-20` | `opacity: var(--opacity-20);` |
-| `.opacity-30` | `opacity: var(--opacity-30);` |
-| `.opacity-40` | `opacity: var(--opacity-40);` |
-| `.opacity-50` | `opacity: var(--opacity-50);` |
-| `.opacity-60` | `opacity: var(--opacity-60);` |
-| `.opacity-70` | `opacity: var(--opacity-70);` |
-| `.opacity-80` | `opacity: var(--opacity-80);` |
-| `.opacity-90` | `opacity: var(--opacity-90);` |
-| `.opacity-100` | `opacity: var(--opacity-100);` |
-
-### box-shadow
-
-Utilities to set the box-shadow property of the element.
-
-- **CSS properties:** `box-shadow`
+- **CSS properties:** `color`
 - **Variants:** `hover`, `focus` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/color
 
 | Class | CSS |
 | --- | --- |
-| `.shadow-sm` | `box-shadow: var(--shadow-sm);` |
-| `.shadow-md` | `box-shadow: var(--shadow-md);` |
-| `.shadow-lg` | `box-shadow: var(--shadow-lg);` |
-| `.shadow-none` | `box-shadow: var(--shadow-none);` |
+| `.text-gray-50` | `color: var(--color-gray-50);` |
+| `.text-gray-100` | `color: var(--color-gray-100);` |
+| `.text-gray-200` | `color: var(--color-gray-200);` |
+| `.text-gray-300` | `color: var(--color-gray-300);` |
+| `.text-gray-400` | `color: var(--color-gray-400);` |
+| `.text-gray-500` | `color: var(--color-gray-500);` |
+| `.text-gray-600` | `color: var(--color-gray-600);` |
+| `.text-gray-700` | `color: var(--color-gray-700);` |
+| `.text-gray-800` | `color: var(--color-gray-800);` |
+| `.text-gray-900` | `color: var(--color-gray-900);` |
+| `.text-gray-950` | `color: var(--color-gray-950);` |
+| `.text-slate-50` | `color: var(--color-slate-50);` |
+| `.text-slate-100` | `color: var(--color-slate-100);` |
+| `.text-slate-200` | `color: var(--color-slate-200);` |
+| `.text-slate-300` | `color: var(--color-slate-300);` |
+| `.text-slate-400` | `color: var(--color-slate-400);` |
+| `.text-slate-500` | `color: var(--color-slate-500);` |
+| `.text-slate-600` | `color: var(--color-slate-600);` |
+| `.text-slate-700` | `color: var(--color-slate-700);` |
+| `.text-slate-800` | `color: var(--color-slate-800);` |
+| `.text-slate-900` | `color: var(--color-slate-900);` |
+| `.text-slate-950` | `color: var(--color-slate-950);` |
+| `.text-stone-50` | `color: var(--color-stone-50);` |
+| `.text-stone-100` | `color: var(--color-stone-100);` |
+| `.text-stone-200` | `color: var(--color-stone-200);` |
+| `.text-stone-300` | `color: var(--color-stone-300);` |
+| `.text-stone-400` | `color: var(--color-stone-400);` |
+| `.text-stone-500` | `color: var(--color-stone-500);` |
+| `.text-stone-600` | `color: var(--color-stone-600);` |
+| `.text-stone-700` | `color: var(--color-stone-700);` |
+| `.text-stone-800` | `color: var(--color-stone-800);` |
+| `.text-stone-900` | `color: var(--color-stone-900);` |
+| `.text-stone-950` | `color: var(--color-stone-950);` |
+| `.text-red-50` | `color: var(--color-red-50);` |
+| `.text-red-100` | `color: var(--color-red-100);` |
+| `.text-red-200` | `color: var(--color-red-200);` |
+| `.text-red-300` | `color: var(--color-red-300);` |
+| `.text-red-400` | `color: var(--color-red-400);` |
+| `.text-red-500` | `color: var(--color-red-500);` |
+| `.text-red-600` | `color: var(--color-red-600);` |
+| `.text-red-700` | `color: var(--color-red-700);` |
+| `.text-red-800` | `color: var(--color-red-800);` |
+| `.text-red-900` | `color: var(--color-red-900);` |
+| `.text-red-950` | `color: var(--color-red-950);` |
+| `.text-yellow-50` | `color: var(--color-yellow-50);` |
+| `.text-yellow-100` | `color: var(--color-yellow-100);` |
+| `.text-yellow-200` | `color: var(--color-yellow-200);` |
+| `.text-yellow-300` | `color: var(--color-yellow-300);` |
+| `.text-yellow-400` | `color: var(--color-yellow-400);` |
+| `.text-yellow-500` | `color: var(--color-yellow-500);` |
+| `.text-yellow-600` | `color: var(--color-yellow-600);` |
+| `.text-yellow-700` | `color: var(--color-yellow-700);` |
+| `.text-yellow-800` | `color: var(--color-yellow-800);` |
+| `.text-yellow-900` | `color: var(--color-yellow-900);` |
+| `.text-yellow-950` | `color: var(--color-yellow-950);` |
+| `.text-green-50` | `color: var(--color-green-50);` |
+| `.text-green-100` | `color: var(--color-green-100);` |
+| `.text-green-200` | `color: var(--color-green-200);` |
+| `.text-green-300` | `color: var(--color-green-300);` |
+| `.text-green-400` | `color: var(--color-green-400);` |
+| `.text-green-500` | `color: var(--color-green-500);` |
+| `.text-green-600` | `color: var(--color-green-600);` |
+| `.text-green-700` | `color: var(--color-green-700);` |
+| `.text-green-800` | `color: var(--color-green-800);` |
+| `.text-green-900` | `color: var(--color-green-900);` |
+| `.text-green-950` | `color: var(--color-green-950);` |
+| `.text-blue-50` | `color: var(--color-blue-50);` |
+| `.text-blue-100` | `color: var(--color-blue-100);` |
+| `.text-blue-200` | `color: var(--color-blue-200);` |
+| `.text-blue-300` | `color: var(--color-blue-300);` |
+| `.text-blue-400` | `color: var(--color-blue-400);` |
+| `.text-blue-500` | `color: var(--color-blue-500);` |
+| `.text-blue-600` | `color: var(--color-blue-600);` |
+| `.text-blue-700` | `color: var(--color-blue-700);` |
+| `.text-blue-800` | `color: var(--color-blue-800);` |
+| `.text-blue-900` | `color: var(--color-blue-900);` |
+| `.text-blue-950` | `color: var(--color-blue-950);` |
+| `.text-violet-50` | `color: var(--color-violet-50);` |
+| `.text-violet-100` | `color: var(--color-violet-100);` |
+| `.text-violet-200` | `color: var(--color-violet-200);` |
+| `.text-violet-300` | `color: var(--color-violet-300);` |
+| `.text-violet-400` | `color: var(--color-violet-400);` |
+| `.text-violet-500` | `color: var(--color-violet-500);` |
+| `.text-violet-600` | `color: var(--color-violet-600);` |
+| `.text-violet-700` | `color: var(--color-violet-700);` |
+| `.text-violet-800` | `color: var(--color-violet-800);` |
+| `.text-violet-900` | `color: var(--color-violet-900);` |
+| `.text-violet-950` | `color: var(--color-violet-950);` |
+| `.text-white` | `color: var(--color-white);` |
+| `.text-black` | `color: var(--color-black);` |
+| `.text-transparent` | `color: transparent;` |
+| `.text-current` | `color: currentColor;` |
+| `.text-inherit` | `color: inherit;` |
 
-## sizing
+### text-decoration-line
 
-### width
+Utilities to set the text decoration of the element.
 
-Utilities to set the width property of the element.
-
-- **CSS properties:** `width`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/width
-
-| Class | CSS |
-| --- | --- |
-| `.w-0` | `width: var(--spacing-0);` |
-| `.w-1` | `width: var(--spacing-1);` |
-| `.w-2` | `width: var(--spacing-2);` |
-| `.w-3` | `width: var(--spacing-3);` |
-| `.w-4` | `width: var(--spacing-4);` |
-| `.w-5` | `width: var(--spacing-5);` |
-| `.w-6` | `width: var(--spacing-6);` |
-| `.w-7` | `width: var(--spacing-7);` |
-| `.w-8` | `width: var(--spacing-8);` |
-| `.w-9` | `width: var(--spacing-9);` |
-| `.w-10` | `width: var(--spacing-10);` |
-| `.w-11` | `width: var(--spacing-11);` |
-| `.w-12` | `width: var(--spacing-12);` |
-| `.w-14` | `width: var(--spacing-14);` |
-| `.w-16` | `width: var(--spacing-16);` |
-| `.w-20` | `width: var(--spacing-20);` |
-| `.w-24` | `width: var(--spacing-24);` |
-| `.w-28` | `width: var(--spacing-28);` |
-| `.w-32` | `width: var(--spacing-32);` |
-| `.w-36` | `width: var(--spacing-36);` |
-| `.w-40` | `width: var(--spacing-40);` |
-| `.w-44` | `width: var(--spacing-44);` |
-| `.w-48` | `width: var(--spacing-48);` |
-| `.w-52` | `width: var(--spacing-52);` |
-| `.w-56` | `width: var(--spacing-56);` |
-| `.w-60` | `width: var(--spacing-60);` |
-| `.w-64` | `width: var(--spacing-64);` |
-| `.w-72` | `width: var(--spacing-72);` |
-| `.w-80` | `width: var(--spacing-80);` |
-| `.w-88` | `width: var(--spacing-88);` |
-| `.w-96` | `width: var(--spacing-96);` |
-| `.w-px` | `width: var(--spacing-px);` |
-| `.w-half` | `width: var(--spacing-half);` |
-| `.w-full` | `width: var(--spacing-full);` |
-| `.w-auto` | `width: var(--spacing-auto);` |
-
-### height
-
-Utilities to set the height property of the element.
-
-- **CSS properties:** `height`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/height
-
-| Class | CSS |
-| --- | --- |
-| `.h-0` | `height: var(--spacing-0);` |
-| `.h-1` | `height: var(--spacing-1);` |
-| `.h-2` | `height: var(--spacing-2);` |
-| `.h-3` | `height: var(--spacing-3);` |
-| `.h-4` | `height: var(--spacing-4);` |
-| `.h-5` | `height: var(--spacing-5);` |
-| `.h-6` | `height: var(--spacing-6);` |
-| `.h-7` | `height: var(--spacing-7);` |
-| `.h-8` | `height: var(--spacing-8);` |
-| `.h-9` | `height: var(--spacing-9);` |
-| `.h-10` | `height: var(--spacing-10);` |
-| `.h-11` | `height: var(--spacing-11);` |
-| `.h-12` | `height: var(--spacing-12);` |
-| `.h-14` | `height: var(--spacing-14);` |
-| `.h-16` | `height: var(--spacing-16);` |
-| `.h-20` | `height: var(--spacing-20);` |
-| `.h-24` | `height: var(--spacing-24);` |
-| `.h-28` | `height: var(--spacing-28);` |
-| `.h-32` | `height: var(--spacing-32);` |
-| `.h-36` | `height: var(--spacing-36);` |
-| `.h-40` | `height: var(--spacing-40);` |
-| `.h-44` | `height: var(--spacing-44);` |
-| `.h-48` | `height: var(--spacing-48);` |
-| `.h-52` | `height: var(--spacing-52);` |
-| `.h-56` | `height: var(--spacing-56);` |
-| `.h-60` | `height: var(--spacing-60);` |
-| `.h-64` | `height: var(--spacing-64);` |
-| `.h-72` | `height: var(--spacing-72);` |
-| `.h-80` | `height: var(--spacing-80);` |
-| `.h-88` | `height: var(--spacing-88);` |
-| `.h-96` | `height: var(--spacing-96);` |
-| `.h-px` | `height: var(--spacing-px);` |
-| `.h-half` | `height: var(--spacing-half);` |
-| `.h-full` | `height: var(--spacing-full);` |
-| `.h-auto` | `height: var(--spacing-auto);` |
-| `.h-screen` | `height: 100vh;` |
-
-### min-width
-
-Utilities to set the min-width property of the element.
-
-- **CSS properties:** `min-width`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/min-width
+- **CSS properties:** `text-decoration-line`
+- **Variants:** `hover` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line
 
 | Class | CSS |
 | --- | --- |
-| `.min-w-0` | `min-width: var(--spacing-0);` |
-| `.min-w-1` | `min-width: var(--spacing-1);` |
-| `.min-w-2` | `min-width: var(--spacing-2);` |
-| `.min-w-3` | `min-width: var(--spacing-3);` |
-| `.min-w-4` | `min-width: var(--spacing-4);` |
-| `.min-w-5` | `min-width: var(--spacing-5);` |
-| `.min-w-6` | `min-width: var(--spacing-6);` |
-| `.min-w-7` | `min-width: var(--spacing-7);` |
-| `.min-w-8` | `min-width: var(--spacing-8);` |
-| `.min-w-9` | `min-width: var(--spacing-9);` |
-| `.min-w-10` | `min-width: var(--spacing-10);` |
-| `.min-w-11` | `min-width: var(--spacing-11);` |
-| `.min-w-12` | `min-width: var(--spacing-12);` |
-| `.min-w-14` | `min-width: var(--spacing-14);` |
-| `.min-w-16` | `min-width: var(--spacing-16);` |
-| `.min-w-20` | `min-width: var(--spacing-20);` |
-| `.min-w-24` | `min-width: var(--spacing-24);` |
-| `.min-w-28` | `min-width: var(--spacing-28);` |
-| `.min-w-32` | `min-width: var(--spacing-32);` |
-| `.min-w-36` | `min-width: var(--spacing-36);` |
-| `.min-w-40` | `min-width: var(--spacing-40);` |
-| `.min-w-44` | `min-width: var(--spacing-44);` |
-| `.min-w-48` | `min-width: var(--spacing-48);` |
-| `.min-w-52` | `min-width: var(--spacing-52);` |
-| `.min-w-56` | `min-width: var(--spacing-56);` |
-| `.min-w-60` | `min-width: var(--spacing-60);` |
-| `.min-w-64` | `min-width: var(--spacing-64);` |
-| `.min-w-72` | `min-width: var(--spacing-72);` |
-| `.min-w-80` | `min-width: var(--spacing-80);` |
-| `.min-w-88` | `min-width: var(--spacing-88);` |
-| `.min-w-96` | `min-width: var(--spacing-96);` |
-| `.min-w-px` | `min-width: var(--spacing-px);` |
-| `.min-w-half` | `min-width: var(--spacing-half);` |
-| `.min-w-full` | `min-width: var(--spacing-full);` |
-| `.min-w-auto` | `min-width: var(--spacing-auto);` |
+| `.underline` | `text-decoration-line: underline;` |
+| `.overline` | `text-decoration-line: overline;` |
+| `.line-through` | `text-decoration-line: line-through;` |
+| `.no-underline` | `text-decoration-line: none;` |
 
-### max-width
+### text-overflow
 
-Utilities to set the max-width property of the element.
+Utilities to set the text overflow of the element.
 
-- **CSS properties:** `max-width`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/max-width
+- **CSS properties:** `text-overflow`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
 
 | Class | CSS |
 | --- | --- |
-| `.max-w-0` | `max-width: var(--spacing-0);` |
-| `.max-w-1` | `max-width: var(--spacing-1);` |
-| `.max-w-2` | `max-width: var(--spacing-2);` |
-| `.max-w-3` | `max-width: var(--spacing-3);` |
-| `.max-w-4` | `max-width: var(--spacing-4);` |
-| `.max-w-5` | `max-width: var(--spacing-5);` |
-| `.max-w-6` | `max-width: var(--spacing-6);` |
-| `.max-w-7` | `max-width: var(--spacing-7);` |
-| `.max-w-8` | `max-width: var(--spacing-8);` |
-| `.max-w-9` | `max-width: var(--spacing-9);` |
-| `.max-w-10` | `max-width: var(--spacing-10);` |
-| `.max-w-11` | `max-width: var(--spacing-11);` |
-| `.max-w-12` | `max-width: var(--spacing-12);` |
-| `.max-w-14` | `max-width: var(--spacing-14);` |
-| `.max-w-16` | `max-width: var(--spacing-16);` |
-| `.max-w-20` | `max-width: var(--spacing-20);` |
-| `.max-w-24` | `max-width: var(--spacing-24);` |
-| `.max-w-28` | `max-width: var(--spacing-28);` |
-| `.max-w-32` | `max-width: var(--spacing-32);` |
-| `.max-w-36` | `max-width: var(--spacing-36);` |
-| `.max-w-40` | `max-width: var(--spacing-40);` |
-| `.max-w-44` | `max-width: var(--spacing-44);` |
-| `.max-w-48` | `max-width: var(--spacing-48);` |
-| `.max-w-52` | `max-width: var(--spacing-52);` |
-| `.max-w-56` | `max-width: var(--spacing-56);` |
-| `.max-w-60` | `max-width: var(--spacing-60);` |
-| `.max-w-64` | `max-width: var(--spacing-64);` |
-| `.max-w-72` | `max-width: var(--spacing-72);` |
-| `.max-w-80` | `max-width: var(--spacing-80);` |
-| `.max-w-88` | `max-width: var(--spacing-88);` |
-| `.max-w-96` | `max-width: var(--spacing-96);` |
-| `.max-w-px` | `max-width: var(--spacing-px);` |
-| `.max-w-half` | `max-width: var(--spacing-half);` |
-| `.max-w-full` | `max-width: var(--spacing-full);` |
-| `.max-w-auto` | `max-width: var(--spacing-auto);` |
-| `.max-w-xs` | `max-width: var(--container-xs);` |
-| `.max-w-sm` | `max-width: var(--container-sm);` |
-| `.max-w-md` | `max-width: var(--container-md);` |
-| `.max-w-lg` | `max-width: var(--container-lg);` |
-| `.max-w-xl` | `max-width: var(--container-xl);` |
-| `.max-w-2xl` | `max-width: var(--container-2xl);` |
-| `.max-w-3xl` | `max-width: var(--container-3xl);` |
-| `.max-w-4xl` | `max-width: var(--container-4xl);` |
-| `.max-w-5xl` | `max-width: var(--container-5xl);` |
-| `.max-w-6xl` | `max-width: var(--container-6xl);` |
-| `.max-w-7xl` | `max-width: var(--container-7xl);` |
-| `.max-w-8xl` | `max-width: var(--container-8xl);` |
-| `.max-w-9xl` | `max-width: var(--container-9xl);` |
+| `.text-ellipsis` | `text-overflow: ellipsis;` |
+| `.text-clip` | `text-overflow: clip;` |
 
-### min-height
+### text-transform
 
-Utilities to set the min-height property of the element.
+Utilities to control the capitalization of the text.
 
-- **CSS properties:** `min-height`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/min-height
+- **CSS properties:** `text-transform`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform
 
 | Class | CSS |
 | --- | --- |
-| `.min-h-0` | `min-height: var(--spacing-0);` |
-| `.min-h-1` | `min-height: var(--spacing-1);` |
-| `.min-h-2` | `min-height: var(--spacing-2);` |
-| `.min-h-3` | `min-height: var(--spacing-3);` |
-| `.min-h-4` | `min-height: var(--spacing-4);` |
-| `.min-h-5` | `min-height: var(--spacing-5);` |
-| `.min-h-6` | `min-height: var(--spacing-6);` |
-| `.min-h-7` | `min-height: var(--spacing-7);` |
-| `.min-h-8` | `min-height: var(--spacing-8);` |
-| `.min-h-9` | `min-height: var(--spacing-9);` |
-| `.min-h-10` | `min-height: var(--spacing-10);` |
-| `.min-h-11` | `min-height: var(--spacing-11);` |
-| `.min-h-12` | `min-height: var(--spacing-12);` |
-| `.min-h-14` | `min-height: var(--spacing-14);` |
-| `.min-h-16` | `min-height: var(--spacing-16);` |
-| `.min-h-20` | `min-height: var(--spacing-20);` |
-| `.min-h-24` | `min-height: var(--spacing-24);` |
-| `.min-h-28` | `min-height: var(--spacing-28);` |
-| `.min-h-32` | `min-height: var(--spacing-32);` |
-| `.min-h-36` | `min-height: var(--spacing-36);` |
-| `.min-h-40` | `min-height: var(--spacing-40);` |
-| `.min-h-44` | `min-height: var(--spacing-44);` |
-| `.min-h-48` | `min-height: var(--spacing-48);` |
-| `.min-h-52` | `min-height: var(--spacing-52);` |
-| `.min-h-56` | `min-height: var(--spacing-56);` |
-| `.min-h-60` | `min-height: var(--spacing-60);` |
-| `.min-h-64` | `min-height: var(--spacing-64);` |
-| `.min-h-72` | `min-height: var(--spacing-72);` |
-| `.min-h-80` | `min-height: var(--spacing-80);` |
-| `.min-h-88` | `min-height: var(--spacing-88);` |
-| `.min-h-96` | `min-height: var(--spacing-96);` |
-| `.min-h-px` | `min-height: var(--spacing-px);` |
-| `.min-h-half` | `min-height: var(--spacing-half);` |
-| `.min-h-full` | `min-height: var(--spacing-full);` |
-| `.min-h-auto` | `min-height: var(--spacing-auto);` |
-| `.min-h-screen` | `min-height: 100vh;` |
+| `.uppercase` | `text-transform: uppercase;` |
+| `.lowercase` | `text-transform: lowercase;` |
+| `.capitalize` | `text-transform: capitalize;` |
+| `.normal-case` | `text-transform: none;` |
 
-### max-height
+### vertical-align
 
-Utilities to set the max-height property of the element.
+Utilities to control the vertical alignment of inline elements.
 
-- **CSS properties:** `max-height`
-- **Variants:** `responsive` (in addition to the base class)
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/max-height
+- **CSS properties:** `vertical-align`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align
 
 | Class | CSS |
 | --- | --- |
-| `.max-h-0` | `max-height: var(--spacing-0);` |
-| `.max-h-1` | `max-height: var(--spacing-1);` |
-| `.max-h-2` | `max-height: var(--spacing-2);` |
-| `.max-h-3` | `max-height: var(--spacing-3);` |
-| `.max-h-4` | `max-height: var(--spacing-4);` |
-| `.max-h-5` | `max-height: var(--spacing-5);` |
-| `.max-h-6` | `max-height: var(--spacing-6);` |
-| `.max-h-7` | `max-height: var(--spacing-7);` |
-| `.max-h-8` | `max-height: var(--spacing-8);` |
-| `.max-h-9` | `max-height: var(--spacing-9);` |
-| `.max-h-10` | `max-height: var(--spacing-10);` |
-| `.max-h-11` | `max-height: var(--spacing-11);` |
-| `.max-h-12` | `max-height: var(--spacing-12);` |
-| `.max-h-14` | `max-height: var(--spacing-14);` |
-| `.max-h-16` | `max-height: var(--spacing-16);` |
-| `.max-h-20` | `max-height: var(--spacing-20);` |
-| `.max-h-24` | `max-height: var(--spacing-24);` |
-| `.max-h-28` | `max-height: var(--spacing-28);` |
-| `.max-h-32` | `max-height: var(--spacing-32);` |
-| `.max-h-36` | `max-height: var(--spacing-36);` |
-| `.max-h-40` | `max-height: var(--spacing-40);` |
-| `.max-h-44` | `max-height: var(--spacing-44);` |
-| `.max-h-48` | `max-height: var(--spacing-48);` |
-| `.max-h-52` | `max-height: var(--spacing-52);` |
-| `.max-h-56` | `max-height: var(--spacing-56);` |
-| `.max-h-60` | `max-height: var(--spacing-60);` |
-| `.max-h-64` | `max-height: var(--spacing-64);` |
-| `.max-h-72` | `max-height: var(--spacing-72);` |
-| `.max-h-80` | `max-height: var(--spacing-80);` |
-| `.max-h-88` | `max-height: var(--spacing-88);` |
-| `.max-h-96` | `max-height: var(--spacing-96);` |
-| `.max-h-px` | `max-height: var(--spacing-px);` |
-| `.max-h-half` | `max-height: var(--spacing-half);` |
-| `.max-h-full` | `max-height: var(--spacing-full);` |
-| `.max-h-auto` | `max-height: var(--spacing-auto);` |
-| `.max-h-screen` | `max-height: 100vh;` |
+| `.align-baseline` | `vertical-align: baseline;` |
+| `.align-top` | `vertical-align: top;` |
+| `.align-middle` | `vertical-align: middle;` |
+| `.align-bottom` | `vertical-align: bottom;` |
 
-## interactivity
+### white-space
 
-### cursor
+Utilities to control the white-space property of an element.
 
-Utilities to set the cursor property of the element. Reduced to the most commonly used values.
-
-- **CSS properties:** `cursor`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+- **CSS properties:** `white-space`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/white-space
 
 | Class | CSS |
 | --- | --- |
-| `.cursor-auto` | `cursor: auto;` |
-| `.cursor-default` | `cursor: default;` |
-| `.cursor-pointer` | `cursor: pointer;` |
-| `.cursor-not-allowed` | `cursor: not-allowed;` |
-| `.cursor-wait` | `cursor: wait;` |
-| `.cursor-text` | `cursor: text;` |
-| `.cursor-move` | `cursor: move;` |
-| `.cursor-grab` | `cursor: grab;` |
+| `.whitespace-normal` | `white-space: normal;` |
+| `.whitespace-nowrap` | `white-space: nowrap;` |
+| `.whitespace-pre` | `white-space: pre;` |
 
-### pointer-events
+### word-break
 
-Utilities to set the pointer-events property of the element.
+Utilities to control how words breaks in an element.
 
-- **CSS properties:** `pointer-events`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+- **CSS properties:** `word-break`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
 
 | Class | CSS |
 | --- | --- |
-| `.pointer-events-auto` | `pointer-events: auto;` |
-| `.pointer-events-none` | `pointer-events: none;` |
-
-### touch-action
-
-Utilities to set the touch-action property of the element.
-
-- **CSS properties:** `touch-action`
-- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
-
-| Class | CSS |
-| --- | --- |
-| `.touch-auto` | `touch-action: auto;` |
-| `.touch-none` | `touch-action: none;` |
-| `.touch-pan-x` | `touch-action: pan-x;` |
-| `.touch-pan-y` | `touch-action: pan-y;` |
+| `.break-normal` | `word-break: normal;` |
+| `.break-all` | `word-break: break-all;` |
+| `.break-keep` | `word-break: keep-all;` |
