@@ -435,7 +435,10 @@
             "display"
         ],
         "variants": [
-            "responsive"
+            "responsive",
+            "hover",
+            "focus",
+            "focus-within"
         ]
     },
     {
@@ -530,6 +533,18 @@
         },
         "properties": [
             "overflow"
+        ],
+        "variants": []
+    },
+    {
+        "name": "z-index",
+        "category": "layout",
+        "description": "Utilities to set the stack order of an element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/z-index",
+        "className": "z-{key}",
+        "theme": "z-index",
+        "properties": [
+            "z-index"
         ],
         "variants": []
     },
