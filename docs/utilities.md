@@ -260,6 +260,36 @@ Utilities to set the border-radius property of the element.
 | `.rounded-full` | `border-radius: var(--radius-full);` |
 | `.rounded-none` | `border-radius: var(--radius-none);` |
 
+### outline-width
+
+Utilities to set the outline-width property of the element.
+
+- **CSS properties:** `outline-width`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/outline-width
+
+| Class | CSS |
+| --- | --- |
+| `.outline-0` | `outline-width: var(--border-width-0);` |
+| `.outline-1` | `outline-width: var(--border-width-1);` |
+| `.outline-2` | `outline-width: var(--border-width-2);` |
+| `.outline-4` | `outline-width: var(--border-width-4);` |
+| `.outline-6` | `outline-width: var(--border-width-6);` |
+| `.outline-8` | `outline-width: var(--border-width-8);` |
+
+### outline-style
+
+Utilities to set the outline-style property of the element.
+
+- **CSS properties:** `outline-style`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/outline-style
+
+| Class | CSS |
+| --- | --- |
+| `.outline-solid` | `outline-style: solid;` |
+| `.outline-dashed` | `outline-style: dashed;` |
+| `.outline-dotted` | `outline-style: dotted;` |
+| `.outline-none` | `outline-style: none;` |
+
 ## effects
 
 ### box-shadow
@@ -282,6 +312,7 @@ Utilities to set the box-shadow property of the element.
 Utilities to set the opacity property of the element.
 
 - **CSS properties:** `opacity`
+- **Variants:** `responsive`, `hover`, `focus`, `focus-within` (in addition to the base class)
 - **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/opacity
 
 | Class | CSS |
