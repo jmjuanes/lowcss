@@ -448,51 +448,28 @@
         "variants": []
     },
     {
-        "name": "height",
+        "name": "width",
         "category": "sizing",
-        "description": "Utilities to set the height property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/height",
-        "className": "h-{key}",
+        "description": "Utilities to set the width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
+        "className": "w-{key}",
         "theme": "spacing",
-        "values": {
-            "screen": "100vh"
-        },
         "properties": [
-            "height"
+            "width"
         ],
         "variants": [
             "responsive"
         ]
     },
     {
-        "name": "max-height",
+        "name": "min-width",
         "category": "sizing",
-        "description": "Utilities to set the max-height property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
-        "className": "max-h-{key}",
+        "description": "Utilities to set the min-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+        "className": "min-w-{key}",
         "theme": "spacing",
-        "values": {
-            "screen": "100vh"
-        },
         "properties": [
-            "max-height"
-        ],
-        "variants": [
-            "responsive"
-        ]
-    },
-    {
-        "name": "min-height",
-        "category": "sizing",
-        "description": "Utilities to set the min-height property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-height",
-        "className": "min-h-{key}",
-        "theme": "spacing",
-        "values": {
-            "screen": "100vh"
-        },
-        "properties": [
-            "min-height"
+            "min-width"
         ],
         "variants": [
             "responsive"
@@ -516,28 +493,51 @@
         ]
     },
     {
-        "name": "min-width",
+        "name": "height",
         "category": "sizing",
-        "description": "Utilities to set the min-width property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
-        "className": "min-w-{key}",
+        "description": "Utilities to set the height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/height",
+        "className": "h-{key}",
         "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
         "properties": [
-            "min-width"
+            "height"
         ],
         "variants": [
             "responsive"
         ]
     },
     {
-        "name": "width",
+        "name": "min-height",
         "category": "sizing",
-        "description": "Utilities to set the width property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/width",
-        "className": "w-{key}",
+        "description": "Utilities to set the min-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-height",
+        "className": "min-h-{key}",
         "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
         "properties": [
-            "width"
+            "min-height"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "max-height",
+        "category": "sizing",
+        "description": "Utilities to set the max-height property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/max-height",
+        "className": "max-h-{key}",
+        "theme": "spacing",
+        "values": {
+            "screen": "100vh"
+        },
+        "properties": [
+            "max-height"
         ],
         "variants": [
             "responsive"
