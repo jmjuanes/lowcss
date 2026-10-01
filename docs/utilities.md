@@ -422,6 +422,23 @@ Utilities to set the order of flex and grid items.
 | `.order-first` | `order: -9999;` |
 | `.order-last` | `order: 99999;` |
 
+### align-content
+
+Utilities to set the align-content property of the element.
+
+- **CSS properties:** `align-content`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/align-content
+
+| Class | CSS |
+| --- | --- |
+| `.content-start` | `align-content: flex-start;` |
+| `.content-end` | `align-content: flex-end;` |
+| `.content-center` | `align-content: center;` |
+| `.content-between` | `align-content: space-between;` |
+| `.content-around` | `align-content: space-around;` |
+| `.content-evenly` | `align-content: space-evenly;` |
+
 ### align-items
 
 Utilities to set the align-items property of the element.
@@ -454,6 +471,21 @@ Utilities to set the justify-content property of the element.
 | `.justify-between` | `justify-content: space-between;` |
 | `.justify-around` | `justify-content: space-around;` |
 | `.justify-evenly` | `justify-content: space-evenly;` |
+
+### justify-items
+
+Utilities to set the justify-items property of the element.
+
+- **CSS properties:** `justify-items`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items
+
+| Class | CSS |
+| --- | --- |
+| `.justify-items-start` | `justify-items: flex-start;` |
+| `.justify-items-end` | `justify-items: flex-end;` |
+| `.justify-items-center` | `justify-items: center;` |
+| `.justify-items-stretch` | `justify-items: stretch;` |
 
 ### grid-template-columns
 
