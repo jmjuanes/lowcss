@@ -106,18 +106,6 @@
         "variants": []
     },
     {
-        "name": "gap",
-        "category": "flexbox",
-        "description": "Utilities to set the gap property of the element.",
-        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
-        "className": "gap-{key}",
-        "theme": "gap",
-        "properties": [
-            "gap"
-        ],
-        "variants": []
-    },
-    {
         "name": "flex-direction",
         "category": "flexbox",
         "description": "Utilities to set the flex-direction property of the element.",
@@ -131,6 +119,40 @@
         },
         "properties": [
             "flex-direction"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "flex-grow",
+        "category": "flexbox",
+        "description": "Utilities to control how flex items grow.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow",
+        "className": "grow-{key}",
+        "values": {
+            "0": "0",
+            "1": "1"
+        },
+        "properties": [
+            "flex-grow"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "flex-shrink",
+        "category": "flexbox",
+        "description": "Utilities to control how flex items shrink.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink",
+        "className": "shrink-{key}",
+        "values": {
+            "0": "0",
+            "1": "1"
+        },
+        "properties": [
+            "flex-shrink"
         ],
         "variants": [
             "responsive"
@@ -151,6 +173,38 @@
             "flex-wrap"
         ],
         "variants": []
+    },
+    {
+        "name": "gap",
+        "category": "flexbox",
+        "description": "Utilities to set the gap property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/gap",
+        "className": "gap-{key}",
+        "theme": "gap",
+        "properties": [
+            "gap"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "order",
+        "category": "flexbox",
+        "description": "Utilities to set the order of flex and grid items.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/order",
+        "className": "order-{key}",
+        "value": {
+            "none": "0",
+            "first": "-9999",
+            "last": "99999"
+        },
+        "properties": [
+            "order"
+        ],
+        "variants": [
+            "responsive"
+        ]
     },
     {
         "name": "align-items",
