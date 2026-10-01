@@ -356,7 +356,10 @@
         "description": "Utilities to set the top property of the element.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/top",
         "className": "top-{key}",
-        "theme": "spacing",
+        "values": {
+            "0": "0",
+            "full": "100%"
+        },
         "properties": [
             "top"
         ],
@@ -368,7 +371,10 @@
         "description": "Utilities to set the right property of the element.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/right",
         "className": "right-{key}",
-        "theme": "spacing",
+        "values": {
+            "0": "0",
+            "full": "100%"
+        },
         "properties": [
             "right"
         ],
@@ -380,7 +386,10 @@
         "description": "Utilities to set the bottom property of the element.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/bottom",
         "className": "bottom-{key}",
-        "theme": "spacing",
+        "values": {
+            "0": "0",
+            "full": "100%"
+        },
         "properties": [
             "bottom"
         ],
@@ -392,7 +401,10 @@
         "description": "Utilities to set the left property of the element.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/left",
         "className": "left-{key}",
-        "theme": "spacing",
+        "values": {
+            "0": "0",
+            "full": "100%"
+        },
         "properties": [
             "left"
         ],
@@ -423,9 +435,9 @@
         "className": "flex-{key}",
         "values": {
             "row": "row",
-            "column": "column",
+            "col": "column",
             "row-reverse": "row-reverse",
-            "column-reverse": "column-reverse"
+            "col-reverse": "column-reverse"
         },
         "properties": [
             "flex-direction"
