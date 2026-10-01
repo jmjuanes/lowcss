@@ -416,6 +416,12 @@ Utilities to set the order of flex and grid items.
 - **Variants:** `responsive` (in addition to the base class)
 - **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/order
 
+| Class | CSS |
+| --- | --- |
+| `.order-none` | `order: 0;` |
+| `.order-first` | `order: -9999;` |
+| `.order-last` | `order: 99999;` |
+
 ### align-items
 
 Utilities to set the align-items property of the element.
