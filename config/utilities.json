@@ -228,7 +228,7 @@
         "description": "Utilities to set the order of flex and grid items.",
         "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/order",
         "className": "order-{key}",
-        "value": {
+        "values": {
             "none": "0",
             "first": "-9999",
             "last": "99999"
