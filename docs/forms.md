@@ -1,21 +1,13 @@
-# LowCSS Forms Addon
+# Forms
 
 A simple CSS reset for form elements that makes them easy to style with LowCSS utility classes.
-
-## Features
-
-- Normalizes form elements across browsers.
-- Makes form elements more consistent and easier to style.
-- Removes browser-specific styling for a clean base.
-- Designed to work seamlessly with LowCSS utility classes.
-- Lightweight and focused on the most common form elements.
 
 ## Usage
 
 Import the addon in your project by linking the CSS file directly in your HTML:
 
 ```html
-<link rel="stylesheet" href="node_modules/lowcss/addons/forms/index.css">
+<link rel="stylesheet" href="node_modules/lowcss/forms.css">
 ```
 
 After importing, form elements will have consistent base styling that you can customize using LowCSS utility classes:
