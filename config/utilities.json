@@ -1,5 +1,17 @@
 [
     {
+        "name": "animation",
+        "category": "animation",
+        "description": "Utilities to animate elements using predefined CSS animations.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/animation",
+        "className": "animate-{key}",
+        "theme": "animate",
+        "properties": [
+            "animation"
+        ],
+        "variants": []
+    },
+    {
         "name": "background-color",
         "category": "background",
         "description": "Utilities to set the background-color property of the element.",
