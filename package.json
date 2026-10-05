@@ -18,6 +18,9 @@
         "./reset.css": "./reset.css",
         "./theme.css": "./theme.css",
         "./utilities.css": "./utilities.css",
+        "./animation.css": "./animation.css",
+        "./helpers.css": "./helpers.css",
+        "./forms.css": "./forms.css",
         "./package.json": "./package.json"
     },
     "scripts": {
@@ -43,8 +46,10 @@
         "theme.css",
         "reset.css",
         "utilities.css",
+        "animation.css",
+        "forms.css",
+        "helpers.css",
         "docs",
-        "addons",
         "package.json"
     ],
     "devDependencies": {
