@@ -1,5 +1,23 @@
 # Utilities reference
 
+## animation
+
+### animation
+
+Utilities to animate elements using predefined CSS animations.
+
+- **CSS properties:** `animation`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+
+| Class | CSS |
+| --- | --- |
+| `.animate-bounce` | `animation: var(--animate-bounce);` |
+| `.animate-fadein` | `animation: var(--animate-fadein);` |
+| `.animate-fadeout` | `animation: var(--animate-fadeout);` |
+| `.animate-ping` | `animation: var(--animate-ping);` |
+| `.animate-pulse` | `animation: var(--animate-pulse);` |
+| `.animate-spin` | `animation: var(--animate-spin);` |
+
 ## background
 
 ### background-color

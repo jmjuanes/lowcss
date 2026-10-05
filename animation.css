@@ -49,22 +49,3 @@
         transform: rotate(360deg);
     }
 }
-
-.animate-bounce {
-    animation: bounce 1s infinite;
-}
-.animate-fadein {
-    animation: fadein ease 1s;
-}
-.animate-fadeout {
-    animation: fadeout ease 1s;
-}
-.animate-ping {
-    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-.animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-.animate-spin {
-    animation: spin 1s linear infinite;
-}
