@@ -1,13 +1,13 @@
-# LowCSS Helpers Addon
+# Helpers
 
-LowCSS Helpers addon is a collection of essential CSS helpers designed to streamline layout and design tasks. These helpers provide utility classes for common styling needs, making it easier to create consistent designs without writing repetitive CSS.
+LowCSS Helpers module is a collection of essential CSS helpers designed to streamline layout and design tasks. These helpers provide utility classes for common styling needs, making it easier to create consistent designs without writing repetitive CSS.
 
 ## Usage
 
 Import the addon in your project by linking the CSS file directly in your HTML:
 
 ```html
-<link rel="stylesheet" href="node_modules/lowcss/addons/helpers/index.css">
+<link rel="stylesheet" href="node_modules/lowcss/helpers.css">
 ```
 
 ## Available Helpers
