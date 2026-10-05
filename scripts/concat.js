@@ -8,7 +8,7 @@ import { join, relative } from "node:path";
 import { minify } from "csso";
 
 const ROOT = process.cwd();
-const FILES = ["reset.css", "theme.css", "utilities.css", "animation.css", "helpers.css", "form.css"];
+const FILES = ["reset.css", "theme.css", "utilities.css", "animation.css", "helpers.css", "forms.css"];
 const OUTPUT = join(ROOT, "low.css");
 
 const parts = FILES.map(file => {
