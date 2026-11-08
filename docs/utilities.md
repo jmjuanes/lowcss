@@ -733,6 +733,7 @@ Utilities to set the left property of the element.
 Utilities to set the overflow property of the element.
 
 - **CSS properties:** `overflow`
+- **Variants:** `responsive` (in addition to the base class)
 - **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
 
 | Class | CSS |
@@ -741,6 +742,34 @@ Utilities to set the overflow property of the element.
 | `.overflow-scroll` | `overflow: scroll;` |
 | `.overflow-auto` | `overflow: auto;` |
 | `.overflow-visible` | `overflow: visible;` |
+
+### overflow-x
+
+Utilities to set the overflow-x property of the element.
+
+- **CSS properties:** `overflow-x`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x
+
+| Class | CSS |
+| --- | --- |
+| `.overflow-x-hidden` | `overflow-x: hidden;` |
+| `.overflow-x-scroll` | `overflow-x: scroll;` |
+| `.overflow-x-auto` | `overflow-x: auto;` |
+
+### overflow-y
+
+Utilities to set the overflow-y property of the element.
+
+- **CSS properties:** `overflow-y`
+- **Variants:** `responsive` (in addition to the base class)
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y
+
+| Class | CSS |
+| --- | --- |
+| `.overflow-y-hidden` | `overflow-y: hidden;` |
+| `.overflow-y-scroll` | `overflow-y: scroll;` |
+| `.overflow-y-auto` | `overflow-y: auto;` |
 
 ### z-index
 
