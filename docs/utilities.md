@@ -670,6 +670,7 @@ Utilities to set the display property of the element.
 Utilities to set the position property of the element.
 
 - **CSS properties:** `position`
+- **Variants:** `responsive` (in addition to the base class)
 - **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/position
 
 | Class | CSS |
