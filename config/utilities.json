@@ -543,7 +543,9 @@
         "properties": [
             "position"
         ],
-        "variants": []
+        "variants": [
+            "responsive"
+        ]
     },
     {
         "name": "top",
