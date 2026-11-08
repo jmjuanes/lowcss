@@ -633,7 +633,8 @@
         "values": {
             "hidden": "hidden",
             "scroll": "scroll",
-            "auto": "auto"
+            "auto": "auto",
+            "visible": "visible"
         },
         "properties": [
             "overflow-x"
@@ -651,7 +652,8 @@
         "values": {
             "hidden": "hidden",
             "scroll": "scroll",
-            "auto": "auto"
+            "auto": "auto",
+            "visible": "visible"
         },
         "properties": [
             "overflow-y"
