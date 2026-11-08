@@ -620,7 +620,47 @@
         "properties": [
             "overflow"
         ],
-        "variants": []
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "overflow-x",
+        "category": "layout",
+        "description": "Utilities to set the overflow-x property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-x",
+        "className": "overflow-x-{key}",
+        "values": {
+            "hidden": "hidden",
+            "scroll": "scroll",
+            "auto": "auto",
+            "visible": "visible"
+        },
+        "properties": [
+            "overflow-x"
+        ],
+        "variants": [
+            "responsive"
+        ]
+    },
+    {
+        "name": "overflow-y",
+        "category": "layout",
+        "description": "Utilities to set the overflow-y property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-y",
+        "className": "overflow-y-{key}",
+        "values": {
+            "hidden": "hidden",
+            "scroll": "scroll",
+            "auto": "auto",
+            "visible": "visible"
+        },
+        "properties": [
+            "overflow-y"
+        ],
+        "variants": [
+            "responsive"
+        ]
     },
     {
         "name": "z-index",

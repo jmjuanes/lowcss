@@ -4129,6 +4129,274 @@
 .overflow-visible {
     overflow: visible;
 }
+@media screen and (min-width: 640px) {
+.sm\:overflow-hidden {
+    overflow: hidden;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-hidden {
+    overflow: hidden;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-hidden {
+    overflow: hidden;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-hidden {
+    overflow: hidden;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-scroll {
+    overflow: scroll;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-scroll {
+    overflow: scroll;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-scroll {
+    overflow: scroll;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-scroll {
+    overflow: scroll;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-auto {
+    overflow: auto;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-auto {
+    overflow: auto;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-auto {
+    overflow: auto;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-auto {
+    overflow: auto;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-visible {
+    overflow: visible;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-visible {
+    overflow: visible;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-visible {
+    overflow: visible;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-visible {
+    overflow: visible;
+}
+}
+
+/* overflow-x */
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+.overflow-x-scroll {
+    overflow-x: scroll;
+}
+.overflow-x-auto {
+    overflow-x: auto;
+}
+.overflow-x-visible {
+    overflow-x: visible;
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-x-hidden {
+    overflow-x: hidden;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-x-hidden {
+    overflow-x: hidden;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-x-hidden {
+    overflow-x: hidden;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-x-hidden {
+    overflow-x: hidden;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-x-scroll {
+    overflow-x: scroll;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-x-scroll {
+    overflow-x: scroll;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-x-scroll {
+    overflow-x: scroll;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-x-scroll {
+    overflow-x: scroll;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-x-auto {
+    overflow-x: auto;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-x-auto {
+    overflow-x: auto;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-x-auto {
+    overflow-x: auto;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-x-auto {
+    overflow-x: auto;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-x-visible {
+    overflow-x: visible;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-x-visible {
+    overflow-x: visible;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-x-visible {
+    overflow-x: visible;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-x-visible {
+    overflow-x: visible;
+}
+}
+
+/* overflow-y */
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+.overflow-y-auto {
+    overflow-y: auto;
+}
+.overflow-y-visible {
+    overflow-y: visible;
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-y-hidden {
+    overflow-y: hidden;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-y-hidden {
+    overflow-y: hidden;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-y-hidden {
+    overflow-y: hidden;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-y-hidden {
+    overflow-y: hidden;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-y-scroll {
+    overflow-y: scroll;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-y-scroll {
+    overflow-y: scroll;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-y-scroll {
+    overflow-y: scroll;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-y-scroll {
+    overflow-y: scroll;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-y-auto {
+    overflow-y: auto;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-y-auto {
+    overflow-y: auto;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-y-auto {
+    overflow-y: auto;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-y-auto {
+    overflow-y: auto;
+}
+}
+@media screen and (min-width: 640px) {
+.sm\:overflow-y-visible {
+    overflow-y: visible;
+}
+}
+@media screen and (min-width: 768px) {
+.md\:overflow-y-visible {
+    overflow-y: visible;
+}
+}
+@media screen and (min-width: 1024px) {
+.lg\:overflow-y-visible {
+    overflow-y: visible;
+}
+}
+@media screen and (min-width: 1280px) {
+.xl\:overflow-y-visible {
+    overflow-y: visible;
+}
+}
 
 /* z-index */
 .z-0 {
