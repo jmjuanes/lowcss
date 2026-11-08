@@ -756,6 +756,7 @@ Utilities to set the overflow-x property of the element.
 | `.overflow-x-hidden` | `overflow-x: hidden;` |
 | `.overflow-x-scroll` | `overflow-x: scroll;` |
 | `.overflow-x-auto` | `overflow-x: auto;` |
+| `.overflow-x-visible` | `overflow-x: visible;` |
 
 ### overflow-y
 
@@ -770,6 +771,7 @@ Utilities to set the overflow-y property of the element.
 | `.overflow-y-hidden` | `overflow-y: hidden;` |
 | `.overflow-y-scroll` | `overflow-y: scroll;` |
 | `.overflow-y-auto` | `overflow-y: auto;` |
+| `.overflow-y-visible` | `overflow-y: visible;` |
 
 ### z-index
 
