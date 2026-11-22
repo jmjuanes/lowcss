@@ -62,6 +62,54 @@
         "variants": []
     },
     {
+        "name": "border-bottom-width",
+        "category": "border",
+        "description": "Utilities to set the border-bottom-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width",
+        "className": "border-b-{key}",
+        "theme": "border-width",
+        "properties": [
+            "border-bottom-width"
+        ],
+        "variants": []
+    },
+    {
+        "name": "border-left-width",
+        "category": "border",
+        "description": "Utilities to set the border-left-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width",
+        "className": "border-l-{key}",
+        "theme": "border-width",
+        "properties": [
+            "border-left-width"
+        ],
+        "variants": []
+    },
+    {
+        "name": "border-right-width",
+        "category": "border",
+        "description": "Utilities to set the border-right-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width",
+        "className": "border-r-{key}",
+        "theme": "border-width",
+        "properties": [
+            "border-right-width"
+        ],
+        "variants": []
+    },
+    {
+        "name": "border-top-width",
+        "category": "border",
+        "description": "Utilities to set the border-top-width property of the element.",
+        "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width",
+        "className": "border-t-{key}",
+        "theme": "border-width",
+        "properties": [
+            "border-top-width"
+        ],
+        "variants": []
+    },
+    {
         "name": "border-style",
         "category": "border",
         "description": "Utilities to set the border-style property of the element.",
