@@ -244,6 +244,70 @@ Utilities to set the border-width property of the element.
 | `.border-6` | `border-width: var(--border-width-6);` |
 | `.border-8` | `border-width: var(--border-width-8);` |
 
+### border-bottom-width
+
+Utilities to set the border-bottom-width property of the element.
+
+- **CSS properties:** `border-bottom-width`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/border-bottom-width
+
+| Class | CSS |
+| --- | --- |
+| `.border-b-0` | `border-bottom-width: var(--border-width-0);` |
+| `.border-b-1` | `border-bottom-width: var(--border-width-1);` |
+| `.border-b-2` | `border-bottom-width: var(--border-width-2);` |
+| `.border-b-4` | `border-bottom-width: var(--border-width-4);` |
+| `.border-b-6` | `border-bottom-width: var(--border-width-6);` |
+| `.border-b-8` | `border-bottom-width: var(--border-width-8);` |
+
+### border-left-width
+
+Utilities to set the border-left-width property of the element.
+
+- **CSS properties:** `border-left-width`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/border-left-width
+
+| Class | CSS |
+| --- | --- |
+| `.border-l-0` | `border-left-width: var(--border-width-0);` |
+| `.border-l-1` | `border-left-width: var(--border-width-1);` |
+| `.border-l-2` | `border-left-width: var(--border-width-2);` |
+| `.border-l-4` | `border-left-width: var(--border-width-4);` |
+| `.border-l-6` | `border-left-width: var(--border-width-6);` |
+| `.border-l-8` | `border-left-width: var(--border-width-8);` |
+
+### border-right-width
+
+Utilities to set the border-right-width property of the element.
+
+- **CSS properties:** `border-right-width`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/border-right-width
+
+| Class | CSS |
+| --- | --- |
+| `.border-r-0` | `border-right-width: var(--border-width-0);` |
+| `.border-r-1` | `border-right-width: var(--border-width-1);` |
+| `.border-r-2` | `border-right-width: var(--border-width-2);` |
+| `.border-r-4` | `border-right-width: var(--border-width-4);` |
+| `.border-r-6` | `border-right-width: var(--border-width-6);` |
+| `.border-r-8` | `border-right-width: var(--border-width-8);` |
+
+### border-top-width
+
+Utilities to set the border-top-width property of the element.
+
+- **CSS properties:** `border-top-width`
+- **MDN:** https://developer.mozilla.org/en-US/docs/Web/CSS/border-top-width
+
+| Class | CSS |
+| --- | --- |
+| `.border-t-0` | `border-top-width: var(--border-width-0);` |
+| `.border-t-1` | `border-top-width: var(--border-width-1);` |
+| `.border-t-2` | `border-top-width: var(--border-width-2);` |
+| `.border-t-4` | `border-top-width: var(--border-width-4);` |
+| `.border-t-6` | `border-top-width: var(--border-width-6);` |
+| `.border-t-8` | `border-top-width: var(--border-width-8);` |
+
 ### border-style
 
 Utilities to set the border-style property of the element.
